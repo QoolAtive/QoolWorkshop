@@ -6,10 +6,7 @@
  * The followings are the available columns in table 'title_name':
  * @property integer $id
  * @property string $name
- *
- * The followings are the available model relations:
- * @property MemPerson[] $memPeople
- * @property MemRegistration[] $memRegistrations
+ * @property string $language
  */
 class TitleNameBase extends CActiveRecord
 {
@@ -39,11 +36,12 @@ class TitleNameBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('name, language', 'required'),
 			array('name', 'length', 'max'=>100),
+			array('language', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, language', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +53,6 @@ class TitleNameBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'memPeople' => array(self::HAS_MANY, 'MemPerson', 'tname'),
-			'memRegistrations' => array(self::HAS_MANY, 'MemRegistration', 'tname'),
 		);
 	}
 
@@ -68,6 +64,7 @@ class TitleNameBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'language' => 'Language',
 		);
 	}
 
@@ -84,6 +81,7 @@ class TitleNameBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('language',$this->language,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

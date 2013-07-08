@@ -16,7 +16,7 @@ class MemUser extends MemUserBase {
             array('username', 'CheckUser'),
             array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
             array('password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => '{attribute}ไม่ตรงกัน กรุณาตรวจสอบ'),
-            array('password_confirm, id, username, password, type', 'safe', 'on' => 'search'),
+            array('password_confirm, id, username, password, type, member_name, member_lname', 'safe', 'on' => 'search'),
             array('verifyCode', 'captcha', 'allowEmpty' => !CCaptcha::checkRequirements()), // captcha
         );
     }
@@ -68,6 +68,23 @@ class MemUser extends MemUserBase {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'member_name' => array(
+                        'asc' => 'member_name, id',
+                        'desc' => 'member_name desc, id',
+                    ),
+                    'member_lname' => array(
+                        'asc' => 'member_lname, id',
+                        'desc' => 'member_lname desc, id',
+                    ),
+                    '*',
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
         ));
     }
 
@@ -88,6 +105,23 @@ class MemUser extends MemUserBase {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'member_name' => array(
+                        'asc' => 'member_name, id',
+                        'desc' => 'member_name desc, id',
+                    ),
+                    'member_lname' => array(
+                        'asc' => 'member_lname, id',
+                        'desc' => 'member_lname desc, id',
+                    ),
+                    '*',
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
         ));
     }
 
@@ -111,7 +145,7 @@ class MemUser extends MemUserBase {
 
     public function getRegistration() {// member นิติบุคคลที่ยังไม่ได้รับการยืนยันจาก admin
         $criteria = new CDbCriteria;
-        $criteria->select = "t.*, concat(r.ftname, ' ', r.ltname) as member_name";
+        $criteria->select = "t.*, r.ftname as member_name, r.ltname as member_lname";
         $criteria->join = "
             left join mem_registration r on t.id = r.user_id
             inner join mem_confirm c on t.id = c.user_id
@@ -121,12 +155,29 @@ class MemUser extends MemUserBase {
         $criteria->compare('id', $this->id);
         $criteria->compare('username', $this->username, true);
         $criteria->compare('r.ftname', $this->member_name, true);
-        $criteria->compare('r.ltname', $this->member_name, true);
+        $criteria->compare('r.ltname', $this->member_lname, true);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('type', $this->type, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'member_name' => array(
+                        'asc' => 'member_name, id',
+                        'desc' => 'member_name desc, id',
+                    ),
+                    'member_lname' => array(
+                        'asc' => 'member_lname, id',
+                        'desc' => 'member_lname desc, id',
+                    ),
+                    '*',
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
         ));
     }
 

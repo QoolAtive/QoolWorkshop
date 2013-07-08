@@ -145,18 +145,18 @@ Class ManageController extends Controller {
                     $model_confirm->user_id = $model_user->id;
                     if ($model->save()) {
                         if ($model_confirm->save()) {
-                            $sendEmail = array(
-                                'subject' => 'ยืนยันการสมัครสมาชิก',
-                                'message' => Tool::messageEmail(array('name' => $model->ftname . ' ' . $model->ltname, 'password' => $model_confirm->password), 'confirm_email'),
-                                'to' => $model->email,
-                            );
-                            Tool::mailsend($sendEmail);
+//                            $sendEmail = array(
+//                                'subject' => 'ยืนยันการสมัครสมาชิก',
+//                                'message' => Tool::messageEmail(array('name' => $model->ftname . ' ' . $model->ltname, 'password' => $model_confirm->password), 'confirm_email'),
+//                                'to' => $model->email,
+//                            );
+//                            Tool::mailsend($sendEmail);
                             echo "
                                 <script>
-                                alert('กรุณาตรวจสอบอีเมล์ เพื่อรับรหัสยืนยันตัวตนเข้าสู่ระบบ');
+                                alert('".Yii::t('language', 'กรุณารอการยืนยันจากผู้ดูแลระบบ')."');
                                 window.location='/site/index';
                                 </script>
-                                ";
+                                "; 
                         }
                     }
                 } else {
@@ -183,14 +183,14 @@ Class ManageController extends Controller {
 
         $model = new RegisterConfirm;
         $id = Yii::app()->user->isConfirmUser();
-        if (Yii::app()->user->isConfirmUser()) {
-            $users = MemConfirm::model()->find('id = ' . $id);
+        if ($id) {
+            $users = MemConfirm::model()->find('user_id = ' . $id);
         }
         if (isset($_POST['RegisterConfirm'])) {
             $model->attributes = $_POST['RegisterConfirm'];
             $model->validate();
             if ($model->getErrors() == null) {
-                if ($model->register_confirm === $users->password) {
+                if ($model->register_confirm == $users->password) {
                     $users->status = 1;
                     if ($users->save()) {
                         echo "
@@ -204,7 +204,7 @@ Class ManageController extends Controller {
                     echo "
                     <script>
                     alert('" . Yii::t('langguage', 'รหัสยืนยันไม่ถูกต้อง กรุณาตรวจสอบ') . "');
-                    window.location='/member/manage/registerConfirm/id/$id';
+                    window.location='/member/manage/registerConfirm';
                     </script>
                     ";
                 }
@@ -256,16 +256,42 @@ Class ManageController extends Controller {
 //            $c->join = "left join member_person p on t.id";
             $model = MemPerson::model()->find('user_id = ' . $id);
             $type = MemPersonType::model()->findByPk($model->mem_type)->name;
+            $businessType = CompanyTypeBusiness::model()->findByPk($model->business_type)->name;
+            $panit = $model->panit; //มีเฉะพาะ สมาชิกธรรมดาที่เป็นประเภท ธุรกิจ
+            $facebook = $model->facebook;
+            $twitter = $model->twitter;
+            $commerce_registration = '';
+            $corporation_registration = '';
         } else {
 //            $c->join = "left join member_registration r on t.id = r.user_id";
             $type = '';
             $model = MemRegistration::model()->find('user_id = ' . $id);
             $confirm = MemConfirm::model()->find('user_id = ' . $id . ' and status = 0');
+            $businessType = CompanyTypeBusiness::model()->findByPk($model->type_business)->name;
+            $panit = '';
+            $facebook = '';
+            $twitter = '';
+            $commerce_registration = $model->commerce_registration;
+            $corporation_registration = $model->corporation_registration;
         }
         $data = array(
             'name' => $model->ftname . ' ' . $model->ltname,
             'member_type' => $type,
             'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+            'businessType' => $businessType,
+            'productName' => $model->product_name,
+            'panit' => $panit,
+            'sex' => MemSex::model()->findByPk($model->sex)->name,
+            'birth' => $model->birth,
+            'email' => $model->email,
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'commerce_registration' => $commerce_registration,
+            'corporation_registration' => $corporation_registration,
+            'tel' => $model->tel,
+            'fax' => $model->fax,
+            'mobile' => $model->mobile,
+            'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
         );
 
         $this->render('_view_allow_member', array(

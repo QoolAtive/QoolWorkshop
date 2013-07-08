@@ -42,7 +42,7 @@ class DefaultController extends Controller {
                     $file->saveAs('.' . $path . $formatName);
                     $model->img_path = $path . $formatName;
                 }
-            } else {
+            } else if($model->img_path == NULL){
                 $model->img_path = '/img/link/Link_icon.png';
             }
 
@@ -82,6 +82,7 @@ class DefaultController extends Controller {
         if (isset($_GET['LinkGroup'])) {
             $model->attributes = $_GET['LinkGroup'];
         }
+
         $this->render('manage_grouplink', array(
             'model' => $model,
             'dataProvider' => $model->search(),
@@ -91,28 +92,50 @@ class DefaultController extends Controller {
     public function actionGroupForm($id = '') {
         if ($id != '') {
             $model = LinkGroup::model()->findByPk($id);
+        } else if ($_POST['id'] != '') {
+            $model = LinkGroup::model()->findByPk($_POST['id']);
         } else {
             $model = new LinkGroup();
         }
 
+        if (isset($_POST['LinkGroup'])) {
+            $model->attributes = $_POST['LinkGroup'];
+            if ($model->save()) {
+//                echo "<script language='javascript'>
+//                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+//                                window.location = '/link/default/managegrouplink';
+//                          </script>";
+
+//                $this->actionGroupGridview();
+//                $this->redirect("/link/default/groupGridview"); 
+//            } else {
+//                echo "<script language='javascript'>
+//                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
+//                                window.location = '/link/default/managegrouplink';
+//                          </script>";
+            }
+        } else {
+            $this->renderPartial('_group_form', array(
+                'model' => $model,
+            ));
+        }
+    }
+
+    public function actionGroupGridview() {
+        $model = new LinkGroup;
         if (isset($_GET['LinkGroup'])) {
             $model->attributes = $_GET['LinkGroup'];
-            if ($model->save()) {
-                Yii::app()->end();
-            } else {
-                //Stops the request from being sent.
-                throw new CHttpException(404, 'Model has not been saved');
-            }
         }
-        $this->renderPartial('_group_form', array(
+        $this->renderPartial('_gridview_grouplink', array(
             'model' => $model,
+            'dataProvider' => $model->search(),
         ));
     }
 
     public function actionDeleteGroupLink($id) {
         $model = LinkGroup::model()->findByPk($id);
         if ($model->delete()) {
-            $this->redirect("/link/default/managegrouplink");
+//            $this->redirect("/link/default/managegrouplink");
         }
     }
 

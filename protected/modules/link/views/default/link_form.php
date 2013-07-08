@@ -49,21 +49,21 @@
                     <?php
                     echo Yii::t('language', $form->labelEx($model, 'name'));
                     echo $form->textField($model, 'name', array('size' => '90'));
-                    echo Yii::t('language', $form->error($model, 'name'));
+//                    echo Yii::t('language', $form->error($model, 'name'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
                     echo Yii::t('language', $form->labelEx($model, 'group_id'));
                     echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name'), array('empty'=>'กรุณาเลือกกลุ่ม'));
-                    echo Yii::t('language', $form->error($model, 'group_id'));
+//                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
                     echo Yii::t('language', $form->labelEx($model, 'link'));
                     echo $form->textField($model, 'link', array('size' => '255'));
-                    echo Yii::t('language', $form->error($model, 'link'));
+//                    echo Yii::t('language', $form->error($model, 'link'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
@@ -81,7 +81,7 @@
                         'duplicate' => Yii::t('language', 'Already Selected'),
                             )
                     );
-                    echo Yii::t('language', $form->error($model, 'img_path'));
+//                    echo Yii::t('language', $form->error($model, 'img_path'));
                     ?>
                     <div>
                         <div class="file_old clearfix">                                       
@@ -104,6 +104,7 @@
                 </div>
                 <div class="btnForm">
                     <?php
+                    echo CHtml::hiddenField('img_path', $model->img_path);
                     echo CHtml::hiddenField('author', $model->author);
                     echo CHtml::hiddenField('date_write', $model->date_write);
                     

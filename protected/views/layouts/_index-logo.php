@@ -1,3 +1,3 @@
 <div class="colleft">
-    <a href="index.html"><img  alt="logo" class="box" src="/img/logo.png"></a>
+    <a href="http://dbd.qoolative.com"><img  alt="logo" class="box" src="/img/logo.png"></a>
 </div>

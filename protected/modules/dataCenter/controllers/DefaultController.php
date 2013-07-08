@@ -2,6 +2,22 @@
 
 class DefaultController extends Controller {
 
+    public function filters() {
+        return array('accessControl');
+    }
+
+    public function accessRules() {
+        return array(
+            array(
+                'allow',
+                'users' => array('admin')
+            ),
+            array(
+                'deny',
+            ),
+        );
+    }
+
     public function actionIndex() {
 
         $this->render('index');
@@ -86,7 +102,7 @@ class DefaultController extends Controller {
         } else {
             $model = CompanyTypeBusiness::model()->findByPk($id);
             $alert = 'แก้ไขข้อมูลเรียบร้อย';
-            $link = '/dataCenter/default/CompanyTypeBusiness';
+            $link = '/dataCenter/default/companyTypeBusiness';
         }
 
         if (isset($_POST['CompanyTypeBusiness'])) {
@@ -113,14 +129,132 @@ class DefaultController extends Controller {
     }
 
     public function actionDelCompanyTypeBusiness($id) {
-//        $con1 = MemPerson::model()->count('high_education = ' . $id);
-//        $con2 = MemRegistration::model()->count('high_education = ' . $id);
-//        if (($con1 + $con2) < 1) {
-//            $model = HighEducation::model()->findByPk($id);
-//            if ($model->delete()) {
-//                echo 'ลบข้อมูลเรียบร้อย';
-//            }
-//        }
+        $con1 = MemPerson::model()->count('high_education = ' . $id);
+        $con2 = MemRegistration::model()->count('high_education = ' . $id);
+        if (($con1 + $con2) < 1) {
+            $model = HighEducation::model()->findByPk($id);
+            if ($model->delete()) {
+                echo 'ลบข้อมูลเรียบร้อย';
+            }
+        }
+    }
+
+    public function actionSex() {
+        $model = new MemSex();
+        $model->unsetAttributes();
+
+        if (isset($_GET['MemSex'])) {
+            $model->attributes = $_GET['MemSex'];
+        }
+
+        $this->render('sex', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionInsertSex($id = '') {
+        if ($id == '') {
+            $model = new MemSex();
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
+            $link = '/dataCenter/default/insertSex';
+        } else {
+            $model = MemSex::model()->findByPk($id);
+            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $link = '/dataCenter/default/sex';
+        }
+
+        if (isset($_POST['MemSex'])) {
+            $model->attributes = $_POST['MemSex'];
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('$alert');
+                        window.location='$link';
+                        </script>
+                        ";
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                    echo "</pre>";
+                }
+            }
+        }
+
+        $this->render('_insert_sex', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionDelSex($id) {
+        $con1 = MemPerson::model()->count('sex = ' . $id);
+        $con2 = MemRegistration::model()->count('sex = ' . $id);
+        if (($con1 + $con2) < 1) {
+            $model = MemSex::model()->findByPk($id);
+            if ($model->delete()) {
+                echo 'ลบข้อมูลเรียบร้อย';
+            }
+        }
+    }
+
+    public function actionTitleName() {
+        $model = new TitleName();
+        $model->unsetAttributes();
+
+        if (isset($_GET['TitleName'])) {
+            $model->attributes = $_GET['TitleName'];
+        }
+
+        $this->render('title_name', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionInsertTitleName($id = '') {
+        if ($id == '') {
+            $model = new TitleName();
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
+            $link = '/dataCenter/default/insertTitleName';
+        } else {
+            $model = MemSex::model()->findByPk($id);
+            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $link = '/dataCenter/default/titleName';
+        }
+
+        if (isset($_POST['TitleName'])) {
+            $model->attributes = $_POST['TitleName'];
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('$alert');
+                        window.location='$link';
+                        </script>
+                        ";
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                    echo "</pre>";
+                }
+            }
+        }
+
+        $this->render('_insert_title_name', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionDelTitleName($id) {
+        $con1 = MemPerson::model()->count('tname = ' . $id);
+        $con2 = MemRegistration::model()->count('etname = ' . $id);
+        $con3 = MemPerson::model()->count('tname = ' . $id);
+        $con4 = MemRegistration::model()->count('etname = ' . $id);
+        if (($con1 + $con2 + $con3 + $con4) < 1) {
+            $model = TitleName::model()->findByPk($id);
+            if ($model->delete()) {
+                echo 'ลบข้อมูลเรียบร้อย';
+            }
+        }
     }
 
 }

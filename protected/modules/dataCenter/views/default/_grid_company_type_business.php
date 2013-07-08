@@ -20,8 +20,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
 
         array(
             'class' => 'CButtonColumn',
+            'header' => Yii::t('lnaguage', 'เครื่องมือ'),
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'template' => '{update}{delete}{view}',
+            'template' => '{update}{delete}',
             'buttons' => array(
                 'update' => array(
                     'label' => 'edit', //Text label of the button.

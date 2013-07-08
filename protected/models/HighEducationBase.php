@@ -36,7 +36,7 @@ class HighEducationBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, abbreviation', 'required'),
+			array('name', 'required'),
 			array('name, abbreviation', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,11 +60,11 @@ class HighEducationBase extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-            return array(
-            'id' => 'ID',
-            'name' => 'Name',
-            'abbreviation' => 'Abbreviation',
-        );
+		return array(
+			'id' => 'ID',
+			'name' => 'Name',
+			'abbreviation' => 'Abbreviation',
+		);
 	}
 
 	/**

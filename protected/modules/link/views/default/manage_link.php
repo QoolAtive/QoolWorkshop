@@ -6,12 +6,11 @@
         <div class="areaWhite clearfix">
             <div class="btnMngED clearfix">
                 <?php
-                echo CHtml::link(Yii::t('language', 'เพิ่มลิ้งค์'), array('/link/default/linkForm'), array('class' => 'l_btn'));
-                ?>
-            </div>
-            <div class="btnMngED clearfix">
-                <?php
-                echo CHtml::link(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มลิ้งค์'), array('/link/default/managegrouplink'), array('class' => 'l_btn'));
+                echo CHtml::button(Yii::t('language', 'เพิ่มลิ้งก์'), array(
+    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
+                echo '  ';
+                echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มลิ้งก์'), array(
+    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
                 ?>
             </div>
             <div class="grid_view" >
@@ -55,7 +54,7 @@
                         array(
                             'header' => Yii::t('language', 'วันเวลาที่สร้างลิงค์'),
                             'name' => 'date_write',
-                            'value' => '$data->date_write',
+                            'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',
                         ),
                         array(
                             'class' => 'CButtonColumn',
@@ -96,7 +95,8 @@
             </div>
             <div class="btnForm l_btn">
                 <?php
-                echo CHtml::link(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array('/link/default/index'));
+                echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
+    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/index")) . '"'));
                 ?> 
             </div>
         </div>

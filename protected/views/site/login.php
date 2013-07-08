@@ -1,6 +1,7 @@
 <style type="text/css">
+
     html, body{
-        height: 350px !important;
+        height: 100% !important;
     }
     #header{
         display: none !important;
@@ -8,13 +9,42 @@
     #footer{
         display: none !important;
     }
+
     div.page{
-        margin: 0;
+        padding: 0px !important;
+        margin: 0 !important;
         width: 550px;
         height: 200px !important;
         min-height: 200px !important;
         max-height: 200px !important;
     }
+
+    ._40 {
+  display: inline !important;
+    float: left !important;
+    margin-left: 0;
+    margin-right: 2% !important;
+    margin-top: 0 !important;
+    width: 40% !important;
+}
+
+
+._50 {
+  display: inline !important;
+    float: left !important;
+    margin-right: 2% !important;
+    margin-left:0px !important;
+    margin-top: 18px !important;
+    width: 55.5% !important;
+}
+
+.errorMessage {
+    font-size: 11px;
+    margin-left: 165px;
+    margin-top: -46px;
+    position: absolute;
+}
+
 </style>
 <?php
 /* @var $this SiteController */
@@ -34,7 +64,12 @@ $this->breadcrumbs = array(
 //}
 ?>
 
-<h1>Login</h1>
+<div class="_40">
+<img src="/img/iconpage/login.png" style="float:left;"/>
+</div>
+
+
+ <div class="_50">
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
@@ -74,3 +109,6 @@ $this->breadcrumbs = array(
 
     <?php $this->endWidget(); ?>
 </div><!-- form -->
+
+</div>
+

@@ -124,7 +124,7 @@
                 </div>
                 <!-- new line -->
 
-
+ <div class="_100"></div>
                 <!-- คำนำหน้าภาษาอังกฤษ -->
                 <div class="_20">
                     <?php
@@ -168,7 +168,7 @@
 
 
 
-
+ <div class="_100"></div>
                 <!-- เพศ -->
                 <div class="_20">
                     <p><?php echo $form->labelEx($model, 'sex'); ?></p>
@@ -204,11 +204,6 @@
                     echo $form->error($model, 'email');
                     ?>
                 </div>
-
-
-
-
-
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'address');
@@ -385,6 +380,7 @@
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
+ <div class="_100"></div>
                 <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'product_name');
@@ -392,13 +388,10 @@
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
-
+				 <div class="_100"></div>
                 <?php if (CCaptcha::checkRequirements()) { ?>
-                    <div class="_50">
+                    <div class="_50"> 
                         <?php
-                        echo "addd by mixz";
-                        echo "addd by b";
-                       
                         echo $form->labelEx($model_user, 'verifyCode');
                         $this->widget('CCaptcha');
                         echo $form->textField($model_user, 'verifyCode');
@@ -410,7 +403,7 @@
                     <?php
                     echo CHtml::submitButton('สมัครสมาชิก');
                     ?>
-                </div>
+                </div> 
                 <?php $this->endWidget(); ?>
             </div>
         </div>

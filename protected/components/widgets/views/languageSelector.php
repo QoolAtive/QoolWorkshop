@@ -19,7 +19,7 @@
                 echo "<span id='" . $key . "_select'>" . $lang . '</span>';
             }
             if ($lang != $lastElement) {
-                echo ' | ';
+                echo '  ';
             }
         }
     } else {

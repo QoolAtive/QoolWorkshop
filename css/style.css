@@ -17,9 +17,9 @@ html, body{
     font-size:12px; 
     color:#666;
 }
-input, textarea, select {
+/*input, textarea, select {
     padding: 5px 0;
-}
+}*/
 h3{
 
     font-weight: bold;
@@ -75,6 +75,7 @@ hr {
     margin-right: 2%;
     margin-top: 4px;
 }
+
 ._25 {
     width: 21%;
     display: inline;
@@ -133,10 +134,11 @@ hr {
     margin-right: 2%;
 }
 
-label {
+._20 label,._25 label,._33 label,._40 label,._50 label ,._75 label ,._80 label ,._100 label{
     white-space: nowrap;
     width: 100%;
-}
+/*    display: block;
+*/}
 
 
 input[type="button"],input[type="submit"],a.btn{
@@ -178,7 +180,7 @@ a.btn{
         border: 1px solid #839DB0;  */
     cursor:pointer;  
     /* width: 150px;  */
-    height: 25px;  
+    /*height: 25px;  */
 
 }
 
@@ -693,8 +695,13 @@ login btn , create account btn ,search box
 #container{
     height: 100%;
 }
+
+div.items span.empty {
+    display: block;
+    text-align: center;
+}
 #container .knowledgedata li{
-    margin: 3.5px;
+    margin: 3.9px;
     border: 1px solid #d0d0d0;
     float: left;
     width:240px ;
@@ -949,6 +956,15 @@ div.arrow{
     font-weight: bold;
     text-align: center;
     letter-spacing: .9px;
+}
+
+#container ul.linklist li ul.innerlogo li:first-child a {
+display: table-cell;
+width: 231px;
+line-height: 120px;
+height: 120px !important;
+vertical-align: middle;
+text-align: center;
 }
 
 #container ul.linklist > li:first-child{

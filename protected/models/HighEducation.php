@@ -8,7 +8,7 @@ class HighEducation extends HighEducationBase {
 
     public function rules() {
         return array(
-            array('name', 'required'),
+            array('name, abbreviation', 'required'),
             array('name, abbreviation', 'length', 'max' => 100),
             array('name', 'unique', 'message' => Yii::t('language', '{attribute}มีอยู่ในระบบแล้วกรุณาตรวจสอบ')),
             array('id, name, abbreviation', 'safe', 'on' => 'search'),

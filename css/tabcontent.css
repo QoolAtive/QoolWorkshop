@@ -15,16 +15,16 @@ ul.tabs li
 /*        background: none repeat scroll 0 0 #AAAAAA;*/
  	background: url('../img/tab.png') no-repeat;
     color: #FFFFFF;
-    display: inline-block;
+    float:  left;
     font-size: 22px;
     line-height: 100px;
     border-left : 1px solid #FFFFFF !important;
     border-top : 1px solid #FFFFFF !important;
-    margin: -1px;
+    margin-left: -1px;
     text-align: center;
     vertical-align: middle;
     width: 50%;
-  
+    cursor: pointer;
     opacity: 0.8;
     zoom: 1;
 *display: inline;
