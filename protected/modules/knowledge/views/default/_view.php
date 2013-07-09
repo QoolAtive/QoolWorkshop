@@ -48,7 +48,7 @@
                     <div style="text-align: center; margin-top:10px;">
                         <?php
                         echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                                Yii::app()->user->getState('link_back')
+                                '/knowledge/default/index'
                             )) . "'")
                         );
                         ?>
