@@ -1,10 +1,5 @@
 <?php
 
-/**
- * LoginForm class.
- * LoginForm is the data structure for keeping
- * user login form data. It is used by the 'login' action of 'SiteController'.
- */
 class ChangePassForm extends CFormModel {
 
     public $old_password;
@@ -14,7 +9,7 @@ class ChangePassForm extends CFormModel {
     public function rules() {
         return array(
             array('old_password, re_password, password', 'required'),
-//            array('password', 'compare', 'compareAttribute' => 're_password', 'message' => '{attribute}ไม่ตรงกัน กรุณาตรวจสอบ'),
+            array('password', 'compare', 'compareAttribute' => 're_password', 'message' => '{attribute}ไม่ตรงกัน กรุณาตรวจสอบ'),
             array('old_password', 'chkOldPassword'),
 //            array('password', 'match', 'pattern' => '/[a-z0-9A-Z]/', 'message' => 'รูปแบบรหัสผ่านไม่ถูกต้อง'),
         );
