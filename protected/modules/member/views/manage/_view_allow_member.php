@@ -47,7 +47,7 @@
     <?php } ?>
 
     <?php if ($data['member_type'] != null) { ?>
-        <div class="boxdetail" >ประเภท : </div>
+        <div class="boxdetail" >ประเภทสมาชิก : </div>
         <div class="boxdetail2" ><?php echo $data['member_type']; ?></div>
     <?php } ?>
 

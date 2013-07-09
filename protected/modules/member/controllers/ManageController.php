@@ -153,10 +153,10 @@ Class ManageController extends Controller {
 //                            Tool::mailsend($sendEmail);
                             echo "
                                 <script>
-                                alert('".Yii::t('language', 'กรุณารอการยืนยันจากผู้ดูแลระบบ')."');
+                                alert('" . Yii::t('language', 'กรุณารอการยืนยันจากผู้ดูแลระบบ') . "');
                                 window.location='/site/index';
                                 </script>
-                                "; 
+                                ";
                         }
                     }
                 } else {
@@ -221,11 +221,43 @@ Class ManageController extends Controller {
             $profile = array();
         } else {
             if (Yii::app()->user->isMemberType() == 1) {
-                
+                $model = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);
+                $type = MemPersonType::model()->findByPk($model->mem_type)->name;
+                $businessType = CompanyTypeBusiness::model()->findByPk($model->business_type)->name;
+                $panit = $model->panit; //มีเฉะพาะ สมาชิกธรรมดาที่เป็นประเภท ธุรกิจ
+                $facebook = $model->facebook;
+                $twitter = $model->twitter;
+                $commerce_registration = '';
+                $corporation_registration = '';
             } else if (Yii::app()->user->isMemberType() == 2) {
-                
+                $model = MemRegistration::model()->find('user_id = ' . Yii::app()->user->id);
+                $type = '';
+                $businessType = CompanyTypeBusiness::model()->findByPk($model->type_business)->name;
+                $panit = '';
+                $facebook = '';
+                $twitter = '';
+                $commerce_registration = $model->commerce_registration;
+                $corporation_registration = $model->corporation_registration;
             }
-            $profile = array();
+            $profile = array(
+                'name' => $model->ftname . ' ' . $model->ltname,
+                'member_type' => $type,
+                'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+                'businessType' => $businessType,
+                'productName' => $model->product_name,
+                'panit' => $panit,
+                'sex' => MemSex::model()->findByPk($model->sex)->name,
+                'birth' => $model->birth,
+                'email' => $model->email,
+                'facebook' => $facebook,
+                'twitter' => $twitter,
+                'commerce_registration' => $commerce_registration,
+                'corporation_registration' => $corporation_registration,
+                'tel' => $model->tel,
+                'fax' => $model->fax,
+                'mobile' => $model->mobile,
+                'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
+            );
         }
 
 
@@ -315,6 +347,58 @@ Class ManageController extends Controller {
                 }
             }
         }
+    }
+
+    public function actionChangePassword() {// เปลี่ยน password user
+        $model_user = ChangePass::model()->findByPk(Yii::app()->user->id); // เพื่อไม่ให้กระทบกับ ระบบสมัครสมาชิก สร้าง model ใหม่เพื่อนเปลี่ยนรหัสผ่าน
+        $model = new ChangePassForm(); // ฟอร์มเปลี่ยนรหัสผ่าน
+        $model->unsetAttributes();
+        if ($_POST['ChangePassForm']) {
+            $model->attributes = $_POST['ChangePassForm'];
+            $model->validate();
+            if ($model->getErrors() == null) {
+                $model->password = Tool::Encrypted($model->password);
+                $model_user->password = $model->password;
+                if ($model_user->save()) {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'เปลี่ยนรหัสผ่านเรียบร้อย') . "');
+                        window.location='/member/manage/profile';
+                        </script>
+                        ";
+                }
+            } else {
+                $model->old_password = '';
+                $model->password = '';
+                $model->re_password = '';
+            }
+        }
+        $this->render('_form_change_password', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionMemberEditPerson() {
+        $id = Yii::app()->user->id;
+        $model = MemPerson::model()->find('user_id = ' . $id);
+        if ($_POST['MemPerson']) {
+            $model->attributes = $_POST['MemPerson'];
+            $model->validate();
+
+            if ($model->getErrors() == null) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'แก้ไขข้อมูลส่วนตัวเรียบร้อย') . "');
+                        window.location='/member/manage/profile';
+                        </script>
+                        ";
+                }
+            }
+        }
+        $this->render('_form_member_edit_person', array(
+            'model' => $model,
+        ));
     }
 
 }
