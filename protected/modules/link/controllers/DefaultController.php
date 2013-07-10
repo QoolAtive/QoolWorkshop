@@ -102,7 +102,7 @@ class DefaultController extends Controller {
 
         if (isset($_POST['LinkGroup'])) {
             $model->attributes = $_POST['LinkGroup'];
-            if ($model->validate()) {
+            if ($model->save()) {
                 echo "<script language='javascript'>
                                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                                 window.top.location.href = '/link/default/managegrouplink';

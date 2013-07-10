@@ -28,6 +28,7 @@ echo CHtml::hiddenField('id', $model->id);
 //        Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
 //    'success' => 'function(){
 ////            hideDiv();
+//            $.fancybox.close();
 //            $.fn.yiiGridView.update("link-grid");
 //        }',
 //        ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
