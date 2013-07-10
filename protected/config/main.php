@@ -35,7 +35,7 @@ return array(
         'dataCenter',
         'faq',
         'about',
-        'Learning', 
+        'learning',
     ),
     // application components
     'components' => array(
