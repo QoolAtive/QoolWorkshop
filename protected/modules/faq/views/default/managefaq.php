@@ -49,13 +49,13 @@
                     ),
                     array(
                         'header' => 'คำถาม',
-                        'name' => 'subject',
-                        'value' => 'strip($data->subject, 20);'
+                        'name' => 'subject_th',
+                        'value' => 'strip($data->subject_th, 20);'
                     ),
                     array(
                         'header' => 'คำตอบ',
-                        'name' => 'detail',
-                        'value' => 'strip($data->detail, 30);'
+                        'name' => 'detail_th',
+                        'value' => 'strip($data->detail_th, 30);'
                     ),
                     array(
                         'class' => 'CButtonColumn',
@@ -139,13 +139,13 @@
                     ),
                     array(
                         'header' => 'คำถาม',
-                        'name' => 'subject',
-                        'value' => 'strip($data->subject, 10);'
+                        'name' => 'subject_th',
+                        'value' => 'strip($data->subject_th, 10);'
                     ),
                     array(
                         'header' => 'คำตอบ',
-                        'name' => 'detail',
-                        'value' => 'strip($data->detail, 30);'
+                        'name' => 'detail_th',
+                        'value' => 'strip($data->detail_th, 30);'
                     ),
                     array(
                         'class' => 'CButtonColumn',
@@ -229,13 +229,13 @@
                     ),
                     array(
                         'header' => 'คำถาม',
-                        'name' => 'subject',
-                        'value' => 'strip($data->subject, 10);'
+                        'name' => 'subject_th',
+                        'value' => 'strip($data->subject_th, 10);'
                     ),
                     array(
                         'header' => 'คำตอบ',
-                        'name' => 'detail',
-                        'value' => 'strip($data->detail, 30);'
+                        'name' => 'detail_th',
+                        'value' => 'strip($data->detail_th, 30);'
                     ),
                     array(
                         'class' => 'CButtonColumn',
@@ -319,13 +319,13 @@
                     ),
                     array(
                         'header' => 'คำถาม',
-                        'name' => 'subject',
-                        'value' => 'strip($data->subject, 10);'
+                        'name' => 'subject_th',
+                        'value' => 'strip($data->subject_th, 10);'
                     ),
                     array(
                         'header' => 'คำตอบ',
-                        'name' => 'detail',
-                        'value' => 'strip($data->detail, 30);'
+                        'name' => 'detail_th',
+                        'value' => 'strip($data->detail_th, 30);'
                     ),
                     array(
                         'class' => 'CButtonColumn',
