@@ -9,7 +9,7 @@
         text-align: right;
     }
 </style>
-<div style="padding: 0px 5px;">
+<div style="padding: 0% 11.5%;">
     <?php
     if (Yii::app()->user->isAdmin()) {
         $list = array(
@@ -86,28 +86,32 @@
                 <div class="detail"><?php echo $profile['fax']; ?></div>
             <?php } ?>
 
-            <?php if ($profile['facebook'] != null) { ?>
-                <label>เฟสบุ๊ค :</label>
-                <div class="detail"><?php echo $profile['facebook']; ?></div>
-            <?php } ?>
+            <?php // if ($profile['facebook'] != null) { ?>
+                <!--<label>เฟสบุ๊ค :</label>-->
+                <!--<div class="detail"><?php // echo $profile['facebook']; ?></div>-->
+            <?php // } ?>
 
-            <?php if ($profile['twitter'] != null) { ?>
-                <label>ทวิตเตอร์ :</label>
-                <div class="detail"><?php echo $profile['twitter']; ?></div>
-            <?php } ?>
+            <?php // if ($profile['twitter'] != null) { ?>
+                <!--<label>ทวิตเตอร์ :</label>-->
+                <!--<div class="detail"><?php // echo $profile['twitter']; ?></div>-->
+            <?php // } ?>
             <hr>
             <?php
             if (Yii::app()->user->isMemberType() == 1) {
                 echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/member/manage/memberEditPerson'
+                        '/member/manage/editMemberPerson'
                     )) . "'")
                 );
             } else {
                 echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/member/manage/memberEditRegistration'
+                        '/member/manage/editMemberRegistration'
                     )) . "'")
                 );
             }
+            echo CHtml::button(Yii::t('language', 'แก้ไขที่อยู่'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/member/manage/changeAddress'
+                    )) . "'")
+                );
             echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/member/manage/changePassword'
                 )) . "'")

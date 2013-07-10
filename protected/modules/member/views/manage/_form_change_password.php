@@ -50,6 +50,10 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="btnForm">
         <?php
         echo CHtml::submitButton(Yii::t('language', 'ยืนยัน'), array());
+        echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                '/member/manage/profile'
+            )) . "'")
+        );
         ?>
     </div>
 </div>

@@ -378,7 +378,7 @@ Class ManageController extends Controller {
         ));
     }
 
-    public function actionMemberEditPerson() {
+    public function actionEditMemberPerson() {
         $id = Yii::app()->user->id;
         $model = MemPerson::model()->find('user_id = ' . $id);
         if ($_POST['MemPerson']) {
@@ -396,8 +396,70 @@ Class ManageController extends Controller {
                 }
             }
         }
-        $this->render('_form_member_edit_person', array(
+        $this->render('_form_edit_member_person', array(
             'model' => $model,
+        ));
+    }
+
+    public function actionEditMemberRegistration() {
+        $id = Yii::app()->user->id;
+        $model = MemRegistration::model()->find('user_id = ' . $id);
+        if ($_POST['MemRegistration']) {
+            $model->attributes = $_POST['MemRegistration'];
+            $model->validate();
+
+            if ($model->getErrors() == null) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'แก้ไขข้อมูลส่วนตัวเรียบร้อย') . "');
+                        window.location='/member/manage/profile';
+                        </script>
+                        ";
+                }
+            }
+        }
+        $this->render('_form_edit_member_registration', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionChangeAddress() {
+        $model = new ChangeAddressForm();
+        $model->unsetAttributes();
+
+        if (Yii::app()->user->isMemberType() == '1') { // เช็ค Type Member 
+            $modelAddress = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);
+            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name . ' จ.' . Province::model()->findByPk($modelAddress->province)->name . ' ' . $modelAddress->postcode;
+        }
+        if (Yii::app()->user->isMemberType() == '2') {
+            $modelAddress = MemRegistration::model()->find('user_id = ' . Yii::app()->user->id);
+            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name . ' จ.' . Province::model()->findByPk($modelAddress->province)->name . ' ' . $modelAddress->postcode;
+        }
+
+        if ($_POST['ChangeAddressForm']) {
+            $model->attributes = $_POST['ChangeAddressForm'];
+            $model->validate();
+            if ($model->getErrors() == null) {
+                $modelAddress->address = $model->address;
+                $modelAddress->province = $model->province;
+                $modelAddress->prefecture = $model->prefecture;
+                $modelAddress->district = $model->district;
+                $modelAddress->postcode = $model->postcode;
+                if ($modelAddress->save()) {
+                    echo "
+                        <script>
+                        alert('".Yii::t('language', 'แก้ไขที่อยู่เรียบร้อย')."');
+                        window.location='/member/manage/profile';
+                        </script>
+                        ";
+                }
+            }
+        }
+
+        $this->render('_form_change_address', array(
+            'model' => $model,
+            'address' => $address,
         ));
     }
 

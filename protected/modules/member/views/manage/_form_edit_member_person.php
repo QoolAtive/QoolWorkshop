@@ -1,6 +1,7 @@
 <div class="content" style="padding: 0% 11.5%;">
     <div class="row-fluid">
         <h3> <img src="/img/iconform.png"> แก้ไขข้อมูลบุคคลธรรมดา </h3>
+        <hr>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'insert-form',
@@ -210,7 +211,11 @@
         <div class="_100"></div>
         <div class="_100 textcen">
             <?php
-            echo CHtml::submitButton('สมัครสมาชิก');
+            echo CHtml::submitButton(Yii::t('language', 'ยืนยันการแก้ไขข้อมูล'));
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/member/manage/profile'
+                )) . "'")
+            );
             ?>
         </div> 
         <?php $this->endWidget(); ?>
