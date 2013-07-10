@@ -68,4 +68,8 @@ class Prefecture extends PrefectureBase {
         ));
     }
 
+    public function getPrefecture($province) {
+        return CHtml::listData($this->model()->findAll('province_id = ' . $province), 'id', 'name');
+    }
+
 }

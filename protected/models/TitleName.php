@@ -47,7 +47,7 @@ class TitleName extends TitleNameBase {
 
     public function getData() {
         $criteria = new CDbCriteria;
-
+        $criteria->order = 'id desc';
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('language', $this->language, true);

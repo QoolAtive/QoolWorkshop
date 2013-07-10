@@ -34,7 +34,7 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
     }
     public function getData() {
         $criteria = new CDbCriteria;
-
+        $criteria->order = 'id desc';
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
 
