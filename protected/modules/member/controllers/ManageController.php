@@ -29,7 +29,7 @@ Class ManageController extends Controller {
             ),
             array(
                 'allow',
-                'actions' => array('registerPerson', 'registerRegistration', 'captcha'),
+                'actions' => array('registerPerson', 'registerRegistration', 'registerRules', 'captcha'),
                 'users' => array('*')
             ),
             array(
@@ -42,10 +42,26 @@ Class ManageController extends Controller {
         
     }
 
-    public function actionRegisterPerson() {
-//        if (Yii::app()->user->id)
-//            $this->redirect(array('/site/index'));
+    public function actionRegisterRules() {
 
+        if ($_POST['rules'] != '') {
+            Yii::app()->user->setState('rules', $_POST['rules']);
+
+            echo "
+                <script>
+                window.top.location.href='/member/manage/registerPerson';
+                </script>
+                ";
+        }
+
+        $this->render('_register_rules', array(
+        ));
+    }
+
+    public function actionRegisterPerson() {
+        if (!Yii::app()->user->getState('rules')) {
+            $this->redirect(array('/site/index'));
+        }
         $model = new MemPerson();
         $model_user = new MemUser();
         $model_confirm = new MemConfirm();
@@ -83,6 +99,7 @@ Class ManageController extends Controller {
 
                     if ($model->save()) {
                         if ($model_confirm->save()) {
+                            Yii::app()->user->setState('rules', ''); //คืนค่า State //action rules
                             $sendEmail = array(
                                 'subject' => 'ยืนยันการสมัครสมาชิก',
                                 'message' => Tool::messageEmail(array('name' => $model->ftname . ' ' . $model->ltname, 'password' => $model_confirm->password), 'confirm_email'),
@@ -112,8 +129,9 @@ Class ManageController extends Controller {
     }
 
     public function actionRegisterRegistration() {
-//        if (Yii::app()->user->id)
-//            $this->redirect(array('/site/index'));
+        if (!Yii::app()->user->getState('rules')) {
+            $this->redirect(array('/site/index'));
+        }
 
         $model = new MemRegistration;
         $model_user = new MemUser();
@@ -151,6 +169,7 @@ Class ManageController extends Controller {
 //                                'to' => $model->email,
 //                            );
 //                            Tool::mailsend($sendEmail);
+                            Yii::app()->user->setState('rules', ''); //คืนค่า State //action rules
                             echo "
                                 <script>
                                 alert('" . Yii::t('language', 'กรุณารอการยืนยันจากผู้ดูแลระบบ') . "');
@@ -449,7 +468,7 @@ Class ManageController extends Controller {
                 if ($modelAddress->save()) {
                     echo "
                         <script>
-                        alert('".Yii::t('language', 'แก้ไขที่อยู่เรียบร้อย')."');
+                        alert('" . Yii::t('language', 'แก้ไขที่อยู่เรียบร้อย') . "');
                         window.location='/member/manage/profile';
                         </script>
                         ";
