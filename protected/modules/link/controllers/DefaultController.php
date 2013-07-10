@@ -42,7 +42,7 @@ class DefaultController extends Controller {
                     $file->saveAs('.' . $path . $formatName);
                     $model->img_path = $path . $formatName;
                 }
-            } else if($model->img_path == NULL){
+            } else if ($model->img_path == NULL) {
                 $model->img_path = '/img/link/Link_icon.png';
             }
 
@@ -58,10 +58,6 @@ class DefaultController extends Controller {
                                 window.location='/link/default/managelink';
                           </script>";
                 }
-            } else {
-//                echo "<pre>";
-//                print_r($model->getErrors());
-//                echo "</pre>";
             }
         }//end if (isset($_POST['LinkWeb'])) {
 
@@ -97,28 +93,41 @@ class DefaultController extends Controller {
         } else {
             $model = new LinkGroup();
         }
+        
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation($model);
+
+//        if (Yii::app()->getRequest()->getIsAjaxRequest()) {
+//            echo CActiveForm::validate(array($model));
+//            Yii::app()->end();
+//        }
 
         if (isset($_POST['LinkGroup'])) {
             $model->attributes = $_POST['LinkGroup'];
             if ($model->save()) {
-//                echo "<script language='javascript'>
-//                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-//                                window.location = '/link/default/managegrouplink';
-//                          </script>";
-
-//                $this->actionGroupGridview();
-//                $this->redirect("/link/default/groupGridview"); 
-//            } else {
-//                echo "<script language='javascript'>
+                echo "<script language='javascript'>
+                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                                window.location = '/link/default/managegrouplink';
+                          </script>";
+            } else {
+                echo "<script language='javascript'>
 //                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
-//                                window.location = '/link/default/managegrouplink';
-//                          </script>";
+                                window.location = '/link/default/managegrouplink';
+                          </script>";
             }
         } else {
             $this->renderPartial('_group_form', array(
                 'model' => $model,
             ));
         }
+
+        function performAjaxValidation($model) {
+            if (Yii::app()->getRequest()->getIsAjaxRequest() && isset($_POST['ajax']) && $_POST['ajax'] === 'group-form') {
+                echo CActiveForm::validate(array($model));
+                Yii::app()->end();
+            }
+        }
+
     }
 
     public function actionGroupGridview() {
@@ -135,7 +144,7 @@ class DefaultController extends Controller {
     public function actionDeleteGroupLink($id) {
         $model = LinkGroup::model()->findByPk($id);
         if ($model->delete()) {
-//            $this->redirect("/link/default/managegrouplink");
+            $this->redirect("/link/default/managegrouplink");
         }
     }
 

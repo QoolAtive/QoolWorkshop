@@ -1,10 +1,10 @@
-<div id="groupform" style="display: none;">
-    <?php
-    $this->renderPartial('_group_form', array(
-        'model' => $model,
-    ));
-    ?>
-</div>
+<!--<div id="groupform" style="display: none;">
+<?php
+//    $this->renderPartial('_group_form', array(
+//        'model' => $model,
+//    ));
+?>
+</div>-->
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'link-grid',
@@ -18,7 +18,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => Yii::t('language', 'ลำดับที่'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
-        'name',
+        'name_th',
         array(
             'class' => 'CButtonColumn',
             'header' => Yii::t('language', "แก้ไข"),
@@ -31,7 +31,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                         type:'POST',
                                         url:$(this).attr('href'),
                                         success:function(data) {
-                                              $('#groupform').hide().html(data).fadeIn();
+//                                              $('#groupform').hide().html(data).fadeIn();
+                                              $.fancybox({content:data});
                                               $.fn.yiiGridView.update('link-grid');
                                         }
                                     })

@@ -1,7 +1,7 @@
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'group-form',
-    'enableAjaxValidation' => false,
+    'enableAjaxValidation' => true,
         ));
 echo $form->errorSummary($model);
 ?>
@@ -9,10 +9,13 @@ echo $form->errorSummary($model);
 
 <div class="rowContact clearfix">
     <?php
-//    echo $model->id;
-    echo Yii::t('language', $form->labelEx($model, 'name'));
-    echo $form->textField($model, 'name', array('size' => '30'));
-//    echo Yii::t('language', $form->error($model, 'name'));
+    echo Yii::t('language', $form->labelEx($model, 'name_th'));
+    echo $form->textField($model, 'name_th', array('size' => '30'));
+    echo Yii::t('language', $form->error($model, 'name_th'));
+    
+    echo Yii::t('language', $form->labelEx($model, 'name_en'));
+    echo $form->textField($model, 'name_en', array('size' => '30'));
+    echo Yii::t('language', $form->error($model, 'name_en'));
     ?>
 </div>
 
@@ -20,16 +23,15 @@ echo $form->errorSummary($model);
 echo CHtml::hiddenField('id', $model->id);
 echo CHtml::ajaxSubmitButton(
         Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
-//    'update' => '#gridview_group',
-//    'success' => 'hideDiv',
     'success' => 'function(){
-            hideDiv();
+//            hideDiv();
             $.fn.yiiGridView.update("link-grid");
         }',
         ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
 );
 //echo CHtml::submitButton('submit'));
-
-echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => 'hideDiv();'));
+//echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => 'hideDiv();'));
+//
+echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => '$.fancybox.close();'));
 ?>
 <?php $this->endWidget(); ?>
