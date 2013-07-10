@@ -11,7 +11,6 @@
  * @property LinkWeb[] $linkWebs
  */
 class LinkGroup extends LinkGroupBase {
-    public $_old;
 
     /**
      * Returns the static model of the specified AR class.
@@ -36,12 +35,12 @@ class LinkGroup extends LinkGroupBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name', 'required'),
-            array('name', 'length', 'max' => 255),
-            array('name', 'checkDup'),
+            array('name_th, name_en', 'required'),
+            array('name_th, name_en', 'length', 'max' => 255),
+            array('name_th', 'checkDup'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, name', 'safe', 'on' => 'search'),
+            array('id, name_th, name_en', 'safe', 'on' => 'search'),
         );
     }
 
@@ -62,7 +61,8 @@ class LinkGroup extends LinkGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'ชื่อกลุ่มลิงค์',
+            'name_th' => 'ชื่อกลุ่มลิงก์ภาษาไทย',
+            'name_en' => 'ชื่อกลุ่มลิงก์ภาษาอังกฤษ',
         );
     }
 
@@ -77,7 +77,8 @@ class LinkGroup extends LinkGroupBase {
         $criteria = new CDbCriteria;
 
 //        $criteria->compare('id', $this->id);
-        $criteria->compare('name', $this->name, true);
+        $criteria->compare('name_th', $this->name_th, true);
+        $criteria->compare('name_en', $this->name_en, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -89,18 +90,15 @@ class LinkGroup extends LinkGroupBase {
 
     public function checkDup() {
         if ($this->getErrors() == NULL) {
-            if ($this->name != $this->_old) {
-            $model = LinkGroup::model()->find("name = '" . $this->name . "'");
+            $criteria = new CDbCriteria;
+            $criteria->addCondition("(name_th = '" . $this->name_th . "' or name_en = '" . $this->name_en . "')");
+            $model = LinkGroup::model()->find($criteria);
             if (!empty($model)) {
 //                $label = LinkGroup::model()->getAttributeLabel('name');
                 echo "<script>
-                    alert('ชื่อกลุ่มลิ้งก์มีอยู่ในระบบแล้ว ไม่สมารถบันทึกซ้ำได้');               
+                    alert('ชื่อกลุ่มลิ้งก์มีอยู่ในระบบแล้ว ไม่สามารถบันทึกซ้ำได้');               
                 </script>";
-//                    $this->addError('name', $label . 'มีอยู่ในระบบ กรุณาตรวจสอบ');
-            }
-            echo "<script>
-                    alert('aaaa');               
-                </script>";
+                $this->addError('name_th', 'มีอยู่ในระบบ กรุณาตรวจสอบ');
             }
         }
     }

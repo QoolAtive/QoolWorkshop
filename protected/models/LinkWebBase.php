@@ -6,14 +6,12 @@
  * The followings are the available columns in table 'link_web':
  * @property integer $id
  * @property integer $group_id
- * @property string $name
+ * @property string $name_th
+ * @property string $name_en
  * @property string $link
  * @property string $img_path
  * @property string $author
  * @property string $date_write
- *
- * The followings are the available model relations:
- * @property LinkGroup $group
  */
 class LinkWebBase extends CActiveRecord
 {
@@ -43,13 +41,14 @@ class LinkWebBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('group_id, name, link, img_path, author, date_write', 'required'),
+			array('group_id, name_th, name_en, link, author, date_write', 'required'),
 			array('group_id', 'numerical', 'integerOnly'=>true),
-			array('name, link', 'length', 'max'=>255),
+			array('name_th, name_en, link', 'length', 'max'=>255),
 			array('author', 'length', 'max'=>100),
+			array('img_path', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, group_id, name, link, img_path, author, date_write', 'safe', 'on'=>'search'),
+			array('id, group_id, name_th, name_en, link, img_path, author, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +60,6 @@ class LinkWebBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'group' => array(self::BELONGS_TO, 'LinkGroup', 'group_id'),
 		);
 	}
 
@@ -73,7 +71,8 @@ class LinkWebBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'group_id' => 'Group',
-			'name' => 'Name',
+			'name_th' => 'Name Th',
+			'name_en' => 'Name En',
 			'link' => 'Link',
 			'img_path' => 'Img Path',
 			'author' => 'Author',
@@ -94,7 +93,8 @@ class LinkWebBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('group_id',$this->group_id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('name_th',$this->name_th,true);
+		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('link',$this->link,true);
 		$criteria->compare('img_path',$this->img_path,true);
 		$criteria->compare('author',$this->author,true);

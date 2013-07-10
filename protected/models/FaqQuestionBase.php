@@ -6,8 +6,10 @@
  * The followings are the available columns in table 'faq_question':
  * @property integer $id
  * @property integer $fm_id
- * @property string $subject
- * @property string $detail
+ * @property string $subject_th
+ * @property string $subject_en
+ * @property string $detail_th
+ * @property string $detail_en
  * @property string $author
  * @property string $date_write
  */
@@ -39,14 +41,13 @@ class FaqQuestionBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fm_id, subject, author, date_write', 'required'),
+			array('fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write', 'required'),
 			array('fm_id', 'numerical', 'integerOnly'=>true),
-			array('subject', 'length', 'max'=>255),
+			array('subject_th, subject_en', 'length', 'max'=>255),
 			array('author', 'length', 'max'=>100),
-			array('detail', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fm_id, subject, detail, author, date_write', 'safe', 'on'=>'search'),
+			array('id, fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,8 +70,10 @@ class FaqQuestionBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'fm_id' => 'Fm',
-			'subject' => 'Subject',
-			'detail' => 'Detail',
+			'subject_th' => 'Subject Th',
+			'subject_en' => 'Subject En',
+			'detail_th' => 'Detail Th',
+			'detail_en' => 'Detail En',
 			'author' => 'Author',
 			'date_write' => 'Date Write',
 		);
@@ -89,8 +92,10 @@ class FaqQuestionBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('fm_id',$this->fm_id);
-		$criteria->compare('subject',$this->subject,true);
-		$criteria->compare('detail',$this->detail,true);
+		$criteria->compare('subject_th',$this->subject_th,true);
+		$criteria->compare('subject_en',$this->subject_en,true);
+		$criteria->compare('detail_th',$this->detail_th,true);
+		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('author',$this->author,true);
 		$criteria->compare('date_write',$this->date_write,true);
 
