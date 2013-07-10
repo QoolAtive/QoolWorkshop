@@ -5,10 +5,8 @@
  *
  * The followings are the available columns in table 'link_group':
  * @property integer $id
- * @property string $name
- *
- * The followings are the available model relations:
- * @property LinkWeb[] $linkWebs
+ * @property string $name_th
+ * @property string $name_en
  */
 class LinkGroupBase extends CActiveRecord
 {
@@ -38,11 +36,11 @@ class LinkGroupBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('name_th, name_en', 'required'),
+			array('name_th, name_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name_th, name_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +52,6 @@ class LinkGroupBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'linkWebs' => array(self::HAS_MANY, 'LinkWeb', 'group_id'),
 		);
 	}
 
@@ -65,7 +62,8 @@ class LinkGroupBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name_th' => 'Name Th',
+			'name_en' => 'Name En',
 		);
 	}
 
@@ -81,7 +79,8 @@ class LinkGroupBase extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('name_th',$this->name_th,true);
+		$criteria->compare('name_en',$this->name_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

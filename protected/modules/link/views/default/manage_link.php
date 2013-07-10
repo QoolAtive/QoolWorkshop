@@ -7,10 +7,10 @@
             <div class="btnMngED clearfix">
                 <?php
                 echo CHtml::button(Yii::t('language', 'เพิ่มลิ้งก์'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
                 echo '  ';
                 echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มลิ้งก์'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
                 ?>
             </div>
             <div class="grid_view" >
@@ -38,8 +38,8 @@
                         ),
                         array(
                             'header' => Yii::t('language', 'ชื่อลิงค์'),
-                            'name' => 'name',
-                            'value' => '$data->name',
+                            'name' => 'name_th',
+                            'value' => '$data->name_th',
                         ),
                         array(
                             'header' => Yii::t('language', 'ที่อยู่ลิงค์'),
@@ -49,7 +49,8 @@
                         array(
                             'header' => Yii::t('language', 'กลุ่ม'),
                             'name' => 'group_id',
-                            'value' => ('LinkGroup::model()->findByPk($data->group_id)->name'),
+                            'value' => ('LinkGroup::model()->findByPk($data->group_id)->name_th'),
+                            'filter' => CHtml::listData(LinkGroup::model()->findAll(), "id", "name_th"),
                         ),
                         array(
                             'header' => Yii::t('language', 'วันเวลาที่สร้างลิงค์'),
@@ -96,7 +97,7 @@
             <div class="btnForm l_btn">
                 <?php
                 echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/index")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/index")) . '"'));
                 ?> 
             </div>
         </div>

@@ -8,14 +8,7 @@
     }
     ?>
     <h3 class="barH3">
-<!--        <span style='padding:0 20px'>
-        <?php
-        $hh = Yii::t('language', 'เว็บไซต์ที่เกี่ยวข้อง') . ' -> ' . Yii::t('language', 'จัดการเว็บไซต์ที่เกี่ยวข้อง');
-        $hh .= ' -> ';
-        $hh2 = Yii::t('language', $name_btn) . Yii::t('language', 'เว็บไซต์ที่เกี่ยวข้อง');
-        echo $hh . $hh2;
-        ?>
-        </span>-->
+
         <span>
             <?php
             echo Yii::t('language', $name_btn) . ' ' . Yii::t('language', 'เว็บไซต์ที่เกี่ยวข้อง');
@@ -23,11 +16,7 @@
         </span>
     </h3>
     <div class="bucketLeft clearfix">
-        <!--        <div class="clearfix">
-                    <h2 class="ribbin">
-        <?php echo $hh2; ?>
-                    </h2>
-                </div>-->
+
         <div class="areaWhite clearfix">
             <div class="group">
                 <?php
@@ -47,15 +36,22 @@
 
                 <div class="rowContact clearfix">
                     <?php
-                    echo Yii::t('language', $form->labelEx($model, 'name'));
-                    echo $form->textField($model, 'name', array('size' => '90'));
-//                    echo Yii::t('language', $form->error($model, 'name'));
+                    echo Yii::t('language', $form->labelEx($model, 'name_th'));
+                    echo $form->textField($model, 'name_th', array('size' => '90'));
+//                    echo Yii::t('language', $form->error($model, 'name_th'));
+                    ?>
+                </div>
+                <div class="rowContact clearfix">
+                    <?php
+                    echo Yii::t('language', $form->labelEx($model, 'name_en'));
+                    echo $form->textField($model, 'name_en', array('size' => '90'));
+//                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
                     echo Yii::t('language', $form->labelEx($model, 'group_id'));
-                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name'), array('empty'=>'กรุณาเลือกกลุ่ม'));
+                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name_th'), array('empty'=>'กรุณาเลือกกลุ่ม'));
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
@@ -104,7 +100,7 @@
                 </div>
                 <div class="btnForm">
                     <?php
-                    echo CHtml::hiddenField('img_path', $model->img_path);
+//                    echo CHtml::hiddenField('img_path', $model->img_path);
                     echo CHtml::hiddenField('author', $model->author);
                     echo CHtml::hiddenField('date_write', $model->date_write);
                     
@@ -112,12 +108,12 @@
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/link/default/managelink'
-                        )) . "'"
-                        , 'confirm' => Yii::t('language', 'คุณต้องการย้อนกลับหรือไม่?'))
+                        )) . "'" ,
+//                        'confirm' => Yii::t('language', 'คุณต้องการย้อนกลับหรือไม่?')
+                        )
                     );
                     ?>
                 </div>
-                <!--</div>-->
                 <?php $this->endWidget(); ?>
             </div>
         </div>

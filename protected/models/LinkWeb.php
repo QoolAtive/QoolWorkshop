@@ -40,14 +40,14 @@ class LinkWeb extends LinkWebBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('group_id, name, link, date_write', 'required'),# author,
+            array('group_id, name_th, name_en, link, date_write', 'required'),# author,
             array('group_id', 'numerical', 'integerOnly' => true),
-            array('name, link', 'length', 'max' => 255),
+            array('name_th, name_en, link', 'length', 'max' => 255),
             array('author', 'length', 'max' => 100),
             array('id, img_path', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, group_id, name, link, img_path, author, date_write', 'safe', 'on' => 'search'),
+            array('id, group_id, name_th, name_en, link, img_path, author, date_write', 'safe', 'on' => 'search'),
         );
     }
 
@@ -69,7 +69,8 @@ class LinkWeb extends LinkWebBase {
         return array(
             'id' => 'ลำดับที่',
             'group_id' => 'กลุ่ม',
-            'name' => 'ชื่อ',
+            'name_th' => 'ชื่อภาษาไทย',
+            'name_en' => 'ชื่อภาษาอังกฤษ',
             'link' => 'Link',
             'img_path' => 'รูปภาพ',
             'author' => 'Author',
@@ -89,10 +90,11 @@ class LinkWeb extends LinkWebBase {
 
 //		$criteria->compare('id',$this->id);
         $criteria->compare('group_id', $this->group_id);
-        $criteria->compare('name', $this->name, true);
+        $criteria->compare('name_th', $this->name_th, true);
+        $criteria->compare('name_en', $this->name_en, true);
         $criteria->compare('link', $this->link, true);
 //		$criteria->compare('img_path',$this->img_path,true);
-        $criteria->compare('author', $this->author, true);
+//        $criteria->compare('author', $this->author, true);
         $criteria->compare('date_write', $this->date_write, true);
 
         return new CActiveDataProvider($this, array(

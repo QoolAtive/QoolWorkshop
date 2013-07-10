@@ -17,7 +17,7 @@
 <div>
     <?php
     if (Yii::app()->user->isAdmin()) {
-        echo CHtml::button(Yii::t('language', 'จัดการลิงค์'), array(
+        echo CHtml::button(Yii::t('language', 'จัดการลิงก์'), array(
             'onclick' => 'window.location="/link/default/managelink"'
         ));
     }
@@ -33,7 +33,7 @@
             <ul class="innerlogo">
                 <li><a href="<?php echo $link['link']; ?>" target="_blank"><img src="<?php echo $link['img_path']; ?>"></a> </li>
 
-                <li><a href="<?php echo $link['link']; ?>" target="_blank"><?php echo $link['name']; ?></a></li>
+                <li><a href="<?php echo $link['link']; ?>" target="_blank"><?php echo $link['name_th']; ?></a></li>
             </ul>
         </li>
 

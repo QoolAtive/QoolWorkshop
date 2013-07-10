@@ -33,23 +33,27 @@ class DefaultController extends Controller {
             $data['to'] = 'yaibathai@gmail.com';
             $data['subject'] = 'มีข้อความตืดต่อจาก คุณ ' . $_POST['name'];
             $data['message'] = $_POST['description'] . "<br/>" . $_POST['website'];
-            if ($model->save()&&Tool::mailsendContact($data)) {
-                ?>
-                <script>
-                    alert('ส่งข้อมูลเรียบร้อย');
-                </script>
-            <?php } else { ?>
-                <script>
-                    alert('เกิดข้อผิดพลาดขณะส่งข้อมูล');
-                </script>
-                <?php
-            }
+            if ($model->save()) {
+                if (Tool::mailsendContact($data)) {
+                    echo "<script>
+                        alert('ส่งข้อมูลเรียบร้อย');
+                    </script>";
+                } else {
+                    echo "<script>
+                        alert('เกิดข้อผิดพลาดขณะส่งข้อมูล');
+                    </script>";
+                }
+            } else {
+                echo "<script>
+                        alert('อีเมล์ของคุณไม่ถูกต้อง');
+                    </script>";
+            }//END if (Tool::mailsendContact($data)) {
         } else {
-            ?>
-            <script>
-                alert('กรุณากรอก ชื่อ, E-mail และ ข้อความที่ต้องการให้ครบ');
-            </script>
-        <?php } ?>
+            echo "<script>
+                    alert('กรุณากรอก ชื่อ, E-mail และ ข้อความที่ต้องการให้ครบ');
+                </script>";
+        }//END if ($_POST['email'] != NULL && $_POST['description'] != NULL && $_POST['name'] != NULL) {
+        ?>
         <script>
             window.location = "<?php echo CHtml::normalizeUrl(array("/about/default/index#view2")); ?>";
         </script><?php

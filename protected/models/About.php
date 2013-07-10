@@ -4,7 +4,8 @@
  * This is the model class for table "about".
  *
  * The followings are the available columns in table 'about':
- * @property string $about_text
+ * @property string $about_text_th
+ * @property string $about_text_en
  */
 class About extends AboutBase
 {
@@ -34,10 +35,10 @@ class About extends AboutBase
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('about_text', 'required'),
+			array('about_text_th, about_text_en', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('about_text', 'safe', 'on'=>'search'),
+			array('about_text_th, about_text_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +59,8 @@ class About extends AboutBase
 	public function attributeLabels()
 	{
 		return array(
-			'about_text' => 'About Us',
+			'about_text_th' => 'About Us',
+			'about_text_en' => 'About Us',
 		);
 	}
 
@@ -73,7 +75,8 @@ class About extends AboutBase
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('about_text',$this->about_text,true);
+		$criteria->compare('about_text_th',$this->about_text_th,true);
+		$criteria->compare('about_text_en',$this->about_text_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
