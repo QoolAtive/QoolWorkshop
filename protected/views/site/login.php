@@ -104,7 +104,7 @@ $this->breadcrumbs = array(
     </div>
 
     <div class="row buttons _100">
-        <?php echo CHtml::submitButton('Login', array('id' => 'submit')); ?>
+        <?php echo CHtml::submitButton(Yii::t('language', 'เข้าสู่ระบบ'), array('id' => 'submit')); ?>
     </div>
 
     <?php $this->endWidget(); ?>
