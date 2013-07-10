@@ -12,6 +12,7 @@ $this->renderPartial('_search', array(
     <?php
     $this->renderPartial('_grid_all_knowledge', array(
         'model' => $model,
+        'dataProvider' => $model->getData(),
     ));
     ?>
 </div>

@@ -50,8 +50,16 @@ class DefaultController extends Controller {
         }
         if (isset($_POST['month_start']) && isset($_POST['month_end']) && isset($_POST['year_start']) && isset($_POST['year_end']) && isset($_POST['subject'])) {
             $day_end = cal_days_in_month(CAL_GREGORIAN, $_POST['month_end'], ((int) $_POST['year_end'] - 543));
-            $date_start = ((int) $_POST['year_start'] - 543) . "-" . $_POST['month_start'] . "-01 00:00:00";
-            $date_end = ((int) $_POST['year_end'] - 543) . "-" . $_POST['month_end'] . "-" . $day_end . " 23:59:59";
+
+            if (strlen($_POST['month_start']) == 1) {
+                $month_start = '0' . $_POST['month_start'];
+            }
+            if (strlen($_POST['month_end']) == 1) {
+                $month_end = '0' . $_POST['month_end'];
+            }
+
+            $date_start = ((int) $_POST['year_start'] - 543) . "-" . $month_start . "-01 00:00:00";
+            $date_end = ((int) $_POST['year_end'] - 543) . "-" . $month_end . "-" . $day_end . " 23:59:59";
             $subject = $_POST['subject'];
             $con = array(
                 'date_start' => $date_start,
@@ -89,7 +97,7 @@ class DefaultController extends Controller {
 
         $this->renderPartial('_grid_all_knowledge', array(
             'model' => $model,
-            'dataProvider' => $model->getData('', Yii::app()->user->getState('con')),
+            'dataProvider' => $model->getDataQuery(Yii::app()->user->getState('con')),
             'date_select' => $date_select,
         ));
     }

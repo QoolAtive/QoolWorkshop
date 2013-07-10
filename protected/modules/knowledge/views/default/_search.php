@@ -69,6 +69,5 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <?php
-echo $_POST['month'];
 $this->endWidget();
 ?>

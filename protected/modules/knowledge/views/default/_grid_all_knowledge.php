@@ -5,7 +5,7 @@ if(isset($date_select))
 
 $this->widget('zii.widgets.grid.CGridView', array(
         'id' => 'knowledge-grid',
-        'dataProvider' => $model->getData(),
+        'dataProvider' => $dataProvider,
         'filter' => $model,
         'ajaxUpdate' => true,
         'summaryText' => '',
