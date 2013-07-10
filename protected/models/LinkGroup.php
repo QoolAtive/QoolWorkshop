@@ -95,10 +95,10 @@ class LinkGroup extends LinkGroupBase {
             $model = LinkGroup::model()->find($criteria);
             if (!empty($model)) {
 //                $label = LinkGroup::model()->getAttributeLabel('name');
-                echo "<script>
-                    alert('ชื่อกลุ่มลิ้งก์มีอยู่ในระบบแล้ว ไม่สามารถบันทึกซ้ำได้');               
-                </script>";
-                $this->addError('name_th', 'มีอยู่ในระบบ กรุณาตรวจสอบ');
+//                echo "<script>
+//                    alert('ชื่อกลุ่มลิ้งก์มีอยู่ในระบบแล้ว ไม่สามารถบันทึกซ้ำได้');               
+//                </script>";
+                $this->addError('name_th', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
             }
         }
     }

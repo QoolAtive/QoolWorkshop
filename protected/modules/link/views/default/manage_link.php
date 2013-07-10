@@ -56,6 +56,7 @@
                             'header' => Yii::t('language', 'วันเวลาที่สร้างลิงค์'),
                             'name' => 'date_write',
                             'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',
+                            'filter' => false,
                         ),
                         array(
                             'class' => 'CButtonColumn',
