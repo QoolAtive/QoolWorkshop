@@ -24,7 +24,7 @@
             <div id="text" class="row-fluid ">
                 <?php
                 $model_text = About::model()->find();
-                echo $model_text->about_text;
+                echo $model_text->about_text_th;
                 ?>
             </div>
         </div>

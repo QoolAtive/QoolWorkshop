@@ -9,11 +9,11 @@
         'id' => 'insert-form',
             ));
 
-//    echo $form->label($model, 'about_text');
+//    echo $form->label($model, 'about_text_th');
     $this->widget('ext.ckeditor.CKEditorWidget', array(
         "model" => $model, # Data-Model
-        "attribute" => 'about_text', # Attribute in the Data-Model
-        "defaultValue" => $model->about_text, # Optional
+        "attribute" => 'about_text_th', # Attribute in the Data-Model
+        "defaultValue" => $model->about_text_th, # Optional
         "config" => array(
             "resize_dir" => "vertical",
             "height" => "750px",
@@ -31,7 +31,7 @@
         # Path to ckeditor.php
         "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
     ));
-    echo $form->error($model, 'about_text');
+    echo $form->error($model, 'about_text_th');
     echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
     echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
         'onclick' => 'window.location = "'.CHtml::normalizeUrl(array("/about/default/index")).'"'));
