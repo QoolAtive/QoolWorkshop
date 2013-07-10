@@ -61,6 +61,29 @@ class Knowledge extends KnowledgeBase {
         ));
     }
 
+    public function getDataQuery($con) {
+        $criteria = new CDbCriteria;
+        if ($con != '') {
+            $condition = "date_write between '" . $con['date_start'] . "' and '" . $con['date_end'] . "'";
+
+            if ($con['subject'] != NULL) {
+                $condition .= " and subject like '%" . $con['subject'] . "%' ";
+            }
+            $criteria->condition = $condition;
+        }
+        $criteria->compare('id', $this->id);
+        $criteria->compare('type_id', $this->type_id);
+        $criteria->compare('subject', $this->subject, true);
+        $criteria->compare('detail', $this->detail, true);
+        $criteria->compare('guide_status', $this->guide_status, true);
+        $criteria->compare('date_write', $this->date_write, true);
+        $criteria->compare('position', $this->position);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     public function getData($guide = '', $con = '') {
         $criteria = new CDbCriteria;
         if ($guide != '') {
@@ -70,15 +93,6 @@ class Knowledge extends KnowledgeBase {
         } else {
             $criteria->order = 'id desc';
             $pages = '12';
-        }
-
-        if ($con != '') {
-            $condition = "date_write between '" . $con['date_start'] . "' and '" . $con['date_end'] . "'";
-
-            if ($con['subject'] != NULL) {
-                $condition .= " and subject like '%" . $con['subject'] . "%' ";
-            }
-            $criteria->condition = $condition;
         }
 
         $criteria->compare('id', $this->id);
