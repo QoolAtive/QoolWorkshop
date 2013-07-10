@@ -94,39 +94,31 @@ class DefaultController extends Controller {
             $model = new LinkGroup();
         }
         
-        // Uncomment the following line if AJAX validation is needed
-        $this->performAjaxValidation($model);
-
-//        if (Yii::app()->getRequest()->getIsAjaxRequest()) {
-//            echo CActiveForm::validate(array($model));
-//            Yii::app()->end();
-//        }
+        // if it is ajax validation request
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'group-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
 
         if (isset($_POST['LinkGroup'])) {
             $model->attributes = $_POST['LinkGroup'];
-            if ($model->save()) {
+            if ($model->validate()) {
                 echo "<script language='javascript'>
                                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                                window.location = '/link/default/managegrouplink';
+                                window.top.location.href = '/link/default/managegrouplink';
                           </script>";
             } else {
                 echo "<script language='javascript'>
-//                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
-                                window.location = '/link/default/managegrouplink';
+                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
+                                window.top.location.href = '/link/default/managegrouplink';
                           </script>";
             }
-        } else {
+        }
+//        else {
             $this->renderPartial('_group_form', array(
                 'model' => $model,
             ));
-        }
-
-        function performAjaxValidation($model) {
-            if (Yii::app()->getRequest()->getIsAjaxRequest() && isset($_POST['ajax']) && $_POST['ajax'] === 'group-form') {
-                echo CActiveForm::validate(array($model));
-                Yii::app()->end();
-            }
-        }
+//        }
 
     }
 
