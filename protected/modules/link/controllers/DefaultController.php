@@ -3,7 +3,18 @@
 class DefaultController extends Controller {
 
     public function actionIndex() {
-        $this->render('index');
+        $model = new LinkWeb;
+        $criteria = new CDbCriteria;
+        $group = '0';
+        if(isset($_POST['group_id']) && $_POST['group_id'] != '0'){
+            $group = $_POST['group_id'];
+            $criteria->addCondition('group_id = '.$group); 
+        }
+        if (isset($_POST['LinkWeb'])) {
+            $model->attributes = $_POST['LinkWeb'];
+        }
+        $list = LinkWeb::model()->findAll($criteria);
+        $this->render('index', array('model' => $model, 'list' => $list, 'group' => $group));
     }
 
     public function actionManageLink() {
@@ -93,7 +104,7 @@ class DefaultController extends Controller {
         } else {
             $model = new LinkGroup();
         }
-        
+
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'group-form') {
             echo CActiveForm::validate($model);
@@ -115,11 +126,10 @@ class DefaultController extends Controller {
             }
         }
 //        else {
-            $this->renderPartial('_group_form', array(
-                'model' => $model,
-            ));
+        $this->renderPartial('_group_form', array(
+            'model' => $model,
+        ));
 //        }
-
     }
 
     public function actionGroupGridview() {
