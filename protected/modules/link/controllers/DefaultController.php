@@ -3,18 +3,18 @@
 class DefaultController extends Controller {
 
     public function actionIndex() {
-        $model = new LinkWeb;
         $criteria = new CDbCriteria;
         $group = '0';
-        if(isset($_POST['group_id']) && $_POST['group_id'] != '0'){
+        if (isset($_POST['group_id']) && $_POST['group_id'] != '0') {
             $group = $_POST['group_id'];
-            $criteria->addCondition('group_id = '.$group); 
+            $criteria->addCondition('group_id = ' . $group);
         }
-        if (isset($_POST['LinkWeb'])) {
-            $model->attributes = $_POST['LinkWeb'];
+        if (isset($_POST['name'])) {
+            $name = $_POST['name'];
+            $criteria->addCondition('name_th like "%' . $name . '%" or name_en like "%' . $name . '%"');
         }
         $list = LinkWeb::model()->findAll($criteria);
-        $this->render('index', array('model' => $model, 'list' => $list, 'group' => $group));
+        $this->render('index', array('list' => $list, 'group' => $group));
     }
 
     public function actionManageLink() {

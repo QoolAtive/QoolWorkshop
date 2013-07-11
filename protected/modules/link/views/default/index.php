@@ -28,6 +28,8 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'search-form',
             ));
+    echo CHtml::textField('name', '', array('placeholder' => 'ค้นหาตามชื่อลิงก์'));
+
     echo CHtml::DropDownList('group_id', $group, array('0' => 'ค้นหาตามกลุ่มลิงก์') + CHtml::listData(LinkGroup::model()->findAll(), "id", "name_th"));
     echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
     ?>
@@ -35,7 +37,6 @@
 </div>
 <ul class="linklist">
     <?php
-//    $list = Yii::app()->db->createCommand('select * from link_web')->queryAll();
     if (empty($list)) {
         echo "ไม่พบลิงก์ที่เกี่ยวข้อง";
     } else {
@@ -50,7 +51,8 @@
                 </ul>
             </li>
 
-        <?php }
+        <?php
+        }
     }
     ?>
 </ul>
