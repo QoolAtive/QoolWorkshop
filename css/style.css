@@ -1153,12 +1153,12 @@ ul#detail_containTab li{
 }
 
 #header.headindex{
-    padding-top: 3%;
+    /*padding-top:9%;*/
 }
 
 .smart{
-    position: fixed;
-    top: 25%;
+  position: fixed;
+    top: 27%;
     -webkit-animation:fadeInLeftBig 1s;
     -moz-animation:fadeInLeftBig 1s;
     -ms-animation:fadeInLeftBig 1s;
