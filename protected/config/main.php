@@ -36,6 +36,7 @@ return array(
         'faq',
         'about',
         'learning',
+        'news',
     ),
     // application components
     'components' => array(
