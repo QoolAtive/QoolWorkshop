@@ -581,6 +581,7 @@ div.page {
 
 #header .loginbtnbox li img.rightindex{
     float: right !important;
+    padding: 0 2px;
 }
 #header .loginbtnbox li a.loginbtn,
 #header .loginbtnbox li a.createaccountbtn{
@@ -639,7 +640,8 @@ login btn , create account btn ,search box
 .searchbox{  
     background: url('../img/search.png')no-repeat ;
     background-position: 5px 50%; 
-    background-size: 12px 12px;                                             	
+    background-size: 12px 12px;  
+    margin-right: 2px;                                           	
 }
 
 
