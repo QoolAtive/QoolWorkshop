@@ -24,6 +24,7 @@ class MemRegistration extends MemRegistrationBase {
             //ห้ามซ้ำ
             array('corporation_registration, commerce_registration', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
             array('email', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
+            array('email', 'checkEmail'),
             array('email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -101,6 +102,15 @@ class MemRegistration extends MemRegistrationBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function checkEmail() {
+//        if ($this->hasErrors() == NULL) {
+            $model2 = MemPerson::model()->findByAttributes(array('email' => $this->email));
+            if (!empty($model2)) {
+                $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
+            }
+//        }
     }
 
 }

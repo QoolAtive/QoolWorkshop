@@ -4,7 +4,7 @@ Class Tool {
 
     public static function GenList($list) {
         foreach ($list as $ls) {
-            echo "<li class='" . $ls['select'] . "'>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . ++$n ,)) . "</li>";
+            echo "<li class='" . $ls['select'] . "'>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . ++$n,)) . "</li>";
         }
     }
 
@@ -74,7 +74,7 @@ Class Tool {
 //            echo "Message sent!";
 //        }
     }
-    
+
     //ส่ง email Contact
     public static function mailsendContact($data) {
         $mail = Yii::app()->Smtpmail;
@@ -97,12 +97,19 @@ Class Tool {
 
     // ข้อความสำหรับการส่งเมล์
     public static function messageEmail($data, $select) {
-        $message = array('confirm_email' => "
-            <strong>สวัสดี คุณ" . $data['name'] . "</strong>
+        $message = array(
+            'confirm_email' => "
+            <strong>" . Yii::t('language', 'สวัสดี คุณ ') . $data['name'] . "</strong>
             <hr/>
-            รหัสยืนยันของคุณคือ " . $data['password'] . "
-            <br >" . CHtml::link('ยืนยันการสมัครสมาชิก') . "
-            ");
+             " . Yii::t('language', 'รหัสยืนยันของคุณคือ ') . $data['password'] . "
+            <br >" . CHtml::link(Yii::t('language', 'ยืนยันการสมัครสมาชิก'), array('/member/manage/registerConfirm')) . "
+            ",
+            'forgotPassword' => "
+                <strong>" . Yii::t('language', 'สวัสดี คุณ') . ' ' . $data['name'] . "</strong><br>
+                    <hr>
+                    " . Yii::t('language', 'รหัสผู้ใช้ : ') . $data['username'] . " <br>
+                    " . Yii::t('language', 'รหัสผ่าน : ') . $data['password'] . " <br>
+                ");
         return $message[$select];
     }
 

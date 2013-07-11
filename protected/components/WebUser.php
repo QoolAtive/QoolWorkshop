@@ -10,6 +10,7 @@ class WebUser extends CWebUser {
     private $_idUser;
     private $_userType;
     private $_MemberType;
+    private $_statusMember;
 
     // Return first name.
     // access it by Yii::app()->user->first_name
@@ -52,13 +53,23 @@ class WebUser extends CWebUser {
         }
         return $this->_userType;
     }
-    
+
     function isMemberType() {
         if (Yii::app()->user->id !== null) {
             $memberType = MemUser::model()->findByPk(Yii::app()->user->id);
             $this->_MemberType = $memberType->type;
         }
         return $this->_MemberType;
+    }
+
+    function isStatusMember() {
+        if (Yii::app()->user->id !== null) {
+            $member = MemUser::model()->findByPk(Yii::app()->user->id);
+            if ($member->status == 1) {
+                $this->_statusMember = $member->status;
+            }
+        }
+        return $this->_statusMember;
     }
 
 }

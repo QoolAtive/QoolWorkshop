@@ -87,9 +87,6 @@ class ManageController extends Controller {
                         $model2->save();
                     }
                     if ($file->image != NULL) {
-//                        $dir_root = './file/knowledge';
-//                        if (!file_exists($dir_root))
-//                            mkdir($dir_root, 0777);
                         $dir = './file/knowledge/';
                         if (!file_exists($dir))
                             mkdir($dir, 0777);
@@ -98,15 +95,7 @@ class ManageController extends Controller {
 
                         $file->image->saveAs($image);
                     }
-
-//                    if ($new) {
                     $this->redirect('/knowledge/manage/review/id/' . $model->id);
-//                    } else {
-//                        echo "<script>
-//                        alert('$alertText');
-//                        window.location='$link_location';
-//                        </script>";
-//                    }
                 } else {
                     echo "<pre>";
                     print_r($model->getErrors());

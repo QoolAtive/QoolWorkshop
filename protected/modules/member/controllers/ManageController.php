@@ -29,7 +29,7 @@ Class ManageController extends Controller {
             ),
             array(
                 'allow',
-                'actions' => array('registerPerson', 'registerRegistration', 'registerRules', 'captcha'),
+                'actions' => array('registerPerson', 'registerRegistration', 'registerRules', 'forgotPassword', 'captcha'),
                 'users' => array('*')
             ),
             array(
@@ -42,10 +42,74 @@ Class ManageController extends Controller {
         
     }
 
-    public function actionRegisterRules() {
+    public function actionForgotPassword() {
+        $model = new ForgotPassword();
+        $model->unsetAttributes();
 
-        if ($_POST['rules'] != '') {
-            Yii::app()->user->setState('rules', $_POST['rules']);
+        if ($_POST['ForgotPassword']) {
+            $model->attributes = $_POST['ForgotPassword'];
+            $model->validate();
+            if ($model->getErrors() == null) {
+
+                $model_person = MemPerson::model()->findByAttributes(array('email' => $model->email));
+                $model_registration = MemRegistration::model()->findByAttributes(array('email' => $model->email));
+
+                if (!empty($model_person)) {
+
+                    $model_user = MemUser::model()->find('id = ' . $model_person->user_id);
+                    $sendEmail = array(// ข้อความที่จะต้องส่ง Email
+                        'subject' => Yii::t('language', 'ลืมรหัสผ่าน'),
+                        'message' => Tool::messageEmail(array('name' => $model_person->ftname . ' ' . $model_person->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+                        'to' => $model->email,
+                    );
+                    Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมณ์ของคุณ') . "');
+                        window.location='/member/manage/forgotPassword';
+                        </script>
+                        ";
+                } else if (!empty($model_registration)) {
+                    $model_user = MemUser::model()->find('id = ' . $model_registration->user_id);
+
+                    $sendEmail = array(// ข้อความที่จะต้องส่ง Email
+                        'subject' => Yii::t('language', 'ลืมรหัสผ่าน'),
+                        'message' => Tool::messageEmail(array('name' => $model_registration->ftname . ' ' . $model_registration->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+                        'to' => $model->email,
+                    );
+                    Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมณ์ของคุณ') . "');
+                        window.location='/member/manage/forgotPassword';
+                        </script>
+                        ";
+                } else {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'อีเมล์ไม่มีอยู่ในระบบ') . "');
+                        window.location='/member/manage/forgotPassword';
+                        </script>
+                        ";
+                }
+            }
+        }
+
+        $this->render('_forgot_password', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionRegisterRules() {
+        if (Yii::app()->user->getState('rules')) {
+            echo "
+                <script>
+                window.top.location.href='/member/manage/registerPerson';
+                </script>
+                ";
+        }
+        if (isset($_POST['yt0'])) {
+            Yii::app()->user->setState('rules', '1');
 
             echo "
                 <script>
@@ -297,6 +361,34 @@ Class ManageController extends Controller {
         $this->render('admin', array(
             'model' => $model,
         ));
+    }
+
+    public function actionRevokeMember($id) {
+        $model = ChangePass::model()->findByPk($id);
+        
+        if ($model->status == 0) {
+            $model->status = 1;
+            if ($model->save()) {
+//                echo "
+//                    <script>
+//                    alert('" . Yii::t('language', 'ยกเลิกผู้ใช้ออกจากระบบเรียบร้อยแล้ว') . "');
+//                    window.location='/member/manage/admin;
+//                    </script>
+//                    ";
+                $this->redirect('/member/manage/admin');
+            }
+        } else {
+            $model->status = 0;
+            if ($model->save()) {
+//                echo "
+//                    <script>
+//                    alert('" . Yii::t('language', 'เพิ่มผู้ใช้เข้าสู่ระบบเรียบร้อยแล้ว') . "');
+//                    window.location='/member/manage/admin;
+//                    </script>
+//                    ";
+                $this->redirect('/member/manage/admin');
+            }
+        }
     }
 
     public function actionViewAllowMember($id = null) {

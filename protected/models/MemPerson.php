@@ -12,15 +12,16 @@ class MemPerson extends MemPersonBase {
             array('user_id, business_type, mem_type, sex, tname, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly' => true),
             array('product_name, panit, ftname, ltname, fename, lename, email, twitter, tel, mobile, fax', 'length', 'max' => 100),
             array('birth', 'length', 'max' => 4),
-            
             array('facebook, address', 'length', 'max' => 255),
             array('postcode', 'length', 'max' => 5),
             array('email', 'email'),
             array('email', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // อีเมล์ห้ามซ้ำ
+            array('email', 'checkEmail'),
             array('receive_news', 'length', 'max' => 1),
             array('user_id, business_type, product_name, id, mem_type, sex, tname, ftname, ltname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'safe', 'on' => 'search'),
         );
     }
+
     public function attributeLabels() {
         return array(
             'id' => 'ID',
@@ -53,6 +54,7 @@ class MemPerson extends MemPersonBase {
             'business_type' => Yii::t('language', 'ประเภทธุรกิจ'),
         );
     }
+
     public function search() {
         $criteria = new CDbCriteria;
 
@@ -84,6 +86,15 @@ class MemPerson extends MemPersonBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function checkEmail() {
+//        if ($this->hasErrors() == NULL) {
+            $model2 = MemRegistration::model()->findByAttributes(array('email' => $this->email));
+            if (!empty($model2)) {
+                $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
+            }
+//        }
     }
 
 }

@@ -21,6 +21,10 @@
             <? echo Tool::GenList($list); ?>
         </ul>
         <?php
+        echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                '/member/manage/changePassword'
+            )) . "'")
+        );
     } else {
         ?>
         <div class="profile">
@@ -87,13 +91,13 @@
             <?php } ?>
 
             <?php // if ($profile['facebook'] != null) { ?>
-                <!--<label>เฟสบุ๊ค :</label>-->
-                <!--<div class="detail"><?php // echo $profile['facebook']; ?></div>-->
+            <!--<label>เฟสบุ๊ค :</label>-->
+            <!--<div class="detail"><?php // echo $profile['facebook'];   ?></div>-->
             <?php // } ?>
 
             <?php // if ($profile['twitter'] != null) { ?>
-                <!--<label>ทวิตเตอร์ :</label>-->
-                <!--<div class="detail"><?php // echo $profile['twitter']; ?></div>-->
+            <!--<label>ทวิตเตอร์ :</label>-->
+            <!--<div class="detail"><?php // echo $profile['twitter'];   ?></div>-->
             <?php // } ?>
             <hr>
             <?php
@@ -109,9 +113,9 @@
                 );
             }
             echo CHtml::button(Yii::t('language', 'แก้ไขที่อยู่'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/member/manage/changeAddress'
-                    )) . "'")
-                );
+                    '/member/manage/changeAddress'
+                )) . "'")
+            );
             echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/member/manage/changePassword'
                 )) . "'")

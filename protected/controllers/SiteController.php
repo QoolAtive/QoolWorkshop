@@ -111,12 +111,22 @@ class SiteController extends Controller {
                                     ";
                             }
                         } else {
-                            echo "
-                            <script>
-                            alert('ยินดีต้อนรับ');
-                            window.top.location.href='" . Yii::app()->user->returnUrl . "';
-                            </script>
-                            ";
+                            if (Yii::app()->user->isStatusMember()) {
+                                Yii::app()->user->logout();
+                                echo "
+                                    <script>
+                                    alert('" . Yii::t('language', 'คุณถูกยกเลิกออกจากระบบ') . "');
+                                    window.top.location.href='" . Yii::app()->user->returnUrl . "';
+                                    </script>
+                                    ";
+                            } else {
+                                echo "
+                                    <script>
+                                    alert('" . Yii::t('language', 'ยินดีต้อนรับเข้าสู่ DBDmart') . "');
+                                    window.top.location.href='" . Yii::app()->user->returnUrl . "';
+                                    </script>
+                                    ";
+                            }
                         }
                     }
                 }

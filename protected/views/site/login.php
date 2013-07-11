@@ -96,6 +96,9 @@ $this->breadcrumbs = array(
         <?php echo $form->error($model, 'password'); ?>
 
     </div>
+    <div class="row _100">
+        <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' =>'_bank')); ?>
+    </div>
 
     <div class="row rememberMe _100">
         <?php echo $form->checkBox($model, 'rememberMe'); ?>

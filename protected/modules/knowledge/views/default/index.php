@@ -16,14 +16,14 @@
             <li>
                 <?php
                 if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Knowledge Manage', array('/knowledge/manage/knowledge'));
+                    echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge'));
                 }
                 ?>
             </li>
             <li>
                 <?php
                 if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Learning Manage', array('/learning/manage/learning'));
+                    echo CHtml::link('Manage Learning', array('/learning/manage/learningGroup'));
                 }
                 ?>
             </li>
