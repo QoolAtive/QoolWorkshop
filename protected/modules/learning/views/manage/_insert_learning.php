@@ -59,6 +59,7 @@ $form = $this->beginWidget('CActiveForm', array(
             )) . "'")
         );
         ?>
+        
     </div>
 </div>
 <?php
