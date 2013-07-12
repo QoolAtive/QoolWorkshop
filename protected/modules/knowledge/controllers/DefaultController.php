@@ -4,12 +4,14 @@ class DefaultController extends Controller {
 
     public function actionIndex() {
         $model = new Knowledge;
+        $modelLearning = new LearningGroup();
 
         // ปุ่มย้อนกลับ
         Yii::app()->user->setState('link_back', '/knowledge/default/index');
         Yii::app()->user->setState('knowledge', '/knowledge/default/index');
         $this->render('index', array(
             'model' => $model,
+            'modelLearning' => $modelLearning,
 //            'dataProvider' => $model->getData('1'),
         ));
     }

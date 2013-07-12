@@ -27,6 +27,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'htmlOptions' => array('style' => 'text-align: center; width: 100px;'),
         ),
         array(
+            'name' => 'name_en',
+            'value' => '$data->name_en',
+        ),
+        array(
+            'name' => 'pic_en',
+            'type' => 'raw',
+            'value' => 'CHtml::image("/file/learning/".$data->pic_en,\'\',array(
+                                \'height\' => \'50\'
+                                ))',
+            'filter' => '',
+            'htmlOptions' => array('style' => 'text-align: center; width: 100px;'),
+        ),
+        array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
             'header' => "รายละเอียด",

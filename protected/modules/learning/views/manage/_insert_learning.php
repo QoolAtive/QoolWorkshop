@@ -22,6 +22,13 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="_100">
         <?php
+        echo $form->labelEx($modelVideo, 'video');
+        echo $form->textField($modelVideo, 'video');
+        echo $form->error($modelVideo, 'video');
+        ?>
+    </div>
+    <div class="_100">
+        <?php
         echo $form->labelEx($model, 'subject');
         echo $form->textField($model, 'subject');
         echo $form->error($model, 'subject');
@@ -56,6 +63,13 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="_100">
         <h4 class="reg"><?php echo Yii::t('language', '- บทเรียนภาษาอังกฤษ -'); ?></h4>
+    </div>
+    <div class="_100">
+        <?php
+        echo $form->labelEx($modelVideo, 'video_en');
+        echo $form->textField($modelVideo, 'video_en');
+        echo $form->error($modelVideo, 'video_en');
+        ?>
     </div>
     <div class="_100">
         <?php

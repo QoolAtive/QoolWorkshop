@@ -48,6 +48,7 @@ class ManageController extends Controller {
         if ($_POST['LearningGroup']) {
             $model->attributes = $_POST['LearningGroup'];
 
+            //รูปภาพภาษาไทย
             $file->image = $_POST['Upload']['image'];
             $file->image = CUploadedFile::getInstance($file, 'image');
             if ($file->image != NULL) {
@@ -56,6 +57,17 @@ class ManageController extends Controller {
                 if ($model->pic == NULL)
                     $model->pic = 'default.jpg';
             }
+            //--------------
+            //รูปภาพภาษาอังกฤษ
+            $file->image2 = $_POST['Upload']['image2'];
+            $file->image2 = CUploadedFile::getInstance($file, 'image2');
+            if ($file->image2 != NULL) {
+                $model->pic_en = $file->image2;
+            } else {
+                if ($model->pic_en == NULL)
+                    $model->pic_en = 'default.jpg';
+            }
+            //--------------
 
             $model->validate();
             if ($model->getErrors() == null) {
@@ -68,6 +80,16 @@ class ManageController extends Controller {
                         $image = $dir . '/' . $file->image;
 
                         $file->image->saveAs($image);
+                    }
+
+                    if ($file->image2 != NULL) {
+                        $dir = './file/learning/';
+                        if (!file_exists($dir))
+                            mkdir($dir, 0777);
+
+                        $image = $dir . '/' . $file->image2;
+
+                        $file->image2->saveAs($image);
                     }
                     echo "
                         <script>
@@ -91,12 +113,25 @@ class ManageController extends Controller {
 
     public function actionDelLearningGroup($id = null) {
         $model = LearningGroup::model()->findByPk($id);
-        if ($model->pic != 'default.jpg') {
-            $file_paht = './file/learning/';
-            if (!file_exists($file_paht))
-                mkdir($file_paht, 0777);
 
-            unlink($file_paht . '/' . $model->pic);
+        if ($model->pic != 'default.jpg') {
+//            $file_paht = './file/learning';
+//            if (!file_exists($file_paht))
+//                mkdir($file_paht, 0777);
+//
+//            unlink($file_paht . '/' . $model->pic);
+            $file_paht = './file/learning/' . $model->pic;
+            if (fopen($file_paht, 'w'))
+                unlink($file_paht);
+        }
+        if ($model->pic != $model->pic_en && $model->pic_en != null && $model->pic != null) {
+            if ($model->pic_en != 'default.jpg') {
+                $file_paht = './file/learning/' . $model->pic_en;
+//                if (!file_exists($file_paht))
+//                    mkdir($file_paht, 0777);
+                if (fopen($file_paht, 'w'))
+                    unlink($file_paht);
+            }
         }
 
         if ($model->delete())
@@ -116,52 +151,56 @@ class ManageController extends Controller {
         ));
     }
 
-    public function actionInsertLearning() {
-        $file = new Upload();
-        $model = new Learning();
-        $model->unsetAttributes();
+    public function actionInsertLearning($id = null) {
+        if ($id == null) {
+            $model = new Learning();
+            $model->unsetAttributes();
 
-        if ($_POST['Learning']) {
+            $modelVideo = new LearningVideo();
+            $modelVideo->unsetAttributes();
+        } else {
+            $model = Learning::model()->findByPk($id);
+            $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
+        }
+
+        if ($_POST['Learning'] && $_POST['LearningVideo']) {
             $model->attributes = $_POST['Learning'];
+            $model->author = Yii::app()->user->id;
+            $model->guide_status = '0';
+            $model->date_write = date("Y-m-d H:i:s");
+            $modelVideo->main_id = '1';
 
-//            $file->image = $_POST['Upload']['image'];
-//            $file->image = CUploadedFile::getInstance($file, 'image');
-//            if ($file->image != NULL) {
-//                $model->pic = $file->image;
-//            } else {
-//                if ($model->pic == NULL)
-//                    $model->pic = 'default.jpg';
-//            }
+            $modelVideo->attributes = $_POST['LearningVideo'];
+            $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
 
             $model->validate();
-            if ($model->getErrors() == null) {
+            $modelVideo->validate();
+            if ($model->getErrors() == null && $modelVideo->getErrors() == null) {
                 if ($model->save()) {
-//                    if ($file->image != NULL) {
-//                        $dir = './file/learning/';
-//                        if (!file_exists($dir))
-//                            mkdir($dir, 0777);
-//
-//                        $image = $dir . '/' . $file->image;
-//
-//                        $file->image->saveAs($image);
-//                    }
-                    echo "
+                    $modelVideo->main_id = $model->id;
+                    if ($modelVideo->save()) {
+                        echo "
                         <script>
                         alert('" . Yii::t('language', 'เพิ่มข้อมูลเรียบร้อย') . "');
-                        window.location='/learning/manage/InsertLearningGroup';
+                        window.location='/learning/manage/InsertLearning';
                         </script>
                         ";
+                    }
                 } else {
                     echo "<pre>";
                     print_r($model->getErrors());
                     echo "</pre>";
                 }
+            } else {
+                echo "<pre>";
+                print_r(array($model->getErrors(), $modelVideo->getErrors()));
+                echo "</pre>";
             }
         }
 
         $this->render('_insert_learning', array(
             'model' => $model,
-            'file' => $file,
+            'modelVideo' => $modelVideo,
         ));
     }
 

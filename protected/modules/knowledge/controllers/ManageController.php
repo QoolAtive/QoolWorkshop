@@ -113,7 +113,7 @@ class ManageController extends Controller {
     public function actionDel($id) {
         $model = Knowledge::model()->findByPk($id);
         if ($model->image != 'default.jpg') {
-            $file_paht = './file/knowledge/';
+            $file_paht = './file/knowledge';
             if (!file_exists($file_paht))
                 mkdir($file_paht, 0777);
 

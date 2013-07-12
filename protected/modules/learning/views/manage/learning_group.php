@@ -11,7 +11,7 @@ $this->renderPartial('_side_bar', array(
                 <hr>
                 <div style="text-align: center;"> 
                     <?php
-                    echo CHtml::button('เพิ่มกลุ่มบทเรียนรู้', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button('เพิ่มกลุ่มการเรียนรู้', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/learning/manage/InsertLearningGroup'
                         )) . "'")
                     );

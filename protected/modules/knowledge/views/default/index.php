@@ -66,29 +66,25 @@
         </div>
         <div>
             <div id="view2" class="tabcontent ">
-                <h2 class="learninghead">
-                    <img src="img/book.png"/>
-                    <span>พาณิชย์อิเล็กทรอนิกส์คืออะไร</span>
-                </h2>
-                <img class="demoshadowtop" src="img/shadow.png">
-                <iframe  class="demoiframe" src="http://www.youtube.com/embed/0QRO3gKj3qw" frameborder="0" allowfullscreen></iframe>
-                <img src="img/shadow.png">
-                Content
-                <a href="pdf/ch_01.pdf"><img src="img/download.png" class="downloadbtn" /></a>
-                <hr class="demohr"> 
-                <ul class="nextlearn">
-                    <li>
-                        <a href="learning1-2.html" >
-                            <img src="img/vid.png"/> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="learning1-2.html">พาณิชย์อิเล็กทรอนิกส์น่าสนใจอย่างไร</a> 
-                        <p>พาณิชย์อิเล็กทรอนิกส์ (Electronic Commerce)
-                            ในโลกยุคไร้พรมแดนการติดต่อสื่อสารมีความสะดวกสบายมากขึ้นโดยเทคโนโลยีสารสนเทศเข้ามามีบทบาทเป็นอย่างมาก เทคโนโลยีที่ได้
-                            รับความนิยมมากที่สุด คือ เทคโนโลยีอินเตอร์เน็ต อินเตอร์เน็ตเริ่มเข้ามามีบทบาทและกลายเป็นสิ่งจำเป็นในชีวิตประจำวันของหลายๆคน 
-                    </li>
-                </ul>
+                <div class="row-fluid">
+
+                    <ul class="card">
+                        <li style="background-image:url('img/Learn_01.png');"><a href="learning1.html"></a></li>
+                        <li style="background-image:url('img/Learn_02.png');"><a href="learning2.html"></a></li>
+                        <li style="background-image:url('img/Learn_03.png');"><a href="#"></a></li>
+                        <li style="background-image:url('img/Learn_04.png');"><a href="#"></a></li>
+                            <?php
+                            $this->widget('zii.widgets.CListView', array(
+                                'dataProvider' => $modelLearning->getData(),
+                                'itemView' => '_clist_learning_group', // refers to the partial view named '_post'
+//                                'sortableAttributes' => array(
+//                                    'title',
+//                                    'create_time' => 'Post Time',
+//                                ),
+                            ));
+                            ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

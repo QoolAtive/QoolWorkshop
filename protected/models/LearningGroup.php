@@ -8,7 +8,7 @@ class LearningGroup extends LearningGroupBase {
 
     public function rules() {
         return array(
-            array('name, pic', 'required'),
+            array('name, pic,name_en, pic_en', 'required'),
             array('name', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
             array('name, pic, name_en, pic_en', 'length', 'max' => 255),
             array('id, name, pic, name_en, pic_en', 'safe', 'on' => 'search'),
@@ -23,10 +23,10 @@ class LearningGroup extends LearningGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'หัวข้อ'),
+            'name' => Yii::t('language', 'หัวข้อภาษาไทย'),
             'pic' => Yii::t('language', 'รูป'),
             'name_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
-            'pic_en' => Yii::t('language', 'รูปภาษาอังกฤษ'),
+            'pic_en' => Yii::t('language', 'รูป'),
         );
     }
 
