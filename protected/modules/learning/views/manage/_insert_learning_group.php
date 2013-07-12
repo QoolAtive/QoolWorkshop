@@ -9,7 +9,15 @@ $form = $this->beginWidget('CActiveForm', array(
 );
 ?>
 <div>
-    <h3>เพิ่มกลุ่มการเรียนรู้</h3>
+    <h3>เพิ่มกลุ่มบทเรียน</h3>
+    <?php if ($model->pic) { ?>
+        <div class="_100">
+            <label>รูปเก่า : </label>
+            <?php
+            echo CHtml::image('/file/learning/' . $model->pic, $alt, array('height' => '150px'))
+            ?>
+        </div>
+    <?php } ?>
     <div class="_100">
         <?php
         echo $form->labelEx($file, 'image');

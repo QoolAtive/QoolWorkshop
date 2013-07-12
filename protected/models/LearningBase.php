@@ -7,7 +7,9 @@
  * @property integer $id
  * @property integer $group_id
  * @property string $subject
+ * @property string $subject_en
  * @property string $detail
+ * @property string $detail_en
  * @property string $author
  * @property string $guide_status
  * @property string $date_write
@@ -40,14 +42,14 @@ class LearningBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('group_id, subject, detail, author, guide_status, date_write', 'required'),
+			array('group_id, subject, subject_en, detail, detail_en, author, guide_status, date_write', 'required'),
 			array('group_id', 'numerical', 'integerOnly'=>true),
-			array('subject', 'length', 'max'=>255),
+			array('subject, subject_en', 'length', 'max'=>255),
 			array('author', 'length', 'max'=>100),
 			array('guide_status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, group_id, subject, detail, author, guide_status, date_write', 'safe', 'on'=>'search'),
+			array('id, group_id, subject, subject_en, detail, detail_en, author, guide_status, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +73,9 @@ class LearningBase extends CActiveRecord
 			'id' => 'ID',
 			'group_id' => 'Group',
 			'subject' => 'Subject',
+			'subject_en' => 'Subject En',
 			'detail' => 'Detail',
+			'detail_en' => 'Detail En',
 			'author' => 'Author',
 			'guide_status' => 'Guide Status',
 			'date_write' => 'Date Write',
@@ -92,7 +96,9 @@ class LearningBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('group_id',$this->group_id);
 		$criteria->compare('subject',$this->subject,true);
+		$criteria->compare('subject_en',$this->subject_en,true);
 		$criteria->compare('detail',$this->detail,true);
+		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('author',$this->author,true);
 		$criteria->compare('guide_status',$this->guide_status,true);
 		$criteria->compare('date_write',$this->date_write,true);

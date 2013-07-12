@@ -36,10 +36,14 @@ class ManageController extends Controller {
         ));
     }
 
-    public function actionInsertLearningGroup() {
+    public function actionInsertLearningGroup($id = null) {
         $file = new Upload();
-        $model = new LearningGroup();
-        $model->unsetAttributes();
+        if ($id == null) {
+            $model = new LearningGroup();
+            $model->unsetAttributes();
+        } else {
+            $model = LearningGroup::model()->findByPk($id);
+        }
 
         if ($_POST['LearningGroup']) {
             $model->attributes = $_POST['LearningGroup'];
@@ -83,6 +87,20 @@ class ManageController extends Controller {
             'model' => $model,
             'file' => $file,
         ));
+    }
+
+    public function actionDelLearningGroup($id = null) {
+        $model = LearningGroup::model()->findByPk($id);
+        if ($model->pic != 'default.jpg') {
+            $file_paht = './file/learning/';
+            if (!file_exists($file_paht))
+                mkdir($file_paht, 0777);
+
+            unlink($file_paht . '/' . $model->pic);
+        }
+
+        if ($model->delete())
+            echo "ลบข้อมูลเรียบร้อย";
     }
 
     public function actionLearning() {
@@ -133,7 +151,7 @@ class ManageController extends Controller {
                         window.location='/learning/manage/InsertLearningGroup';
                         </script>
                         ";
-                }else {
+                } else {
                     echo "<pre>";
                     print_r($model->getErrors());
                     echo "</pre>";

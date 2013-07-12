@@ -10,13 +10,13 @@ class Learning extends LearningBase {
 
     public function rules() {
         return array(
-            array('group_id, subject, detail, author, guide_status, date_write', 'required'),
+            array('group_id, subject, subject_en, detail, detail_en, author, guide_status, date_write', 'required'),
             array('group_id', 'numerical', 'integerOnly' => true),
-            array('subject', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
-            array('subject', 'length', 'max' => 255),
+            array('subject, subject_en', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
+            array('subject, subject_en', 'length', 'max' => 255),
             array('author', 'length', 'max' => 100),
             array('guide_status', 'length', 'max' => 1),
-            array('id, group_id, subject, detail, author, guide_status, date_write', 'safe', 'on' => 'search'),
+            array('id, group_id, subject, subject_en, detail, detail_en, author, guide_status, date_write', 'safe', 'on' => 'search'),
         );
     }
 
@@ -24,8 +24,11 @@ class Learning extends LearningBase {
         return array(
             'id' => 'ID',
             'group_name' => Yii::t('language', 'กลุ่มบทเรียน'),
+            'group_id' => Yii::t('language', 'กลุ่มบทเรียน'),
             'subject' => Yii::t('language', 'หัวข้อ'),
+            'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
             'detail' => Yii::t('language', 'รายละเอียด'),
+            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
             'author' => Yii::t('language', 'ผู้เขียน'),
             'guide_status' => Yii::t('language', 'แนะนำ'),
             'date_write' => Yii::t('language', 'วันที่เขียน'),

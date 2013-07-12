@@ -28,15 +28,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
             'header' => "รายละเอียด",
-            'template' => '{view}',
+            'template' => '{update}{delete}',
             'buttons' => array(
-                'view' => array(
-                    'label' => 'view', //Text label of the button.
-//                    'url' => 'Yii::app()->createUrl("/member/manage/viewAllowMember/",array("id"=>$data->id))',
+                'update' => array(
+                    'label' => 'update',
+                    'url' => 'Yii::app()->createUrl("/learning/manage/InsertLearningGroup/",array("id"=>$data->id))',
+                ),
+                'delete' => array(
+                    'label' => 'delete',
+                    'url' => 'Yii::app()->createUrl("/learning/manage/delLearningGroup/",array("id"=>$data->id))',
                 ),
             ),
+            'afterDelete' => 'function(link,success,data){if(data != ""){alert(data);}}'
         ),
     ),
     'pager' => array(
