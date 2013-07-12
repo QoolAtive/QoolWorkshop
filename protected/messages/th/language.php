@@ -8,6 +8,7 @@ return array(
     'จัดการลิงค์' => 'จัดการลิงค์',
     'Knowledge' => 'Knowledge',
     'Knowledge' => 'Knowledge',
+    'Knowledge' => 'Knowledge',
     '' => '',
     '' => '',
 );
