@@ -8,5 +8,6 @@ return array(
     'จัดการลิงค์' => 'Manage Link',
     'Knowledge' => 'Knowledge',
     'jjhhhh' => '',
+    '' => '',
 );
 ?>
