@@ -7,7 +7,7 @@ class DefaultController extends Controller {
     public function actionIndex() {
         
         // set State for tab
-        Yii::app()->user->setState('layouts', 'main_tab_1');
+        Yii::app()->user->setState('layouts', 'main_tab_4');
         
         $personnel_id = Yii::app()->user->getState('personnel_id');
         
@@ -82,7 +82,7 @@ class DefaultController extends Controller {
         $qry = $command->query();
         if (count($qry) > 0) {
             foreach ($qry as $q) {
-                $list_agencies[$q['id']] = $q['name_en'];
+                $list_agencies[$q['id']] = $q['name_th'];
             }
         }
         
@@ -153,6 +153,14 @@ class DefaultController extends Controller {
             $total_budget_emp = 0;            
         }
         
+        $this->render('index', array(
+            'dataProvider' => $pesonnel_data_manage->GetPersonnelManage($agencies_manage_id, $personnel_id),
+            'agencies_manage_id' => $agencies_manage_id,
+            'is_boss' => true,
+            'agencies_part_id' => $agencies_part_id,  
+            'total_budget_gov' => $total_budget_gov,
+            'total_budget_emp' => $total_budget_emp,
+        ));
     }
     
     public function actionBossHigh() {
@@ -191,8 +199,17 @@ class DefaultController extends Controller {
             'total_budget_gov' => $total_budget_gov,
             'total_budget_emp' => $total_budget_emp,
         ));
+        echo "Qoolative";
 echo "Qoolative";
-echo "QQQQQ";
+echo "Qoolative";echo "Qoolative";
+echo "Qoolative";
+echo "Qoolative";echo "Qoolative";
+echo "Qoolative";
+echo "Qoolative";echo "Qoolative";
+echo "Qoolative";
+echo "Qoolative";echo "Qoolative";
+echo "Qoolative";
+echo "Qoolative";
     }
 
 }
