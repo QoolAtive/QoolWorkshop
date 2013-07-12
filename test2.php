@@ -1,5 +1,7 @@
 <?php
-echo "2222222222222222222222";
+echo "Qoolative";
+echo "Qoolative";
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
