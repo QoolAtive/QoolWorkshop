@@ -7,7 +7,7 @@ return array(
     'linkbanner.png' => 'linkbanner.png',
     'จัดการลิงค์' => 'จัดการลิงค์',
     'Knowledge' => 'Knowledge',
-    '' => '',
+    'Knowledge' => 'Knowledge',
     '' => '',
     '' => '',
 );
