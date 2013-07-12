@@ -10,8 +10,8 @@ class LearningGroup extends LearningGroupBase {
         return array(
             array('name, pic', 'required'),
             array('name', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
-            array('name, pic', 'length', 'max' => 255),
-            array('id, name, pic', 'safe', 'on' => 'search'),
+            array('name, pic, name_en, pic_en', 'length', 'max' => 255),
+            array('id, name, pic, name_en, pic_en', 'safe', 'on' => 'search'),
         );
     }
 
@@ -25,6 +25,8 @@ class LearningGroup extends LearningGroupBase {
             'id' => 'ID',
             'name' => Yii::t('language', 'หัวข้อ'),
             'pic' => Yii::t('language', 'รูป'),
+            'name_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
+            'pic_en' => Yii::t('language', 'รูปภาษาอังกฤษ'),
         );
     }
 
@@ -33,6 +35,9 @@ class LearningGroup extends LearningGroupBase {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
+        $criteria->compare('pic', $this->pic, true);
+        $criteria->compare('name_en', $this->name_en, true);
+        $criteria->compare('pic_en', $this->pic_en, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -44,6 +49,9 @@ class LearningGroup extends LearningGroupBase {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
+        $criteria->compare('pic', $this->pic, true);
+        $criteria->compare('name_en', $this->name_en, true);
+        $criteria->compare('pic_en', $this->pic_en, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

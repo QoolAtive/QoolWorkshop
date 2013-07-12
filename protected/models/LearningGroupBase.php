@@ -7,6 +7,8 @@
  * @property integer $id
  * @property string $name
  * @property string $pic
+ * @property string $name_en
+ * @property string $pic_en
  */
 class LearningGroupBase extends CActiveRecord
 {
@@ -37,10 +39,10 @@ class LearningGroupBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, pic', 'required'),
-			array('name, pic', 'length', 'max'=>255),
+			array('name, pic, name_en, pic_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, pic', 'safe', 'on'=>'search'),
+			array('id, name, pic, name_en, pic_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +66,8 @@ class LearningGroupBase extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'pic' => 'Pic',
+			'name_en' => 'Name En',
+			'pic_en' => 'Pic En',
 		);
 	}
 
@@ -81,6 +85,8 @@ class LearningGroupBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('pic',$this->pic,true);
+		$criteria->compare('name_en',$this->name_en,true);
+		$criteria->compare('pic_en',$this->pic_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
