@@ -41,7 +41,7 @@
             <li><a href="/link/default/index">Link</a></li>
             <li><a href="/faq/default/index">FAQ</a></li>
             <li><a href="/about/default/index">About Us</a></li>
-            <li><a href="news.html">NEWS & Activity</a> </li>
+            <li><a href="/news/default/index">NEWS & Activity</a> </li>
         </ul>
     </div>
 </div>
