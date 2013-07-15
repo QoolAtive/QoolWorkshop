@@ -69,20 +69,17 @@
                 <div class="row-fluid">
 
                     <ul class="card">
-                        <li style="background-image:url('img/Learn_01.png');"><a href="learning1.html"></a></li>
-                        <li style="background-image:url('img/Learn_02.png');"><a href="learning2.html"></a></li>
-                        <li style="background-image:url('img/Learn_03.png');"><a href="#"></a></li>
-                        <li style="background-image:url('img/Learn_04.png');"><a href="#"></a></li>
-                            <?php
-                            $this->widget('zii.widgets.CListView', array(
-                                'dataProvider' => $modelLearning->getData(),
-                                'itemView' => '_clist_learning_group', // refers to the partial view named '_post'
+                        <?php
+                        $this->widget('zii.widgets.CListView', array(
+                            'dataProvider' => $modelLearning->getData(),
+                            'itemView' => '_clist_learning_group',
+                            'summaryText' => false,
 //                                'sortableAttributes' => array(
 //                                    'title',
 //                                    'create_time' => 'Post Time',
 //                                ),
-                            ));
-                            ?>
+                        ));
+                        ?>
                     </ul>
                 </div>
             </div>

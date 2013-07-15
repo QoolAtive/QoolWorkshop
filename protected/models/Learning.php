@@ -2,7 +2,7 @@
 
 class Learning extends LearningBase {
 
-    public $group_name;
+    public $group_name, $video;
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -26,7 +26,7 @@ class Learning extends LearningBase {
             'group_name' => Yii::t('language', 'กลุ่มบทเรียน'),
             'group_id' => Yii::t('language', 'กลุ่มบทเรียน'),
             'subject' => Yii::t('language', 'หัวข้อ'),
-            'subject_en' => Yii::t('language', 'หัวข้อ'),
+            'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
             'detail' => Yii::t('language', 'รายละเอียด'),
             'detail_en' => Yii::t('language', 'รายละเอียด'),
             'author' => Yii::t('language', 'ผู้เขียน'),
@@ -55,6 +55,27 @@ class Learning extends LearningBase {
         $criteria = new CDbCriteria;
         $criteria->select = "t.*, lg.name as group_name";
         $criteria->join = "left join learning_group lg on t.group_id = lg.id";
+        $criteria->compare('id', $this->id);
+        $criteria->compare('lg.id', $this->group_name);
+        $criteria->compare('group_id', $this->group_id);
+        $criteria->compare('subject', $this->subject, true);
+        $criteria->compare('detail', $this->detail, true);
+        $criteria->compare('author', $this->author, true);
+        $criteria->compare('guide_status', $this->guide_status, true);
+        $criteria->compare('date_write', $this->date_write, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+    public function getLearningList($id = null) {
+        $criteria = new CDbCriteria;
+        $criteria->condition = "group_id = " . $id;
+        $criteria->select = "t.*, lg.name as group_name, lv.video as video";
+        $criteria->join = "left join learning_group lg on t.group_id = lg.id
+                           left join learning_video lv on t.id = lv.main_id
+                            ";
         $criteria->compare('id', $this->id);
         $criteria->compare('lg.id', $this->group_name);
         $criteria->compare('group_id', $this->group_id);

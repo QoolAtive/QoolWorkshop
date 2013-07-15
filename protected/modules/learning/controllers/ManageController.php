@@ -41,8 +41,10 @@ class ManageController extends Controller {
         if ($id == null) {
             $model = new LearningGroup();
             $model->unsetAttributes();
+            $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
         } else {
             $model = LearningGroup::model()->findByPk($id);
+            $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
         }
 
         if ($_POST['LearningGroup']) {
@@ -93,7 +95,7 @@ class ManageController extends Controller {
                     }
                     echo "
                         <script>
-                        alert('" . Yii::t('language', 'เพิ่มข้อมูลเรียบร้อย') . "');
+                        alert('" . Yii::t('language', $messageAlert) . "');
                         window.location='/learning/manage/InsertLearningGroup';
                         </script>
                         ";
@@ -158,9 +160,13 @@ class ManageController extends Controller {
 
             $modelVideo = new LearningVideo();
             $modelVideo->unsetAttributes();
+            
+            $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
+            
+            $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
         }
 
         if ($_POST['Learning'] && $_POST['LearningVideo']) {
@@ -181,20 +187,20 @@ class ManageController extends Controller {
                     if ($modelVideo->save()) {
                         echo "
                         <script>
-                        alert('" . Yii::t('language', 'เพิ่มข้อมูลเรียบร้อย') . "');
+                        alert('" . Yii::t('language', $messageAlert) . "');
                         window.location='/learning/manage/InsertLearning';
                         </script>
                         ";
                     }
                 } else {
-                    echo "<pre>";
-                    print_r($model->getErrors());
-                    echo "</pre>";
+//                    echo "<pre>";
+//                    print_r($model->getErrors());
+//                    echo "</pre>";
                 }
             } else {
-                echo "<pre>";
-                print_r(array($model->getErrors(), $modelVideo->getErrors()));
-                echo "</pre>";
+//                echo "<pre>";
+//                print_r(array($model->getErrors(), $modelVideo->getErrors()));
+//                echo "</pre>";
             }
         }
 

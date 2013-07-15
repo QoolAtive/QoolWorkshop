@@ -22,6 +22,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->subject',
         ),
         array(
+            'name' => 'subject_en',
+            'value' => '$data->subject_en',
+        ),
+        array(
             'name' => 'date_write',
             'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',
             'filter' => '',
@@ -30,11 +34,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => "รายละเอียด",
-            'template' => '{view}',
+            'template' => '{view}{update}{delete}',
             'buttons' => array(
                 'view' => array(
                     'label' => 'view', //Text label of the button.
-//                    'url' => 'Yii::app()->createUrl("/member/manage/viewAllowMember/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/learning/default/lesson/",array("id"=>$data->id))',
+                ),
+                'update' => array(
+                    'label' => 'update',
+                    'url' => 'Yii::app()->createUrl("/learning/manage/InsertLearning",array("id"=>$data->id))',
                 ),
             ),
         ),
