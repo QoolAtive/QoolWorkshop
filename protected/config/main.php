@@ -44,7 +44,7 @@ return array(
             'class' => 'WebUser',
             // enable cookie-based authentication
             'allowAutoLogin' => true,
-            'loginUrl'=>array('/site/index'),
+            'loginUrl' => array('/site/index'),
         ),
         'Smtpmail' => array(
             'class' => 'application.extensions.smtpmail.PHPMailer',
@@ -105,5 +105,9 @@ return array(
         'defaultPageSize' => 20,
         'track_lifetime' => 129600,
         'languages' => array('th' => "ไทย", 'en' => "English"),
+    ),
+    //for rss feed
+    'controllerMap' => array(
+        'YiiFeedWidget' => 'ext.yii-feed-widget.YiiFeedWidgetController'
     ),
 );

@@ -17,13 +17,15 @@
     <div class="tabcontents">
         <!--NEWS-->
         <div id="view1" class="tabcontent">
-
+            <h3>Feed NEWS</h3>
+            <!-- Feed widget -->
             <?php
-            $rss = new rss_php;
-            $rss->load('http://rssphp.net/rss.xml');
-            $items = $rss->getItems(); #returns all rss items
-            ?> 
-
+            $this->widget(
+                    'ext.yii-feed-widget.YiiFeedWidget', array('url' => 'http://www.nasa.gov/rss/dyn/breaking_news.rss', 'limit' => 5)
+            );
+            ?>
+            <br/>
+            <h3>NEWS</h3>
             <div class="accordion" id="hideother1">
                 <?php
                 $i = 1;
@@ -36,11 +38,11 @@
                             </a>
                         </div>
                         <div id="item1<?php echo $i; ?>" class="accordion-body collapse <?php
-                        if ($i == 1)
-                            echo 'in';
-                        else
-                            echo '';
-                        ?>">
+                                if ($i == 1)
+                                    echo 'in';
+                                else
+                                    echo '';
+                                ?>">
                             <div class="accordion-inner">
                                 <?php echo $news['detail_th']; ?>
                             </div>
