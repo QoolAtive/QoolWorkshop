@@ -67,7 +67,8 @@ $form = $this->beginWidget('CActiveForm', array(
 <div style="text-align: center; padding:10px 0;">	
     <!--<a href="/member/manage/registerPerson" class="btn purple twhite " target="_parent" >Accept</a>-->
     <?php echo CHtml::submitButton(Yii::t('language', 'Accept'), array('class' => 'btn purple twhite', 'target' => '_parent')); ?>
-    <a href="javascript:parent.jQuery.fancybox.close();"   class="btn lgrey" target="_parent" >Cancle</a>
+    <input type="button" value="Cancle" class="grey" onClick="javascript:parent.jQuery.fancybox.close();"> 
+<!--  -->
 </div>
 
 
