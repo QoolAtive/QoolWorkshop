@@ -59,8 +59,8 @@ class About extends AboutBase
 	public function attributeLabels()
 	{
 		return array(
-			'about_text_th' => 'About Us',
-			'about_text_en' => 'About Us',
+			'about_text_th' => 'ข้อความภาษาไทย',
+			'about_text_en' => 'ข้อความภาษาอังกฤษ',
 		);
 	}
 

@@ -16,11 +16,11 @@ class DefaultController extends Controller {
         if (isset($_POST['About'])) {
             $model->attributes = $_POST['About'];
             if ($model->validate()) {
-                About::model()->updateAll(array('about_text' => $model->about_text));
+                About::model()->updateAll(array('about_text_th' => $model->about_text_th, 'about_text_en' => $model->about_text_en));
                 $this->redirect(CHtml::normalizeUrl(array('/about/default/index')));
             }
         }
-        $this->renderPartial('_edit_about', array('model' => $model));
+        $this->render('edit_about', array('model' => $model));
     }
 
 //send mail Contact
