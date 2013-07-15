@@ -1,6 +1,19 @@
-// fancybox login
-$(document).ready(function() {
+$(function() {
+  var val = $("input[id='MemPerson_mem_type_1']:checked").val();
+  if(val === "2") {
 
+      $('.hidden_destiny').show();
+
+  } else {
+    
+  }
+});
+
+
+
+
+
+$(document).ready(function() {
      $('.linkgroupbtn').fancybox({
         // content: $("#divForm").html()
         autoSize:true,
@@ -11,6 +24,83 @@ $(document).ready(function() {
         //         return;
         //     }       
     });
+
+
+    $('.loginbtn').fancybox({
+        // content: $("#divForm").html()
+        padding:0,
+        scrolling:'no',
+        minHeight :202,
+        maxHeight:202,
+        autoHeight:true,
+        width :550
+        // afterClose : function() {
+        //         location.reload();
+        //         return;
+        //     }       
+    });
+
+
+    $('.createaccountbtn').fancybox({
+    });
+});
+
+
+
+
+
+
+
+$(document).ready(function() {
+
+$("input[type='radio']").change( function() {
+    ($(this).val());
+});
+  $('.fate').click(function () {
+      $('.hidden_destiny').each(function () {
+          if ($(this).is(':visible')) {
+              $(this).stop().slideUp('slow');
+          }
+      });
+
+
+      var id = $(this).val();
+      $('#clicked_' + id).stop().slideDown('slow');
+
+  })
+
+});
+
+
+
+
+$(document).ready(function () {
+    $('input.numberinput').bind('keypress', function (e) {
+        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
+    });
+});
+
+
+$(document).ready(function () { 
+    $("ul#navi_containTab > li").click(function(event){  
+            var menuIndex=$(this).index();  
+            $("ul#detail_containTab > li:visible").hide();             
+            $("ul#detail_containTab > li").eq(menuIndex).show();  
+    });  
+});  
+
+
+
+
+
+$(document).ready(function() {
+            $('#learning').orbit();
+            $('#featured').orbit({ bullets: false});
+});
+
+
+
+
 
  // $(':submit').click(function(e){
  //            e.preventDefault();
@@ -57,69 +147,6 @@ $(document).ready(function() {
 // 'transitionOut'     : 'none',
 // 'type'              : 'iframe'
 //   });
-    $('.loginbtn').fancybox({
-        // content: $("#divForm").html()
-        padding:0,
-        scrolling:'no',
-        minHeight :202,
-        maxHeight:202,
-        autoHeight:true,
-        width :550
-        // afterClose : function() {
-        //         location.reload();
-        //         return;
-        //     }       
-    });
-
-
-    $('.createaccountbtn').fancybox({
-    });
-});
-
-
-$(document).ready(function() {
-  $('.fate').click(function () {
-      $('.hidden_destiny').each(function () {
-          if ($(this).is(':visible')) {
-              $(this).stop().slideUp('slow');
-          }
-      });
-      var id = $(this).val();
-      $('#clicked_' + id).stop().slideDown('slow');
-  })
-});
-
-
- 
-
-
-
-$(document).ready(function () {
-    $('input.numberinput').bind('keypress', function (e) {
-        return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
-    });
-});
-
-
-$(document).ready(function () { 
-    $("ul#navi_containTab > li").click(function(event){  
-            var menuIndex=$(this).index();  
-            $("ul#detail_containTab > li:visible").hide();             
-            $("ul#detail_containTab > li").eq(menuIndex).show();  
-    });  
-});  
-
-
-
-
-
-$(document).ready(function() {
-            $('#learning').orbit();
-            $('#featured').orbit({ bullets: false});
-});
-
-
-
 
 
 // $(document).ready(function() {
@@ -195,68 +222,6 @@ $(document).ready(function() {
   
 
 
-// Facebook Change Img Style
-$.fn.editFaceBook = function(options) {
-    var opts = jQuery.extend({}, jQuery.fn.editFaceBook.defaults, options);
-    return this.each(function() {
-        //here is the div/image as 1 element
-        $currentdivorimage = jQuery(this);
-        $currentdivorimage.width(opts.width);
-        $currentdivorimage.css('position', 'relative');
-        $divouter = $('<div></div>').appendTo($currentdivorimage);
-        $divouter.bind('mouseout', opts.hideedit);
-        $divouter.bind('mouseover', opts.showedit);
-        var $link = $('<a></a>').appendTo($divouter)
-        .attr('href', opts.linkurl);
-        $('<img/>').addClass('profileimage')
-        .width(opts.width)
-        .height(opts.height)
-        .attr('src', opts.imgurl)
-        .appendTo($link);
-     
-        var $secondlink = $('<a class="edit_profilepicture hidden" title="Change Picture" href="#">Change Picture</a>')
-        .insertAfter($link)
-        .bind('mouseover', opts.showeditpencil)
-        .bind('mouseout', opts.hideeditpencil)
-        .attr('href', opts.linkediturl)
-        .bind('click', opts.editlinkclick)
-        ;
-           
-            
-     
-        $('<span></span>').appendTo($secondlink)
-        .addClass('edit_profilepicture_icon')
-        .html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-            
-    //<span class="edit_profilepicture_icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    });
-};
-     
-jQuery.fn.editFaceBook.defaults = {
-    linkurl: '#', // click img
-    linkediturl : 'http://www.aaa.com', // click pencil
-    width: 300,
-    height: 327,
-    imgurl: 'img/smart.png',
-    editlinkclick:function(){
-    },
-    showedit: function() {
-        $currentelement = jQuery(this);
-        $currentelement.find('.edit_profilepicture').removeClass('hidden');
-    },
-    hideedit: function() {
-        $currentelement = jQuery(this);
-        $currentelement.find('.edit_profilepicture').addClass('hidden');
-    },
-    showeditpencil: function() {
-        $currentelement = jQuery(this);
-        $currentelement.find('.edit_profilepicture_icon').css('background-position', 'right bottom').css('border', '0px')
-    },
-    hideeditpencil: function() {
-        $currentelement = jQuery(this);
-        $currentelement.find('.edit_profilepicture_icon').css('background-position', 'right top');
-    }
-};
 
 
 
@@ -333,7 +298,8 @@ $(document).ready(function() {
 
 
 
-        /* ===================================================
+
+/* ===================================================
  * bootstrap-transition.js v2.3.2
  * http://twitter.github.com/bootstrap/javascript.html#transitions
  * ===================================================

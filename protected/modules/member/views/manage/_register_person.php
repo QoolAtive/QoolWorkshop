@@ -1,22 +1,54 @@
-<script type="text/javascript" >
-    //Assign to those input elements that have // 'placeholder' attribute
-    // $('input[placeholder]').each(function() {
-    //     var input = $(this);
-    //     $(input).val(input.attr(// 'placeholder'));
+<style type="text/css">
+    .nohidden{
+        display: block !important;
+    }
 
-    //     $(input).focus(function() {
-    //         if (input.val() == input.attr(// 'placeholder')) {
-    //             input.val('');
-    //         }
-    //     });
+    /* fallback placeholder */
+.placeholder {
+    color: #bbb;
+}
+/* webkit placeholder */
+::-webkit-input-placeholder {
+    color: #bbb;
+}
+/* moz placeholder */
+:-moz-placeholder {
+    color: #bbb;
+}
 
-    //     $(input).blur(function() {
-    //         if (input.val() == '' || input.val() == input.attr(// 'placeholder')) {
-    //             input.val(input.attr(// 'placeholder'));
-    //         }
-    //     });
-    // });
+/* remove webkit search input decoration and cancel button */
+input[type="search"]::-webkit-search-decoration, 
+input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+}
 
+p label{
+    display: none;
+}
+
+label{
+    display: none;
+}
+
+span#MemPerson_mem_type label{
+    display: inline;
+}
+
+select.haft,#MemPerson_postcode{
+    width: 60%;
+    float: right;
+}
+span.haft {
+    margin-top: 5px;
+    position: absolute;
+}
+.haft{
+    
+      width: 35%;
+}
+</style>
+
+<script>
 
 </script>
 <div class="sidebar">
@@ -25,21 +57,22 @@
             <li class="boxhead"><img src="/img/iconpage/createaccount.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <?php
-            $list = array(
-                array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson', 'select' => 'selected'),
-                array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration'),
-            );
-            echo Tool::GenList($list);
-            ?>
-        </ul>
+        <?php
+        $list = array(
+            array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson', 'select' => 'selected'),
+            array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration'),
+        );
+        echo Tool::GenList($list);
+        ?>
+    </ul>
     </div>
 </div>
 <div class="content">
     <div class="tabcontents">
-        <div id="view1" class="tabcontent">
-            <div class="row-fluid">
+        <div id="view1" class="tabcontent" >
+          
                 <h3> <img src="/img/iconform.png"> แบบลงทะเบียนบุคคลธรรมดา </h3>
+                
                 <?php
                 $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'insert-form',
@@ -49,25 +82,27 @@
                 <div class="_100">
                     <h4 class="reg">- ข้อมูลสมาชิก -</h4>
                 </div>
+
                 <!-- username -->
                 <div class="_100">    
                     <?php
                     echo $form->labelEx($model_user, 'username');
                     echo $form->textField($model_user, 'username', array(
                         'class' => 'numberinput fieldrequire',
-                            // // 'placeholder' => MemPerson::model()->getAttributeLabel('username'),
+                        'placeholder' => MemPerson::model()->getAttributeLabel('username'),
                     ));
                     echo $form->error($model_user, 'username');
                     ?>
                 </div>
                 <!-- new line -->
+
                 <!-- password -->
                 <div class="_50"> 
                     <?php
                     echo $form->labelEx($model_user, 'password');
                     echo $form->passwordField($model_user, 'password', array(
                         'class' => 'span6 fieldrequire',
-                            // // 'placeholder' => MemPerson::model()->getAttributeLabel('password'),
+                        'placeholder' => MemPerson::model()->getAttributeLabel('password'),
                     ));
                     echo $form->error($model_user, 'password');
                     ?>
@@ -77,7 +112,7 @@
                     echo $form->labelEx($model_user, 'password_confirm');
                     echo $form->passwordField($model_user, 'password_confirm', array(
                         'class' => 'span6 fieldrequire',
-                            // // 'placeholder' => MemPerson::model()->getAttributeLabel('confirm_password'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('confirm_password'),
                     ));
                     echo $form->error($model_user, 'password_confirm');
                     ?>
@@ -93,7 +128,7 @@
                     echo $form->labelEx($model, 'tname');
                     echo $form->dropdownList($model, 'tname', TitleName::model()->getTitleName('th'), array(
 //                            'name' => "Prefix",
-                        'class' => "span2",
+                        'class' => "span2 fieldrequire",
                     ));
                     echo $form->error($model, 'tname');
                     ?>
@@ -104,8 +139,8 @@
                     <?php
                     echo $form->labelEx($model, 'ftname');
                     echo $form->textField($model, 'ftname', array(
-                        'class' => 'span5',
-                            // // 'placeholder' => MemPerson::model()->getAttributeLabel('ftname'),
+                        'class' => 'span5 fieldrequire',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('ftname'),
                     ));
                     echo $form->error($model, 'ftname');
                     ?>
@@ -116,16 +151,15 @@
                     <?php
                     echo $form->labelEx($model, 'ltname');
                     echo $form->textField($model, 'ltname', array(
-                        'class' => 'span5',
-                            // // 'placeholder' => MemPerson::model()->getAttributeLabel('ltname'),
+                        'class' => 'span5 fieldrequire',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('ltname'),
                     ));
                     echo $form->error($model, 'ltname');
                     ?>
                 </div>
                 <!-- new line -->
 
- <div class="_100"></div>
-                <!-- คำนำหน้าภาษาอังกฤษ -->
+                 <!-- คำนำหน้าภาษาอังกฤษ -->
                 <div class="_20">
                     <?php
                     echo $form->labelEx($model, 'etname');
@@ -144,7 +178,7 @@
                     echo $form->labelEx($model, 'fename');
                     echo $form->textField($model, 'fename', array(
                         'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('fename'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('fename'),
                     ));
                     echo $form->error($model, 'fename');
                     ?>
@@ -156,7 +190,7 @@
                     echo $form->labelEx($model, 'lename');
                     echo $form->textField($model, 'lename', array(
                         'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('lename'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('lename'),
                     ));
                     echo $form->error($model, 'lename');
                     ?>
@@ -168,14 +202,13 @@
 
 
 
- <div class="_100"></div>
-                <!-- เพศ -->
+                 <!-- เพศ -->
                 <div class="_20">
                     <p><?php echo $form->labelEx($model, 'sex'); ?></p>
                     <?php
                     echo $form->dropdownList($model, 'sex', MemSex::model()->getSex(), array(
-                        'class' => "span2",
-//                            'empty' => 'เลือก'
+                        'class' => "span2 fieldrequire",
+                           'empty' => 'เลือก'
                     ));
                     echo $form->error($model, 'sex');
                     ?>
@@ -186,8 +219,8 @@
                     <?php
                     echo $form->labelEx($model, 'birth');
                     echo $form->textField($model, 'birth', array(
-                        'class' => 'date',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('birth'),
+                        'class' => 'date fieldrequire',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('birth'),
                     ));
                     echo $form->error($model, 'birth');
                     ?>
@@ -198,8 +231,8 @@
                     <?php
                     echo $form->labelEx($model, 'email');
                     echo $form->textField($model, 'email', array(
-//                            'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('email'),
+                           'class' => 'span5 fieldrequire',
+                            'placeholder' => MemPerson::model()->getAttributeLabel('email'),
                     ));
                     echo $form->error($model, 'email');
                     ?>
@@ -207,17 +240,21 @@
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'address');
-                    echo $form->textField($model, 'address');
+                    echo $form->textField($model, 'address', array(
+                           'class' => 'span5 fieldrequire',));
+
+
                     echo $form->error($model, 'address');
                     ?>
                 </div>
                 <!-- new line -->
 
-                <div class="_25">
+                <div class="_50">
+                    <span class="haft">จังหวัด</span>
                     <?php
                     echo $form->labelEx($model, 'province');
                     echo $form->dropdownList($model, 'province', Province::model()->getListProvince(), array(
-                        'class' => "span2",
+                        'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
                         'ajax' => array(
                             'type' => 'POST',
@@ -229,11 +266,13 @@
                     echo $form->error($model, 'province');
                     ?>
                 </div>
-                <div class="_25">
+                <div class="_50">
+                    <span class="haft">อำเภอ / เขต </span>
+                    
                     <?php
                     echo $form->labelEx($model, 'prefecture');
                     echo $form->dropdownList($model, 'prefecture', array(), array(
-                        'class' => "span2",
+                        'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
                         'ajax' => array(
                             'type' => 'POST',
@@ -247,63 +286,70 @@
                 </div>
 
 
-                <div class="_25">
+                <div class="_50">
+                    <span class="haft">ตำบล / แขวง</span>
                     <?php
                     echo $form->labelEx($model, 'district');
                     echo $form->dropdownList($model, 'district', array(), array(
-                        'class' => "span2",
+                        'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
                     ));
                     echo $form->error($model, 'district');
                     ?>
                 </div>
-                <div class="_25">
+                <div class="_50">
+                    <span class="haft">รหัสไปรษณีย์</span>
+
+                    
                     <?php
                     echo $form->labelEx($model, 'postcode');
                     echo $form->textField($model, 'postcode', array(
-                        'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('postcode'),
+                        'class' => 'right fieldrequire',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('postcode'),
                     ));
                     echo $form->error($model, 'postcode');
                     ?>
                 </div>
-                <div class="_33">
+                <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'mobile');
                     echo $form->textField($model, 'mobile', array(
                         'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('mobile'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('mobile'),
                     ));
                     echo $form->error($model, 'mobile');
                     ?>
                 </div>
-                <div class="_33">
+                <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'tel');
                     echo $form->textField($model, 'tel', array(
                         'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('tel'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('tel'),
                     ));
                     echo $form->error($model, 'tel');
                     ?>
                 </div>
-                <div class="_33">
+                <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'fax');
                     echo $form->textField($model, 'fax', array(
                         'class' => 'span5',
-                            // 'placeholder' => MemPerson::model()->getAttributeLabel('fax'),
+                            'placeholder' => MemPerson::model()->getAttributeLabel('fax'),
                     ));
                     echo $form->error($model, 'fax');
                     ?>
                 </div>
 
 
-                <div class="_33">
+                <div class="_50">
+                    <span class="haft">ระดับการศึกษา</span>
+
                     <?php
                     echo $form->labelEx($model, 'high_education');
                     echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
-                        'empty' => 'เลือก'
+                        'empty' => 'เลือก',
+                        'class' => 'haft right'
                     ));
                     echo $form->error($model, 'high_education');
 
@@ -324,7 +370,9 @@
                         <?php
                         echo $form->labelEx($model, 'mem_type');
                         ?>
+                        ประเภทผู้ใช้ 
                     </p>
+
                     <span class="span1">
                         <?php
                         echo $form->radioButtonList($model, 'mem_type', array('1' => 'ผู้สนใจ', '2' => 'ผู้ประกอบธุรกิจ'), array('class' => 'fate', 'id' => 'member1'));
@@ -337,7 +385,9 @@
 
                 <div class="_50 clearfix">
                     <!-- เลขทะเบียนพานิชย์ --> 
+
                     <div id="clicked_2" class="hidden_destiny" >
+                        <p> เลขทะเบียนพานิชย์ </p>
                         <?php
                         echo $form->labelEx($model, 'panit');
                         echo $form->textField($model, 'panit');
@@ -362,12 +412,20 @@
 
                 <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
 
-
+   <div class="_100">
+                    <?php
+                    echo $form->labelEx($model, 'product_name');
+                    echo $form->textField($model, 'product_name',array('placeholder' => 'ชื่อสินค้า / บริการ'));
+                    echo $form->error($model, 'product_name');
+                    ?>
+                </div>
                 <div class="_50">
+                    <span class="haft">ระดับการศึกษา</span>
                     <?php
                     echo $form->labelEx($model, 'business_type');
                     echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
-                        'empty' => 'เลือก'
+                        'empty' => 'เลือก',
+                        'class' => 'haft'
                     ));
                     echo $form->error($model, 'business_type');
                     ?>
@@ -376,21 +434,17 @@
                 <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'product_name');
-                    echo $form->textField($model, 'product_name');
+                    echo $form->textField($model, 'product_name',array('placeholder' => 'ชนิดสินค้า / บริการ'));
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
- <div class="_100"></div>
-                <div class="_50">
-                    <?php
-                    echo $form->labelEx($model, 'product_name');
-                    echo $form->textField($model, 'product_name');
-                    echo $form->error($model, 'product_name');
-                    ?>
-                </div>
-				 <div class="_100"></div>
-                <?php if (CCaptcha::checkRequirements()) { ?>
+              
+
+                <div class="_100"></div> 
+				                 <?php if (CCaptcha::checkRequirements()) { ?>
                     <div class="_50"> 
+                        <span class="haft">Capcha</span>
+                        <div style="width: 60%; float: right;">
                         <?php
                         echo $form->labelEx($model_user, 'verifyCode');
                         $this->widget('CCaptcha');
@@ -398,14 +452,20 @@
                         echo $form->error($model_user, 'verifyCode');
                         ?>
                     </div>
+                    </div>
                 <?php } ?>
-                <div class="_100 textcen">
+
+
+                <div class="_100 textcenter padud20">
                     <?php
                     echo CHtml::submitButton('สมัครสมาชิก');
                     ?>
+<input type="reset" name="reset" value="ยกเลิก" />
+
+
                 </div> 
                 <?php $this->endWidget(); ?>
-            </div>
+            
         </div>
     </div>
 </div>

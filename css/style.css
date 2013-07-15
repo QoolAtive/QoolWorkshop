@@ -17,9 +17,9 @@ html, body{
     font-size:12px; 
     color:#666;
 }
-/*input, textarea, select {
+input, textarea, select {
     padding: 5px 0;
-}*/
+}
 h3{
 
     font-weight: bold;
@@ -49,6 +49,10 @@ h4.reg{
     font-size: 1.4em;
 }
 
+.padud20{
+    padding: 20px 0px;
+}
+
 hr { 
     border: 0; 
     height: 1px; 
@@ -73,7 +77,7 @@ hr {
     float: left;
     margin-left: 2%;
     margin-right: 2%;
-    margin-top: 4px;
+    padding: 5px 0;
 }
 
 ._25 {
@@ -82,10 +86,10 @@ hr {
     float: left;
     margin-left: 2%;
     margin-right: 2%;
-    margin-top: 4px;
+    padding: 5px 0;
 }
 ._33 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 29.33%;
     display: inline;
     float: left;
@@ -93,7 +97,7 @@ hr {
     margin-right: 2%;
 }
 ._40 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 36%;
     display: inline;
     float: left;
@@ -101,7 +105,7 @@ hr {
     margin-right: 2%;
 }
 ._50 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 46%;
     display: inline;
     float: left;
@@ -109,7 +113,7 @@ hr {
     margin-right: 2%;
 }
 ._75 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 71%;
     display: inline;
     float: left;
@@ -118,7 +122,7 @@ hr {
 }
 
 ._80 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 76%;
     display: inline;
     float: left;
@@ -126,7 +130,7 @@ hr {
     margin-right: 2%;
 }
 ._100 {
-    margin-top: 4px;
+    padding: 5px 0;
     width: 96%;
     display: inline;
     float: left;
@@ -137,31 +141,36 @@ hr {
 ._20 label,._25 label,._33 label,._40 label,._50 label ,._75 label ,._80 label ,._100 label{
     white-space: nowrap;
     width: 100%;
-/*    display: block;
-*/}
+/*    display: block;  */
+}
 
 
-input[type="button"],input[type="submit"],a.btn{
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+a.btn{
     border: 1px;
     border-radius: 4px;
     display:inline-block;
     margin:0 2px;
     padding:3px 13px;
 }
-input[type="button"]:hover,input[type="submit"]:hover,a.btn:hover{
+input[type="button"]:hover,
+input[type="submit"]:hover,
+a.btn:hover{
     cursor: pointer;
 }
+
 /*.btn{
         border-radius: 4px;
         display:inline-block;
         margin:0 2px;
         padding:3px 13px;
 }*/
-
-
 /*	btn  */
 input[type="button"],
 input[type="submit"],
+input[type="reset"],
 a.btn{
 
     color: #fff;
@@ -223,6 +232,7 @@ input[type="button"].grey:hover{
 }
 
 /*form*/
+
 textarea, 
 input[type="text"], 
 input[type="password"], 
@@ -239,12 +249,18 @@ input[type="search"],
 input[type="tel"], 
 input[type="color"], 
 .uneditable-input {
+    display: block;
     border: 1px solid #CCC;
-    width: 100%;
+    width:  100%;
     height: 18px;
+text-indent: 15px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+
 }
+
+
+
 textarea:focus, 
 input[type="text"]:focus, 
 input[type="password"]:focus, 
@@ -267,9 +283,23 @@ select{
     width: 100%;
     border:1px solid #CCC;
 }
+
+
+input[type="text"].fieldrequire, 
+input[type="password"].fieldrequire{
+    background: url('/img/fieldrequire.png') no-repeat center left;
+}
+
+
+select{
+       padding-left: 15px;
+       padding-right: 5px;
+}
 .fieldrequire{
-    /*background: url('../img/fieldrequire.png') no-repeat center left;
-    padding-left: 15px !important;*/
+    /*padding-left: 15px !important;*/
+
+    background: url('/img/fieldrequire.png') no-repeat center left;
+
 }
 
 /* @end */
@@ -640,8 +670,7 @@ login btn , create account btn ,search box
 .searchbox{  
     background: url('../img/search.png')no-repeat ;
     background-position: 5px 50%; 
-    background-size: 12px 12px;  
-    margin-right: 2px;                                           	
+    background-size: 12px 12px;                                            	
 }
 
 
@@ -1154,13 +1183,13 @@ ul#detail_containTab li{
     padding: 0 10px;
 }
 
-#header.headindex{
+/*#header.headindex{
     padding-top: 3%;
-}
+}*/
 
 .smart{
     position: fixed;
-    top: 25%;
+    top: 27%;
     -webkit-animation:fadeInLeftBig 1s;
     -moz-animation:fadeInLeftBig 1s;
     -ms-animation:fadeInLeftBig 1s;
