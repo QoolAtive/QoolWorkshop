@@ -1,6 +1,7 @@
 <?php
 $this->renderPartial('_side_bar', array(
     'select2' => 'selected',
+    'select1' => '',
 ));
 ?>
 <div class="content">

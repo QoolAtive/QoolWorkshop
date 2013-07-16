@@ -9,18 +9,20 @@
                 array('text' => 'Knowledge', 'link' => '#'),
                 array('text' => 'Learning', 'link' => '#'),
             );
+            $n = 1;
             foreach ($list as $ls) {
-                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . ++$n)) . "</li>";
+                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
             }
-            ?>
-            <li>
+//            echo Tool::GenList($list);
+            ?> 
+            <li> 
                 <?php
                 if (Yii::app()->user->isAdmin()) {
                     echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge'));
                 }
                 ?>
             </li>
-            <li>
+            <li> 
                 <?php
                 if (Yii::app()->user->isAdmin()) {
                     echo CHtml::link('Manage Learning', array('/learning/manage/learningGroup'));

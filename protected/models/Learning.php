@@ -55,6 +55,7 @@ class Learning extends LearningBase {
         $criteria = new CDbCriteria;
         $criteria->select = "t.*, lg.name as group_name";
         $criteria->join = "left join learning_group lg on t.group_id = lg.id";
+        $criteria->order = 'id desc';
         $criteria->compare('id', $this->id);
         $criteria->compare('lg.id', $this->group_name);
         $criteria->compare('group_id', $this->group_id);
@@ -76,6 +77,7 @@ class Learning extends LearningBase {
         $criteria->join = "left join learning_group lg on t.group_id = lg.id
                            left join learning_video lv on t.id = lv.main_id
                             ";
+        $criteria->order = 'id desc';
         $criteria->compare('id', $this->id);
         $criteria->compare('lg.id', $this->group_name);
         $criteria->compare('group_id', $this->group_id);

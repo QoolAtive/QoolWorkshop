@@ -1,56 +1,4 @@
-<style type="text/css">
-    .nohidden{
-        display: block !important;
-    }
 
-    /* fallback placeholder */
-.placeholder {
-    color: #bbb;
-}
-/* webkit placeholder */
-::-webkit-input-placeholder {
-    color: #bbb;
-}
-/* moz placeholder */
-:-moz-placeholder {
-    color: #bbb;
-}
-
-/* remove webkit search input decoration and cancel button */
-input[type="search"]::-webkit-search-decoration, 
-input[type="search"]::-webkit-search-cancel-button {
-    display: none;
-}
-
-p label{
-    display: none;
-}
-
-label{
-    display: none;
-}
-
-span#MemPerson_mem_type label{
-    display: inline;
-}
-
-select.haft,#MemPerson_postcode{
-    width: 60%;
-    float: right;
-}
-span.haft {
-    margin-top: 5px;
-    position: absolute;
-}
-.haft{
-    
-      width: 35%;
-}
-</style>
-
-<script>
-
-</script>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -60,7 +8,7 @@ span.haft {
         <?php
         $list = array(
             array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson', 'select' => 'selected'),
-            array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration'),
+            array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration', 'select' => ''),
         );
         echo Tool::GenList($list);
         ?>
@@ -71,7 +19,7 @@ span.haft {
     <div class="tabcontents">
         <div id="view1" class="tabcontent" >
           
-                <h3> <img src="/img/iconform.png"> แบบลงทะเบียนบุคคลธรรมดา </h3>
+                  <div class="_100">    <h3> <img src="/img/iconform.png"> แบบลงทะเบียนสำหรับบุคคลธรรมดา </h3> </div>
                 
                 <?php
                 $form = $this->beginWidget('CActiveForm', array(
@@ -250,9 +198,13 @@ span.haft {
                 <!-- new line -->
 
                 <div class="_50">
-                    <span class="haft">จังหวัด</span>
+                    <span class="haft">
+                        <? 
+                            echo $form->labelEx($model, 'province');
+                        ?>
+                    </span>
                     <?php
-                    echo $form->labelEx($model, 'province');
+                   
                     echo $form->dropdownList($model, 'province', Province::model()->getListProvince(), array(
                         'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
@@ -267,10 +219,13 @@ span.haft {
                     ?>
                 </div>
                 <div class="_50">
-                    <span class="haft">อำเภอ / เขต </span>
-                    
+                                      <span class="haft">
+                        <? 
+                             echo $form->labelEx($model, 'prefecture');
+                        ?>
+                    </span>
                     <?php
-                    echo $form->labelEx($model, 'prefecture');
+                   
                     echo $form->dropdownList($model, 'prefecture', array(), array(
                         'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
@@ -287,9 +242,13 @@ span.haft {
 
 
                 <div class="_50">
-                    <span class="haft">ตำบล / แขวง</span>
+                                                          <span class="haft">
+                        <? 
+                              echo $form->labelEx($model, 'district');
+                        ?>
+                    </span>
                     <?php
-                    echo $form->labelEx($model, 'district');
+                   
                     echo $form->dropdownList($model, 'district', array(), array(
                         'class' => "fieldrequire haft right",
                         'empty' => 'เลือก',
@@ -298,11 +257,11 @@ span.haft {
                     ?>
                 </div>
                 <div class="_50">
-                    <span class="haft">รหัสไปรษณีย์</span>
+                    <span class="haft"><? echo $form->labelEx($model, 'postcode'); ?></span>
 
                     
                     <?php
-                    echo $form->labelEx($model, 'postcode');
+                    
                     echo $form->textField($model, 'postcode', array(
                         'class' => 'right fieldrequire',
                         'placeholder' => MemPerson::model()->getAttributeLabel('postcode'),
@@ -343,13 +302,13 @@ span.haft {
 
 
                 <div class="_50">
-                    <span class="haft">ระดับการศึกษา</span>
+                    <? echo $form->labelEx($model, 'high_education'); ?>
 
                     <?php
-                    echo $form->labelEx($model, 'high_education');
+                    
                     echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
                         'empty' => 'เลือก',
-                        'class' => 'haft right'
+                        'class' => ' right'
                     ));
                     echo $form->error($model, 'high_education');
 
@@ -370,59 +329,47 @@ span.haft {
                         <?php
                         echo $form->labelEx($model, 'mem_type');
                         ?>
-                        ประเภทผู้ใช้ 
                     </p>
 
-                    <span class="span1">
+                  
                         <?php
                         echo $form->radioButtonList($model, 'mem_type', array('1' => 'ผู้สนใจ', '2' => 'ผู้ประกอบธุรกิจ'), array('class' => 'fate', 'id' => 'member1'));
                         echo $form->error($model, 'mem_type');
                         ?>
-                    </span>
+                    
 
                 </div>
 
 
                 <div class="_50 clearfix">
                     <!-- เลขทะเบียนพานิชย์ --> 
-
                     <div id="clicked_2" class="hidden_destiny" >
-                        <p> เลขทะเบียนพานิชย์ </p>
                         <?php
                         echo $form->labelEx($model, 'panit');
                         echo $form->textField($model, 'panit');
                         echo $form->error($model, 'panit');
                         ?>
                     </div>
-
-                    <?php
-                    // echo $form->error($model, 'mem_type');
-                    // echo $form->labelEx($model, 'panit');
-                    // echo $form->textField($model, 'panit', array(
-                    //     'class' => ' span9 ',
-                    //     // 'placeholder' => 'เลขทะเบียนพาณิชย์ แสดงเมื่อเลือก ผู้ประกอบธุรกิจ',
-                    //     'id' => 'panit',
-                    //     'name' => 'panit',
-                    //     'style' => 'float: right !important;',
-                    // ));
-                    // echo $form->error($model, 'panit');
-                    ?> 
                 </div>
 
 
                 <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
 
-   <div class="_100">
+                <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'product_name');
-                    echo $form->textField($model, 'product_name',array('placeholder' => 'ชื่อสินค้า / บริการ'));
+                    echo $form->textField($model, 'product_name',array( 'placeholder' => 'ชื่อสินค้า / บริการ'));
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
+
+
                 <div class="_50">
-                    <span class="haft">ระดับการศึกษา</span>
+                    <span class="haft">
+                        <? echo $form->labelEx($model, 'business_type'); ?>
+                    </span>
                     <?php
-                    echo $form->labelEx($model, 'business_type');
+                    
                     echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
                         'empty' => 'เลือก',
                         'class' => 'haft'
@@ -432,9 +379,12 @@ span.haft {
                 </div>
 
                 <div class="_50">
+
+                     <span class="haft">
+                        <? echo $form->labelEx($model, 'product_name'); ?></span>
                     <?php
-                    echo $form->labelEx($model, 'product_name');
-                    echo $form->textField($model, 'product_name',array('placeholder' => 'ชนิดสินค้า / บริการ'));
+                    
+                    echo $form->textField($model, 'product_name',array('id' => 'trurakitname', 'class' => 'haft','placeholder' => 'ชนิดสินค้า / บริการ'));
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
@@ -443,10 +393,10 @@ span.haft {
                 <div class="_100"></div> 
 				                 <?php if (CCaptcha::checkRequirements()) { ?>
                     <div class="_50"> 
-                        <span class="haft">Capcha</span>
+                        <span class="haft"><?                         echo $form->labelEx($model_user, 'verifyCode');
+ ?></span>
                         <div style="width: 60%; float: right;">
                         <?php
-                        echo $form->labelEx($model_user, 'verifyCode');
                         $this->widget('CCaptcha');
                         echo $form->textField($model_user, 'verifyCode');
                         echo $form->error($model_user, 'verifyCode');

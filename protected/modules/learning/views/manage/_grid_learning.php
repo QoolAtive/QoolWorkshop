@@ -44,6 +44,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     'label' => 'update',
                     'url' => 'Yii::app()->createUrl("/learning/manage/InsertLearning",array("id"=>$data->id))',
                 ),
+                'delete' => array(
+                    'label' => 'delete',
+                    'url' => 'Yii::app()->createUrl("/learning/manage/delLearning",array("id"=>$data->id))',
+                ),
             ),
         ),
     ),

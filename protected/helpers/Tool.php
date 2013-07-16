@@ -3,8 +3,9 @@
 Class Tool {
 
     public static function GenList($list) {
+        $n = 1;
         foreach ($list as $ls) {
-            echo "<li class='" . $ls['select'] . "'>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . ++$n,)) . "</li>";
+            echo "<li class='" . $ls['select'] . "'>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++,)) . "</li>";
         }
     }
 
@@ -142,24 +143,24 @@ Class Tool {
     }
 
     public static function getProfile($id = null) {
-        $user = MemUser::model()->find('id = ' . $id);
-        if ($user->type == '1') {
-            $person = MemPerson::model()->find('user_id = ' . $user->id);
-            $name = $person->ftname . ' ' . $person->ltname;
-            $type = 'บุคคลทั่วไป';
-        } else if ($user->type == '2') {
-            $registration = MemRegistration::model()->find('user_id = ' . $user->id);
-            $name = $registration->ftname . ' ' . $registration->ltname;
-            $type = 'นิติบุคคล';
-        } else {
-            $name = 'Admin.';
-            $type = 'ผู้ดูแลระบบ';
-        }
-
-        return array(
-            'name' => $name,
-            'type' => $tyle,
-        );
+//        $user = MemUser::model()->find('id = ' . $id);
+//        if ($user->type == '1') {
+//            $person = MemPerson::model()->find('user_id = ' . $user->id);
+//            $name = $person->ftname . ' ' . $person->ltname;
+//            $type = 'บุคคลทั่วไป';
+//        } else if ($user->type == '2') {
+//            $registration = MemRegistration::model()->find('user_id = ' . $user->id);
+//            $name = $registration->ftname . ' ' . $registration->ltname;
+//            $type = 'นิติบุคคล';
+//        } else {
+//            $name = 'Admin.';
+//            $type = 'ผู้ดูแลระบบ';
+//        }
+//
+//        return array(
+//            'name' => $name,
+//            'type' => $tyle,
+//        );
     }
 
 }

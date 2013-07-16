@@ -6,11 +6,13 @@
         <ul class="tabs clearfix">
             <?php
             $list = array(
-                array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson',),
+                array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson','select' => ''),
                 array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration', 'select' => 'selected'),
             );
             echo Tool::GenList($list);
             ?>
+            <!--            <li><a rel="view1" href="/member/manage/registerPerson" >บุคคลธรรมดา</a></li>
+                        <li><a rel="view2" href="/member/manage/registerRegistration" class="selected">นิติบุคคล</a></li>-->
         </ul>
     </div>
 </div>
@@ -24,7 +26,7 @@
                     'id' => 'insert_registration-form',
 //                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
                 ));
-                ?>
+                ?> 
                 <div class="_100">
                     <h4 class="reg">- ข้อมูลสมาชิก -</h4>
                 </div>

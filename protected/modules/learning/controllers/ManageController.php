@@ -27,7 +27,7 @@ class ManageController extends Controller {
         $model = new LearningGroup();
         $model->unsetAttributes();
 
-        if ($_GET['LearningGroup']) {
+        if (isset($_GET['LearningGroup'])) {
             $model->attributes = $_GET['LearningGroup'];
         }
 
@@ -47,7 +47,7 @@ class ManageController extends Controller {
             $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
         }
 
-        if ($_POST['LearningGroup']) {
+        if (isset($_POST['LearningGroup'])) {
             $model->attributes = $_POST['LearningGroup'];
 
             //รูปภาพภาษาไทย
@@ -144,7 +144,7 @@ class ManageController extends Controller {
         $model = new Learning();
         $model->unsetAttributes();
 
-        if ($_GET['Learning']) {
+        if (isset($_GET['Learning'])) {
             $model->attributes = $_GET['Learning'];
         }
 
@@ -160,16 +160,16 @@ class ManageController extends Controller {
 
             $modelVideo = new LearningVideo();
             $modelVideo->unsetAttributes();
-            
+
             $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
-            
+
             $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
         }
 
-        if ($_POST['Learning'] && $_POST['LearningVideo']) {
+        if (isset($_POST['Learning']) && isset($_POST['LearningVideo'])) {
             $model->attributes = $_POST['Learning'];
             $model->author = Yii::app()->user->id;
             $model->guide_status = '0';
@@ -183,8 +183,28 @@ class ManageController extends Controller {
             $modelVideo->validate();
             if ($model->getErrors() == null && $modelVideo->getErrors() == null) {
                 if ($model->save()) {
+
                     $modelVideo->main_id = $model->id;
                     if ($modelVideo->save()) {
+
+                        $images = CUploadedFile::getInstancesByName('pic');
+                        $path = './file/learning/learningPic/';
+                        if (isset($images) && count($images) > 0) {
+                            if (!is_dir($path . $model->id)) {
+                                mkdir($path . $model->id, 0777, true);
+                                chmod($path . $model->id, 0777);
+                            }
+                            foreach ($images as $image => $pic) {
+                                if ($pic->saveAs($path . $model->id . '/' . $pic->name)) {
+                                    $learningPic = new LearningPic();
+                                    $learningPic->main_id = $model->id;
+                                    $learningPic->pic = $pic->name;
+
+                                    $learningPic->save();
+                                }
+                            }
+                        }
+
                         echo "
                         <script>
                         alert('" . Yii::t('language', $messageAlert) . "');
@@ -208,6 +228,25 @@ class ManageController extends Controller {
             'model' => $model,
             'modelVideo' => $modelVideo,
         ));
+    }
+
+    public function actionDelLearning($id = null) {
+        $model = Learning::model()->findByPk($id);
+        $modelPic = LearningPic::model()->findAll('main_id=:main_id', array(':main_id' => $id));
+
+        foreach ($modelPic as $mPic) {
+            if ($model->pic != 'default.jpg') {
+                $file_paht = './file/learningPic/' . $id . '/' . $model->pic;
+                if (fopen($file_paht, 'w'))
+                    unlink($file_paht);
+            }
+        }
+
+        if (is_dir('./file/learningPic/' . $id))
+            rmdir('./file/learningPic/' . $id);
+
+        if ($model->delete())
+            echo "ลบข้อมูลเรียบร้อย";
     }
 
 }

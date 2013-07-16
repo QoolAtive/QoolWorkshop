@@ -23,8 +23,13 @@ class WebUser extends CWebUser {
     // in the User model to be equal to 1, that means it's admin
     // access it by Yii::app()->user->isAdmin()
     function isAdmin() {
-        $user = $this->loadUser(Yii::app()->user->id);
-        return intval($user->type) == 3;
+        if (Yii::app()->user->id) {
+            $user = MemUser::model()->findByPk(Yii::app()->user->id);
+            if ($user->type == 3) {
+                return true;
+            }
+        }
+//        return intval($user->type) == 3;
     }
 
     // Load user model.

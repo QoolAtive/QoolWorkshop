@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/createaccount.png"/></li>
+            <li class="boxhead"><img src="/img/iconpage/knowledge.png"/></li>
         </ul>
         <ul class="tabs clearfix">
             <?php
@@ -23,8 +23,13 @@
                 ?>
             </li>
         </ul>
+
+
+
+
         <p>กลุ่มบทเรียน : <?php echo LearningGroup::model()->findByPk($id)->name; ?></p>
-        <ul class="LessonList">
+        <ul class="rectangle-list">
+            <p class="demoline"></p>
             <?php
             if (!empty($model)) {
                 foreach ($model as $data) {
