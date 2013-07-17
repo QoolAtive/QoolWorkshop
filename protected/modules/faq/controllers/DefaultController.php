@@ -65,7 +65,11 @@ class DefaultController extends Controller {
             $model->date_write = date("Y-m-d H:i:s");
 
             if ($model->save()) {
-                $this->redirect(CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id)));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.top.location.href = '".CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id))."';
+                  </script>";
+//                $this->redirect(CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id)));
             }
         }
         $this->render('editfaq', array('model' => $model));

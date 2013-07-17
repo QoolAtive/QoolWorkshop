@@ -36,14 +36,14 @@ class FaqQuestion extends FaqQuestionBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fm_id, subject_th, date_write, detail_th', 'required'), # author,
+            array('fm_id, subject_th, date_write, detail_th, subject_en, detail_en', 'required'), # author,
             array('fm_id', 'numerical', 'integerOnly' => true),
             array('subject_th', 'length', 'max' => 255),
             array('author', 'length', 'max' => 100),
             array('author', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, fm_id, subject_th, detail_th, author, date_write', 'safe', 'on' => 'search'),
+            array('id, fm_id, subject_th, detail_th, subject_en, detail_en, author, date_write', 'safe', 'on' => 'search'),
         );
     }
 
@@ -64,10 +64,10 @@ class FaqQuestion extends FaqQuestionBase {
         return array(
             'id' => 'ID',
             'fm_id' => 'Fm',
-            'subject_th' => 'คำถาม',
-            'detail_th' => 'คำตอบ',
-            'subject_en' => 'คำถาม',
-            'detail_en' => 'คำตอบ',
+            'subject_th' => 'คำถามภาษาไทย',
+            'detail_th' => 'คำตอบภาษาไทย',
+            'subject_en' => 'คำถามภาษาอังกฤษ',
+            'detail_en' => 'คำตอบภาษาอังกฤษ',
             'author' => 'Author',
             'date_write' => 'Date Write',
         );
@@ -87,6 +87,8 @@ class FaqQuestion extends FaqQuestionBase {
         $criteria->compare('fm_id', $this->fm_id);
         $criteria->compare('subject_th', $this->subject_th, true);
         $criteria->compare('detail_th', $this->detail_th, true);
+        $criteria->compare('subject_en', $this->subject_th, true);
+        $criteria->compare('detail_en', $this->detail_th, true);
         $criteria->compare('author', $this->author, true);
         $criteria->compare('date_write', $this->date_write, true);
 

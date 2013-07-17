@@ -6,10 +6,10 @@
     </div>
 
     <ul class="tabs clearfix">
-        <li><a rel="view1" href="#">FAQ Service Provider</a></li>
-        <li><a rel="view2" href="#">FAQ Knowledge & Learning</a></li>
-        <li><a rel="view3" href="#">FAQ E-Directory</a></li>
-        <li><a rel="view4" href="#">FAQ Web Simulation</a></li>
+        <li><a rel="view1" href="#">Manage<br/>FAQ Service Provider</a></li>
+        <li><a rel="view2" href="#">Manage<br/>FAQ Knowledge & Learning</a></li>
+        <li><a rel="view3" href="#">Manage<br/>FAQ E-Directory</a></li>
+        <li><a rel="view4" href="#">Manage<br/>FAQ Web Simulation</a></li>
         <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index')); ?>">Back to FAQ</a></li>
     </ul>
 </div>
