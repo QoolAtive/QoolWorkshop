@@ -66,7 +66,7 @@
                     <?php
                     echo $form->labelEx($model, 'img_path');
                     ?>
-                    <div><img src="<?php echo $model->img_path; ?>" /></div>
+                    <div><img src="<?php echo $model->img_path; ?>" height="50" /></div>
                     <?php
 //                    echo "<label>" . Yii::t('language', 'แนบไฟล์') . "</label>";
                     $this->widget('CMultiFileUpload', array(
@@ -83,6 +83,8 @@
 //                    echo Yii::t('language', $form->error($model, 'img_path'));
                     ?>
                     <div>
+                        <?php if($model->img_path != NULL){
+                            ?>
                         <div class="file_old clearfix">
                             <?php
                             echo "<ul class='list_files'> ";
@@ -93,6 +95,7 @@
                             echo " </ul>";
                             ?>
                         </div>
+                        <?php } ?>
                         <div class="descAttach">
                             <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
                             <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB)' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
