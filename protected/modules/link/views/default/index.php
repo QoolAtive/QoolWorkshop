@@ -24,6 +24,7 @@
     ?>
 </div>
 <div>
+    <h3>ค้นหา : </h3>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'search-form',

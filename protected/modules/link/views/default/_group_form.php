@@ -1,10 +1,6 @@
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'group-form',
-    'enableClientValidation' => true,
-    'clientOptions' => array(
-        'validateOnSubmit' => true,
-    ),
         ));
 //echo $form->errorSummary($model);
 ?>

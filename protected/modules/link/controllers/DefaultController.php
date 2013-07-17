@@ -34,20 +34,17 @@ class DefaultController extends Controller {
         } else {
             $model = new LinkWeb();
         }
-        $model_g = new LinkGroup;
         $model->author = Yii::app()->user->id;
         $model->date_write = date("Y-m-d H:i:s");
 
         if (isset($_POST['LinkWeb'])) {
             $model->attributes = $_POST['LinkWeb'];
+            //for upload pic
             $arr_files = CUploadedFile::getInstancesByName('link_file');
             if ($arr_files != NULL) {
-                $path = '/upload/link/';
+                $path = '/upload/img/link/';
 
                 foreach ($arr_files as $i => $file) {
-                    //                    echo "<pre>";
-                    //                    print_r($file);
-                    //                    echo "</pre>";
                     $arr_file_detail = explode('.', $file->getName());
                     $formatName = $arr_file_detail[0] . "-" . time() . $i . '.' . $file->getExtensionName();
                     $file->saveAs('.' . $path . $formatName);
@@ -56,6 +53,7 @@ class DefaultController extends Controller {
             } else if ($model->img_path == NULL) {
                 $model->img_path = '/img/link/Link_icon.png';
             }
+            //END for upload pic
 
             if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
                 $model->link = 'http://' . $model->link;
@@ -99,16 +97,10 @@ class DefaultController extends Controller {
     public function actionGroupForm($id = '') {
         if ($id != '') {
             $model = LinkGroup::model()->findByPk($id);
-        } else if ($_POST['id'] != '') {
-            $model = LinkGroup::model()->findByPk($_POST['id']);
+//        } else if ($_POST['id'] != '') {
+//            $model = LinkGroup::model()->findByPk($_POST['id']);
         } else {
             $model = new LinkGroup();
-        }
-
-        // if it is ajax validation request
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'group-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
         }
 
         if (isset($_POST['LinkGroup'])) {
@@ -118,15 +110,15 @@ class DefaultController extends Controller {
                                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                                 window.top.location.href = '/link/default/managegrouplink';
                           </script>";
-            } else {
-                echo "<script language='javascript'>
-                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
-                                window.top.location.href = '/link/default/managegrouplink';
-                          </script>";
+//            } else {
+//                echo "<script language='javascript'>
+//                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
+//                                window.top.location.href = '/link/default/managegrouplink';
+//                          </script>";
             }
         }
 //        else {
-        $this->renderPartial('_group_form', array(
+        $this->render('_group_form', array(
             'model' => $model,
         ));
 //        }

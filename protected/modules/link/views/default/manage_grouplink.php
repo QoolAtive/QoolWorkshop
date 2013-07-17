@@ -11,7 +11,7 @@
     <span><?php echo Yii::t('language', 'จัดการกลุ่มลิ้งก์'); ?></span>
 </h3>
 
-<a class="linkgroupbtn fancybox.ajax btn" href="/link/default/groupform"><?php echo Yii::t('language', 'เพิ่มชื่อกลุ่มลิ้งค์'); ?></a>
+<a class="linkgroupbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array("/link/default/groupform"));?>"><?php echo Yii::t('language', 'เพิ่มชื่อกลุ่มลิ้งค์'); ?></a>
 <?php
 //echo CHtml::link('เพิ่มชื่อกลุ่มลิ้งค์', '/link/default/groupform');
 //echo CHtml::ajaxButton(

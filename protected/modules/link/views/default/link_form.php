@@ -30,7 +30,7 @@
                     'htmlOptions' => array(
                         'enctype' => 'multipart/form-data',
                     ),
-                        ));
+                ));
                 echo $form->errorSummary($model);
                 ?>
 
@@ -51,7 +51,7 @@
                 <div class="rowContact clearfix">
                     <?php
                     echo Yii::t('language', $form->labelEx($model, 'group_id'));
-                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name_th'), array('empty'=>'กรุณาเลือกกลุ่ม'));
+                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name_th'), array('empty' => 'กรุณาเลือกกลุ่ม'));
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
@@ -65,6 +65,9 @@
                 <div class="rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'img_path');
+                    ?>
+                    <div><img src="<?php echo $model->img_path; ?>" /></div>
+                    <?php
 //                    echo "<label>" . Yii::t('language', 'แนบไฟล์') . "</label>";
                     $this->widget('CMultiFileUpload', array(
                         'model' => $model,
@@ -80,16 +83,15 @@
 //                    echo Yii::t('language', $form->error($model, 'img_path'));
                     ?>
                     <div>
-                        <div class="file_old clearfix">                                       
+                        <div class="file_old clearfix">
                             <?php
                             echo "<ul class='list_files'> ";
                             $arr_file_detail = explode('.', $model->img_path);
 
-                            $arr_file_name = explode('/upload/link/', $model->img_path);
+                            $arr_file_name = explode('/upload/img/link/', $model->img_path);
                             echo "<li class='link_img'>" . CHtml::link($arr_file_name[1], $model->img_path, array('target' => '_blank')) . "</li>";
                             echo " </ul>";
                             ?>
-                            </ul>
                         </div>
                         <div class="descAttach">
                             <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
@@ -103,14 +105,14 @@
 //                    echo CHtml::hiddenField('img_path', $model->img_path);
                     echo CHtml::hiddenField('author', $model->author);
                     echo CHtml::hiddenField('date_write', $model->date_write);
-                    
+
                     echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/link/default/managelink'
-                        )) . "'" ,
+                        )) . "'",
 //                        'confirm' => Yii::t('language', 'คุณต้องการย้อนกลับหรือไม่?')
-                        )
+                            )
                     );
                     ?>
                 </div>
