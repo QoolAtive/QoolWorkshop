@@ -4,14 +4,14 @@
             <?php
             if (!Yii::app()->user->id) {
                 ?>
-                <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">Create Account</a> 
-                <a class="loginbtn fancybox.iframe" href="/site/login">Login</a>
+                <a class="createaccountbtn fancybox" href="/member/manage/registerRules">Create Account</a> 
+                <a class="loginbtn fancybox" href="/site/login">Login</a>
                 <?php
             } else {
-//                $profile = Tool::getProfile(Yii::app()->user->id);
+                $profile = Tool::getProfile();
                 ?>
                 <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">Logout</a>
-                <a href="/member/manage/profile" class="loginbtn " ><?php // echo $profile['name']; ?></a>
+                <a href="/member/manage/profile" class="loginbtn " ><?php echo $profile['name']; ?></a>
                 <?php
             }
             ?>
