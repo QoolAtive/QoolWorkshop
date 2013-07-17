@@ -36,6 +36,16 @@ class ManageController extends Controller {
         ));
     }
 
+    public function actionReadingPdf($id) {
+        $model = LearningFile::model()->find('id=:id', array(':id' => $id));
+        $path = './file/learning/pdf/' . $model->path;
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        Yii::app()->end();
+    }
+
     public function actionInsertLearningGroup($id = null) {
         $file = new Upload();
         if ($id == null) {
@@ -154,6 +164,9 @@ class ManageController extends Controller {
     }
 
     public function actionInsertLearning($id = null) {
+        $upload = new Upload();
+        $upload->unsetAttributes();
+
         if ($id == null) {
             $model = new Learning();
             $model->unsetAttributes();
@@ -161,12 +174,16 @@ class ManageController extends Controller {
             $modelVideo = new LearningVideo();
             $modelVideo->unsetAttributes();
 
+            $modelFile = new LearningFile();
+            $modelFile->unsetAttributes();
+
             $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
-
             $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
+
+            $modelFile = LearningFile::model()->find('main_id = ' . $id);
         }
 
         if (isset($_POST['Learning']) && isset($_POST['LearningVideo'])) {
@@ -179,32 +196,46 @@ class ManageController extends Controller {
             $modelVideo->attributes = $_POST['LearningVideo'];
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
 
+            $upload->attributes = $_POST['Upload'];
+            if (isset($id) && $upload->file == null) { // ถ้าแก้ไขบทเรียนเดิม ตั้งค่า default ของ Model Upload = ค่าที่ต้องการแก้ไข
+                $upload->file = $modelFile->path;
+            }
+
             $model->validate();
             $modelVideo->validate();
-            if ($model->getErrors() == null && $modelVideo->getErrors() == null) {
+            $upload->validate();
+
+            if ($upload->getErrors() == null) {
+                $file = CUploadedFile::getInstance($upload, 'file');
+            }
+
+            if ($model->getErrors() == null && $modelVideo->getErrors() == null && $upload->getErrors() == null) {
                 if ($model->save()) {
 
                     $modelVideo->main_id = $model->id;
                     if ($modelVideo->save()) {
-
-                        $images = CUploadedFile::getInstancesByName('pic');
-                        $path = './file/learning/learningPic/';
-                        if (isset($images) && count($images) > 0) {
-                            if (!is_dir($path . $model->id)) {
-                                mkdir($path . $model->id, 0777, true);
-                                chmod($path . $model->id, 0777);
+                        if (isset($file)) {
+                            $path = './file/learning/pdf/';
+                            if (isset($id)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                                if (unlink($path . '/' . $modelFile->path)) {
+                                    $modelFile->delete();
+                                }
                             }
-                            foreach ($images as $image => $pic) {
-                                if ($pic->saveAs($path . $model->id . '/' . $pic->name)) {
-                                    $learningPic = new LearningPic();
-                                    $learningPic->main_id = $model->id;
-                                    $learningPic->pic = $pic->name;
 
-                                    $learningPic->save();
+                            if (isset($upload) && count($upload) > 0) {
+                                if (!is_dir($path)) {
+                                    mkdir($path, 0777, true);
+                                    chmod($path, 0777);
+                                }
+                                if ($file->saveAs($path . '/' . $file->name)) {
+                                    $modelFile = new LearningFile();
+                                    $modelFile->main_id = $model->id;
+                                    $modelFile->path = $file->name;
+
+                                    $modelFile->save();
                                 }
                             }
                         }
-
                         echo "
                         <script>
                         alert('" . Yii::t('language', $messageAlert) . "');
@@ -227,28 +258,24 @@ class ManageController extends Controller {
         $this->render('_insert_learning', array(
             'model' => $model,
             'modelVideo' => $modelVideo,
+            'upload' => $upload,
+            'modelFile' => $modelFile,
         ));
     }
 
     public function actionDelLearning($id = null) {
         $model = Learning::model()->findByPk($id);
-        $modelPic = LearningPic::model()->findAll('main_id=:main_id', array(':main_id' => $id));
+        $modelFile = LearningFile::model()->findAll('main_id=:main_id', array(':main_id' => $id));
 
-        foreach ($modelPic as $mPic) {
-            if ($model->pic != 'default.jpg') {
-                $file_paht = './file/learningPic/' . $id . '/' . $model->pic;
-                if (fopen($file_paht, 'w'))
-                    unlink($file_paht);
-            }
+        if ($modelFile->file != 'default.jpg') {
+            $file_paht = './file/learning/pdf/' . $modelFile->file;
+            if (fopen($file_paht, 'w'))
+                unlink($file_paht);
         }
-
-        if (is_dir('./file/learningPic/' . $id))
-            rmdir('./file/learningPic/' . $id);
 
         if ($model->delete())
             echo "ลบข้อมูลเรียบร้อย";
     }
 
 }
-
 ?>

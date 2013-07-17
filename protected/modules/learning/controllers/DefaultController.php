@@ -19,6 +19,7 @@ class DefaultController extends Controller {
         $model = Learning::model()->findByPk($id);
         $modelList = Learning::model()->findAll('group_id=:group_id', array(':group_id' => $model->group_id));
         $modelVideo = LearningVideo::model()->find('main_id=:main_id', array(':main_id' => $id));
+        $modelFile = LearningFile::model()->find('main_id=:main_id', array(':main_id' => $id));
 
         $learningGroup = new LearningGroup();
 
@@ -56,6 +57,7 @@ class DefaultController extends Controller {
             'lessonNext' => $lessonNext, //บทเรียนทัดไป
             'lessonNextVideo' => $lessonNextVideo,
             'learningGroup' => $learningGroup,
+            'modelFile' => $modelFile,
         ));
     }
 

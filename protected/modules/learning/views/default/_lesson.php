@@ -43,29 +43,33 @@ $this->renderPartial('_side_bar', array(
             }
             ?>
 
-             <h2 class="learninghead"><img src="/img/book.png"/>
-               <?php echo $model->subject; ?>
-             </h2>
+            <h2 class="learninghead"><img src="/img/book.png"/>
+                <?php echo $model->subject; ?>
+            </h2>
             <img class="demoshadowtop" src="/img/shadow.png">
             <iframe width="745" height="415" src="<?php echo $modelVideo->video; ?>" frameborder="0" allowfullscreen></iframe>
             <img class="demoshadowbuttom" src="/img/shadow.png">
+            <!--<div class="_100">-->
             <?php echo $model->detail; ?>
-            <a href=""><img src="/img/download.png" class="downloadbtn" /></a>
+            <!--</div>-->
+            <div class="clearfix"></div>
+
+            <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/manage/readingPdf/', 'id' => $modelFile->id)); ?>
             <hr class="demohr"> 
             <?php if (!empty($lessonNext)) { ?>
 
 
-             <ul class="nextlearn">
-                                            <li>
-                                                                        <iframe width="210px" src="<?php echo $lessonNextVideo->video; ?>" frameborder="0" allowfullscreen></iframe>
+                <ul class="nextlearn">
+                    <li>
+                        <iframe width="210px" src="<?php echo $lessonNextVideo->video; ?>" frameborder="0" allowfullscreen></iframe>
 
-                                            </li>
+                    </li>
 
-                                            <li>
-                                                <?php echo CHtml::link($lessonNext->subject, array('/learning/default/lesson', 'id' => $lessonNext->id), array('style' => 'font-size: 14px;')); ?>
+                    <li>
+                        <?php echo CHtml::link($lessonNext->subject, array('/learning/default/lesson', 'id' => $lessonNext->id), array('style' => 'font-size: 14px;')); ?>
                         <?php echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $lessonNext->detail)), 350); ?>
-                                            </li>
-                                        </ul>
+                    </li>
+                </ul>
 
             <?php } ?>
             <div class="clearfix">

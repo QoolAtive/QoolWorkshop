@@ -35,13 +35,13 @@
             <li><a href="/knowledge/default/index">Knowledge & Learning</a></li>
             <li><a href="web-simulation.html">Web Simulation</a></li>
             <li><a href="e-directory.html">E-Directory</a></li>
-            <li><a href="service.html">Service Provider</a></li>
+            <li><a href="/serviceProvider/default">Service Provider</a></li>
         </ul>
         <ul class="menu clearfix">
             <li><a href="/link/default/index">Link</a></li>
             <li><a href="/faq/default/index">FAQ</a></li>
             <li><a href="/about/default/index">About Us</a></li>
-            <li><a href="/news/default/index">NEWS & Activity</a> </li>
+            <li><a href="/news/default/index">News & Activity</a> </li>
         </ul>
     </div>
 </div>

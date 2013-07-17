@@ -50,7 +50,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div style="text-align: center;">
         <?php
         echo CHtml::label('เลือกหัวข้อ', false);
-        echo CHtml::textfield('subject', $subject, array(
+        echo CHtml::textfield('subject', '', array(
             'style' => 'width:500px;',
         ));
         ?>

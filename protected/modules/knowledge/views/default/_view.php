@@ -6,11 +6,12 @@
         <ul class="tabs clearfix">
             <?php
             $list = array(
-                array('text' => 'เนื้อข่าว'),
-                array('text' => 'ข่าวทั้งหมด'),
+                array('text' => 'เนื้อข่าว', 'link' => '#',),
+                array('text' => 'ข่าวทั้งหมด', 'link' => '#',),
             );
+            $n = 1;
             foreach ($list as $ls) {
-                echo "<li>" . CHtml::link($ls['text'], '#', array('rel' => 'view' . ++$n)) . "</li>";
+                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
             }
             ?>
         </ul>
@@ -48,7 +49,7 @@
                     <div style="text-align: center; margin-top:10px;">
                         <?php
                         echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                                '/knowledge/default/index'
+                                Yii::app()->user->getState('link_back')
                             )) . "'")
                         );
                         ?>

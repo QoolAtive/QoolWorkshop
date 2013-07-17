@@ -37,6 +37,7 @@ return array(
         'about',
         'learning',
         'news',
+        'serviceProvider',
     ),
     // application components
     'components' => array(

@@ -9,22 +9,22 @@
         text-align: right;
     }
 </style>
-<div style="padding: 0% 11.5%;">
+<div>
     <?php
     if (Yii::app()->user->isAdmin()) {
-        $list = array(
-            array('text' => 'ยืนยันสมาชิกนิติบุคคล', 'link' => '/member/manage/admin'),
-            array('text' => 'จัดการข้อมูลทัวไป', 'link' => '/dataCenter/default/'),
-        );
         ?>
-        <ul class="btnMangae">
-            <? echo Tool::GenList($list); ?>
-        </ul>
+        <div style="width: 30%; display: inline-block;">
+            <ul>
+                <li><a href="/member/manage/changePassword"><?php echo Yii::t('language', 'แก้ไขรหัสผ่าน'); ?></a></li>
+            </ul>
+        </div>
+        <div style="width: 70%;display: inline-block;">
+            <ul class="btnMangae">
+                <li><a href="/member/manage/admin"><?php echo Yii::t('language', 'ยืนยันสมาชิกนิติบุคคล'); ?></a></li>
+                <li><a href="/dataCenter/default/"><?php echo Yii::t('language', 'จัดการข้อมูลทัวไป'); ?></a></li>
+            </ul>
+        </div>
         <?php
-        echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/member/manage/changePassword'
-            )) . "'")
-        );
     } else {
         ?>
         <div class="profile">
@@ -90,15 +90,15 @@
                 <div class="detail"><?php echo $profile['fax']; ?></div>
             <?php } ?>
 
-            <?php // if ($profile['facebook'] != null) { ?>
+            <?php // if ($profile['facebook'] != null) {  ?>
             <!--<label>เฟสบุ๊ค :</label>-->
-            <!--<div class="detail"><?php // echo $profile['facebook'];   ?></div>-->
-            <?php // } ?>
+            <!--<div class="detail"><?php // echo $profile['facebook'];        ?></div>-->
+            <?php // }  ?>
 
-            <?php // if ($profile['twitter'] != null) { ?>
+            <?php // if ($profile['twitter'] != null) {  ?>
             <!--<label>ทวิตเตอร์ :</label>-->
-            <!--<div class="detail"><?php // echo $profile['twitter'];   ?></div>-->
-            <?php // } ?>
+            <!--<div class="detail"><?php // echo $profile['twitter'];        ?></div>-->
+            <?php // }  ?>
             <hr>
             <?php
             if (Yii::app()->user->isMemberType() == 1) {

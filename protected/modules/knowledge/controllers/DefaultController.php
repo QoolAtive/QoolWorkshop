@@ -37,7 +37,7 @@ class DefaultController extends Controller {
         }
 
         // ปุ่มย้อนกลับ
-        Yii::app()->user->setState('link_back', '/knowledge/manage/knowledge');
+        Yii::app()->user->setState('link_back', '/knowledge/default/knowledge');
         $this->render('knowledge', array(
             'model' => $model,
 //            'model_guide' => $model_guide,

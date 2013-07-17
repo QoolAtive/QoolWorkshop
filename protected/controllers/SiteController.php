@@ -70,6 +70,7 @@ class SiteController extends Controller {
      * Displays the login page
      */
     public function actionLogin() {
+
         $model = new LoginForm;
 
         // if it is ajax validation request
@@ -134,7 +135,7 @@ class SiteController extends Controller {
             }
         }
         // display the login form
-        $this->render('login', array('model' => $model));
+        $this->renderPartial('login', array('model' => $model));
     }
 
     /**

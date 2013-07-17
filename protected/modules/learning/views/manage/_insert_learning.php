@@ -19,23 +19,16 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="_100">
         <?php
-//        echo $form->labelEx($modelPic, 'pic');
-        $this->widget('CMultiFileUpload', array(
-//            'model' => $modelPic,
-            'name' => 'pic', 
-            'accept' => 'jpg|gif|png',
-            'options' => array(
-//            'onFileSelect' => 'function(e, v, m){ alert("onFileSelect - "+v) }',
-//            'afterFileSelect' => 'function(e, v, m){ alert("afterFileSelect - "+v) }',
-//            'onFileAppend' => 'function(e, v, m){ alert("onFileAppend - "+v) }',
-//            'afterFileAppend' => 'function(e, v, m){ alert("afterFileAppend - "+v) }',
-//            'onFileRemove' => 'function(e, v, m){ alert("onFileRemove - "+v) }',
-//            'afterFileRemove' => 'function(e, v, m){ alert("afterFileRemove - "+v) }',
-            ),
-        ));
-//        echo $form->error($modelPic, 'pic');
+        echo $form->labelEx($upload, 'file');
+        echo $form->fileField($upload, 'file');
+        echo $form->error($upload, 'file');
         ?>
     </div>
+    <?php if (isset($modelFile)) { ?>
+        <div class="_100">
+            <?php echo CHtml::link($modelFile->path, array('/learning/manage/readingPdf/', 'id' => $modelFile->id), array('target' => '_bank')); ?>
+        </div>
+    <?php } ?>
     <div class="_100">
         <h4 class="reg"><?php echo Yii::t('language', '- บทเรียนภาษาไทย -'); ?></h4>
     </div>

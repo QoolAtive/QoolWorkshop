@@ -46,7 +46,7 @@ Class ManageController extends Controller {
         $model = new ForgotPassword();
         $model->unsetAttributes();
 
-        if ($_POST['ForgotPassword']) {
+        if (isset($_POST['ForgotPassword'])) {
             $model->attributes = $_POST['ForgotPassword'];
             $model->validate();
             if ($model->getErrors() == null) {
@@ -305,8 +305,9 @@ Class ManageController extends Controller {
         } else {
             if (Yii::app()->user->isMemberType() == 1) {
                 $model = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);
+                $modelBusiness = CompanyTypeBusiness::model()->findByPk($model->business_type);
                 $type = MemPersonType::model()->findByPk($model->mem_type)->name;
-                $businessType = CompanyTypeBusiness::model()->findByPk($model->business_type)->name;
+                $businessType = $modelBusiness == null ? '' : $modelBusiness->name;
                 $panit = $model->panit; //มีเฉะพาะ สมาชิกธรรมดาที่เป็นประเภท ธุรกิจ
                 $facebook = $model->facebook;
                 $twitter = $model->twitter;
@@ -365,7 +366,7 @@ Class ManageController extends Controller {
 
     public function actionRevokeMember($id) {
         $model = ChangePass::model()->findByPk($id);
-        
+
         if ($model->status == 0) {
             $model->status = 1;
             if ($model->save()) {
@@ -464,7 +465,7 @@ Class ManageController extends Controller {
         $model_user = ChangePass::model()->findByPk(Yii::app()->user->id); // เพื่อไม่ให้กระทบกับ ระบบสมัครสมาชิก สร้าง model ใหม่เพื่อนเปลี่ยนรหัสผ่าน
         $model = new ChangePassForm(); // ฟอร์มเปลี่ยนรหัสผ่าน
         $model->unsetAttributes();
-        if ($_POST['ChangePassForm']) {
+        if (isset($_POST['ChangePassForm'])) {
             $model->attributes = $_POST['ChangePassForm'];
             $model->validate();
             if ($model->getErrors() == null) {
@@ -492,7 +493,7 @@ Class ManageController extends Controller {
     public function actionEditMemberPerson() {
         $id = Yii::app()->user->id;
         $model = MemPerson::model()->find('user_id = ' . $id);
-        if ($_POST['MemPerson']) {
+        if (isset($_POST['MemPerson'])) {
             $model->attributes = $_POST['MemPerson'];
             $model->validate();
 
@@ -515,7 +516,7 @@ Class ManageController extends Controller {
     public function actionEditMemberRegistration() {
         $id = Yii::app()->user->id;
         $model = MemRegistration::model()->find('user_id = ' . $id);
-        if ($_POST['MemRegistration']) {
+        if (isset($_POST['MemRegistration'])) {
             $model->attributes = $_POST['MemRegistration'];
             $model->validate();
 
@@ -548,7 +549,7 @@ Class ManageController extends Controller {
             $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name . ' จ.' . Province::model()->findByPk($modelAddress->province)->name . ' ' . $modelAddress->postcode;
         }
 
-        if ($_POST['ChangeAddressForm']) {
+        if (isset($_POST['ChangeAddressForm'])) {
             $model->attributes = $_POST['ChangeAddressForm'];
             $model->validate();
             if ($model->getErrors() == null) {

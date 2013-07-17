@@ -25,7 +25,7 @@
             <li> 
                 <?php
                 if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Manage Learning', array('/learning/manage/learningGroup'));
+                    echo CHtml::link('Manage Learning', array('/learning/manage/learning'));
                 }
                 ?>
             </li>
