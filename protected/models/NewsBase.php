@@ -10,6 +10,7 @@
  * @property string $subject_en
  * @property string $detail_th
  * @property string $detail_en
+ * @property string $pic
  * @property string $author
  * @property string $guide_status
  * @property string $date_write
@@ -42,14 +43,14 @@ class NewsBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('group_id, subject_th, subject_en, detail_th, detail_en, author, guide_status, date_write', 'required'),
+			array('group_id, subject_th, subject_en, detail_th, detail_en, pic, author, date_write', 'required'),
 			array('group_id', 'numerical', 'integerOnly'=>true),
 			array('subject_th, subject_en', 'length', 'max'=>255),
-			array('author', 'length', 'max'=>100),
+			array('pic, author', 'length', 'max'=>100),
 			array('guide_status', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, group_id, subject_th, subject_en, detail_th, detail_en, author, guide_status, date_write', 'safe', 'on'=>'search'),
+			array('id, group_id, subject_th, subject_en, detail_th, detail_en, pic, author, guide_status, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,6 +77,7 @@ class NewsBase extends CActiveRecord
 			'subject_en' => 'Subject En',
 			'detail_th' => 'Detail Th',
 			'detail_en' => 'Detail En',
+			'pic' => 'Pic',
 			'author' => 'Author',
 			'guide_status' => 'Guide Status',
 			'date_write' => 'Date Write',
@@ -99,6 +101,7 @@ class NewsBase extends CActiveRecord
 		$criteria->compare('subject_en',$this->subject_en,true);
 		$criteria->compare('detail_th',$this->detail_th,true);
 		$criteria->compare('detail_en',$this->detail_en,true);
+		$criteria->compare('pic',$this->pic,true);
 		$criteria->compare('author',$this->author,true);
 		$criteria->compare('guide_status',$this->guide_status,true);
 		$criteria->compare('date_write',$this->date_write,true);

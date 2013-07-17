@@ -10,7 +10,9 @@ class DefaultController extends Controller {
         $pages->pageSize = 15;
         $pages->applyLimit($criteria);
         $newslist = News::model()->findAll($criteria);
-        $this->render('index', array('newslist' => $newslist, 'pages' => $pages));
+        
+        $trainlist = Training::model()->findAll();
+        $this->render('index', array('newslist' => $newslist, 'trainlist' => $trainlist, 'pages' => $pages));
     }
 
 }

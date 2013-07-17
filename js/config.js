@@ -1,5 +1,3 @@
-
-
 $(function() {
   var val = $("input[id='MemPerson_mem_type_1']:checked").val();
   if(val === "2") {
@@ -11,14 +9,6 @@ $(function() {
   }
 });
 
-
-$(document).ready(function(){
-
-if ( $('input').hasClass('error') ) {
-
-$('input').addClass("testbg");
-
-});
 
 
 $(document).ready(function() {
@@ -35,21 +25,17 @@ $(document).ready(function() {
 
 
     $('.loginbtn').fancybox({
-        // content: $("#divForm").html()
-        padding:0,
-        scrolling:'no',
-        minHeight :202,
-        maxHeight:202,
-        autoHeight:true,
-        width :550
-        // afterClose : function() {
-        //         location.reload();
-        //         return;
-        //     }       
-    });
+      type : 'iframe',
+        padding : 0,
+   width  :'27%',
+   closeBtn : 0,
+   maxHeight :'202',
+   scrolling : 'no'
+       });
 
 
     $('.createaccountbtn').fancybox({
+      type : 'iframe'
     });
 });
 

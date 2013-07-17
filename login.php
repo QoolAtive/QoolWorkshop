@@ -1,36 +1,52 @@
 <style type="text/css">
-html,body{
-    overflow: hidden !important;
-}
-.errorMessage {
-  font-size: 11px;
-    margin-left: 102px;
-    margin-top: -46px;
-    position: absolute;
-    width: 100%;
+
+    html, body{
+        height: 100% !important;
+    }
+    #header{
+        display: none !important;
+    }
+    #footer{
+        display: none !important;
+    }
+
+    div.page{
+        padding: 0px !important;
+        margin: 0 !important;
+        width: 550px;
+        height: 200px !important;
+        min-height: 200px !important;
+        max-height: 200px !important;
+    }
+
+    ._40 {
+  display: inline !important;
+    float: left !important;
+    margin-left: 0;
+    margin-right: 2% !important;
+    margin-top: 0 !important;
+    width: 40% !important;
 }
 
-#LoginForm_password_em_.errorMessage{
+
+._50 {
+  display: inline !important;
+    float: left !important;
+    margin-right: 2% !important;
+    margin-left:0px !important;
+    margin-top: 18px !important;
+    width: 55.5% !important;
+}
+
+.errorMessage {
     font-size: 11px;
-    margin-left: 86px;
-    margin-top: 45px;
+    margin-left: 165px;
+    margin-top: -46px;
     position: absolute;
-    width: 100%;
 }
 
 </style>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-        <link rel="stylesheet" href="/css/global.css" type="text/css"></link>
-        <link rel="stylesheet" href="/css/style.css" type="text/css"></link>
-
-    <meta charset="utf-8">
-    <title>title</title>
-
-  </head>
-  <body>
-  <?php
+<?php
 /* @var $this SiteController */
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
@@ -48,12 +64,12 @@ $this->breadcrumbs = array(
 //}
 ?>
 
-<div class="_50 frame">
+<div class="_40">
 <img src="/img/iconpage/login.png" style="float:left;"/>
 </div>
 
 
- <div class="_50 ">
+ <div class="_50">
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
@@ -80,17 +96,14 @@ $this->breadcrumbs = array(
         <?php echo $form->error($model, 'password'); ?>
 
     </div>
-   
+    <div class="row _100">
+        <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' =>'_bank')); ?>
+    </div>
 
-    <div class="row rememberMe _50">
+    <div class="row rememberMe _100">
         <?php echo $form->checkBox($model, 'rememberMe'); ?>
         <?php echo $form->label($model, 'rememberMe'); ?>
         <?php echo $form->error($model, 'rememberMe'); ?>
-    </div>
-
-
-     <div class="row _50">
-        <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' =>'_bank')); ?>
     </div>
 
     <div class="row buttons _100">
@@ -102,6 +115,3 @@ $this->breadcrumbs = array(
 
 </div>
 
-
-  </body>
-</html>

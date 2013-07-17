@@ -67,11 +67,12 @@ class News extends NewsBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'group_id' => 'Group',
+            'group_id' => 'กลุ่มข่าว',
             'subject_th' => 'หัวข้อ',
             'subject_en' => 'หัวข้อ',
             'detail_th' => 'รายละเอียด',
             'detail_en' => 'รายละเอียด',
+            'pic' => 'รูปภาพ',
             'author' => 'Author',
             'guide_status' => 'Guide Status',
             'date_write' => 'Date Write',

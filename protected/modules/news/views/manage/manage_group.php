@@ -1,11 +1,9 @@
-<h3>Manage NEWS</h3>
+<h3><?php echo Yii::t('language', 'จัดการกลุ่มข่าว'); ?></h3>
 <?php
 $dataProvider = $model->search();
 
 echo CHtml::button(Yii::t('language', 'เพิ่ม'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/edit")) . '"'));
-echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มข่าว'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageGroup")) . '"'));
+    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/editGroup")) . '"'));
 
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'news-grid',
@@ -21,13 +19,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'header' => 'หัวข้อ',
-            'name' => 'subject_th',
-            'value' => 'strip($data->subject_th, 20);'
-        ),
-        array(
-            'header' => 'รายละเอียด',
-            'name' => 'detail_th',
-            'value' => 'strip($data->detail_th, 30);'
+            'name' => 'name_th',
+            'value' => 'strip($data->name_th, 20);'
         ),
         array(
             'class' => 'CButtonColumn',
@@ -36,7 +29,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons' => array(
                 'update' => array(
                     'label' => Yii::t('language', 'แก้ไข'),
-                    'url' => 'CHtml::normalizeUrl(array("/news/manage/edit", "id"=> $data->id))',
+                    'url' => 'CHtml::normalizeUrl(array("/news/manage/editGroup", "id"=> $data->id))',
                 ),
             ),
         ),
@@ -48,7 +41,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons' => array(
                 'delete' => array(
                     'label' => Yii::t('language', 'ลบ'),
-                    'url' => 'CHtml::normalizeUrl(array("/news/manage/delete","id"=> $data->id))',
+                    'url' => 'CHtml::normalizeUrl(array("/news/manage/deleteGroup","id"=> $data->id))',
                 ), //end 'delete' => array(
             ), //end 'buttons' => array(
         ),
@@ -64,6 +57,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
     )
 ));
 ?>
+<div class="btnForm l_btn">
+    <?php
+    echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
+        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/index")) . '"'));
+    ?> 
+</div>
 <?php
 
 function strip($data, $len) {
