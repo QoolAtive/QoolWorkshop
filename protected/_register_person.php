@@ -179,7 +179,6 @@
                     <?php
                     echo $form->labelEx($model, 'email');
                     echo $form->textField($model, 'email', array(
-
                            'class' => 'span5 fieldrequire',
                             'placeholder' => MemPerson::model()->getAttributeLabel('email'),
                     ));
@@ -200,7 +199,7 @@
 
                 <div class="_50">
                     <span class="haft">
-                        <?php 
+                        <? 
                             echo $form->labelEx($model, 'province');
                         ?>
                     </span>
@@ -221,7 +220,7 @@
                 </div>
                 <div class="_50">
                                       <span class="haft">
-                        <?php 
+                        <? 
                              echo $form->labelEx($model, 'prefecture');
                         ?>
                     </span>
@@ -244,7 +243,7 @@
 
                 <div class="_50">
                                                           <span class="haft">
-                        <?php 
+                        <? 
                               echo $form->labelEx($model, 'district');
                         ?>
                     </span>
@@ -258,7 +257,7 @@
                     ?>
                 </div>
                 <div class="_50">
-                    <span class="haft"><?php echo $form->labelEx($model, 'postcode'); ?></span>
+                    <span class="haft"><? echo $form->labelEx($model, 'postcode'); ?></span>
 
                     
                     <?php
@@ -284,7 +283,7 @@
                     <?php
                     echo $form->labelEx($model, 'tel');
                     echo $form->textField($model, 'tel', array(
-                        'class' => 'fieldrequire',
+                        'class' => 'span5',
                             'placeholder' => MemPerson::model()->getAttributeLabel('tel'),
                     ));
                     echo $form->error($model, 'tel');
@@ -303,7 +302,7 @@
 
 
                 <div class="_50">
-                    <?php echo $form->labelEx($model, 'high_education'); ?>
+                    <? echo $form->labelEx($model, 'high_education'); ?>
 
                     <?php
                     
@@ -367,7 +366,7 @@
 
                 <div class="_50">
                     <span class="haft">
-                        <?php echo $form->labelEx($model, 'business_type'); ?>
+                        <? echo $form->labelEx($model, 'business_type'); ?>
                     </span>
                     <?php
                     
@@ -382,7 +381,7 @@
                 <div class="_50">
 
                      <span class="haft">
-                        <?php echo $form->labelEx($model, 'product_name'); ?></span>
+                        <? echo $form->labelEx($model, 'product_name'); ?></span>
                     <?php
                     
                     echo $form->textField($model, 'product_name',array('id' => 'trurakitname', 'class' => 'haft','placeholder' => 'ชนิดสินค้า / บริการ'));
@@ -394,12 +393,12 @@
                 <div class="_100"></div> 
 				                 <?php if (CCaptcha::checkRequirements()) { ?>
                     <div class="_50"> 
-                        <span class="haft"><?php echo $form->labelEx($model_user, 'verifyCode');
+                        <span class="haft"><?                         echo $form->labelEx($model_user, 'verifyCode');
  ?></span>
-                        <div class="capcha">
+                        <div style="width: 60%; float: right;">
                         <?php
                         $this->widget('CCaptcha');
-                        echo $form->textField($model_user, 'verifyCode' ,array('class'=>'fieldrequire'));
+                        echo $form->textField($model_user, 'verifyCode');
                         echo $form->error($model_user, 'verifyCode');
                         ?>
                     </div>
