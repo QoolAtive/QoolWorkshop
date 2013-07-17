@@ -26,10 +26,12 @@
 <script src="/js/config.js" type="text/javascript"></script>
 
 <style type="text/css">
+
+
 #container {
 
-    padding: 3% 0 !important;
-    position: fixed;
+      padding: 3% 0 !important;
+    position: absolute;
     top: 1%;
     height: auto;
 }
