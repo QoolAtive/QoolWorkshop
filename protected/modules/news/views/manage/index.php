@@ -1,4 +1,4 @@
-<h3>Manage NEWS</h3>
+<h3><?php echo Yii::t('language', 'จัดการข่าว'); ?></h3>
 <?php
 $dataProvider = $model->search();
 
@@ -64,6 +64,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
     )
 ));
 ?>
+<div class="btnForm l_btn">
+                <?php
+                echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/default/index")) . '"'));
+                ?> 
+            </div>
 <?php
 
 function strip($data, $len) {

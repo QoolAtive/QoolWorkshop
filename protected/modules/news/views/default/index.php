@@ -4,11 +4,11 @@
             <li class="boxhead"><img src="/img/iconpage/newsandactivity.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="#" rel="view1">NEWS</a></li>
+            <li><a href="#" rel="view1">News</a></li>
             <li><a href="#" rel="view2">Calendar</a></li>
             <li><a href="#" rel="view3">Training</a></li>
             <?php if (Yii::app()->user->isAdmin()) { ?>
-                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>">Manage</a></li>
+                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>">Manage NEWS</a></li>
             <?php } ?>
         </ul>
     </div>
@@ -38,13 +38,16 @@
                             </a>
                         </div>
                         <div id="item1<?php echo $i; ?>" class="accordion-body collapse <?php
-                                if ($i == 1)
-                                    echo 'in';
-                                else
-                                    echo '';
-                                ?>">
+                        if ($i == 1)
+                            echo 'in';
+                        else
+                            echo '';
+                        ?>">
                             <div class="accordion-inner">
-                                <?php echo $news['detail_th']; ?>
+                                <!--รายละเอียด-->
+                                <div><?php echo $news['detail_th']; ?></div>
+                                <!--รูปภาพ-->
+                                <div><img src="<?php echo $news['pic']; ?>" /></div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +72,15 @@
         <!--END Calendar-->
         <!--Training-->
         <div id="view3" class="tabcontent">
+            <?php
+            foreach ($trainlist as $train) {
+                ?>
+                <div>
 
+                </div>
+                <?php
+            }
+            ?>
         </div>
         <!--END Training-->
     </div>
