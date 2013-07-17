@@ -1,3 +1,5 @@
+
+
 $(function() {
   var val = $("input[id='MemPerson_mem_type_1']:checked").val();
   if(val === "2") {
@@ -10,7 +12,13 @@ $(function() {
 });
 
 
+$(document).ready(function(){
 
+if ( $('input').hasClass('error') ) {
+
+$('input').addClass("testbg");
+
+});
 
 
 $(document).ready(function() {
