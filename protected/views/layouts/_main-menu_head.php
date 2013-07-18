@@ -1,20 +1,22 @@
 <div class="content" >
     <div class="menutop">
         <div class="clearfix">
-            <ul class="loginbtnbox clearfix">
-                <li class="clearfix">
-                    <div class="lang"> 
-<!--                        <a href="#"><img alt="US" src="/img/us.png"></a> 
+
+             <div class="lang"> 
+<!--                    <a href="#"><img alt="US" src="/img/us.png"></a> 
                         <a href="#"><img alt="TH" src="/img/th.png"></a> -->
                         <?php
                         $this->widget('application.components.widgets.LanguageSelector');
                         ?>
-                    </div>
+             </div>
+            <ul class="loginbtnbox clearfix">
+                <li class="clearfix">
+                   
                     <?php
                     if (!Yii::app()->user->id) {
                         ?>
                         <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">Create Account</a> 
-                        <a class="loginbtn  fancybox.iframe" href="/site/login">Login</a>
+                        <a class="loginbtn fancybox fclogin" href="/site/login">Login</a>
                         <?php
                     } else {
                         $profile = Tool::getProfile(Yii::app()->user->id);
