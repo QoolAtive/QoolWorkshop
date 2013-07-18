@@ -8,7 +8,8 @@
 <div class="content">
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
-            <img class="bannerlink clearfix" src="/img/iconpage/banner/<?php echo Yii::t('language', 'linkbanner.png'); ?>"/>
+
+            <img class="pagebanner clearfix" alt="pagebanner" src="/img/banner/<?php echo Yii::t('language', 'link.png'); ?>"/>
         </div>
     </div>
 </div>

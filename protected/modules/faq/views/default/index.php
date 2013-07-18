@@ -19,11 +19,8 @@
 
 <div class="content">
     <div class="tabcontents" >
-        <div id="featured" style="width: 760px !important;"> 
-            <img src="/img/faqbanner.png" data-caption="#htmlCaption"  alt="Overflow: Hidden No More" />
-<!--            <img src="/img/faqbanner.png"  alt="HTML Captions" />-->
-<!--            <img src="/img/faqbanner.png" alt="and more features" />-->
-        </div>
+            <img src="/img/banner/faq.png" class="pagebanner" alt="pagebanner"/>
+
 
 
         <!-- 1. FAQ Service Provider -->

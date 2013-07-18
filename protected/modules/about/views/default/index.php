@@ -19,7 +19,11 @@
 <div class="content">
     <div class="tabcontents">
         <!--        About Us-->
+
+                     <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
+
         <div id="view1" class="tabcontent ">
+
             <?php
 //            if (Yii::app()->user->isAdmin()) {
 //                echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/about/default/editAbout')), array('update' => '#view1')
