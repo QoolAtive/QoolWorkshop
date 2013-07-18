@@ -14,12 +14,13 @@ class Knowledge extends KnowledgeBase {
         return array(
             array('type_id, subject, detail, guide_status, date_write, position', 'required'),
             array('type_id, position', 'numerical', 'integerOnly' => true),
-            array('subject', 'length', 'max' => 255),
+            array('subject, subject_en', 'length', 'max' => 255),
             array('guide_status', 'length', 'max' => 1),
+            array('image', 'length', 'max' => 100),
             array('subject', 'checkDup'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, type_id, subject, detail, guide_status, date_write, position, _old', 'safe', 'on' => 'search'),
+            array('subject_en, detail_en, id, type_id, subject, detail, guide_status, date_write, position, _old', 'safe', 'on' => 'search'),
         );
     }
 
@@ -34,14 +35,16 @@ class Knowledge extends KnowledgeBase {
 
     public function attributeLabels() {
         return array(
+            'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
+            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
             'id' => 'ID',
             'type_id' => 'Type',
-            'subject' => 'หัวข้อ',
-            'detail' => 'รายละเอียด',
-            'guide_status' => 'บทความแนะนำ',
-            'date_write' => 'วันที่เขียนบทความ',
+            'subject' => Yii::t('language', 'หัวข้อ'),
+            'detail' => Yii::t('language', 'รายละเอียด'),
+            'guide_status' => Yii::t('language', 'บทความแนะนำ'),
+            'date_write' => Yii::t('language', 'วันที่เขียนบทความ'),
             'position' => 'Position',
-            'image' => 'รูปภาพ',
+            'image' => Yii::t('language', 'รูปภาพ'),
         );
     }
 

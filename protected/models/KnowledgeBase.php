@@ -7,14 +7,13 @@
  * @property integer $id
  * @property integer $type_id
  * @property string $subject
+ * @property string $subject_en
  * @property string $detail
+ * @property string $detail_en
  * @property string $guide_status
  * @property string $date_write
  * @property string $image
  * @property integer $position
- *
- * The followings are the available model relations:
- * @property KnowledgeThem[] $knowledgeThems
  */
 class KnowledgeBase extends CActiveRecord
 {
@@ -46,12 +45,12 @@ class KnowledgeBase extends CActiveRecord
 		return array(
 			array('type_id, subject, detail, guide_status, date_write, position', 'required'),
 			array('type_id, position', 'numerical', 'integerOnly'=>true),
-			array('subject', 'length', 'max'=>255),
+			array('subject, subject_en', 'length', 'max'=>255),
 			array('guide_status', 'length', 'max'=>1),
 			array('image', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, subject, detail, guide_status, date_write, image, position', 'safe', 'on'=>'search'),
+			array('id, type_id, subject, subject_en, detail, detail_en, guide_status, date_write, image, position', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +62,6 @@ class KnowledgeBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'knowledgeThems' => array(self::HAS_MANY, 'KnowledgeThem', 'main_id'),
 		);
 	}
 
@@ -76,7 +74,9 @@ class KnowledgeBase extends CActiveRecord
 			'id' => 'ID',
 			'type_id' => 'Type',
 			'subject' => 'Subject',
+			'subject_en' => 'Subject En',
 			'detail' => 'Detail',
+			'detail_en' => 'Detail En',
 			'guide_status' => 'Guide Status',
 			'date_write' => 'Date Write',
 			'image' => 'Image',
@@ -98,7 +98,9 @@ class KnowledgeBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('type_id',$this->type_id);
 		$criteria->compare('subject',$this->subject,true);
+		$criteria->compare('subject_en',$this->subject_en,true);
 		$criteria->compare('detail',$this->detail,true);
+		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('guide_status',$this->guide_status,true);
 		$criteria->compare('date_write',$this->date_write,true);
 		$criteria->compare('image',$this->image,true);
