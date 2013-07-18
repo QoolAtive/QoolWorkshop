@@ -118,3 +118,10 @@
         <!--END Training-->
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        if (location.hash == "#view3") {
+        }
+    });
+</script>
