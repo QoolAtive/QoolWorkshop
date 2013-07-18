@@ -8,6 +8,7 @@
                         <a href="#"><img alt="TH" src="/img/th.png"></a> -->
                         <?php
                         $this->widget('application.components.widgets.LanguageSelector');
+                        echo Yii::t('language', 'language');
                         ?>
                     </div>
                     <?php
@@ -26,22 +27,22 @@
                     ?>
                 </li>
                 <li>
-                    <input class="searchbox" placeholder="Search" type="text"  name="" value="" />
+                    <input class="searchbox" placeholder="Search" type="text"  name="" value="" />                     
                 </li>
             </ul>
         </div>
 
         <ul class="menu clearfix">
-            <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'Knowledge & Learning'); ?></a></li>
-            <li><a href="web-simulation.html"><?php echo Yii::t('language', 'Web Simulation'); ?></a></li>
-            <li><a href="e-directory.html"><?php echo Yii::t('language', 'E-Directory'); ?></a></li>
-            <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'Service Provider'); ?></a></li>
+            <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?></a></li>
+            <li><a href="web-simulation.html"><?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?></a></li>
+            <li><a href="e-directory.html"><?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?></a></li>
+            <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'บริการ'); ?></a></li>
         </ul>
         <ul class="menu clearfix">
-            <li><a href="/link/default/index"><?php echo Yii::t('language', 'Link'); ?></a></li>
-            <li><a href="/faq/default/index"><?php echo Yii::t('language', 'FAQ'); ?></a></li>
-            <li><a href="/about/default/index"><?php echo Yii::t('language', 'About Us'); ?></a></li>
-            <li><a href="/news/default/index"><?php echo Yii::t('language', 'News & Activity'); ?></a> </li>
+            <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?></a></li>
+            <li><a href="/faq/default/index"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
+            <li><a href="/about/default/index"><?php echo Yii::t('language', 'เกี่ยวกับเรา'); ?></a></li>
+            <li><a href="/news/default/index"><?php echo Yii::t('language', 'ข่าวสารและกิจกรรม'); ?></a> </li>
         </ul>
     </div>
 </div>
