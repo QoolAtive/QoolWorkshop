@@ -61,20 +61,40 @@ class ManageController extends Controller {
             $model->attributes = $_POST['LearningGroup'];
 
             //รูปภาพภาษาไทย
-            $file->image = $_POST['Upload2image']['image'];
-            $file->image = CUploadedFile::getInstance($file, 'image');
-            if ($file->image != NULL) {
-                $model->pic = $file->image;
+//            $file->image = $_POST['Upload2image']['image'];
+            $file1 = CUploadedFile::getInstance($file, 'image');
+
+            if ($file1 != NULL) {
+                $dir = './file/learning/';
+                if (isset($model->pic)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                    if (fopen($dir . $model->pic, 'w')) {
+                        if (unlink($dir . $model->pic)) {
+                            
+                        }
+                    }
+                }
+                $file1name = rand('000', '999') . $file1->name;
+                $model->pic = $file1name;
             } else {
                 if ($model->pic == NULL)
                     $model->pic = 'default.jpg';
             }
             //--------------
             //รูปภาพภาษาอังกฤษ
-            $file->image2 = $_POST['Upload2image']['image2'];
-            $file->image2 = CUploadedFile::getInstance($file, 'image2');
-            if ($file->image2 != NULL) {
-                $model->pic_en = $file->image2;
+//            $file->image2 = $_POST['Upload2image']['image2'];
+            $file2 = CUploadedFile::getInstance($file, 'image2');
+
+            if ($file2 != NULL) {
+                $dir = './file/learning/';
+                if (isset($model->pic_en)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                    if (fopen($dir . $model->pic_en, 'w')) {
+                        if (unlink($dir . $model->pic_en)) {
+                            
+                        }
+                    }
+                }
+                $file2name = rand('000', '999') . $file2->name;
+                $model->pic_en = $file2name;
             } else {
                 if ($model->pic_en == NULL)
                     $model->pic_en = 'default.jpg';
@@ -84,24 +104,26 @@ class ManageController extends Controller {
             $model->validate();
             if ($model->getErrors() == null) {
                 if ($model->save()) {
-                    if ($file->image != NULL) {
-                        $dir = './file/learning/';
+                    $dir = './file/learning/';
+                    if ($file1 != NULL) {
                         if (!file_exists($dir))
-                            mkdir($dir, 0777);
+                            chmod($dir, 0777);
 
-                        $image = $dir . '/' . $file->image;
+                        $image = $dir . $file1name;
 
-                        $file->image->saveAs($image);
+                        $file1->saveAs($image);
                     }
 
-                    if ($file->image2 != NULL) {
-                        $dir = './file/learning/';
+                    if ($file2 != NULL) {
+
+
+
                         if (!file_exists($dir))
-                            mkdir($dir, 0777);
+                            chmod($dir, 0777);
 
-                        $image = $dir . '/' . $file->image2;
+                        $image = $dir . $file2name;
 
-                        $file->image2->saveAs($image);
+                        $file2->saveAs($image);
                     }
                     echo "
                         <script>
@@ -129,14 +151,14 @@ class ManageController extends Controller {
         if (empty($count)) {
             if ($model->pic != 'default.jpg') {
                 $file_paht = './file/learning/' . $model->pic;
-                mkdir($file_paht, 0777);
+                chmod($file_paht, 0777);
                 if (fopen($file_paht, 'w'))
                     unlink($file_paht);
             }
             if ($model->pic != $model->pic_en && $model->pic_en != null && $model->pic != null) {
                 if ($model->pic_en != 'default.jpg') {
                     $file_paht = './file/learning/' . $model->pic_en;
-                    mkdir($file_paht, 0777);
+                    chmod($file_paht, 0777);
 //                if (!file_exists($file_paht))
 //                    mkdir($file_paht, 0777);
                     if (fopen($file_paht, 'w'))
@@ -217,8 +239,8 @@ class ManageController extends Controller {
                     if ($modelVideo->save()) {
                         if (isset($file)) {
                             $path = './file/learning/pdf/';
-                            if (isset($id)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
-                                if (unlink($path . '/' . $modelFile->path)) {
+                            if (isset($modelFile->path)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                                if (unlink($path . $modelFile->path)) {
                                     $modelFile->delete();
                                 }
                             }
@@ -228,10 +250,12 @@ class ManageController extends Controller {
                                     mkdir($path, 0777, true);
                                     chmod($path, 0777);
                                 }
-                                if ($file->saveAs($path . '/' . $file->name)) {
+                                $filename = rand('000', '999') . $file->name;
+
+                                if ($file->saveAs($path . '/' . $filename)) {
                                     $modelFile = new LearningFile();
                                     $modelFile->main_id = $model->id;
-                                    $modelFile->path = $file->name;
+                                    $modelFile->path = $filename;
 
                                     $modelFile->save();
                                 }
