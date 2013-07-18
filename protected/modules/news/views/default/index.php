@@ -19,7 +19,7 @@
     <div class="tabcontents">
         <!--NEWS-->
 
-                             <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
+        <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
 
         <div id="view1" class="tabcontent">
             <h3>Feed News</h3>

@@ -634,6 +634,7 @@ div.page {
     height: 15px;
     width: 20px !important;
     cursor: default;
+    text-indent: -9999em;
 }
 
 #header #language-select > a#th_select,
@@ -699,8 +700,9 @@ div.page {
 }
 #header .loginbtnbox li a.loginbtn,
 #header .loginbtnbox li a.createaccountbtn{
+    width: 48%;
     text-align: center;
-    margin: 5px 2px;
+    margin: 5px 0 5px 3px;
     float:right; 
     background-color: #fafafa;
     border: 1px solid #ccc; 
@@ -713,9 +715,20 @@ div.page {
     background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.07, rgb(255,255,255)),color-stop(0.61,rgb(238,238,238)));
 }
 
+.lang{
+    width: 200px;
+    position: absolute;
+    color: transparent;
+}
+.loginbtnbox.clearfix {
+    float: right;
+    width: 250px;
+}
 #header .loginbtnbox li a.createaccountbtn{
     margin-right: 0px !important;
 }
+
+
 
 #header .loginbtnbox li a.loginbtn:hover,
 #header .loginbtnbox li a.createaccountbtn:hover{
@@ -747,8 +760,8 @@ login btn , create account btn ,search box
     font-size: 7px;
     height: 12px;
     margin-bottom: 6px;
-    width: 213px;
-    padding-left: 23px !important;
+    width:  98%;
+    text-indent: 23px !important;
     float: right;
 
 }
