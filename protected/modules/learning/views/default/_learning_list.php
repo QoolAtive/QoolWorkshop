@@ -19,7 +19,7 @@
     <div class="colR">
         <?php
         echo CHtml::link($data->subject, array('/learning/default/lesson', 'id' => $data->id));
-        echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $data->detail)), 350);
+//        echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', $data->detail), 350);
         ?>
     </div>
 </div>

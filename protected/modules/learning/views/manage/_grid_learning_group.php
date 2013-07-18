@@ -42,7 +42,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
-            'header' => "รายละเอียด",
+            'header' => 'เครื่องมือ',
             'template' => '{update}{delete}',
             'buttons' => array(
                 'update' => array(

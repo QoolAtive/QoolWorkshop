@@ -20,7 +20,7 @@ $this->renderPartial('_side_bar', array(
 //                'sortableAttributes' => array(
 //                    'title',
 //                    'create_time' => 'Post Time',
-//                ),
+//                ),  
             ));
             ?>
         </div>

@@ -33,7 +33,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => "รายละเอียด",
+            'header' => 'เครื่องมือ',
             'template' => '{view}{update}{delete}',
             'buttons' => array(
                 'view' => array(

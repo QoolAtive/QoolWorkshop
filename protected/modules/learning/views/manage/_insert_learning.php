@@ -63,7 +63,7 @@ $form = $this->beginWidget('CActiveForm', array(
                         '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                     array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
                         '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                        '-', 'Source', '-', 'About'),
+                        '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                 ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
             ),
             "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -107,7 +107,7 @@ $form = $this->beginWidget('CActiveForm', array(
                         '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                     array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
                         '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                        '-', 'Source', '-', 'About'),
+                        '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                 ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
             ),
             "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",

@@ -5,7 +5,6 @@
         </ul>
         <ul class="tabs clearfix">
             <?php
-            
             echo Tool::GenList($list);
             ?>
             <li>
@@ -23,9 +22,6 @@
                 ?>
             </li>
         </ul>
-
-
-
 
         <p>กลุ่มบทเรียน : <?php echo LearningGroup::model()->findByPk($id)->name; ?></p>
         <ul class="rectangle-list">
