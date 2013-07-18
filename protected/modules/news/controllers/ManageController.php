@@ -64,8 +64,12 @@ class ManageController extends Controller {
         ));
     }
     
-    public function actionEditGroup(){
-        $model = new NewsGroup();
+    public function actionEditGroup($id = NULL){
+        if ($id == NULL) {
+            $model = new NewsGroup();
+        } else {
+            $model = NewsGroup::model()->findByPk($id);
+        }
         if (isset($_POST['NewsGroup'])) {
             $model->attributes = $_POST['NewsGroup'];
             if($model->save()){
@@ -82,5 +86,56 @@ class ManageController extends Controller {
         if ($model->delete()) {
 //            $this->redirect("/faq/default/manageFaq");
         }
+    }
+    
+    public function actionManageTraining(){
+        $model = new Training();
+        if (isset($_GET['Training'])) {
+            $model->attributes = $_GET['Training'];
+        }
+        $this->render('manage_training', array(
+            'model' => $model,
+        ));
+    }
+    
+    public function actionEditTraining($id = NULL){
+        if ($id == NULL) {
+            $model = new Training();
+        } else {
+            $model = Training::model()->findByPk($id);
+        }
+        if (isset($_POST['Training'])) {
+            $model->attributes = $_POST['Training'];
+            if($model->save()){
+                $this->redirect(CHtml::normalizeUrl(array('/news/manage/manageTraining')));
+            }
+        }
+        $this->render('edit_training', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionDeleteTraining($id) {
+        $model = NewsGroup::model()->findByPk($id);
+        if ($model->delete()) {
+//            $this->redirect("/faq/default/manageFaq");
+        }
+    }
+    
+    public function actionEditRss($id = NULL){
+        if ($id == NULL) {
+            $model = new NewsRss();
+        } else {
+            $model = NewsRss::model()->findByPk($id);
+        }
+        if (isset($_POST['NewsRss'])) {
+            $model->attributes = $_POST['NewsRss'];
+            if($model->save()){
+                $this->redirect(CHtml::normalizeUrl(array('/news/default/index')));
+            }
+        }
+        $this->render('edit_rss', array(
+            'model' => $model,
+        ));
     }
 }

@@ -8,7 +8,9 @@
             <li><a href="#" rel="view2">Calendar</a></li>
             <li><a href="#" rel="view3">Training</a></li>
             <?php if (Yii::app()->user->isAdmin()) { ?>
-                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>">Manage NEWS</a></li>
+                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>">Manage News</a></li>
+                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageTraining')); ?>">Manage Training</a></li>
+                <li><a href="<?php echo CHtml::normalizeUrl(array('/news/manage/editRss/id/1')); ?>">Manage Feed Rss</a></li>
             <?php } ?>
         </ul>
     </div>
@@ -17,15 +19,15 @@
     <div class="tabcontents">
         <!--NEWS-->
         <div id="view1" class="tabcontent">
-            <h3>Feed NEWS</h3>
+            <h3>Feed News</h3>
             <!-- Feed widget -->
             <?php
             $this->widget(
-                    'ext.yii-feed-widget.YiiFeedWidget', array('url' => 'http://www.nasa.gov/rss/dyn/breaking_news.rss', 'limit' => 5)
+                    'ext.yii-feed-widget.YiiFeedWidget', array('url' => NewsRss::model()->find()->link, 'limit' => 5)
             );
             ?>
             <br/>
-            <h3>NEWS</h3>
+            <h3>News</h3>
             <div class="accordion" id="hideother1">
                 <?php
                 $i = 1;
@@ -72,14 +74,42 @@
         <!--END Calendar-->
         <!--Training-->
         <div id="view3" class="tabcontent">
-            <?php
-            foreach ($trainlist as $train) {
-                ?>
-                <div>
-
-                </div>
+            <h3>Training</h3>
+            <div class="accordion" id="hideother3">
                 <?php
-            }
+                $i = 1;
+                foreach ($trainlist as $train) {
+                    ?>
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>">
+                                <?php echo $train['subject_th']; ?>
+                            </a>
+                        </div>
+                        <div id="item3<?php echo $i; ?>" class="accordion-body collapse <?php
+                        if ($i == 1)
+                            echo 'in';
+                        else
+                            echo '';
+                        ?>">
+                            <div class="accordion-inner">
+                                <!--รายละเอียด-->
+                                <div><?php echo $train['detail_th']; ?></div>
+                                <div><?php echo CHtml::link($train['link'], $train['link'], array('target' => '_blank')); ?></div>
+                                <!--วันที่เริ่ม - วันสุดท้าย-->
+                                <div><?php echo Tool::ChangeDateTimeToShow($train['start_at']) . " ถึง " . Tool::ChangeDateTimeToShow($train['end_at']); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    $i++;
+                }
+                ?>
+            </div>
+            <?php
+            $this->widget('CLinkPager', array(
+                'pages' => $pages,
+            ));
             ?>
         </div>
         <!--END Training-->
