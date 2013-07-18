@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <link rel="stylesheet" href="/css/global.css"  type="text/css"></link>
+        <link rel="stylesheet" href="/css/style.css"  type="text/css"></link>
+    <meta charset="utf-8">
+    <title>title</title>
+
+
 <style type="text/css">
 html,body{
     overflow: hidden !important;
@@ -18,17 +27,12 @@ html,body{
     width: 100%;
 }
 
+
+
 </style>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-        <link rel="stylesheet" href="/css/global.css" type="text/css"></link>
-        <link rel="stylesheet" href="/css/style.css" type="text/css"></link>
-
-    <meta charset="utf-8">
-    <title>title</title>
-
   </head>
+
+
   <body>
   <?php
 /* @var $this SiteController */
