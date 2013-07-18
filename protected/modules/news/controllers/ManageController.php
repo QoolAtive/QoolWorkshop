@@ -23,7 +23,7 @@ class ManageController extends Controller {
             $model->attributes = $_POST['News'];
             $model->author = Yii::app()->user->id;
             $model->date_write = date("Y-m-d H:i:s");
-            
+
             //for upload pic
             $arr_files = CUploadedFile::getInstancesByName('link_file');
             if ($arr_files != NULL) {
@@ -53,8 +53,8 @@ class ManageController extends Controller {
 //            $this->redirect("/faq/default/manageFaq");
         }
     }
-    
-    public function actionManageGroup(){
+
+    public function actionManageGroup() {
         $model = new NewsGroup();
         if (isset($_GET['NewsGroup'])) {
             $model->attributes = $_GET['NewsGroup'];
@@ -63,8 +63,8 @@ class ManageController extends Controller {
             'model' => $model,
         ));
     }
-    
-    public function actionEditGroup($id = NULL){
+
+    public function actionEditGroup($id = NULL) {
         if ($id == NULL) {
             $model = new NewsGroup();
         } else {
@@ -72,7 +72,7 @@ class ManageController extends Controller {
         }
         if (isset($_POST['NewsGroup'])) {
             $model->attributes = $_POST['NewsGroup'];
-            if($model->save()){
+            if ($model->save()) {
                 $this->redirect(CHtml::normalizeUrl(array('/news/manage/manageGroup')));
             }
         }
@@ -87,8 +87,8 @@ class ManageController extends Controller {
 //            $this->redirect("/faq/default/manageFaq");
         }
     }
-    
-    public function actionManageTraining(){
+
+    public function actionManageTraining() {
         $model = new Training();
         if (isset($_GET['Training'])) {
             $model->attributes = $_GET['Training'];
@@ -97,8 +97,8 @@ class ManageController extends Controller {
             'model' => $model,
         ));
     }
-    
-    public function actionEditTraining($id = NULL){
+
+    public function actionEditTraining($id = NULL) {
         if ($id == NULL) {
             $model = new Training();
         } else {
@@ -106,7 +106,10 @@ class ManageController extends Controller {
         }
         if (isset($_POST['Training'])) {
             $model->attributes = $_POST['Training'];
-            if($model->save()){
+            if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
+                $model->link = 'http://' . $model->link;
+            }
+            if ($model->save()) {
                 $this->redirect(CHtml::normalizeUrl(array('/news/manage/manageTraining')));
             }
         }
@@ -121,8 +124,8 @@ class ManageController extends Controller {
 //            $this->redirect("/faq/default/manageFaq");
         }
     }
-    
-    public function actionEditRss($id = NULL){
+
+    public function actionEditRss($id = NULL) {
         if ($id == NULL) {
             $model = new NewsRss();
         } else {
@@ -130,7 +133,7 @@ class ManageController extends Controller {
         }
         if (isset($_POST['NewsRss'])) {
             $model->attributes = $_POST['NewsRss'];
-            if($model->save()){
+            if ($model->save()) {
                 $this->redirect(CHtml::normalizeUrl(array('/news/default/index')));
             }
         }
@@ -138,4 +141,5 @@ class ManageController extends Controller {
             'model' => $model,
         ));
     }
+
 }
