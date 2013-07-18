@@ -716,7 +716,9 @@ div.page {
 }
 
 .lang{
+    width: 200px;
     position: absolute;
+    color: transparent;
 }
 .loginbtnbox.clearfix {
     float: right;
