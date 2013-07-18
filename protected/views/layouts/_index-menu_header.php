@@ -5,7 +5,7 @@
             if (!Yii::app()->user->id) {
                 ?>
                 <a class="createaccountbtn fancybox" href="/member/manage/registerRules">Create Account</a> 
-                <a class="loginbtn fancybox" href="/site/login">Login</a>
+                <a class="loginbtn fancybox fclogin" href="/site/login">Login</a>
                 <?php
             } else {
                 $profile = Tool::getProfile();

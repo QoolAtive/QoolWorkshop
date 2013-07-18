@@ -24,13 +24,13 @@ $(document).ready(function() {
     });
 
 
-    $('.loginbtn').fancybox({
-      type : 'iframe',
+    $('.fclogin').fancybox({
+        type : 'iframe',
         padding : 0,
-   width  :'490',
-   closeBtn : 0,
-   maxHeight :'202',
-   scrolling : 'no'
+         width  :'490',
+         closeBtn : 0,
+         maxHeight :'202',
+         scrolling : 'no'
        });
 
 
