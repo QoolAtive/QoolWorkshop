@@ -35,8 +35,9 @@
 <div class="content">
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
+             <img src="/img/banner/knowledge.png" class="pagebanner" alt="pagebanner"/>
             <?php if (Knowledge::model()->count('guide_status = 1') != 0) { ?>
-                <h3 style="padding: 0px 5px;"><i class="icon-bookmark"></i> บทความแนะนำ</h3>
+                <h3 class="headfont"><i class="icon-bookmark-empty"></i> บทความแนะนำ</h3>
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
@@ -51,7 +52,11 @@
                 </div>
             <?php } ?>
             <hr>
-            <h3 style="padding: 0px 5px;">บทความล่าสุด</h3>
+            <h3 class="headfont"><i class="icon-file-alt"></i> บทความล่าสุด</h3>
+            <div class="viewall"> 
+                          <i class="icon-search"></i>
+                          <?php echo CHtml::link('บทความทั้งหมด', array('/knowledge/default/knowledge')); ?>
+                </div>
             <div class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CListView', array(
@@ -64,10 +69,11 @@
                 ));
                 ?>
             </div>
-            <?php echo CHtml::link('>>อ่านบทความทั้งหมด<<', array('/knowledge/default/knowledge'), array('style' => 'padding: 0px 5px;')); ?>
         </div>
         <div>
             <div id="view2" class="tabcontent ">
+                             <img src="/img/banner/learning.png" class="pagebanner" alt="pagebanner"/>
+
                 <div class="row-fluid">
 
                     <ul class="card">
