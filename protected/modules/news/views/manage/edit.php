@@ -73,16 +73,15 @@
         "attribute" => 'detail_th', # Attribute in the Data-Model
         "defaultValue" => $model->detail_th, # Optional
         "config" => array(
-            "resize_dir" => "vertical",
-            "height" => "400px",
-            "width" => "750",
+            "height" => "240px",
+            "width" => "600",
             'toolbar' => array(
                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                     '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                 array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
                     '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                    '-', 'Source', '-', 'About'),
+                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
             ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
         ),
         "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -101,16 +100,15 @@
         "attribute" => 'detail_en', # Attribute in the Data-Model
         "defaultValue" => $model->detail_en, # Optional
         "config" => array(
-            "resize_dir" => "vertical",
-            "height" => "400px",
-            "width" => "750",
+            "height" => "240px",
+            "width" => "600",
             'toolbar' => array(
                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                     '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                 array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
                     '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                    '-', 'Source', '-', 'About'),
+                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
             ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
         ),
         "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
