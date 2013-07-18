@@ -1,7 +1,11 @@
-
-
 <div class="content">
-    <h3>Manage FAQ</h3>
+    <?php
+    if ($model->id == NULL) {
+        ?>
+        <h3><?php echo Yii::t('language', 'เพิ่มข่าวอบรม'); ?></h3>
+    <?php } else { ?>
+        <h3><?php echo Yii::t('language', 'แก้ไขข่าวอบรม'); ?></h3>
+    <?php } ?>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'update-form',
@@ -9,6 +13,8 @@
     echo $form->errorSummary($model);
     ?>
     <?php
+    
+    
 //    ภาษาไทย
     echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
     echo Yii::t('language', $form->labelEx($model, 'subject_th'));
@@ -21,7 +27,7 @@
         "defaultValue" => $model->detail_th, # Optional
         "config" => array(
             "height" => "240px",
-            "width" => "730",
+            "width" => "600",
             'toolbar' => array(
                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -48,7 +54,7 @@
         "defaultValue" => $model->detail_en, # Optional
         "config" => array(
             "height" => "240px",
-            "width" => "730",
+            "width" => "600",
             'toolbar' => array(
                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -63,11 +69,9 @@
         "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
     ));
 
-    echo CHtml::hiddenField('fm_id', $model->fm_id);
     echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-//echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => '$("#edit' . $model->fm_id . '").hide().html(data).fadeOut();'));
     echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/manageFaq")) . '"'));
+        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageTraining")) . '"'));
     ?>
     <?php $this->endWidget(); ?>
 </div>
