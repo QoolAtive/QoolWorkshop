@@ -6,7 +6,9 @@
  * The followings are the available columns in table 'high_education':
  * @property integer $id
  * @property string $name
+ * @property string $name_en
  * @property string $abbreviation
+ * @property string $abbreviation_en
  */
 class HighEducationBase extends CActiveRecord
 {
@@ -36,11 +38,11 @@ class HighEducationBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name, abbreviation', 'length', 'max'=>100),
+			array('name, name_en', 'required'),
+			array('name, name_en, abbreviation, abbreviation_en', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, abbreviation', 'safe', 'on'=>'search'),
+			array('id, name, name_en, abbreviation, abbreviation_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +65,9 @@ class HighEducationBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'name_en' => 'Name En',
 			'abbreviation' => 'Abbreviation',
+			'abbreviation_en' => 'Abbreviation En',
 		);
 	}
 
@@ -80,7 +84,9 @@ class HighEducationBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('abbreviation',$this->abbreviation,true);
+		$criteria->compare('abbreviation_en',$this->abbreviation_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

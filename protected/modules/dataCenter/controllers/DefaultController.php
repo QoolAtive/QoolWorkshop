@@ -216,14 +216,19 @@ class DefaultController extends Controller {
             $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/insertTitleName';
         } else {
-            $model = MemSex::model()->findByPk($id);
+            $model = TitleName::model()->findByPk($id);
             $alert = 'แก้ไขข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/titleName';
         }
 
         if (isset($_POST['TitleName'])) {
             $model->attributes = $_POST['TitleName'];
-            if ($model->validate()) {
+//
+//            echo "<pre>";
+//            print_r($model->attributes);
+//            echo "</pre>";
+            $model->validate();
+            if ($model->getErrors() == null) {
                 if ($model->save()) {
                     echo "
                         <script>

@@ -21,9 +21,9 @@
         </li>
         <li>
             <?php
-            echo $form->label($model, 'language');
-            echo $form->dropDownList($model, 'language', array('th' => 'th', 'en' => 'en'), array('empty' => 'เลือก'));
-            echo $form->error($model, 'language')
+            echo $form->label($model, 'name_en');
+            echo $form->textField($model, 'name_en');
+            echo $form->error($model, 'name_en')
             ?>
         </li>
         <li>

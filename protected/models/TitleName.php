@@ -8,20 +8,20 @@ class TitleName extends TitleNameBase {
 
     public function rules() {
         return array(
-            array('name, language', 'required'),
-            array('name', 'length', 'max' => 100),
-            array('name', 'unique'),
-            array('language', 'length', 'max' => 2),
+            array('name, name_en', 'required'),
+            array('name, name_en', 'length', 'max' => 100),
+            array('name, name_en', 'unique'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, name, language', 'safe', 'on' => 'search'),
+            array('id, name, name_en', 'safe', 'on' => 'search'),
         );
     }
 
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => Yii::t('language', 'คำนำหน้า'),
+            'name_en' => Yii::t('language', 'คำนำหน้าภาษาอังกฤษ'),
         );
     }
 
@@ -33,15 +33,20 @@ class TitleName extends TitleNameBase {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('language', $this->language, true);
+        $criteria->compare('name_en', $this->name_en, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
     }
 
-    public function getTitleName($language) {
-        $list = CHtml::listData(TitleName::model()->findAll("language = '" . $language . "'"), 'id', 'name');
+    public function getTitleNameThai() {
+        $list = CHtml::listData(TitleName::model()->findAll(), 'id', 'name');
+        return $list;
+    }
+
+    public function getTitleNameEng() {
+        $list = CHtml::listData(TitleName::model()->findAll(), 'id', 'name_en');
         return $list;
     }
 
@@ -50,7 +55,7 @@ class TitleName extends TitleNameBase {
         $criteria->order = 'id desc';
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
-        $criteria->compare('language', $this->language, true);
+        $criteria->compare('name_en', $this->name_en, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
