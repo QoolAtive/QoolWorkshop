@@ -22,6 +22,9 @@ class DefaultController extends Controller {
 
         // ลิ้งหน้า เพิ่มบทความ
         Yii::app()->user->setState('insert', 'view');
+        
+        // ลิ้งกลับมายังหน้ารายละเอียด ขณะที่แอดมินเข้าไปแก้ไขรายละเอียด บทความ
+//        Yii::app()->user->setState('cancel', '/knowledge/default/');
         $this->render('_view', array(
             'view' => $view,
             'model' => $model,

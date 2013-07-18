@@ -6,6 +6,31 @@
         <ul class="tabs clearfix">
             <li><a href="#" rel="view1">บทความแนะนำ</a></li>
             <li><a href="#" rel="view2">บทความทั้งหมด</a></li>
+            <?php
+            $list = array(
+                array('text' => 'Knowledge', 'link' => '/knowledge/default/index'),
+                array('text' => 'Learning', 'link' => '/knowledge/default/index#view2'),
+            );
+            $n = 3;
+            foreach ($list as $ls) {
+                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
+            }
+//            echo Tool::GenList($list);
+            ?> 
+
+            <li>
+                <?php
+                if (Yii::app()->user->isAdmin()) {
+                    echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge'), array('rel' => 'view5'));
+                }
+                ?>
+            </li>
+            <li> 
+                <?php
+                if (Yii::app()->user->isAdmin()) {
+                    echo CHtml::link('Manage Learning', array('/learning/manage/learning'), array('rel' => 'view6'));
+                }
+                ?>
         </ul>
     </div>
 </div>
@@ -40,7 +65,7 @@
             <hr>
         </div>
         <div id="view2" class="tabcontent">
-            <h3>บทความทั้งหมด</h3>
+<h3>บทความทั้งหมด</h3>
             <hr>
             <div style="text-align: center;">
                 <?php
@@ -67,5 +92,17 @@
             </div>
             <hr>
         </div>
+<!--        <div id="view3" class="tabcontent">
+
+        </div>
+        <div id="view4" class="tabcontent">
+
+        </div>
+        <div id="view5" class="tabcontent">
+
+        </div>
+        <div id="view6" class="tabcontent">
+            
+        </div>-->
     </div>
 </div>

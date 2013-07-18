@@ -1,5 +1,12 @@
+<?php
+if ($model->id != NULL) {
+    $btnText = 'แก้ไข';
+} else {
+    $btnText = 'เพิ่ม';
+}
+?>
 <div class="manageform">
-    <h3>  <i class="icon-plus"></i> เพิ่มบทความ</h3>
+    <h3>  <i class="icon-plus"></i> <?php echo $btnText; ?>บทความ</h3>
     <hr>
     <ul class="form">
         <?php
@@ -7,18 +14,13 @@
             'id' => 'insert-form',
             'htmlOptions' => array('enctype' => 'multipart/form-data'),
         ));
-        if ($model->id != NULL) {
-            $btnText = 'แก้ไข';
-        } else {
-            $btnText = 'เพิ่ม';
-        }
         ?>
         <?php echo $form->errorSummary(array($model, $file)); ?>
 
         <li>
-            <?php
+            <?php 
             echo $form->label($model, 'subject');
-            echo $form->textField($model, 'subject');
+            echo $form->textField($model, 'subject'); 
             echo $form->error($model, 'subject')
             ?>
         </li>
@@ -40,7 +42,7 @@
                             '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                         array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
                             '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                            '-', 'Source', '-', 'About'),
+                            '-', 'Source', '-', 'About','Link'),
                     ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                 ),
                 "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -106,9 +108,11 @@
 
 
 //            if ($model->id == NULL) { 
-            echo CHtml::button('ยกเลิก', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/knowledge/manage/knowledge'
-                )) . "'")
+//            echo CHtml::button('ยกเลิก', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+//                    Yii::app()->user->getState('cancel')
+//                )) . "'")
+//            );
+            echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
             );
 //            } else {
 //                echo CHtml::button('ยกเลิก', array('class' => "grey",'onClick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -120,7 +124,7 @@
 
         </li>
 
-<?php $this->endWidget(); ?>
+        <?php $this->endWidget(); ?>
     </ul>
 
 </div>

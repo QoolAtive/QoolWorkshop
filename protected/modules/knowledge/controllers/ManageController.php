@@ -29,6 +29,10 @@ class ManageController extends Controller {
         // ปุ่มย้อนกลับ
         Yii::app()->user->setState('link_back', '/knowledge/manage/knowledge');
         Yii::app()->user->setState('insert', 'knowledge'); // ลิ้งหน้าเพิ่มบทความ
+        
+        // ยกเลิกเวลาเพิ่มบทความให้กลับไปไหน ดูรายละเอียดบทความหรือ กลับไปหน้าจัดการบทความ
+//        Yii::app()->user->setState('cancel', '/knowledge/manage/knowledge');
+        
         $this->render('knowledge', array(
             'model' => $model,
         ));
@@ -48,7 +52,7 @@ class ManageController extends Controller {
             $model->position = '1';
 
 //            $new = true;
-//            $alertText = 'เพิ่มบทความเรียบร้อย';
+            $alertText = 'เพิ่มบทความเรียบร้อย';
 //            $link_location = '/knowledge/manage/insert';
         } else {
             Yii::app()->user->setState('message_review', 'แก้ไขบทความเรียบร้อย');
@@ -59,7 +63,7 @@ class ManageController extends Controller {
 
             $file = new Upload();
 
-//            $alertText = 'แก้ไขบทความเรียบร้อย';
+            $alertText = 'แก้ไขบทความเรียบร้อย';
 //            if ($new != '1') {
 //                if (Yii::app()->user->getState('insert') == 'view') {
 //                    $link_location = '/knowledge/default/view/id/' . $id;
@@ -95,9 +99,14 @@ class ManageController extends Controller {
 
                         $file->image->saveAs($image);
                     }
-                    $this->redirect('/knowledge/manage/review/id/' . $model->id);
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', $alertText) . "');
+                        window.location=\"/knowledge/manage/review/id/$model->id\";
+                        </script>
+                        ";
                 } else {
-                    echo "<pre>";
+                    echo "<pre>"; 
                     print_r($model->getErrors());
                     echo "</pre>";
                 }
@@ -140,26 +149,13 @@ class ManageController extends Controller {
 
     public function actionReview($id) {
         $model = Knowledge::model()->find('id = ' . $id);
-
+        $knowledge = new Knowledge();
+        $knowledge->unsetAttributes();
+        
         $this->render('_review', array(
             'model' => $model,
+            'knowledge' => $knowledge,
         ));
-    }
-
-    public function actionAddAlert($con) {
-        if ($con == '1')
-            $link_location = '/knowledge/manage/insert';
-        if ($con == '2')
-            $link_location = '/knowledge/manage/knowledge';
-
-        $message = Yii::app()->user->getState('message_review');
-        echo "
-            <meta http-equiv='content-type' content='text/html; charset=UTF-8'></meta>
-            <script>
-                alert('$message');
-                window.location='$link_location';
-            </script>
-            ";
     }
 
 }
