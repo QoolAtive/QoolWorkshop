@@ -32,16 +32,16 @@
         </div>
 
         <ul class="menu clearfix">
-            <li><a href="/knowledge/default/index">Knowledge & Learning</a></li>
-            <li><a href="web-simulation.html">Web Simulation</a></li>
-            <li><a href="e-directory.html">E-Directory</a></li>
-            <li><a href="/serviceProvider/default">Service Provider</a></li>
+            <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'Knowledge & Learning'); ?></a></li>
+            <li><a href="web-simulation.html"><?php echo Yii::t('language', 'Web Simulation'); ?></a></li>
+            <li><a href="e-directory.html"><?php echo Yii::t('language', 'E-Directory'); ?></a></li>
+            <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'Service Provider'); ?></a></li>
         </ul>
         <ul class="menu clearfix">
-            <li><a href="/link/default/index">Link</a></li>
-            <li><a href="/faq/default/index">FAQ</a></li>
-            <li><a href="/about/default/index">About Us</a></li>
-            <li><a href="/news/default/index">News & Activity</a> </li>
+            <li><a href="/link/default/index"><?php echo Yii::t('language', 'Link'); ?></a></li>
+            <li><a href="/faq/default/index"><?php echo Yii::t('language', 'FAQ'); ?></a></li>
+            <li><a href="/about/default/index"><?php echo Yii::t('language', 'About Us'); ?></a></li>
+            <li><a href="/news/default/index"><?php echo Yii::t('language', 'News & Activity'); ?></a> </li>
         </ul>
     </div>
 </div>
