@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/createaccount.png"/></li>
+            <li class="boxhead"><img src="/img/iconpage/knowledge.png"/></li>
         </ul>
         <ul class="tabs clearfix">
             <?php

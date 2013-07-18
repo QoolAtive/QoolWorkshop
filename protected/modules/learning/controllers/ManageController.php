@@ -47,7 +47,7 @@ class ManageController extends Controller {
     }
 
     public function actionInsertLearningGroup($id = null) {
-        $file = new Upload();
+        $file = new Upload2image();
         if ($id == null) {
             $model = new LearningGroup();
             $model->unsetAttributes();
@@ -61,7 +61,7 @@ class ManageController extends Controller {
             $model->attributes = $_POST['LearningGroup'];
 
             //รูปภาพภาษาไทย
-            $file->image = $_POST['Upload']['image'];
+            $file->image = $_POST['Upload2image']['image'];
             $file->image = CUploadedFile::getInstance($file, 'image');
             if ($file->image != NULL) {
                 $model->pic = $file->image;
@@ -71,7 +71,7 @@ class ManageController extends Controller {
             }
             //--------------
             //รูปภาพภาษาอังกฤษ
-            $file->image2 = $_POST['Upload']['image2'];
+            $file->image2 = $_POST['Upload2image']['image2'];
             $file->image2 = CUploadedFile::getInstance($file, 'image2');
             if ($file->image2 != NULL) {
                 $model->pic_en = $file->image2;
@@ -125,29 +125,30 @@ class ManageController extends Controller {
 
     public function actionDelLearningGroup($id = null) {
         $model = LearningGroup::model()->findByPk($id);
-
-        if ($model->pic != 'default.jpg') {
-//            $file_paht = './file/learning';
-//            if (!file_exists($file_paht))
-//                mkdir($file_paht, 0777);
-//
-//            unlink($file_paht . '/' . $model->pic);
-            $file_paht = './file/learning/' . $model->pic;
-            if (fopen($file_paht, 'w'))
-                unlink($file_paht);
-        }
-        if ($model->pic != $model->pic_en && $model->pic_en != null && $model->pic != null) {
-            if ($model->pic_en != 'default.jpg') {
-                $file_paht = './file/learning/' . $model->pic_en;
-//                if (!file_exists($file_paht))
-//                    mkdir($file_paht, 0777);
+        $count = Learning::model()->count('group_id=:group_id', array(':group_id' => $model->id));
+        if (empty($count)) {
+            if ($model->pic != 'default.jpg') {
+                $file_paht = './file/learning/' . $model->pic;
+                mkdir($file_paht, 0777);
                 if (fopen($file_paht, 'w'))
                     unlink($file_paht);
             }
-        }
+            if ($model->pic != $model->pic_en && $model->pic_en != null && $model->pic != null) {
+                if ($model->pic_en != 'default.jpg') {
+                    $file_paht = './file/learning/' . $model->pic_en;
+                    mkdir($file_paht, 0777);
+//                if (!file_exists($file_paht))
+//                    mkdir($file_paht, 0777);
+                    if (fopen($file_paht, 'w'))
+                        unlink($file_paht);
+                }
+            }
 
-        if ($model->delete())
-            echo "ลบข้อมูลเรียบร้อย";
+            if ($model->delete())
+                echo "ลบข้อมูลเรียบร้อย";
+        }else {
+            echo "ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่";
+        }
     }
 
     public function actionLearning() {
@@ -269,6 +270,7 @@ class ManageController extends Controller {
 
         if ($modelFile->file != 'default.jpg') {
             $file_paht = './file/learning/pdf/' . $modelFile->file;
+            mkdir($file_paht, 0777);
             if (fopen($file_paht, 'w'))
                 unlink($file_paht);
         }
@@ -278,4 +280,5 @@ class ManageController extends Controller {
     }
 
 }
+
 ?>
