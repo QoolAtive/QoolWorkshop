@@ -27,8 +27,13 @@ $this->widget('zii.widgets.grid.CGridView', array(
             array(
                 'class' => 'CButtonColumn',
                 'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-                'template' => '{update}{delete}{view}',
+                'header' => 'เครื่องมือ',
+                'template' => '{view}{update}{delete}',
                 'buttons' => array(
+                    'view' => array(
+                        'label' => 'edit', //Text label of the button.
+                        'url' => 'Yii::app()->createUrl("/knowledge/default/view/",array("id"=>$data->id))',
+                    ),
                     'update' => array(
                         'label' => 'edit', //Text label of the button.
                         'url' => 'Yii::app()->createUrl("/knowledge/manage/insert/",array("id"=>$data->id))',
@@ -37,10 +42,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                         'label' => 'del', //Text label of the button.
                         'url' => 'Yii::app()->createUrl("/knowledge/manage/del/",array("id"=>$data->id))',
                     ),
-                    'view' => array(
-                        'label' => 'edit', //Text label of the button.
-                        'url' => 'Yii::app()->createUrl("/knowledge/default/view/",array("id"=>$data->id))',
-                    ),
+                    
                 ),
                 'afterDelete' => 'function(link,success,data){
                                     if(data != ""){

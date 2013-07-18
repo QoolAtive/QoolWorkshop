@@ -75,6 +75,7 @@ class ManageController extends Controller {
 
         if (isset($_POST['Knowledge'])) {
             $model->attributes = $_POST['Knowledge'];
+            $model->detail_en = $_POST['Knowledge']['detail_en'];
             $file->image = $_POST['Upload']['image'];
             $file->image = CUploadedFile::getInstance($file, 'image');
             if ($file->image != NULL) {
