@@ -130,7 +130,6 @@ Class ManageController extends Controller {
         $model_user = new MemUser();
         $model_confirm = new MemConfirm();
 
-
         if (isset($_POST['MemPerson']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemPerson'];
             $model->career = '0';

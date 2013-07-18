@@ -126,21 +126,21 @@ class MemUser extends MemUserBase {
     }
 
     public function CheckUser() {
-        if (!$this->getErrors()) {
-            if (Tool::CheckPID(Tool::Decrypted($this->username)) == false) { // เช็ค username ว่าเป็นรูปแบบของเลขบัตรประชาชนหรือไม่ และ มีอยู่ในระบบหรือเปล่า
-                $this->addError('username', Yii::t('language', 'รหัสผู้ใช้รูปแบบไม่ถูกต้อง กรุณาตรวจสอบ'));
-            } else {
-                $model = MemUser::model()->findByAttributes(array('username' => $this->username));
-                if (!empty($model))
-                    $this->addError('username', Yii::t('language', 'รหัสผู้ใช้มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
-            }
-            if (strlen(Tool::Decrypted($this->password)) < 6) { // เช็คว่ารหัสผ่านมีไม่น้อยกว่า 6 ตัวอักษร
-                $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . 'ต้องมีมากกว่าหรือเท่ากับ 6'));
-            }
-            if (ereg('[^0-9A-Za-z]', Tool::Decrypted($this->password))) { // เช็ครูปแบบรหัสผ่านว่าเป็น ภาษาอังกฤษ หรือ ตัวเลขหรือไม่?
-                $this->addError('password', Yii::t('language', 'รูปแแบบ' . MemUser::model()->getAttributeLabel('password') . 'ไม่ถูกต้อง กรุณาตรวจสอบ'));
-            }
+//        if (!$this->getErrors()) {
+        if (Tool::CheckPID(Tool::Decrypted($this->username)) == false) { // เช็ค username ว่าเป็นรูปแบบของเลขบัตรประชาชนหรือไม่ และ มีอยู่ในระบบหรือเปล่า
+            $this->addError('username', Yii::t('language', 'รหัสผู้ใช้รูปแบบไม่ถูกต้อง กรุณาตรวจสอบ'));
+        } else {
+            $model = MemUser::model()->findByAttributes(array('username' => $this->username));
+            if (!empty($model))
+                $this->addError('username', Yii::t('language', 'รหัสผู้ใช้มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
         }
+        if (strlen(Tool::Decrypted($this->password)) < 6) { // เช็คว่ารหัสผ่านมีไม่น้อยกว่า 6 ตัวอักษร
+            $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . 'ต้องมีมากกว่าหรือเท่ากับ 6'));
+        }
+        if (ereg('[^0-9A-Za-z]', Tool::Decrypted($this->password))) { // เช็ครูปแบบรหัสผ่านว่าเป็น ภาษาอังกฤษ หรือ ตัวเลขหรือไม่?
+            $this->addError('password', Yii::t('language', 'รูปแแบบ' . MemUser::model()->getAttributeLabel('password') . 'ไม่ถูกต้อง กรุณาตรวจสอบ'));
+        }
+//        }
     }
 
     public function getRegistration() {// member นิติบุคคลที่ยังไม่ได้รับการยืนยันจาก admin
