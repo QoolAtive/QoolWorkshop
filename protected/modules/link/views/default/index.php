@@ -1,3 +1,8 @@
+<?php
+$currentLang = Yii::app()->language;
+echo "<br />currentLang: " . $currentLang . "<br />";
+?>
+
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -31,8 +36,15 @@
     ));
     echo CHtml::textField('name', '', array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อลิงก์')));
 
+    $feild_name = "name_th";
+    if ($currentLang == 'en') {
+        if ($l['name_en'] != '') {
+            $feild_name = "name_en";
+        }
+    }
+
     echo CHtml::DropDownList(
-            'group_id', $group, array('0' => Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')) + CHtml::listData(LinkGroup::model()->findAll(), "id", "name_th")
+            'group_id', $group, array('0' => Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')) + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
     );
     echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
     $this->endWidget();
@@ -40,8 +52,6 @@
 </div>
 <ul class="linklist">
     <?php
-    $currentLang = Yii::app()->language;
-    echo "<br />currentLang: " . $currentLang . "<br />";
     if (empty($list)) {
         echo Yii::t('language', "ไม่พบลิงก์ที่เกี่ยวข้อง");
     } else {
