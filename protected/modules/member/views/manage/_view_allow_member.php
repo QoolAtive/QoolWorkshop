@@ -104,12 +104,12 @@
             , 'confirm' => Yii::t('language', 'คุณต้องการยืนยันสมาชิกหรือไม่?'))
         );
     }
-
-    if ($data['memType'] == '1')
+    
+    if($data['memType'] == '1')
         $linkBack = '/member/manage/admin#view3';
-    else
+    if($data['memType'] == '2')
         $linkBack = '/member/manage/admin#view2';
-
+    
     echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
             $linkBack
         )) . "'")
