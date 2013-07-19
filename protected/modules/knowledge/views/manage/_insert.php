@@ -52,7 +52,7 @@ if ($model->id != NULL) {
         ?>
     </div>
     <div class="_100">
-        <h4 class="reg"><?php echo Yii::t('language', '- บทความภาษาไทย -'); ?></h4>
+        <h4 class="reg"><?php echo Yii::t('language', '- บทความภาษาอังกฤษ -'); ?></h4>
     </div>
     <div class="_100">
         <?php

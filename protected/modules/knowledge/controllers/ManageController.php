@@ -29,10 +29,9 @@ class ManageController extends Controller {
         // ปุ่มย้อนกลับ
         Yii::app()->user->setState('link_back', '/knowledge/manage/knowledge');
         Yii::app()->user->setState('insert', 'knowledge'); // ลิ้งหน้าเพิ่มบทความ
-        
         // ยกเลิกเวลาเพิ่มบทความให้กลับไปไหน ดูรายละเอียดบทความหรือ กลับไปหน้าจัดการบทความ
 //        Yii::app()->user->setState('cancel', '/knowledge/manage/knowledge');
-        
+
         $this->render('knowledge', array(
             'model' => $model,
         ));
@@ -76,10 +75,23 @@ class ManageController extends Controller {
         if (isset($_POST['Knowledge'])) {
             $model->attributes = $_POST['Knowledge'];
             $model->detail_en = $_POST['Knowledge']['detail_en'];
-            $file->image = $_POST['Upload']['image'];
-            $file->image = CUploadedFile::getInstance($file, 'image');
-            if ($file->image != NULL) {
-                $model->image = $file->image;
+//            $file->image = $_POST['Upload']['image'];
+            $fileSave = CUploadedFile::getInstance($file, 'image');
+//            
+//            echo "<pre>";
+//            print_r($file);
+//            echo "</pre>";
+            if ($fileSave != NULL) {
+                $dir = './file/knowledge/';
+                if (isset($model->image)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                    if (fopen($dir . $model->image, 'w'))
+                        if (unlink($dir . $model->image)) {
+                            
+                        }
+                }
+
+                $filename = rand('000', '999') . $fileSave->name;
+                $model->image = $filename;
             } else {
                 if ($model->image == NULL)
                     $model->image = 'default.jpg';
@@ -91,14 +103,14 @@ class ManageController extends Controller {
                         $model2->appro_status = '0';
                         $model2->save();
                     }
-                    if ($file->image != NULL) {
+                    if ($fileSave != NULL) {
                         $dir = './file/knowledge/';
-                        if (!file_exists($dir))
-                            mkdir($dir, 0777);
+                        if (!is_dir($dir))
+                            mkdir($dir, 0777, true);
 
-                        $image = $dir . '/' . $file->image;
+                        $image = $dir . $filename;
 
-                        $file->image->saveAs($image);
+                        $fileSave->saveAs($image);
                     }
                     echo "
                         <script>
@@ -107,7 +119,7 @@ class ManageController extends Controller {
                         </script>
                         ";
                 } else {
-                    echo "<pre>"; 
+                    echo "<pre>";
                     print_r($model->getErrors());
                     echo "</pre>";
                 }
@@ -123,11 +135,16 @@ class ManageController extends Controller {
     public function actionDel($id) {
         $model = Knowledge::model()->findByPk($id);
         if ($model->image != 'default.jpg') {
-            $file_paht = './file/knowledge';
-            if (!file_exists($file_paht))
-                mkdir($file_paht, 0777);
+            $file_paht = './file/knowledge/' . $model->image;
+//            if (!file_exists($file_paht))
+//                mkdir($file_paht, 0777);
 
-            unlink($file_paht . '/' . $model->image);
+            if (isset($model->image)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                if (fopen($file_paht, 'w'))
+                    if (unlink($file_paht)) {
+                        
+                    }
+            }
         }
 
         if ($model->delete())
@@ -137,11 +154,11 @@ class ManageController extends Controller {
     public function actionDelReview($id) {
         $model = Knowledge::model()->findByPk($id);
         if ($model->image != 'default.jpg') {
-            $file_paht = './file/knowledge/';
+            $file_paht = './file/knowledge/' . $model->image;
             if (!file_exists($file_paht))
                 mkdir($file_paht, 0777);
 
-            unlink($file_paht . '/' . $model->image);
+            unlink($file_paht);
         }
 
         if ($model->delete())
@@ -152,7 +169,7 @@ class ManageController extends Controller {
         $model = Knowledge::model()->find('id = ' . $id);
         $knowledge = new Knowledge();
         $knowledge->unsetAttributes();
-        
+
         $this->render('_review', array(
             'model' => $model,
             'knowledge' => $knowledge,
