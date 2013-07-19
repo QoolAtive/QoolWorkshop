@@ -122,7 +122,7 @@ if ($model->id != NULL) {
     </div>
     <div class="_100">
         <?
-        echo $form->fileField($file, 'image');
+        echo $form->fileField($file, 'image', array('accept' => 'imaage/*'));
         echo $form->error($file, 'image');
         ?>
     </div>

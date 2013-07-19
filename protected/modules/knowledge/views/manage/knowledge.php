@@ -4,8 +4,7 @@
             <li class="boxhead"><img src="/img/iconpage/knowledge.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="#" rel="view1">บทความแนะนำ</a></li>
-            <li><a href="#" rel="view2">บทความทั้งหมด</a></li>
+            
             <?php
             $list = array(
                 array('text' => 'Knowledge', 'link' => '/knowledge/default/index'),
@@ -32,6 +31,8 @@
                 }
                 ?>
             </li>
+            <li><a href="#" rel="view1">บทความแนะนำ</a></li>
+            <li><a href="#" rel="view2">บทความทั้งหมด</a></li>
         </ul>
     </div>
 </div>
