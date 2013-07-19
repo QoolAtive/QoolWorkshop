@@ -6,8 +6,7 @@ class UploadPDF extends CFormModel {
 
     public function rules() {
         return array(
-            array('file', 'required'),
-            array('file', 'file', 'types' => 'pdf'),
+            array('file', 'file'),
         );
     }
 

@@ -9,7 +9,7 @@
                 array('text' => Yii::t('language', 'กลุ่มการเรียนรู้'), 'link' => '/learning/manage/learningGroup', 'select' => $select1),
                 array('text' => Yii::t('language', 'บทเรียน'), 'link' => '/learning/manage/learning', 'select' => $select2),
             );
-            echo Tool::GenList($list);
+
 
             $list2 = array(
                 array('text' => 'Knowledge', 'link' => '/knowledge/default/index'),
@@ -36,6 +36,9 @@
                 }
                 ?>
             </li>
+            <?php
+            echo Tool::GenList($list);
+            ?>
         </ul>
     </div>
 </div>

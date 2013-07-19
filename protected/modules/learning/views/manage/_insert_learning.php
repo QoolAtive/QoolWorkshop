@@ -20,7 +20,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="_100">
         <?php
         echo $form->labelEx($upload, 'file');
-        echo $form->fileField($upload, 'file');
+        echo $form->fileField($upload, 'file', array('accept'=>"application/pdf"));
         echo $form->error($upload, 'file');
         ?>
     </div>

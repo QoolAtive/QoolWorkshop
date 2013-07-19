@@ -219,21 +219,16 @@ class ManageController extends Controller {
             $modelVideo->attributes = $_POST['LearningVideo'];
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
 
-//            $upload->attributes = $_POST['UploadPDF'];
+            $upload->attributes = $_POST['UploadPDF'];
+            
             if (isset($id) && $upload->file == null) { // ถ้าแก้ไขบทเรียนเดิม ตั้งค่า default ของ Model Upload = ค่าที่ต้องการแก้ไข
                 $upload->file = $modelFile->path;
             }
 
-            
-
+            $upload->file = CUploadedFile::getInstance($upload, 'file');
             $model->validate();
             $modelVideo->validate();
-            $upload->validate();
-//            echo "<pre>";
-//            print_r($upload->attributes);
-//            echo "</pre>";
-//            die;
-
+//            $upload->validate();
 
             if ($model->getErrors() == null && $modelVideo->getErrors() == null && $upload->getErrors() == null) {
                 $file = CUploadedFile::getInstance($upload, 'file');
