@@ -3,6 +3,11 @@
 class DefaultController extends Controller {
 
     public function actionIndex() {
+        $currentLang = Yii::app()->language;
+        $feild_name = "name_th";
+        if ($currentLang == 'en') {
+            $feild_name = "name_en";
+        }
         $criteria = new CDbCriteria;
         $group = '0';
         if (isset($_POST['group_id']) && $_POST['group_id'] != '0') {
@@ -11,7 +16,7 @@ class DefaultController extends Controller {
         }
         if (isset($_POST['name'])) {
             $name = $_POST['name'];
-            $criteria->addCondition('name_th like "%' . $name . '%" or name_en like "%' . $name . '%"');
+            $criteria->addCondition($feild_name .' like "%' . $name . '%"');
         }
         $list = LinkWeb::model()->findAll($criteria);
         $this->render('index', array('list' => $list, 'group' => $group));
