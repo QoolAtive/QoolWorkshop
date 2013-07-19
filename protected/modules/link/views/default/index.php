@@ -6,7 +6,7 @@ $currentLang = Yii::app()->language;
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/<?php echo Yii::t('language', 'link.png'); ?>"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/link.png'); ?>"/></li>
         </ul>
     </div>
 </div>
