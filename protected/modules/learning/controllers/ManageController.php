@@ -66,7 +66,6 @@ class ManageController extends Controller {
 
             if ($file1 != NULL) {
                 $dir = './file/learning/';
-                chmod($dir, 0777);
                 if (isset($model->pic)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
                     if (fopen($dir . $model->pic, 'w')) {
                         if (unlink($dir . $model->pic)) {
@@ -87,7 +86,6 @@ class ManageController extends Controller {
 
             if ($file2 != NULL) {
                 $dir = './file/learning/';
-                chmod($dir, 0777);
                 if (isset($model->pic_en)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
                     if (fopen($dir . $model->pic_en, 'w')) {
                         if (unlink($dir . $model->pic_en)) {
@@ -108,9 +106,7 @@ class ManageController extends Controller {
                 if ($model->save()) {
                     $dir = './file/learning/';
                     if ($file1 != NULL) {
-                        if (!file_exists($dir))
-                            chmod($dir, 0777);
-
+                        
                         $image = $dir . $file1name;
 
                         $file1->saveAs($image);
