@@ -106,7 +106,7 @@ class ManageController extends Controller {
                 if ($model->save()) {
                     $dir = './file/learning/';
                     if ($file1 != NULL) {
-                        
+
                         $image = $dir . $file1name;
 
                         $file1->saveAs($image);
@@ -238,8 +238,10 @@ class ManageController extends Controller {
                         if (isset($file)) {
                             $path = './file/learning/pdf/';
                             if (isset($modelFile->path)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
-                                if (unlink($path . $modelFile->path)) {
-                                    $modelFile->delete();
+                                if (fopen($path . $modelFile->path, 'w')) {
+                                    if (unlink($path . $modelFile->path)) {
+                                        $modelFile->delete();
+                                    }
                                 }
                             }
 
