@@ -1,6 +1,6 @@
 <?php
 $currentLang = Yii::app()->language;
-echo "<br />currentLang: " . $currentLang . "<br />";
+//echo "<br />currentLang: " . $currentLang . "<br />";
 ?>
 
 <div class="sidebar">
@@ -37,14 +37,13 @@ echo "<br />currentLang: " . $currentLang . "<br />";
     echo CHtml::textField('name', '', array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อลิงก์')));
 
     $feild_name = "name_th";
-    if ($currentLang == 'en') {
-        if ($l['name_en'] != '') {
+    if ($currentLang == 'en') { // Change Language TH/EN Select Data for show in Drop Down List
             $feild_name = "name_en";
-        }
     }
+//    echo "<br />feild_name: " . $feild_name . "<br />";
 
     echo CHtml::DropDownList(
-            'group_id', $group, array('0' => Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')) + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
+            'group_id', $group, array('0' => " - ".Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')." - ") + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
     );
     echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
     $this->endWidget();
