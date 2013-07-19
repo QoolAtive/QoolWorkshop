@@ -185,8 +185,8 @@ class ManageController extends Controller {
     }
 
     public function actionInsertLearning($id = null) {
-        $upload = new Upload();
-        $upload->unsetAttributes();
+        $upload = new UploadPDF();
+//        $upload->unsetAttributes();
 
         if ($id == null) {
             $model = new Learning();
@@ -199,15 +199,17 @@ class ManageController extends Controller {
             $modelFile->unsetAttributes();
 
             $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
+            $link = '/learning/manage/inserLearning';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
             $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
+            $link = '/learning/default/lesson/id/' . $model->id;
 
             $modelFile = LearningFile::model()->find('main_id = ' . $id);
         }
 
-        if (isset($_POST['Learning']) && isset($_POST['LearningVideo'])) {
+        if (isset($_POST['Learning']) && isset($_POST['LearningVideo']) && isset($_POST['UploadPDF'])) {
             $model->attributes = $_POST['Learning'];
             $model->author = Yii::app()->user->id;
             $model->guide_status = '0';
@@ -217,22 +219,25 @@ class ManageController extends Controller {
             $modelVideo->attributes = $_POST['LearningVideo'];
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
 
-            $upload->attributes = $_POST['Upload'];
+//            $upload->attributes = $_POST['UploadPDF'];
             if (isset($id) && $upload->file == null) { // ถ้าแก้ไขบทเรียนเดิม ตั้งค่า default ของ Model Upload = ค่าที่ต้องการแก้ไข
                 $upload->file = $modelFile->path;
             }
 
+            
+
             $model->validate();
             $modelVideo->validate();
             $upload->validate();
+//            echo "<pre>";
+//            print_r($upload->attributes);
+//            echo "</pre>";
+//            die;
 
-            if ($upload->getErrors() == null) {
-                $file = CUploadedFile::getInstance($upload, 'file');
-            }
 
             if ($model->getErrors() == null && $modelVideo->getErrors() == null && $upload->getErrors() == null) {
+                $file = CUploadedFile::getInstance($upload, 'file');
                 if ($model->save()) {
-
                     $modelVideo->main_id = $model->id;
                     if ($modelVideo->save()) {
                         if (isset($file)) {
@@ -264,7 +269,7 @@ class ManageController extends Controller {
                         echo "
                         <script>
                         alert('" . Yii::t('language', $messageAlert) . "');
-                        window.location='/learning/manage/InsertLearning';
+                        window.location='$link';
                         </script>
                         ";
                     }
@@ -278,6 +283,10 @@ class ManageController extends Controller {
 //                print_r(array($model->getErrors(), $modelVideo->getErrors()));
 //                echo "</pre>";
             }
+        } else {
+//            echo "<pre>";
+//            print_r(array($model->getErrors(),$upload->getErrors()));
+//            echo "</pre>";
         }
 
         $this->render('_insert_learning', array(

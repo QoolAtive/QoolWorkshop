@@ -31,6 +31,7 @@
                     echo CHtml::link('Manage Learning', array('/learning/manage/learning'), array('rel' => 'view6'));
                 }
                 ?>
+            </li>
         </ul>
     </div>
 </div>
@@ -65,7 +66,7 @@
             <hr>
         </div>
         <div id="view2" class="tabcontent">
-<h3>บทความทั้งหมด</h3>
+            <h3>บทความทั้งหมด</h3>
             <hr>
             <div style="text-align: center;">
                 <?php
@@ -92,17 +93,17 @@
             </div>
             <hr>
         </div>
-<!--        <div id="view3" class="tabcontent">
-
-        </div>
-        <div id="view4" class="tabcontent">
-
-        </div>
-        <div id="view5" class="tabcontent">
-
-        </div>
-        <div id="view6" class="tabcontent">
-            
-        </div>-->
+        <!--        <div id="view3" class="tabcontent">
+        
+                </div>
+                <div id="view4" class="tabcontent">
+        
+                </div>
+                <div id="view5" class="tabcontent">
+        
+                </div>
+                <div id="view6" class="tabcontent">
+                    
+                </div>-->
     </div>
 </div>
