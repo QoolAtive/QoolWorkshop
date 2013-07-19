@@ -134,7 +134,7 @@ class DefaultController extends Controller {
         $con1 = MemPerson::model()->count('high_education = ' . $id);
         $con2 = MemRegistration::model()->count('high_education = ' . $id);
         if (($con1 + $con2) < 1) {
-            $model = HighEducation::model()->findByPk($id);
+            $model = CompanyTypeBusiness::model()->findByPk($id);
             if ($model->delete()) {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
