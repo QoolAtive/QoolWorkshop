@@ -1,17 +1,56 @@
+<?php
+$currentLang = Yii::app()->language;
+//echo "<br />currentLang: " . $currentLang . "<br />";
+?>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/faq.png"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/faq.png'); ?>"/></li>
         </ul>
     </div>
 
     <ul class="tabs clearfix">
-        <li><a rel="view1" href="#">FAQ Service Provider</a></li>
-        <li><a rel="view2" href="#">FAQ Knowledge & Learning</a></li>
-        <li><a rel="view3" href="#">FAQ E-Directory</a></li>
-        <li><a rel="view4" href="#">FAQ Web Simulation</a></li>
+        <li>
+            <a rel="view1" href="#">
+                <?php
+                //FAQ Service Provider 
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'บริการ');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a rel="view2" href="#">
+                <?php
+                //FAQ Knowledge & Learning
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'การเรียนรู้และบทความ');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a rel="view3" href="#">
+                <?php
+                //FAQ E-Directory
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'ค้นหาร้านค้า');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a rel="view4" href="#">
+                <?php
+                //FAQ Web Simulation
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'แนะนำการใช้งาน');
+                ?>
+            </a>
+        </li>
         <?php if (Yii::app()->user->isAdmin()) { ?>
-            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq')); ?>">Manage</a></li>
+            <li>
+                <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq')); ?>">                   
+                    <?php
+                // Manage
+                echo Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'คำถาม');
+                ?>
+                </a>
+            </li>
         <?php } ?>
     </ul>
 </div>
@@ -19,16 +58,14 @@
 
 <div class="content">
     <div class="tabcontents" >
-            <img src="/img/banner/faq.png" class="pagebanner" alt="pagebanner"/>
-
-
-
+        <img src="<?php echo Yii::t('language', '/img/banner/faq.png'); ?>" class="pagebanner" alt="pagebanner"/>
+        
         <!-- 1. FAQ Service Provider -->
         <div id="view1" class="tabcontent">
             <?php
 //            $faq1 = FaqQuestion::model()->findAllByAttributes(array('fm_id' => '1'));
             ?>
-            <img src="/img/headfaq1.png" class="tabfaq">
+            <img src="<?php echo Yii::t('language', '/img/headfaq1.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother1">
                 <?php
 //                if (Yii::app()->user->isAdmin()) {
@@ -54,9 +91,10 @@
 //                            );
                             ?>
                         </div>
-                        <div id="item1<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in'; else echo ''; ?>">
+                        <div id="item1<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in';
+                        else echo ''; ?>">
                             <div class="accordion-inner">
-                                <?php echo $faq['detail_th']; ?>
+    <?php echo $faq['detail_th']; ?>
                             </div>
                         </div>
                     </div>
@@ -80,7 +118,7 @@
 
         <!-- 2.FAQ Knowledge & Learning -->
         <div id="view2" class="tabcontent">
-            <img src="/img/headfaq2.png" class="tabfaq">
+            <img src="<?php echo Yii::t('language', '/img/headfaq2.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother2">
                 <?php
 //                if (Yii::app()->user->isAdmin()) {
@@ -98,7 +136,7 @@
                         <div class="accordion-heading">
                             <p class="faqarrow"></p>
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother2" href="#item2<?php echo $i; ?>">
-                                <?php echo $faq['subject_th']; ?>
+                            <?php echo $faq['subject_th']; ?>
                             </a>
                             <?php
 //                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/2/id/' . $faq['id'])), array('update' => '#edit2')
@@ -107,9 +145,10 @@
 //                            );
                             ?>
                         </div>
-                        <div id="item2<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in'; else echo ''; ?>">
+                        <div id="item2<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in';
+                            else echo ''; ?>">
                             <div class="accordion-inner">
-                                <?php echo $faq['detail_th']; ?>
+    <?php echo $faq['detail_th']; ?>
                             </div>
                         </div>
                     </div>
@@ -130,7 +169,7 @@
 
         <!-- 3.FAQ E-Dir -->
         <div id="view3" class="tabcontent">
-            <img src="/img/headfaq3.png" class="tabfaq">
+            <img src="<?php echo Yii::t('language', '/img/headfaq3.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother3">
                 <?php
 //                if (Yii::app()->user->isAdmin()) {
@@ -148,7 +187,7 @@
                         <div class="accordion-heading">
                             <p class="faqarrow"></p>
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>">
-                                <?php echo $faq['subject_th']; ?>
+                            <?php echo $faq['subject_th']; ?>
                             </a>
                             <?php
 //                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/3/id/' . $faq['id'])), array('update' => '#edit3')
@@ -157,9 +196,10 @@
 //                            );
                             ?>
                         </div>
-                        <div id="item3<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in'; else echo ''; ?>">
+                        <div id="item3<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in';
+                            else echo ''; ?>">
                             <div class="accordion-inner">
-                                <?php echo $faq['detail_th']; ?>
+                    <?php echo $faq['detail_th']; ?>
                             </div>
                         </div>
                     </div>
@@ -180,7 +220,7 @@
 
         <!-- 4.FAQ Web Simulation -->
         <div id="view4" class="tabcontent">
-            <img src="/img/headfaq4.png" class="tabfaq">
+            <img src="<?php echo Yii::t('language', '/img/headfaq4.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother4">
                 <?php
 //                if (Yii::app()->user->isAdmin()) {
@@ -198,7 +238,7 @@
                         <div class="accordion-heading">
                             <p class="faqarrow"></p>
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother4" href="#item4<?php echo $i; ?>">
-                                <?php echo $faq['subject_th']; ?>
+                            <?php echo $faq['subject_th']; ?>
                             </a>
                             <?php
 //                                echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/4/id/' . $faq['id'])), array('update' => '#edit4')
@@ -207,16 +247,17 @@
 //                                );
                             ?>
                         </div>
-                        <div id="item4<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in'; else echo ''; ?>">
+                        <div id="item4<?php echo $i; ?>" class="accordion-body collapse <?php if ($i == 1) echo 'in';
+                            else echo ''; ?>">
                             <div class="accordion-inner">
-                                <?php echo $faq['detail_th']; ?>
+                    <?php echo $faq['detail_th']; ?>
                             </div>
                         </div>
                     </div>
-                    <?php
-                    $i++;
-                }
-                ?>
+    <?php
+    $i++;
+}
+?>
 
             </div>
             <?php
