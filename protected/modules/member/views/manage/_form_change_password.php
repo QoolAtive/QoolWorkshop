@@ -20,6 +20,9 @@ $form = $this->beginWidget('CActiveForm', array(
 //    'clientOptions' => array(
 //        'validateOnSubmit' => true,
 //    ),
+    'htmlOptions' => array(
+        'autocomplete' => 'off',
+    )
         ));
 ?>
 <div style=" padding: 5px 33%;">

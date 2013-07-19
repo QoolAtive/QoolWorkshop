@@ -27,6 +27,9 @@
                 $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'insert_registration-form',
 //                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
+                    'htmlOptions' => array(
+                        'autocomplete' => 'off',
+                    )
                 ));
                 ?> 
                 <div class="_100">

@@ -1,4 +1,9 @@
-
+<!--<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#insert-form").attr("autocomplete","off");
+       
+    });
+</script>-->
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -25,6 +30,9 @@
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'insert-form',
                 'enableAjaxValidation' => false,
+                'htmlOptions' => array(
+                    'autocomplete' => 'off',
+                )
             ));
             ?>
             <div class="_100">
