@@ -76,8 +76,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2) < 1) {
             $model = HighEducation::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -134,8 +136,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2) < 1) {
             $model = HighEducation::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -192,8 +196,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2) < 1) {
             $model = MemSex::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -257,8 +263,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2 + $con3 + $con4) < 1) {
             $model = TitleName::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
