@@ -87,8 +87,8 @@ class FaqQuestion extends FaqQuestionBase {
         $criteria->compare('fm_id', $this->fm_id);
         $criteria->compare('subject_th', $this->subject_th, true);
         $criteria->compare('detail_th', $this->detail_th, true);
-        $criteria->compare('subject_en', $this->subject_th, true);
-        $criteria->compare('detail_en', $this->detail_th, true);
+        $criteria->compare('subject_en', $this->subject_en, true);
+        $criteria->compare('detail_en', $this->detail_en, true);
         $criteria->compare('author', $this->author, true);
         $criteria->compare('date_write', $this->date_write, true);
 
