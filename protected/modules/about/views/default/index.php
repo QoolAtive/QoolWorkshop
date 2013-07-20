@@ -63,7 +63,7 @@
 
                 <div class="contentpage contact conpad">
                     <ul style="margin: 20px 0; margin-left: 10px;">   
-                        <li><h3>Contact</h3></li>
+                        <li><h3><?php echo Yii::t('language', 'ติดต่อเรา'); ?></h3></li>
                         <?php
                         #ไม่ใช้ปุ่ม edit แล้ว
 //                        if (Yii::app()->user->isAdmin()) {
@@ -75,63 +75,56 @@
                         ?>
                         <li>
                             <img src="/img/icon/pin.png"  height="16" />
-                            44/100 ถนน นนทบุรี 1 ตำบลบางกระสออำเภอเมือง จังหวัดนนทบุรี 11000 
+                            <?php echo Yii::t('language', '44/100 ถนนนนทบุรี 1 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000'); ?> 
                         </li>
                         <li>
-                            <img src="/img/icon/phone.png" height="16"/>โทร. 0-2528-7600 ต่อ 3191,3192 โทรสาร. 0-2547-5973 สายด่วน 1570 
+                            <img src="/img/icon/phone.png" height="16"/>  
+                            <ul class="list_tel">
+                                <li><?php echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192'); ?> </li>
+                                <li><?php echo Yii::t('language', 'โทรสาร. 0-2547-5973'); ?> </li>
+                                <li><?php echo Yii::t('language', 'สายด่วน 1570'); ?> </li>
+                            </ul>
                         </li>
                         <li>
-                            <img src="/img/icon/world.png" height="16"/> www.dbdmart.com</p>
+                            <img src="/img/icon/world.png" height="16"/>www.dbdmart.com
                         </li>
                         <li>
-                            <img src="/img/icon/mail.png"  height="16"/>  support@dbdmart.com 
+                            <img src="/img/icon/mail.png"  height="16"/>support@dbdmart.com 
                         </li>
-
                     </ul>
 
                     <?php
                     $form = $this->beginWidget('CActiveForm', array(
                         'id' => 'sendmail-form',
                     ));
-                    ?>
-<!--                    <input class="span6 fieldrequire"    type="text"  style=" display: block;" placeholder="Your Name" name="subject" value=""  />-->
-                    <?php
                     echo CHtml::textField('name', '', array(
                         'class' => "span6 fieldrequire",
                         'style' => "display: block;",
-                        'placeholder' => "Your Name",
+                        'placeholder' => Yii::t('language', 'ชื่อของคุณ'),
                     ));
                     echo CHtml::textField('email', '', array(
                         'class' => "span6 fieldrequire",
                         'class' => "frequire",
                         'style' => "display: block;",
-                        'placeholder' => "E-mail",
+                        'placeholder' => Yii::t('language', 'อีเมล์'),
                     ));
                     echo CHtml::textField('website', '', array(
                         'class' => "span6",
 //                        'style' => "display: block;",
-                        'placeholder' => "Website",
+                        'placeholder' => Yii::t('language', 'เว็บไซต์'),
                     ));
                     echo CHtml::textArea('description', '', array(
                         'class' => "span12",
                         'rows' => "4",
                         'cols' => "50",
                         'style' => "display: block;",
-                        'placeholder' => "Description...",
+                        'placeholder' => Yii::t('language', 'รายละเอียด')."...",
                     ));
-                    ?>
-<!--                    <input class="span6 fieldrequire" required  type="text" class="frequire" placeholder="E-mail" name="subject" value="" />  -->
-<!--                    <input class="span6" type="text" name="subject" value=""  placeholder="Website"/>-->
 
-<!--                    <textarea style="display: block;" class="span12" rows="4" cols="50" placeholder="Description...">-->
-                    <!--                    </textarea>-->
-
-                    <!--                    <a class="btn purple twhite right" href="login.html">Sent</a>-->
-                    <?php
                     echo CHtml::submitButton(Yii::t('language', 'ส่ง'), array(
                         'submit' => CHtml::normalizeUrl(array('/about/default/sendmail'))));
-                    ?>
-                    <?php $this->endWidget(); ?>
+                   $this->endWidget();
+                   ?>
                 </div>
 
             </div>
