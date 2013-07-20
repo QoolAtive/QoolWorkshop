@@ -22,7 +22,7 @@ class DefaultController extends Controller {
 
         // ลิ้งหน้า เพิ่มบทความ
         Yii::app()->user->setState('insert', 'view');
-        
+
         // ลิ้งกลับมายังหน้ารายละเอียด ขณะที่แอดมินเข้าไปแก้ไขรายละเอียด บทความ
 //        Yii::app()->user->setState('cancel', '/knowledge/default/');
         $this->render('_view', array(
@@ -75,7 +75,7 @@ class DefaultController extends Controller {
             if ($date_start > $date_end) {
                 echo "
                     <script>
-                    alert('วันเดือนปีเริ่มต้นต้องน้อยกว่าหรือเท่ากับวันเดือนปีที่สิ้นสุด');
+                    alert(" . Yii::t('language', 'วันเดือนปีเริ่มต้นต้องน้อยกว่าหรือเท่ากับวันเดือนปีที่สิ้นสุด') . ");
                     window.location='/knowledge/default/knowledge';
                     </script>
                     ";
@@ -93,10 +93,10 @@ class DefaultController extends Controller {
 //            echo "</pre>";die;
             $date_select = "
                 <ul><li>
-                    เดือน" . Thai::$thaimonth_full[$_POST['month_start']] . "
-                    ปี พ.ศ. " . $_POST['year_start'] . "
-                    ถึง เดือน" . Thai::$thaimonth_full[$_POST['month_end']] . "
-                    ปี พ.ศ. " . $_POST['year_end'] . "
+                    " . Yii::t('language', 'เดือน') . Yii::t('language', Thai::$thaimonth_full[$_POST['month_start']]) . "
+                    " . Yii::t('language', 'ปี พ.ศ.') . " " . $_POST['year_start'] . "
+                    " . Yii::t('language', 'ถึง'). " ". Yii::t('language', 'เดือน') . Yii::t('language', Thai::$thaimonth_full[$_POST['month_end']]) . "
+                    " . Yii::t('language', 'ปี พ.ศ.') . " " . $_POST['year_end'] . "
                 </li></ul>";
         }
 
