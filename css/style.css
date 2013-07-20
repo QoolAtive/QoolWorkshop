@@ -30,6 +30,26 @@ input, textarea, select {
     letter-spacing: 1.2px;
 }   
 
+.fixpostab1 {
+    margin-top: 202px;
+    position: absolute;
+    width: 111px !important;
+}
+
+.fixpostab2 {
+    margin-left: 111px !important;
+    margin-top: 202px;
+    position: absolute;
+    width: 113px !important;
+}
+
+.fixpostab1.selected {
+    width: 111px !important;
+}
+.fixpostab2.selected {
+    margin-left: 111px !important;
+    width: 113px !important;
+}
 
 h3{
     padding: 12px 0 ;
@@ -1136,13 +1156,21 @@ text-align: center;
 
 
 #container .tabfaq {
-    margin-top: -38px;
+    margin-left: 1px;
+    margin-top: -45px;
     position: absolute;
     z-index: 4;
-    margin-left: 1px;
 }
 
+.learninglist li{
+    float: left;
+    width: calc(100% / 3);
+     transform: scale(1);
+}
 
+.learninglist li:hover img{
+    opacity: 0.8;
+}
 
 /*edir tab*/
 div#i_containTab{  

@@ -5,9 +5,11 @@ if ($model->id != NULL) {
     $btnText = 'เพิ่มบทความ';
 }
 ?>
-<h3>  <i class="icon-plus"></i> <?php echo $btnText; ?></h3>
 <hr>
 <div class="_100">
+    <h3>  <i class="icon-plus"></i> <?php echo $btnText; ?></h3>
+
+
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'insert_knowledge-form',
