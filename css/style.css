@@ -219,6 +219,23 @@ hr {
 }
 
 
+.ckleft{
+    float: left;
+    width: 211px;
+    color: #444;
+    margin-top: 5px;
+}
+.ckleft label{
+    color: #444;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.ckright{
+    float: right;
+    width: 722px;
+
+}
 input[type="button"],
 input[type="submit"],
 input[type="reset"]{
