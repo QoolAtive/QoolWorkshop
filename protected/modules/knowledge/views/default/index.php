@@ -22,7 +22,6 @@
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
                 echo "</li>";
-
             }
             ?> 
         </ul>
@@ -32,10 +31,7 @@
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
             <img src="/img/banner/knowledge.png" class="pagebanner" alt="pagebanner"/>
-
             <?php if (Knowledge::model()->count('guide_status = 1') != 0) { ?>
-
-<?php if (Knowledge::model()->count('guide_status = 1') != 0) { ?>
                 <h3 class="headfont"><i class="icon-bookmark-empty"></i> <?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
                 <div class="clearfix">
                     <?php
@@ -49,16 +45,14 @@
                     ));
                     ?>
                 </div>
-<?php } ?>
+            <?php } ?>
             <hr>
             <h3 class="headfont"><i class="icon-file-alt"></i> <?php echo Yii::t('language', 'บทความล่าสุด'); ?></h3>
-            <div class="viewall"> 
+            <div class="viewall">
                 <i class="icon-search"></i>
-
-
-<?php echo CHtml::link(Yii::t('language', 'บทความทั้งหมด'), array('/knowledge/default/knowledge')); ?>
-
-
+                <?php
+                echo CHtml::link(Yii::t('language', 'บทความทั้งหมด'), array('/knowledge/default/knowledge'));
+                ?>
             </div>
             <div class="clearfix">
                 <?php
