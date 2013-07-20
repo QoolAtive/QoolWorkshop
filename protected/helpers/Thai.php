@@ -17,18 +17,33 @@ class Thai {
     public static $thaimonth = array("",
         "ม.ค.", "ก.พ.", "มี.ค.",
         "เม.ย.", "พ.ค.", "มิ.ย.",
-        "ก.ค.", "ส.ค.", "ก.ย",
-        "ต.ค.", "พ.ย.", "ธ.ค");
+        "ก.ค.", "ส.ค.", "ก.ย.",
+        "ต.ค.", "พ.ย.", "ธ.ค.");
+    public static $engmonth = array("",
+        "Jan.", "Feb.", "Mar.",
+        "Apr.", "May", "Jun.",
+        "Jul.", "Aug.", "Sep.",
+        "Oct.", "Nov.", "Dec.");
     public static $thaimonth_full = array(
         "1" => "มกราคม", "2" => "กุมภาพันธ์", "3" => "มีนาคม",
         "4" => "เมษายน", "5" => "พฤษภาคม", "6" => "มิถุนายน",
         "7" => "กรกฎาคม", "8" => "สิงหาคม", "9" => "กันยายน",
         "10" => "ตุลาคม", "11" => "พฤศจิกายน", "12" => "ธันวาคม");
+    public static $engmonth_full = array(
+        "1" => "January", "2" => "February", "3" => "March",
+        "4" => "April", "5" => "May", "6" => "June",
+        "7" => "July", "8" => "August", "9" => "September",
+        "10" => "October", "11" => "November", "12" => "December");
     public static $thaimonth_full_all = array("",
         "มกราคม", "กุมภาพันธ์", "มีนาคม",
         "เมษายน", "พฤษภาคม", "มิถุนายน",
         "กรกฎาคม", "สิงหาคม", "กันยายน",
         "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
+    public static $engmonth_full_all = array("",
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December");
     public static $thainumber = array("๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙");
     public static $arabicnumber = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 //    public static $arabicnumber = array(
