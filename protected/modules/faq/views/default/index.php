@@ -1,7 +1,3 @@
-<?php
-$currentLang = Yii::app()->language;
-//echo "<br />currentLang: " . $currentLang . "<br />";
-?>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -77,16 +73,8 @@ $currentLang = Yii::app()->language;
                 <?php
                 $i = 1;
                 foreach ($faq1 as $faq) {
-                    $subject = $faq['subject_th'];
-                    $detail = $faq['detail_th'];
-                    if ($currentLang == 'en') {
-                        if ($faq['subject_en'] != '') {
-                            $subject = $faq['subject_en'];
-                        }
-                        if ($faq['detail_en'] != '') {
-                            $detail = $faq['detail_en'];
-                        }
-                    }
+                    $subject = LanguageHelper::changeDB($faq['subject_th'], $faq['subject_en']);
+                    $detail = LanguageHelper::changeDB($faq['detail_th'], $faq['detail_en']);
                     ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -94,12 +82,6 @@ $currentLang = Yii::app()->language;
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother1" href="#item1<?php echo $i; ?>">
                                 <?php echo $subject; ?>
                             </a>
-                            <?php
-//                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/1/id/' . $faq['id'])), array('update' => '#edit2')
-//                            );
-//                            echo CHtml::button(Yii::t('language', 'ลบ'), array('submit' => CHtml::normalizeUrl(array('/faq/default/deleteFaq/id/' . $faq['id'])))
-//                            );
-                            ?>
                         </div>
                         <div id="item1<?php echo $i; ?>" class="accordion-body collapse <?php
                         if ($i == 1)
@@ -134,27 +116,13 @@ $currentLang = Yii::app()->language;
         <div id="view2" class="tabcontent">
             <img src="<?php echo Yii::t('language', '/img/headfaq2.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother2">
-                <?php
-//                if (Yii::app()->user->isAdmin()) {
-//                echo CHtml::ajaxButton(Yii::t('language', 'เพิ่ม'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/2')), array('update' => '#edit2')
-//                );
-//                }
-                ?>
                 <div id="edit2">
                 </div>
                 <?php
                 $i = 1;
                 foreach ($faq2 as $faq) {
-                    $subject = $faq['subject_th'];
-                    $detail = $faq['detail_th'];
-                    if ($currentLang == 'en') {
-                        if ($faq['subject_en'] != '') {
-                            $subject = $faq['subject_en'];
-                        }
-                        if ($faq['detail_en'] != '') {
-                            $detail = $faq['detail_en'];
-                        }
-                    }
+                    $subject = LanguageHelper::changeDB($faq['subject_th'], $faq['subject_en']);
+                    $detail = LanguageHelper::changeDB($faq['detail_th'], $faq['detail_en']);
                     ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -162,12 +130,6 @@ $currentLang = Yii::app()->language;
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother2" href="#item2<?php echo $i; ?>">
                                 <?php echo $subject; ?>
                             </a>
-                            <?php
-//                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/2/id/' . $faq['id'])), array('update' => '#edit2')
-//                            );
-//                            echo CHtml::button(Yii::t('language', 'ลบ'), array('submit' => CHtml::normalizeUrl(array('/faq/default/deleteFaq/id/' . $faq['id'])))
-//                            );
-                            ?>
                         </div>
                         <div id="item2<?php echo $i; ?>" class="accordion-body collapse <?php
                         if ($i == 1)
@@ -199,27 +161,13 @@ $currentLang = Yii::app()->language;
         <div id="view3" class="tabcontent">
             <img src="<?php echo Yii::t('language', '/img/headfaq3.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother3">
-                <?php
-//                if (Yii::app()->user->isAdmin()) {
-//                echo CHtml::ajaxButton(Yii::t('language', 'เพิ่ม'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/3')), array('update' => '#edit3')
-//                );
-//                }
-                ?>
                 <div id="edit3">
                 </div>
                 <?php
                 $i = 1;
                 foreach ($faq3 as $faq) {
-                    $subject = $faq['subject_th'];
-                    $detail = $faq['detail_th'];
-                    if ($currentLang == 'en') {
-                        if ($faq['subject_en'] != '') {
-                            $subject = $faq['subject_en'];
-                        }
-                        if ($faq['detail_en'] != '') {
-                            $detail = $faq['detail_en'];
-                        }
-                    }
+                    $subject = LanguageHelper::changeDB($faq['subject_th'], $faq['subject_en']);
+                    $detail = LanguageHelper::changeDB($faq['detail_th'], $faq['detail_en']);
                     ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -227,12 +175,6 @@ $currentLang = Yii::app()->language;
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>">
                                 <?php echo $subject_th; ?>
                             </a>
-                            <?php
-//                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/3/id/' . $faq['id'])), array('update' => '#edit3')
-//                            );
-//                            echo CHtml::button(Yii::t('language', 'ลบ'), array('submit' => CHtml::normalizeUrl(array('/faq/default/deleteFaq/id/' . $faq['id'])))
-//                            );
-                            ?>
                         </div>
                         <div id="item3<?php echo $i; ?>" class="accordion-body collapse <?php
                         if ($i == 1)
@@ -264,27 +206,13 @@ $currentLang = Yii::app()->language;
         <div id="view4" class="tabcontent">
             <img src="<?php echo Yii::t('language', '/img/headfaq4.png'); ?>" class="tabfaq">
             <div class="accordion" id="hideother4">
-                <?php
-//                if (Yii::app()->user->isAdmin()) {
-//                    echo CHtml::ajaxButton(Yii::t('language', 'เพิ่ม'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/4')), array('update' => '#edit4')
-//                    );
-//                }
-                ?>
                 <div id="edit4">
                 </div>
                 <?php
                 $i = 1;
                 foreach ($faq4 as $faq) {
-                    $subject = $faq['subject_th'];
-                    $detail = $faq['detail_th'];
-                    if ($currentLang == 'en') {
-                        if ($faq['subject_en'] != '') {
-                            $subject = $faq['subject_en'];
-                        }
-                        if ($faq['detail_en'] != '') {
-                            $detail = $faq['detail_en'];
-                        }
-                    }
+                    $subject = LanguageHelper::changeDB($faq['subject_th'], $faq['subject_en']);
+                    $detail = LanguageHelper::changeDB($faq['detail_th'], $faq['detail_en']);
                     ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -292,12 +220,6 @@ $currentLang = Yii::app()->language;
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother4" href="#item4<?php echo $i; ?>">
                                 <?php echo $subject; ?>
                             </a>
-                            <?php
-//                                echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/4/id/' . $faq['id'])), array('update' => '#edit4')
-//                                );
-//                                echo CHtml::button(Yii::t('language', 'ลบ'), array('submit' => CHtml::normalizeUrl(array('/faq/default/deleteFaq/id/' . $faq['id'])))
-//                                );
-                            ?>
                         </div>
                         <div id="item4<?php echo $i; ?>" class="accordion-body collapse <?php
                         if ($i == 1)
