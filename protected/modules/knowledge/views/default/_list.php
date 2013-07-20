@@ -1,6 +1,6 @@
 <?php
-$subject = LanguageHelper::changeDB($$data->subject, $$data->subject_en);
-$detail = LanguageHelper::changeDB($$data->detail, $$data->detail_en);
+$subject = LanguageHelper::changeDB($data->subject, $data->subject_en);
+$detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
 ?>
 <ul class="knowledgedata">
     <li>
