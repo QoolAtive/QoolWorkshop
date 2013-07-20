@@ -4,10 +4,27 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/about.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <!--            <li><a href="#" rel="view1">About</a></li>-->
-            <li><?php echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), '#', array('rel' => 'view1')); ?></li>
-            <!--            <li><a href="#" rel="view2">Contact</a></li>-->
-            <li><?php echo CHtml::link(Yii::t('language', 'ติดต่อเรา'), '#', array('rel' => 'view2')); ?></li>
+            <li>
+                <?php
+                echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                                array('/about/default/index#view1')
+                        ), array(
+                    'rel' => 'view1'
+                        )
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
+                                array('/about/default/index#view2')
+                        ), array(
+                    'rel' => 'view2'
+                        )
+                );
+                ?>
+            </li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 ?>
@@ -41,7 +58,7 @@
             <div id="text" class="row-fluid ">
                 <?php
                 $model_text = About::model()->find();
-                echo $model_text->about_text_th;
+                echo languageHelper::changeDB($model_text->about_text_th, $model_text->about_text_en)
                 ?>
             </div>
         </div>
@@ -65,7 +82,7 @@
                     <ul style="margin: 20px 0; margin-left: 10px;">   
                         <li><h3><?php echo Yii::t('language', 'ติดต่อเรา'); ?></h3></li>
                         <?php
-                        #ไม่ใช้ปุ่ม edit แล้ว
+#ไม่ใช้ปุ่ม edit แล้ว
 //                        if (Yii::app()->user->isAdmin()) {
 //                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array(
 //                                        '/about/default/editContact')), array(
@@ -118,13 +135,13 @@
                         'rows' => "4",
                         'cols' => "50",
                         'style' => "display: block;",
-                        'placeholder' => Yii::t('language', 'รายละเอียด')."...",
+                        'placeholder' => Yii::t('language', 'รายละเอียด') . "...",
                     ));
 
                     echo CHtml::submitButton(Yii::t('language', 'ส่ง'), array(
                         'submit' => CHtml::normalizeUrl(array('/about/default/sendmail'))));
-                   $this->endWidget();
-                   ?>
+                    $this->endWidget();
+                    ?>
                 </div>
 
             </div>
