@@ -4,6 +4,9 @@ return array(
     'language' => 'en',
     'DBD' => 'DBD',
     'จัดการ' => 'Manage',
+    'แก้ไข' => 'Edit',
+    'ย้อนกลับ' => 'Back',
+    '' => '',
     'การเรียนรู้และบทความ' => 'Knowledge & Learning',
     'แนะนำการใช้งาน' => 'Web Simulation',
     'ค้นหาร้านค้า' => 'E-Directory',
@@ -21,7 +24,7 @@ return array(
     'ค้นหาตามกลุ่มลิงก์' => 'Search by link group.',
     'ไม่พบลิงก์ที่เกี่ยวข้อง' => 'No results found.',
     '' => '',
-     '/img/iconpage/faq.png' => '/img/iconpage/faq_en.png',
+    '/img/iconpage/faq.png' => '/img/iconpage/faq_en.png',
     '/img/banner/faq.png' => '/img/banner/faq_en.png',
     '/img/headfaq1.png' => '/img/headfaq1_en.png',
     '/img/headfaq2.png' => '/img/headfaq2_en.png',
@@ -48,6 +51,7 @@ return array(
     'บทความแนะนำ' => 'Knowledge Suggested.',
     'บทความล่าสุด' => 'Knowledge Recent.',
     'บทความทั้งหมด' => 'All Knowledge.',
+    'เนื้อหา' => 'Content',
     '/img/banner/learning.png' => '/img/banner/learning_en.png',
     '/img/learning/Learning_01.png' => '/img/learning/Learning_01_en.png',
     '/img/learning/Learning_02.png' => '/img/learning/Learning_02_en.png',
@@ -70,6 +74,5 @@ return array(
     '' => '',
     '' => '',
     '' => '',
-    
 );
 ?>
