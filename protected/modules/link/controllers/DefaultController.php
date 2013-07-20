@@ -113,7 +113,7 @@ class DefaultController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                                window.top.location.href = '/link/default/managegrouplink';
+                                // window.top.location.href = '/link/default/managegrouplink';
                           </script>";
 //            } else {
 //                echo "<script language='javascript'>
@@ -123,7 +123,7 @@ class DefaultController extends Controller {
             }
         }
 //        else {
-        $this->render('_group_form', array(
+        $this->renderPartial('_group_form', array(
             'model' => $model,
         ));
 //        }

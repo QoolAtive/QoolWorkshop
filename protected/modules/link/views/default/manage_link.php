@@ -1,6 +1,6 @@
 <div id="content_front" class=" clearfix">
     <h3 class="barH3">
-        <span><?php echo Yii::t('language', 'จัดการเว็บไซต์ที่เกี่ยวข้อง'); ?></span>
+        <span><i class="icon-link"></i> <?php echo Yii::t('language', 'จัดการเว็บไซต์ที่เกี่ยวข้อง'); ?></span>
     </h3>
     <div class="bucketLeft clearfix">
         <div class="areaWhite clearfix">

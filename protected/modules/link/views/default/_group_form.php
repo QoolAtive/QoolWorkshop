@@ -1,6 +1,7 @@
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'group-form',
+    'enableAjaxValidation'=>true,
         ));
 //echo $form->errorSummary($model);
 ?>
@@ -20,18 +21,18 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <?php
 echo CHtml::hiddenField('id', $model->id);
-//echo CHtml::ajaxSubmitButton(
-//        Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
-//    'success' => 'function(){
-////            hideDiv();
-//            $.fancybox.close();
-//            $.fn.yiiGridView.update("link-grid");
-//        }',
-//        ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
-//);
-echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array('id' => 'submit'));
+echo CHtml::ajaxSubmitButton(
+       Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
+   'success' => 'function(){
+
+           $.fancybox.close();
+           $.fn.yiiGridView.update("link-grid");
+       }',
+       ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
+);
+// echo CHtml::ajaxSubmitButton(Yii::t('language', 'บันทึก'), array('id' => 'submit'));
 //echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => 'hideDiv();'));
-//
+
 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => '$.fancybox.close();'));
 ?>
 <?php $this->endWidget(); ?>
