@@ -19,10 +19,8 @@ $currentLang = Yii::app()->language;
 </div>
 
 <div style="clear: both;"></div>
-<div>
 
-</div>
-<div class"linksearch">
+<div class="linksearch">
     <div class="_100">
     <h3><?php echo Yii::t('language', 'ค้นหา'); ?> : </h3>
 </div>
