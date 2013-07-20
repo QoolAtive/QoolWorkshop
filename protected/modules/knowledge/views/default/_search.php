@@ -13,7 +13,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div style='display: inline-block;'>
         <?php
         echo CHtml::label(Yii::t('language', 'เดือน').' : ', false);
-        echo CHtml::dropDownList('month_start', $month_start, Thai::$thaimonth_full, array(
+        echo CHtml::dropDownList('month_start', $month_start, LanguageHelper::changeDB(Thai::$thaimonth_full, Thai::$engmonth_full), array(
             'style' => 'width:100px;',
             'id' => 'month_start',
         ));
@@ -28,11 +28,11 @@ $form = $this->beginWidget('CActiveForm', array(
         ));
         ?>
     </div>
-    <p style='display: inline-block;'>ถึง</p>
+    <p style='display: inline-block;'><?php echo Yii::t('language', 'ถึง'); ?></p>
     <div style='display: inline-block;'>
         <?php
         echo CHtml::label(Yii::t('language', 'เดือน').' : ', false);
-        echo CHtml::dropDownList('month_end', $month_end, Thai::$thaimonth_full, array(
+        echo CHtml::dropDownList('month_end', $month_end, LanguageHelper::changeDB(Thai::$thaimonth_full, Thai::$engmonth_full), array(
             'style' => 'width:100px;',
             'id' => 'month_end',
         ));
@@ -49,7 +49,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div style="text-align: center;">
         <?php
-        echo CHtml::label(Yii::t('language', 'เลือกหัวข้อ'), false);
+        echo CHtml::label(Yii::t('language', 'เลือกหัวข้อ').' : ', false);
         echo CHtml::textfield('subject', '', array(
             'style' => 'width:500px;',
         ));
