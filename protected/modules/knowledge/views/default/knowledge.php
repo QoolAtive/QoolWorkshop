@@ -1,8 +1,8 @@
-<h3>บทความทั้งหมด</h3>
+<h3><?php echo Yii::t('language', 'บทความทั้งหมด')?></h3>
 <?php
 $this->renderPartial('_search', array(
-    'month_start' => str_replace('0', '', date("m")),
-    'month_end' => str_replace('0', '', date("m")),
+    'month_start' => date("n"),
+    'month_end' => date("n"),
     'year_start' => date("Y") + 543,
     'year_end' => date("Y") + 543,
 ));
