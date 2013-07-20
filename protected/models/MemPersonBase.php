@@ -9,6 +9,7 @@
  * @property integer $mem_type
  * @property integer $business_type
  * @property string $product_name
+ * @property string $product_name_en
  * @property string $panit
  * @property integer $sex
  * @property integer $tname
@@ -64,14 +65,14 @@ class MemPersonBase extends CActiveRecord
 		return array(
 			array('user_id, mem_type, business_type, sex, tname, ftname, ltname, etname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'required'),
 			array('user_id, mem_type, business_type, sex, tname, etname, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly'=>true),
-			array('product_name, panit, ftname, ltname, fename, lename, email, twitter, tel, mobile, fax', 'length', 'max'=>100),
+			array('product_name, product_name_en, panit, ftname, ltname, fename, lename, email, twitter, tel, mobile, fax', 'length', 'max'=>100),
 			array('birth', 'length', 'max'=>4),
 			array('facebook, address', 'length', 'max'=>255),
 			array('postcode', 'length', 'max'=>5),
 			array('receive_news', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, mem_type, business_type, product_name, panit, sex, tname, ftname, ltname, etname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'safe', 'on'=>'search'),
+			array('id, user_id, mem_type, business_type, product_name, product_name_en, panit, sex, tname, ftname, ltname, etname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,6 +98,7 @@ class MemPersonBase extends CActiveRecord
 			'mem_type' => 'Mem Type',
 			'business_type' => 'Business Type',
 			'product_name' => 'Product Name',
+			'product_name_en' => 'Product Name En',
 			'panit' => 'Panit',
 			'sex' => 'Sex',
 			'tname' => 'Tname',
@@ -140,6 +142,7 @@ class MemPersonBase extends CActiveRecord
 		$criteria->compare('mem_type',$this->mem_type);
 		$criteria->compare('business_type',$this->business_type);
 		$criteria->compare('product_name',$this->product_name,true);
+		$criteria->compare('product_name_en',$this->product_name_en,true);
 		$criteria->compare('panit',$this->panit,true);
 		$criteria->compare('sex',$this->sex);
 		$criteria->compare('tname',$this->tname);

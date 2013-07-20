@@ -88,7 +88,7 @@ Class Tool {
         $mail->Subject = $data['subject'];
         $mail->MsgHTML($data['message']);
         $mail->AddAddress($data['to']);
-        $mail->send();
+        return $mail->send();
 //        if (!$mail->Send()) {
 //            echo "Mailer Error: " . $mail->ErrorInfo;
 //        } else {

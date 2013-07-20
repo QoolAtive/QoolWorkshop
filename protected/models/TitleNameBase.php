@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'title_name':
  * @property integer $id
  * @property string $name
- * @property string $language
+ * @property string $name_en
  */
 class TitleNameBase extends CActiveRecord
 {
@@ -36,12 +36,11 @@ class TitleNameBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, language', 'required'),
-			array('name', 'length', 'max'=>100),
-			array('language', 'length', 'max'=>2),
+			array('name, name_en', 'required'),
+			array('name, name_en', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, language', 'safe', 'on'=>'search'),
+			array('id, name, name_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +63,7 @@ class TitleNameBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'language' => 'Language',
+			'name_en' => 'Name En',
 		);
 	}
 
@@ -81,7 +80,7 @@ class TitleNameBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('language',$this->language,true);
+		$criteria->compare('name_en',$this->name_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

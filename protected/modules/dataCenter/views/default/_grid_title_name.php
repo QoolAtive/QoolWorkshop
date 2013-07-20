@@ -18,8 +18,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name',
         ),
         array(
-            'name' => 'language',
-            'value' => '$data->language',
+            'name' => 'name_en',
+            'value' => '$data->name_en',
         ),
 //        array(
 //            'name' => 'date_write',
@@ -28,7 +28,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //        ),
         array(
             'class' => 'CButtonColumn',
-            'header' => Yii::t('lnaguage', 'เครื่องมือ'),
+            'header' => Yii::t('language', 'เครื่องมือ'),
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'template' => '{update}{delete}',
             'buttons' => array(

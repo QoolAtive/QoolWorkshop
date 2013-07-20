@@ -67,7 +67,7 @@
     echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
 //echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => '$("#edit' . $model->fm_id . '").hide().html(data).fadeOut();'));
     echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/manageFaq")) . '"'));
+        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/manageFaq#view")) . $model->fm_id . '"'));
     ?>
     <?php $this->endWidget(); ?>
 </div>

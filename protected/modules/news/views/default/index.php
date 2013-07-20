@@ -19,7 +19,7 @@
     <div class="tabcontents">
         <!--NEWS-->
 
-                             <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
+        <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
 
         <div id="view1" class="tabcontent">
             <h3>Feed News</h3>
@@ -118,3 +118,38 @@
         <!--END Training-->
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        if (location.hash == "#view2") {
+        }
+        if (location.hash == "#view3") {
+        }
+    });
+
+    // Full Calendar
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'title',
+                center: '',
+                right: 'month,basicWeek,basicDay prev,next today'
+            },
+//            editable: true,
+            events: [
+<?php
+foreach ($trainlist as $train) {
+    ?>
+                    {
+                        id: <?php echo $train['id']; ?>,
+                        title: '<?php echo $train['subject_th']; ?>',
+                        start: '<?php echo $train['start_at']; ?>',
+                        end: '<?php echo $train['end_at']; ?>',
+                        url: '<?php echo $train['link']; ?>',
+                    },
+<?php } ?>
+            ]//END events: [
+        });
+
+    });
+</script>

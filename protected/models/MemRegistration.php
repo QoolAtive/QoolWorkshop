@@ -16,19 +16,17 @@ class MemRegistration extends MemRegistrationBase {
             array('etname, user_id, type_business, tname, sex, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly' => true),
             array('corporation_registration', 'length', 'max' => 13),
             array('commerce_registration', 'length', 'max' => 45),
-            array('product_name, trade_name, business_name, address', 'length', 'max' => 255),
+            array('product_name_en, trade_name_en, business_name_en, product_name, trade_name, business_name, address', 'length', 'max' => 255),
             array('ftname, ltname, fename, lename, email, tel, mobile, fax', 'length', 'max' => 100),
             array('birth', 'length', 'max' => 4),
             array('postcode', 'length', 'max' => 5),
             array('receive_news', 'length', 'max' => 1),
             //ห้ามซ้ำ
-            array('corporation_registration, commerce_registration', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
-            array('email', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
+            array('corporation_registration, commerce_registration', 'unique', 'message' => '{attribute}' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
+            array('email', 'unique', 'message' => '{value} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
             array('email', 'checkEmail'),
-            array('email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-            array('etname, id, user_id, corporation_registration, commerce_registration, type_business, product_name, trade_name, business_name, tname, ftname, ltname, fename, lename, sex, birth, email, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'safe', 'on' => 'search'),
+            array('email', 'email', 'message' => Yii::t('language', 'รูปแบบอีเมล์ไม่ถูกต้อง')),
+            array('id, user_id, corporation_registration, commerce_registration, type_business, product_name, product_name_en, trade_name, trade_name_en, business_name, business_name_en, tname, ftname, ltname, etname, fename, lename, sex, birth, email, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'safe', 'on' => 'search'),
         );
     }
 
@@ -42,6 +40,9 @@ class MemRegistration extends MemRegistrationBase {
             'product_name' => Yii::t('language', 'ชื่อสินค้า / บริการ'),
             'trade_name' => Yii::t('language', 'ชื่อทางการค้า'),
             'business_name' => Yii::t('language', 'ชื่อธุรกิจ'),
+            'product_name_en' => Yii::t('language', 'ชื่อสินค้า / บริการภาษาอังกฤษ'),
+            'trade_name_en' => Yii::t('language', 'ชื่อทางการค้าภาษาอังกฤษ'),
+            'business_name_en' => Yii::t('language', 'ชื่อธุรกิจภาษาอังกฤษ'),
             'tname' => Yii::t('language', 'คำนำหน้าภาษาอังกฤษ'),
             'ftname' => Yii::t('language', 'ชื่อภาษาไทย'),
             'ltname' => Yii::t('language', 'นามสกุลภาษาไทย'),
@@ -106,10 +107,10 @@ class MemRegistration extends MemRegistrationBase {
 
     public function checkEmail() {
 //        if ($this->hasErrors() == NULL) {
-            $model2 = MemPerson::model()->findByAttributes(array('email' => $this->email));
-            if (!empty($model2)) {
-                $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
-            }
+        $model2 = MemPerson::model()->findByAttributes(array('email' => $this->email));
+        if (!empty($model2)) {
+            $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
+        }
 //        }
     }
 

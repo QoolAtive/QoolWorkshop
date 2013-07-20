@@ -76,8 +76,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2) < 1) {
             $model = HighEducation::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -132,10 +134,12 @@ class DefaultController extends Controller {
         $con1 = MemPerson::model()->count('high_education = ' . $id);
         $con2 = MemRegistration::model()->count('high_education = ' . $id);
         if (($con1 + $con2) < 1) {
-            $model = HighEducation::model()->findByPk($id);
+            $model = CompanyTypeBusiness::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -192,8 +196,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2) < 1) {
             $model = MemSex::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -216,14 +222,19 @@ class DefaultController extends Controller {
             $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/insertTitleName';
         } else {
-            $model = MemSex::model()->findByPk($id);
+            $model = TitleName::model()->findByPk($id);
             $alert = 'แก้ไขข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/titleName';
         }
 
         if (isset($_POST['TitleName'])) {
             $model->attributes = $_POST['TitleName'];
-            if ($model->validate()) {
+//
+//            echo "<pre>";
+//            print_r($model->attributes);
+//            echo "</pre>";
+            $model->validate();
+            if ($model->getErrors() == null) {
                 if ($model->save()) {
                     echo "
                         <script>
@@ -252,8 +263,10 @@ class DefaultController extends Controller {
         if (($con1 + $con2 + $con3 + $con4) < 1) {
             $model = TitleName::model()->findByPk($id);
             if ($model->delete()) {
-                echo 'ลบข้อมูลเรียบร้อย';
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
         }
     }
 

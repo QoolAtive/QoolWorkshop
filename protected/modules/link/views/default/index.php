@@ -1,15 +1,19 @@
+<?php
+$currentLang = Yii::app()->language;
+//echo "<br />currentLang: " . $currentLang . "<br />";
+?>
+
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/<?php echo Yii::t('language', 'link.png'); ?>"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/link.png'); ?>"/></li>
         </ul>
     </div>
 </div>
 <div class="content">
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
-
-            <img class="pagebanner clearfix" alt="pagebanner" src="/img/banner/<?php echo Yii::t('language', 'link.png'); ?>"/>
+            <img class="pagebanner clearfix" alt="pagebanner" src="<?php echo Yii::t('language', '/img/banner/link.png'); ?>"/>
         </div>
     </div>
 </div>
@@ -25,35 +29,49 @@
     ?>
 </div>
 <div>
-    <h3>ค้นหา : </h3>
+    <h3><?php echo Yii::t('language', 'ค้นหา'); ?> : </h3>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'search-form',
-            ));
-    echo CHtml::textField('name', '', array('placeholder' => 'ค้นหาตามชื่อลิงก์'));
+    ));
+    echo CHtml::textField('name', '', array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อลิงก์')));
 
-    echo CHtml::DropDownList('group_id', $group, array('0' => 'ค้นหาตามกลุ่มลิงก์') + CHtml::listData(LinkGroup::model()->findAll(), "id", "name_th"));
+    $feild_name = "name_th";
+    if ($currentLang == 'en') { // Change Language TH/EN Select Data for show in Drop Down List
+            $feild_name = "name_en";
+    }
+//    echo "<br />feild_name: " . $feild_name . "<br />";
+
+    echo CHtml::DropDownList(
+            'group_id', $group, array('0' => " - ".Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')." - ") + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
+    );
     echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
+    $this->endWidget();
     ?>
-    <?php $this->endWidget(); ?>
 </div>
 <ul class="linklist">
     <?php
     if (empty($list)) {
-        echo "ไม่พบลิงก์ที่เกี่ยวข้อง";
+        echo Yii::t('language', "ไม่พบลิงก์ที่เกี่ยวข้อง");
     } else {
-        foreach ($list as $link) {
+        foreach ($list as $l) {
+            $name = $l['name_th'];
+            if ($currentLang == 'en') {
+                if ($l['name_en'] != '') {
+                    $name = $l['name_en'];
+                }
+            }
             ?>
 
             <li>
                 <ul class="innerlogo">
-                    <li><a href="<?php echo $link['link']; ?>" target="_blank"><img src="<?php echo $link['img_path']; ?>"></a> </li>
+                    <li><a href="<?php echo $l['link']; ?>" target="_blank"><img src="<?php echo $l['img_path']; ?>"></a> </li>
 
-                    <li><a href="<?php echo $link['link']; ?>" target="_blank"><?php echo $link['name_th']; ?></a></li>
+                    <li><a href="<?php echo $l['link']; ?>" target="_blank"><?php echo $name; ?></a></li>
                 </ul>
             </li>
 
-        <?php
+            <?php
         }
     }
     ?>

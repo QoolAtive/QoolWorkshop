@@ -15,7 +15,7 @@
         <div class="_20">
             <?php
             echo $form->labelEx($model, 'tname');
-            echo $form->dropdownList($model, 'tname', TitleName::model()->getTitleName('th'), array(
+            echo $form->dropdownList($model, 'tname', TitleName::model()->getTitleNameThai(), array(
 //                            'name' => "Prefix",
                 'class' => "span2",
             ));
@@ -54,7 +54,7 @@
             <?php
             echo $form->labelEx($model, 'etname');
 //                        echo "คำนำหน้าภาษาอังกฤษ";
-            echo $form->dropdownList($model, 'etname', TitleName::model()->getTitleName('en'), array(
+            echo $form->dropdownList($model, 'etname', TitleName::model()->getTitleNameEng(), array(
 //                            'name' => "Prefix",
                 'class' => "span2",
             ));

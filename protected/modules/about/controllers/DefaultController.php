@@ -30,7 +30,7 @@ class DefaultController extends Controller {
             $model->email = $_POST['email'];
             $data['from'] = $_POST['email'];
             $data['name'] = $_POST['name'];
-            $data['to'] = 'yaibathai@gmail.com';
+            $data['to'] = 'dbdmart2013@gmail.com';
             $data['subject'] = 'มีข้อความตืดต่อจาก คุณ ' . $_POST['name'];
             $data['message'] = $_POST['description'] . "<br/>" . $_POST['website'];
             if ($model->save()) {

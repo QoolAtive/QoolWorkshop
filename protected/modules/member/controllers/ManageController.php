@@ -130,7 +130,6 @@ Class ManageController extends Controller {
         $model_user = new MemUser();
         $model_confirm = new MemConfirm();
 
-
         if (isset($_POST['MemPerson']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemPerson'];
             $model->career = '0';
@@ -397,6 +396,7 @@ Class ManageController extends Controller {
 //        $c = new CDbCriteria;
 
         if ($type->type == '1') {
+            $memType = '1';
 //            $c->join = "left join member_person p on t.id";
             $model = MemPerson::model()->find('user_id = ' . $id);
             $type = MemPersonType::model()->findByPk($model->mem_type)->name;
@@ -408,6 +408,7 @@ Class ManageController extends Controller {
             $corporation_registration = '';
         } else {
 //            $c->join = "left join member_registration r on t.id = r.user_id";
+            $memType = '';
             $type = '';
             $model = MemRegistration::model()->find('user_id = ' . $id);
             $confirm = MemConfirm::model()->find('user_id = ' . $id . ' and status = 0');
@@ -419,6 +420,7 @@ Class ManageController extends Controller {
             $corporation_registration = $model->corporation_registration;
         }
         $data = array(
+            'memType' => $memType,
             'name' => $model->ftname . ' ' . $model->ltname,
             'member_type' => $type,
             'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,

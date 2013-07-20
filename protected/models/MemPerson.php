@@ -50,6 +50,7 @@ class MemPerson extends MemPersonBase {
             'skill_com' => Yii::t('language', 'Skill Com'),
             'receive_news' => Yii::t('language', 'รับข่าวสาร'),
             'product_name' => Yii::t('language', 'ชื่อสินค้า / บริการ'),
+            'product_name_en' => Yii::t('language', 'ชื่อสินค้า / บริการ ภาษาอังกฤษ'),
             'panit' => Yii::t('language', 'เลขทะเบียนพาณิชย์'),
             'business_type' => Yii::t('language', 'ประเภทธุรกิจ'),
         );
@@ -89,12 +90,9 @@ class MemPerson extends MemPersonBase {
     }
 
     public function checkEmail() {
-//        if ($this->hasErrors() == NULL) {
-            $model2 = MemRegistration::model()->findByAttributes(array('email' => $this->email));
-            if (!empty($model2)) {
-                $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
-            }
-//        }
+        $model2 = MemRegistration::model()->findByAttributes(array('email' => $this->email));
+        if (!empty($model2)) {
+            $this->addError('email', $this->model()->getAttributeLabel('email') . Yii::t('language', 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ'));
+        }
     }
-
 }

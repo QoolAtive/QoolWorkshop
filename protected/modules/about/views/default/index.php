@@ -1,17 +1,25 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/about.png"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/about.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
             <!--            <li><a href="#" rel="view1">About</a></li>-->
-            <li><?php echo CHtml::link('About Us', '#', array('rel' => 'view1')); ?></li>
+            <li><?php echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), '#', array('rel' => 'view1')); ?></li>
             <!--            <li><a href="#" rel="view2">Contact</a></li>-->
-            <li><?php echo CHtml::link('Contact', '#', array('rel' => 'view2')); ?></li>
+            <li><?php echo CHtml::link(Yii::t('language', 'ติดต่อเรา'), '#', array('rel' => 'view2')); ?></li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 ?>
-                <li><?php echo CHtml::link(Yii::t('language', 'แก้ไขข้อความ<br/>About Us'), CHtml::normalizeUrl(array('/about/default/editAbout'))); ?></li>
+                <li>
+                    <?php
+                    echo CHtml::link(
+                            Yii::t('language', 'แก้ไขข้อความ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                                    array('/about/default/editAbout')
+                            )
+                    );
+                    ?>
+                </li>
             <?php } ?>
         </ul>
     </div>
@@ -20,7 +28,7 @@
     <div class="tabcontents">
         <!--        About Us-->
 
-                     <img src="/img/banner/about.png" class="pagebanner" alt="pagebanner"/>
+        <img src="<?php echo Yii::t('language', '/img/banner/about.png'); ?>" class="pagebanner" alt="pagebanner"/>
 
         <div id="view1" class="tabcontent ">
 

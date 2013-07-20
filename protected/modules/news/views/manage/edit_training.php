@@ -14,7 +14,41 @@
     ?>
     <?php
     
+    echo Yii::t('language', $form->labelEx($model, 'link'));
+    echo $form->textField($model, 'link');
     
+    //เลือกวันเริ่มต้น
+    echo Yii::t('language', $form->labelEx($model, 'start_at'));
+    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+        'model'=>$model,
+        'attribute' => 'start_at',
+//        'value' => Yii::app()->dateFormatter->format("d MM y",strtotime($model->start_at)),
+        // additional javascript options for the date picker plugin
+        'options' => array(
+            'showAnim' => 'fold',
+            'dateFormat'=>'yy-mm-dd',
+        ),
+        'htmlOptions' => array(
+            'style' => 'height:20px;'
+        ),
+    ));
+
+    //เลือกวันสิ้นสุด
+    echo Yii::t('language', $form->labelEx($model, 'end_at'));
+    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+        'model'=>$model,
+        'attribute' => 'end_at',
+//        'value' => Yii::app()->dateFormatter->format("d-M-y",strtotime($model->end_at)),
+        // additional javascript options for the date picker plugin
+        'options' => array(
+            'showAnim' => 'fold',
+            'dateFormat'=>'yy-mm-dd',
+        ),
+        'htmlOptions' => array(
+            'style' => 'height:20px;'
+        ),
+    ));
+
 //    ภาษาไทย
     echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
     echo Yii::t('language', $form->labelEx($model, 'subject_th'));

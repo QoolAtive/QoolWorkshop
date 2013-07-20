@@ -21,6 +21,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'abbreviation',
             'value' => '$data->abbreviation',
         ),
+        array(
+            'name' => 'name_en',
+            'value' => '$data->name_en',
+        ),
+        array(
+            'name' => 'abbreviation_en',
+            'value' => '$data->abbreviation_en',
+        ),
 //        array(
 //            'name' => 'date_write',
 //            'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',

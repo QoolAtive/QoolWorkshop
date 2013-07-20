@@ -1,12 +1,12 @@
 <?php
 
-class Upload extends CFormModel {
+class UploadPDF extends CFormModel {
 
     public $file;
 
     public function rules() {
         return array(
-            array('file', 'file', 'types' => 'pdf'),
+            array('file', 'file'),
         );
     }
 

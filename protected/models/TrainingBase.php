@@ -9,6 +9,7 @@
  * @property string $detail_th
  * @property string $subject_en
  * @property string $detail_en
+ * @property string $link
  * @property string $start_at
  * @property string $end_at
  */
@@ -40,11 +41,12 @@ class TrainingBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('subject_th, detail_th, subject_en, detail_en, start_at, end_at', 'required'),
+			array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'required'),
 			array('subject_th, subject_en', 'length', 'max'=>200),
+			array('link', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, subject_th, detail_th, subject_en, detail_en, start_at, end_at', 'safe', 'on'=>'search'),
+			array('id, subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +72,7 @@ class TrainingBase extends CActiveRecord
 			'detail_th' => 'Detail Th',
 			'subject_en' => 'Subject En',
 			'detail_en' => 'Detail En',
+			'link' => 'Link',
 			'start_at' => 'Start At',
 			'end_at' => 'End At',
 		);
@@ -91,6 +94,7 @@ class TrainingBase extends CActiveRecord
 		$criteria->compare('detail_th',$this->detail_th,true);
 		$criteria->compare('subject_en',$this->subject_en,true);
 		$criteria->compare('detail_en',$this->detail_en,true);
+		$criteria->compare('link',$this->link,true);
 		$criteria->compare('start_at',$this->start_at,true);
 		$criteria->compare('end_at',$this->end_at,true);
 

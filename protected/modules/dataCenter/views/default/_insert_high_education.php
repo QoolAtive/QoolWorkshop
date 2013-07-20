@@ -28,6 +28,20 @@
         </li>
         <li>
             <?php
+            echo $form->label($model, 'name_en');
+            echo $form->textField($model, 'name_en');
+            echo $form->error($model, 'name_en')
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $form->label($model, 'abbreviation_en');
+            echo $form->textField($model, 'abbreviation_en');
+            echo $form->error($model, 'abbreviation_en')
+            ?>
+        </li>
+        <li>
+            <?php
             echo CHtml::submitButton($btnText);
             echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/dataCenter/default/highEducation'
