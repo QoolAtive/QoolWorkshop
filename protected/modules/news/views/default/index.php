@@ -123,7 +123,6 @@
     $(document).ready(function() {
         if (location.hash != '#1') {
             $(location.hash).click();
-//            window.location.reload(true);
         }
     });
 
@@ -136,6 +135,12 @@
                 right: 'month,basicWeek,basicDay prev,next today'
             },
             
+            eventClick: function(event) {
+                window.location.href = event.url;
+                location.reload();
+                return false;
+            },
+                    
             events: [
 <?php
 foreach ($trainlist as $train) {
@@ -150,11 +155,6 @@ foreach ($trainlist as $train) {
 <?php } ?>
             ], //END events: [
 
-            eventClick: function(event) {
-                    window.location.href = event.url;
-                    location.reload();
-                    return false;
-            }
-        });//END $('#calendar').fullCalendar({
+        }); //END $('#calendar').fullCalendar({
     });
 </script>
