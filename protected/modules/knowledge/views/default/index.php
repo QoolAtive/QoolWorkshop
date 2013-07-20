@@ -75,7 +75,79 @@
                              <img src="/img/banner/learning.png" class="pagebanner" alt="pagebanner"/>
 
                 <div class="row-fluid">
+    <UL class="learninglist">
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_01.png"> 
+           </a>
 
+        </li>
+
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_02.png"> 
+           </a>
+
+        </li>
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_03.png"> 
+           </a>
+
+        </li>
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_04.png"> 
+           </a>
+
+        </li>
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_05.png"> 
+           </a>
+
+        </li>
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_06.png"> 
+           </a>
+
+        </li>
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_07.png"> 
+           </a>
+
+        </li>
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_08.png"> 
+           </a>
+
+        </li>
+
+
+        <li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_09.png"> 
+           </a>
+
+        </li>
+
+
+<li>
+           <a href="lessonn1">
+              <img src="/img/learning/Learning_10.png"> 
+           </a>
+
+        </li>
+    </UL>
                     <ul class="card">
                         <?php
                         $this->widget('zii.widgets.CListView', array(

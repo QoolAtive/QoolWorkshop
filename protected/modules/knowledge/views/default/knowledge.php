@@ -16,3 +16,12 @@ $this->renderPartial('_search', array(
     ));
     ?>
 </div>
+<div class="textcenter">
+    <?php
+    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+        'onclick' => "window.location='" . CHtml::normalizeUrl(array(
+            '/knowledge/default/index',
+        )) . "'",
+    ));
+    ?>
+</div>
