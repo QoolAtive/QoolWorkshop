@@ -86,7 +86,7 @@ return array(
     '/img/learning/Learning_09.png' => '/img/learning/Learning_09_en.png',
     '/img/learning/Learning_10.png' => '/img/learning/Learning_10_en.png',
     'วันเดือนปีเริ่มต้นต้องน้อยกว่าหรือเท่ากับวันเดือนปีที่สิ้นสุด' => 'Start date must be less than or equal to end date.',
-    '' => '',
+    'เลือกหัวข้อ' => 'Subject',
     '' => '',
     '' => '',
     '' => '',
