@@ -20,16 +20,13 @@ $currentLang = Yii::app()->language;
 
 <div style="clear: both;"></div>
 <div>
-    <?php
-    if (Yii::app()->user->isAdmin()) {
-        echo CHtml::button(Yii::t('language', 'จัดการลิงก์'), array(
-            'onclick' => 'window.location="/link/default/managelink"'
-        ));
-    }
-    ?>
+
 </div>
-<div>
+<div class"linksearch">
+    <div class="_100">
     <h3><?php echo Yii::t('language', 'ค้นหา'); ?> : </h3>
+</div>
+    <div class="_50">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'search-form',
@@ -40,14 +37,34 @@ $currentLang = Yii::app()->language;
     if ($currentLang == 'en') { // Change Language TH/EN Select Data for show in Drop Down List
             $feild_name = "name_en";
     }
+
+    ?>
+</div>
+    <div class="_50">
+
+    <?php
 //    echo "<br />feild_name: " . $feild_name . "<br />";
 
     echo CHtml::DropDownList(
             'group_id', $group, array('0' => " - ".Yii::t('language', 'ค้นหาตามกลุ่มลิงก์')." - ") + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
     );
+    ?>
+    </div>
+     <div class="_100 textcenter">
+    <?php
     echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
     $this->endWidget();
     ?>
+
+        <?php
+    if (Yii::app()->user->isAdmin()) {
+        echo CHtml::button(Yii::t('language', 'จัดการลิงก์'), array(
+            'onclick' => 'window.location="/link/default/managelink"'
+        ));
+    }
+    ?>
+</div>
+
 </div>
 <ul class="linklist">
     <?php
