@@ -1,11 +1,12 @@
 <?php
+
 /*
- * languageHelper Create By Ann
+ * LanguageHelper Create By Ann
  * Add Date : 20-07-56
  * Update Date : 20-07-56
  */
 
-class languageHelper {
+class LanguageHelper {
 
     /*
      * แปลงค่าให้ดึงข้อมูลจาก Database ให้ถูกตามภาษาที่เลือก
