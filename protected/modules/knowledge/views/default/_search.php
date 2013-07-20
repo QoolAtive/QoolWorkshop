@@ -12,7 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div style="text-align: center; ">
     <div style='display: inline-block;'>
         <?php
-        echo CHtml::label('เดือน : ', false);
+        echo CHtml::label(Yii::t('language', 'เดือน').' : ', false);
         echo CHtml::dropDownList('month_start', $month_start, Thai::$thaimonth_full, array(
             'style' => 'width:100px;',
             'id' => 'month_start',
@@ -21,7 +21,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div style='display: inline-block;'>
         <?php
-        echo CHtml::label('ปี (พ.ศ.) : ', false);
+        echo CHtml::label(Yii::t('language', 'ปี พ.ศ.').' : ', false);
         echo CHtml::dropDownList('year_start', $year_start, Tool::getDropdownListYear(), array(
             'style' => 'width:120px;',
             'id' => 'year_start',
@@ -31,7 +31,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <p style='display: inline-block;'>ถึง</p>
     <div style='display: inline-block;'>
         <?php
-        echo CHtml::label('เดือน : ', false);
+        echo CHtml::label(Yii::t('language', 'เดือน').' : ', false);
         echo CHtml::dropDownList('month_end', $month_end, Thai::$thaimonth_full, array(
             'style' => 'width:100px;',
             'id' => 'month_end',
@@ -40,7 +40,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div style='display: inline-block;'>
         <?php
-        echo CHtml::label('ปี (พ.ศ.) : ', false);
+        echo CHtml::label(Yii::t('language', 'ปี พ.ศ.').' : ', false);
         echo CHtml::dropDownList('year_end', $year_end, Tool::getDropdownListYear(), array(
             'style' => 'width:120px;',
             'id' => 'year_end',
@@ -49,7 +49,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div style="text-align: center;">
         <?php
-        echo CHtml::label('เลือกหัวข้อ', false);
+        echo CHtml::label(Yii::t('language', 'เลือกหัวข้อ'), false);
         echo CHtml::textfield('subject', '', array(
             'style' => 'width:500px;',
         ));
@@ -57,7 +57,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div style='text-align: center;'>
         <?php
-        echo CHtml::ajaxSubmitButton('ค้นหา', CHtml::normalizeUrl(array(
+        echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
                     '/knowledge/default/QueryKnowledge')), array(
             'update' => 'div#show_detail',
 //        'beforeSend' => 'function(){ $("#show_detail_loading").addClass("loading");}',
