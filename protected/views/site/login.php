@@ -94,7 +94,7 @@ $this->breadcrumbs = array(
 
 
      <div class="row _50">
-        <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' =>'_bank')); ?>
+        <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' =>'')); ?>
     </div>
 
     <div class="row buttons _100">

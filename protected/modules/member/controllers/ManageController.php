@@ -95,7 +95,7 @@ Class ManageController extends Controller {
             }
         }
 
-        $this->render('_forgot_password', array(
+        $this->renderPartial('_forgot_password', array(
             'model' => $model,
         ));
     }

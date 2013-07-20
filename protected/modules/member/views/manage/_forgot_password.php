@@ -1,19 +1,51 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <link rel="stylesheet" href="/css/global.css"  type="text/css"></link>
+        <link rel="stylesheet" href="/css/style.css"  type="text/css"></link>
+    <meta charset="utf-8">
+    <title>title</title>
+
+
+<style type="text/css">
+html,body{
+    overflow: hidden !important;
+     padding: 0 2%;
+}
+
+</style>
+  </head>
+
+
+<body>
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'forgot_password-form',
     'enableAjaxValidation' => false,
         ));
 ?>
-<div style="text-align: center; padding: 0% 40%;">
+<div>
+    <div class="_100" style="margin-top: 19px;"> 
     <h3>ลืมรหัสผ่าน</h3>
-    <div class="_100">
+    </div>
+    <div class="_25" style=" margin-top: 5px;">
         <?php
         echo $form->labelEx($model, 'email');
+        ?>
+</div>
+    <div class="_75">
+        <?php
         echo $form->textField($model, 'email');
         echo $form->error($model, 'email');
         ?>
     </div>
-    <div class="_100">
+    <div>
+
+    <div class="_100 textcenter">
         <?php
         echo CHtml::submitButton(Yii::t('language', 'ยืนยัน'));
         ?>
@@ -22,3 +54,6 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php
 $this->endWidget();
 ?>
+
+</body>
+</html>
