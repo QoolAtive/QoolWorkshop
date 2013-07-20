@@ -136,7 +136,7 @@ class Knowledge extends KnowledgeBase {
                 $model = Knowledge::model()->find("subject = '" . $this->subject . "'");
                 if (!empty($model)) {
                     $label = Knowledge::model()->getAttributeLabel('subject');
-                    $this->addError('subject', $label . 'มีอยู่ในระบบ กรุณาตรวจสอบ');
+                    $this->addError('subject', $label . Yii::t('language', 'มีอยู่ในระบบ กรุณาตรวจสอบ'));
                 }
             }
         }
