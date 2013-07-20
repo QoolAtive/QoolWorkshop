@@ -85,7 +85,7 @@
                     ?>
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>" id="<?php echo $train['id']; ?>">
                                 <?php echo $train['subject_th']; ?>
                             </a>
                         </div>
@@ -121,9 +121,9 @@
 
 <script>
     $(document).ready(function() {
-        if (location.hash == "#view2") {
-        }
-        if (location.hash == "#view3") {
+        if (location.hash != '#1') {
+            $(location.hash).click();
+//            window.location.reload(true);
         }
     });
 
@@ -135,7 +135,7 @@
                 center: '',
                 right: 'month,basicWeek,basicDay prev,next today'
             },
-//            editable: true,
+            
             events: [
 <?php
 foreach ($trainlist as $train) {
@@ -145,11 +145,16 @@ foreach ($trainlist as $train) {
                         title: '<?php echo $train['subject_th']; ?>',
                         start: '<?php echo $train['start_at']; ?>',
                         end: '<?php echo $train['end_at']; ?>',
-                        url: '<?php echo $train['link']; ?>',
+                        url: '<?php echo CHtml::normalizeUrl(array('/news/default/index#' . $train['id'])); ?>',
                     },
 <?php } ?>
-            ]//END events: [
-        });
+            ], //END events: [
 
+            eventClick: function(event) {
+                    window.location.href = event.url;
+                    location.reload();
+                    return false;
+            }
+        });//END $('#calendar').fullCalendar({
     });
 </script>
