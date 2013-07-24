@@ -52,10 +52,10 @@ input, textarea, select {
 }
 
 h3{
-    padding: 12px 0 ;
+    padding: 0 0 10px;
     font-weight: bold;
     color: #a44bfd;
-    padding-bottom: 10px;
+  
     line-height: normal;
 }
 
@@ -215,10 +215,27 @@ hr {
 ._20 label,._25 label,._33 label,._40 label,._50 label ,._75 label ,._80 label ,._100 label{
     white-space: nowrap;
     width: 100%;
+    line-height: 30px;
 /*    display: block;  */
 }
 
+.toknowfix{
+    display: inline-block;
+    margin-left: -353px;
+    margin-top:45px;
+    position: absolute;
+    text-align: center;
+}
 
+#search-form label{ 
+    font-weight: bold;
+    color: #444;
+}
+
+.search-box{
+      background: none repeat scroll 0 0 #F1F1F1;
+    border-radius: 6px; margin-bottom: 15px;
+}
 .ckleft{
     float: left;
     width: 211px;
