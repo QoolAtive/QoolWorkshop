@@ -1,49 +1,52 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/knowledge.png"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/knowledge.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            
+
             <?php
             $list = array(
-                array('text' => 'Knowledge', 'link' => '/knowledge/default/index'),
-                array('text' => 'Learning', 'link' => '/knowledge/default/index#view2'),
+                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index'),
+                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/knowledge/default/index#view2'),
             );
             $n = 3;
             foreach ($list as $ls) {
                 echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
             }
 //            echo Tool::GenList($list);
+            if (Yii::app()->user->isAdmin()) {
+                echo "<li>";
+                echo CHtml::link(
+                        Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'บทความ'), array(
+                    '/knowledge/manage/knowledge'), array(
+                    'rel' => 'view5'
+                ));
+                echo "</li>";
+                echo "<li>";
+                echo CHtml::link(
+                        Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'การเรียนรู้'), array(
+                    '/learning/manage/learning'), array(
+                    'rel' => 'view6'
+                ));
+                echo "</li>";
+            }
             ?> 
 
-            <li>
-                <?php
-                if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge'), array('rel' => 'view5'));
-                }
-                ?>
-            </li>
-            <li> 
-                <?php
-                if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Manage Learning', array('/learning/manage/learning'), array('rel' => 'view6'));
-                }
-                ?>
-            </li>
-            <li><a href="#" rel="view1">บทความแนะนำ</a></li>
-            <li><a href="#" rel="view2">บทความทั้งหมด</a></li>
+            <li><a href="#" rel="view1"><?php echo Yii::t('language', 'บทความแนะนำ'); ?></a></li>
+            <li><a href="#" rel="view2"><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></a></li>
         </ul>
     </div>
 </div>
 <div class="content">
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
-            <h3>บทความแนะนำ</h3>
+            <h3><?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
             <hr>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('เพิ่มบทความ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
+                    'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/knowledge/manage/insert'
                     )) . "'")
                 );
@@ -58,7 +61,7 @@
             <hr>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         Yii::app()->user->getState('knowledge')
                     )) . "'")
                 );
@@ -67,11 +70,12 @@
             <hr>
         </div>
         <div id="view2" class="tabcontent">
-            <h3>บทความทั้งหมด</h3>
+            <h3><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></h3>
             <hr>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('เพิ่มบทความ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
+                    'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/knowledge/manage/insert'
                     )) . "'")
                 );
@@ -86,7 +90,7 @@
             <hr>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         Yii::app()->user->getState('knowledge')
                     )) . "'")
                 );
