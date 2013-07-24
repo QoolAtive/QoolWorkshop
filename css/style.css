@@ -218,6 +218,13 @@ hr {
     line-height: 30px;
 /*    display: block;  */
 }
+#login-form {
+    margin-left: 9px;
+    margin-top: 4px;
+}
+#login-form label{
+    line-height: 0px;
+}
 
 .toknowfix{
     display: inline-block;
