@@ -1,3 +1,13 @@
+
+$(document).ready(function($){
+        // Get current url
+        // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
+        var url = window.location.pathname;
+        $('.rectangle-list li a[href="'+url+'"]').addClass('menuactive listactive')  ;
+
+    });
+
+
 $(function() {
   var val = $("input[id='MemPerson_mem_type_1']:checked").val();
   if(val === "2") {

@@ -557,7 +557,11 @@ div.page {
     display:none;
 }
 /* @end */
+.menuactive{
+    color:#9A2EFE !important;
+    font-weight: bold;
 
+}
 
 /* @group sidebar (left side) */
 .sidebar {
@@ -1769,8 +1773,46 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
     background: #eee;
 }   
 
+
 .rectangle-list a:before{
+  background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #D76BFF;
+    border-radius: 50% 50% 50% 50%;
+    color: #FFFFFF;
+    content: "";
+    counter-increment: li;
+    font-weight: bold;
+    height: 11px;
+    left: -26px;
+    line-height: 2em;
+    margin-top: -1.2em;
+    position: absolute;
+    text-align: center;
+    top: 21px;
+    width: 11px;
+    
+}
+.rectangle-list a:hover:before{
    background: none repeat scroll 0 0 #D76BFF;
+      border-radius: 50% 50% 50% 50%;
+    color: #FFFFFF;
+    content: "";
+    counter-increment: li;
+    font-weight: bold;
+    height: 11px;
+    left: -26px;
+    line-height: 2em;
+    margin-top: -1.2em;
+    position: absolute;
+    text-align: center;
+    top: 21px;
+    width: 11px;
+    
+}
+
+
+.listactive:before{
+    background: none repeat scroll 0 0 #D76BFF !important;
     border-radius: 50% 50% 50% 50%;
     color: #FFFFFF;
     content: "";
@@ -1784,22 +1826,23 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
     text-align: center;
     top: 21px;
     width: 13px;
-    
 }
 
+
+
 .rectangle-list a:after{
-    position: absolute; 
+/*    position: absolute; 
     content: '';
     border: .5em solid transparent;
     left: -1em;
     top: 50%;
     margin-top: -.5em;
-    transition: all .3s ease-out;               
+    transition: all .3s ease-out; */              
 }
 
 .rectangle-list a:hover:after{
-    left: -.5em;
-    border-left-color: #D76BFF;             
+   /* left: -.5em;
+    border-left-color: #D76BFF;     */        
 }   
 
 .demoshadowtop{
@@ -1832,6 +1875,7 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
     position: absolute;
     width: 3px;
     z-index: -1;
+    border-radius: 4px;
 }
 
 p.demoinnerbold{

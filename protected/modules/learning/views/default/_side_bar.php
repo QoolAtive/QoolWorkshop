@@ -23,7 +23,11 @@
             </li>
         </ul>
 
-        <p>กลุ่มบทเรียน : <?php echo LearningGroup::model()->findByPk($id)->name; ?></p>
+        <p class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
+    border-top: 2px solid gold;
+    font-size: 16px;
+    margin-top: 6px;
+    padding: 14px 0;">กลุ่มบทเรียน : <?php echo LearningGroup::model()->findByPk($id)->name; ?></p>
         <ul class="rectangle-list">
             <p class="demoline"></p>
             <?php
@@ -33,5 +37,6 @@
                 }
             }
             ?>
+        </ul>
     </div>
 </div>
