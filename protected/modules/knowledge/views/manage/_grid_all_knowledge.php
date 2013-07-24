@@ -7,15 +7,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'summaryText' => '',
         'columns' => array(
             array(// display 'create_time' using an expression
-                'header' => 'ลำดับ',
+                'header' => Yii::t('language', 'ลำดับ'),
                 'headerHtmlOptions' => array('style' => 'width: 7%;'),
                 'htmlOptions' => array('style' => 'text-align: center;'),
                 'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
             ),
             array(
-                'name' => 'subject',
+                'name' => LanguageHelper::changeDB('subject','subject_en'),
                 'type' => 'raw',
-                'value' => 'CHtml::link($data->subject, array("/knowledge/default/view/id/$data->id"))',
+                'value' => 'CHtml::link(LanguageHelper::changeDB($data->subject,$data->subject_en), array("/knowledge/default/view/id/$data->id"))',
 //                'value' => 'CHtml::link($data->subject,array("manage/ViewTopic/ques_id/$data->id"))',
             ),
             array(
@@ -26,8 +26,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             ),
             array(
                 'class' => 'CButtonColumn',
-                'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-                'header' => 'เครื่องมือ',
+                'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
+                'header' => Yii::t('language', 'เครื่องมือ'),
                 'template' => '{view}{update}{delete}',
                 'buttons' => array(
                     'view' => array(
@@ -53,11 +53,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         'pager' => array(
             'class' => 'CLinkPager',
-            'header' => 'หน้าที่: ',
-            'firstPageLabel' => 'หน้าแรก',
-            'prevPageLabel' => 'ก่อนหน้า',
-            'nextPageLabel' => 'หน้าถัดไป',
-            'lastPageLabel' => 'หน้าสุดท้าย',
+            'header' => Yii::t('language', 'หน้าที่: '),
+            'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+            'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+            'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+            'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
         )
     ));
 ?>
