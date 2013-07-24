@@ -58,8 +58,10 @@ html .fc,
 	}
 	
 .fc-header-title h2 {
-	margin-top: 0;
-	white-space: nowrap;
+  font-size: 1.2em;
+    margin-top: 25px;
+    position: absolute;
+    white-space: nowrap;
 	}
 	
 .fc .fc-header-space {
