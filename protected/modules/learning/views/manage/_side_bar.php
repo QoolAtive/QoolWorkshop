@@ -25,7 +25,7 @@
             <li>
                 <?php
                 if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge'), array('rel' => 'view5'));
+                    echo CHtml::link('Manage Knowledge', array('/knowledge/manage/knowledge#view1'), array('rel' => 'view5'));
                 }
                 ?>
             </li>
