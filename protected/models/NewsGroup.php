@@ -85,7 +85,11 @@ class NewsGroup extends NewsGroupBase {
     public function checkDup($attribute) {
         if ($this->getErrors() == NULL) {
             $criteria = new CDbCriteria;
-            $criteria->addCondition("(" . $attribute . " = '" . $this->$attribute . "')");
+            if ($this->id == NULL) {
+                $criteria->addCondition("(" . $attribute . " = '" . $this->$attribute . "' )");
+            } else {
+                $criteria->addCondition("(" . $attribute . " = '" . $this->$attribute . "' and id != " . $this->id . " )");
+            }
             $model = NewsGroup::model()->find($criteria);
             if (!empty($model)) {
                 $label = NewsGroup::model()->getAttributeLabel($attribute);
