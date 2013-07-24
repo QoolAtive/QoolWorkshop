@@ -138,7 +138,7 @@
             eventClick: function(event) {
                 window.location.href = event.url;
                 location.reload();
-                return false;
+//                return false;
             },
                     
             events: [

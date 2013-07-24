@@ -109,8 +109,16 @@ class ManageController extends Controller {
             if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
                 $model->link = 'http://' . $model->link;
             }
+            if ($model->isNewRecord) {
+                $word = "บันทึกข้อมูลเรียบร้อย";
+            } else {
+                $word = "แก้ไขข้อมูลเรียบร้อย";
+            }
             if ($model->save()) {
-                $this->redirect(CHtml::normalizeUrl(array('/news/manage/manageTraining')));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', $word) . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/manageTraining')) . "';
+                  </script>";
             }
         }
         $this->render('edit_training', array(
@@ -119,7 +127,7 @@ class ManageController extends Controller {
     }
 
     public function actionDeleteTraining($id) {
-        $model = NewsGroup::model()->findByPk($id);
+        $model = Training::model()->findByPk($id);
         if ($model->delete()) {
 //            $this->redirect("/faq/default/manageFaq");
         }
