@@ -4,19 +4,25 @@
             <li class="boxhead"><img src="/img/iconpage/serviceprovider.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a rel="view1" href="#">Hosting</a></li>
+            <?php
+            $menu = SpTypeBusiness::model()->findAll();
+            foreach ($menu as $m) {
+                echo '<li><a rel="view' . $m['id'] . '" href="#">' . $m->name . '</a></li>';
+            }
+            ?>
+<!--            <li><a rel="view1" href="#">Hosting</a></li>
             <li><a rel="view2" href="#">Payment</a></li>
             <li><a rel="view3" href="#">E-Marketplace</a></li>
             <li><a rel="view4" href="#">Logistic</a></li>
             <li><a rel="view5" href="#">Design Website</a></li>
-            <li><a rel="view6" href="#">Promotion</a></li>
-            
-            <?php 
-            if(Yii::app()->user->isAdmin()){
+            <li><a rel="view6" href="#">Promotion</a></li>-->
+
+            <?php
+            if (Yii::app()->user->isAdmin()) {
                 echo "<li>" . CHtml::link('Manage', array('/serviceProvider/manage/index')) . "</li>";
             }
             ?>
-            
+
         </ul>
     </div>
 </div>

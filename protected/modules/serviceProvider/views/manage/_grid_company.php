@@ -39,7 +39,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 'buttons' => array(
                     'update' => array(
                         'label' => 'edit', //Text label of the button.
-                        'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertTypeBusiness/",array("id"=>$data->id))',
+                        'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',
                     ),
                     'delete' => array(
                         'label' => 'del', //Text label of the button.

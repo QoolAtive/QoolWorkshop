@@ -24,8 +24,9 @@ if (empty($model->id)) {
     </div>
     <div class="_100">
         <?php
+        
         echo $form->label($model_type, 'type_id');
-        echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
+        echo $form->checkBoxList($model_type,'type_id', SpTypeBusiness::model()->getDataList());
         echo $form->error($model_type, 'type_id');
         ?>
     </div>
@@ -79,16 +80,16 @@ if (empty($model->id)) {
     </div>
     <div class="_100">
         <?php
-        echo $form->label($model, 'address');
-        echo $form->textArea($model, 'address', array('height' => '100'));
-        echo $form->error($model, 'address');
+        echo $form->label($model, 'address_en');
+        echo $form->textArea($model, 'address_en', array('height' => '100'));
+        echo $form->error($model, 'address_en');
         ?>
     </div>
     <div class="_50">
         <?php
-        echo $form->label($model, 'contact_name');
-        echo $form->textfield($model, 'contact_name');
-        echo $form->error($model, 'contact_name');
+        echo $form->label($model, 'contact_name_en');
+        echo $form->textfield($model, 'contact_name_en');
+        echo $form->error($model, 'contact_name_en');
         ?>
     </div>
     <div class="_100">
@@ -178,10 +179,13 @@ if (empty($model->id)) {
             'accept' => 'pdf|jpg',
             'max' => 1,
             'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
-            'options' => array(
-                'onFileSelect' => 'function(e, v, m){
-                    }'
-            ),
+//            'options' => array(
+//                'onFileSelect' => 'function(e, v, m){
+//                    if(){
+//                    }else{
+//                    }
+//                    }'
+//            ),
         ));
         ?>
     </div>
@@ -191,7 +195,7 @@ if (empty($model->id)) {
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/serviceProvider/manage/typeBusiness'
+                '/serviceProvider/manage/index#view8'
             )) . "'")
         );
         ?>

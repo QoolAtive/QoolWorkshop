@@ -59,7 +59,7 @@ if (empty($model->id)) {
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/serviceProvider/manage/typeBusiness'
+                '/serviceProvider/manage/index#view7'
             )) . "'")
         );
         ?>
