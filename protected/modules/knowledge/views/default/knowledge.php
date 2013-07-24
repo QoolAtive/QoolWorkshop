@@ -29,7 +29,7 @@
 <div class="content">
 <div class="tabcontents">
     <div class="_100">
-<h3><?php echo Yii::t('language', 'บทความทั้งหมด') ?></h3>
+    <h3><?php echo Yii::t('language', 'บทความทั้งหมด') ?></h3>
 </div>
 <?php
         $this->renderPartial('_search', array(
@@ -58,4 +58,13 @@
             ?>
 </div>
 </div>
+
 </div>
+
+
+
+
+
+
+
+
