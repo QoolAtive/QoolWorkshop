@@ -93,8 +93,8 @@ return array(
     'รายละเอียดภาษาอังกฤษ' => 'Description (English)',
     'รูปภาพ' => 'Image',
     'มีอยู่ในระบบ กรุณาตรวจสอบ' => ' an existing in the system. Please check.',
-    '' => '',
-    '' => '',
+    'เครื่องมือ' => 'Tool',
+    'คุณต้องการลบบทความหรือไม่?' => 'Do you want to delete?',
     '' => '',
 );
 ?>
