@@ -3,7 +3,7 @@
 return array(
     'language' => 'en',
     'DBD' => 'DBD',
-    'จัดการ' => 'Manage',    
+    'จัดการ' => 'Manage ',    
     'เพิ่ม' => 'Add ',
     'แก้ไข' => 'Edit ',
     'ย้อนกลับ' => 'Back',
