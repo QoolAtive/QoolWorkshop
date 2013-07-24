@@ -126,7 +126,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <div class="ckright">
         <?php
-        echo $form->radioButtonList($model, 'guide_status', array('0' => 'ไม่เลือก', '1' => 'เลือก'), array());
+        echo $form->radioButtonList($model, 'guide_status', array('0' => Yii::t('language', 'ไม่เลือก'), '1' => Yii::t('language', 'เลือก')), array());
         ?>
     </div>
 
