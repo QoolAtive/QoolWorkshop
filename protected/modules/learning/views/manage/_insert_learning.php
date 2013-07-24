@@ -7,9 +7,14 @@ $form = $this->beginWidget('CActiveForm', array(
     ),
         )
 );
+if ($model->id == null) {
+    $text = 'เพิ่มกลุ่มการเรียนรู้';
+} else {
+    $text = 'แก้ไขกลุ่มการเรียนรู้';
+}
 ?>
 <div>
-    <h3>เพิ่มบทเรียน</h3>
+    <h3><?php echo $text; ?></h3>
     <div class="_100">
         <?php
         echo $form->labelEx($model, 'group_id');
@@ -20,7 +25,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="_100">
         <?php
         echo $form->labelEx($upload, 'file');
-        echo $form->fileField($upload, 'file', array('accept'=>"application/pdf"));
+        echo $form->fileField($upload, 'file', array('accept' => "application/pdf"));
         echo $form->error($upload, 'file');
         ?>
     </div>
@@ -119,7 +124,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="_100" style="text-align: center;">
         <?php
-        echo CHtml::submitButton(Yii::t('language', 'เพิ่มบทเรียน'));
+        echo CHtml::submitButton(Yii::t('language', $text));
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                 '/learning/manage/learning'
             )) . "'")
