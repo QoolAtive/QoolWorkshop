@@ -1,7 +1,14 @@
 
 
 <div class="content">
-    <h3>Manage FAQ</h3>
+    <?php
+    if ($model->id != NULL) {
+        $word = "แก้ไขคำถาม";
+    } else {
+        $word = "เพิ่มคำถาม";
+    }
+    ?>
+    <h3><?php echo Yii::t('language', $word); ?></h3>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'update-form',
