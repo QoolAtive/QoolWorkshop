@@ -294,7 +294,7 @@ class ManageController extends Controller {
 
         if ($modelFile->file != 'default.jpg') {
             $file_paht = './file/learning/pdf/' . $modelFile->file;
-            if (fopen($file_paht, 'w'))
+            if (fopen($file_paht, 'r'))
                 unlink($file_paht);
         }
 
