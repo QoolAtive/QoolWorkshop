@@ -216,7 +216,7 @@ class ManageController extends Controller {
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
 
             $upload->attributes = $_POST['UploadPDF'];
-            
+
             if (isset($id) && $upload->file == null) { // ถ้าแก้ไขบทเรียนเดิม ตั้งค่า default ของ Model Upload = ค่าที่ต้องการแก้ไข
                 $upload->file = $modelFile->path;
             }
@@ -294,7 +294,7 @@ class ManageController extends Controller {
 
         if ($modelFile->file != 'default.jpg') {
             $file_paht = './file/learning/pdf/' . $modelFile->file;
-            if (fopen($file_paht, 'r'))
+            if (isset(fopen($file_paht, 'r')))
                 unlink($file_paht);
         }
 
