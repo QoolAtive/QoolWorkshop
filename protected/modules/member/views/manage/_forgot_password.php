@@ -28,11 +28,13 @@ $form = $this->beginWidget('CActiveForm', array(
     'enableAjaxValidation' => false,
         ));
 ?>
-<div>
-    <div class="_100" style="margin-top: 19px;"> 
+
+    <div class="_100" style="margin-top: 15px;"> 
     <h3>ลืมรหัสผ่าน</h3>
     </div>
-    <div class="_25" style=" margin-top: 5px;">
+
+    <div class="_100" style="margin-top: 10px;">
+    <div class="_25">
         <?php
         echo $form->labelEx($model, 'email');
         ?>
@@ -44,8 +46,9 @@ $form = $this->beginWidget('CActiveForm', array(
         ?>
     </div>
     <div>
+    </div>
 
-    <div class="_100 textcenter">
+    <div class="_100 textcenter" style="margin-top:20px;">
         <?php
         echo CHtml::submitButton(Yii::t('language', 'ยืนยัน'));
         ?>
