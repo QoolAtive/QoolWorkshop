@@ -149,16 +149,12 @@ class ManageController extends Controller {
         if (empty($count)) {
             if ($model->pic != 'default.jpg') {
                 $file_paht = './file/learning/' . $model->pic;
-                chmod($file_paht, 0777);
                 if (fopen($file_paht, 'w'))
                     unlink($file_paht);
             }
             if ($model->pic != $model->pic_en && $model->pic_en != null && $model->pic != null) {
                 if ($model->pic_en != 'default.jpg') {
                     $file_paht = './file/learning/' . $model->pic_en;
-                    chmod($file_paht, 0777);
-//                if (!file_exists($file_paht))
-//                    mkdir($file_paht, 0777);
                     if (fopen($file_paht, 'w'))
                         unlink($file_paht);
                 }
@@ -298,7 +294,6 @@ class ManageController extends Controller {
 
         if ($modelFile->file != 'default.jpg') {
             $file_paht = './file/learning/pdf/' . $modelFile->file;
-            mkdir($file_paht, 0777);
             if (fopen($file_paht, 'w'))
                 unlink($file_paht);
         }
