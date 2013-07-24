@@ -8,9 +8,9 @@ $form = $this->beginWidget('CActiveForm', array(
         )
 );
 if ($model->id == null) {
-    $text = 'เพิ่มกลุ่มการเรียนรู้';
+    $text = 'เพิ่มบทเรียน';
 } else {
-    $text = 'แก้ไขกลุ่มการเรียนรู้';
+    $text = 'แก้ไขบทเรียน';
 }
 ?>
 <div>
