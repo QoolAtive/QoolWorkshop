@@ -10,31 +10,31 @@
                 array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index'),
                 array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/knowledge/default/index#view2'),
             );
-            $n = 3;
+//            $n = 3;
             foreach ($list as $ls) {
-                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
+                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array()) . "</li>";
             }
 //            echo Tool::GenList($list);
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(
                         Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'บทความ'), array(
-                    '/knowledge/manage/knowledge'), array(
-                    'rel' => 'view5'
+                    '/knowledge/manage/knowledge#view1'), array(
+//                    'rel' => 'view5'
                 ));
                 echo "</li>";
                 echo "<li>";
                 echo CHtml::link(
                         Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'การเรียนรู้'), array(
                     '/learning/manage/learning'), array(
-                    'rel' => 'view6'
+//                    'rel' => 'view6'
                 ));
                 echo "</li>";
             }
             ?> 
-
             <li><a href="#" rel="view1"><?php echo Yii::t('language', 'บทความแนะนำ'); ?></a></li>
             <li><a href="#" rel="view2"><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></a></li>
+
         </ul>
     </div>
 </div>

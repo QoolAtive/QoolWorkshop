@@ -17,7 +17,7 @@
             if (Yii::app()->user->isAdmin()) {
 
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge#view1'));
                 echo "</li>";
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
