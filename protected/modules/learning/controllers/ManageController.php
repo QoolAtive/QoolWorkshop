@@ -147,7 +147,7 @@ class ManageController extends Controller {
         $model = LearningGroup::model()->findByPk($id);
         $count = Learning::model()->count('group_id=:group_id', array(':group_id' => $model->id));
         if (empty($count)) {
-            if ($model->pic != 'default.jpg') {
+            if ($model->pic != 'default.jpg' && $model->pic != null) {
                 $file_paht = './file/learning/' . $model->pic;
                 if (fopen($file_paht, 'w'))
                     unlink($file_paht);
@@ -290,11 +290,12 @@ class ManageController extends Controller {
 
     public function actionDelLearning($id = null) {
         $model = Learning::model()->findByPk($id);
-        $modelFile = LearningFile::model()->findAll('main_id=:main_id', array(':main_id' => $id));
+        $modelFile = LearningFile::model()->find('main_id=:main_id', array(':main_id' => $id));
 
-        if ($modelFile->file != 'default.jpg') {
-            $file_paht = './file/learning/pdf/' . $modelFile->file;
-            if (isset(fopen($file_paht, 'r')))
+        if ($modelFile->path != 'default.jpg' && $modelFile->path != null) {
+            $file_paht = './file/learning/pdf/' . $modelFile->path;
+
+            if (fopen($file_paht, 'w'))
                 unlink($file_paht);
         }
 
