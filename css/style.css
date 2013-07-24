@@ -1767,6 +1767,7 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
     color: #444;
     text-decoration: none;
     transition: all .3s ease-out;   
+    border-radius: 4px;
 }
 
 .rectangle-list a:hover{
