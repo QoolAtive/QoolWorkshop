@@ -3,11 +3,7 @@
 class DefaultController extends Controller {
 
     public function actionIndex() {
-        $currentLang = Yii::app()->language;
-        $feild_name = "name_th";
-        if ($currentLang == 'en') {
-            $feild_name = "name_en";
-        }
+        $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
         $criteria = new CDbCriteria;
         $group = '0';
         if (isset($_POST['group_id']) && $_POST['group_id'] != '0') {
@@ -16,7 +12,7 @@ class DefaultController extends Controller {
         }
         if (isset($_POST['name'])) {
             $name = $_POST['name'];
-            $criteria->addCondition($feild_name .' like "%' . $name . '%"');
+            $criteria->addCondition($feild_name . ' like "%' . $name . '%"');
         }
         $list = LinkWeb::model()->findAll($criteria);
         $this->render('index', array('list' => $list, 'group' => $group));
@@ -68,7 +64,7 @@ class DefaultController extends Controller {
             if ($model->getErrors() == null) {
                 if ($model->save()) {
                     echo "<script language='javascript'>
-                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "'); 
+                                alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "'); 
                                 window.location='/link/default/managelink';
                           </script>";
                 }
@@ -102,8 +98,6 @@ class DefaultController extends Controller {
     public function actionGroupForm($id = '') {
         if ($id != '') {
             $model = LinkGroup::model()->findByPk($id);
-//        } else if ($_POST['id'] != '') {
-//            $model = LinkGroup::model()->findByPk($_POST['id']);
         } else {
             $model = new LinkGroup();
         }
@@ -112,21 +106,14 @@ class DefaultController extends Controller {
             $model->attributes = $_POST['LinkGroup'];
             if ($model->save()) {
                 echo "<script language='javascript'>
-                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                                alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
                                 // window.top.location.href = '/link/default/managegrouplink';
                           </script>";
-//            } else {
-//                echo "<script language='javascript'>
-//                                alert('" . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . "');
-//                                window.top.location.href = '/link/default/managegrouplink';
-//                          </script>";
             }
         }
-//        else {
         $this->renderPartial('_group_form', array(
             'model' => $model,
         ));
-//        }
     }
 
     public function actionGroupGridview() {
