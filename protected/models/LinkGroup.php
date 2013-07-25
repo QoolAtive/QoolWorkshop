@@ -37,7 +37,7 @@ class LinkGroup extends LinkGroupBase {
         return array(
             array('name_th, name_en', 'required'),
             array('name_th, name_en', 'length', 'max' => 255),
-            array('name_th', 'checkDup'),
+            array('name_th, name_en', 'checkDup'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name_th, name_en', 'safe', 'on' => 'search'),
@@ -81,24 +81,25 @@ class LinkGroup extends LinkGroupBase {
         $criteria->compare('name_en', $this->name_en, true);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                    'pagination' => array(
-                        'pageSize' => 10,
-                    ),
-                ));
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
+        ));
     }
 
-    public function checkDup() {
+    public function checkDup($attribute) {
         if ($this->getErrors() == NULL) {
             $criteria = new CDbCriteria;
-            $criteria->addCondition("(name_th = '" . $this->name_th . "' or name_en = '" . $this->name_en . "')");
+            if ($this->id == NULL) {
+                $criteria->addCondition("(" . $attribute . " = '" . $this->$attribute . "' )");
+            } else {
+                $criteria->addCondition("(" . $attribute . " = '" . $this->$attribute . "' and id != " . $this->id . " )");
+            }
             $model = LinkGroup::model()->find($criteria);
             if (!empty($model)) {
-//                $label = LinkGroup::model()->getAttributeLabel('name');
-//                echo "<script>
-//                    alert('ชื่อกลุ่มลิ้งก์มีอยู่ในระบบแล้ว ไม่สามารถบันทึกซ้ำได้');               
-//                </script>";
-                $this->addError('name_th', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
+                $label = LinkGroup::model()->getAttributeLabel($attribute);
+                $this->addError($attribute, $label . ' มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
             }
         }
     }

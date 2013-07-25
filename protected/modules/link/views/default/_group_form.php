@@ -1,11 +1,12 @@
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'group-form',
-    'enableAjaxValidation'=>true,
+    'enableAjaxValidation' => true,
+    'enableClientValidation' => true,
+    'focus' => array($model, 'name_th, name_en')
         ));
 //echo $form->errorSummary($model);
 ?>
-
 
 <div class="rowContact clearfix">
     <?php
@@ -22,13 +23,17 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php
 echo CHtml::hiddenField('id', $model->id);
 echo CHtml::ajaxSubmitButton(
-       Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
-   'success' => 'function(){
-
-           $.fancybox.close();
-           $.fn.yiiGridView.update("link-grid");
-       }',
-       ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
+        Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
+    'success' => 'function(data){
+        if(data.result === "success"){
+            alert("' . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . '");
+            $.fn.yiiGridView.update("link-grid");
+            $.fancybox.close();
+        } else {
+//            alert("' . Yii::t('language', 'ข้อมูลไม่ถูกต้อง') . '");
+        }
+    }',
+        ), array('id' => 'ajaxBtn', 'name' => 'ajaxBtn')
 );
 // echo CHtml::ajaxSubmitButton(Yii::t('language', 'บันทึก'), array('id' => 'submit'));
 //echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => 'hideDiv();'));
