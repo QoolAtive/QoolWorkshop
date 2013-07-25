@@ -2,6 +2,15 @@
 
 class DefaultController extends Controller {
 
+    public function actionHome() {
+        $model = new LearningGroup();
+        $model->unsetAttributes();
+
+        $this->render('home', array(
+            'model' => $model,
+        ));
+    }
+
     public function actionIndex($id = null) {
         $model = Learning::model()->findAll('group_id=:group_id', array(':group_id' => $id));
         $learningList = new Learning();
