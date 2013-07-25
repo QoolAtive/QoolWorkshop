@@ -104,7 +104,7 @@ return array(
     'รูปภาพเดิม' => 'Older Image',
     'ไม่เลือก' => 'Not Select',
     'เลือก' => 'Select',
-    '' => '',
+    'เรียบร้อย' => ' successfully',
     '' => '',
     '' => '',
     '' => '',
