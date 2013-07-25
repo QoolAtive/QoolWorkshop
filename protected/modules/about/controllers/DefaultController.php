@@ -2,13 +2,13 @@
 
 class DefaultController extends Controller {
 
-    public function actionIndex() {
+    public function actionIndex($view = NULL) {
         $model = new About();
         if (isset($_POST['About'])) {
             $model->attributes = $_POST['About'];
             $model->save();
         }
-        $this->render('index', array('model' => $model));
+        $this->render('index', array('model' => $model, 'view' => $view));
     }
 
     public function actionEditAbout() {
