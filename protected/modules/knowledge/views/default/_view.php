@@ -26,7 +26,7 @@
 
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'บทความ'), array(
+                        Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array(
                     '/knowledge/manage/knowledge'
                         ), array(
                     'rel' => 'view5'
@@ -34,7 +34,7 @@
                 echo "</li>";
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'การเรียนรู้'), array(
+                        Yii::t('language', 'จัดการ'). Yii::t('language', 'การเรียนรู้'), array(
                     '/learning/manage/learning'
                         ), array(
                     'rel' => 'view6'
