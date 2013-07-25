@@ -6,12 +6,9 @@
         <ul class="tabs clearfix">
             <?php
             $list = array(
-                array('text' => Yii::t('language', 'เนื้อหา'), 'link' => '#',),
+                array('text' => Yii::t('language', 'เนื้อหา'), 'link' => '#', 'select' => 'selected'),
             );
-            $n = 1;
-            foreach ($list as $ls) {
-                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
-            }
+
             $list2 = array(
                 array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index'),
                 array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/knowledge/default/index#view2'),
@@ -40,6 +37,11 @@
                 ));
                 echo "</li>";
             }
+//            $n = 1;
+//            foreach ($list as $ls) {
+//                echo "<li>" . CHtml::link($ls['text'], $ls['link'], array('rel' => 'view' . $n++)) . "</li>";
+//            }
+            echo Tool::GenList($list);
             ?> 
         </ul>
     </div>

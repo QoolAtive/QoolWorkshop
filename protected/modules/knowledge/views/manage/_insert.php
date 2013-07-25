@@ -24,6 +24,18 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="_100">
     <div class="ckleft">
         <?php
+        echo $form->label($model, 'guide_status');
+        ?>
+    </div>
+    <div class="ckright">
+        <?php
+        echo $form->radioButtonList($model, 'guide_status', array('0' => Yii::t('language', 'ไม่เลือก'), '1' => Yii::t('language', 'เลือก')), array());
+        ?>
+    </div>
+</div>
+<div class="_100">
+    <div class="ckleft">
+        <?php
         echo $form->label($model, 'subject');
         ?>
 
@@ -35,6 +47,7 @@ $form = $this->beginWidget('CActiveForm', array(
         ?>
     </div>
 </div>
+
 <div class="_100">
 
     <div class="ckleft">
@@ -116,21 +129,7 @@ $form = $this->beginWidget('CActiveForm', array(
         ?>
     </div>
 </div>
-<div class="_100">
 
-    <div class="ckleft">
-        <?php
-        echo $form->label($model, 'guide_status');
-        ?>
-    </div>
-
-    <div class="ckright">
-        <?php
-        echo $form->radioButtonList($model, 'guide_status', array('0' => Yii::t('language', 'ไม่เลือก'), '1' => Yii::t('language', 'เลือก')), array());
-        ?>
-    </div>
-
-</div>
 <div class="_100">
     <div class="ckleft"> 
         <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
