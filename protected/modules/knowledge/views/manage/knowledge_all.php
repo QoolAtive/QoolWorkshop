@@ -6,13 +6,13 @@
         <ul class="tabs clearfix">
             <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'บทความ'); ?></a></li>
             <li><a href="/learning/default/home"><?php echo Yii::t('language', 'การเรียนรู้'); ?></a></li>
-            <li ><a href="/knowledge/manage/knowledge"><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?></a></li>
+            <li><a href="/knowledge/manage/knowledge"><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?></a></li>
             <li><a href="/learning/manage/learning"><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'); ?></a></li>
 
             <?php
             $list = array(
-                array('text' => Yii::t('language', 'บทความแนะนำ'), 'link' => '/knowledge/manage/knowledge', 'select' => 'selected'),
-                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '/knowledge/manage/knowledgeAll', 'select' => ''),
+                array('text' => Yii::t('language', 'บทความแนะนำ'), 'link' => '/knowledge/manage/knowledge', 'select' => ''),
+                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '/knowledge/manage/knowledgeAll', 'select' => 'selected'),
             );
             echo Tool::GenList($list);
             ?> 
@@ -22,7 +22,7 @@
 </div>
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
+        <h3><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></h3>
         <hr>
         <div style="text-align: center;">
             <?php
@@ -35,7 +35,7 @@
         </div>
         <hr>
         <?php
-        $this->renderPartial('_grid_guide_knowledge', array(
+        $this->renderPartial('_grid_all_knowledge', array(
             'model' => $model,
         ));
         ?>

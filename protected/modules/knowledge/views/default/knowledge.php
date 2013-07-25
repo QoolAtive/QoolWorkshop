@@ -6,14 +6,11 @@
         <ul class="tabs clearfix">
             <?php
             $list = array(
-                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index'),
-                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/learning/default/index'),
+                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '#', 'select' => 'selected'),
+                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index', 'select' => ''),
+                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/learning/default/home', 'select' => ''),
             );
-            $n = 1;
-            foreach ($list as $ls) {
-                echo "<li>" . CHtml::link($ls['text'], $ls['link']) . "</li>";
-            }
-// echo Tool::GenList($list);
+            echo Tool::GenList($list);
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
