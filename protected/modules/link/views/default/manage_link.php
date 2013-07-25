@@ -1,15 +1,15 @@
 <div id="content_front" class=" clearfix">
     <h3 class="barH3">
-        <span><i class="icon-link"></i> <?php echo Yii::t('language', 'จัดการเว็บไซต์ที่เกี่ยวข้อง'); ?></span>
+        <span><i class="icon-link"></i> <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กลุ่มลิงก์'); ?></span>
     </h3>
     <div class="bucketLeft clearfix">
         <div class="areaWhite clearfix">
             <div class="btnMngED clearfix">
                 <?php
-                echo CHtml::button(Yii::t('language', 'เพิ่มลิ้งก์'), array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ลิงก์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
                 echo '  ';
-                echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มลิ้งก์'), array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . '/' . Yii::t('language', 'แก้ไข') . Yii::t('language', 'กลุ่มลิงก์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
                 ?>
             </div>
@@ -20,15 +20,12 @@
                     'dataProvider' => $dataProvider,
                     'filter' => $model,
                     'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-//                    'pagerCssClass' => 'alignCenter',
                     'columns' => array(
                         array(
-                            'header' => Yii::t('language', 'ลำดับที่'),
-//                            'htmlOptions' => array('class' => 'button-column'),
+                            'header' => Yii::t('language', 'ลำดับ'),
                             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
                         ),
                         array(
-                            'header' => Yii::t('language', 'รูปลิงค์'),
                             'name' => 'img_path',
                             'type' => 'raw',
                             'value' => 'CHtml::image($data->img_path,\'\',array(
@@ -37,23 +34,21 @@
                             'filter' => false,
                         ),
                         array(
-                            'header' => Yii::t('language', 'ชื่อลิงค์'),
-                            'name' => 'name_th',
-                            'value' => '$data->name_th',
+                            'name' => LanguageHelper::changeDB('name_th', 'name_en'),
+                            'value' => 'LanguageHelper::changeDB($data->name_th,$data->name_en)',
                         ),
                         array(
-                            'header' => Yii::t('language', 'ที่อยู่ลิงค์'),
                             'name' => 'link',
                             'value' => '$data->link',
                         ),
                         array(
-                            'header' => Yii::t('language', 'กลุ่ม'),
                             'name' => 'group_id',
-                            'value' => ('LinkGroup::model()->findByPk($data->group_id)->name_th'),
-                            'filter' => CHtml::listData(LinkGroup::model()->findAll(), "id", "name_th"),
+//                            'value' => ('LinkGroup::model()->findByPk($data->group_id)->name_th'),
+                            'value' => 'LanguageHelper::changeDB(LinkGroup::model()->findByPk($data->group_id)->name_th,LinkGroup::model()->findByPk($data->group_id)->name_en)',
+//                            'value' => ('LinkGroup::model()->findByPk($data->group_id)->name_th'),
+                            'filter' => CHtml::listData(LinkGroup::model()->findAll(), "id", LanguageHelper::changeDB('name_th', 'name_en')),
                         ),
                         array(
-                            'header' => Yii::t('language', 'วันเวลาที่สร้างลิงค์'),
                             'name' => 'date_write',
                             'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',
                             'filter' => false,
@@ -102,8 +97,5 @@
                 ?> 
             </div>
         </div>
-
-
-
     </div>
 </div>
