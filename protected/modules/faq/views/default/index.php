@@ -53,7 +53,7 @@
 
 
 <div class="content">
-    <!--<div class="tabcontents" >-->
+    <div class="tabcontents" >
         <img src="<?php echo Yii::t('language', '/img/banner/faq.png'); ?>" class="pagebanner" alt="pagebanner"/>
         <?php
         if ($view == '2') {
@@ -66,5 +66,5 @@
             $this->renderPartial('_view1', array('faq1' => $faq1, 'pages1' => $pages1));// เริ่มต้นที่หน้านี้
         }
         ?>
-    <!--</div>-->
+    </div>
 </div>
