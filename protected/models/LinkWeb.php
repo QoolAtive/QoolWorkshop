@@ -67,14 +67,14 @@ class LinkWeb extends LinkWebBase {
      */
     public function attributeLabels() {
         return array(
-            'id' => 'ลำดับที่',
-            'group_id' => 'กลุ่ม',
-            'name_th' => 'ชื่อภาษาไทย',
-            'name_en' => 'ชื่อภาษาอังกฤษ',
-            'link' => 'Link',
-            'img_path' => 'รูปภาพ',
-            'author' => 'Author',
-            'date_write' => 'Date Write',
+            'id' => Yii::t('language', 'ลำดับ'),
+            'group_id' => Yii::t('language', 'กลุ่ม'),
+            'name_th' => Yii::t('language', 'ชื่อภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
+            'link' => Yii::t('language', 'ลิงก์'),
+            'img_path' => Yii::t('language', 'รูปภาพ'),
+            'author' => Yii::t('language', 'ผู้เขียน'),//Author
+            'date_write' => Yii::t('language', 'วันที่เขียน'),
         );
     }
 
