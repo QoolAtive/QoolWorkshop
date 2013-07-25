@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller {
 
-    public function actionIndex() {
+    public function actionIndex($view = NULL) {
         $criteria = new CDbCriteria();
         $criteria->condition = "fm_id = '1'";
         $count = FaqQuestion::model()->count($criteria);
@@ -48,6 +48,7 @@ class DefaultController extends Controller {
             'pages2' => $pages2,
             'pages3' => $pages3,
             'pages4' => $pages4,
+            'view' => $view
         ));
     }
 
@@ -87,13 +88,14 @@ class DefaultController extends Controller {
         }
     }
 
-    public function actionManageFaq() {
+    public function actionManageFaq($view = NULL) {
         $model = new FaqQuestion();
         if (isset($_GET['FaqQuestion'])) {
             $model->attributes = $_GET['FaqQuestion'];
         }
         $this->render('managefaq', array(
             'model' => $model,
+            'view' => $view
         ));
     }
 
