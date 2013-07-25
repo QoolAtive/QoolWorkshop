@@ -1,24 +1,20 @@
-<!--<div id="groupform" style="display: none;">
-<?php
-//    $this->renderPartial('_group_form', array(
-//        'model' => $model,
-//    ));
-?>
-</div>-->
+
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'link-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
     'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-    'pagerCssClass' => 'alignCenter',
-    'ajaxUpdate' => true,
     'columns' => array(
         array(
-            'header' => Yii::t('language', 'ลำดับที่'),
+            'header' => Yii::t('language', 'ลำดับ'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
-        'name_th',
+        array(
+                'name' => LanguageHelper::changeDB('name_th','name_en'),
+                'type' => 'raw',
+                'value' => 'LanguageHelper::changeDB($data->name_th,$data->name_en)',
+            ),
         array(
             'class' => 'CButtonColumn',
             'header' => Yii::t('language', "แก้ไข"),
