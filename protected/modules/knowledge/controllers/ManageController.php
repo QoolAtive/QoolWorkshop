@@ -39,7 +39,8 @@ class ManageController extends Controller {
 
     public function actionInsert($id = '', $new = '') {
         if ($id == NULL) {
-            Yii::app()->user->setState('message_review', 'เพิ่มบทความเรียบร้อย');
+            $alertText = Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
+
             $model = new Knowledge();
             $model2 = new KnowledgeThem();
             $file = new Upload();
@@ -51,10 +52,9 @@ class ManageController extends Controller {
             $model->position = '1';
 
 //            $new = true;
-            $alertText = 'เพิ่มบทความเรียบร้อย';
 //            $link_location = '/knowledge/manage/insert';
         } else {
-            Yii::app()->user->setState('message_review', 'แก้ไขบทความเรียบร้อย');
+            $alertText = Yii::t('language', 'แก้ไข') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
 
             $model = Knowledge::model()->find("id = " . $id);
             $model->_old = $model->subject;
@@ -62,7 +62,7 @@ class ManageController extends Controller {
 
             $file = new Upload();
 
-            $alertText = 'แก้ไขบทความเรียบร้อย';
+
 //            if ($new != '1') {
 //                if (Yii::app()->user->getState('insert') == 'view') {
 //                    $link_location = '/knowledge/default/view/id/' . $id;
@@ -71,6 +71,8 @@ class ManageController extends Controller {
 //                }
 //            }
         }
+
+        Yii::app()->user->setState('message_review', $alertText);
 
         if (isset($_POST['Knowledge'])) {
             $model->attributes = $_POST['Knowledge'];
@@ -141,14 +143,13 @@ class ManageController extends Controller {
 
             if (isset($model->image)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
                 if (fopen($file_paht, 'w'))
-                    if (unlink($file_paht)) {
-                        
-                    }
+                    unlink($file_paht);
             }
         }
 
-        if ($model->delete())
-            echo "ลบข้อมูลเรียบร้อย";
+        if ($model->delete()) {
+            echo Yii::t('language', 'ลบ') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
+        }
     }
 
     public function actionDelReview($id) {
