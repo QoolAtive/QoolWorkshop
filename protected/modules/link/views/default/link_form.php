@@ -1,17 +1,14 @@
 <div class="content_front" class="clearfix">
     <?php
-//    $this->widget('ext.EChosen.EChosen');
-    $name_btn = "เพิ่ม";
+    $name_btn = Yii::t('language', 'เพิ่ม');
     if ($model->id != '') {
-        $name_btn = "แก้ไข";
-//        $model_files_old = DlFiles::model()->findAll("news_id=" . $model->id);
+        $name_btn = Yii::t('language', 'แก้ไข');
     }
     ?>
     <h3 class="barH3">
-
         <span>
             <?php
-            echo Yii::t('language', $name_btn) . ' ' . Yii::t('language', 'เว็บไซต์ที่เกี่ยวข้อง');
+            echo Yii::t('language', $name_btn) . ' ' . Yii::t('language', 'ลิงก์หน่วยงาน');
             ?>
         </span>
     </h3>
@@ -36,28 +33,31 @@
 
                 <div class="rowContact clearfix">
                     <?php
-                    echo Yii::t('language', $form->labelEx($model, 'name_th'));
+                    echo $form->labelEx($model, 'name_th');
                     echo $form->textField($model, 'name_th', array('size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
-                    echo Yii::t('language', $form->labelEx($model, 'name_en'));
+                    echo $form->labelEx($model, 'name_en');
                     echo $form->textField($model, 'name_en', array('size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
-                    echo Yii::t('language', $form->labelEx($model, 'group_id'));
-                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', 'name_th'), array('empty' => 'กรุณาเลือกกลุ่ม'));
+                    echo $form->labelEx($model, 'group_id');
+                    $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
+                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', $feild_name), array(
+                        'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
+                    ));
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
-                    echo Yii::t('language', $form->labelEx($model, 'link'));
+                    echo $form->labelEx($model, 'link');
                     echo $form->textField($model, 'link', array('size' => '255'));
 //                    echo Yii::t('language', $form->error($model, 'link'));
                     ?>
@@ -77,30 +77,30 @@
                         'denied' => Yii::t('language', 'allowed_img'),
                         'max' => 1,
                         'remove' => '[x]',
-                        'duplicate' => Yii::t('language', 'Already Selected'),
+                        'duplicate' => Yii::t('language', 'เลือกไว้แล้ว'),
                             )
                     );
 //                    echo Yii::t('language', $form->error($model, 'img_path'));
                     ?>
                     <div>
-                        <?php if($model->img_path != NULL){
+                        <?php if ($model->img_path != NULL) {
                             ?>
-                        <div class="file_old clearfix">
-                            <?php
-                            echo "<ul class='list_files'> ";
-                            $arr_file_detail = explode('.', $model->img_path);
+                            <div class="file_old clearfix">
+                                <?php
+                                echo "<ul class='list_files'> ";
+                                $arr_file_detail = explode('.', $model->img_path);
 
-                            $arr_file_name = explode('/upload/img/link/', $model->img_path);
-                            echo "<li class='link_img'>" . CHtml::link($arr_file_name[1], $model->img_path, array('target' => '_blank')) . "</li>";
-                            echo " </ul>";
-                            ?>
-                        </div>
+                                $arr_file_name = explode('/upload/img/link/', $model->img_path);
+                                echo "<li class='link_img'>" . CHtml::link($arr_file_name[1], $model->img_path, array('target' => '_blank')) . "</li>";
+                                echo " </ul>";
+                                ?>
+                            </div>
                         <?php } ?>
                         <div class="descAttach">
                             <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
                             <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB)' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
                         </div>
-                        <?php //echo Yii::t('language', $form->error($model_files, 'file_name')); ?>
+                        <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
                     </div>
                 </div>
                 <div class="btnForm">
