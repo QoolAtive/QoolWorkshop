@@ -3,7 +3,7 @@ $form = $this->beginWidget('CActiveForm', array(
     'id' => 'group-form',
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,
-    'focus' => array($model, 'name_th, name_en')
+    'focus' => array($model, 'name_th')
         ));
 //echo $form->errorSummary($model);
 ?>
@@ -26,7 +26,7 @@ echo CHtml::ajaxSubmitButton(
         Yii::t('language', 'บันทึก'), CHtml::normalizeUrl(array('/link/default/groupform')), array(
     'success' => 'function(data){
         if(data.result === "success"){
-            alert("' . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . '");
+            alert("' . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . '");
             $.fn.yiiGridView.update("link-grid");
             $.fancybox.close();
         } else {
