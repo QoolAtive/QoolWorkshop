@@ -98,7 +98,7 @@
                         <?php } ?>
                         <div class="descAttach">
                             <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
-                            <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB)' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
+                            <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB) ' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
                         </div>
                         <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
                     </div>
