@@ -60,12 +60,7 @@ if (empty($list)) {
     echo Yii::t('language', "ไม่พบลิงก์ที่เกี่ยวข้อง");
 } else {
     foreach ($list as $l) {
-        $name = $l['name_th'];
-        if ($currentLang == 'en') {
-            if ($l['name_en'] != '') {
-                $name = $l['name_en'];
-            }
-        }
+        $name = LanguageHelper::changeDB($l['name_th'], $l['name_en']);
         ?>
             <li>
                 <ul class="innerlogo">
