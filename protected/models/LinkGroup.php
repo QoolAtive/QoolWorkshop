@@ -61,8 +61,8 @@ class LinkGroup extends LinkGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_th' => 'ชื่อกลุ่มลิงก์ภาษาไทย',
-            'name_en' => 'ชื่อกลุ่มลิงก์ภาษาอังกฤษ',
+            'name_th' => Yii::t('language', 'ชื่อกลุ่มลิงก์ภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อกลุ่มลิงก์ภาษาอังกฤษ'),
         );
     }
 
@@ -99,7 +99,7 @@ class LinkGroup extends LinkGroupBase {
             $model = LinkGroup::model()->find($criteria);
             if (!empty($model)) {
                 $label = LinkGroup::model()->getAttributeLabel($attribute);
-                $this->addError($attribute, $label . ' มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
+                $this->addError($attribute, $label . Yii::t('language', ' มีอยู่ในระบบ กรุณาตรวจสอบ'));
             }
         }
     }
