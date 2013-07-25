@@ -37,6 +37,24 @@ class ManageController extends Controller {
         ));
     }
 
+    public function actionKnowledgeAll() {
+        $model = new Knowledge();
+        $model->unsetAttributes();
+        if (isset($_GET['Knowledge'])) {
+            $model->attributes = $_GET['Knowledge'];
+        }
+
+        // ปุ่มย้อนกลับ
+        Yii::app()->user->setState('link_back', '/knowledge/manage/knowledge');
+        Yii::app()->user->setState('insert', 'knowledge'); // ลิ้งหน้าเพิ่มบทความ
+        // ยกเลิกเวลาเพิ่มบทความให้กลับไปไหน ดูรายละเอียดบทความหรือ กลับไปหน้าจัดการบทความ
+//        Yii::app()->user->setState('cancel', '/knowledge/manage/knowledge');
+
+        $this->render('knowledge_all', array(
+            'model' => $model,
+        ));
+    }
+    
     public function actionInsert($id = '', $new = '') {
         if ($id == NULL) {
             $alertText = Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
