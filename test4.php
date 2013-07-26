@@ -6,22 +6,6 @@ echo "test4";
  * and open the template in the editor.
  * 
  * 
-<<<<<<< HEAD
- * 555555555555566666666
- * 
- * 
- * 1212212221
- * 
- * 
- * 
- * 
- * 5556666666
- * 
- * 
- * 
- * wewwrewrewrewrwrwr
- * 
-=======
  * 
  * 
  * 
@@ -38,6 +22,5 @@ echo "test4";
  * 
  * 
  * adsadasdasd
->>>>>>> b_2
  */
 ?>
