@@ -10,13 +10,13 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <div class="rowContact clearfix">
     <?php
-    echo Yii::t('language', $form->labelEx($model, 'name_th'));
-    echo $form->textField($model, 'name_th', array('size' => '30'));
-    echo Yii::t('language', $form->error($model, 'name_th'));
+    echo $form->labelEx($model, 'name_th');
+    echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '30'));
+    echo $form->error($model, 'name_th');
 
-    echo Yii::t('language', $form->labelEx($model, 'name_en'));
-    echo $form->textField($model, 'name_en', array('size' => '30'));
-    echo Yii::t('language', $form->error($model, 'name_en'));
+    echo $form->labelEx($model, 'name_en');
+    echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '30'));
+    echo $form->error($model, 'name_en');
     ?>
 </div>
 
@@ -39,5 +39,5 @@ echo CHtml::ajaxSubmitButton(
 //echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => 'hideDiv();'));
 
 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onclick' => '$.fancybox.close();'));
+$this->endWidget();
 ?>
-<?php $this->endWidget(); ?>
