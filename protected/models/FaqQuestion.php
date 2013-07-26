@@ -64,12 +64,12 @@ class FaqQuestion extends FaqQuestionBase {
         return array(
             'id' => 'ID',
             'fm_id' => 'Fm',
-            'subject_th' => 'คำถามภาษาไทย',
-            'detail_th' => 'คำตอบภาษาไทย',
-            'subject_en' => 'คำถามภาษาอังกฤษ',
-            'detail_en' => 'คำตอบภาษาอังกฤษ',
-            'author' => 'Author',
-            'date_write' => 'Date Write',
+            'subject_th' => Yii::t('language', 'คำถามภาษาไทย'),
+            'detail_th' => Yii::t('language', 'คำตอบภาษาไทย'),
+            'subject_en' => Yii::t('language', 'คำถามภาษาอังกฤษ'),
+            'detail_en' => Yii::t('language', 'คำตอบภาษาอังกฤษ'),
+            'author' => Yii::t('language', 'ผู้เขียน'),
+            'date_write' => Yii::t('language', 'วันที่เขียน'),
         );
     }
 
