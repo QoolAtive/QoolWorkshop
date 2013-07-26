@@ -20,7 +20,7 @@ class ManageController extends Controller {
     }
 
     public function actionKnowledge() {
-        $model = new Knowledge('search');
+        $model = new Knowledge();
         $model->unsetAttributes();
         if (isset($_GET['Knowledge'])) {
             $model->attributes = $_GET['Knowledge'];
@@ -54,10 +54,10 @@ class ManageController extends Controller {
             'model' => $model,
         ));
     }
-    
+
     public function actionInsert($id = '', $new = '') {
         if ($id == NULL) {
-            $alertText = Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
+            $alertText = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
 
             $model = new Knowledge();
             $model2 = new KnowledgeThem();
@@ -72,7 +72,7 @@ class ManageController extends Controller {
 //            $new = true;
 //            $link_location = '/knowledge/manage/insert';
         } else {
-            $alertText = Yii::t('language', 'แก้ไข') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
+            $alertText = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
 
             $model = Knowledge::model()->find("id = " . $id);
             $model->_old = $model->subject;

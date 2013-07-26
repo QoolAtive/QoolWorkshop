@@ -1,8 +1,8 @@
 <?php
 if ($model->id != NULL) {
-    $btnText = Yii::t('language', 'แก้ไข') . Yii::t('language', 'บทความ');
+    $btnText = Yii::t('language', 'บันทึก');
 } else {
-    $btnText = Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ');
+    $btnText = Yii::t('language', 'บันทึก');
 }
 ?>
 

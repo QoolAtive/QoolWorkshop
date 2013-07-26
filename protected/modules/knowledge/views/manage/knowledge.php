@@ -11,8 +11,8 @@
 
             <?php
             $list = array(
-                array('text' => Yii::t('language', 'บทความแนะนำ'), 'link' => '/knowledge/manage/knowledge', 'select' => 'selected'),
-                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '/knowledge/manage/knowledgeAll', 'select' => ''),
+                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '/knowledge/manage/knowledge', 'select' => 'selected'),
+//                array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '/knowledge/manage/knowledgeAll', 'select' => ''),
             );
             echo Tool::GenList($list);
             ?> 
@@ -22,7 +22,7 @@
 </div>
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
+        <h3><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></h3>
         <hr>
         <div style="text-align: center;">
             <?php
@@ -35,7 +35,7 @@
         </div>
         <hr>
         <?php
-        $this->renderPartial('_grid_guide_knowledge', array(
+        $this->renderPartial('_grid_all_knowledge', array(
             'model' => $model,
         ));
         ?>
