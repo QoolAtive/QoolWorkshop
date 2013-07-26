@@ -17,7 +17,10 @@ class DefaultController extends Controller {
             $model->attributes = $_POST['About'];
             if ($model->validate()) {
                 About::model()->updateAll(array('about_text_th' => $model->about_text_th, 'about_text_en' => $model->about_text_en));
-                $this->redirect(CHtml::normalizeUrl(array('/about/default/index')));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                                window.top.location.href = '/about/default/index';
+                    </script>";
             }
         }
         $this->render('edit_about', array('model' => $model));
@@ -55,7 +58,7 @@ class DefaultController extends Controller {
         }//END if ($_POST['email'] != NULL && $_POST['description'] != NULL && $_POST['name'] != NULL) {
         ?>
         <script>
-            window.location = "<?php echo CHtml::normalizeUrl(array("/about/default/index#view2")); ?>";
+            window.location = "<?php echo CHtml::normalizeUrl(array("/about/default/index/view/2")); ?>";
         </script><?php
 //        $this->redirect(CHtml::normalizeUrl(array('/about/default/index')));
     }
