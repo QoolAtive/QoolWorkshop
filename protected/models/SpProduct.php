@@ -10,9 +10,10 @@ class SpProduct extends SpProductBase {
         return array(
             array('main_id, name, name_en, detail, detail_en, guide, date_write', 'required'),
             array('main_id', 'numerical', 'integerOnly' => true),
-            array('name, name_en', 'length', 'max' => 255),
+            array('image, name, name_en', 'length', 'max' => 255),
             array('guide', 'length', 'max' => 1),
-            array('id, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on' => 'search'),
+            array('image', 'file', 'types' => 'jpg, gif, png', 'allowEmpty' => true),
+            array('id, image, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on' => 'search'),
         );
     }
 
@@ -20,10 +21,11 @@ class SpProduct extends SpProductBase {
         return array(
             'id' => 'ID',
             'main_id' => 'Main',
+            'image' => Yii::t('language', 'รูปภาพ'),
             'name' => Yii::t('language', 'ชื่อภาษาไทย'),
             'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
-            'detail' => Yii::t('language', 'ชื่อภาษาไทย'),
-            'detail_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
+            'detail' => Yii::t('language', 'รายละเอียดภาษาไทย'),
+            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
             'guide' => Yii::t('language', 'สถานะ'),
             'date_write' => Yii::t('language', 'date_write'),
         );
@@ -53,6 +55,7 @@ class SpProduct extends SpProductBase {
             $criteria->condition = "main_id = $id";
         }
 
+        $criteria->order = "guide = 1 desc, id desc";
         $criteria->compare('id', $this->id);
         $criteria->compare('main_id', $this->main_id);
         $criteria->compare('name', $this->name, true);
@@ -65,6 +68,19 @@ class SpProduct extends SpProductBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function getDataTypeList($p = '', $arr_data = false) {
+        $arr = array(
+            '0' => Yii::t('language', 'ไม่เลือก'),
+            '1' => Yii::t('language', 'สินค้าขายดี'),
+            '2' => Yii::t('language', 'โปรโมชั่น'),
+        );
+        if ($arr_data) {
+            return $arr;
+        } else {
+            return $arr[$p];
+        }
     }
 
 }
