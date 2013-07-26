@@ -26,15 +26,6 @@ $this->renderPartial('_side_bar', array(
                 ));
                 ?>
                 <hr>
-                <div style="text-align: center;">
-                    <?php
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/knowledge/default/index'
-                        )) . "'")
-                    );
-                    ?>
-                </div>
-                <hr>
             </div>
         </div>
     </div>
