@@ -39,15 +39,5 @@
             'model' => $model,
         ));
         ?>
-        <hr>
-        <div style="text-align: center;">
-            <?php
-            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    Yii::app()->user->getState('knowledge')
-                )) . "'")
-            );
-            ?>
-        </div>
-        <hr>
     </div>
 </div>
