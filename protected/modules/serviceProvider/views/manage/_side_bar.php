@@ -4,16 +4,29 @@
             <li class="boxhead"><img src="/img/iconpage/serviceprovider.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a rel="view7" href="#">Partner Groups</a></li>
-            <li><a rel="view8" href="#">Partners</a></li>
+
             <?php
             $menu = SpTypeBusiness::model()->findAll();
             foreach ($menu as $data) {
                 ?>
-                <li><a rel="view<?php echo $data['id'] ?>" href="/serviceProvider/default/index#view<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a></li>
+                <li><a href="/serviceProvider/default/index/id/<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a></li>
                 <?php
             }
+            if (!isset($select1))
+                $select1 = '';
+            if (!isset($select2))
+                $select2 = '';
+            if (!isset($select3))
+                $select3 = '';
+            
+            $list = array(
+                array('text' => Yii::t('language', 'กลุ่มพาร์ทเนอร์'), 'link' => '/serviceProvider/manage/typeBusiness', 'select' => $select1),
+                array('text' => Yii::t('language', 'พาร์ทเนอร์'), 'link' => '/serviceProvider/manage/company', 'select' => $select2),
+//                array('text' => Yii::t('language', ''), 'link' => '/serviceProvider/manage/company', 'select' => $select3),
+            );
+            echo Tool::GenList($list);
             ?>
+
         </ul>
     </div>
 </div>
