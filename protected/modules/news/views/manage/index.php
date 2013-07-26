@@ -1,75 +1,83 @@
-<h3><?php echo Yii::t('language', 'จัดการข่าว'); ?></h3>
 <?php
-$dataProvider = $model->search();
-
-echo CHtml::button(Yii::t('language', 'เพิ่ม'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/edit")) . '"'));
-echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มข่าว'), array(
-    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageGroup")) . '"'));
-
-$this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'news-grid',
-    'dataProvider' => $dataProvider,
-    'filter' => $model,
-    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-    'pagerCssClass' => 'alignCenter',
-    'ajaxUpdate' => true,
-    'columns' => array(
-        array(
-            'header' => Yii::t('language', 'ลำดับที่'),
-            'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
-        ),
-        array(
-            'header' => 'หัวข้อ',
-            'name' => 'subject_th',
-            'value' => 'strip($data->subject_th, 20);'
-        ),
-        array(
-            'header' => 'รายละเอียด',
-            'name' => 'detail_th',
-            'value' => 'strip($data->detail_th, 30);'
-        ),
-        array(
-            'class' => 'CButtonColumn',
-            'header' => Yii::t('language', "แก้ไข"),
-            'template' => '{update}',
-            'buttons' => array(
-                'update' => array(
-                    'label' => Yii::t('language', 'แก้ไข'),
-                    'url' => 'CHtml::normalizeUrl(array("/news/manage/edit", "id"=> $data->id))',
-                ),
-            ),
-        ),
-        array(
-            'class' => 'CButtonColumn',
-            'header' => Yii::t('language', "ลบ"),
-            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
-            'template' => '{delete}',
-            'buttons' => array(
-                'delete' => array(
-                    'label' => Yii::t('language', 'ลบ'),
-                    'url' => 'CHtml::normalizeUrl(array("/news/manage/delete","id"=> $data->id))',
-                ), //end 'delete' => array(
-            ), //end 'buttons' => array(
-        ),
-    ), //end 'columns' => array(
-    'template' => "{pager}\n{items}\n{pager}",
-    'pager' => array(
-        'class' => 'CLinkPager',
-        'header' => Yii::t('language', 'หน้าที่: '),
-        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
-        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
-        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
-        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
-    )
-));
+$this->renderPartial('_sidemenu');
 ?>
-<div class="btnForm l_btn">
-                <?php
-                echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/default/index")) . '"'));
-                ?> 
-            </div>
+
+<div class="content">
+    <div class="tabcontents">
+        <h3><?php echo Yii::t('language', 'จัดการข่าว'); ?></h3>
+        <?php
+        $dataProvider = $model->search();
+
+        echo CHtml::button(Yii::t('language', 'เพิ่ม'), array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/edit")) . '"'));
+        echo CHtml::button(Yii::t('language', 'เพิ่ม/แก้ไข กลุ่มข่าว'), array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageGroup")) . '"'));
+
+        $this->widget('zii.widgets.grid.CGridView', array(
+            'id' => 'news-grid',
+            'dataProvider' => $dataProvider,
+            'filter' => $model,
+            'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
+            'pagerCssClass' => 'alignCenter',
+            'ajaxUpdate' => true,
+            'columns' => array(
+                array(
+                    'header' => Yii::t('language', 'ลำดับที่'),
+                    'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
+                ),
+                array(
+                    'header' => 'หัวข้อ',
+                    'name' => 'subject_th',
+                    'value' => 'strip($data->subject_th, 20);'
+                ),
+                array(
+                    'header' => 'รายละเอียด',
+                    'name' => 'detail_th',
+                    'value' => 'strip($data->detail_th, 30);'
+                ),
+                array(
+                    'class' => 'CButtonColumn',
+                    'header' => Yii::t('language', "แก้ไข"),
+                    'template' => '{update}',
+                    'buttons' => array(
+                        'update' => array(
+                            'label' => Yii::t('language', 'แก้ไข'),
+                            'url' => 'CHtml::normalizeUrl(array("/news/manage/edit", "id"=> $data->id))',
+                        ),
+                    ),
+                ),
+                array(
+                    'class' => 'CButtonColumn',
+                    'header' => Yii::t('language', "ลบ"),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'template' => '{delete}',
+                    'buttons' => array(
+                        'delete' => array(
+                            'label' => Yii::t('language', 'ลบ'),
+                            'url' => 'CHtml::normalizeUrl(array("/news/manage/delete","id"=> $data->id))',
+                        ), //end 'delete' => array(
+                    ), //end 'buttons' => array(
+                ),
+            ), //end 'columns' => array(
+            'template' => "{pager}\n{items}\n{pager}",
+            'pager' => array(
+                'class' => 'CLinkPager',
+                'header' => Yii::t('language', 'หน้าที่: '),
+                'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+                'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+                'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+                'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
+            )
+        ));
+        ?>
+        <div class="btnForm l_btn">
+            <?php
+            echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/default/index")) . '"'));
+            ?> 
+        </div>
+    </div>
+</div>
 <?php
 
 function strip($data, $len) {

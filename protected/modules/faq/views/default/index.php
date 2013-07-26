@@ -39,14 +39,22 @@
             </a>
         </li>
         <?php if (Yii::app()->user->isAdmin()) { ?>
-            <li>
-                <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq')); ?>">                   
-                    <?php
-                    // Manage
-                    echo Yii::t('language', 'จัดการ') . " " . Yii::t('language', 'คำถาม');
-                    ?>
-                </a>
-            </li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/1')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'บริการ'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/2')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/3')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/4')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?>
+                </a></li>
         <?php } ?>
     </ul>
 </div>
@@ -63,7 +71,7 @@
         } else if ($view == '4') {
             $this->renderPartial('_view4', array('faq4' => $faq4, 'pages4' => $pages4));
         } else {
-            $this->renderPartial('_view1', array('faq1' => $faq1, 'pages1' => $pages1));// เริ่มต้นที่หน้านี้
+            $this->renderPartial('_view1', array('faq1' => $faq1, 'pages1' => $pages1)); // เริ่มต้นที่หน้านี้
         }
         ?>
     </div>

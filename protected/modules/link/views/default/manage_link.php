@@ -4,7 +4,8 @@
     </h3>
     <div class="bucketLeft clearfix">
         <div class="areaWhite clearfix">
-            <div class="btnMngED clearfix">
+            <div class="txt-cen clearfix">
+                <hr>
                 <?php
                 echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ลิงก์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
@@ -12,6 +13,7 @@
                 echo CHtml::button(Yii::t('language', 'เพิ่ม') . '/' . Yii::t('language', 'แก้ไข') . Yii::t('language', 'กลุ่มลิงก์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
                 ?>
+                <hr>
             </div>
             <div class="grid_view" >
                 <?php
@@ -90,11 +92,13 @@
                 ));
                 ?>
             </div>
-            <div class="btnForm l_btn">
+            <div class="txt-cen">
+                <hr>
                 <?php
                 echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/index")) . '"'));
                 ?> 
+                <hr>
             </div>
         </div>
     </div>
