@@ -1,9 +1,15 @@
 <h3 class="barH3">
     <span>
-        <i class="icon-link"></i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+        <i class="icon-link"></i>
+        <a href="<?php echo CHtml::normalizeUrl(array("/link/default/index")); ?>">
+            <?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+        </a>
+        <i class="icon-chevron-right"></i>
+        <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
+            <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+        </a>
         <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'กลุ่มลิงก์'); ?>
-    </span>
-    
+    </span>    
 </h3>
 <div class="txt-cen clearfix">
     <hr>
