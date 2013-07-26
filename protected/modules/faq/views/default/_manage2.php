@@ -1,42 +1,46 @@
 <!-- 2.FAQ Knowledge & Learning -->
+<h3>
+    <i class="icon-question-sign"></i>            
+    <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index/view/2")); ?>">
+        <?php echo Yii::t('language', 'คำถาม') . Yii::t('language', 'การเรียนรู้และบทความ'); ?>
+    </a>
+    <i class="icon-chevron-right"></i>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม') . Yii::t('language', 'การเรียนรู้และบทความ'); ?>
+</h3>
 <div id="view2" class="tabcontent">
     <?php
     $dataProvider = $model->search();
     $dataProvider->criteria->addCondition('fm_id = 2');
-//            echo CHtml::ajaxButton(Yii::t('language', 'เพิ่ม'), CHtml::normalizeUrl(array('/faq/default/editFaq/fm_id/2')), array('update' => '#edit2', 'success' => 'showDiv2')
-//            );
-    echo CHtml::button(Yii::t('language', 'เพิ่ม'), array(
-        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/editFaq/fm_id/2")) . '"'));
     ?>
-    <!--            <div id="edit2">-->
-    <?php
-//                $this->renderPartial('_editfaq', array(
-//                    'model' => $model,
-//                ));
-    ?>
-    <!--            </div>-->
+    <div class="txt-cen">
+        <hr>
+        <?php
+        echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'คำถาม') . Yii::t('language', 'การเรียนรู้และบทความ'), array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/editFaq/fm_id/2")) . '"'));
+        ?>
+        <hr>
+    </div>
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(
         'id' => 'faq2-grid',
         'dataProvider' => $dataProvider,
         'filter' => $model,
         'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-        'pagerCssClass' => 'alignCenter',
         'ajaxUpdate' => true,
         'columns' => array(
             array(
-                'header' => Yii::t('language', 'ลำดับที่'),
+                'header' => Yii::t('language', 'ลำดับ'),
                 'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
             ),
             array(
-                'header' => 'คำถาม',
-                'name' => 'subject_th',
-                'value' => 'strip($data->subject_th, 10);'
+                'header' => Yii::t('language', ' คำถาม '),
+                'name' => LanguageHelper::changeDB('subject_th', 'subject_en'),
+                'value' => 'strip(LanguageHelper::changeDB($data->subject_th,$data->subject_en), 20);'
             ),
             array(
-                'header' => 'คำตอบ',
-                'name' => 'detail_th',
-                'value' => 'strip($data->detail_th, 30);'
+                'header' => Yii::t('language', ' คำตอบ '),
+                'name' => LanguageHelper::changeDB('detail_th', 'detail_en'),
+                'value' => 'strip(LanguageHelper::changeDB($data->detail_th,$data->detail_en), 30);'
             ),
             array(
                 'class' => 'CButtonColumn',
@@ -45,18 +49,6 @@
                 'buttons' => array(
                     'update' => array(
                         'label' => Yii::t('language', 'แก้ไข'),
-//                                'click' => "function(){
-//                                    $.fn.yiiGridView.update('faq2-grid', {
-//                                        type:'POST',
-//                                        url:$(this).attr('href'),
-//                                        success:function(data) {
-//                                              $('#edit2').hide().html(data).fadeIn();
-//                                              $.fn.yiiGridView.update('faq2-grid');
-//                                        }
-//                                    })
-//                                    return false;
-//                              }
-//                     ",
                         'url' => 'CHtml::normalizeUrl(array("/faq/default/editFaq","fm_id"=> $data->fm_id ,"id"=> $data->id))',
                     ),
                 ),

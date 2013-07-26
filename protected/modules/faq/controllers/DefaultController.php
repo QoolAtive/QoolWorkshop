@@ -72,7 +72,10 @@ class DefaultController extends Controller {
 //                $this->redirect(CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id)));
             }
         }
-        $this->render('editfaq', array('model' => $model));
+        $this->render('editfaq', array(
+            'model' => $model,
+            'fm_id' => $fm_id
+        ));
     }
 
     public function actionDeleteFaq($id) {
