@@ -18,7 +18,7 @@
 foreach ($items as $item):
 ?>
 <div class="yii-feed-widget-item">
-    <h2><a href="<?php echo $item->get_permalink(); ?>">
+    <h2><a href="<?php echo $item->get_permalink(); ?>" target="_blank">
             <?php echo $item->get_title(); ?></a>
     </h2>
     <p><small>Posted on <?php echo $item->get_date('j F Y | g:i a'); ?></small></p>
