@@ -28,6 +28,10 @@
                 </div>
             </div>
             <?php
+            if ($i == 1) {
+                //ไม่ให้ link จาก calendar ปิด accordion
+                $not_click = $train['id'];
+            }
             $i++;
         }
         ?>
@@ -40,11 +44,10 @@
 </div>
 
 <script>
-    var query = location.href.split('#');
-    document.cookies = 'anchor=' + query[1];
-
     $(document).ready(function() {
-        $(location.hash).click();
+        if (location.hash != '#<?php echo $not_click; ?>') {
+            $(location.hash).click();
+        }
     });
 </script>
 <!--END Training-->

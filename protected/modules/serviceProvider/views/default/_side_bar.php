@@ -6,20 +6,16 @@
         <ul class="tabs clearfix">
             <?php
             $menu = SpTypeBusiness::model()->findAll();
+            $select = '';
+            $n = 1;
             foreach ($menu as $m) {
-                echo '<li><a rel="view' . $m['id'] . '" href="#">' . $m->name . '</a></li>';
+                if ($id == $m['id']) {
+                    $select = 'selected';
+                }
+                echo '<li class=' . $select . '>' . CHtml::link($m['name'], array('/serviceProvider/default/index/', 'id' => $m['id']), array('rel' => 'view' . $n++)) . '</li>';
             }
-            ?>
-<!--            <li><a rel="view1" href="#">Hosting</a></li>
-            <li><a rel="view2" href="#">Payment</a></li>
-            <li><a rel="view3" href="#">E-Marketplace</a></li>
-            <li><a rel="view4" href="#">Logistic</a></li>
-            <li><a rel="view5" href="#">Design Website</a></li>
-            <li><a rel="view6" href="#">Promotion</a></li>-->
-
-            <?php
             if (Yii::app()->user->isAdmin()) {
-                echo "<li>" . CHtml::link('Manage', array('/serviceProvider/manage/index')) . "</li>";
+                echo "<li>" . CHtml::link('Manage', array('/serviceProvider/manage/company')) . "</li>";
             }
             ?>
 

@@ -1,8 +1,8 @@
 <?php
 
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'type_business-grid',
-    'dataProvider' => $model->getData(),
+    'id' => 'product-grid',
+    'dataProvider' => $model->getData($id),
     'filter' => $model,
     'ajaxUpdate' => true,
     'summaryText' => '',
@@ -18,9 +18,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name',
         ),
         array(
-            'name' => 'address',
-//                'value' => '$data->date_write',
-            'value' => '$data->address',
+            'name' => 'detail',
+            'value' => '$data->detail',
 //                'filter' => '',
         ),
         array(
@@ -28,8 +27,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name_en',
         ),
         array(
-            'name' => 'address_en',
-            'value' => '$data->address_en',
+            'name' => 'detail_en',
+            'value' => '$data->detail_en',
 //                'filter' => '',
         ),
         array(
@@ -38,31 +37,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => 'เครื่องมือ',
             'template' => '{update}{delete}',
             'buttons' => array(
-                'update' => array(
-                    'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',
-                ),
-                'delete' => array(
-                    'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delTypeBusiness/",array("id"=>$data->id))',
-                ),
-            ),
-            'afterDelete' => 'function(link,success,data){
-                                    if(data != ""){
-                                        alert(data);
-                                    }
-                    }'
-        ),
-        array(
-            'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'จัดการ<p>สินค้า</p>',
-            'template' => '{view}{update}{delete}',
-            'buttons' => array(
-                'view' => array(
-                    'label' => 'view', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/product/",array("id"=>$data->id))',
-                ),
                 'update' => array(
                     'label' => 'edit', //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',

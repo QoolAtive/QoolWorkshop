@@ -7,7 +7,9 @@
  * @property integer $id
  * @property integer $main_id
  * @property string $name
+ * @property string $name_en
  * @property string $detail
+ * @property string $detail_en
  * @property string $guide
  * @property string $date_write
  */
@@ -39,13 +41,13 @@ class SpProductBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('main_id, name, detail, guide, date_write', 'required'),
+			array('main_id, name, name_en, detail, detail_en, guide, date_write', 'required'),
 			array('main_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('name, name_en', 'length', 'max'=>255),
 			array('guide', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, main_id, name, detail, guide, date_write', 'safe', 'on'=>'search'),
+			array('id, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +71,9 @@ class SpProductBase extends CActiveRecord
 			'id' => 'ID',
 			'main_id' => 'Main',
 			'name' => 'Name',
+			'name_en' => 'Name En',
 			'detail' => 'Detail',
+			'detail_en' => 'Detail En',
 			'guide' => 'Guide',
 			'date_write' => 'Date Write',
 		);
@@ -89,7 +93,9 @@ class SpProductBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('main_id',$this->main_id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('detail',$this->detail,true);
+		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('guide',$this->guide,true);
 		$criteria->compare('date_write',$this->date_write,true);
 

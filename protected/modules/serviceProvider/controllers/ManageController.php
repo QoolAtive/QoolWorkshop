@@ -60,11 +60,12 @@ Class ManageController extends Controller {
         } else {
             $model = SpTypeBusiness::model()->findByPk($id);
             $alertText = 'แก้ไขข้อมูลเรียบร้อย';
-            $link = '/serviceProvider/manage/index#view7';
+            $link = '/serviceProvider/manage/index';
         }
 
         if (isset($_POST['SpTypeBusiness'])) {
             $model->attributes = $_POST['SpTypeBusiness'];
+            $model->about_en = $_POST['SpTypeBusiness']['about_en'];
 
             $model->validate();
             if ($model->getErrors() == null) {
@@ -119,10 +120,14 @@ Class ManageController extends Controller {
             $model_type->unsetAttributes();
         } else {
             $model = SpCompany::model()->find("id = $id");
-            $model_type = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $id));
-            $type_list = array();
-            foreach ($model_type as $data) {
-                $type_list[] = $data['type_id'];
+
+            $model_type = new SpTypeCom;
+            $model_type->unsetAttributes();
+
+            $type_list = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $id));
+            $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
+            foreach ($type_list as $data) {
+                array_push($type_list_data, $data['type_id']);
             }
         }
 
@@ -145,8 +150,15 @@ Class ManageController extends Controller {
                 // ไฟล์ logo
                 $file_logo = CUploadedFile::getInstancesByName('logo');
                 if ($file_logo != null) {
+
+                    $dir = './file/logo/'; // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                    if ($model->logo != null) {
+                        if (fopen($dir . $model->logo, 'w'))
+                            unlink($dir . $model->logo);
+                    }
+
                     $model->logo = rand(000, 999) . $file_logo[0]->name;
-                    $dir = './file/logo/';
+
                     if (!is_dir($dir))
                         mkdir($dir, 0777, true);
 
@@ -155,16 +167,24 @@ Class ManageController extends Controller {
                 // ไฟล์ brochure
                 $file_brochure = CUploadedFile::getInstancesByName('brochure');
                 if ($file_brochure != null) {
-                    $model->brochure = rand(000, 999) . $file_brochure[0]->name;
+
                     $dir = './file/brochure/';
+                    if ($model->brochure != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                        if (fopen($dir . $model->brochure, 'w'))
+                            unlink($dir . $model->brochure);
+                    }
+
+                    $model->brochure = rand(000, 999) . $file_brochure[0]->name;
+
                     if (!is_dir($dir))
                         mkdir($dir, 0777, true);
 
                     $file_brochure[0]->saveAs($dir . $model->brochure);
                 }
                 if ($model->save()) {
+                    SpTypeCom::model()->deleteAll('com_id=:com_id', array(':com_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
 
-                    foreach ($type_id as $key => $value) {
+                    foreach ($type_id as $key => $value) { // เพิ่มประเภทของ Company
                         $type = new SpTypeCom;
                         $type->com_id = $model->id;
                         $type->type_id = $value;
@@ -173,10 +193,18 @@ Class ManageController extends Controller {
                     }
 
                     $file_banner = CUploadedFile::getInstancesByName('banner');
-                    if (isset($file_banner)) {
+                    if ($file_banner != null) {
                         $dir = './file/banner/';
                         if (!is_dir($dir))
                             mkdir($dir, 0777, true);
+
+                        $banner_old = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+                        foreach ($banner_old as $data) {
+                            if (fopen($dir . $data['path'], 'w')) {
+                                unlink($dir . $data['path']);
+                            }
+                        }
+                        SpBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
                         foreach ($file_banner as $file) {
                             $file_name = rand(000, 999) . $file->name;
@@ -187,6 +215,16 @@ Class ManageController extends Controller {
                             $banner->path = $file_name;
                             $banner->save();
                         }
+                    }
+                    if ($id == null) {
+                        $this->redirect('/serviceProvider/manage/insertProduct/com_id/' . $model->id);
+                    } else {
+                        echo "
+                            <script>
+                            alert('" . Yii::t('language', 'แก้ไขข้อมูลเรียบร้อย') . "');
+                            window.location='/';
+                            </script>
+                            ";
                     }
                 } else {
                     echo "<pre>";
@@ -199,7 +237,49 @@ Class ManageController extends Controller {
         $this->render('_insert_company', array(
             'model' => $model,
             'model_type' => $model_type,
-            'type_list' => $type_list,
+            'type_list_data' => $type_list_data,
+        ));
+    }
+
+    public function actionDelCompany($id = null) {
+        echo "Coming Soon.";
+    }
+
+    public function actionProduct($id = null) {
+        $model = new SpProduct();
+        $model->unsetAttributes();
+
+        if (isset($_GET['SpProduct'])) {
+            $model->attributes = $_GET['SpProduct'];
+        }
+        
+        $this->render('product', array(
+            'model' => $model,
+            'id' => $id,
+        ));
+    }
+
+    public function actionInsertProduct($id = null) {
+        $model = new SpProduct();
+        $model->unsetAttributes();
+
+        $return = new CHttpRequest();
+
+        if (isset($_POST['SpProduct'])) {
+            $model->attributes = $_POST['SpProduct'];
+            $model->validate();
+            if ($model->getErrors() == null) {
+                echo "
+                    <script>
+                    alert('" . Yii::t('language', 'เพิ่มข้อมูลเรียบร้อย') . "');
+                    window.location='" . $return->getUrl() . "';
+                    </script>
+                    ";
+            }
+        }
+
+        $this->render('_insert_product', array(
+            'model' => $model,
         ));
     }
 

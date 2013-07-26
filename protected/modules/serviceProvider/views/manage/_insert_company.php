@@ -18,15 +18,15 @@ if (empty($model->id)) {
         'id' => 'insert_company-form',
         'htmlOptions' => array('enctype' => 'multipart/form-data'),
     ));
+    $model_type->type_id = $type_list_data;
     ?>
     <div class="_100">
         <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
     </div>
     <div class="_100">
         <?php
-        
         echo $form->label($model_type, 'type_id');
-        echo $form->checkBoxList($model_type,'type_id', SpTypeBusiness::model()->getDataList());
+        echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
         echo $form->error($model_type, 'type_id');
         ?>
     </div>
@@ -195,7 +195,7 @@ if (empty($model->id)) {
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/serviceProvider/manage/index#view8'
+                '/serviceProvider/manage/company'
             )) . "'")
         );
         ?>

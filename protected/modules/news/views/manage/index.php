@@ -70,12 +70,6 @@ $this->renderPartial('_sidemenu');
             )
         ));
         ?>
-        <div class="btnForm l_btn">
-            <?php
-            echo CHtml::button(Yii::t('language', 'กลับไปหน้าที่แล้ว'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/default/index")) . '"'));
-            ?> 
-        </div>
     </div>
 </div>
 <?php

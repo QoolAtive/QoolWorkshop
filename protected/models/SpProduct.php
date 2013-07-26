@@ -8,16 +8,11 @@ class SpProduct extends SpProductBase {
 
     public function rules() {
         return array(
-            array('main_id, name, detail, guide, date_write', 'required'),
+            array('main_id, name, name_en, detail, detail_en, guide, date_write', 'required'),
             array('main_id', 'numerical', 'integerOnly' => true),
-            array('name', 'length', 'max' => 255),
+            array('name, name_en', 'length', 'max' => 255),
             array('guide', 'length', 'max' => 1),
-            array('id, main_id, name, detail, guide, date_write', 'safe', 'on' => 'search'),
-        );
-    }
-
-    public function relations() {
-        return array(
+            array('id, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on' => 'search'),
         );
     }
 
@@ -25,10 +20,12 @@ class SpProduct extends SpProductBase {
         return array(
             'id' => 'ID',
             'main_id' => 'Main',
-            'name' => 'Name',
-            'detail' => 'Detail',
-            'guide' => 'Guide',
-            'date_write' => 'Date Write',
+            'name' => Yii::t('language', 'ชื่อภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
+            'detail' => Yii::t('language', 'ชื่อภาษาไทย'),
+            'detail_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
+            'guide' => Yii::t('language', 'สถานะ'),
+            'date_write' => Yii::t('language', 'date_write'),
         );
     }
 
@@ -38,7 +35,30 @@ class SpProduct extends SpProductBase {
         $criteria->compare('id', $this->id);
         $criteria->compare('main_id', $this->main_id);
         $criteria->compare('name', $this->name, true);
+        $criteria->compare('name_en', $this->name_en, true);
         $criteria->compare('detail', $this->detail, true);
+        $criteria->compare('detail_en', $this->detail_en, true);
+        $criteria->compare('guide', $this->guide, true);
+        $criteria->compare('date_write', $this->date_write, true);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+    public function getData($id = null) {
+        $criteria = new CDbCriteria;
+
+        if ($id != null) {
+            $criteria->condition = "main_id = $id";
+        }
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('main_id', $this->main_id);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('name_en', $this->name_en, true);
+        $criteria->compare('detail', $this->detail, true);
+        $criteria->compare('detail_en', $this->detail_en, true);
         $criteria->compare('guide', $this->guide, true);
         $criteria->compare('date_write', $this->date_write, true);
 
