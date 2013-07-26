@@ -32,6 +32,9 @@
   font-weight: normal;
   font-style: normal;
 }
+i{
+    padding: 0 10px;
+}
 /* FONT AWESOME CORE
  * -------------------------- */
 [class^="icon-"],
