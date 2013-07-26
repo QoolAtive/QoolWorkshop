@@ -7,12 +7,14 @@
     ?>
     <h3 class="barH3">        
         <span>
-            <i class="icon-link"></i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+            <i class="icon-link"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/link/default/index")); ?>">
+                <?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+            </a>
             <i class="icon-chevron-right"></i>
             <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
-                <?php echo Yii::t('language', 'ลิงก์'); ?>
-            </a>            
-            <!--<i class="icon-pencil"></i>-->
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+            </a>
             <i class="icon-chevron-right"></i>
             <?php echo Yii::t('language', $name_btn) . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
         </span>
@@ -54,7 +56,7 @@
                     echo $form->labelEx($model, 'group_id');
                     $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
                     echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', $feild_name), array(
-                        'class' => 'fieldrequire', 
+                        'class' => 'fieldrequire',
                         'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
                     ));
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
