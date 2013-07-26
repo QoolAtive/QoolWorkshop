@@ -51,10 +51,10 @@ class ManageController extends Controller {
         if ($id == null) {
             $model = new LearningGroup();
             $model->unsetAttributes();
-            $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
+            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
         } else {
             $model = LearningGroup::model()->findByPk($id);
-            $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
+            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
         }
 
         if (isset($_POST['LearningGroup'])) {
@@ -194,12 +194,12 @@ class ManageController extends Controller {
             $modelFile = new LearningFile();
             $modelFile->unsetAttributes();
 
-            $messageAlert = 'เพิ่มข้อมูลเรียบร้อย';
-            $link = '/learning/manage/inserLearning';
+            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
+            $link = '/index.php/learning/manage/InsertLearning';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
-            $messageAlert = 'แก้ไขข้อมูลเรียบร้อย';
+            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/learning/default/lesson/id/' . $model->id;
 
             $modelFile = LearningFile::model()->find('main_id = ' . $id);

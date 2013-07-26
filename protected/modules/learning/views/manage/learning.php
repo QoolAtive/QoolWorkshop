@@ -8,7 +8,7 @@ $this->renderPartial('_side_bar', array(
     <div class="tabcontents">
         <div id="view2" class="tabcontent">
             <div>
-                <h3>กลุ่มบทเรียน</h3>
+                <h3><?php echo Yii::t('language', 'กลุ่มบทเรียน'); ?></h3>
                 <hr>
                 <div style="text-align: center;">
                     <?php

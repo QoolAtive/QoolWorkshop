@@ -6,8 +6,7 @@
 </style>
 <?php
 $list = array(
-    array('text' => Yii::t('language', 'Learning Groups'), 'link' => '/knowledge/default/index', 'select' => ''),
-    array('text' => Yii::t('language', 'Learning'), 'link' => '/knowledge/default/index', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'บทเรียนที่เลือก'), 'link' => '#', 'select' => 'selected'),
 );
 $this->renderPartial('_side_bar', array(
     'select2' => 'selected',
