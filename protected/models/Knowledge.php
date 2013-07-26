@@ -130,6 +130,34 @@ class Knowledge extends KnowledgeBase {
         ));
     }
 
+    public function getDataManage() {
+        $criteria = new CDbCriteria;
+        $criteria->order = "guide_status = 1 desc, id desc";
+        $criteria->compare('id', $this->id);
+        $criteria->compare('type_id', $this->type_id);
+        $criteria->compare('subject', $this->subject, true);
+        $criteria->compare('detail', $this->detail, true);
+        $criteria->compare('guide_status', $this->guide_status, true);
+        $criteria->compare('date_write', $this->date_write, true);
+        $criteria->compare('position', $this->position);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+    public function getDataTypeList($p = '', $arr_data = false) {
+        $arr = array(
+            '0' => Yii::t('language', 'ไม่แนะนำ'),
+            '1' => Yii::t('language', 'แนะนำ'),
+        );
+        if ($arr_data) {
+            return $arr;
+        } else {
+            return $arr[$p];
+        }
+    }
+
     public function checkDup() {
         if ($this->getErrors() == NULL) {
             if ($this->subject != $this->_old) {
