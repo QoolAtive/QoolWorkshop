@@ -1,13 +1,7 @@
 <?php
-<<<<<<< HEAD
-<<<<<<< HEAD
-echo "test3group-4-2";
-=======
-echo "test3group-5";
->>>>>>> BB2
-=======
-echo "test3group-5";
->>>>>>> BB2
+
+echo "test3group";
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
