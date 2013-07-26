@@ -1,10 +1,10 @@
 <?php
 if (empty($model->id)) {
-    $btnText = 'เพิ่มกลุ่มพาร์ทเนอร์';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 } else {
-    $btnText = 'แก้ไขกลุ่มพาร์ทเนอร์';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 }

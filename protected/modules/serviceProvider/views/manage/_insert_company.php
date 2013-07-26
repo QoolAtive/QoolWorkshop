@@ -1,10 +1,10 @@
 <?php
 if (empty($model->id)) {
-    $btnText = 'เพิ่มบริษัท';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 } else {
-    $btnText = 'แก้ไขบริษัท';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 }

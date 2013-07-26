@@ -55,11 +55,11 @@ Class ManageController extends Controller {
             $model = new SpTypeBusiness();
             $model->unsetAttributes();
 
-            $alertText = 'เพิ่มข้อมูลเรียบร้อย';
+            $alertText = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/serviceProvider/manage/insertTypeBusiness';
         } else {
             $model = SpTypeBusiness::model()->findByPk($id);
-            $alertText = 'แก้ไขข้อมูลเรียบร้อย';
+            $alertText = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/serviceProvider/manage/index';
         }
 
@@ -245,41 +245,84 @@ Class ManageController extends Controller {
         echo "Coming Soon.";
     }
 
-    public function actionProduct($id = null) {
+    public function actionProduct($id = null, $pro_id = null) {
+        if ($id == null) {
+            $this->redirect('/serviceProvider/manage/company');
+        }
         $model = new SpProduct();
         $model->unsetAttributes();
 
         if (isset($_GET['SpProduct'])) {
             $model->attributes = $_GET['SpProduct'];
         }
-        
+
         $this->render('product', array(
             'model' => $model,
             'id' => $id,
         ));
     }
 
-    public function actionInsertProduct($id = null) {
-        $model = new SpProduct();
-        $model->unsetAttributes();
+    public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
+        if ($id == null) {
+            $this->redirect('/serviceProvider/manage/company');
+        }
+        if ($pro_id == null) {
+            $model = new SpProduct();
+            $model->unsetAttributes();
+        } else {
+//            $model = SpProduct::model()->find('condition' => 'main_id=:main_id AND id=:id', array(':main_id' => $id, ':id' => $pro_id));
+        }
 
         $return = new CHttpRequest();
 
         if (isset($_POST['SpProduct'])) {
             $model->attributes = $_POST['SpProduct'];
+            $model->main_id = $id;
+            $model->date_write = date('Y-m-d H:i:s');
             $model->validate();
             if ($model->getErrors() == null) {
-                echo "
+
+                $model->image = CUploadedFile::getInstance($model, 'image');
+                if ($model->image != null && $model->image != 'default') {
+                    $dir = './file/product/';
+                    if (!is_dir($dir))
+                        mkdir($dir, 0777, true);
+
+                    if ($model->image != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                        if (fopen($dir . $model->image, 'w'))
+                            unlink($dir . $model->image);
+                    }
+
+                    $file_name = rand(000, 999) . $model->image->name;
+                    $model->image->saveAs($dir . $file_name);
+
+                    $model->image = $file_name;
+                }else {
+                    $model->image = 'default.jpg';
+                }
+
+                if ($model->save()) {
+                    echo "
                     <script>
-                    alert('" . Yii::t('language', 'เพิ่มข้อมูลเรียบร้อย') . "');
+                    alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                     window.location='" . $return->getUrl() . "';
                     </script>
                     ";
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                    echo "</pre>";
+                }
+            } else {
+                echo "<pre>";
+                print_r($model->getErrors());
+                echo "</pre>";
             }
         }
 
         $this->render('_insert_product', array(
             'model' => $model,
+            'id' => $id,
         ));
     }
 
