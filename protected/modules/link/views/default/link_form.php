@@ -6,6 +6,7 @@
     }
     ?>
     <h3 class="barH3">
+        <i class="icon-pencil"></i>
         <span>
             <?php
             echo Yii::t('language', $name_btn) . ' ' . Yii::t('language', 'ลิงก์หน่วยงาน');
@@ -13,7 +14,6 @@
         </span>
     </h3>
     <div class="bucketLeft clearfix">
-
         <div class="areaWhite clearfix">
             <div class="group">
                 <?php
@@ -108,16 +108,21 @@
 //                    echo CHtml::hiddenField('img_path', $model->img_path);
                     echo CHtml::hiddenField('author', $model->author);
                     echo CHtml::hiddenField('date_write', $model->date_write);
-
-                    echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
-                        'onclick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/link/default/managelink'
-                        )) . "'",
-//                        'confirm' => Yii::t('language', 'คุณต้องการย้อนกลับหรือไม่?')
-                            )
-                    );
                     ?>
+                    <div class="txt-cen">
+                        <hr>
+                        <?php
+                        echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+                        echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                            'onclick' => "window.location='" . CHtml::normalizeUrl(array(
+                                '/link/default/managelink'
+                            )) . "'",
+//                        'confirm' => Yii::t('language', 'คุณต้องการย้อนกลับหรือไม่?')
+                                )
+                        );
+                        ?>
+                        <hr>
+                    </div>
                 </div>
                 <?php $this->endWidget(); ?>
             </div>
