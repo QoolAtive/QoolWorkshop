@@ -1,6 +1,6 @@
 <?php
 
-echo "test2group";
+echo "test3group";
 
 /*
  * To change this template, choose Tools | Templates
