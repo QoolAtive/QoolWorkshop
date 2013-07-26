@@ -39,6 +39,7 @@ class Training extends TrainingBase {
         return array(
             array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'required'),
             array('subject_th, subject_en', 'length', 'max' => 200),
+            array('start_at', 'checkDate'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, subject_th, detail_th, subject_en, detail_en, start_at, end_at', 'safe', 'on' => 'search'),
@@ -95,6 +96,12 @@ class Training extends TrainingBase {
                 'pageSize' => 10,
             ),
         ));
+    }
+
+    public function checkDate() {
+        if (strtotime($this->start_at) > strtotime($this->end_at)) {
+            $this->addError('start_at', 'วันที่เริ่มไม่สามารถอยู่หลังวันสิ้นสุดได้');
+        }
     }
 
 }

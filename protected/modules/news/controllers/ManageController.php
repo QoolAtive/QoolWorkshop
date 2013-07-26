@@ -41,7 +41,10 @@ class ManageController extends Controller {
             //END for upload pic
 
             if ($model->save()) {
-                $this->redirect(CHtml::normalizeUrl(array('/news/manage/index')));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/index')) . "';
+                  </script>";
             }
         }
         $this->render('edit', array('model' => $model));
@@ -73,7 +76,10 @@ class ManageController extends Controller {
         if (isset($_POST['NewsGroup'])) {
             $model->attributes = $_POST['NewsGroup'];
             if ($model->save()) {
-                $this->redirect(CHtml::normalizeUrl(array('/news/manage/manageGroup')));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/manageGroup')) . "';
+                  </script>";
             }
         }
         $this->render('edit_group', array(
@@ -109,14 +115,9 @@ class ManageController extends Controller {
             if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
                 $model->link = 'http://' . $model->link;
             }
-            if ($model->isNewRecord) {
-                $word = "บันทึกข้อมูลเรียบร้อย";
-            } else {
-                $word = "แก้ไขข้อมูลเรียบร้อย";
-            }
             if ($model->save()) {
                 echo "<script language='javascript'>
-                        alert('" . Yii::t('language', $word) . "');
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/manageTraining')) . "';
                   </script>";
             }
@@ -142,7 +143,10 @@ class ManageController extends Controller {
         if (isset($_POST['NewsRss'])) {
             $model->attributes = $_POST['NewsRss'];
             if ($model->save()) {
-                $this->redirect(CHtml::normalizeUrl(array('/news/default/index')));
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/news/default/index')) . "';
+                  </script>";
             }
         }
         $this->render('edit_rss', array(
