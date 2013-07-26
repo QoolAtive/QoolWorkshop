@@ -5,12 +5,16 @@
         $name_btn = Yii::t('language', 'แก้ไข');
     }
     ?>
-    <h3 class="barH3">
-        <i class="icon-pencil"></i>
+    <h3 class="barH3">        
         <span>
-            <?php
-            echo Yii::t('language', $name_btn) . ' ' . Yii::t('language', 'ลิงก์หน่วยงาน');
-            ?>
+            <i class="icon-link"></i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
+                <?php echo Yii::t('language', 'ลิงก์'); ?>
+            </a>            
+            <!--<i class="icon-pencil"></i>-->
+            <i class="icon-chevron-right"></i>
+            <?php echo Yii::t('language', $name_btn) . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
         </span>
     </h3>
     <div class="bucketLeft clearfix">
@@ -34,14 +38,14 @@
                 <div class="rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_th');
-                    echo $form->textField($model, 'name_th', array('size' => '90'));
+                    echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_en');
-                    echo $form->textField($model, 'name_en', array('size' => '90'));
+                    echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
@@ -50,6 +54,7 @@
                     echo $form->labelEx($model, 'group_id');
                     $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
                     echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', $feild_name), array(
+                        'class' => 'fieldrequire', 
                         'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
                     ));
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
@@ -58,7 +63,7 @@
                 <div class="rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'link');
-                    echo $form->textField($model, 'link', array('size' => '255'));
+                    echo $form->textField($model, 'link', array('class' => 'fieldrequire', 'size' => '255'));
 //                    echo Yii::t('language', $form->error($model, 'link'));
                     ?>
                 </div>
@@ -97,7 +102,7 @@
                             </div>
                         <?php } ?>
                         <div class="descAttach">
-                            <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
+                            <?php echo '<b>' . Yii::t('language', 'ไฟล์แนบ') . '</b> ' . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
                             <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB) ' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
                         </div>
                         <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
