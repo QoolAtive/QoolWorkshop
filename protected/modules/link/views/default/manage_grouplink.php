@@ -1,5 +1,9 @@
 <h3 class="barH3">
-    <span><i class="icon-link"></i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กลุ่มลิงก์'); ?></span>
+    <span>
+        <i class="icon-link"></i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+        <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'กลุ่มลิงก์'); ?>
+    </span>
+    
 </h3>
 <div class="txt-cen clearfix">
     <hr>
