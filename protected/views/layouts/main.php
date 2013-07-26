@@ -1,5 +1,9 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+$url = new CHttpRequest();
+Yii::app()->user->returnUrl = $url->getUrl(); // เมื่อ login ให้กลับไปหน้าที่ กด login
+?>
 <html lang="en" class="no-js">
     <head>
         <title>DBDmart.com</title>
@@ -16,7 +20,7 @@
         <link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/fullcalendar.css"  type="text/css"></link>
         <link rel="stylesheet" href="/css/orbit.css"  type="text/css"></link>
-		<link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
+        <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
 
         <!--JS-->
         <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
@@ -38,11 +42,11 @@
 
     <body>
         <div id="wrapper"> 
-            
+
             <!--head-->
             <div id="header" class="headerpage clearfix">
                 <div  class="page" >
-                    
+
                     <!-- logo -->
                     <?php echo $this->renderPartial("//layouts/_main-logo"); ?>
 
@@ -50,7 +54,7 @@
                     <?php echo $this->renderPartial("//layouts/_main-menu_head"); ?>
                 </div>
             </div><!--head-->
-            
+
             <!-- container -->
             <div id="container"  class="bg clearfix">
                 <div class="page pageborder white clearfix" >
