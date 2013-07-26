@@ -73,7 +73,7 @@ class DefaultController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', $word) . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id)) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/default/manageFaq/view/' . $fm_id)) . "';
                   </script>";
 //                $this->redirect(CHtml::normalizeUrl(array('/faq/default/manageFaq#view' . $fm_id)));
             }

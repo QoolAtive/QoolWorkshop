@@ -6,24 +6,56 @@
     </div>
 
     <ul class="tabs clearfix">
-        <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/1')); ?>">
-                <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
-                <?php echo Yii::t('language', 'บริการ'); ?>
-            </a></li>
-        <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/2')); ?>">
-                <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
-                <?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?>
-            </a></li>
-        <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/3')); ?>">
-                <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
-                <?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?>
-            </a></li>
-        <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/4')); ?>">
-                <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
-                <?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?>
-            </a></li>
-        <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index')); ?>">
-                <?php echo Yii::t('language', 'กลับไปที่คำถาม'); ?></a></li>
+        <li>
+            <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/1')); ?>">
+                <?php
+                //FAQ Service Provider 
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'บริการ');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/2')); ?>">
+                <?php
+                //FAQ Knowledge & Learning
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'การเรียนรู้และบทความ');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/3')); ?>">
+                <?php
+                //FAQ E-Directory
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'ค้นหาร้านค้า');
+                ?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/4')); ?>">
+                <?php
+                //FAQ Web Simulation
+                echo Yii::t('language', 'คำถาม') . " " . Yii::t('language', 'แนะนำการใช้งาน');
+                ?>
+            </a>
+        </li>
+        <?php if (Yii::app()->user->isAdmin()) { ?>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/1')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'บริการ'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/2')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/3')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?>
+                </a></li>
+            <li><a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/4')); ?>">
+                    <?php echo Yii::t('language', 'จัดการคำถาม'); ?><br/>
+                    <?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?>
+                </a></li>
+        <?php } ?>
     </ul>
 </div>
 
