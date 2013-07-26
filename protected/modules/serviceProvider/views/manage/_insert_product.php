@@ -1,10 +1,10 @@
 <?php
 if (empty($model->id)) {
-    $btnText = 'เพิ่มสินค้า';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 } else {
-    $btnText = 'แก้ไขสินค้า';
+    $btnText = 'บันทึก';
 
     $link_back = '/serviceProvider/manage/typeBusiness';
 }
@@ -19,6 +19,20 @@ if (empty($model->id)) {
         'htmlOptions' => array('enctype' => 'multipart/form-data'),
     ));
     ?>
+    <div class="_100">
+        <?php
+        echo $form->label($model, 'image');
+        echo $form->fileField($model, 'image');
+        echo $form->error($model, 'image');
+        ?>
+    </div>
+    <div class="_100">
+        <?php
+        echo $form->label($model, 'guide');
+        echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList());
+        echo $form->error($model, 'guide');
+        ?>
+    </div>
     <div class="_100">
         <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลสินค้าภาษาไทย -'); ?></h4>
     </div>
@@ -59,7 +73,7 @@ if (empty($model->id)) {
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/serviceProvider/manage/product'
+                '/serviceProvider/manage/product/id/' . $id
             )) . "'")
         );
         ?>

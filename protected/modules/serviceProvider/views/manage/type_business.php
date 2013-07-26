@@ -10,7 +10,7 @@ $this->renderPartial('_side_bar', array(
         <hr>
         <div style="text-align: center;">
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่มข้อมูล'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'บันทึก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/insertTypeBusiness'
                 )) . "'")
             );

@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'sp_product':
  * @property integer $id
+ * @property string $image
  * @property integer $main_id
  * @property string $name
  * @property string $name_en
@@ -43,11 +44,11 @@ class SpProductBase extends CActiveRecord
 		return array(
 			array('main_id, name, name_en, detail, detail_en, guide, date_write', 'required'),
 			array('main_id', 'numerical', 'integerOnly'=>true),
-			array('name, name_en', 'length', 'max'=>255),
+			array('image, name, name_en', 'length', 'max'=>255),
 			array('guide', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on'=>'search'),
+			array('id, image, main_id, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,7 @@ class SpProductBase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'image' => 'Image',
 			'main_id' => 'Main',
 			'name' => 'Name',
 			'name_en' => 'Name En',
@@ -91,6 +93,7 @@ class SpProductBase extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('image',$this->image,true);
 		$criteria->compare('main_id',$this->main_id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('name_en',$this->name_en,true);

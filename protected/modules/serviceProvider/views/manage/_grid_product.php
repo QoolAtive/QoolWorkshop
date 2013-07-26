@@ -32,6 +32,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //                'filter' => '',
         ),
         array(
+            'name' => 'guide',
+            'value' => 'SpProduct::model()->getDataTypeList($data->guide)',
+            'filter' => SpProduct::model()->getDataTypeList(' ', true),
+        ),
+        array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
@@ -39,11 +44,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons' => array(
                 'update' => array(
                     'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertProduct/",array("id"=>' . $id . ', "pro_id" => $data->id))',
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delTypeBusiness/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delProduct/",array("id"=>$data->id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){
