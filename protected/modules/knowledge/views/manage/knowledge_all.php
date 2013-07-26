@@ -23,31 +23,34 @@
 <div class="content">
     <div class="tabcontents">
         <h3><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></h3>
-        <hr>
-        <div style="text-align: center;">
+
+        <div class="txt-cen">
+            <hr>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
                 'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/knowledge/manage/insert'
                 )) . "'")
             );
-            ?>
+            ?> 
+            <hr>
         </div>
-        <hr>
+
         <?php
         $this->renderPartial('_grid_all_knowledge', array(
             'model' => $model,
         ));
         ?>
-        <hr>
-        <div style="text-align: center;">
+
+        <div class="txt-cen">
+            <hr>
             <?php
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     Yii::app()->user->getState('knowledge')
                 )) . "'")
             );
             ?>
+            <hr>
         </div>
-        <hr>
     </div>
 </div>
