@@ -53,7 +53,7 @@ $this->renderPartial('_side_bar', array(
             <!--</div>-->
             <div class="clearfix"></div>
 
-            <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/manage/readingPdf/', 'id' => $modelFile->id)); ?>
+            <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/default/readingPdf/', 'id' => $modelFile->id)); ?>
             <hr class="demohr"> 
             <?php if (!empty($lessonNext)) { ?>
 

@@ -10,7 +10,7 @@
                 array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '#', 'select' => 'selected'),
             );
             echo Tool::GenList($list);
-            
+
             if (Yii::app()->user->isAdmin()) {
 
                 echo "<li>";
@@ -31,60 +31,6 @@
 
             <div class="row-fluid">
                 <UL class="learninglist">
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_01.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_02.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_03.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_04.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_05.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_06.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_07.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_08.png'); ?>"> 
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_09.png'); ?>"> 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessonn1">
-                            <img src="<?php echo Yii::t('language', '/img/learning/Learning_10.png'); ?>"> 
-                        </a>
-
-                    </li>
-                </UL>
-                <ul class="card">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
                         'dataProvider' => $model->getData(),
@@ -96,7 +42,8 @@
 //                                ),
                     ));
                     ?>
-                </ul>
+                </UL>
+
             </div>
         </div>
     </div>

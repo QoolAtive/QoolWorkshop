@@ -36,16 +36,6 @@ class ManageController extends Controller {
         ));
     }
 
-    public function actionReadingPdf($id) {
-        $model = LearningFile::model()->find('id=:id', array(':id' => $id));
-        $path = './file/learning/pdf/' . $model->path;
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $model->path . '";');
-        header('Content-Length: ' . filesize($path));
-        readfile($path);
-        Yii::app()->end();
-    }
-
     public function actionInsertLearningGroup($id = null) {
         $file = new Upload2image();
         if ($id == null) {

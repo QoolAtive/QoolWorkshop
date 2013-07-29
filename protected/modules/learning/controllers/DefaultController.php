@@ -11,6 +11,16 @@ class DefaultController extends Controller {
         ));
     }
 
+    public function actionReadingPdf($id) {
+        $model = LearningFile::model()->find('id=:id', array(':id' => $id));
+        $path = './file/learning/pdf/' . $model->path;
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        Yii::app()->end();
+    }
+
     public function actionIndex($id = null) {
         $model = Learning::model()->findAll('group_id=:group_id', array(':group_id' => $id));
         $learningList = new Learning();
