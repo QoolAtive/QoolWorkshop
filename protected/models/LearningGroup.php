@@ -47,7 +47,7 @@ class LearningGroup extends LearningGroupBase {
     public function getData() {
         $criteria = new CDbCriteria;
 
-        $criteria->order = 'id desc';
+        $criteria->order = 'id asc';
         $criteria->compare('id', $this->id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('pic', $this->pic, true);
