@@ -4,13 +4,17 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/knowledge.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
+            <li><a href="/knowledge/default/index" >บทความ</a></li>
+            <li><a href="/learning/default/home" >การเรียนรู้</a></li>
             <?php
-            $list = array(
+//            $list = array(
+//                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index', 'select' => ''),
+//                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/learning/default/home', 'select' => ''),
+//            );
+            $list2 = array(
                 array('text' => Yii::t('language', 'บทความทั้งหมด'), 'link' => '#', 'select' => 'selected'),
-                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index', 'select' => ''),
-                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/learning/default/home', 'select' => ''),
             );
-            echo Tool::GenList($list);
+//            echo Tool::GenList($list);
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
@@ -19,6 +23,7 @@
                 echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
                 echo "</li>";
             }
+            echo Tool::GenList($list2);
             ?>
         </ul>
     </div>
