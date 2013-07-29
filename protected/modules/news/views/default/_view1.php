@@ -1,15 +1,15 @@
 <!--NEWS-->
 
 <div id="view1">
-    <h3>Feed News</h3>
+    <h3><i class='icon-rss'></i>Feed News</h3>
     <!-- Feed widget -->
     <?php
     $this->widget(
-            'ext.yii-feed-widget.YiiFeedWidget', array('url' => NewsRss::model()->find()->link, 'limit' => 5)
+            'ext.yii-feed-widget.YiiFeedWidget', array('url' => NewsRss::model()->find()->link, 'limit' => 10)
     );
     ?>
     <br/>
-    <h3>News</h3>
+    <h3><i class='icon-bell-alt'></i>News</h3>
     <div class="accordion" id="hideother1">
         <?php
         $i = 1;
