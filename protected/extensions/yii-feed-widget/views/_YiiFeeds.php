@@ -2,7 +2,8 @@
     .rss_feed_box{
         height: 400px;
         overflow: auto;
-        margin: 3px 5%;
+        margin: 3px 5% 3px 2%;
+        border: 1px solid;
     }
     .rss_item{        
         padding: 5px 25px; 
