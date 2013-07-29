@@ -20,6 +20,24 @@ if (empty($model->id)) {
     ));
     ?>
     <div class="_100">
+        <div class="ckleft"> 
+            <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+        </div>
+        <div class="ckright">
+            <?php
+            if (!empty($model->image)) {
+                ?>
+                <?php
+                echo CHtml::image("/file/product/" . $model->image, "image", array('height' => '100'));
+                echo $model->image;
+                ?>
+
+                <?php
+            }
+            ?> 
+        </div>
+    </div>
+    <div class="_100">
         <?php
         echo $form->label($model, 'image');
         echo $form->fileField($model, 'image');
@@ -29,7 +47,7 @@ if (empty($model->id)) {
     <div class="_100">
         <?php
         echo $form->label($model, 'guide');
-        echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList());
+        echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList('', true));
         echo $form->error($model, 'guide');
         ?>
     </div>

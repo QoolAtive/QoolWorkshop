@@ -60,7 +60,7 @@ Class ManageController extends Controller {
         } else {
             $model = SpTypeBusiness::model()->findByPk($id);
             $alertText = 'บันทึกข้อมูลเรียบร้อย';
-            $link = '/serviceProvider/manage/index';
+            $link = '/serviceProvider/manage/typeBusiness';
         }
 
         if (isset($_POST['SpTypeBusiness'])) {
@@ -152,7 +152,7 @@ Class ManageController extends Controller {
                 if ($file_logo != null) {
 
                     $dir = './file/logo/'; // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
-                    if ($model->logo != null) {
+                    if ($model->logo != null && $model->logo != 'default.jpg') {
                         if (fopen($dir . $model->logo, 'w'))
                             unlink($dir . $model->logo);
                     }
@@ -169,7 +169,7 @@ Class ManageController extends Controller {
                 if ($file_brochure != null) {
 
                     $dir = './file/brochure/';
-                    if ($model->brochure != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                    if ($model->brochure != null && $model->brochure != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
                         if (fopen($dir . $model->brochure, 'w'))
                             unlink($dir . $model->brochure);
                     }
@@ -221,8 +221,8 @@ Class ManageController extends Controller {
                     } else {
                         echo "
                             <script>
-                            alert('" . Yii::t('language', 'แก้ไขข้อมูลเรียบร้อย') . "');
-                            window.location='/';
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='/serviceProvider/manage/company';
                             </script>
                             ";
                     }
@@ -242,7 +242,33 @@ Class ManageController extends Controller {
     }
 
     public function actionDelCompany($id = null) {
-        echo "Coming Soon.";
+        $model = SpCompany::model()->find('id=:id', array('id' => $id));
+
+        $dir = './file/logo/'; // ลบไฟล์ logo
+        if ($model->logo != null && $model->logo != 'default.jpg') {
+            if (fopen($dir . $model->logo, 'w'))
+                unlink($dir . $model->logo);
+        }
+
+        $dir = './file/brochure/';
+        if ($model->brochure != null && $model->brochure != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+            if (fopen($dir . $model->brochure, 'w'))
+                unlink($dir . $model->brochure);
+        }
+
+        $dir = './file/banner/';
+        $banner_old = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+        foreach ($banner_old as $data) {
+            if (fopen($dir . $data['path'], 'w')) {
+                unlink($dir . $data['path']);
+            }
+        }
+        if ($model->delete()) {
+            SpTypeCom::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+            SpBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+
+            echo "ลบข้อมูลเรียบร้อย";
+        }
     }
 
     public function actionProduct($id = null, $pro_id = null) {
@@ -270,7 +296,7 @@ Class ManageController extends Controller {
             $model = new SpProduct();
             $model->unsetAttributes();
         } else {
-//            $model = SpProduct::model()->find('condition' => 'main_id=:main_id AND id=:id', array(':main_id' => $id, ':id' => $pro_id));
+            $model = SpProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
         }
 
         $return = new CHttpRequest();
@@ -324,6 +350,19 @@ Class ManageController extends Controller {
             'model' => $model,
             'id' => $id,
         ));
+    }
+
+    public function actionDelProduct($id = null, $pro_id = null) {
+        $model = SpProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+        $dir = './file/product/';
+        if ($model->image != null && $model->image != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+            if (fopen($dir . $model->image, 'w'))
+                unlink($dir . $model->image);
+        }
+
+        if ($model->delete()) {
+            echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+        }
     }
 
 }

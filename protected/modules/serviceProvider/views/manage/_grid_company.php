@@ -4,7 +4,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $model->getData(),
     'filter' => $model,
-    'ajaxUpdate' => true,
+//    'ajaxUpdate' => true,
     'summaryText' => '',
     'columns' => array(
         array(// display 'create_time' using an expression
@@ -44,7 +44,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delTypeBusiness/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delCompany/",array("id"=>$data->id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){
@@ -55,28 +55,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'จัดการ<p>สินค้า</p>',
-            'template' => '{view}{update}{delete}',
+            'template' => '{view}',
             'buttons' => array(
                 'view' => array(
                     'label' => 'view', //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/product/",array("id"=>$data->id))',
                 ),
-                'update' => array(
-                    'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',
-                ),
-                'delete' => array(
-                    'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delTypeBusiness/",array("id"=>$data->id))',
-                ),
             ),
-            'afterDelete' => 'function(link,success,data){
-                                    if(data != ""){
-                                        alert(data);
-                                    }
-                    }'
         ),
     ),
     'pager' => array(

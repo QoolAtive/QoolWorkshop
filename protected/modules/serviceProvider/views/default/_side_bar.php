@@ -15,7 +15,7 @@
                 echo '<li class=' . $select . '>' . CHtml::link($m['name'], array('/serviceProvider/default/index/', 'id' => $m['id']), array('rel' => 'view' . $n++)) . '</li>';
             }
             if (Yii::app()->user->isAdmin()) {
-                echo "<li>" . CHtml::link('Manage', array('/serviceProvider/manage/company')) . "</li>";
+                echo "<li>" . CHtml::link(Yii::t('language', 'จัดการ'), array('/serviceProvider/manage/company')) . "</li>";
             }
             ?>
 

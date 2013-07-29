@@ -6,11 +6,11 @@ $this->renderPartial('_side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3><img src="/img/iconform.png"><?php echo Yii::t('language', 'จัดการ') . ' ' . Yii::t('language', 'กลุ่มพาร์ทเนอร์'); ?></h3>
+        <h3><img src="/img/iconform.png"><?php echo Yii::t('language', 'กลุ่มพาร์ทเนอร์'); ?></h3>
         <hr>
         <div style="text-align: center;">
             <?php
-            echo CHtml::button(Yii::t('language', 'บันทึก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'เพิ่มกลุ่มพาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/insertTypeBusiness'
                 )) . "'")
             );

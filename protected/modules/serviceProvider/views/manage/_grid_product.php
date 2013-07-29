@@ -48,7 +48,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delProduct/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delProduct/",array("id"=>' . $id . ', "pro_id" => $data->id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){
