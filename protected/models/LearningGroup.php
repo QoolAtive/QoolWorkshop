@@ -63,4 +63,18 @@ class LearningGroup extends LearningGroupBase {
         return CHtml::listData($this->model()->findAll(), 'id', 'name');
     }
 
+    public function getGroupList($p = '', $arr_data = false) {
+        $arr = array();
+        $data_list = $this->model()->findAll();
+        foreach ($data_list as $data) {
+            $d[$data['id']] = $data['name'];
+        }
+        $arr = $d;
+        if ($arr_data) {
+            return $arr;
+        } else {
+            return $arr[$p];
+        }
+    }
+
 }
