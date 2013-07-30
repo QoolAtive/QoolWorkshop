@@ -3,13 +3,13 @@
         <span>
             <i class="icon-link"></i>
             <a href="<?php echo CHtml::normalizeUrl(array("/link/default/index")); ?>">
-                <?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+                <?php echo Yii::t('language', 'ลิงค์หน่วยงาน'); ?>
             </a>
             <i class="icon-chevron-right"></i>
             <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
-                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงค์หน่วยงาน'); ?>
             </a>
-            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'ลิงก์'); ?>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'ลิงค์'); ?>
         </span>
     </h3>
     <div class="bucketLeft clearfix">
@@ -17,10 +17,10 @@
             <div class="txt-cen clearfix">
                 <hr>
                 <?php
-                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ลิงก์'), array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ลิงค์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/linkForm")) . '"'));
                 echo '  ';
-                echo CHtml::button(Yii::t('language', 'เพิ่ม') . '/' . Yii::t('language', 'แก้ไข') . Yii::t('language', 'กลุ่มลิงก์'), array(
+                echo CHtml::button(Yii::t('language', 'เพิ่ม') . '/' . Yii::t('language', 'แก้ไข') . Yii::t('language', 'กลุ่มลิงค์'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/manageGroupLink")) . '"'));
                 ?>
                 <hr>

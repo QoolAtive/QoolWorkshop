@@ -24,7 +24,7 @@
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'search-form',
         ));
-        echo CHtml::textField('name', '', array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อลิงก์')));
+        echo CHtml::textField('name', '', array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อลิงค์')));
         ?>
     </div>
     <div class="_50">
@@ -34,7 +34,7 @@
 // Change Language TH/EN Select Data for show in Drop Down List
         $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
         echo CHtml::DropDownList(
-                'group_id', $group, array('0' => " - " . Yii::t('language', 'ค้นหาตามกลุ่มลิงก์') . " - ") + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
+                'group_id', $group, array('0' => " - " . Yii::t('language', 'ค้นหาตามกลุ่มลิงค์') . " - ") + CHtml::listData(LinkGroup::model()->findAll(), "id", $feild_name)
         );
         ?>
     </div>
@@ -46,7 +46,7 @@
 
         <?php
         if (Yii::app()->user->isAdmin()) {
-            echo CHtml::button(Yii::t('language', 'จัดการลิงก์'), array(
+            echo CHtml::button(Yii::t('language', 'จัดการลิงค์'), array(
                 'onclick' => 'window.location="/link/default/managelink"'
             ));
         }
@@ -57,7 +57,7 @@
 <ul class="linklist">
     <?php
     if (empty($list)) {
-        echo Yii::t('language', "ไม่พบลิงก์ที่เกี่ยวข้อง");
+        echo Yii::t('language', "ไม่พบลิงค์ที่เกี่ยวข้อง");
     } else {
         foreach ($list as $l) {
             $name = LanguageHelper::changeDB($l['name_th'], $l['name_en']);
