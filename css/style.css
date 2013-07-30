@@ -86,7 +86,8 @@ h3 > img {
     vertical-align: middle;
 }
 form#insert-form .errorMessage{
-    display: none;
+    /*display: none;*/
+    color: red;
 }
 .error.bgnoimg{
     background-image: none;
