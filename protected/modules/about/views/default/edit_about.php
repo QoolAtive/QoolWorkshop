@@ -43,7 +43,7 @@
             <h3 class="barH3">        
                 <span>
                     <i class="icon-home"></i>
-                    <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
+                    <a href="<?php echo CHtml::normalizeUrl(array("/about/default/index/view/1")); ?>">
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เกี่ยวกับเรา'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
