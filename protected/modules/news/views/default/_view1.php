@@ -1,11 +1,19 @@
 <!--NEWS-->
-
+<?php
+    $model_rss = NewsRss::model()->find();
+    $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
+    ?>
 <div id="view1">
-    <h3><i class='icon-rss'></i><?php echo Yii::t('language', 'RSS Feed'); ?></h3>
+    <h3>
+        <i class='icon-rss'></i>
+        <?php echo Yii::t('language', 'RSS Feed'); ?>
+        <i class='icon-chevron-right'></i>
+        <?php echo $head_rss; ?>
+    </h3>
     <!-- Feed widget -->
     <?php
     $this->widget(
-            'ext.yii-feed-widget.YiiFeedWidget', array('url' => NewsRss::model()->find()->link, 'limit' => 10)
+            'ext.yii-feed-widget.YiiFeedWidget', array('url' => $model_rss->link, 'limit' => 10)
     );
     ?>
     <br/>

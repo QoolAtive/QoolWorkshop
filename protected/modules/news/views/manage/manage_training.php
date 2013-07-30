@@ -1,16 +1,29 @@
 <?php
-$this->renderPartial('_sidemenu');
+$this->renderPartial('_sidemenu', array('manage' => '2'));
 ?>
 
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'จัดการข่าวอบรม'); ?></h3>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-group"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/news/default/index/view/3")); ?>">
+                    <?php echo Yii::t('language', 'การอบรม'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'การอบรม'); ?>
+            </span>
+        </h3>
+        <div class="txt-cen">
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม'). Yii::t('language', 'การอบรม'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/editTraining")) . '"'));
+            ?>
+            <hr>
+        </div>
         <?php
         $dataProvider = $model->search();
-
-        echo CHtml::button(Yii::t('language', 'เพิ่ม'), array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/editTraining")) . '"'));
-
         $this->widget('zii.widgets.grid.CGridView', array(
             'id' => 'news-grid',
             'dataProvider' => $dataProvider,
@@ -20,19 +33,19 @@ $this->renderPartial('_sidemenu');
             'ajaxUpdate' => true,
             'columns' => array(
                 array(
-                    'header' => Yii::t('language', 'ลำดับที่'),
+                    'header' => Yii::t('language', 'ลำดับ'),
                     'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
                 ),
                 array(
-                    'header' => 'หัวข้อ',
-                    'name' => 'subject_th',
-                    'value' => 'strip($data->subject_th, 20);'
+                    'header' => Yii::t('language', 'หัวข้อ'),
+                    'name' => LanguageHelper::changeDB('subject_th', 'subject_en'),
+                    'value' => 'strip(LanguageHelper::changeDB($data->subject_th,$data->subject_en), 20);'
                 ),
                 array(
-                    'header' => 'รายละเอียด',
-                    'name' => 'detail_th',
-                    'value' => 'strip($data->detail_th, 30);'
-                ),
+                    'header' => Yii::t('language', 'รายละเอียด'),
+                    'name' => LanguageHelper::changeDB('detail_th', 'detail_en'),
+                    'value' => 'strip(LanguageHelper::changeDB($data->detail_th,$data->detail_en), 20);'
+                ),                
                 array(
                     'class' => 'CButtonColumn',
                     'header' => Yii::t('language', "แก้ไข"),
@@ -57,7 +70,7 @@ $this->renderPartial('_sidemenu');
                     ), //end 'buttons' => array(
                 ),
             ), //end 'columns' => array(
-            'template' => "{pager}\n{items}\n{pager}",
+            'template' => "{items}\n{pager}",
             'pager' => array(
                 'class' => 'CLinkPager',
                 'header' => Yii::t('language', 'หน้าที่: '),
