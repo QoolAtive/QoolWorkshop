@@ -132,6 +132,7 @@ Class ManageController extends Controller {
 
         if (isset($_POST['MemPerson']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemPerson'];
+            $model->etname = $model->tname;
             $model->career = '0';
             $model->skill_com = '0';
             $model->receive_news = '0';
@@ -175,7 +176,15 @@ Class ManageController extends Controller {
                                 window.location='/site/index';
                                 </script>
                                 ";
+                        } else {
+                            $model_user->username = Tool::Decrypted($model_user->username);
+                            $model_user->password = Tool::Decrypted($model_user->password);
+                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                         }
+                    } else {
+                        $model_user->username = Tool::Decrypted($model_user->username);
+                        $model_user->password = Tool::Decrypted($model_user->password);
+                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
                 }
             } else {
@@ -204,6 +213,10 @@ Class ManageController extends Controller {
             $model->attributes = $_POST['MemRegistration'];
             $model_user->attributes = $_POST['MemUser'];
             //กำหนดค่าที่ไม่ต้องการใช้
+            $model->etname = $model->tname;
+//            $model->province = $model->province;
+//            $model->prefecture = $model->prefecture;
+//            $model->district = $model->district;
             $model->career = 0;
             $model->skill_com = 0;
             $model->receive_news = 0;

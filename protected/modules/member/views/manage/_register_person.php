@@ -1,9 +1,12 @@
-<!--<script type="text/javascript" >
-    $(document).ready(function(){
-        $("#insert-form").attr("autocomplete","off");
-       
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#MemPerson_province").change(function() {
+//            if ($("#MemPerson_province option:selected").val() == "") {
+            $("#MemPerson_district option:eq(0)").attr("selected", "selected");
+//            }
+        });
     });
-</script>-->
+</script>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -49,6 +52,7 @@
                 ));
                 echo $form->error($model_user, 'username');
                 ?>
+                <label><?php echo Yii::t('language', '*' . MemUser::model()->getAttributeLabel('username') . ' ต้องระบุเป็นเลขบัตรประจำตัวประชาชนเท่านั้น'); ?></label>
             </div>
             <!-- new line -->
 
@@ -84,6 +88,12 @@
                 echo $form->labelEx($model, 'tname');
                 echo $form->dropdownList($model, 'tname', TitleName::model()->getTitleNameThai(), array(
                     'class' => "span2 fieldrequire",
+                    'ajax' => array(
+                        'type' => 'POST',
+                        'url' => CController::createUrl('/site/TnameToEng'),
+                        'update' => '#MemPerson_etname',
+                        'data' => array('tname' => 'js:this.value')
+                    )
                 ));
                 echo $form->error($model, 'tname');
                 ?>
@@ -120,6 +130,7 @@
                 echo $form->labelEx($model, 'etname');
                 echo $form->dropdownList($model, 'etname', TitleName::model()->getTitleNameEng(), array(
                     'class' => "span2",
+                    'disabled' => 'disabled',
                 ));
                 echo $form->error($model, 'etname');
                 ?>
@@ -224,7 +235,11 @@
                     ?>
                 </span>
                 <?php
-                echo $form->dropdownList($model, 'prefecture', array(), array(
+                $list_prefecture = array();
+                if ($model->prefecture != null) {
+                    $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', 'name');
+                }
+                echo $form->dropdownList($model, 'prefecture', $list_prefecture, array(
                     'class' => "fieldrequire haft right",
                     'empty' => 'เลือก',
                     'ajax' => array(
@@ -246,7 +261,11 @@
                     ?>
                 </span>
                 <?php
-                echo $form->dropdownList($model, 'district', array(), array(
+                $list_district = array();
+                if ($model->district != null) {
+                    $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', 'name');
+                }
+                echo $form->dropdownList($model, 'district', $list_district, array(
                     'class' => "fieldrequire haft right",
                     'empty' => 'เลือก',
                 ));
