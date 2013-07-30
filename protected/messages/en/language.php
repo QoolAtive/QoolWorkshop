@@ -3,6 +3,9 @@
 return array(
     'language' => 'en',
     'DBD' => 'DBD',
+    'สำนักพาณิชย์อิเล็กทรอนิกส์' => 'Department of Commerce.',
+    'กรมพัฒนาธุรกิจการค้า' => 'Department of Business Development.',
+    'กระทรวงพาณิชย์' => 'Ministry of Commerce.',
     '' => '',
     'สร้างผู้ใช้งาน' => 'Create Account',
     'เข้าระบบ' => 'Login',
