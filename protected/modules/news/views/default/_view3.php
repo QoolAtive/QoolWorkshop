@@ -1,15 +1,17 @@
 <!--Training-->
 <div id="view3">
-    <h3>Training</h3>
+    <h3><i class='icon-group'></i> <?php echo Yii::t('language', 'การอบรม'); ?></h3>
     <div class="accordion" id="hideother3">
         <?php
         $i = 1;
         foreach ($trainlist as $train) {
+            $subject = LanguageHelper::changeDB($train['subject_th'], $train['subject_en']);
+            $detail = LanguageHelper::changeDB($train['detail_th'], $train['detail_en']);
             ?>
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>" id="<?php echo $train['id']; ?>">
-                        <?php echo $train['subject_th']; ?>
+                        <?php echo $subject; ?>
                     </a>
                 </div>
                 <div id="item3<?php echo $i; ?>" class="accordion-body collapse <?php
@@ -20,10 +22,16 @@
                 ?>">
                     <div class="accordion-inner">
                         <!--รายละเอียด-->
-                        <div><?php echo $train['detail_th']; ?></div>
+                        <div><?php echo $detail; ?></div>
                         <div><?php echo CHtml::link($train['link'], $train['link'], array('target' => '_blank')); ?></div>
                         <!--วันที่เริ่ม - วันสุดท้าย-->
-                        <div><?php echo Tool::ChangeDateTimeToShow($train['start_at']) . " ถึง " . Tool::ChangeDateTimeToShow($train['end_at']); ?></div>
+                        <div>
+                            <?php
+                            echo Tool::ChangeDateTimeToShow($train['start_at']);
+                            echo " " . Yii::t('language', 'ถึง') . " ";
+                            echo Tool::ChangeDateTimeToShow($train['end_at']);
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
