@@ -27,7 +27,7 @@
                 <li>
                     <?php
                     echo CHtml::link(
-                            Yii::t('language', 'แก้ไขข้อความ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                            Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                     array('/about/default/editAbout')
                             )
                     );
@@ -40,7 +40,16 @@
 <div class="content">
     <div class="tabcontents">
         <div id="text" class="row-fluid ">
-            <h3>แก้ไขข้อความ About Us</h3>
+            <h3 class="barH3">        
+                <span>
+                    <i class="icon-home"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เกี่ยวกับเรา'); ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'เกี่ยวกับเรา'); ?>
+                </span>
+            </h3>
             <?php
             $model = About::model()->find();
             $form = $this->beginWidget('CActiveForm', array(
@@ -52,7 +61,7 @@
             <div>
                 <?php
                 //ภาษาไทย
-                echo Yii::t('language', $form->labelEx($model, 'about_text_th'));
+                echo $form->labelEx($model, 'about_text_th');
                 $this->widget('ext.ckeditor.CKEditorWidget', array(
                     "model" => $model, # Data-Model
                     "attribute" => 'about_text_th', # Attribute in the Data-Model
@@ -78,7 +87,7 @@
             <div>
                 <?php
                 //ภาษาอังกฤษ
-                echo Yii::t('language', $form->labelEx($model, 'about_text_en'));
+                echo $form->labelEx($model, 'about_text_en');
                 $this->widget('ext.ckeditor.CKEditorWidget', array(
                     "model" => $model, # Data-Model
                     "attribute" => 'about_text_en', # Attribute in the Data-Model
@@ -101,11 +110,15 @@
                 ));
                 ?>
             </div>
-            <?php
-            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/about/default/index/view/1")) . '"'));
-            ?>
+            <div class="txt-cen">
+                <hr>
+                <?php
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/about/default/index/view/1")) . '"'));
+                ?>
+                <hr>
+            </div>
             <?php $this->endWidget(); ?>
         </div>
     </div>
