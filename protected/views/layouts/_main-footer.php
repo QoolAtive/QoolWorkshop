@@ -10,7 +10,7 @@
 
             <?php
             echo '44/100';
-            echo Yii::t('language', 'ถนนนนทบุรี 1');
+            echo ' ' . Yii::t('language', 'ถนนนนทบุรี 1');
             echo ' ' . Yii::t('language', 'ตำบลบางกระสอ');
             echo ' ' . Yii::t('language', 'อำเภอเมือง');
             echo ' ' . Yii::t('language', 'จังหวัดนนทบุรี');
