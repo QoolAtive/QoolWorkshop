@@ -1,8 +1,8 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-$url = new CHttpRequest();
-Yii::app()->user->returnUrl = $url->getUrl(); // เมื่อ login ให้กลับไปหน้าที่ กด login
+//$url = new CHttpRequest();
+Yii::app()->user->returnUrl = '/site/index'; // เมื่อ login ให้กลับไปหน้าที่ กด login
 ?>
 <html lang="en" class="no-js">
     <head>
