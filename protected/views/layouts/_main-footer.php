@@ -15,8 +15,10 @@
             echo ' ' . Yii::t('language', 'อำเภอเมือง');
             echo ' ' . Yii::t('language', 'จังหวัดนนทบุรี');
             echo ' 11000';
+            echo ' ' . Yii::t('language', 'ประเทศไทย');
             ?>
             </br>
+            
             <?php
             echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192');
             echo ' ' . Yii::t('language', 'โทรสาร. 0-2547-5973');
