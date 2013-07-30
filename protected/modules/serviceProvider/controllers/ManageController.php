@@ -41,6 +41,8 @@ Class ManageController extends Controller {
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
+        Yii::app()->user->setState('default_link_back_to_menu', ''); //จาก controller Default. actionDetail
+
         if (isset($_GET['SpTypeBusiness'])) {
             $model->attributes = $_GET['SpTypeBusiness'];
         }
@@ -52,6 +54,8 @@ Class ManageController extends Controller {
 
     public function actionInsertTypeBusiness($id = null) {
         if ($id == null) {
+            Yii::app()->user->setState('product_link_back_to_menu', ''); //จาก controller Default. actionDetail
+
             $model = new SpTypeBusiness();
             $model->unsetAttributes();
 
@@ -70,12 +74,22 @@ Class ManageController extends Controller {
             $model->validate();
             if ($model->getErrors() == null) {
                 if ($model->save()) {
-                    echo "
+                    if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
+                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+                        echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='" . $link_back . "';
+                            </script>
+                            ";
+                    } else {
+                        echo "
                        <script>
                        alert('" . Yii::t('language', $alertText) . "');
                        window.location='$link';
                        </script>
                        ";
+                    }
                 }
             }
         }
@@ -99,6 +113,8 @@ Class ManageController extends Controller {
     }
 
     public function actionCompany() {
+        Yii::app()->user->setState('default_link_back_to_menu', ''); //จาก controller Default. actionDetail
+
         $model = new SpCompany();
         $model->unsetAttributes();
 
@@ -112,13 +128,19 @@ Class ManageController extends Controller {
     }
 
     public function actionInsertCompany($id = null) {
+
+
         if ($id == null) {
+
+            Yii::app()->user->setState('product_link_back_to_menu', ''); //จาก controller Default. actionDetail 
+
             $model = new SpCompany();
             $model->unsetAttributes();
 
             $model_type = new SpTypeCom;
             $model_type->unsetAttributes();
         } else {
+//            echo Yii::app()->user->getState('product_link_back_to_menu');
             $model = SpCompany::model()->find("id = $id");
 
             $model_type = new SpTypeCom;
@@ -217,14 +239,24 @@ Class ManageController extends Controller {
                         }
                     }
                     if ($id == null) {
-                        $this->redirect('/serviceProvider/manage/insertProduct/com_id/' . $model->id);
+                        $this->redirect('/serviceProvider/manage/insertProduct/id/' . $model->id);
                     } else {
-                        echo "
+                        if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
+                            $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+                            echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='" . $link_back . "';
+                            </script>
+                            ";
+                        } else {
+                            echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/serviceProvider/manage/company';
                             </script>
                             ";
+                        }
                     }
                 } else {
                     echo "<pre>";
@@ -275,6 +307,9 @@ Class ManageController extends Controller {
         if ($id == null) {
             $this->redirect('/serviceProvider/manage/company');
         }
+
+        Yii::app()->user->setState('default_link_back_to_menu', ''); //จาก controller Default. actionDetail
+
         $model = new SpProduct();
         $model->unsetAttributes();
 
@@ -295,6 +330,8 @@ Class ManageController extends Controller {
         if ($pro_id == null) {
             $model = new SpProduct();
             $model->unsetAttributes();
+
+            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = SpProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
         }
@@ -328,12 +365,22 @@ Class ManageController extends Controller {
                 }
 
                 if ($model->save()) {
-                    echo "
-                    <script>
-                    alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                    window.location='" . $return->getUrl() . "';
-                    </script>
-                    ";
+                    if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
+                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+                        echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='" . $link_back . "';
+                            </script>
+                            ";
+                    } else {
+                        echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='" . $return->getUrl() . "';
+                            </script>
+                            ";
+                    }
                 } else {
                     echo "<pre>";
                     print_r($model->getErrors());
