@@ -14,8 +14,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
         array(
-            'name' => 'group_name',
-            'value' => '$data->group_name',
+            'name' => 'group_id',
+            'value' => 'LearningGroup::model()->getGroupList($data->group_id)',
+            'filter' => LearningGroup::model()->getGroupList(' ', true),
         ),
         array(
             'name' => 'subject',
