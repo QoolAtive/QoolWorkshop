@@ -3,6 +3,11 @@
 return array(
     'language' => 'en',
     'DBD' => 'DBD',
+    '' => '',
+    'สร้างผู้ใช้งาน' => 'Create Account',
+    'เข้าระบบ' => 'Login',
+    'ออกจากระบบ' => 'Logout',
+    '' => '',
     'จัดการ' => 'Manage ',
     'เพิ่ม' => 'Add ',
     'แก้ไข' => 'Edit ',
