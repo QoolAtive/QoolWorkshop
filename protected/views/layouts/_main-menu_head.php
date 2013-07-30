@@ -13,13 +13,17 @@
                     <?php
                     if (!Yii::app()->user->id) {
                         ?>
-                        <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">Create Account</a> 
-                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login">Login</a>
+                        <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">
+                            <?php echo Yii::t('language', 'สร้างผู้ใช้งาน'); ?>
+                        </a> 
+                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login"><?php echo Yii::t('language', 'เข้าระบบ'); ?></a>
                         <?php
                     } else {
                         $profile = Tool::getProfile(Yii::app()->user->id);
                         ?>
-                        <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">Logout</a>
+                        <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">
+                            <?php echo Yii::t('language', 'ออกจากระบบ'); ?>
+                        </a>
                         <a href="/member/manage/profile" class="loginbtn "><?php echo $profile['name']; ?></a>
                         <?php
                     }
