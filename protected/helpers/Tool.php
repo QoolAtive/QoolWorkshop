@@ -111,7 +111,7 @@ Class Tool {
                     " . Yii::t('language', 'รหัสผู้ใช้ : ') . $data['username'] . " <br>
                     " . Yii::t('language', 'รหัสผ่าน : ') . $data['password'] . " <br>
                 ");
-        return $message[$select];
+        return $message[$select]; 
     }
 
     /**
