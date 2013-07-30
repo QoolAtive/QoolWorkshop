@@ -1,16 +1,30 @@
 <?php
-$this->renderPartial('_sidemenu');
+$this->renderPartial('_sidemenu', array('manage' => '1'));
 ?>
 
 <div class="content">
     <div class="tabcontents">
         <?php
         if ($model->id == NULL) {
-            ?>
-            <h3><?php echo Yii::t('language', 'เพิ่มข่าว'); ?></h3>
-        <?php } else { ?>
-            <h3><?php echo Yii::t('language', 'แก้ไขข่าว'); ?></h3>
-        <?php } ?>
+            $word = 'เพิ่ม';
+        } else {
+            $word = 'แก้ไข';
+        }
+        ?>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-bell-alt"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/news/default/index/view/1")); ?>">
+                    <?php echo Yii::t('language', 'ข่าว'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/news/manage/index")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ข่าว'); ?>
+                </a>               
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'ข่าว')); ?>
+            </span>
+        </h3>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
@@ -20,9 +34,10 @@ $this->renderPartial('_sidemenu');
         ?>
         <div>
             <?php
-            echo Yii::t('language', $form->labelEx($model, 'group_id'));
-            echo $form->DropDownList($model, 'group_id', CHtml::listData(NewsGroup::model()->findAll(), "id", "name_th")
-                    , array('empty' => '-- กรุณาเลือกกลุ่มข่าว --'));
+            $field = LanguageHelper::changeDB('name_th', 'name_en');
+            echo $form->labelEx($model, 'group_id');
+            echo $form->DropDownList($model, 'group_id', CHtml::listData(NewsGroup::model()->findAll(), "id", $field)
+                    , array('empty' => '-- ' . Yii::t('language', 'กรุณาเลือกกลุ่มข่าว') . ' --', 'class' => 'fieldrequire'));
             ?>
         </div>
         <!--เลือกรูปภาพ-->
@@ -38,7 +53,7 @@ $this->renderPartial('_sidemenu');
                 'denied' => Yii::t('language', 'allowed_img'),
                 'max' => 1,
                 'remove' => '[x]',
-                'duplicate' => Yii::t('language', 'Already Selected'),
+                'duplicate' => Yii::t('language', 'เลือกไว้แล้ว'),
                     )
             );
 //                    echo Yii::t('language', $form->error($model, 'pic'));
@@ -58,8 +73,8 @@ $this->renderPartial('_sidemenu');
                     ?>
                 </div>
                 <div class="descAttach">
-                    <?php echo Yii::t('language', 'ไฟล์แนบ') . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
-                    <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB)' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
+                    <?php echo Yii::t('language', 'ไฟล์แนบ') . ' ' . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
+                    <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB) ' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
                 </div>
                 <?php //echo Yii::t('language', $form->error($model_files, 'file_name')); ?>
             </div>
@@ -69,10 +84,10 @@ $this->renderPartial('_sidemenu');
         <?php
 //    ภาษาไทย
         echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
-        echo Yii::t('language', $form->labelEx($model, 'subject_th'));
-        echo $form->textField($model, 'subject_th');
+        echo $form->labelEx($model, 'subject_th');
+        echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
 
-        echo Yii::t('language', $form->labelEx($model, 'detail_th'));
+        echo $form->labelEx($model, 'detail_th');
         $this->widget('ext.ckeditor.CKEditorWidget', array(
             "model" => $model, # Data-Model
             "attribute" => 'detail_th', # Attribute in the Data-Model
@@ -96,10 +111,10 @@ $this->renderPartial('_sidemenu');
 
 //    ภาษาอังกฤษ
         echo "<h4>" . Yii::t('language', 'ภาษาอังกฤษ') . "</h4>";
-        echo Yii::t('language', $form->labelEx($model, 'subject_en'));
-        echo $form->textField($model, 'subject_en');
+        echo $form->labelEx($model, 'subject_en');
+        echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
 
-        echo Yii::t('language', $form->labelEx($model, 'detail_en'));
+        echo $form->labelEx($model, 'detail_en');
         $this->widget('ext.ckeditor.CKEditorWidget', array(
             "model" => $model, # Data-Model
             "attribute" => 'detail_en', # Attribute in the Data-Model
@@ -120,11 +135,17 @@ $this->renderPartial('_sidemenu');
             # Path to ckeditor.php
             "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
         ));
-
-        echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-        echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/index")) . '"'));
         ?>
+
+        <div class='txt-cen'>
+            <hr>
+            <?php
+            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/index")) . '"'));
+            ?>
+            <hr>
+        </div>
         <?php $this->endWidget(); ?>
     </div>
 </div>
