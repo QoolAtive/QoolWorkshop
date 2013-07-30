@@ -71,7 +71,7 @@ class LinkWeb extends LinkWebBase {
             'group_id' => Yii::t('language', 'กลุ่ม'),
             'name_th' => Yii::t('language', 'ชื่อภาษาไทย'),
             'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
-            'link' => Yii::t('language', 'ลิงก์'),
+            'link' => Yii::t('language', 'ลิงค์'),
             'img_path' => Yii::t('language', 'รูปภาพ'),
             'author' => Yii::t('language', 'ผู้เขียน'),//Author
             'date_write' => Yii::t('language', 'วันที่เขียน'),
