@@ -103,7 +103,7 @@ Class Tool {
             <strong>" . Yii::t('language', 'สวัสดี คุณ ') . $data['name'] . "</strong>
             <hr/>
              " . Yii::t('language', 'รหัสยืนยันของคุณคือ ') . $data['password'] . "
-            <br >" . CHtml::link(Yii::t('language', 'ยืนยันการสมัครสมาชิก'), array($_SERVER['SERVER_NAME'] . '/member/manage/registerConfirm')) . "
+            <br >" . CHtml::link(Yii::t('language', 'เข้าสู่ระบบเพื่อทำการยื่นยันการสมัครสมาชิก'), $_SERVER['SERVER_NAME']) . "
             ",
             'forgotPassword' => "
                 <strong>" . Yii::t('language', 'สวัสดี คุณ') . ' ' . $data['name'] . "</strong><br>
