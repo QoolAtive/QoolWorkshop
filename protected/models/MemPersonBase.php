@@ -63,7 +63,7 @@ class MemPersonBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, mem_type, business_type, sex, tname, ftname, ltname, etname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'required'),
+			array('user_id, mem_type, business_type, sex, tname, ftname, ltname, birth, email, facebook, twitter, address, province, prefecture, district, postcode, high_education, career, skill_com, receive_news', 'required'),
 			array('user_id, mem_type, business_type, sex, tname, etname, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly'=>true),
 			array('product_name, product_name_en, panit, ftname, ltname, fename, lename, email, twitter, tel, mobile, fax', 'length', 'max'=>100),
 			array('birth', 'length', 'max'=>4),

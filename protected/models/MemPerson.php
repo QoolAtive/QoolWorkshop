@@ -8,7 +8,7 @@ class MemPerson extends MemPersonBase {
 
     public function rules() {
         return array(
-            array('panit, user_id, mem_type, sex, tname, ftname, ltname, etname, fename, lename, birth, email, facebook, twitter, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'required'),
+            array('panit, user_id, mem_type, sex, tname, ftname, ltname, birth, email, facebook, twitter, address, province, prefecture, district, postcode, high_education, career, skill_com, receive_news', 'required'),
             array('user_id, business_type, mem_type, sex, tname, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly' => true),
             array('product_name, panit, ftname, ltname, fename, lename, email, twitter, tel, mobile, fax', 'length', 'max' => 100),
             array('birth', 'length', 'max' => 4),
