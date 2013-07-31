@@ -9,6 +9,7 @@
 }
 /*fix ie 7 .clearfix*/
 *+html .clearfix { 
+    
     display:inline-block; 
 }
 
