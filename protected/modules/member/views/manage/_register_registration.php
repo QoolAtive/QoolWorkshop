@@ -2,7 +2,7 @@
     $(document).ready(function() {
         $("#MemRegistration_province").change(function() {
 //            if ($("#MemRegistration_province option:selected").val() == "") {
-                $("#MemRegistration_district option:eq(0)").attr("selected", "selected");
+            $("#MemRegistration_district option:eq(0)").attr("selected", "selected");
 //            }
         });
     });
@@ -182,9 +182,13 @@
                 <div class="_40">
                     <?php
                     echo $form->labelEx($model, 'birth');
-                    echo $form->textField($model, 'birth', array(
-                        'class' => 'date fieldrequire',
-                        'placeholder' => MemRegistration::model()->getAttributeLabel('birth'),
+//                    echo $form->textField($model, 'birth', array(
+//                        'class' => 'date fieldrequire',
+//                        'placeholder' => MemRegistration::model()->getAttributeLabel('birth'),
+//                    ));
+                    echo $form->dropdownList($model, 'birth', Tool::getDropdownListYear(2500), array(
+                        'class' => "date fieldrequire",
+                        'empty' => 'เลือก'
                     ));
                     echo $form->error($model, 'birth');
                     ?>

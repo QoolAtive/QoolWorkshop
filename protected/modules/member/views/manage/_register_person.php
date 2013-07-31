@@ -177,9 +177,13 @@
             <div class="_40">
                 <?php
                 echo $form->labelEx($model, 'birth');
-                echo $form->textField($model, 'birth', array(
-                    'class' => 'date fieldrequire',
-                    'placeholder' => MemPerson::model()->getAttributeLabel('birth'),
+//                echo $form->textField($model, 'birth', array(
+//                    'class' => 'date fieldrequire',
+//                    'placeholder' => MemPerson::model()->getAttributeLabel('birth'),
+//                ));
+                echo $form->dropdownList($model, 'birth', Tool::getDropdownListYear(2500), array(
+                    'class' => "date fieldrequire",
+                    'empty' => 'เลือก'
                 ));
                 echo $form->error($model, 'birth');
                 ?>
