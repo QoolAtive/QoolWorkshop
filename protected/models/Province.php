@@ -52,7 +52,7 @@ class Province extends CActiveRecord {
     }
 
     public function getListProvince() {
-        $list = CHtml::listData(Province::model()->findAll(), 'id', 'name');
+        $list = CHtml::listData(Province::model()->findAll(), 'id', Yii::t('language', 'name_th'));
         return $list;
     }
 
