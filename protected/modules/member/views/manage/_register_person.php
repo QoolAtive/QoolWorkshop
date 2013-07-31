@@ -204,7 +204,9 @@
                 <?php
                 echo $form->labelEx($model, 'address');
                 echo $form->textField($model, 'address', array(
-                    'class' => 'span5 fieldrequire',));
+                    'class' => 'span5 fieldrequire',
+                    'placeholder' => MemPerson::model()->getAttributeLabel('address'),
+                ));
 
 
                 echo $form->error($model, 'address');
@@ -292,7 +294,7 @@
                 <?php
                 echo $form->labelEx($model, 'mobile');
                 echo $form->textField($model, 'mobile', array(
-                    'class' => 'fieldrequire ',
+//                    'class' => 'fieldrequire ',
                     'placeholder' => MemPerson::model()->getAttributeLabel('mobile'),
                 ));
                 echo $form->error($model, 'mobile');
@@ -324,7 +326,7 @@
                 <?php
                 echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
                     'empty' => 'เลือก',
-                    'class' => ' right'
+                    'class' => ' right fieldrequire'
                 ));
                 echo $form->error($model, 'high_education');
                 ?>

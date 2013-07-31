@@ -213,7 +213,10 @@
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'address');
-                    echo $form->textField($model, 'address', array('class' => 'fieldrequire'));
+                    echo $form->textField($model, 'address', array(
+                        'class' => 'fieldrequire',
+                        'placeholder' => MemRegistration::model()->getAttributeLabel('address'),
+                    ));
                     echo $form->error($model, 'address');
                     ?>
                 </div>
@@ -300,7 +303,7 @@
                     <?php
                     echo $form->labelEx($model, 'mobile');
                     echo $form->textField($model, 'mobile', array(
-                        'class' => 'fieldrequire',
+//                        'class' => 'fieldrequire',
                         'placeholder' => MemRegistration::model()->getAttributeLabel('mobile'),
                     ));
                     echo $form->error($model, 'mobile');
@@ -332,7 +335,8 @@
                     <?php
                     echo $form->labelEx($model, 'high_education');
                     echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
-                        'empty' => 'เลือก'
+                        'empty' => 'เลือก',
+                        'class' => 'fieldrequire',
                     ));
                     echo $form->error($model, 'high_education');
 
