@@ -9,8 +9,10 @@ Class Tool {
         }
     }
 
-    public static function getDropdownListYear() {
-        $year = 2548;
+    public static function getDropdownListYear($year = null) {
+        if ($year == null)
+            $year = 2548;
+        
         $year_now = date("Y") + 543;
         $arr_year = array();
         for ($year; $year <= $year_now; $year++) {
@@ -111,7 +113,7 @@ Class Tool {
                     " . Yii::t('language', 'รหัสผู้ใช้ : ') . $data['username'] . " <br>
                     " . Yii::t('language', 'รหัสผ่าน : ') . $data['password'] . " <br>
                 ");
-        return $message[$select]; 
+        return $message[$select];
     }
 
     /**
