@@ -1,5 +1,10 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php 
+//echo Yii::app()->user->returnUrl;
+//echo Yii::app()->request->getUrl();
+Yii::app()->user->returnUrl = Yii::app()->request->getUrl();
+?>
 <html lang="en" class="no-js">
     <head>
         <title>DBDmart.com</title>
