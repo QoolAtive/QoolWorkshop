@@ -61,8 +61,8 @@ class LinkGroup extends LinkGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_th' => Yii::t('language', 'ชื่อกลุ่มลิงค์ภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อกลุ่มลิงค์ภาษาอังกฤษ'),
+            'name_th' => Yii::t('language', 'ชื่อกลุ่มลิงก์ภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อกลุ่มลิงก์ภาษาอังกฤษ'),
         );
     }
 

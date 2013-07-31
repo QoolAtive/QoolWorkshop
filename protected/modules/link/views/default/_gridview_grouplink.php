@@ -1,5 +1,7 @@
-
 <?php
+/*
+test git
+*/
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'link-grid',
     'dataProvider' => $dataProvider,
