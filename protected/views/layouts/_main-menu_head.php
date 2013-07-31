@@ -42,7 +42,7 @@
             <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'บริการ'); ?></a></li>
         </ul>
         <ul class="menu clearfix">
-            <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงค์หน่วยงาน'); ?></a></li>
+            <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?></a></li>
             <li><a href="/faq/default/index"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
             <li><a href="/about/default/index"><?php echo Yii::t('language', 'เกี่ยวกับเรา'); ?></a></li>
             <li><a href="/news/default/index"><?php echo Yii::t('language', 'ข่าวสารและกิจกรรม'); ?></a> </li>
