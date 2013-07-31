@@ -38,6 +38,8 @@ return array(
         'learning',
         'news',
         'serviceProvider',
+        'webSimulation',
+        'eDirectory',
     ),
     // application components
     'components' => array(

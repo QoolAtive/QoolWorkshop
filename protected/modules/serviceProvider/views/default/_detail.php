@@ -5,8 +5,12 @@
                 <img src="/img/iconpage/edir.png"/>
             </li>
             <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
-                <p>Memeber Since 23/04/56  
-                    View : 768
+                <p>
+                    <?php
+                    echo Yii::t('language', 'Memeber Since') . ' ' .
+//                    Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' .
+                    Yii::t('language', 'View') . ' ' . $model_count->count_company_view;
+                    ?>
                 </p>
                 <table style=" color: #fff; display: block;
                        margin-left: 10px;
@@ -50,10 +54,25 @@
             </div>
             <img src="/img/link/qoolative.jpg" style="float: right;" width="220">
         </div>
-        <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'Company Profile'); ?></h2>
+        <h2>
+            <img src="/img/icontopic.png" />
+            <?php
+            echo Yii::t('language', 'Company Profile');
+            if (Yii::app()->user->isAdmin()) {
+                echo CHtml::button(Yii::t('language', 'แก้ไข'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/serviceProvider/manage/insertCompany/id/' . $model->id
+                    )) . "'")
+                );
+            }
+            ?>
+        </h2>
         <table>
             <tr>
-                <td><?php echo Yii::t('language', 'Company name'); ?></td>
+                <td>
+                    <?php
+                    echo Yii::t('language', 'Company name');
+                    ?>
+                </td>
                 <td> : </td>
                 <td><?php echo $model->name; ?></td>
             </tr>
@@ -94,10 +113,83 @@
 
         </table>
         <?php echo $model->infor; ?>
+
+        <?php
+        $dp_product_best_sell = new CActiveDataProvider('SpProduct', array(
+            'criteria' => array(
+                'condition' => 'guide = 1 and main_id = ' . $model->id,
+                'order' => 'id desc',
+            ),
+            'pagination' => array(
+                'pageSize' => 5,
+            ),
+        ));
+
+        if ($dp_product_best_sell->itemCount > 0) {
+            ?>
+
+            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ขายดี'); ?></h2>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $dp_product_best_sell,
+                    'itemView' => 'list_product',
+                    'summaryText' => false,
+                ));
+                ?>
+            </div>
+            <?php
+        }
+        $dp_product_promo = new CActiveDataProvider('SpProduct', array(
+            'criteria' => array(
+                'condition' => 'guide = 2 and main_id = ' . $model->id,
+                'order' => 'id desc',
+            ),
+            'pagination' => array(
+                'pageSize' => 5,
+            ),
+        ));
+        if ($dp_product_promo->itemCount > 0) {
+            ?>
+            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $dp_product_promo,
+                    'itemView' => 'list_product',
+                    'summaryText' => false,
+                ));
+                ?>
+            </div>
+            <?php
+        }
+        $dp_product_new = new CActiveDataProvider('SpProduct', array(
+            'criteria' => array(
+                'condition' => 'main_id = ' . $model->id,
+                'order' => 'id desc',
+            ),
+            'pagination' => array(
+                'pageSize' => 5,
+            ),
+        ));
+
+        if ($dp_product_new->itemCount > 0) {
+            ?>
+            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ล่าสุด'); ?></h2>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $dp_product_new,
+                    'itemView' => 'list_product',
+                    'summaryText' => false,
+                ));
+                ?>
+            </div>
+        <?php } ?>
         <div class="textcenter">
             <?php
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/serviceProvider/default/index#view'.$_GET['type']
+                    '/serviceProvider/default/index/id/' . $type_business_back
                 )) . "'")
             );
             ?>

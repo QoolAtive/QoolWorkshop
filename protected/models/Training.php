@@ -62,13 +62,13 @@ class Training extends TrainingBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'subject_th' => 'หัวข้อภาษาไทย',
-            'detail_th' => 'รายละเอียดภาษาไทย',
-            'subject_en' => 'หัวข้อภาษาอังกฤษ',
-            'detail_en' => 'รายละเอียดอังกฤษ',
-            'link' => 'ที่อยู่ลิ้งก์',
-            'start_at' => 'วันที่เริ่ม',
-            'end_at' => 'วันที่สิ้นสุด',
+            'subject_th' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาไทย').') ',
+            'detail_th' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาไทย').') ',
+            'subject_en' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+            'detail_en' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+            'link' => Yii::t('language', 'ที่อยู่ลิงค์'),
+            'start_at' => Yii::t('language', 'วันที่เริ่มต้น'),// วันที่เริ่ม',
+            'end_at' => Yii::t('language', 'วันที่สิ้นสุด'),//'วันที่สิ้นสุด',
         );
     }
 
@@ -93,14 +93,14 @@ class Training extends TrainingBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 10,
+                'pageSize' => 15,
             ),
         ));
     }
 
     public function checkDate() {
         if (strtotime($this->start_at) > strtotime($this->end_at)) {
-            $this->addError('start_at', 'วันที่เริ่มไม่สามารถอยู่หลังวันสิ้นสุดได้');
+            $this->addError('start_at', Yii::t('language', 'วันที่เริ่มต้นต้องน้อยกว่าหรือเท่ากับวันที่สิ้นสุด'));
         }
     }
 

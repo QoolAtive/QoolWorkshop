@@ -67,15 +67,15 @@ class News extends NewsBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'group_id' => 'กลุ่มข่าว',
-            'subject_th' => 'หัวข้อ',
-            'subject_en' => 'หัวข้อ',
-            'detail_th' => 'รายละเอียด',
-            'detail_en' => 'รายละเอียด',
-            'pic' => 'รูปภาพ',
-            'author' => 'Author',
+            'group_id' => Yii::t('language', 'กลุ่มข่าว'),
+            'subject_th' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาไทย').') ',
+            'subject_en' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+            'detail_th' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาไทย').') ',
+            'detail_en' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+            'pic' => Yii::t('language', 'รูปภาพ'),
+            'author' => Yii::t('language', 'ผู้เขียน'),
             'guide_status' => 'Guide Status',
-            'date_write' => 'Date Write',
+            'date_write' => Yii::t('language', 'วันที่เขียน'),
         );
     }
 
@@ -102,7 +102,7 @@ class News extends NewsBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 10,
+                'pageSize' => 15,
             ),
         ));
     }

@@ -1,3 +1,12 @@
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#MemRegistration_province").change(function() {
+//            if ($("#MemRegistration_province option:selected").val() == "") {
+            $("#MemRegistration_district option:eq(0)").attr("selected", "selected");
+//            }
+        });
+    });
+</script>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -45,6 +54,7 @@
                     ));
                     echo $form->error($model_user, 'username');
                     ?>
+                    <label><?php echo Yii::t('language', '*' . MemUser::model()->getAttributeLabel('username') . ' ต้องระบุเป็นเลขบัตรประจำตัวประชาชนเท่านั้น'); ?></label>
                 </div>
                 <!-- new line -->
                 <!-- password -->
@@ -80,6 +90,12 @@
                     echo $form->dropdownList($model, 'tname', TitleName::model()->getTitleNameThai(), array(
 //                            'name' => "Prefix",
                         'class' => "span2 fieldrequire",
+                        'ajax' => array(
+                            'type' => 'POST',
+                            'url' => CController::createUrl('/site/TnameToEng'),
+                            'update' => '#MemRegistration_etname',
+                            'data' => array('tname' => 'js:this.value')
+                        )
                     ));
                     echo $form->error($model, 'tname');
                     ?>
@@ -119,6 +135,7 @@
                     echo $form->dropdownList($model, 'etname', TitleName::model()->getTitleNameEng(), array(
 //                            'name' => "Prefix",
                         'class' => "span2",
+                        'disabled' => 'disabled',
                     ));
                     echo $form->error($model, 'etname');
                     ?>
@@ -165,9 +182,13 @@
                 <div class="_40">
                     <?php
                     echo $form->labelEx($model, 'birth');
-                    echo $form->textField($model, 'birth', array(
-                        'class' => 'date fieldrequire',
-                        'placeholder' => MemRegistration::model()->getAttributeLabel('birth'),
+//                    echo $form->textField($model, 'birth', array(
+//                        'class' => 'date fieldrequire',
+//                        'placeholder' => MemRegistration::model()->getAttributeLabel('birth'),
+//                    ));
+                    echo $form->dropdownList($model, 'birth', Tool::getDropdownListYear(2500), array(
+                        'class' => "date fieldrequire",
+                        'empty' => 'เลือก'
                     ));
                     echo $form->error($model, 'birth');
                     ?>
@@ -192,7 +213,10 @@
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'address');
-                    echo $form->textField($model, 'address', array('class' => 'fieldrequire'));
+                    echo $form->textField($model, 'address', array(
+                        'class' => 'fieldrequire',
+                        'placeholder' => MemRegistration::model()->getAttributeLabel('address'),
+                    ));
                     echo $form->error($model, 'address');
                     ?>
                 </div>
@@ -225,16 +249,21 @@
                         ?>
                     </span>
                     <?php
-                    echo $form->dropdownList($model, 'prefecture', array(), array(
-                        'class' => "haft fieldrequire",
-                        'empty' => 'เลือก',
-                        'ajax' => array(
-                            'type' => 'POST',
-                            'url' => CController::createUrl('/site/PrefectureToDistrict'),
-                            'update' => '#MemRegistration_district',
-                            'data' => array('prefecture' => 'js:this.value')
-                        )
-                    ));
+                    $list_prefecture = array();
+                    if ($model->prefecture != null) {
+                        $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', 'name');
+                    }
+                    if ($model)
+                        echo $form->dropdownList($model, 'prefecture', $list_prefecture, array(
+                            'class' => "haft fieldrequire",
+                            'empty' => 'เลือก',
+                            'ajax' => array(
+                                'type' => 'POST',
+                                'url' => CController::createUrl('/site/PrefectureToDistrict'),
+                                'update' => '#MemRegistration_district',
+                                'data' => array('prefecture' => 'js:this.value')
+                            )
+                        ));
                     echo $form->error($model, 'prefecture');
                     ?>
                 </div>
@@ -247,7 +276,11 @@
                         ?>
                     </span>
                     <?php
-                    echo $form->dropdownList($model, 'district', array(), array(
+                    $list_district = array();
+                    if ($model->district != null) {
+                        $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', 'name');
+                    }
+                    echo $form->dropdownList($model, 'district', $list_district, array(
                         'class' => "haft fieldrequire",
                         'empty' => 'เลือก',
                     ));
@@ -270,7 +303,7 @@
                     <?php
                     echo $form->labelEx($model, 'mobile');
                     echo $form->textField($model, 'mobile', array(
-                        'class' => 'fieldrequire',
+//                        'class' => 'fieldrequire',
                         'placeholder' => MemRegistration::model()->getAttributeLabel('mobile'),
                     ));
                     echo $form->error($model, 'mobile');
@@ -302,7 +335,8 @@
                     <?php
                     echo $form->labelEx($model, 'high_education');
                     echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
-                        'empty' => 'เลือก'
+                        'empty' => 'เลือก',
+                        'class' => 'fieldrequire',
                     ));
                     echo $form->error($model, 'high_education');
 

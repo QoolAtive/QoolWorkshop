@@ -34,26 +34,26 @@ class DefaultController extends Controller {
             $data['from'] = $_POST['email'];
             $data['name'] = $_POST['name'];
             $data['to'] = 'dbdmart2013@gmail.com';
-            $data['subject'] = 'มีข้อความตืดต่อจาก คุณ ' . $_POST['name'];
+            $data['subject'] = Yii::t('language', 'มีข้อความตืดต่อจาก') . Yii::t('language', 'คุณ ') . $_POST['name'];
             $data['message'] = $_POST['description'] . "<br/>" . $_POST['website'];
             if ($model->save()) {
                 if (Tool::mailsendContact($data)) {
                     echo "<script>
-                        alert('ส่งข้อมูลเรียบร้อย');
+                        alert('" . Yii::t('language', 'ส่งข้อมูลเรียบร้อย') . "');
                     </script>";
                 } else {
                     echo "<script>
-                        alert('เกิดข้อผิดพลาดขณะส่งข้อมูล');
+                        alert('" . Yii::t('language', 'เกิดข้อผิดพลาดขณะส่งข้อมูล') . "');
                     </script>";
                 }
             } else {
                 echo "<script>
-                        alert('อีเมล์ของคุณไม่ถูกต้อง');
+                        alert('" . Yii::t('language', 'อีเมล์ของคุณไม่ถูกต้อง') . "');
                     </script>";
             }//END if (Tool::mailsendContact($data)) {
         } else {
             echo "<script>
-                    alert('กรุณากรอก ชื่อ, E-mail และ ข้อความที่ต้องการให้ครบ');
+                        alert('" . Yii::t('language', 'กรุณากรอก') . Yii::t('language', 'ชื่อของคุณ') . "," . Yii::t('language', 'อีเมล์') . " " . Yii::t('language', 'และ') . Yii::t('language', 'รายละเอียด') . "');
                 </script>";
         }//END if ($_POST['email'] != NULL && $_POST['description'] != NULL && $_POST['name'] != NULL) {
         ?>

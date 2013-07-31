@@ -12,7 +12,7 @@ class MemRegistration extends MemRegistrationBase {
 
     public function rules() {
         return array(
-            array('etname, user_id, corporation_registration, commerce_registration, type_business, product_name, trade_name, business_name, tname, ftname, ltname, fename, lename, sex, birth, email, address, province, prefecture, district, postcode, tel, mobile, fax, high_education, career, skill_com, receive_news', 'required'),
+            array('user_id, corporation_registration, commerce_registration, type_business, product_name, trade_name, business_name, tname, ftname, ltname, sex, birth, email, address, province, prefecture, district, postcode, high_education, career, skill_com, receive_news', 'required'),
             array('etname, user_id, type_business, tname, sex, province, prefecture, district, high_education, career, skill_com', 'numerical', 'integerOnly' => true),
             array('corporation_registration', 'length', 'max' => 13),
             array('commerce_registration', 'length', 'max' => 45),

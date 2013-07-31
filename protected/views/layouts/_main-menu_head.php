@@ -13,13 +13,17 @@
                     <?php
                     if (!Yii::app()->user->id) {
                         ?>
-                        <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">Create Account</a> 
-                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login">Login</a>
+                        <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">
+                            <?php echo Yii::t('language', 'สร้างผู้ใช้งาน'); ?>
+                        </a> 
+                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login"><?php echo Yii::t('language', 'เข้าระบบ'); ?></a>
                         <?php
                     } else {
                         $profile = Tool::getProfile(Yii::app()->user->id);
                         ?>
-                        <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">Logout</a>
+                        <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">
+                            <?php echo Yii::t('language', 'ออกจากระบบ'); ?>
+                        </a>
                         <a href="/member/manage/profile" class="loginbtn "><?php echo $profile['name']; ?></a>
                         <?php
                     }
@@ -33,12 +37,12 @@
 
         <ul class="menu clearfix">
             <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?></a></li>
-            <li><a href="web-simulation.html"><?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?></a></li>
-            <li><a href="e-directory.html"><?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?></a></li>
+            <li><a href="/webSimulation/default/index"><?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?></a></li>
+            <li><a href="/eDirectory/default/index"><?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?></a></li>
             <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'บริการ'); ?></a></li>
         </ul>
         <ul class="menu clearfix">
-            <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงค์หน่วยงาน'); ?></a></li>
+            <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?></a></li>
             <li><a href="/faq/default/index"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
             <li><a href="/about/default/index"><?php echo Yii::t('language', 'เกี่ยวกับเรา'); ?></a></li>
             <li><a href="/news/default/index"><?php echo Yii::t('language', 'ข่าวสารและกิจกรรม'); ?></a> </li>

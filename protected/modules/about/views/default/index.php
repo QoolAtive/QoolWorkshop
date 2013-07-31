@@ -27,7 +27,7 @@
                 <li>
                     <?php
                     echo CHtml::link(
-                            Yii::t('language', 'แก้ไขข้อความ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                            Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                     array('/about/default/editAbout')
                             )
                     );

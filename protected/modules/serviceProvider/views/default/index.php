@@ -21,11 +21,10 @@ $this->renderPartial('_side_bar', array(
                 <?php echo $model_type->about; ?>    
             </div>
         </div>
-        <div style="border: 1px #c9c9c9 solid;padding: 15px;margin-top: 5px;">
+        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 15px;margin-top: 5px;">
 
             <h3><img src="/img/iconform.png"> Partner</h3>
-            <img src="/img/iconpage/service/chiyo.png" alt="chiyo">
-            <img src="/img/iconpage/service/jaidee.png" alt="jaidee">
+
             <?php
             $this->widget('zii.widgets.CListView', array(
                 'dataProvider' => $model->getDataType($id),

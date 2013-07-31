@@ -9,14 +9,14 @@
         <span>
             <i class="icon-link"></i>
             <a href="<?php echo CHtml::normalizeUrl(array("/link/default/index")); ?>">
-                <?php echo Yii::t('language', 'ลิงค์หน่วยงาน'); ?>
+                <?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
             </a>
             <i class="icon-chevron-right"></i>
             <a href="<?php echo CHtml::normalizeUrl(array("/link/default/managelink")); ?>">
-                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงค์หน่วยงาน'); ?>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
             </a>
             <i class="icon-chevron-right"></i>
-            <?php echo Yii::t('language', $name_btn) . Yii::t('language', 'ลิงค์หน่วยงาน'); ?>
+            <?php echo Yii::t('language', $name_btn) . Yii::t('language', 'ลิงก์หน่วยงาน'); ?>
         </span>
     </h3>
     <div class="bucketLeft clearfix">
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <?php $this->endWidget(); ?>
-            </div>
+            </div>            <!--<div class="group">-->
         </div>
     </div>
 </div>

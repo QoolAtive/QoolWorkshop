@@ -58,8 +58,8 @@ class NewsGroup extends NewsGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_th' => 'ชื่อกลุ่มภาษาไทย',
-            'name_en' => 'ชื่อกลุ่มภาษาอังกฤษ',
+            'name_th' => Yii::t('language', 'ชื่อ').' ('.Yii::t('language', 'ภาษาไทย').') ',
+            'name_en' => Yii::t('language', 'ชื่อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
         );
     }
 
@@ -79,6 +79,9 @@ class NewsGroup extends NewsGroupBase {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 15,
+            ),
         ));
     }
 
@@ -93,7 +96,7 @@ class NewsGroup extends NewsGroupBase {
             $model = NewsGroup::model()->find($criteria);
             if (!empty($model)) {
                 $label = NewsGroup::model()->getAttributeLabel($attribute);
-                $this->addError($attribute, $label . ' มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
+                $this->addError($attribute, $label . Yii::t('language', 'มีอยู่ในระบบ กรุณาตรวจสอบ'));
             }
         }
     }

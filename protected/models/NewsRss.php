@@ -66,9 +66,9 @@ class NewsRss extends NewsRssBase
 	{
 		return array(
 			'id' => 'ID',
-			'name_th' => 'ชื่อ Feed ข่าว ภาษาไทย',
-			'name_en' => 'ชื่อ Feed ข่าว ภาษาอังกฤษ',
-			'link' => 'ที่อยู่ของ Feed ข่าว',
+			'name_th' => Yii::t('language', 'ชื่อ RSS Feed').' ('.Yii::t('language', 'ภาษาไทย').') ', // ชื่อ Feed ข่าว ภาษาไทย
+			'name_en' => Yii::t('language', 'ชื่อ RSS Feed').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+			'link' => Yii::t('language', 'ที่อยู่ลิงค์'),
 			'select' => 'Select',
 		);
 	}

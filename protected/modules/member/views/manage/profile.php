@@ -92,12 +92,12 @@
 
             <?php // if ($profile['facebook'] != null) {  ?>
             <!--<label>เฟสบุ๊ค :</label>-->
-            <!--<div class="detail"><?php // echo $profile['facebook'];        ?></div>-->
+            <!--<div class="detail"><?php // echo $profile['facebook'];          ?></div>-->
             <?php // }  ?>
 
             <?php // if ($profile['twitter'] != null) {  ?>
             <!--<label>ทวิตเตอร์ :</label>-->
-            <!--<div class="detail"><?php // echo $profile['twitter'];        ?></div>-->
+            <!--<div class="detail"><?php // echo $profile['twitter'];          ?></div>-->
             <?php // }  ?>
             <hr>
             <?php
@@ -109,6 +109,10 @@
             } else {
                 echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/member/manage/editMemberRegistration'
+                    )) . "'")
+                );
+                echo CHtml::button(Yii::t('language', 'ใช้งานร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/eDirectory/manage/index'
                     )) . "'")
                 );
             }

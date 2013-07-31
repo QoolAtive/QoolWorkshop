@@ -151,7 +151,7 @@ class SiteController extends Controller {
             ':p_id' => (int) $_POST['province'])
         );
 
-        $data = CHtml::listData($data, 'id', 'name');
+        $data = CHtml::listData($data, 'id', Yii::t('language', 'name_th'));
 
         echo "<option value=''>เลือก</option>";
         foreach ($data as $id => $name)
@@ -163,9 +163,20 @@ class SiteController extends Controller {
             ':p_id' => (int) $_POST['prefecture'])
         );
 
-        $data = CHtml::listData($data, 'id', 'name');
+        $data = CHtml::listData($data, 'id', Yii::t('language', 'name_th'));
 
         echo "<option value=''>เลือก</option>";
+        foreach ($data as $id => $name)
+            echo CHtml::tag('option', array('value' => $id), CHtml::encode($name), true);
+    }
+    
+    public function actionTnameToEng() {
+        $data = TitleName::model()->findAll('id=:id', array(
+            ':id' => (int) $_POST['tname'])
+        );
+
+        $data = CHtml::listData($data, 'id', 'name_en');
+
         foreach ($data as $id => $name)
             echo CHtml::tag('option', array('value' => $id), CHtml::encode($name), true);
     }

@@ -1,0 +1,27 @@
+<div class="sidebar">
+    <div class="menuitem">
+        <ul>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
+        </ul>
+
+    </div>
+</div>
+<div class="content">
+    <div class="tabcontents" >
+        <div class="websimborder" style="min-height: 400px; text-align:center;">
+
+            <h2>Web Simulation</h2>
+
+            <p>First thing, take a tour of web Simulation, or setup Your Process</p>
+
+            <p></p>
+            <a href="#"  style="border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black; ">
+                Start Simulation
+            </a>
+
+            <img src="/img/smart.png">
+
+        </div>
+
+    </div>
+</div>

@@ -132,6 +132,7 @@ Class ManageController extends Controller {
 
         if (isset($_POST['MemPerson']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemPerson'];
+            $model->etname = $model->tname;
             $model->career = '0';
             $model->skill_com = '0';
             $model->receive_news = '0';
@@ -175,7 +176,15 @@ Class ManageController extends Controller {
                                 window.location='/site/index';
                                 </script>
                                 ";
+                        } else {
+                            $model_user->username = Tool::Decrypted($model_user->username);
+                            $model_user->password = Tool::Decrypted($model_user->password);
+                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                         }
+                    } else {
+                        $model_user->username = Tool::Decrypted($model_user->username);
+                        $model_user->password = Tool::Decrypted($model_user->password);
+                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
                 }
             } else {
@@ -204,6 +213,10 @@ Class ManageController extends Controller {
             $model->attributes = $_POST['MemRegistration'];
             $model_user->attributes = $_POST['MemUser'];
             //กำหนดค่าที่ไม่ต้องการใช้
+            $model->etname = $model->tname;
+//            $model->province = $model->province;
+//            $model->prefecture = $model->prefecture;
+//            $model->district = $model->district;
             $model->career = 0;
             $model->skill_com = 0;
             $model->receive_news = 0;
@@ -325,7 +338,7 @@ Class ManageController extends Controller {
             $profile = array(
                 'name' => $model->ftname . ' ' . $model->ltname,
                 'member_type' => $type,
-                'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+                'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name_th . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name_th . ' จ.' . Province::model()->findByPk($model->province)->name_th . ' ' . $model->postcode,
                 'businessType' => $businessType,
                 'productName' => $model->product_name,
                 'panit' => $panit,
@@ -454,6 +467,7 @@ Class ManageController extends Controller {
                 if ($model->save()) {
                     echo "
                         <script>
+                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"></meta>
                         alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
                         window.location='/member/manage/admin';
                         </script>

@@ -6,13 +6,8 @@
  * The followings are the available columns in table 'prefecture':
  * @property integer $id
  * @property integer $province_id
- * @property string $name
- *
- * The followings are the available model relations:
- * @property District[] $districts
- * @property MemPerson[] $memPeople
- * @property MemRegistration[] $memRegistrations
- * @property Province $province
+ * @property string $name_th
+ * @property string $name_en
  */
 class PrefectureBase extends CActiveRecord
 {
@@ -42,12 +37,12 @@ class PrefectureBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('province_id, name', 'required'),
+			array('province_id, name_th, name_en', 'required'),
 			array('province_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>100),
+			array('name_th, name_en', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, province_id, name', 'safe', 'on'=>'search'),
+			array('id, province_id, name_th, name_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,10 +54,6 @@ class PrefectureBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'districts' => array(self::HAS_MANY, 'District', 'prefecture_id'),
-			'memPeople' => array(self::HAS_MANY, 'MemPerson', 'prefecture'),
-			'memRegistrations' => array(self::HAS_MANY, 'MemRegistration', 'prefecture'),
-			'province' => array(self::BELONGS_TO, 'Province', 'province_id'),
 		);
 	}
 
@@ -74,7 +65,8 @@ class PrefectureBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'province_id' => 'Province',
-			'name' => 'Name',
+			'name_th' => 'Name Th',
+			'name_en' => 'Name En',
 		);
 	}
 
@@ -91,7 +83,8 @@ class PrefectureBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('province_id',$this->province_id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('name_th',$this->name_th,true);
+		$criteria->compare('name_en',$this->name_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
