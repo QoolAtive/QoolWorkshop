@@ -22,19 +22,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons' => array(
                 'update' => array(
                     'label' => Yii::t('language', 'แก้ไข'),
-                    'click' => "function(){
-                                    $.fn.yiiGridView.update('link-grid', {
-                                        type:'POST',
-                                        url:$(this).attr('href'),
-                                        success:function(data) {
-//                                              $('#groupform').hide().html(data).fadeIn();
-                                              $.fancybox({content:data});
-                                              $.fn.yiiGridView.update('link-grid');
-                                        }
-                                    })
-                                    return false;
-                              }
-                     ",
+//                    'click' => "function(){
+//                                    $.fn.yiiGridView.update('link-grid', {
+//                                        type:'POST',
+//                                        url:$(this).attr('href'),
+//                                        success:function(data) {
+////                                              $('#groupform').hide().html(data).fadeIn();
+//                                              $.fancybox({content:data});
+//                                              $.fn.yiiGridView.update('link-grid');
+//                                        }
+//                                    })
+//                                    return false;
+//                              }
+//                     ",
                     'url' => 'CHtml::normalizeUrl(array("/link/default/groupForm","id"=> $data->id))',
                 ),
             ),
