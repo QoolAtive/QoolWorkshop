@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <?php $this->endWidget(); ?>
-            </div>
+            </div>            <!--<div class="group">-->
         </div>
     </div>
 </div>
