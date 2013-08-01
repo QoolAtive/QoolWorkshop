@@ -2,7 +2,7 @@
 
 echo "test1";
 
-echo "ช้าง ช้าง ช้าง";
+echo "Tottenham Champion 2013/2014"
 
 //yo
 ?>
