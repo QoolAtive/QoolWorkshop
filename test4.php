@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 echo "test4";
@@ -27,3 +28,11 @@ echo "test4";
 echo "B test6";
 echo "B test7";
 ?>
+=======
+<?php
+
+echo "test4";
+
+echo "ann4";
+?>
+>>>>>>> fc9356f03358671fd408e5d7a47c5b2c7ef68598
