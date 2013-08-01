@@ -32,4 +32,6 @@ if(true){
     echo "FALSE";
 }
 
+echo "TEST TEST TEST";
+
 ?>
