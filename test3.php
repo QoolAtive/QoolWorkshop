@@ -19,4 +19,5 @@ echo "B test4";
 echo "B test5";
 
 echo "B.ss.2.1";
+echo "MIX MIX MIX  mIXMi mIXMMI";
 ?>
