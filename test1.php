@@ -9,14 +9,10 @@
 <?php
 
 echo "test1";
-
-echo "Tottenham Winner!!!!!!!!!!!!!!!!!!!!";
-
-echo "Arsenal OUT!!!!";
-
-echo "Sold OUT Bale!!!!";
-
-echo "Bale UnHappy!!!!";
+echo "<p style='text-decoration:italic;'>";
+echo "Tottenham loser!!!!!!!!!!!!!!!!!!!!";
+echo "</p>";
+echo "Tottenham OUT!!!!";
 
 //yo
 ?>

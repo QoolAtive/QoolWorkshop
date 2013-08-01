@@ -1,3 +1,10 @@
+<style type="text/css">
+    p{
+        font-weight: bold;
+        font-size: 2em;
+        color:pink;
+    }
+</style>
 <?php
 
 // call function 
@@ -6,39 +13,10 @@ $this->noDeleteChang();
 echo "test2";
 
 
-
-// =========== Function =============
-
-function noDeleteChang(){
-    echo "ห้าม ลบ ช้าง นะครับ ^^";
-}
-
-echo "ช้าง กู อยู่ไหน...??";
-
-echo "ช้าง ข้า มาแล้วววววว";
-
-
-
-
-
-// =========== Function =============
-
-function noDeleteChang(){
-    echo "ห้าม ลบ ช้าง นะครับ ^^";
-}
-
-echo "ช้าง กู อยู่ไหน...??";
-
-echo "ช้าง ข้า มาแล้วววววว";
-
-
-
-
-
-// =========== Function =============
-
-function noDeleteChang(){
-    echo "ห้าม ลบ ช้าง นะครับ ^^";
-}
+echo "Tottenham 5-0 Arsenal";
+echo "<p>";
+echo "ช้าง ช้าง ช้าง....";
+echo "</p>";
+echo "ตับ ตับ ตับ";
 
 ?>

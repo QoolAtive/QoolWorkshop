@@ -10,7 +10,22 @@
 <div class="content">
 <?php
 
-echo "TOttenham Uefa Europa Champion 2013/2014"
+echo "EEEEEEEEEEEEEEE";
+
+echo "ZZZZZZZZZZZZZZZz";
+
+echo "XXXXXXXXXXXXXx";
+
+echo "AAAAAAAAAAA";
+
+
+if(true){
+    echo "TRUE";
+}else{
+    echo "FALSE";
+}
+
+echo "TEST TEST TEST";
 
 ?>
 </div>
