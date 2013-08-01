@@ -24,10 +24,12 @@ echo "B test4";
 echo "B test5";
 
 echo "B.ss.2.1";
-<<<<<<< HEAD
 
-echo "MIX MIX MIX MIX MIX";
-=======
-echo "MIX MIX MIX  mIXMi mIXMMI";
->>>>>>> origin/Feature_Mix
+
+if(true){
+    echo "TRUE";
+}else{
+    echo "FALSE";
+}
+
 ?>
