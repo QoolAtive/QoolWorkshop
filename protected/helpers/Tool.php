@@ -11,9 +11,10 @@ Class Tool {
 
     public static function getDropdownListYear($year = null) {
         if ($year == null)
-            $year = 2548;
+            $year = LanguageHelper::changeDB(2548, 2005);
         
-        $year_now = date("Y") + 543;
+        $year_now = LanguageHelper::changeDB(date("Y") + 543, date("Y")); //date("Y") + 543;
+        
         $arr_year = array();
         for ($year; $year <= $year_now; $year++) {
             $arr_year[$year] = $year;
@@ -35,7 +36,10 @@ Class Tool {
         if ($datetime != '') {
             list($date, $time) = explode(" ", $datetime);
             list($y, $m, $d) = explode("-", $date);
-            $res = $d . ' ' . Thai::$thaimonth_full[str_replace('0', '', $m)] . ' ' . ($y + 543) . " " . $time;
+            $y = LanguageHelper::changeDB($y + 543, $y);
+            $m = date('n', strtotime('2013-' . $m . '-01') );
+            $m_full = LanguageHelper::changeDB(Thai::$thaimonth_full[$m], Thai::$engmonth_full[$m]);
+            $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
         }
         return $res;
     }
