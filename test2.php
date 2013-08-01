@@ -1,14 +1,13 @@
-<style type="text/css">
-    body{
-        background: green;
-    }
-</style>
-
 <?php
 
 echo "test2";
 
 echo "yo";
 
-echo "Tottenham 3-2 Manchester United"
+echo "Tottenham 5-0 Arsenal";
+
+echo "ช้าง ช้าง ช้าง....";
+
+echo "ตับ ตับ ตับ";
+
 ?>

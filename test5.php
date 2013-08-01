@@ -9,7 +9,4 @@ echo "ann5";
 
 echo "B test1";
 
-
-
-echo "Gareth Bale Ballond'or";
 ?>
