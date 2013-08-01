@@ -1,23 +1,4 @@
 <?php
-echo "test5";
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-echo "ann5";
-echo "ann5";
 
-echo "B test1";
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> origin/Feature_Mix
-echo "MIX MIX MIX";
-=======
-
-echo "Gareth Bale Fighto !!"
->>>>>>> origin/Feature_beer_a
+echo "Gareth Bale Fighto !!";
 ?>
