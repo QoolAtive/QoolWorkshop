@@ -9,10 +9,15 @@ echo "ann5";
 
 echo "B test1";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 =======
 >>>>>>> origin/Feature_Mix
 echo "MIX MIX MIX";
+=======
+
+echo "Gareth Bale Fighto !!"
+>>>>>>> origin/Feature_beer_a
 ?>

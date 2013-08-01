@@ -23,9 +23,13 @@ echo "test4";
  * 
  * adsadasdasd
  */
-yo
+//yo
 echo "B test6";
 echo "B test7";
 echo "B test8";
+
+echo "ชีวิตแค่โดนทำร้าย";
+
+echo "แต่ที่สุดมันต้องไม่โดนทำลาย";
 ?>
 
