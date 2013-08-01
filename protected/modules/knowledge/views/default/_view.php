@@ -22,7 +22,7 @@
 
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array(
+                        Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'), array(
                     '/knowledge/manage/knowledge'
                         ), array(
                     'rel' => 'view5'
@@ -30,7 +30,7 @@
                 echo "</li>";
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array(
+                        Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'), array(
                     '/learning/manage/learning'
                         ), array(
                     'rel' => 'view6'
@@ -48,10 +48,29 @@
 </div>
 <div class="content">
     <div class="tabcontents">
+        <h3 class="barH3">
+            <span>
+                <i class='icon-lightbulb'></i>                
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/knowledge")); ?>">
+                    <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
+                </a>
+                <?php
+                if (Yii::app()->user->isAdmin()) {
+                    ?>
+                    <i class="icon-chevron-right"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/manage/knowledge")); ?>">
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
+                    </a>
+                <?php } ?>
+                <i class="icon-chevron-right"></i>
+                <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
+            </span>
+        </h3>
         <div class="knowledgeview">
             <!-- <div class="btnedit"> -->
             <?php
             if (Yii::app()->user->isAdmin()) {
+
                 echo CHtml::button(
                         Yii::t('language', 'แก้ไข'), array(
                     'class' => "btnedit grey",
@@ -76,12 +95,14 @@
                 <p><?php echo $detail; ?></p>
 
                 <div style="text-align: center; margin-top:10px;">
+                    <hr>
                     <?php
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             Yii::app()->user->getState('link_back')
                         )) . "'")
                     );
                     ?>
+                    <hr>
                 </div>
             </div>
         </div>
