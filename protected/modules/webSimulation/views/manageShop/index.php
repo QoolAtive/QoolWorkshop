@@ -185,7 +185,11 @@
 
         <div class="_100 textcenter" style="margin-top: 50px;">
             <!-- go to select theme -->
-            <input class="purple" value="ขั้นตอนเปิดร้านถัดไป >"  name="yt0" type="submit">
+            <?php
+            echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
+                'class' => "purple",
+            ));
+            ?>
         </div>
         <?php $this->endWidget(); ?>
     </div>
