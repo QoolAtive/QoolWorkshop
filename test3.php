@@ -22,4 +22,5 @@ echo "B.ss.2.1";
 echo "MIX MIX MIX  mIXMi mIXMMI";
 echo "commit";
 echo "commit 2";
+echo "commit 3";
 ?>
