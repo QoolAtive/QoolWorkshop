@@ -1258,7 +1258,20 @@ ul#navi_containTab li {
     cursor:pointer;  
     text-align:center;  
     background: url('../img/tabedirbg.png');
-}  
+}
+
+
+.contentpage.contact.conpad > ul li {
+    margin-left: 29px;
+    margin-top: 7px;
+}
+
+
+div.grid-view table tr td:first-child {
+    text-align: center;
+}
+
+  
 /* class รูปแบบของแต่ละเมนู */  
 .tabNavi1{
 
