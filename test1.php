@@ -14,5 +14,9 @@ echo "Tottenham Winner!!!!!!!!!!!!!!!!!!!!";
 
 echo "Arsenal OUT!!!!";
 
+echo "Sold OUT Bale!!!!";
+
+echo "Bale UnHappy!!!!";
+
 //yo
 ?>
