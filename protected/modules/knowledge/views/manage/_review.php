@@ -23,14 +23,14 @@
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array(
+                        Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'), array(
                     '/knowledge/manage/knowledge'), array(
                     'rel' => 'view5'
                 ));
                 echo "</li>";
                 echo "<li>";
                 echo CHtml::link(
-                        Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array(
+                        Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'), array(
                     '/learning/manage/learning'), array(
                     'rel' => 'view6'
                 ));
@@ -46,6 +46,20 @@
 
 <div class="content">
     <div class="tabcontents">
+        <h3 class="barH3">
+            <span>
+                <i class='icon-lightbulb'></i>                
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/knowledge")); ?>">
+                    <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/manage/knowledge")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
+            </span>
+        </h3>
         <div class="knowledgeview">
             <div style="text-align: center;">
                 <img src="/file/knowledge/<?php echo $model->image; ?>" style="height: 300px; max-width: 748px;" />
@@ -64,7 +78,8 @@
                 </h3>
                 <p><?php echo $detail; ?></p>
 
-                <div style="text-align: center;">
+                <div class="txt-cen">
+                    <hr>
                     <?php
                     echo CHtml::button(Yii::t('language', 'แก้ไข'), array(
                         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -79,6 +94,7 @@
                         'confirm' => Yii::t('language', 'คุณต้องการเพิ่มบทความหรือไม่?'))
                     );
                     ?>
+                    <hr>
                 </div>
             </div>
         </div>
