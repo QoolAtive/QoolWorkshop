@@ -14,7 +14,7 @@
 </style> 
 <div class="lessonList">
     <div class="colL">
-        <iframe width="210px" src="<?php echo $data->video; ?>" frameborder="0" allowfullscreen></iframe>
+        <iframe width="210px" src="<?php echo $data->video; ?>?showinfo=0" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="colR">
         <?php
