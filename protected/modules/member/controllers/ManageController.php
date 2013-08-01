@@ -436,7 +436,7 @@ Class ManageController extends Controller {
             'memType' => $memType,
             'name' => $model->ftname . ' ' . $model->ltname,
             'member_type' => $type,
-            'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+            'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name_th . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name_th . ' จ.' . Province::model()->findByPk($model->province)->name_th . ' ' . $model->postcode,
             'businessType' => $businessType,
             'productName' => $model->product_name,
             'panit' => $panit,
