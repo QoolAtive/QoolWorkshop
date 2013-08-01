@@ -23,4 +23,5 @@ echo "MIX MIX MIX  mIXMi mIXMMI";
 echo "commit";
 echo "commit 2";
 echo "commit 3";
+echo "commit 4";
 ?>
