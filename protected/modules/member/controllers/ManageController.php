@@ -180,12 +180,17 @@ Class ManageController extends Controller {
                             $model_user->username = Tool::Decrypted($model_user->username);
                             $model_user->password = Tool::Decrypted($model_user->password);
                             $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                            echo 
                         }
                     } else {
                         $model_user->username = Tool::Decrypted($model_user->username);
                         $model_user->password = Tool::Decrypted($model_user->password);
                         $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
+                } else {
+                    $model_user->username = Tool::Decrypted($model_user->username);
+                    $model_user->password = Tool::Decrypted($model_user->password);
+                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                 }
             } else {
                 $model_user->username = Tool::Decrypted($model_user->username);
@@ -252,12 +257,20 @@ Class ManageController extends Controller {
                                 window.location='/site/index';
                                 </script>
                                 ";
+                        } else {
+                            $model_user->username = Tool::Decrypted($model_user->username);
+                            $model_user->password = Tool::Decrypted($model_user->password);
+                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                         }
+                    } else {
+                        $model_user->username = Tool::Decrypted($model_user->username);
+                        $model_user->password = Tool::Decrypted($model_user->password);
+                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
                 } else {
-                    echo "<pre>";
-                    print_r(array($model_user->getErrors()));
-                    echo "</pre>";
+                    $model_user->username = Tool::Decrypted($model_user->username);
+                    $model_user->password = Tool::Decrypted($model_user->password);
+                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                 }
             } else {
                 $model_user->username = Tool::Decrypted($model_user->username);
