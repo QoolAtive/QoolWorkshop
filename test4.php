@@ -23,4 +23,6 @@ echo "test4";
  * 
  * adsadasdasd
  */
+
+echo "B test6";
 ?>

@@ -13,4 +13,8 @@ echo "test3";
  * 
  * 
  */
+
+echo "B test4";
+
+echo "B test5";
 ?>
