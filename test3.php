@@ -1,3 +1,8 @@
+<style type="text/css">
+    body{
+        background: pink;
+    }
+</style>
 <?php
 
 echo "test3";
@@ -19,4 +24,6 @@ echo "B test4";
 echo "B test5";
 
 echo "B.ss.2.1";
+
+echo "MIX MIX MIX MIX MIX";
 ?>
