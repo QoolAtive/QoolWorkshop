@@ -1,9 +1,8 @@
 <style type="text/css">
     body{
-        background: green;
+        background: pink;
     }
 </style>
-
 <?php
 
 echo "test2";

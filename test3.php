@@ -1,6 +1,6 @@
 <style type="text/css">
     body{
-        background: pink;
+        background: orange;
     }
 </style>
 <?php
