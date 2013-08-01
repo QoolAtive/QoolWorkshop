@@ -23,7 +23,7 @@ echo "test4";
  * 
  * adsadasdasd
  */
-echo "ann4";
-echo "ann4";
-echo "ann4";
+
+echo "B test6";
+echo "B test7";
 ?>
