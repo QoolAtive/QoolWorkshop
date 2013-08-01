@@ -13,4 +13,5 @@ echo "test2";
  * 
  * 
  */
+// golf @ test2
 ?>
