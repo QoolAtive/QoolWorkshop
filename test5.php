@@ -1,9 +1,3 @@
 <?php
-
-echo "B test1";
-echo "TESTTTTTT";
-
-
-echo "GIT GIT";
-
+echo "TOttenham Premier League Champion 2013/2014"
 ?>

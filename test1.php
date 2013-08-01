@@ -10,9 +10,9 @@
 
 echo "test1";
 
-echo "Tottenham loser!!!!!!!!!!!!!!!!!!!!";
+echo "Tottenham Winner!!!!!!!!!!!!!!!!!!!!";
 
-echo "Tottenham OUT!!!!";
+echo "Arsenal OUT!!!!";
 
 //yo
 ?>
