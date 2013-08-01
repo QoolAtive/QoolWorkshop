@@ -1267,6 +1267,10 @@ ul#navi_containTab li {
 }
 
 
+div.grid-view table tr td:first-child {
+    text-align: center;
+}
+
   
 /* class รูปแบบของแต่ละเมนู */  
 .tabNavi1{
