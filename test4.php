@@ -14,6 +14,9 @@
 <div class="content">
 <?php
 
-    echo "TOttenham FA CUP Champion 2013/2014"
+    echo "Hello Bale";
+    echo "Shabu Shabu";
+    echo "Yahooo";
+    echo "Hooooooo";
 ?>
 </div>
