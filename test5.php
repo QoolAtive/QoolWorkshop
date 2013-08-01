@@ -6,5 +6,4 @@ echo "test5";
  */
 echo "ann5";
 echo "ann5";
-echo "ann5";
 ?>
