@@ -8,8 +8,11 @@ echo "ann5";
 echo "ann5";
 
 echo "B test1";
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/Feature_Mix
 echo "MIX MIX MIX";
 ?>
