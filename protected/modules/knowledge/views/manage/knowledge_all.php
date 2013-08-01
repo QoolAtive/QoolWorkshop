@@ -6,8 +6,8 @@
         <ul class="tabs clearfix">
             <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'บทความ'); ?></a></li>
             <li><a href="/learning/default/home"><?php echo Yii::t('language', 'การเรียนรู้'); ?></a></li>
-            <li><a href="/knowledge/manage/knowledge"><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?></a></li>
-            <li><a href="/learning/manage/learning"><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'); ?></a></li>
+            <li><a href="/knowledge/manage/knowledge"><?php echo Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'); ?></a></li>
+            <li><a href="/learning/manage/learning"><?php echo Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'); ?></a></li>
 
             <?php
             $list = array(
@@ -22,7 +22,16 @@
 </div>
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'บทความทั้งหมด'); ?></h3>
+        <h3 class="barH3">
+            <span>
+                <i class='icon-lightbulb'></i>                
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/knowledge")); ?>">
+                    <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
+            </span>
+        </h3>
 
         <div class="txt-cen">
             <hr>
