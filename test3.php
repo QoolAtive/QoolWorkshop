@@ -10,24 +10,7 @@
 <div class="content">
 <?php
 
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
-echo "MIX MIX MIX MIX MIX";
-echo "MIX MIX MIX  mIXMi mIXMMI";
+echo "TOttenham Uefa Europa Champion 2013/2014"
 
 ?>
 </div>
