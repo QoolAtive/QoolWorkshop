@@ -15,9 +15,18 @@
             <p>First thing, take a tour of web Simulation, or setup Your Process</p>
 
             <p></p>
-            <a href="#"  style="border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black; ">
-                Start Simulation
-            </a>
+            <?php
+            if (isset(Yii::app()->user->id)) {
+                echo CHtml::link(Yii::t('language', 'Start Simulation'), CHtml::normalizeUrl(array("/webSimulation/manageShop/index")), array(
+                    'style' => "border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black;",
+                ));
+            }else{
+                echo CHtml::link(Yii::t('language', 'Start Simulation'), '#', array(
+                    'style' => "border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black;",
+                    'onclick' => 'alert("'.Yii::t('language', 'กรุณาเข้าระบบก่อนใช้งาน').'");',
+                ));
+            }
+            ?>
 
             <img src="/img/smart.png">
 
