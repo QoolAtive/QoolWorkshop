@@ -1,3 +1,8 @@
+<style type="text/css">
+    body{
+        background: orange;
+    }
+</style>
 <?php
 
 echo "test3";
