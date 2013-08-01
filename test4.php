@@ -14,7 +14,7 @@
 <div class="content">
 <?php
 
-    echo "Hello world";
+    echo "Hello Bale";
     echo "Shabu Shabu";
     echo "Yahooo";
     echo "Hooooooo";
