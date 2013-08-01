@@ -15,4 +15,6 @@ echo "test1";
 echo "B test1";
 
 echo "B test2";
+
+echo "B test3";
 ?>
