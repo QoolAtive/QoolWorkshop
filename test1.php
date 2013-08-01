@@ -12,7 +12,7 @@ echo "test1";
  * .1.1.1.1.1.1.1.1.1
  */
 
-echo "B test1";
+// edit by golf
 
 echo "B test2";
 
