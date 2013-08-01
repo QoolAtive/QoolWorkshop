@@ -5,4 +5,6 @@ echo "test5";
  * and open the template in the editor.
  */
 echo "ann5";
+
+echo "B test1";
 ?>
