@@ -27,25 +27,25 @@ $this->renderPartial('_sidemenu', array('mamane' => '3'));
         ));
         echo $form->errorSummary($model);
         ?>
-        <div>
+        <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_th');
             echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
             ?>
         </div>
-        <div>
+        <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
             echo $form->labelEx($model, 'link');
             echo $form->textField($model, 'link', array('class' => 'fieldrequire'));
             ?>
         </div>
-        <div class="txt-cen">
+        <div class="txt-cen _100">
             <hr>
             <?php
             echo CHtml::hiddenField('id', $model->id);
