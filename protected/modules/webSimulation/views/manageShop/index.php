@@ -32,7 +32,7 @@
             echo $form->error($model, 'name_en');
             ?>
         </div>
-        
+
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'web_shop_catagory_id');
@@ -112,7 +112,7 @@
                 'empty' => 'เลือก',
                 'ajax' => array(
                     'type' => 'POST',
-                    'url' => CHtml::normalizeUrl(array('/site/provinceToPrefecture')),
+                    'url' => CController::createUrl('/site/provinceToPrefecture'),
                     'update' => '#WebShop_prefecture_id',
                     'data' => array('province' => 'js:this.value')
                 )
@@ -123,13 +123,17 @@
 
         <div class="_25">
             <?php
+            $list_prefecture = array();
+            if ($model->prefecture_id != null) {
+                $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province_id)), 'id', 'name_th');
+            }
             echo $form->labelEx($model, 'prefecture_id');
-            echo $form->dropdownList($model, 'prefecture_id', array(), array(
+            echo $form->dropdownList($model, 'prefecture_id', $list_prefecture, array(
                 'class' => "fieldrequire",
                 'empty' => 'เลือก',
                 'ajax' => array(
                     'type' => 'POST',
-                    'url' => CHtml::normalizeUrl(array('/site/PrefectureToDistrict')),
+                    'url' => CController::createUrl('/site/PrefectureToDistrict'),
                     'update' => '#WebShop_district_id',
                     'data' => array('prefecture' => 'js:this.value')
                 )
@@ -140,8 +144,12 @@
 
         <div class="_25">
             <?php
+            $list_district = array();
+            if ($model->district_id != null) {
+                $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture_id)), 'id', 'name_th');
+            }
             echo $form->labelEx($model, 'district_id');
-            echo $form->dropdownList($model, 'district_id', array(), array(
+            echo $form->dropdownList($model, 'district_id', $list_district, array(
                 'class' => "fieldrequire",
                 'empty' => 'เลือก',
             ));
