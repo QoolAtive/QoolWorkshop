@@ -8,7 +8,7 @@ class CompanyProduct extends CompanyProductBase {
 
     public function rules() {
         return array(
-            array('main_id, pic, name, name_en, detail, detail_en, date_write', 'required'),
+            array('main_id, name, name_en, detail, detail_en, date_write', 'required'),
             array('main_id', 'numerical', 'integerOnly' => true),
             array('pic', 'length', 'max' => 100),
             array('name, name_en', 'length', 'max' => 255),
@@ -22,12 +22,13 @@ class CompanyProduct extends CompanyProductBase {
         return array(
             'id' => 'ID',
             'main_id' => 'Main',
-            'pic' => 'Pic',
-            'name' => 'Name',
-            'name_en' => 'Name En',
-            'detail' => 'Detail',
-            'detail_en' => 'Detail En',
-            'date_write' => 'Date Write',
+            'pic' => Yii::t('language', 'รูปภาพ'),
+            'name' => Yii::t('language', 'ชื่อภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
+            'detail' => Yii::t('language', 'รายละเอียดภาษาไทย'),
+            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
+            'guide' => Yii::t('language', 'สถานะ'),
+            'date_write' => Yii::t('language', 'date_write'),
         );
     }
 
