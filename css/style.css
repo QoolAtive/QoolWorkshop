@@ -1642,10 +1642,13 @@ ul#detail_containTab li{
 }
 .accordion-toggle {
     cursor: pointer;
+    background :#f1f1f1;
 }
 .accordion-inner {
-    padding: 9px 15px;
-/*    border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #BBBBBB;
+    box-shadow: -8px 12px 9px -17px #000000 inset;
+    margin-bottom: 0;
+    padding: 20px 15px;
 */}
 
 .collapse {
@@ -1742,9 +1745,9 @@ ul.yiiPager .first, ul.yiiPager .last {
 }
 
 .accordion-heading a{
-    color: #8500B2;
-    font-weight: bold;
+    color: #9832AD;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .accordion-heading{
@@ -3559,12 +3562,14 @@ ul#detail_containTab li{
 }
 .accordion-heading {
     border-bottom: 0;
+    background:#F1F1F1;
 }
 .accordion-heading .accordion-toggle {
     display: block;
     padding: 8px 15px;
 }
 .accordion-toggle {
+
     cursor: pointer;
 }
 .accordion-inner {
