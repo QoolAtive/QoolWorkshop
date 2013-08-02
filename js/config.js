@@ -30,6 +30,10 @@ $(document).ready(function() {
         //         return;
         //     }       
     });
+     
+ $('#gallery a').fancybox({
+   closeBtn : false
+       });
 
 
     $('.fclogin').fancybox({

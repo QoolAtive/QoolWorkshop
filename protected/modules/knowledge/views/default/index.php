@@ -34,7 +34,7 @@
         <div id="view1" class="tabcontent">
             <img src="/img/banner/knowledge.png" class="pagebanner" alt="pagebanner"/>
             <?php if (Knowledge::model()->count('guide_status = 1') != 0) { ?>
-                <h3 class="headfont"><i class="icon-bookmark-empty"></i> <?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
+                <h3 class="headfont"><i class="icon-bookmark-empty"></i><?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
@@ -49,7 +49,7 @@
                 </div>
             <?php } ?>
             <hr>
-            <h3 class="headfont"><i class="icon-file-alt"></i> <?php echo Yii::t('language', 'บทความล่าสุด'); ?></h3>
+            <h3 class="headfont"><i class="icon-file-alt"></i><?php echo Yii::t('language', 'บทความล่าสุด'); ?></h3>
             <div class="viewall">
                 <i class="icon-search"></i>
                 <?php
