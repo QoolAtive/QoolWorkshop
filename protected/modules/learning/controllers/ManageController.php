@@ -41,10 +41,8 @@ class ManageController extends Controller {
         if ($id == null) {
             $model = new LearningGroup();
             $model->unsetAttributes();
-            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
         } else {
             $model = LearningGroup::model()->findByPk($id);
-            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
         }
 
         if (isset($_POST['LearningGroup'])) {
@@ -104,8 +102,6 @@ class ManageController extends Controller {
 
                     if ($file2 != NULL) {
 
-
-
                         if (!file_exists($dir))
                             chmod($dir, 0777);
 
@@ -115,7 +111,7 @@ class ManageController extends Controller {
                     }
                     echo "
                         <script>
-                        alert('" . Yii::t('language', $messageAlert) . "');
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.location='/learning/manage/InsertLearningGroup';
                         </script>
                         ";
@@ -151,9 +147,9 @@ class ManageController extends Controller {
             }
 
             if ($model->delete())
-                echo "ลบข้อมูลเรียบร้อย";
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
         }else {
-            echo "ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่";
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -184,12 +180,10 @@ class ManageController extends Controller {
             $modelFile = new LearningFile();
             $modelFile->unsetAttributes();
 
-            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/index.php/learning/manage/InsertLearning';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
-            $messageAlert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/learning/default/lesson/id/' . $model->id;
 
             $modelFile = LearningFile::model()->find('main_id = ' . $id);
@@ -247,12 +241,10 @@ class ManageController extends Controller {
                                 }
                             }
                         }
-                        echo "
-                        <script>
-                        alert('" . Yii::t('language', $messageAlert) . "');
-                        window.location='$link';
-                        </script>
-                        ";
+                        echo "<script>
+                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                                window.location='$link';
+                              </script>";
                     }
                 } else {
 //                    echo "<pre>";
@@ -290,7 +282,7 @@ class ManageController extends Controller {
         }
 
         if ($model->delete())
-            echo "ลบข้อมูลเรียบร้อย";
+            echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
     }
 
 }

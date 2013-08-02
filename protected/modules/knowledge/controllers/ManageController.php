@@ -57,7 +57,6 @@ class ManageController extends Controller {
 
     public function actionInsert($id = '', $new = '') {
         if ($id == NULL) {
-            $alertText = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
 
             $model = new Knowledge();
             $model2 = new KnowledgeThem();
@@ -68,39 +67,23 @@ class ManageController extends Controller {
             $model->guide_status = '0';
             $model->date_write = date("Y-m-d H:i:s");
             $model->position = '1';
-
-//            $new = true;
-//            $link_location = '/knowledge/manage/insert';
         } else {
-            $alertText = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
 
             $model = Knowledge::model()->find("id = " . $id);
             $model->_old = $model->subject;
             $model->date_write = date("Y-m-d H:i:s");
 
             $file = new Upload();
-
-
-//            if ($new != '1') {
-//                if (Yii::app()->user->getState('insert') == 'view') {
-//                    $link_location = '/knowledge/default/view/id/' . $id;
-//                } else if (Yii::app()->user->getState('insert') == 'knowledge') {
-//                    $link_location = '/knowledge/manage/knowledge';
-//                }
-//            }
         }
-
+        $alertText = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
         Yii::app()->user->setState('message_review', $alertText);
 
         if (isset($_POST['Knowledge'])) {
             $model->attributes = $_POST['Knowledge'];
             $model->detail_en = $_POST['Knowledge']['detail_en'];
-//            $file->image = $_POST['Upload']['image'];
+
             $fileSave = CUploadedFile::getInstance($file, 'image');
-//            
-//            echo "<pre>";
-//            print_r($file);
-//            echo "</pre>";
+
             if ($fileSave != NULL) {
                 $dir = './file/knowledge/';
                 if (isset($model->image)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
@@ -166,7 +149,7 @@ class ManageController extends Controller {
         }
 
         if ($model->delete()) {
-            echo Yii::t('language', 'ลบ') . Yii::t('language', 'บทความ') . Yii::t('language', 'เรียบร้อย');
+            echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
         }
     }
 
