@@ -12,6 +12,10 @@
  * @property string $detail
  * @property string $detail_en
  * @property string $date_write
+ * @property integer $guide
+ *
+ * The followings are the available model relations:
+ * @property Company $main
  */
 class CompanyProductBase extends CActiveRecord
 {
@@ -41,13 +45,13 @@ class CompanyProductBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('main_id, pic, name, name_en, detail, detail_en, date_write', 'required'),
-			array('main_id', 'numerical', 'integerOnly'=>true),
+			array('main_id, pic, name, name_en, detail, detail_en, date_write, guide', 'required'),
+			array('main_id, guide', 'numerical', 'integerOnly'=>true),
 			array('pic', 'length', 'max'=>100),
 			array('name, name_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, main_id, pic, name, name_en, detail, detail_en, date_write', 'safe', 'on'=>'search'),
+			array('id, main_id, pic, name, name_en, detail, detail_en, date_write, guide', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +63,7 @@ class CompanyProductBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'main' => array(self::BELONGS_TO, 'Company', 'main_id'),
 		);
 	}
 
@@ -76,6 +81,7 @@ class CompanyProductBase extends CActiveRecord
 			'detail' => 'Detail',
 			'detail_en' => 'Detail En',
 			'date_write' => 'Date Write',
+			'guide' => 'Guide',
 		);
 	}
 
@@ -98,6 +104,7 @@ class CompanyProductBase extends CActiveRecord
 		$criteria->compare('detail',$this->detail,true);
 		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('date_write',$this->date_write,true);
+		$criteria->compare('guide',$this->guide);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
