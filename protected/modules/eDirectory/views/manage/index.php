@@ -1,8 +1,12 @@
 <?php
 $list = array(
     array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '#', 'select' => 'selected'),
-//    array('text' => Yii::t('language', 'เพิ่มสินค้าและบริการ'), 'link' => '#', 'select' => '')
 );
+
+if ($model != null && Yii::app()->user->id == $model->user_id) {
+    array_push($list, array('text' => Yii::t('language', 'แก้ไขข้อมูล'), 'link' => '/eDirectory/manage/regisEdirectory/id/' . $model->id, 'select' => ''));
+    array_push($list, array('text' => Yii::t('language', 'จัดการสินค้า'), 'link' => '/eDirectory/manage/product/id/' . $model->id, 'select' => ''));
+}
 $this->renderPartial('side_bar', array(
     'list' => $list,
 ));
@@ -45,12 +49,6 @@ $this->renderPartial('side_bar', array(
                 <img src = "/img/icontopic.png" />
                 <?php
                 echo Yii::t('language', 'Company Profile');
-                if (Yii::app()->user->id == $model->user_id) {
-                    echo CHtml::button(Yii::t('language', 'แก้ไข'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/manage/regisEdirectory/id/' . $model->id
-                        )) . "'")
-                    );
-                }
                 ?>
             </h2>
             <table>
@@ -118,6 +116,9 @@ $this->renderPartial('side_bar', array(
                         'dataProvider' => $dp_product_best_sell,
                         'itemView' => 'list_product',
                         'summaryText' => false,
+                        'viewData' => array(
+                            'id' => $model->id
+                        ),
                     ));
                     ?>
                 </div>
@@ -141,6 +142,9 @@ $this->renderPartial('side_bar', array(
                         'dataProvider' => $dp_product_promo,
                         'itemView' => 'list_product',
                         'summaryText' => false,
+                        'viewData' => array(
+                            'id' => $model->id
+                        ),
                     ));
                     ?>
                 </div>
@@ -165,6 +169,9 @@ $this->renderPartial('side_bar', array(
                         'dataProvider' => $dp_product_new,
                         'itemView' => 'list_product',
                         'summaryText' => false,
+                        'viewData' => array(
+                            'id' => $model->id
+                        ),
                     ));
                     ?>
                 </div>

@@ -194,4 +194,114 @@ class ManageController extends Controller {
         ));
     }
 
+    public function actionProduct() { // id = รหัส พาร์ทเนอร์
+        $model = new CompanyProduct;
+        if (isset($_GET['CompanyProduct'])) {
+            $model->attributes = $_GET['CompanyProduct'];
+            $model->guide = $_GET['CompanyProduct']['guide'];
+        }
+
+        $criteria = new CDbCriteria;
+        $criteria->join = "
+            left join company c on t.main_id = c.id
+            left join mem_user mu on c.user_id = mu.id
+            ";
+        $criteria->condition = 'c.user_id = ' . Yii::app()->user->id;
+
+        $criteria->compare('id', $model->id);
+        $criteria->compare('main_id', $model->main_id);
+        $criteria->compare('pic', $model->pic, true);
+        $criteria->compare('t.name', $model->name, true);
+        $criteria->compare('t.name_en', $model->name_en, true);
+        $criteria->compare('t.detail', $model->detail, true);
+        $criteria->compare('t.detail_en', $model->detail_en, true);
+        $criteria->compare('t.date_write', $model->date_write, true);
+        $criteria->compare('t.guide', $model->guide, true);
+
+        $dataProvider = new CActiveDataProvider('CompanyProduct', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('product', array(
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ));
+    }
+
+    public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
+        if ($id == null) {
+            $this->redirect('/serviceProvider/manage/company');
+        }
+        if ($pro_id == null) {
+            $model = new CompanyProduct();
+            $model->unsetAttributes();
+
+            Yii::app()->user->setState('product_link_back_to_menu', '');
+        } else {
+            $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+        }
+
+        $return = new CHttpRequest();
+
+        if (isset($_POST['CompanyProduct'])) {
+            $model->attributes = $_POST['CompanyProduct'];
+            $model->main_id = $id;
+            $model->date_write = date('Y-m-d H:i:s');
+            $model->validate();
+            if ($model->getErrors() == null) {
+
+                $model->pic = CUploadedFile::getInstance($model, 'pic');
+                if ($model->pic != null && $model->pic != 'default') {
+                    $dir = './file/product/';
+                    if (!is_dir($dir))
+                        mkdir($dir, 0777, true);
+
+                    if ($model->pic != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                        if (fopen($dir . $model->pic, 'w'))
+                            unlink($dir . $model->pic);
+                    }
+
+                    $file_name = rand(000, 999) . $model->pic->name;
+                    $model->pic->saveAs($dir . $file_name);
+
+                    $model->pic = $file_name;
+                }else {
+                    $model->pic = 'default.jpg';
+                }
+
+                if ($model->save()) {
+//                    if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
+//                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+//                        echo "
+//                            <script>
+//                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+//                            window.location='" . $link_back . "';
+//                            </script>
+//                            ";
+//                    } else {
+                    echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='" . $return->getUrl() . "';
+                            </script>
+                            ";
+//                    }
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                    echo "</pre>";
+                }
+            } else {
+                echo "<pre>";
+                print_r($model->getErrors());
+                echo "</pre>";
+            }
+        }
+
+        $this->render('_insert_product', array(
+            'model' => $model,
+            'id' => $id,
+        ));
+    }
+
 }

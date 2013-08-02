@@ -1,7 +1,7 @@
 <?php
 $list = array(
     array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '/eDirectory/manage/index', 'select' => ''),
-    array('text' => Yii::t('language', 'เพิ่มสินค้าและบริการ'), 'link' => '#', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'ร้านค้า'), 'link' => '#', 'select' => 'selected'),
 );
 $this->renderPartial('side_bar', array(
     'list' => $list,
