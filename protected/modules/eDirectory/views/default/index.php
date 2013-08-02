@@ -1,6 +1,6 @@
 <?php
 /* @var $this DefaultController */
-
+echo Tool::Decrypted('HzGmuTDJuNOFSZYTZqmQEMJw3ia375NG0HfqkogLF5A=');
 $this->breadcrumbs=array(
 	$this->module->id,
 );
