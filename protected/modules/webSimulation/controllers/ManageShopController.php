@@ -3,7 +3,7 @@
 class ManageShopController extends Controller {
 
     public function actionIndex() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/change_district.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
         $model = new WebShop();
         if (isset($_POST['WebShop'])) {
             $model->attributes = $_POST['WebShop'];
@@ -42,7 +42,15 @@ class ManageShopController extends Controller {
     }
 
     public function actionFinish() {
-        $this->render('finish', array('model' => $model));
+        $this->render('finish');
+    }
+    
+    public function actionManageShopList() {
+        $this->render('manage_box');
+    }
+    
+    public function actionManageBox() {
+        $this->render('manage_box');
     }
 
 }
