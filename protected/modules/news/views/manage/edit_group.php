@@ -35,19 +35,24 @@ $this->renderPartial('_sidemenu', array('manage' => '1'));
         ));
         echo $form->errorSummary($model);
         ?>
-
+<div class="_50">
         <?php
 //    ภาษาไทย
 //        echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
         echo $form->labelEx($model, 'name_th');
         echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
+?>
+</div>
 
+<div class="_50">
+<?php
 //    ภาษาอังกฤษ
 //        echo "<h4>" . Yii::t('language', 'ภาษาอังกฤษ') . "</h4>";
         echo $form->labelEx($model, 'name_en');
         echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
         ?>
-        <div class="txt-cen">
+</div>
+        <div class="txt-cen _100">
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));

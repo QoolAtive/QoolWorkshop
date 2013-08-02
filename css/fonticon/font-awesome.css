@@ -33,7 +33,9 @@
   font-style: normal;
 }
 i{
-    padding: 0 10px;
+      padding-bottom: 0;
+    padding-right: 5px;
+    padding-top: 0;
 }
 /* FONT AWESOME CORE
  * -------------------------- */

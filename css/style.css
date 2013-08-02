@@ -30,8 +30,21 @@ input, textarea, select {
     padding: 0px 5px;
     color: purple;
     letter-spacing: 1.2px;
-}   
+}
 
+
+/*h3 icon*/
+h3 > i{
+    padding-right: 10px;
+}
+
+
+
+#container .content .knowledgeviewtext > p{
+      /*font-size: 13px;*/
+    line-height: 2em;
+    word-wrap: break-word;
+}
 .fixpostab1 {
     margin-top: 202px;
     position: absolute;
@@ -88,7 +101,7 @@ h3 > img {
     vertical-align: middle;
 }
 form#insert-form .errorMessage{
-    display: none;
+    color: red !important;
 }
 .error.bgnoimg{
     background-image: none;
@@ -220,6 +233,23 @@ hr {
     line-height: 30px;
 /*    display: block;  */
 }
+
+
+.barH3{
+
+       font-size: 13px;
+    margin: 14px;
+
+}
+
+.barH3 .icon-chevron-right{
+    font-size: 0.5em;
+     font-weight: 100;
+}
+
+.barH3 a{
+    color: inherit;
+}
 #login-form {
     margin-left: 9px;
     margin-top: 4px;
@@ -257,6 +287,8 @@ hr {
     font-weight: bold;
 }
 
+
+
 .ckright{
     float: right;
     width: 722px;
@@ -268,7 +300,7 @@ input[type="reset"]{
     border: 1px;
     border-radius: 4px;
     display:inline-block;
-    margin:0 2px;
+    margin:0px 2px;
     padding:3px 13px;
 }
 input[type="button"]:hover,
@@ -1085,8 +1117,11 @@ div.arrow{
 
 }
 
-#container .content .knowledgeviewtext > p {
+#container .content .knowledgeviewtext > p,#container .content .knowledgeviewtext{
+     /*font-size: 13px;*/
+    line-height: 2em !important;
     word-wrap: break-word;
+
 }
 
 #container .grid-view .filters input{
@@ -1221,15 +1256,27 @@ text-align: center;
 }
 
 .learninglist li{
+    border: 1px solid #CCCCCC;
     float: left;
-    width: calc(100% / 3);
-     transform: scale(1);
+    height: 183px;
+    margin: 1px;
+    text-align: center;
+    width: 245px;
 }
 
 .learninglist li:hover img{
     opacity: 0.8;
 }
+ul.yiiPager a:link, ul.yiiPager a:visited{
+     padding: 3px 6px 1px;
+  border-radius: 11px 11px 11px 11px;
+}
 
+div.items span.empty {  display: block;     text-align: center; }     
+ #gallery {          text-align: center;     } 
+ #template li {     float: left;     padding: 29px; } 
+ #template li img.selectedTemp {     outline: 5px solid gold !important; 
+}
 /*edir tab*/
 div#i_containTab{  
     position:relative;  
@@ -1619,6 +1666,22 @@ ul#detail_containTab li{
 /* @end */
 
 
+/* page nav */
+
+
+.list-view .pager{
+    clear: both;
+
+
+    margin-right: 6px !important;
+    padding: 5px 0 !important;
+   
+}
+
+
+ul.yiiPager a:link, ul.yiiPager a:visited{
+    padding-top: 3px !important;
+}
 
 ul.yiiPager {
     border: 0 none;
@@ -1637,6 +1700,7 @@ ul.yiiPager a:link, ul.yiiPager a:visited {
     font-weight: bold;
     padding: 1px 6px;
     text-decoration: none;
+    padding-top: 3px;
 }
 ul.yiiPager .page a {
     font-weight: normal;
@@ -1939,7 +2003,8 @@ input, textarea, select {
 .headfont{
     padding: 0px 5px;
     color: purple;
-    letter-spacing: 1.2px;F
+    letter-spacing: 1.2px;
+
 }   
 
 .fixpostab1 {
@@ -1957,6 +2022,7 @@ input, textarea, select {
 
 .fixpostab1.selected {
     width: 111px !important;
+
 }
 .fixpostab2.selected {
     margin-left: 111px !important;
@@ -2179,7 +2245,7 @@ input[type="reset"]{
     border: 1px;
     border-radius: 4px;
     display:inline-block;
-    margin:0 2px;
+    margin:20px 2px;
     padding:3px 13px;
 }
 input[type="button"]:hover,
@@ -2328,6 +2394,9 @@ select{
 
 }
 
+
+
+
 /* @end */
 
 
@@ -2457,6 +2526,10 @@ div.page {
     /*  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);*/
 }
+
+
+
+
 #container div.page {
     min-height: 647px;
 }
