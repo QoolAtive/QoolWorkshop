@@ -54,7 +54,10 @@ class DefaultController extends Controller {
             $model->attributes = $_GET['Knowledge'];
         }
         if (isset($_POST['month_start']) && isset($_POST['month_end']) && isset($_POST['year_start']) && isset($_POST['year_end']) && isset($_POST['subject'])) {
-            $day_end = cal_days_in_month(CAL_GREGORIAN, $_POST['month_end'], ((int) $_POST['year_end'] - 543));
+            $year_start_db = LanguageHelper::changeDB(((int) $_POST['year_start'] - 543), (int)$_POST['year_start']);
+            $year_end_db = LanguageHelper::changeDB(((int) $_POST['year_end'] - 543), (int)$_POST['year_end']);
+            
+            $day_end = cal_days_in_month(CAL_GREGORIAN, $_POST['month_end'], $year_end_db);
 
             if (strlen($_POST['month_start']) == 1) {
                 $month_start = '0' . $_POST['month_start'];
@@ -62,9 +65,10 @@ class DefaultController extends Controller {
             if (strlen($_POST['month_end']) == 1) {
                 $month_end = '0' . $_POST['month_end'];
             }
-
-            $date_start = ((int) $_POST['year_start'] - 543) . "-" . $month_start . "-01 00:00:00";
-            $date_end = ((int) $_POST['year_end'] - 543) . "-" . $month_end . "-" . $day_end . " 23:59:59";
+            
+            
+            $date_start = $year_start_db . "-" . $month_start . "-01 00:00:00";
+            $date_end = $year_end_db . "-" . $month_end . "-" . $day_end . " 23:59:59";
             $subject = $_POST['subject'];
             $con = array(
                 'date_start' => $date_start,
