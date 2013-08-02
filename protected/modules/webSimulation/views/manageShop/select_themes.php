@@ -23,7 +23,7 @@
                     'id' => 'tp1',
                     'width' => '128',
                     'height' => '110',
-                    'onclick' => 'List.select(15, this);',
+                    'onclick' => 'List.select(1, this);',
                 ));
                 ?>
                 <div id="gallery">
@@ -38,7 +38,7 @@
                     'id' => 'tp2',
                     'width' => '128',
                     'height' => '110',
-                    'onclick' => 'List.select(14, this);',
+                    'onclick' => 'List.select(2, this);',
                 ));
                 ?>
                 <div id="gallery">
@@ -172,7 +172,7 @@
 
         <p class="textcenter">
             <?php
-            echo $this->hiddenField($model, 'theme', array(
+            echo $form->hiddenField($model, 'theme', array(
                 'id' => 'theme',
             ));
             echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
@@ -184,33 +184,3 @@
         <?php $this->endWidget(); ?>
     </div>
 </div>
-
-<script>
-    $(document).ready(function($) {
-        var List = {
-            init: function() {
-                this.selectedItem = null;
-            },
-            select: function(i, t) {
-                if (this.selectedItem) {
-                    this.selectedItem.item.className = "";
-                    this.selectedItem.text.className = "show_bg";
-                }
-                var o = document.getElementById("tp" + i);
-                if (o) {
-                    o.className = "selected";
-                    t.className = "show_bg selectedTemp";
-                }
-                this.selectedItem = {index: i, item: o, text: t};
-                var input = document.getElementById("selectedItem");
-                alert('/img/layout/TP0' + this.selectedItem.index + '.jpg');
-                $('#theme').val('/img/layout/TP0' + this.selectedItem.index + '.jpg');
-            if (input)
-                input.value = i;
-            }
-        };
-        $(function() {
-            List.init();
-        });
-    });
-</script>
