@@ -1,0 +1,32 @@
+<div class="" style="border: 1px #c9c9c9 solid;padding: 15px; margin-top: -5px;">
+    <h3>
+        <img src="/img/iconform.png"> <?php echo $data->name; ?>
+
+        <?php
+        if (Yii::app()->user->isAdmin()) {
+            echo CHtml::button(Yii::t('language', 'แก้ไข'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/serviceProvider/manage/insertTypeBusiness/id/' . $data->id
+                )) . "'")
+            );
+        }
+        ?>
+    </h3>
+    <i class="icon-search"></i>
+    <?php
+    echo CHtml::link(Yii::t('language', 'ดูทั้งหมด'), array('/serviceProvider/default/partnerGroup/', 'id' => $data->id));
+    ?>
+</div>
+<div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 15px;margin-top: 5px;">
+
+    <h3><img src="/img/iconform.png"> Partner</h3>
+
+    <?php
+    $partner = new SpCompany();
+    $this->widget('zii.widgets.CListView', array(
+        'dataProvider' => $partner->getDataType($id),
+        'itemView' => '_list',
+        'summaryText' => false,
+    ));
+    ?>
+</div>
+<hr>

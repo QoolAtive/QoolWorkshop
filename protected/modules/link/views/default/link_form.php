@@ -37,21 +37,21 @@
                 echo $form->errorSummary($model);
                 ?>
 
-                <div class="rowContact clearfix">
+                <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_th');
                     echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
-                <div class="rowContact clearfix">
+                <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_en');
                     echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '90'));
 //                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
-                <div class="rowContact clearfix">
+                <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'group_id');
                     $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
@@ -62,14 +62,14 @@
 //                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
-                <div class="rowContact clearfix">
+                <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'link');
                     echo $form->textField($model, 'link', array('class' => 'fieldrequire', 'size' => '255'));
 //                    echo Yii::t('language', $form->error($model, 'link'));
                     ?>
                 </div>
-                <div class="rowContact clearfix">
+                <div class="rowContact _100 clearfix">
                     <?php
                     echo $form->labelEx($model, 'img_path');
                     ?>
@@ -110,7 +110,7 @@
                         <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
                     </div>
                 </div>
-                <div class="btnForm">
+                <div class="btnForm _100">
                     <?php
 //                    echo CHtml::hiddenField('img_path', $model->img_path);
                     echo CHtml::hiddenField('author', $model->author);

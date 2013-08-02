@@ -6,26 +6,26 @@ class DefaultController extends Controller {
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
-
-//        echo $link->getUrl();
-
         $model = new SpCompany();
         $model->unsetAttributes();
-
-        if ($id == null) {
-            $id_array = array();
-            $list_data = SpTypeBusiness::model()->findAll();
-            foreach ($list_data as $data) {
-                array_push($id_array, $data['id']);
-            }
-            $id = $id_array[0];
-        }
         $model_type = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
 
         $this->render('index', array(
             'model' => $model,
             'model_type' => $model_type,
             'id' => $id,
+        ));
+    }
+
+    public function actionPartnerGroup($id = null) {
+        $link = new CHttpRequest();
+        Yii::app()->user->setState('default_link_back_to_menu', '');
+        Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
+
+        $model = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
+
+        $this->render('partner_group', array(
+            'model' => $model,
         ));
     }
 

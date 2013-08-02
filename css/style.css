@@ -237,8 +237,10 @@ hr {
 
 .barH3{
 
-       font-size: 13px;
+    border-bottom: 1px dashed #AAAAAA;
+    font-size: 13px;
     margin: 14px;
+    padding-bottom: 17px;
 
 }
 
