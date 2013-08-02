@@ -24,7 +24,7 @@ class ManageShopController extends Controller {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/select_themes.js');
         $model = WebShop::model()->findByPk($id);
         if (isset($_POST['WebShop'])) {
-            $model->theme = $_POST['WebShop']->theme;
+            $model->theme = $_POST['WebShop']['theme'];
             if ($model->theme != '') {
                 WebShop::model()->updateByPk($id, array('theme' => $model->theme));
                 echo "<script language='javascript'>
