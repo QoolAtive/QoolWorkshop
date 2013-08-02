@@ -3,7 +3,7 @@
 class SpCompany extends SpCompanyBase {
 
     public $type_id;
-    
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -134,6 +134,9 @@ class SpCompany extends SpCompanyBase {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 5,
+            ),
         ));
     }
 
