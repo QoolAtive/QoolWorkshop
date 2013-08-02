@@ -12,12 +12,11 @@
             echo Tool::GenList($list);
 
             if (Yii::app()->user->isAdmin()) {
-
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
                 echo "</li>";
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
                 echo "</li>";
             }
             ?> 
@@ -28,22 +27,22 @@
     <div class="tabcontents">
         <div id="view2" class="tabcontent ">
             <img src="<?php echo Yii::t('language', '/img/banner/learning.png'); ?>" class="pagebanner" alt="pagebanner"/>
+            <h3 class="headfont">
+                <span>
+                    <i class="icon-bookmark-empty"></i> <?php echo Yii::t('language', 'กลุ่มการเรียนรู้'); ?>
+                </span>
+            </h3>
 
             <div class="row-fluid">
-                <UL class="learninglist">
+                <ul class="learninglist">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
                         'dataProvider' => $model->getData(),
                         'itemView' => '_clist_learning_group',
                         'summaryText' => false,
-//                                'sortableAttributes' => array(
-//                                    'title',
-//                                    'create_time' => 'Post Time',
-//                                ),
                     ));
                     ?>
-                </UL>
-
+                </ul>
             </div>
         </div>
     </div>
