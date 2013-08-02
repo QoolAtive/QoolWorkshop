@@ -251,7 +251,7 @@
                     <?php
                     $list_prefecture = array();
                     if ($model->prefecture != null) {
-                        $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', 'name');
+                        $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', 'name_th');
                     }
                     if ($model)
                         echo $form->dropdownList($model, 'prefecture', $list_prefecture, array(
@@ -278,7 +278,7 @@
                     <?php
                     $list_district = array();
                     if ($model->district != null) {
-                        $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', 'name');
+                        $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', 'name_th');
                     }
                     echo $form->dropdownList($model, 'district', $list_district, array(
                         'class' => "haft fieldrequire",

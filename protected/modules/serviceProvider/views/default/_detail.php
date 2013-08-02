@@ -25,13 +25,11 @@
                         <td>:</td>
                         <td><?php echo $model->contact_email; ?></td>
                     </tr>
-
                     <tr>
                         <td><?php echo Yii::t('language', 'Fax'); ?></td>
                         <td> : </td>
                         <td><?php echo $model->contact_fax; ?></td>
                     </tr>
-
                     <tr> <td><?php echo Yii::t('language', 'Tel'); ?></td>
                         <td> : </td>
                         <td><?php echo $model->contact_tel; ?></td>
@@ -47,12 +45,14 @@
 <div class="content">
     <div class="tabcontents" >
         <div style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
+
             <div id="featured"> 
                 <img src="/img/link/qoolative.jpg" data-caption="#htmlCaption"  alt="Overflow: Hidden No More" />
                 <img src="/img/link/qoolative.jpg"  alt="HTML Captions" />
                 <img src="/img/link/qoolative.jpg" alt="and more features" />
             </div>
             <img src="/img/link/qoolative.jpg" style="float: right;" width="220">
+
         </div>
         <h2>
             <img src="/img/icontopic.png" />
@@ -91,13 +91,11 @@
                     ?>
                 </td>
             </tr>
-
             <tr>
                 <td><?php echo Yii::t('language', 'Address'); ?></td>
                 <td> : </td>
                 <td><?php echo $model->address; ?></td>
             </tr>
-
             <tr>
                 <td><?php echo Yii::t('language', 'Website'); ?></td>
                 <td> : </td>
@@ -124,10 +122,8 @@
                 'pageSize' => 5,
             ),
         ));
-
         if ($dp_product_best_sell->itemCount > 0) {
             ?>
-
             <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ขายดี'); ?></h2>
             <div class="clearfix">
                 <?php

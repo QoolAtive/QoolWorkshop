@@ -19,10 +19,10 @@
             if (Yii::app()->user->isAdmin()) {
 
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
                 echo "</li>";
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
                 echo "</li>";
             }
             ?> 
@@ -69,6 +69,6 @@
                 ?>
             </div>
         </div>
-        
+
     </div>
 </div>

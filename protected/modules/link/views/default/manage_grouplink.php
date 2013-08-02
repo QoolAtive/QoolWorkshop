@@ -14,14 +14,14 @@
 <div class="txt-cen clearfix">
     <hr>
     <?php
-    echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'กลุ่มลิงค์'), array(
+    echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'กลุ่มลิงก์'), array(
         'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/link/default/groupform")) . '"'
     ));
     ?>
     <!--<a class="btn" href="#group-form" id="linkgroupbtn" >-->
     <!--<a class="btn fancybox.iframe" href="<?php echo CHtml::normalizeUrl(array("/link/default/groupform")); ?>" id="linkgroupbtn" >
     <?php
-    echo Yii::t('language', 'เพิ่ม') . Yii::t('language', 'กลุ่มลิงค์');
+    echo Yii::t('language', 'เพิ่ม') . Yii::t('language', 'กลุ่มลิงก์');
     ?>
     </a>-->
     <hr>

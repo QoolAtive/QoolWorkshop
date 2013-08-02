@@ -180,12 +180,17 @@ Class ManageController extends Controller {
                             $model_user->username = Tool::Decrypted($model_user->username);
                             $model_user->password = Tool::Decrypted($model_user->password);
                             $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                            echo 
                         }
                     } else {
                         $model_user->username = Tool::Decrypted($model_user->username);
                         $model_user->password = Tool::Decrypted($model_user->password);
                         $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
+                } else {
+                    $model_user->username = Tool::Decrypted($model_user->username);
+                    $model_user->password = Tool::Decrypted($model_user->password);
+                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                 }
             } else {
                 $model_user->username = Tool::Decrypted($model_user->username);
@@ -252,12 +257,20 @@ Class ManageController extends Controller {
                                 window.location='/site/index';
                                 </script>
                                 ";
+                        } else {
+                            $model_user->username = Tool::Decrypted($model_user->username);
+                            $model_user->password = Tool::Decrypted($model_user->password);
+                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                         }
+                    } else {
+                        $model_user->username = Tool::Decrypted($model_user->username);
+                        $model_user->password = Tool::Decrypted($model_user->password);
+                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                     }
                 } else {
-                    echo "<pre>";
-                    print_r(array($model_user->getErrors()));
-                    echo "</pre>";
+                    $model_user->username = Tool::Decrypted($model_user->username);
+                    $model_user->password = Tool::Decrypted($model_user->password);
+                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                 }
             } else {
                 $model_user->username = Tool::Decrypted($model_user->username);
@@ -338,7 +351,7 @@ Class ManageController extends Controller {
             $profile = array(
                 'name' => $model->ftname . ' ' . $model->ltname,
                 'member_type' => $type,
-                'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+                'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name_th . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name_th . ' จ.' . Province::model()->findByPk($model->province)->name_th . ' ' . $model->postcode,
                 'businessType' => $businessType,
                 'productName' => $model->product_name,
                 'panit' => $panit,
@@ -436,7 +449,7 @@ Class ManageController extends Controller {
             'memType' => $memType,
             'name' => $model->ftname . ' ' . $model->ltname,
             'member_type' => $type,
-            'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name . ' จ.' . Province::model()->findByPk($model->province)->name . ' ' . $model->postcode,
+            'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name_th . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name_th . ' จ.' . Province::model()->findByPk($model->province)->name_th . ' ' . $model->postcode,
             'businessType' => $businessType,
             'productName' => $model->product_name,
             'panit' => $panit,

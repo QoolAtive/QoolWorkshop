@@ -32,7 +32,7 @@ $this->renderPartial('_side_bar', array(
             <?php echo $model->subject; ?>
         </h2>
         <img class="demoshadowtop" src="/img/shadow.png">
-        <iframe width="745" height="415" src="<?php echo $modelVideo->video; ?>" frameborder="0" allowfullscreen></iframe>
+        <iframe width="740" height="416" style=" margin-left: 5px;" src="<?php echo $modelVideo->video; ?>?showinfo=0"   frameborder="0" allowfullscreen></iframe>
         <img class="demoshadowbuttom" src="/img/shadow.png">
         <!--<div class="_100">-->
         <?php echo $model->detail; ?>
@@ -46,7 +46,7 @@ $this->renderPartial('_side_bar', array(
 
             <ul class="nextlearn">
                 <li>
-                    <iframe width="210px" src="<?php echo $lessonNextVideo->video; ?>" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="210px" height="117px" src="<?php echo $lessonNextVideo->video; ?>?showinfo=0" frameborder="0" allowfullscreen></iframe>
 
                 </li>
 

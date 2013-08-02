@@ -5,7 +5,6 @@ if(isset($date_select))
 $this->widget('zii.widgets.grid.CGridView', array(
         'id' => 'knowledge-grid',
         'dataProvider' => $dataProvider,
-        'filter' => $model,
         'ajaxUpdate' => true,
         'summaryText' => '',
         'columns' => array(
@@ -19,38 +18,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 'name' => LanguageHelper::changeDB('subject','subject_en'),
                 'type' => 'raw',
                 'value' => 'CHtml::link(LanguageHelper::changeDB($data->subject,$data->subject_en), array("/knowledge/default/view/id/$data->id"))',
-                'filter' => '',
             ),
             array(
                 'name' => 'date_write',
-//                'value' => '$data->date_write',
                 'value' => 'Tool::ChangeDateTimeToShow($data->date_write)',
-                'filter' => '',
             ),
-//            array(
-//                'class' => 'CButtonColumn',
-//                'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-//                'template' => '{update}{delete}{view}',
-//                'buttons' => array(
-//                    'update' => array(
-//                        'label' => 'edit', //Text label of the button.
-//                        'url' => 'Yii::app()->createUrl("/knowledge/manage/insert/",array("id"=>$data->id))',
-//                    ),
-//                    'delete' => array(
-//                        'label' => 'del', //Text label of the button.
-//                        'url' => 'Yii::app()->createUrl("/knowledge/manage/del/",array("id"=>$data->id))',
-//                    ),
-//                    'view' => array(
-//                        'label' => 'edit', //Text label of the button.
-//                        'url' => 'Yii::app()->createUrl("/knowledge/default/view/",array("id"=>$data->id))',
-//                    ),
-//                ),
-//                'afterDelete' => 'function(link,success,data){
-//                                    if(data != ""){
-//                                        alert(data);
-//                                    }
-//                    }'
-//            ),
         ),
         'pager' => array(
             'class' => 'CLinkPager',

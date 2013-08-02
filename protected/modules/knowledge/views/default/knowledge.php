@@ -1,11 +1,13 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/knowledge.png'); ?>"/></li>
+            <li class="boxhead">
+                <img src="<?php echo Yii::t('language', '/img/iconpage/knowledge.png'); ?>"/>
+            </li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="/knowledge/default/index" >บทความ</a></li>
-            <li><a href="/learning/default/home" >การเรียนรู้</a></li>
+            <li><a href="/knowledge/default/index" ><?php echo Yii::t('language', 'บทความ'); ?></a></li>
+            <li><a href="/learning/default/home" ><?php echo Yii::t('language', 'การเรียนรู้'); ?></a></li>
             <?php
 //            $list = array(
 //                array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index', 'select' => ''),
@@ -17,10 +19,10 @@
 //            echo Tool::GenList($list);
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บทความ'), array('/knowledge/manage/knowledge'));
                 echo "</li>";
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'การเรียนรู้'), array('/learning/manage/learning'));
                 echo "</li>";
             }
             echo Tool::GenList($list2);
@@ -30,15 +32,18 @@
 </div>
 <div class="content">
     <div class="tabcontents">
-        <div class="_100">
-            <h3><?php echo Yii::t('language', 'บทความทั้งหมด') ?></h3>
-        </div>
+        <h3 class="barH3">
+            <span>
+                <i class='icon-lightbulb'></i>
+                <?php echo Yii::t('language', 'บทความทั้งหมด') ?>
+            </span>
+        </h3>
         <?php
         $this->renderPartial('_search', array(
             'month_start' => date("n"),
             'month_end' => date("n"),
-            'year_start' => date("Y") + 543,
-            'year_end' => date("Y") + 543,
+            'year_start' => LanguageHelper::changeDB(date("Y") + 543, date("Y")),
+            'year_end' => LanguageHelper::changeDB(date("Y") + 543, date("Y")),
         ));
         ?>
         <hr>
@@ -51,6 +56,7 @@
             ?>
         </div>
         <div class="textcenter">
+            <hr>
             <?php
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -58,6 +64,7 @@
                 )) . "'",
             ));
             ?>
+            <hr>
         </div>
     </div>
 
