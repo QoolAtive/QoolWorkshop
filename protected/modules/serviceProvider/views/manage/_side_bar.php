@@ -4,13 +4,10 @@
             <li class="boxhead"><img src="/img/iconpage/serviceprovider.png"/></li>
         </ul>
         <ul class="tabs clearfix">
-
+            <li><a href="/serviceProvider/default/index/">ทั้งหมด</a></li>
             <?php
-            $menu = SpTypeBusiness::model()->findAll();
-            foreach ($menu as $data) {
-                ?>
-                <li><a href="/serviceProvider/default/index/id/<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a></li>
-                <?php
+            if (Yii::app()->user->isAdmin()) {
+                echo "<li>" . CHtml::link(Yii::t('language', 'จัดการ'), array('/serviceProvider/manage/typeBusiness')) . "</li>";
             }
             if (!isset($select1))
                 $select1 = '';

@@ -12,20 +12,28 @@ class DefaultController extends Controller {
         $model = new SpCompany();
         $model->unsetAttributes();
 
-        if ($id == null) {
-            $id_array = array();
-            $list_data = SpTypeBusiness::model()->findAll();
-            foreach ($list_data as $data) {
-                array_push($id_array, $data['id']);
-            }
-            $id = $id_array[0];
-        }
+//        if ($id == null) {
+//            $id_array = array();
+//            $list_data = SpTypeBusiness::model()->findAll();
+//            foreach ($list_data as $data) {
+//                array_push($id_array, $data['id']);
+//        }
+//            $id = $id_array[0];
+//        }
         $model_type = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
 
         $this->render('index', array(
             'model' => $model,
             'model_type' => $model_type,
             'id' => $id,
+        ));
+    }
+
+    public function actionPartnerGroup($id = null) {
+        $model = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
+
+        $this->render('partner_group', array(
+            'model' => $model,
         ));
     }
 
