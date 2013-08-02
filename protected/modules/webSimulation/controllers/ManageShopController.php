@@ -3,6 +3,7 @@
 class ManageShopController extends Controller {
 
     public function actionIndex() {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/self/change_district.js');
         $model = new WebShop();
         if (isset($_POST['WebShop'])) {
             $model->attributes = $_POST['WebShop'];
