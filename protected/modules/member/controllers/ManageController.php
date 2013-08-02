@@ -479,8 +479,8 @@ Class ManageController extends Controller {
                 $model->status = 1;
                 if ($model->save()) {
                     echo "
+                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
                         <script>
-                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"></meta>
                         alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
                         window.location='/member/manage/admin';
                         </script>
