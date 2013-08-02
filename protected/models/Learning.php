@@ -2,7 +2,7 @@
 
 class Learning extends LearningBase {
 
-    public $group_name, $video;
+    public $group_name, $video, $video_en;
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -23,8 +23,8 @@ class Learning extends LearningBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'group_name' => Yii::t('language', 'กลุ่มบทเรียน'),
-            'group_id' => Yii::t('language', 'กลุ่มบทเรียน'),
+            'group_name' => Yii::t('language', 'กลุ่มการเรียนรู้'),
+            'group_id' => Yii::t('language', 'กลุ่มการเรียนรู้'),
             'subject' => Yii::t('language', 'หัวข้อ'),
             'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
             'detail' => Yii::t('language', 'รายละเอียด'),
@@ -73,7 +73,7 @@ class Learning extends LearningBase {
     public function getLearningList($id = null) {
         $criteria = new CDbCriteria;
         $criteria->condition = "group_id = " . $id;
-        $criteria->select = "t.*, lg.name as group_name, lv.video as video";
+        $criteria->select = "t.*, lg.name as group_name, lv.video as video, lv.video_en as video_en";
         $criteria->join = "left join learning_group lg on t.group_id = lg.id
                            left join learning_video lv on t.id = lv.main_id
                             ";
