@@ -30,8 +30,21 @@ input, textarea, select {
     padding: 0px 5px;
     color: purple;
     letter-spacing: 1.2px;
-}   
+}
 
+
+/*h3 icon*/
+h3 > i{
+    padding-right: 10px;
+}
+
+
+
+#container .content .knowledgeviewtext > p{
+      /*font-size: 13px;*/
+    line-height: 2em;
+    word-wrap: break-word;
+}
 .fixpostab1 {
     margin-top: 202px;
     position: absolute;
@@ -88,7 +101,7 @@ h3 > img {
     vertical-align: middle;
 }
 form#insert-form .errorMessage{
-    display: none;
+    color: red !important;
 }
 .error.bgnoimg{
     background-image: none;
@@ -1085,8 +1098,11 @@ div.arrow{
 
 }
 
-#container .content .knowledgeviewtext > p {
+#container .content .knowledgeviewtext > p,#container .content .knowledgeviewtext{
+     /*font-size: 13px;*/
+    line-height: 2em !important;
     word-wrap: break-word;
+
 }
 
 #container .grid-view .filters input{
@@ -1229,7 +1245,16 @@ text-align: center;
 .learninglist li:hover img{
     opacity: 0.8;
 }
+ul.yiiPager a:link, ul.yiiPager a:visited{
+     padding: 3px 6px 1px;
+  border-radius: 11px 11px 11px 11px;
+}
 
+div.items span.empty {  display: block;     text-align: center; }     
+ #gallery {          text-align: center;     } 
+ #template li {     float: left;     padding: 29px; } 
+ #template li img.selectedTemp {     outline: 5px solid gold !important; 
+}
 /*edir tab*/
 div#i_containTab{  
     position:relative;  
@@ -1619,6 +1644,22 @@ ul#detail_containTab li{
 /* @end */
 
 
+/* page nav */
+
+
+.list-view .pager{
+    clear: both;
+
+
+    margin-right: 6px !important;
+    padding: 5px 0 !important;
+   
+}
+
+
+ul.yiiPager a:link, ul.yiiPager a:visited{
+    padding-top: 3px !important;
+}
 
 ul.yiiPager {
     border: 0 none;
@@ -1637,6 +1678,7 @@ ul.yiiPager a:link, ul.yiiPager a:visited {
     font-weight: bold;
     padding: 1px 6px;
     text-decoration: none;
+    padding-top: 3px;
 }
 ul.yiiPager .page a {
     font-weight: normal;
@@ -1939,7 +1981,8 @@ input, textarea, select {
 .headfont{
     padding: 0px 5px;
     color: purple;
-    letter-spacing: 1.2px;F
+    letter-spacing: 1.2px;
+
 }   
 
 .fixpostab1 {
@@ -1957,6 +2000,7 @@ input, textarea, select {
 
 .fixpostab1.selected {
     width: 111px !important;
+
 }
 .fixpostab2.selected {
     margin-left: 111px !important;
@@ -2328,6 +2372,9 @@ select{
 
 }
 
+
+
+
 /* @end */
 
 
@@ -2457,6 +2504,10 @@ div.page {
     /*  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);*/
 }
+
+
+
+
 #container div.page {
     min-height: 647px;
 }
