@@ -112,7 +112,7 @@ class ManageController extends Controller {
                     echo "
                         <script>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                        window.location='/learning/manage/InsertLearningGroup';
+                        window.location='/learning/manage/insertLearningGroup';
                         </script>
                         ";
                 }else {
@@ -180,7 +180,7 @@ class ManageController extends Controller {
             $modelFile = new LearningFile();
             $modelFile->unsetAttributes();
 
-            $link = '/index.php/learning/manage/InsertLearning';
+            $link = '/index.php/learning/manage/insertLearning';
         } else {
             $model = Learning::model()->findByPk($id);
             $modelVideo = LearningVideo::model()->find('main_id = ' . $id);
