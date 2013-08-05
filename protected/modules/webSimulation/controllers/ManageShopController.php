@@ -3,7 +3,7 @@
 class ManageShopController extends Controller {
 
     //หน้า register
-    public function actionIndex() {
+    public function actionRegister() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
         $model = new WebShop();
         if (isset($_POST['WebShop'])) {
@@ -21,7 +21,7 @@ class ManageShopController extends Controller {
                   </script>";
             }
         }
-        $this->render('index', array('model' => $model));
+        $this->render('register', array('model' => $model));
     }
 
     public function actionSelectThemes($id) {
@@ -56,7 +56,7 @@ class ManageShopController extends Controller {
 
     public function actionManageShop($id) {
         $model = WebShop::model()->findByPk($id);
-        $this->render('manage', array('model' => $model));
+        $this->render('manage_shop', array('model' => $model, 'shop_id' => $id));
     }
 
 }
