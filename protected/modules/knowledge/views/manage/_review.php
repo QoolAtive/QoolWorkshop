@@ -87,11 +87,17 @@
                         )) . "'",
                         'confirm' => Yii::t('language', 'คุณต้องการแก้ไขบทความหรือไม่?'))
                     );
+                    
                     echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
                         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/knowledge/manage/insert',
                         )) . "'",
                         'confirm' => Yii::t('language', 'คุณต้องการเพิ่มบทความหรือไม่?'))
+                    );
+                    
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                            Yii::app()->user->getState('link_back')
+                        )) . "'")
                     );
                     ?>
                     <hr>
