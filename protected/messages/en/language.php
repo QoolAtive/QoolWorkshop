@@ -158,7 +158,7 @@ return array(
     'หัวข้อ' => 'Subject',
     'หัวข้อภาษาอังกฤษ' => 'Subject (English)',
     'รายละเอียดภาษาอังกฤษ' => 'Description (English)',
-    'มีอยู่ในระบบ กรุณาตรวจสอบ' => ' an existing in the system. Please check.',    
+    'มีอยู่ในระบบ กรุณาตรวจสอบ' => ' an existing in the system. Please check.',
     'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ' => ' an existing in the system. Please check.',
     'เครื่องมือ' => 'Tool',
     'คุณต้องการแก้ไขบทความหรือไม่?' => 'Do You want to edit?',
@@ -186,6 +186,7 @@ return array(
     'ไฟล์วิดีโอและไฟล์เสียงขนาดไม่เกิน' => 'Video files and audio files maximum',
     'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น' => 'The file name is in English only.',
     '' => '',
+// FAQ
     ' คำถาม ' => ' Question ',
     ' คำตอบ ' => ' Answer ',
     'คำถามภาษาไทย' => 'Thai question',
@@ -201,6 +202,7 @@ return array(
     'ภาษาไทย' => 'Thai',
     'ภาษาอังกฤษ' => 'English',
     '' => '',
+// News
     '/img/iconpage/newsandactivity.png' => '/img/iconpage/newsandactivity_en.png',
     '/img/banner/about.png' => '/img/banner/about_en.png',
     'ข่าว' => 'News',
@@ -215,6 +217,7 @@ return array(
     'วันที่เริ่มต้น' => 'Start date',
     'วันที่สิ้นสุด' => 'End date',
     '' => '',
+// Learning
     'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่' => 'Can not delete the data. Because the data is referenced.',
     'กลุ่มการเรียนรู้' => 'Group of learning',
     'บทเรียนทั้งหมด' => 'All lessons',
@@ -222,8 +225,9 @@ return array(
     'บทเรียน' => 'Lesson',
     'ลิงก์วีดีโอจากยูทูป' => 'Video link from YouTube',
     '' => '',
-    '' => '',
-    '' => '',
+//  Service Provider
+    '/img/iconpage/serviceprovider.png' => '/img/iconpage/serviceprovider_en.png',
+    'ทั้งหมด' => 'All',
     '' => '',
     '' => '',
     '' => '',
