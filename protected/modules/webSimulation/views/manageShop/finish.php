@@ -17,10 +17,10 @@
         <p class="textcenter">
             <?php
             echo CHtml::button(Yii::t('language', 'ดูร้านค้าของคุณ'), array(
-                'onclick' => "window.location = " . CHtml::normalizeUrl(array()),
+                'onclick' => "window.location = '" . CHtml::normalizeUrl(array()) . "'",
             ));
             echo CHtml::button(Yii::t('language', 'จัดการร้านค้าของคุณ'), array(
-                'onclick' => "window.location = " . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopList')),
+                'onclick' => "window.location = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopList')) . "'",
             ));
             ?>
 <!--            <input class="purple" type="submit" name="yt0" value="ดูร้านค้าของคุณ"> 
