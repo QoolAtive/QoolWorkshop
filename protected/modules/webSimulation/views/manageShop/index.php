@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/link.png'); ?>"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
         </ul>
 
     </div>
@@ -44,14 +44,17 @@
             ?>
         </div>
 
-        <div class="_100">
+<!--        <div class="_100">
             <?php
             echo $form->labelEx($model, 'url');
-            echo $form->textField($model, 'url', array('class' => 'fieldrequire input_text form_input'));
+            echo $form->textField($model, 'url', array(
+                'class' => 'fieldrequire input_text form_input',
+                'disabled' => 'disabled'
+            ));
             echo $form->error($model, 'url');
             ?>
-            <!--Url <input class="input_text form_input" type="text" value="" name="url" >-->
-        </div>
+            Url <input class="input_text form_input" type="text" value="" name="url" >
+        </div>-->
 
         <div class="_100">  
             <?php
@@ -194,6 +197,9 @@
         <div class="_100 textcenter" style="margin-top: 50px;">
             <!-- go to select theme -->
             <?php
+//            echo $form->hiddenField($model, 'url', array(
+//                'id' => 'url',
+//            ));
             echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
                 'class' => "purple",
             ));

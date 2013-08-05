@@ -2,11 +2,15 @@
 
 class ManageShopController extends Controller {
 
+    //หน้า register
     public function actionIndex() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/change_district.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
         $model = new WebShop();
         if (isset($_POST['WebShop'])) {
             $model->attributes = $_POST['WebShop'];
+            //url ที่อยู่ร้านค้า
+            $model->url = CHtml::normalizeUrl(array('/webSimulation/shop/index/id/' . $model->getPrimaryKey()));
+            //สร้าง temp ไว้ไม่ให้เป็น NULL ให้ขั้นตอนเลือก theme ถัดไป
             $model->theme = 'tamp';
             $model->mem_user_id = Yii::app()->user->id;
             $model->creat_at = date("Y-m-d H:i:s");
@@ -42,7 +46,17 @@ class ManageShopController extends Controller {
     }
 
     public function actionFinish() {
-        $this->render('finish', array('model' => $model));
+        $this->render('finish');
+    }
+
+    public function actionManageShopList() {
+        $user_id = Yii::app()->user->id;
+        $this->render('manage_shop_list', array('user_id' => $user_id));
+    }
+
+    public function actionManageShop($id) {
+        $model = WebShop::model()->findByPk($id);
+        $this->render('manage', array('model' => $model));
     }
 
 }
