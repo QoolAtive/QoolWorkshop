@@ -1154,6 +1154,13 @@ div.grid-view table tr td:first-child {
     text-align: center;
 }
 
+
+.grid-view table.items th {
+    background: url("/img/bggridview.png") repeat-x scroll left top white !important;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+}
 /* @end */
 
 /*link page */
