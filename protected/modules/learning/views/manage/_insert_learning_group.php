@@ -8,26 +8,42 @@ $form = $this->beginWidget('CActiveForm', array(
         )
 );
 if ($model->id == null) {
-    $text = Yii::t('language', 'บันทึก');
+    $word = Yii::t('language', 'เพิ่ม');
 } else {
-    $text = Yii::t('language', 'บันทึก');
+    $word = Yii::t('language', 'แก้ไข');
 }
 ?>
 <?php
 $this->renderPartial('_side_bar', array(
-    'select1' => 'selected',
-    'select2' => '',
+    'select_list' => 1,
 ));
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'เพิ่มกลุ่มการเรียนรู้'); ?></h3>
+        <h3 class="headfont">
+            <span>
+                <i class="icon-bookmark-empty"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">
+                    <?php echo Yii::t('language', 'การเรียนรู้'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="/learning/manage/learning">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="/learning/manage/learning">
+                    <?php echo Yii::t('language', 'กลุ่มการเรียนรู้'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo $word . Yii::t('language', 'กลุ่มการเรียนรู้'); ?>
+            </span>
+        </h3>
         <div class="_100">
-            <h4 class="reg"><?php echo Yii::t('language', '- กลุ่มการเรียนรู้ภาษาไทย -'); ?></h4>
+            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
         </div>
         <?php if ($model->pic) { ?>
             <div class="_100">
-                <label>รูปเก่า : </label>
+                <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาไทย') . ')'; ?> : </label>
                 <?php
                 echo CHtml::image('/file/learning/' . $model->pic, $alt, array('height' => '150px'))
                 ?>
@@ -43,16 +59,16 @@ $this->renderPartial('_side_bar', array(
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'name');
-            echo $form->textField($model, 'name');
+            echo $form->textField($model, 'name', array('class' => 'fieldrequire'));
             echo $form->error($model, 'name');
             ?>
         </div>
         <div class="_100">
-            <h4 class="reg"><?php echo Yii::t('language', '- กลุ่มการเรียนรู้ภาษาอังกฤษ -'); ?></h4>
+            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
         </div>
         <?php if ($model->pic_en) { ?>
             <div class="_100">
-                <label>รูปเก่า : </label>
+                <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')'; ?> : </label>
                 <?php
                 echo CHtml::image('/file/learning/' . $model->pic_en, $alt, array('height' => '150px'))
                 ?>
@@ -68,18 +84,20 @@ $this->renderPartial('_side_bar', array(
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'name_en');
-            echo $form->textField($model, 'name_en');
+            echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
             echo $form->error($model, 'name_en');
             ?>
         </div>
-        <div class="_100">
+        <div class="_100 txt-cen">
+            <hr>
             <?php
-            echo CHtml::submitButton(Yii::t('language', $text));
+            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/learning/manage/learningGroup'
                 )) . "'")
             );
             ?>
+            <hr>
         </div>
     </div>
     <?php
