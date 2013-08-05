@@ -1,0 +1,59 @@
+###Requirements
+* Yii 1.0 or above
+
+###Installation
+* Extract the release file under `protected/extensions`
+
+###Usage
+See the following code example:
+
+##Simple Usage
+<?php $this->widget('application.extensions.addThis'); ?>
+
+##Customized Appearance
+
+<?php $this->widget('application.extensions.addThis', array(
+						'id'=>'addThis',									
+						'username'=>'username',
+						'defaultButtonCaption'=>'Share',
+						'showDefaultButton'=>true,
+						'showDefaultButtonCaption'=>true,
+						'separator'=>'|',
+						'htmlOptions'=>array(),
+						'linkOptions'=>array(),
+						'showServices'=>array('facebook', 'twitter', 'myspace', 'email', 'print'),
+						'showServicesTitle'=>false,
+						'config'=>array('ui_language'=>'en'),
+						'share'=>array(),
+						)
+					); ?>
+'
+
+##Customize variables guide
+
+// @var string the name of username on addThis.
+	$username; 
+	// @var string valid url of addThis script. Defaults to 'http://s7.addthis.com/js/250/addthis_widget.js'.
+	$scriptUrl='http://s7.addthis.com/js/250/addthis_widget.js';
+	// @var string valid url of addThis default button. Defaults to 'http://www.addthis.com/bookmark.php?v=250'.
+	$linkUrl='http://www.addthis.com/bookmark.php?v=250';
+	// @var string the caption of the addThis default button. Defaults to 'Share'.
+	$defaultButtonCaption='Share';
+	// @var boolean whether the default addThis button is visible. Defaults to true.
+	$showDefaultButton=true;
+	// @var boolean whether the default addThis button caption is visible. Defaults to true.
+	$showDefaultButtonCaption=true;
+	// @var string the separator character. Defaults to '&nbsp;'.
+	$separator='&nbsp;';
+	// @var array the addThis div tag attributes.
+	$htmlOptions=array();
+	// @var array the addThis default button a tag attributes.
+	$linkOptions=array();
+	// @var array the addThis services to show.
+	$showServices=array();
+	// @var boolean whether the services name 
+	$showServicesTitle=false;
+	// @var array the addThis cofig parameters.
+	$config=array(); GUIDE (http://www.addthis.com/help/menu-api#configuration-ui)
+	// @var array the addThis share parameters.
+	$share=array(); GUIDE (http://www.addthis.com/help/menu-api#configuration-sharing)

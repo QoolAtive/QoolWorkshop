@@ -18,13 +18,31 @@
             echo ' ' . Yii::t('language', 'ประเทศไทย');
             ?>
             </br>
-            
+
             <?php
             echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192');
             echo ' ' . Yii::t('language', 'โทรสาร. 0-2547-5973');
             echo ' ' . Yii::t('language', 'สายด่วน 1570');
             ?>
         </div>
-        <div class="footright"> <img src="/img/face.png"/> <img src="/img/tw.png"/> </div>
+        <div class="footright"> 
+            <?php
+            $this->widget('application.extensions.addThis.addThis', array(
+                'id' => 'addThis',
+                'username' => 'username',
+                'defaultButtonCaption' => 'Share',
+                'showDefaultButton' => true,
+                'showDefaultButtonCaption' => true,
+                'separator' => '|',
+                'htmlOptions' => array(),
+                'linkOptions' => array(),
+                'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
+                'showServicesTitle' => false,
+                'config' => array('ui_language' => 'th'),
+                'share' => array(),
+                    )
+            );
+            ?>
+        </div>
     </div>
 </div>

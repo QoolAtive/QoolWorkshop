@@ -26,7 +26,22 @@
         </p>
     </div>
     <div class="footright">
-        <img alt="facebook" src="/img/face.png"/>
-        <img alt="twitter" src="/img/tw.png"/>
+        <?php
+        $this->widget('application.extensions.addThis.addThis', array(
+            'id' => 'addThis',
+            'username' => 'username',
+            'defaultButtonCaption' => 'Share',
+            'showDefaultButton' => true,
+            'showDefaultButtonCaption' => true,
+            'separator' => '|',
+            'htmlOptions' => array(),
+            'linkOptions' => array(),
+            'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
+            'showServicesTitle' => false,
+            'config' => array('ui_language' => 'th'),
+            'share' => array(),
+                )
+        );
+        ?>
     </div>
 </div>
