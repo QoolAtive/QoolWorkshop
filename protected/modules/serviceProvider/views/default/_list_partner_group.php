@@ -21,9 +21,19 @@
     <h3><img src="/img/iconform.png"> Partner</h3>
 
     <?php
-    $partner = new SpCompany();
+    $criteria = new CDbCriteria;
+    $criteria->order = 'id desc';
+    $criteria->select = "t.*, stc.type_id as type_id";
+    $criteria->condition = "stc.type_id = '" . $data->id . "'";
+    $criteria->join = "
+            left join sp_type_com stc on t.id = stc.com_id
+            ";
+
+    $partner = new CActiveDataProvider('SpCompany', array(
+        'criteria' => $criteria,
+    ));
     $this->widget('zii.widgets.CListView', array(
-        'dataProvider' => $partner->getDataType($id),
+        'dataProvider' => $partner,
         'itemView' => '_list',
         'summaryText' => false,
     ));
