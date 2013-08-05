@@ -23,10 +23,10 @@ class LearningGroup extends LearningGroupBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'หัวข้อภาษาไทย'),
-            'pic' => Yii::t('language', 'รูป'),
-            'name_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
-            'pic_en' => Yii::t('language', 'รูป'),
+            'name' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'pic' => Yii::t('language', 'รูปภาพ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'pic_en' => Yii::t('language', 'รูปภาพ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
@@ -60,14 +60,14 @@ class LearningGroup extends LearningGroupBase {
     }
 
     public function getListData() {
-        return CHtml::listData($this->model()->findAll(), 'id', 'name');
+        return CHtml::listData($this->model()->findAll(), 'id', LanguageHelper::changeDB('name', 'name_en'));
     }
 
     public function getGroupList($p = '', $arr_data = false) {
         $arr = array();
         $data_list = $this->model()->findAll();
         foreach ($data_list as $data) {
-            $d[$data['id']] = $data['name'];
+            $d[$data['id']] = LanguageHelper::changeDB($data['name'], $data['name_en']);
         }
         $arr = $d;
         if ($arr_data) {

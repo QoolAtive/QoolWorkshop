@@ -29,8 +29,8 @@ class LearningVideo extends LearningVideoBase {
         return array(
             'id' => 'ID',
             'main_id' => 'Main',
-            'video' => Yii::t('language', 'ลิ้งวิดีโอจากยูทูป'),
-            'video_en' => Yii::t('language', 'ลิ้งวิดีโอจากยูทูป'),
+            'video' => Yii::t('language', 'ลิงก์วีดีโอจากยูทูป') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'video_en' => Yii::t('language', 'ลิงก์วีดีโอจากยูทูป') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 

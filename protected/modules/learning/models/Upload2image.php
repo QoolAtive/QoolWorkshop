@@ -12,8 +12,8 @@ class Upload2image extends CFormModel {
 
     public function attributeLabels() {
         return array(
-            'image' => Yii::t('language', 'รูปภาพ'),
-            'image2' => Yii::t('language', 'รูปภาพภาษาอังกฤษ'),
+            'image' => Yii::t('language', 'รูปภาพ'). ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'image2' => Yii::t('language', 'รูปภาพ'). ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
