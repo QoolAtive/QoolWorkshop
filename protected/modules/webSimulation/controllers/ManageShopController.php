@@ -3,9 +3,14 @@
 class ManageShopController extends Controller {
 
     //หน้า register
-    public function actionRegister() {
+    public function actionRegister($shop_id = NULL) {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
-        $model = new WebShop();
+        if ($shop_id == NULL) {
+            $model = new WebShop();
+        } else {
+            $model = WebShop::model()->findByPk($shop_id);
+        }
+
         if (isset($_POST['WebShop'])) {
             $model->attributes = $_POST['WebShop'];
             //url ที่อยู่ร้านค้า
@@ -51,12 +56,21 @@ class ManageShopController extends Controller {
 
     public function actionManageShopList() {
         $user_id = Yii::app()->user->id;
-        $this->render('manage_shop_list', array('user_id' => $user_id));
+        $model = WebShop();
+        if (isset($_GET['WebShop'])) {
+            $model->attributes = $_GET['WebShop'];
+        }
+        $this->render('manage_shop_list', array('model' => $model, 'user_id' => $user_id));
     }
 
-    public function actionManageShop($id) {
-        $model = WebShop::model()->findByPk($id);
-        $this->render('manage_shop', array('model' => $model, 'shop_id' => $id));
+    public function actionManageShop($shop_id) {
+        $model = WebShop::model()->findByPk($shop_id);
+        $this->render('manage_shop', array('model' => $model, 'shop_id' => $shop_id));
+    }
+
+    public function actionManageItem($shop_id) {
+        $model = WebShop::model()->findByPk($shop_id);
+        $this->render('manage_shop', array('model' => $model, 'shop_id' => $shop_id));
     }
 
 }
