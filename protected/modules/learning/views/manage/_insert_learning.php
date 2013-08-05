@@ -8,24 +8,46 @@ $form = $this->beginWidget('CActiveForm', array(
         )
 );
 if ($model->id == null) {
-    $text = Yii::t('language', 'บันทึก');
+    $word = Yii::t('language', 'เพิ่ม');
 } else {
-    $text = Yii::t('language', 'บันทึก');
+    $word = Yii::t('language', 'แก้ไข');
 }
 ?>
 <?php
 $this->renderPartial('_side_bar', array(
-    'select2' => 'selected',
-    'select1' => '',
+    'select_list' => 2,
 ));
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3><?php echo Yii::t('language', 'เพิ่มบทเรียน'); ?></h3>
+        <h3 class="headfont">
+            <span>
+                <i class="icon-bookmark-empty"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">
+                    <?php echo Yii::t('language', 'การเรียนรู้'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="/learning/manage/learning">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'การเรียนรู้'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="/learning/manage/learning">
+                    <?php echo Yii::t('language', 'บทเรียน'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo $word . Yii::t('language', 'บทเรียน'); ?>
+            </span>
+        </h3>
+        <div class="_100"></div>
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'group_id');
-            echo $form->dropDownList($model, 'group_id', LearningGroup::model()->getListData(), array('empty' => Yii::t('language', 'เลือก'), 'style' => 'width: 200px;'));
+            echo $form->dropDownList($model, 'group_id', LearningGroup::model()->getListData(), array(
+                'empty' => Yii::t('language', 'เลือก'),
+                'style' => 'width: 200px;',
+                'class' => 'fieldrequire'
+                    )
+            );
             echo $form->error($model, 'group_id');
             ?>
         </div>
@@ -42,19 +64,19 @@ $this->renderPartial('_side_bar', array(
             </div>
         <?php } ?>
         <div class="_100">
-            <h4 class="reg"><?php echo Yii::t('language', '- บทเรียนภาษาไทย -'); ?></h4>
+            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'บทเรียน') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
         </div>
         <div class="_100">
             <?php
             echo $form->labelEx($modelVideo, 'video');
-            echo $form->textField($modelVideo, 'video');
+            echo $form->textField($modelVideo, 'video', array('class' => 'fieldrequire'));
             echo $form->error($modelVideo, 'video');
             ?>
         </div>
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'subject');
-            echo $form->textField($model, 'subject');
+            echo $form->textField($model, 'subject', array('class' => 'fieldrequire'));
             echo $form->error($model, 'subject');
             ?>
         </div>
@@ -86,19 +108,19 @@ $this->renderPartial('_side_bar', array(
             ?>
         </div>
         <div class="_100">
-            <h4 class="reg"><?php echo Yii::t('language', '- บทเรียนภาษาอังกฤษ -'); ?></h4>
+            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'บทเรียน') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
         </div>
         <div class="_100">
             <?php
             echo $form->labelEx($modelVideo, 'video_en');
-            echo $form->textField($modelVideo, 'video_en');
+            echo $form->textField($modelVideo, 'video_en', array('class' => 'fieldrequire'));
             echo $form->error($modelVideo, 'video_en');
             ?>
         </div>
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'subject_en');
-            echo $form->textField($model, 'subject_en');
+            echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
             echo $form->error($model, 'subject_en');
             ?>
         </div>
@@ -129,15 +151,16 @@ $this->renderPartial('_side_bar', array(
             echo $form->error($model, 'detail_en');
             ?>
         </div>
-        <div class="_100" style="text-align: center;">
+        <div class="_100 txt-cen">
+            <hr>
             <?php
-            echo CHtml::submitButton(Yii::t('language', $text));
+            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/learning/manage/learning'
                 )) . "'")
             );
             ?>
-
+            <hr>
         </div>
     </div>
     <?php
