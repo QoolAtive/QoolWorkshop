@@ -31,7 +31,7 @@ $next_detail = LanguageHelper::changeDB($lessonNext->detail, $lessonNext->detail
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3 class="headfont">
+        <h3 class="barH3">
             <span>
                 <i class="icon-bookmark-empty"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">
@@ -47,7 +47,8 @@ $next_detail = LanguageHelper::changeDB($lessonNext->detail, $lessonNext->detail
         </h3>
         <?php
         if (Yii::app()->user->isAdmin()) {
-            echo "<div style='float: right;'>";
+            echo "<div style='float: right;  margin-right: 2px;
+    margin-top: 4px;'>";
             echo CHtml::button(Yii::t('language', 'แก้ไข'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/learning/manage/insertLearning/id/' . $model->id
                 )) . "'")
@@ -61,15 +62,17 @@ $next_detail = LanguageHelper::changeDB($lessonNext->detail, $lessonNext->detail
         <img class="demoshadowtop" src="/img/shadow.png">
         <iframe width="740" height="416" style=" margin-left: 5px;" src="<?php echo $video; ?>?showinfo=0"   frameborder="0" allowfullscreen></iframe>
         <img class="demoshadowbuttom" src="/img/shadow.png">
-        <!--<div class="_100">-->
+        <div class="_100" style="margin-top: -10px;">
+        
         <?php echo $detail; ?>
-        <!--</div>-->
+        </div>
         <div class="clearfix"></div>
 
         <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/default/readingPdf/', 'id' => $modelFile->id)); ?>
         <hr class="demohr"> 
         <?php if (!empty($lessonNext)) { ?>
-            <h3 class="headfont">
+            <div class="_100">
+            <h3>
                 <span>
                     <i class="icon-circle-arrow-right"></i>
                     <?php echo Yii::t('language', 'บทเรียนถัดไป'); ?>
@@ -85,6 +88,7 @@ $next_detail = LanguageHelper::changeDB($lessonNext->detail, $lessonNext->detail
                     <?php echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $next_detail)), 350); ?>
                 </li>
             </ul>
+        </div>
 
         <?php } ?>
         <div class="clearfix">
