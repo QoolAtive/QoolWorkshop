@@ -5,6 +5,8 @@
         </a>
     </li>
     <li>
-        <label><?php echo $data->name; ?></label>
+        <a href="/serviceProvider/default/detail/id/<?php echo $data->id; ?>/type/<?php echo $_GET['id']; ?>">
+            <label><?php echo $data->name; ?></label>
+        </a>
     </li>
 </ul>
