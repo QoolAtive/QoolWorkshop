@@ -20,7 +20,6 @@
     </div>
     <div class="grid-view">
         <?php
-        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
         $dataProvider = $model->search();
         $this->widget('zii.widgets.grid.CGridView', array(
             'id' => 'shop-list-grid',
@@ -37,7 +36,14 @@
                 array(
                     'header' => Yii::t('language', 'ชื่อร้านค้า'),
                     'name' => LanguageHelper::changeDB('name_th', 'name_en'),
-                    'value' => 'Tool::stripText(LanguageHelper::changeDB($data->name_th,$data->name_en), 20);'
+                    'value' => 'CHtml::link(LanguageHelper::changeDB($data->name_th, $data->name_en), CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop", "shop_id" => $data->web_shop_id))) ',
+                    'type' => 'raw',
+                ),
+                array(
+                    'header' => Yii::t('language', 'ลิ้งก์ URL'),
+                    'name' => 'url',
+                    'value' => 'CHtml::link("$data->url", $data->url)',
+                    'type' => 'raw',
                 ),
                 array(
                     'class' => 'CButtonColumn',
@@ -58,7 +64,7 @@
                     'buttons' => array(
                         'delete' => array(
                             'label' => Yii::t('language', 'ลบ'),
-                            'url' => 'CHtml::normalizeUrl(array("/news/manage/deleteShop", "shop_id"=> $data->web_shop_id))',
+                            'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/deleteShop", "shop_id"=> $data->web_shop_id))',
                         ), //end 'delete' => array(
                     ), //end 'buttons' => array(
                 ),

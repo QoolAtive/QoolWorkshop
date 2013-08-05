@@ -14,7 +14,7 @@ class ManageShopController extends Controller {
         if (isset($_POST['WebShop'])) {
             $model->attributes = $_POST['WebShop'];
             //url ที่อยู่ร้านค้า
-            $model->url = CHtml::normalizeUrl(array('/webSimulation/shop/index/id/' . $model->getPrimaryKey()));
+            $model->url = $this->createAbsoluteUrl('/webSimulation/shop/index/id/' . $model->getPrimaryKey());
             //สร้าง temp ไว้ไม่ให้เป็น NULL ให้ขั้นตอนเลือก theme ถัดไป
             $model->theme = 'tamp';
             $model->mem_user_id = Yii::app()->user->id;
@@ -83,7 +83,7 @@ class ManageShopController extends Controller {
     public function actionDeleteShop($shop_id) {
         $model = WebShop::model()->findByPk($shop_id);
         if ($model->delete()) {
-//            $this->redirect("/faq/default/manageFaq");
+            
         }
     }
 
