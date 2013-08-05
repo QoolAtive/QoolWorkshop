@@ -239,7 +239,7 @@ hr {
 
     border-bottom: 1px dashed #AAAAAA;
     font-size: 13px;
-    margin: 14px;
+    margin: 10px 5px;
     padding-bottom: 17px;
 
 }
@@ -1781,7 +1781,11 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
 /*-----------------------------------------------------------------demo------------------------------------------------------------------*/
 .learninghead{
     font-family: 'thaisans_neueregular';
-     padding:18px 0 ; margin-left:5px; letter-spacing: 2px; color:#9A2EFE;  
+    color: #9A2EFE;
+    font-family: 'thaisans_neueregular';
+    letter-spacing: 2px;
+    margin-left: 5px;
+    padding-bottom: 13px;
 }
 
 .learninghead img {
@@ -1790,19 +1794,28 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
 }
 
 
-.nextlearn{
-    padding:10px; margin-bottom:10px ;margin-top:30px;
+.nextlearn {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-radius: 18px 18px 18px 18px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 18px 18px 10px;
+    width: 690px;
 }
 
 .nextlearn li:first-child{
-    width: 33%; float: left;
+    width: 35%; float: left;
 }
 
 .nextlearn li:last-child{
-    width: 67%; 
+    width: 65%; 
     float: left;
 }
-
+.nextlearn iframe {
+    border: 5px solid #FFFFFF;
+    box-shadow: 0 0 3px 1px;
+}
 .demohr{
    margin-top: 47px !important;
 }
@@ -3688,10 +3701,7 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
 
 
 /*-----------------------------------------------------------------demo------------------------------------------------------------------*/
-.learninghead{
-    font-family: 'thaisans_neueregular';
-     padding:18px 0 ; margin-left:5px; letter-spacing: 2px; color:#9A2EFE;  
-}
+
 
 .learninghead img {
     width: 24px;
@@ -3699,9 +3709,6 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
 }
 
 
-.nextlearn{
-    padding:10px; margin-bottom:10px ;margin-top:30px;
-}
 
 .nextlearn li:first-child{
     width: 33%; float: left;
