@@ -12,9 +12,9 @@ Class Tool {
     public static function getDropdownListYear($year = null) {
         if ($year == null)
             $year = LanguageHelper::changeDB(2548, 2005);
-        
+
         $year_now = LanguageHelper::changeDB(date("Y") + 543, date("Y")); //date("Y") + 543;
-        
+
         $arr_year = array();
         for ($year; $year <= $year_now; $year++) {
             $arr_year[$year] = $year;
@@ -37,7 +37,7 @@ Class Tool {
             list($date, $time) = explode(" ", $datetime);
             list($y, $m, $d) = explode("-", $date);
             $y = LanguageHelper::changeDB($y + 543, $y);
-            $m = date('n', strtotime('2013-' . $m . '-01') );
+            $m = date('n', strtotime('2013-' . $m . '-01'));
             $m_full = LanguageHelper::changeDB(Thai::$thaimonth_full[$m], Thai::$engmonth_full[$m]);
             $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
         }
@@ -167,6 +167,30 @@ Class Tool {
             'name' => $name,
             'type' => $type,
         );
+    }
+
+    public static function stripText($data, $len) {
+
+        $data = strip_tags(trim($data));
+        if (strlen($data) > $len) {
+            $return = txtTruncate($data, $len);
+            $return .= " ...";
+        } else {
+            $return = $data;
+        }
+        return $return;
+
+        function txtTruncate($string, $limit, $break = " ") {
+            if (strlen($string) <= $limit)
+                return $string;
+            if (false !== ($breakpoint = strpos($string, $break, $limit))) {
+                if ($breakpoint < strlen($string) - 1) {
+                    $string = substr($string, 0, $breakpoint);
+                }
+            }
+            return $string;
+        }
+
     }
 
 }
