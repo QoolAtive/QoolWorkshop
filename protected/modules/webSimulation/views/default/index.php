@@ -3,6 +3,10 @@
         <ul>
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
         </ul>
+        <ul class="tabs clearfix">
+            <li><a rel="view-1" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
+                    <?php echo Yii::t('language', 'จัดการร้านค้า'); ?>
+                </a></li>
 
     </div>
 </div>
@@ -20,10 +24,10 @@
                 echo CHtml::link(Yii::t('language', 'Start Simulation'), CHtml::normalizeUrl(array("/webSimulation/manageShop/register")), array(
                     'style' => "border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black;",
                 ));
-            }else{
+            } else {
                 echo CHtml::link(Yii::t('language', 'Start Simulation'), '#', array(
                     'style' => "border-radius: 4px;  margin: 0 auto; vertical-align: middle; line-height:30px; display: block; width: 200px; border: 1px solid black;",
-                    'onclick' => 'alert("'.Yii::t('language', 'กรุณาเข้าระบบก่อนใช้งาน').'");',
+                    'onclick' => 'alert("' . Yii::t('language', 'กรุณาเข้าระบบก่อนใช้งาน') . '");',
                 ));
             }
             ?>
