@@ -50,11 +50,8 @@ class ManageShopController extends Controller {
     }
 
     public function actionManageShopList() {
-        $model = new WebShop();
-        if (isset($_GET['WebShop'])) {
-            $model->attributes = $_GET['WebShop'];
-        }
-        $this->render('manage_shop_list', array('model' => $model));
+        $user_id = Yii::app()->user->id;
+        $this->render('manage_shop_list', array('user_id' => $user_id));
     }
 
     public function actionManageShop($id) {
