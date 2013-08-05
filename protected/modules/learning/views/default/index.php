@@ -13,7 +13,7 @@ $name_group = LanguageHelper::changeDB($model_learning_group->name, $model_learn
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3 class="headfont">
+        <h3 class="barH3">
             <span>
                 <i class="icon-bookmark-empty"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">

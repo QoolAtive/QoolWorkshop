@@ -1,5 +1,5 @@
 <?php
-$this->renderPartial('_sidemenu', array('manage' => '1'));
+$this->renderPartial('_side_menu', array('manage' => '1'));
 ?>
 
 <div class="content">
