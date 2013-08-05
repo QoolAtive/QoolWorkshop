@@ -62,6 +62,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'afterDelete' => 'function(link,success,data){if(data != ""){alert(data);}}'
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
         'header' => Yii::t('language', 'หน้าที่: '),

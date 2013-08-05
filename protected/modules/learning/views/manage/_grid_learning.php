@@ -49,6 +49,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             ),
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
         'header' => Yii::t('language', 'หน้าที่: '),
