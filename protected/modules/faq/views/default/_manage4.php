@@ -1,5 +1,5 @@
 <!-- 4.FAQ Web Simulation -->
-<h3>
+<h3 class="barH3">
     <i class="icon-question-sign"></i>            
     <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index/view/4")); ?>">
         <?php echo Yii::t('language', 'คำถาม') . Yii::t('language', 'แนะนำการใช้งาน'); ?>

@@ -130,7 +130,7 @@ switch ($fm_id) {
         ));
         echo $form->errorSummary($model);
         ?>
-        <div>
+        <div class="_100">
             <?php
             //ภาษาไทย
             echo $form->labelEx($model, 'subject_th');
@@ -159,7 +159,7 @@ switch ($fm_id) {
             ));
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
 //    ภาษาอังกฤษ
             echo $form->labelEx($model, 'subject_en');
