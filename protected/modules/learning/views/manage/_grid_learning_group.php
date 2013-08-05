@@ -1,14 +1,14 @@
 <?php
 
 $this->widget('zii.widgets.grid.CGridView', array(
-//    'id' => 'admin-grid',
+    'id' => 'learning_group-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
     'ajaxUpdate' => true,
     'summaryText' => '',
     'columns' => array(
         array(// display 'create_time' using an expression
-            'header' => 'ลำดับ',
+            'header' => Yii::t('language', 'ลำดับ'),
             'headerHtmlOptions' => array('style' => 'width: 7%;'),
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
@@ -16,8 +16,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'name' => 'name',
             'value' => '$data->name',
+            'visible' => Yii::app()->language == 'th' ? true : false,
         ),
         array(
+            'header' => Yii::t('language', 'รูปภาพ'),
             'name' => 'pic',
             'type' => 'raw',
             'value' => 'CHtml::image("/file/learning/".$data->pic,\'\',array(
@@ -25,12 +27,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                 ))',
             'filter' => '',
             'htmlOptions' => array('style' => 'text-align: center; width: 100px;'),
+            'visible' => Yii::app()->language == 'th' ? true : false,
         ),
         array(
             'name' => 'name_en',
             'value' => '$data->name_en',
+            'visible' => Yii::app()->language == 'en' ? true : false,
         ),
         array(
+            'header' => Yii::t('language', 'รูปภาพ'),
             'name' => 'pic_en',
             'type' => 'raw',
             'value' => 'CHtml::image("/file/learning/".$data->pic_en,\'\',array(
@@ -38,19 +43,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                 ))',
             'filter' => '',
             'htmlOptions' => array('style' => 'text-align: center; width: 100px;'),
+            'visible' => Yii::app()->language == 'en' ? true : false,
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
-            'header' => 'เครื่องมือ',
-            'template' => '{update}{delete}',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'header' => Yii::t('language', 'เครื่องมือ'),
+            'template' => '{update} {delete}',
             'buttons' => array(
                 'update' => array(
-                    'label' => 'update',
+                    'label' => Yii::t('language', 'แก้ไข'),
                     'url' => 'Yii::app()->createUrl("/learning/manage/InsertLearningGroup/",array("id"=>$data->id))',
                 ),
-                'delete' => array(
-                    'label' => 'delete',
+                'delete' => array('label' => Yii::t('language', 'ลบ'), 'label' => 'delete',
                     'url' => 'Yii::app()->createUrl("/learning/manage/delLearningGroup/",array("id"=>$data->id))',
                 ),
             ),
@@ -59,11 +64,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     ),
     'pager' => array(
         'class' => 'CLinkPager',
-        'header' => 'หน้าที่: ',
-        'firstPageLabel' => 'หน้าแรก',
-        'prevPageLabel' => 'ก่อนหน้า',
-        'nextPageLabel' => 'หน้าถัดไป',
-        'lastPageLabel' => 'หน้าสุดท้าย',
+        'header' => Yii::t('language', 'หน้าที่: '),
+        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
 ?>
