@@ -20,10 +20,17 @@ class ManageShopController extends Controller {
             $model->mem_user_id = Yii::app()->user->id;
             $model->creat_at = date("Y-m-d H:i:s");
             if ($model->save()) {
-                echo "<script language='javascript'>
+                if ($shop_id == NULL) {
+                    echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes/id/' . $model->getPrimaryKey())) . "';
                   </script>";
+                } else {
+                    echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopList')) . "';
+                  </script>";
+                }
             }
         }
         $this->render('register', array('model' => $model));
@@ -56,7 +63,7 @@ class ManageShopController extends Controller {
 
     public function actionManageShopList() {
         $user_id = Yii::app()->user->id;
-        $model = WebShop();
+        $model = new WebShop();
         if (isset($_GET['WebShop'])) {
             $model->attributes = $_GET['WebShop'];
         }
@@ -71,6 +78,13 @@ class ManageShopController extends Controller {
     public function actionManageItem($shop_id) {
         $model = WebShop::model()->findByPk($shop_id);
         $this->render('manage_shop', array('model' => $model, 'shop_id' => $shop_id));
+    }
+
+    public function actionDeleteShop($shop_id) {
+        $model = WebShop::model()->findByPk($shop_id);
+        if ($model->delete()) {
+//            $this->redirect("/faq/default/manageFaq");
+        }
     }
 
 }
