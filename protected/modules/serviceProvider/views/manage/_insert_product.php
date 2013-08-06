@@ -48,14 +48,14 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'image');
+                echo $form->labelEx($model, 'image');
                 echo $form->fileField($model, 'image');
                 echo $form->error($model, 'image');
                 ?>
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'guide');
+                echo $form->labelEx($model, 'guide');
                 echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList('', true));
                 echo $form->error($model, 'guide');
                 ?>
@@ -65,14 +65,14 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'name');
+                echo $form->labelEx($model, 'name');
                 echo $form->textfield($model, 'name');
                 echo $form->error($model, 'name');
                 ?>
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'detail');
+                echo $form->labelEx($model, 'detail');
                 echo $form->textArea($model, 'detail');
                 echo $form->error($model, 'detail');
                 ?>
@@ -82,14 +82,14 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'name_en');
+                echo $form->labelEx($model, 'name_en');
                 echo $form->textfield($model, 'name_en');
                 echo $form->error($model, 'name_en');
                 ?>
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'detail_en');
+                echo $form->labelEx($model, 'detail_en');
                 echo $form->textArea($model, 'detail_en');
                 echo $form->error($model, 'detail_en');
                 ?>
@@ -112,6 +112,10 @@ $this->renderPartial('_side_bar', array(
                         )) . "'")
                     );
                 }
+                echo CHtml::button(Yii::t('language', 'พาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/serviceProvider/manage/company'
+                    )) . "'")
+                );
                 ?>
             </div>
             <?php $this->endWidget(); ?>

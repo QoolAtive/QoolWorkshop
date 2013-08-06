@@ -36,8 +36,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
-            'template' => '{update}{delete}',
+            'template' => '{view}{update}{delete}',
             'buttons' => array(
+                'view' => array(
+                    'label' => 'view', //Text label of the button.
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/default/detail/",array("id"=>$data->id))',
+                ),
                 'update' => array(
                     'label' => 'edit', //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertCompany/",array("id"=>$data->id))',

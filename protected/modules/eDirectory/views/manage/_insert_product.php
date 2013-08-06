@@ -1,7 +1,8 @@
 <?php
 $list = array(
     array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '/eDirectory/manage/index', 'select' => ''),
-    array('text' => Yii::t('language', 'เพิ่มสินค้าและบริการ'), 'link' => '#', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'จัดการสินค้าและบริการ'), 'link' => '/eDirectory/manage/product', 'select' => ''),
+    array('text' => Yii::t('language', 'เพิ่มข้อมูลสินค้าและบริการ'), 'link' => '#', 'select' => 'selected'),
 );
 $this->renderPartial('side_bar', array(
     'list' => $list,
@@ -99,21 +100,6 @@ $this->renderPartial('side_bar', array(
             <div class="_100 textcenter">
                 <?php
                 echo CHtml::submitButton($btnText);
-//        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
-//        );
-//        echo Yii::app()->user->getState('product_link_back_to_menu');
-                if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
-                    $link_back = Yii::app()->user->getState('default_link_back_to_menu');
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            $link_back
-                        )) . "'")
-                    );
-                } else {
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/serviceProvider/manage/product/id/' . $id
-                        )) . "'")
-                    );
-                }
                 ?>
             </div>
             <?php $this->endWidget(); ?>
