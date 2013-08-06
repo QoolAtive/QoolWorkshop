@@ -45,17 +45,33 @@
 <div class="content">
     <div class="tabcontents" >
 
-        <div style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
+        <div style="border: 1px solid #e0e0e0; display: inline-block; width: 100%; height: 213px;">
             <?php
-            $banner = SpBanner::model()->find('com_id=:com_id', array(':com_id' => $model->id));
+            $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
             ?>
             <div id="featured"> 
-                <?php foreach ($banner as $data) { ?>
-                    <img src="/file/banner/<?php echo $data['path']; ?>" />
-                <?php } ?>
-            </div>
 
-            <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220">
+                <?php
+                if ($banner != null) {
+                    foreach ($banner as $data) {
+                        ?>
+                        <img src="/file/banner/<?php echo $data['path']; ?>" style="float: left;" width="400" />
+                        <?
+                    }
+                } else {
+                    ?>
+                    <img src="/file/banner/default.jpg" />
+                    <img src="/file/banner/default.jpg" />
+                    <img src="/file/banner/default.jpg" />
+                    <?php
+                }
+                ?>
+            </div>
+            <?php if ($model->logo != 'default.jpg' && $model->logo != null) { ?>
+                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" />
+            <?php } else { ?>
+                <img src="/file/logo/default.jpg" style="float: right;" width="220" />
+            <?php } ?>
 
         </div>
         <h2>
@@ -192,6 +208,12 @@
                     '/serviceProvider/default/index/id/' . $type_business_back
                 )) . "'")
             );
+            if (Yii::app()->user->isAdmin()) {
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับจัดการพาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/serviceProvider/manage/company'
+                    )) . "'")
+                );
+            }
             ?>
         </div>
     </div>

@@ -1,57 +1,3 @@
-<style type="text/css">
-    .rss_feed_box{
-        height: 400px;
-        overflow: auto;
-        margin: 3px 5% 3px 2%;
-        border: 1px solid;
-    }
-    .rss_item{        
-        padding: 5px 25px; 
-        font-size: 0.9em;
-        color: #666666; 
-        text-decoration:none; 
-
-    }
-    .rss_item:hover {
-        color:#339;
-        background:#d0dafd;
-    }
-    a{
-        /*        font-family:Arial, "times New Roman", tahoma;
-                font-size:12px;	
-                font-weight:bold;*/
-        color: #666666; 
-        /*background-color:#F5F5F5;*/
-        text-decoration:none;
-    }
-    /*    a:hover{
-            font-family:Arial, "times New Roman", tahoma;
-            font-size:12px;	
-            font-weight:bold;
-            color:#FF3300;
-            background-color:#F5F5F5;
-            text-decoration:none;
-        }*/
-    h2{
-        font-size: 1.3em;
-        color: #8500B2; 
-        font-weight: bold;
-    }
-    .ff9{
-        /*color: #ff9933;*/
-        color: #ff6600;
-        padding: 0 5px 0 0;
-    }
-    .rss_detail{
-        padding-left: 20px;
-        font-size: 1.1em;
-    }
-    .rss_post{
-        text-align: right;
-        color: #000000;
-    }
-
-</style>
 
 <?php
 /**
@@ -71,12 +17,49 @@
  * 
  */
 ?>
-<div class="rss_feed_box">
+<link rel="stylesheet" href="/css/animate.css"> <!-- Optional -->
+<link rel="stylesheet" href="/css/liquid-slider.css">
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ -->
+<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.easing.1.3.js"></script>
+<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.touchSwipe.min.js"></script>
+<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.liquid-slider.min.js"></script>
+<script>
+
+$(document).ready(function($){
+
+
+     $('#slider-id').liquidSlider({
+
+
+
+});
+});
+</script>
+<!-- <div class="" >
+     <div>
+          <h2 class="title">Slide 1</h2>
+          // Content goes here
+     </div>
+     <div>
+          <h2 class="title">Slide 2</h2>
+          // Content goes here
+     </div>
+     <div>
+          <h2 class="title">Slide 3</h2>
+          // Content goes here
+     </div>
+</div>
+ -->
+
+
+<div class="rss_feed_box  liquid-slider" id="slider-id">
     <?php
     foreach ($items as $item):
         ?>
         <!--<div class="yii-feed-widget-item">-->
-        <div  class="rss_item">
+        <div  class="rss_item " >
             <?php //echo $item->get_channel_tags();  ?>
             <a href="<?php echo $item->get_permalink(); ?>" target="_blank">
 
@@ -88,7 +71,6 @@
                 <p class="rss_post"><small><?php echo Yii::t('language', 'เมื่อวันที่') . ' ' . $item->get_date('j/m/Y | H:i '); ?></small></p>
             </a>
         </div>
-        <hr>
     <?php endforeach; ?>
 </div>
 <div class="yii-feed-widget-clear"></div>
