@@ -1,23 +1,39 @@
+<?php
+switch ($view) {
+    case 1:
+        $select1 = 'selected';
+        $select2 = '';
+        break;
+    case 2:
+        $select1 = '';
+        $select2 = 'selected';
+        break;
+    default:
+        $select1 = '';
+        $select2 = '';
+        break;
+}
+?>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/about.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li>
+            <li class="<?php echo $select1; ?>">
                 <?php
                 echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/1')
-                        )
+                        ), array('rel' => 'view1')
                 );
                 ?>
             </li>
-            <li>
+            <li class="<?php echo $select2; ?>">
                 <?php
                 echo CHtml::link(
                         Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/2')
-                        )
+                        ), array('rel' => 'view2')
                 );
                 ?>
             </li>
@@ -29,7 +45,7 @@
                     echo CHtml::link(
                             Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                     array('/about/default/editAbout')
-                            )
+                            ), array('rel' => 'view3')
                     );
                     ?>
                 </li>

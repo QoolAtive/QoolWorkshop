@@ -8,7 +8,7 @@
                 <?php
                 echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/1')
-                        )
+                        ), array('rel' => 'view1')
                 );
                 ?>
             </li>
@@ -17,19 +17,19 @@
                 echo CHtml::link(
                         Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/2')
-                        )
+                        ), array('rel' => 'view2')
                 );
                 ?>
             </li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 ?>
-                <li>
+                <li class="selected">
                     <?php
                     echo CHtml::link(
                             Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                     array('/about/default/editAbout')
-                            )
+                            ), array('rel' => 'view3')
                     );
                     ?>
                 </li>
