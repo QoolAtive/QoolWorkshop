@@ -2,6 +2,7 @@
 
 class Company extends CompanyBase {
 
+    public $status_appro;
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }

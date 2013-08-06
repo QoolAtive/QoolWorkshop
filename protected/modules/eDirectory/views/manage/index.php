@@ -5,7 +5,7 @@ $list = array(
 
 if ($model != null && Yii::app()->user->id == $model->user_id) {
     array_push($list, array('text' => Yii::t('language', 'แก้ไขข้อมูล'), 'link' => '/eDirectory/manage/regisEdirectory/id/' . $model->id, 'select' => ''));
-    array_push($list, array('text' => Yii::t('language', 'จัดการสินค้า'), 'link' => '/eDirectory/manage/product/id/' . $model->id, 'select' => ''));
+    array_push($list, array('text' => Yii::t('language', 'จัดการสินค้าและบริการ'), 'link' => '/eDirectory/manage/product/id/' . $model->id, 'select' => ''));
 }
 $this->renderPartial('side_bar', array(
     'list' => $list,
@@ -34,6 +34,9 @@ $this->renderPartial('side_bar', array(
 
             <?php
         } else {
+            if ($model->status_appro == 0) {
+                echo '<label style = "color: red;">' . Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ ร้านค้าของคุณจะยังไม่ได้รับการเพิ่มข้อมูลเข้าสู่ระบบร้านค้า') . '</label>';
+            }
             ?>
             <div style = "border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
 
@@ -67,7 +70,7 @@ $this->renderPartial('side_bar', array(
                     <td> : </td>
                     <td>
                         <?php
-                        $type = CompanyType::model()->findAll('company_type=:company_type', array(':company_type' => $model->id));
+                        $type = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
                         foreach ($type as $data) {
                             $type_name = SpTypeBusiness::model()->find('id=:id', array(':id' => $data['company_type']));
                             $data_type .= $type_name->name . ', ';
