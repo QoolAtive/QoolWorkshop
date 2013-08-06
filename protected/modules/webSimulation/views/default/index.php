@@ -5,7 +5,7 @@
         </ul>
         <ul class="tabs clearfix">
             <li><a rel="view-1" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
-                    <?php echo Yii::t('language', 'จัดการร้านค้า'); ?>
+                    <?php echo Yii::t('language', 'จัดการรายการร้านค้าของคุณ'); ?>
                 </a></li>
 
     </div>

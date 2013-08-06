@@ -6,7 +6,6 @@
  * The followings are the available columns in table 'web_shop':
  * @property integer $web_shop_id
  * @property integer $mem_user_id
- * @property string $theme
  * @property string $name_th
  * @property string $name_en
  * @property integer $web_shop_catagory_id
@@ -28,6 +27,7 @@
  * @property Province $province
  * @property Prefecture $prefecture
  * @property District $district
+ * @property WebShopFormat[] $webShopFormats
  */
 class WebShopBase extends CActiveRecord
 {
@@ -57,13 +57,13 @@ class WebShopBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('mem_user_id, theme, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
+			array('mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
 			array('mem_user_id, web_shop_catagory_id, province_id, prefecture_id, district_id, postcode', 'numerical', 'integerOnly'=>true),
-			array('theme, mobile, tel, email', 'length', 'max'=>100),
 			array('name_th, name_en, url, address_th, address_en', 'length', 'max'=>255),
+			array('mobile, tel, email', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, mem_user_id, theme, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on'=>'search'),
+			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +78,7 @@ class WebShopBase extends CActiveRecord
 			'province' => array(self::BELONGS_TO, 'Province', 'province_id'),
 			'prefecture' => array(self::BELONGS_TO, 'Prefecture', 'prefecture_id'),
 			'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+			'webShopFormats' => array(self::HAS_MANY, 'WebShopFormat', 'web_shop_id'),
 		);
 	}
 
@@ -89,7 +90,6 @@ class WebShopBase extends CActiveRecord
 		return array(
 			'web_shop_id' => 'Web Shop',
 			'mem_user_id' => 'Mem User',
-			'theme' => 'Theme',
 			'name_th' => 'Name Th',
 			'name_en' => 'Name En',
 			'web_shop_catagory_id' => 'Web Shop Catagory',
@@ -122,7 +122,6 @@ class WebShopBase extends CActiveRecord
 
 		$criteria->compare('web_shop_id',$this->web_shop_id);
 		$criteria->compare('mem_user_id',$this->mem_user_id);
-		$criteria->compare('theme',$this->theme,true);
 		$criteria->compare('name_th',$this->name_th,true);
 		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('web_shop_catagory_id',$this->web_shop_catagory_id);

@@ -6,7 +6,6 @@
  * The followings are the available columns in table 'web_shop':
  * @property integer $web_shop_id
  * @property integer $mem_user_id
- * @property string $theme
  * @property string $name_th
  * @property string $name_en
  * @property integer $web_shop_catagory_id
@@ -54,14 +53,14 @@ class WebShop extends WebShopBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('mem_user_id, theme, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
+            array('mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
             array('mem_user_id, web_shop_catagory_id, province_id, prefecture_id, district_id, postcode', 'numerical', 'integerOnly' => true),
             array('email', 'email'),
-            array('theme, mobile, tel, email', 'length', 'max' => 100),
+            array('mobile, tel, email', 'length', 'max' => 100),
             array('name_th, name_en, url, address_th, address_en', 'length', 'max' => 255),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_id, mem_user_id, theme, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
+            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
         );
     }
 
@@ -115,7 +114,6 @@ class WebShop extends WebShopBase {
 
         $criteria->compare('web_shop_id', $this->web_shop_id);
         $criteria->compare('mem_user_id', $this->mem_user_id);
-        $criteria->compare('theme', $this->theme, true);
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);
         $criteria->compare('web_shop_catagory_id', $this->web_shop_catagory_id);
