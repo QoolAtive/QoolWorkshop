@@ -8,13 +8,13 @@ class CompanyProduct extends CompanyProductBase {
 
     public function rules() {
         return array(
-            array('main_id, name, name_en, detail, detail_en, date_write', 'required'),
+            array('main_id, name, name_en, detail, detail_en, guide, date_write', 'required'),
             array('main_id', 'numerical', 'integerOnly' => true),
             array('pic', 'length', 'max' => 100),
             array('name, name_en', 'length', 'max' => 255),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, main_id, pic, name, name_en, detail, detail_en, date_write', 'safe', 'on' => 'search'),
+            array('id, main_id, pic, name, name_en, detail, detail_en, guide, date_write', 'safe', 'on' => 'search'),
         );
     }
 

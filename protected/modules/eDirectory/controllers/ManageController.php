@@ -21,7 +21,13 @@ class ManageController extends Controller {
 
     public function actionIndex() {
 
-        $model = Company::model()->find('user_id=:user_id', array(':user_id' => Yii::app()->user->id));
+        $c = new CDbCriteria;
+        $c->select = 't.*, ct.status_appro as status_appro';
+        $c->join = 'left join company_them ct on t.id = ct.main_id';
+        $c->condition = 't.user_id=:user_id';
+        $c->params = array(':user_id' => Yii::app()->user->id);
+
+        $model = Company::model()->find($c);
 
         $this->render('index', array(
             'model' => $model,
@@ -31,8 +37,12 @@ class ManageController extends Controller {
     public function actionRegisEdirectory($id = null) {
 
         $permission = Company::model()->count('user_id=:user_id', array(':user_id' => Yii::app()->user->id));
-//        if (($permission > 0 && $id != null) || (Yii::app()->user->isMemberType() == 1))
-//            $this->redirect('/eDirectory/manage/index');
+        if (
+                ($permission > 0 && $id == null)
+//                || (Yii::app()->user->isMemberType() == 1)
+        ) {
+            $this->redirect('/eDirectory/manage/index');
+        }
 
         if ($id == null) {
             $model = new Company();
@@ -156,24 +166,24 @@ class ManageController extends Controller {
                         }
                     }
                     if ($id == null) {
-                        $this->redirect('/serviceProvider/manage/insertProduct/id/' . $model->id);
+                        $this->redirect('/eDirectory/manage/insertProduct/id/' . $model->id);
                     } else {
-                        if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
-                            $link_back = Yii::app()->user->getState('default_link_back_to_menu');
-                            echo "
-                            <script>
-                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                            window.location='" . $link_back . "';
-                            </script>
-                            ";
-                        } else {
-                            echo "
+//                        if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
+//                            $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+//                            echo "
+//                            <script>
+//                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+//                            window.location='" . $link_back . "';
+//                            </script>
+//                            ";
+//                        } else {
+                        echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/manage/index';
                             </script>
                             ";
-                        }
+//                        }
                     }
                 } else {
 //                    echo "<pre>";
@@ -230,7 +240,7 @@ class ManageController extends Controller {
 
     public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
         if ($id == null) {
-            $this->redirect('/serviceProvider/manage/company');
+            $this->redirect('/eDirectory/manage/index');
         }
         if ($pro_id == null) {
             $model = new CompanyProduct();
@@ -268,7 +278,9 @@ class ManageController extends Controller {
                 }else {
                     $model->pic = 'default.jpg';
                 }
-
+                echo "<pre>";
+                print_r($model->attributes);
+                echo "</pre>";
                 if ($model->save()) {
 //                    if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
 //                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
