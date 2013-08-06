@@ -44,14 +44,18 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
-        <div style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
 
+        <div style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
+            <?php
+            $banner = SpBanner::model()->find('com_id=:com_id', array(':com_id' => $model->id));
+            ?>
             <div id="featured"> 
-                <img src="/img/link/qoolative.jpg" data-caption="#htmlCaption"  alt="Overflow: Hidden No More" />
-                <img src="/img/link/qoolative.jpg"  alt="HTML Captions" />
-                <img src="/img/link/qoolative.jpg" alt="and more features" />
+                <?php foreach ($banner as $data) { ?>
+                    <img src="/file/banner/<?php echo $data['path']; ?>" />
+                <?php } ?>
             </div>
-            <img src="/img/link/qoolative.jpg" style="float: right;" width="220">
+
+            <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220">
 
         </div>
         <h2>

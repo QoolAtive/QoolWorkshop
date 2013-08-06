@@ -31,6 +31,9 @@
 
     $partner = new CActiveDataProvider('SpCompany', array(
         'criteria' => $criteria,
+        'pagination' => array(
+            'pageSize' => 4,
+        ),
     ));
     $this->widget('zii.widgets.CListView', array(
         'dataProvider' => $partner,
