@@ -29,14 +29,14 @@
 //echo $form->errorSummary($model);
                 ?>
 
-                <div class="_100 rowContact clearfix">
+                <div class="_50 rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_th');
                     echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '30'));
                     echo $form->error($model, 'name_th');
                     ?>
                 </div>
-                <div class="_100 rowContact clearfix">
+                <div class="_50 rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_en');
                     echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '30'));
