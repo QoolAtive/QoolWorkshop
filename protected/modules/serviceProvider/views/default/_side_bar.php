@@ -4,11 +4,11 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/serviceprovider.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="/serviceProvider/default/index" rel="view1"><?php echo Yii::t('language', 'ทั้งหมด'); ?></a></li>
+            <li><a href="/serviceProvider/default/index" rel="view1"><?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?></a></li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'บริการ'), array(
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'ผู้ให้บริการ'), array(
                     '/serviceProvider/manage/typeBusiness'), array('rel' => 'view2'));
                 echo "</li>";
             }
@@ -36,8 +36,7 @@
              padding: 14px 0;">
             <p style="font-weight: bold;">
                 <?php
-                echo Yii::t('language', 'บริการ');
-//                echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ');
+                echo Yii::t('language', 'ประเภทผู้ให้บริการ');
                 ?>
             </p>
         </div>
@@ -65,7 +64,7 @@
 
             
             echo "<li>";
-            echo CHtml::link(Yii::t('language', 'ทั้งหมด'), array(
+            echo CHtml::link(Yii::t('language', 'ผู้ให้บริการทั้งหมด'), array(
                 '/serviceProvider/default/index'), array(
                 'rel' => 'view1',
                 'class' => $active==false? 'menuactive listactive':''
