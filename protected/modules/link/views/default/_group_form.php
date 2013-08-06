@@ -29,14 +29,14 @@
 //echo $form->errorSummary($model);
                 ?>
 
-                <div class="rowContact clearfix">
+                <div class="_100 rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_th');
                     echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '30'));
                     echo $form->error($model, 'name_th');
                     ?>
                 </div>
-                <div class="rowContact clearfix">
+                <div class="_100 rowContact clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_en');
                     echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '30'));
@@ -47,7 +47,7 @@
                 <?php
                 echo CHtml::hiddenField('id', $model->id);
                 ?>
-                <div class="btnForm">
+                <div class="btnForm _100">
                     <div class="txt-cen">
                         <hr/>
                         <?php
@@ -66,3 +66,4 @@
             </div>
         </div>
     </div>
+</div>

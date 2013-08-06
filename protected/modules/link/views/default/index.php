@@ -16,8 +16,8 @@
 <div style="clear: both;"></div>
 
 <div class="linksearch">
-    <div class="_100">        
-        <h3><i class="icon-search"></i><?php echo Yii::t('language', 'ค้นหา'); ?> : </h3>
+    <div class="_100" style=" margin-top: 10px;">        
+        <h3><i class="icon-search"></i><?php echo Yii::t('language', 'ค้นหา'); ?></h3>
     </div>
     <div class="_50">
         <?php
