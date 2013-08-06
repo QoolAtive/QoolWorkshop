@@ -1,3 +1,6 @@
+<?php
+$name = LanguageHelper::changeDB($data->name, $data->name_en);
+?>
 <ul style="display: inline-block;">
     <li>
         <a href="/serviceProvider/default/detail/id/<?php echo $data->id; ?>/type/<?php echo $_GET['id']; ?>">
@@ -6,7 +9,7 @@
     </li>
     <li>
         <a href="/serviceProvider/default/detail/id/<?php echo $data->id; ?>/type/<?php echo $_GET['id']; ?>">
-            <label><?php echo $data->name; ?></label>
+            <label><?php echo $name; ?></label>
         </a>
     </li>
 </ul>
