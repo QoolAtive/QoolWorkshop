@@ -38,7 +38,7 @@ class SpTypeBusinessBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, name_en, about_en', 'required'),
+			array('name, name_en', 'required'),
 			array('name, name_en', 'length', 'max'=>255),
 			array('about', 'safe'),
 			// The following rule is used by search().

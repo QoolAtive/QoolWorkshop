@@ -50,9 +50,20 @@
             $banner = SpBanner::model()->find('com_id=:com_id', array(':com_id' => $model->id));
             ?>
             <div id="featured"> 
-                <?php foreach ($banner as $data) { ?>
-                    <img src="/file/banner/<?php echo $data['path']; ?>" />
-                <?php } ?>
+
+                <?php
+                if ($banner != null) {
+                    foreach ($banner as $data) {
+                        ?>
+                        <img src="/file/banner/<?php echo $data['path']; ?>" />
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <img src="/file/banner/default.jpg" />
+                    <?php
+                }
+                ?>
             </div>
 
             <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220">
@@ -192,6 +203,12 @@
                     '/serviceProvider/default/index/id/' . $type_business_back
                 )) . "'")
             );
+            if (Yii::app()->user->isAdmin()) {
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับจัดการพาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/serviceProvider/manage/company'
+                    )) . "'")
+                );
+            }
             ?>
         </div>
     </div>
