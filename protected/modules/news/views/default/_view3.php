@@ -10,6 +10,7 @@
             ?>
             <div class="accordion-group">
                 <div class="accordion-heading">
+                    <p class="faqarrow"></p>
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother3" href="#item3<?php echo $i; ?>" id="<?php echo $train['id']; ?>">
                         <?php echo $subject; ?>
                     </a>
