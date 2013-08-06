@@ -3,7 +3,7 @@
     <div class="row-fluid fade">
         <!-- MAP -->
         <!--                จุดที่ถูกต้อง ll=13.882871,100.486858-->
-        <div id="map_correct" style="border: 1px solid purple">
+        <div id="map_correct">
             <iframe id="map" name="map" width="100%"  height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.th/maps/ms?msa=0&amp;msid=215785394891561682595.00046fbfefd4e8659fdc1&amp;ie=UTF8&amp;t=m&amp;source=embed&amp;ll=13.882871,100.486858&amp;spn=0.004166,0.016093&amp;output=embed"></iframe>
         </div>
 
@@ -14,7 +14,7 @@
 
         <div class="contentpage contact conpad">
 
-            <ul style="margin: 20px 0; margin-left: 10px; font-size: 13px;">   
+            <ul class="contactus">   
                                             <h3><i class="icon-envelope-alt"></i><?php echo Yii::t('language', 'ติดต่อเรา'); ?></h3>
 
                 <?php
@@ -26,8 +26,7 @@
 //                            );
 //                        }
                 ?>
-                <li>
-                        <i class="icon-map-marker"></i><?php echo Yii::t('language', '44/100 ถนนนนทบุรี 1 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000'); ?> 
+                <li><i class="icon-map-marker"></i><?php echo Yii::t('language', '44/100 ถนนนนทบุรี 1 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000'); ?> 
                 </li>
                 <li>
                         <i class="icon-phone"></i><?php echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192'); ?>

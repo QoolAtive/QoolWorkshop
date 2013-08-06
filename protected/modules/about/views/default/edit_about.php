@@ -4,7 +4,7 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/about.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li>
+            <li class="noselect">
                 <?php
                 echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/1')
@@ -12,7 +12,7 @@
                 );
                 ?>
             </li>
-            <li>
+            <li class="noselect">
                 <?php
                 echo CHtml::link(
                         Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
@@ -38,8 +38,8 @@
     </div>
 </div>
 <div class="content">
-    <div class="tabcontents">
-        <div id="text" class="row-fluid ">
+    
+        <div id="text" class="row-fluid tabcontents">
             <h3 class="barH3">        
                 <span>
                     <i class="icon-home"></i>
@@ -58,7 +58,7 @@
 
             echo $form->errorSummary($model);
             ?>
-            <div>
+            <div class="_100">
                 <?php
                 //ภาษาไทย
                 echo $form->labelEx($model, 'about_text_th');
@@ -68,7 +68,7 @@
                     "defaultValue" => $model->about_text_th, # Optional
                     "config" => array(
                         "height" => "500px",
-                        "width" => "800",
+                        "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -84,7 +84,7 @@
                 ));
                 ?>
             </div>
-            <div>
+            <div class="_100">
                 <?php
                 //ภาษาอังกฤษ
                 echo $form->labelEx($model, 'about_text_en');
@@ -94,7 +94,7 @@
                     "defaultValue" => $model->about_text_en, # Optional
                     "config" => array(
                         "height" => "500px",
-                        "width" => "800",
+                        "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -122,4 +122,3 @@
             <?php $this->endWidget(); ?>
         </div>
     </div>
-</div>
