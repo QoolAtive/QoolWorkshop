@@ -42,6 +42,18 @@ h3 > i{
     line-height: 2em;
     word-wrap: break-word;
 }
+
+#container .content .contactus{
+    margin: 20px 0; margin-left: 10px; font-size: 13px;
+}
+#container .content .contactus li  i{
+    margin:0  10px;
+}
+
+#container #map_correct{
+    border: 1px solid purple;
+
+}
 .fixpostab1 {
     margin-top: 202px;
     position: absolute;
@@ -1321,8 +1333,18 @@ ul#navi_containTab li {
 }
 
 
+    .noselect{
+        background: url("/img/tab.png") no-repeat scroll 0 0 transparent !important;
+   
+    color: #FFFFFF !important;
+  
+    }
+    .noselect a {
+        color: #FFFFFF !important;
+    }
+
 .contentpage.contact.conpad > ul li {
-    margin-left: 29px;
+    margin-left: 16px;
     margin-top: 7px;
 }
 
