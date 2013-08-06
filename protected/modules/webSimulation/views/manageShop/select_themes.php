@@ -176,9 +176,17 @@
                 'id' => 'theme',
                 'value' => ''
             ));
-            echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
-                'class' => "purple",
-            ));
+            if ($model->web_shop_id == NULL) {
+                echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
+                    'class' => "purple",
+                ));
+            } else {
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array(
+                    'class' => "purple",
+                ));
+                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")) . '"'));
+            }
             ?>
         </p>
 
