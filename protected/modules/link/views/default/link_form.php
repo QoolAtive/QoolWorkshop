@@ -37,43 +37,12 @@
                 echo $form->errorSummary($model);
                 ?>
 
-                <div class="rowContact _50 clearfix">
-                    <?php
-                    echo $form->labelEx($model, 'name_th');
-                    echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '90'));
-//                    echo Yii::t('language', $form->error($model, 'name_th'));
-                    ?>
-                </div>
-                <div class="rowContact _50 clearfix">
-                    <?php
-                    echo $form->labelEx($model, 'name_en');
-                    echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '90'));
-//                    echo Yii::t('language', $form->error($model, 'name_th'));
-                    ?>
-                </div>
-                <div class="rowContact _50 clearfix">
-                    <?php
-                    echo $form->labelEx($model, 'group_id');
-                    $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
-                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', $feild_name), array(
-                        'class' => 'fieldrequire',
-                        'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
-                    ));
-//                    echo Yii::t('language', $form->error($model, 'group_id'));
-                    ?>
-                </div>
-                <div class="rowContact _50 clearfix">
-                    <?php
-                    echo $form->labelEx($model, 'link');
-                    echo $form->textField($model, 'link', array('class' => 'fieldrequire', 'size' => '255'));
-//                    echo Yii::t('language', $form->error($model, 'link'));
-                    ?>
-                </div>
-                <div class="rowContact _100 clearfix">
+
+                <div class="rowContact _100 textcenter clearfix">
                     <?php
                     echo $form->labelEx($model, 'img_path');
                     ?>
-                    <div><img src="<?php echo $model->img_path; ?>" height="50" /></div>
+                    <div><img src="<?php echo $model->img_path; ?>" height="100" /></div>
                     <?php
 //                    echo "<label>" . Yii::t('language', 'แนบไฟล์') . "</label>";
                     $this->widget('CMultiFileUpload', array(
@@ -110,6 +79,41 @@
                         <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
                     </div>
                 </div>
+
+
+                <div class="rowContact _50 clearfix">
+                    <?php
+                    echo $form->labelEx($model, 'name_th');
+                    echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '90'));
+//                    echo Yii::t('language', $form->error($model, 'name_th'));
+                    ?>
+                </div>
+                <div class="rowContact _50 clearfix">
+                    <?php
+                    echo $form->labelEx($model, 'name_en');
+                    echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '90'));
+//                    echo Yii::t('language', $form->error($model, 'name_th'));
+                    ?>
+                </div>
+                <div class="rowContact _50 clearfix">
+                    <?php
+                    echo $form->labelEx($model, 'group_id');
+                    $feild_name = LanguageHelper::changeDB('name_th', 'name_en');
+                    echo $form->dropDownList($model, 'group_id', CHtml::listData(LinkGroup::model()->findAll(), 'id', $feild_name), array(
+                        'class' => 'fieldrequire',
+                        'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
+                    ));
+//                    echo Yii::t('language', $form->error($model, 'group_id'));
+                    ?>
+                </div>
+                <div class="rowContact _50 clearfix">
+                    <?php
+                    echo $form->labelEx($model, 'link');
+                    echo $form->textField($model, 'link', array('class' => 'fieldrequire', 'size' => '255'));
+//                    echo Yii::t('language', $form->error($model, 'link'));
+                    ?>
+                </div>
+
                 <div class="btnForm _100">
                     <?php
 //                    echo CHtml::hiddenField('img_path', $model->img_path);
