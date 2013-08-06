@@ -25,6 +25,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'ข่าว')); ?>
             </span>
         </h3>
+        <div class="_100">
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
@@ -41,7 +42,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             ?>
         </div>
         <!--เลือกรูปภาพ-->
-        <div>
+        <div style="padding: 15px 0px;">
             <?php
             echo $form->labelEx($model, 'pic');
 //                    echo "<label>" . Yii::t('language', 'แนบไฟล์') . "</label>";
@@ -83,7 +84,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
 
         <?php
 //    ภาษาไทย
-        echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
+        echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาไทย -') . "</h4>";
         echo $form->labelEx($model, 'subject_th');
         echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
 
@@ -94,7 +95,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             "defaultValue" => $model->detail_th, # Optional
             "config" => array(
                 "height" => "240px",
-                "width" => "600",
+                "width" => "100%",
                 'toolbar' => array(
                     array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                         '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -110,7 +111,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
         ));
 
 //    ภาษาอังกฤษ
-        echo "<h4>" . Yii::t('language', 'ภาษาอังกฤษ') . "</h4>";
+        echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาอังกฤษ -') . "</h4>";
         echo $form->labelEx($model, 'subject_en');
         echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
 
@@ -121,7 +122,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             "defaultValue" => $model->detail_en, # Optional
             "config" => array(
                 "height" => "240px",
-                "width" => "600",
+                "width" => "100%",
                 'toolbar' => array(
                     array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                         '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -148,4 +149,5 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
         </div>
         <?php $this->endWidget(); ?>
     </div>
+</div>
 </div>
