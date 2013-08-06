@@ -1,3 +1,7 @@
+<?php
+//$this->renderPartial('_side_menu', array('index' => '1'));
+?>
+
 <div class="content">
     <div class="tabcontents">
         <h3 class="barH3">
@@ -12,7 +16,7 @@
     <div class="txt-cen">
         <hr>
         <?php
-        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
+//        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
         echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array(
             'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/register")) . '"'));
         ?>

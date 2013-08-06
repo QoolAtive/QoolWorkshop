@@ -180,7 +180,7 @@
         <div class="_33">
             <?php
             echo $form->labelEx($model, 'tel');
-            echo $form->textField($model, 'tel', array('class' => 'fieldrequire'));
+            echo $form->textField($model, 'tel', array('class' => ''));
             echo $form->error($model, 'tel');
             ?>
         </div>

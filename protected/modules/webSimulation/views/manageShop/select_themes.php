@@ -174,6 +174,7 @@
             <?php
             echo $form->hiddenField($model, 'theme', array(
                 'id' => 'theme',
+                'value' => ''
             ));
             echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
                 'class' => "purple",
