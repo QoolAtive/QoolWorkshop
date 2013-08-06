@@ -32,7 +32,7 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'name');
+                echo $form->labelEx($model, 'name');
                 echo $form->textfield($model, 'name');
                 echo $form->error($model, 'name');
                 ?>
@@ -69,7 +69,7 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'name_en');
+                echo $form->labelEx($model, 'name_en');
                 echo $form->textfield($model, 'name_en');
                 echo $form->error($model, 'name_en');
                 ?>

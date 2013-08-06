@@ -259,9 +259,9 @@ Class ManageController extends Controller {
                         }
                     }
                 } else {
-                    echo "<pre>";
-                    print_r(array($model->getErrors()));
-                    echo "</pre>";
+//                    echo "<pre>";
+//                    print_r(array($model->getErrors()));
+//                    echo "</pre>";
                 }
             }
         }
@@ -344,24 +344,28 @@ Class ManageController extends Controller {
             $model->date_write = date('Y-m-d H:i:s');
             $model->validate();
             if ($model->getErrors() == null) {
-
+                $old_image = $model->image;
                 $model->image = CUploadedFile::getInstance($model, 'image');
-                if ($model->image != null && $model->image != 'default') {
-                    $dir = './file/product/';
-                    if (!is_dir($dir))
-                        mkdir($dir, 0777, true);
+                if ($model->image != null) {
+                    if ($model->image != null && $model->image != 'default') {
+                        $dir = './file/product/';
+                        if (!is_dir($dir))
+                            mkdir($dir, 0777, true);
 
-                    if ($model->image != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
-                        if (fopen($dir . $model->image, 'w'))
-                            unlink($dir . $model->image);
+                        if ($model->image != null) { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                            if (fopen($dir . $model->image, 'w'))
+                                unlink($dir . $model->image);
+                        }
+
+                        $file_name = rand(000, 999) . $model->image->name;
+                        $model->image->saveAs($dir . $file_name);
+
+                        $model->image = $file_name;
+                    }else {
+                        $model->image = 'default.jpg';
                     }
-
-                    $file_name = rand(000, 999) . $model->image->name;
-                    $model->image->saveAs($dir . $file_name);
-
-                    $model->image = $file_name;
-                }else {
-                    $model->image = 'default.jpg';
+                }else{
+                    $model->image = $old_image;
                 }
 
                 if ($model->save()) {
@@ -382,14 +386,14 @@ Class ManageController extends Controller {
                             ";
                     }
                 } else {
-                    echo "<pre>";
-                    print_r($model->getErrors());
-                    echo "</pre>";
+//                    echo "<pre>";
+//                    print_r($model->getErrors());
+//                    echo "</pre>";
                 }
             } else {
-                echo "<pre>";
-                print_r($model->getErrors());
-                echo "</pre>";
+//                echo "<pre>";
+//                print_r($model->getErrors());
+//                echo "</pre>";
             }
         }
 
