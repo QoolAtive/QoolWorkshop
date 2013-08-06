@@ -27,21 +27,21 @@
     </div>
     <div class="footright">
         <?php
-        $this->widget('application.extensions.addThis.addThis', array(
-            'id' => 'addThis',
-            'username' => 'username',
-            'defaultButtonCaption' => 'Share',
-            'showDefaultButton' => true,
-            'showDefaultButtonCaption' => true,
-            'separator' => '|',
-            'htmlOptions' => array(),
-            'linkOptions' => array(),
-            'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
-            'showServicesTitle' => false,
-            'config' => array('ui_language' => 'th'),
-            'share' => array(),
-                )
-        );
+//        $this->widget('application.extensions.addThis.addThis', array(
+//            'id' => 'addThis',
+//            'username' => 'username',
+//            'defaultButtonCaption' => 'Share',
+//            'showDefaultButton' => true,
+//            'showDefaultButtonCaption' => true,
+//            'separator' => '|',
+//            'htmlOptions' => array(),
+//            'linkOptions' => array(),
+//            'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
+//            'showServicesTitle' => false,
+//            'config' => array('ui_language' => 'th'),
+//            'share' => array(),
+//                )
+//        );
         ?>
     </div>
 </div>
