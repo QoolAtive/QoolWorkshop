@@ -6,14 +6,15 @@
  * The followings are the available columns in table 'web_shop_order':
  * @property integer $web_shop_order_id
  * @property integer $web_shop_id
- * @property integer $web_shop_item_id
  * @property string $customer_name
- * @property string $customer_tel
  * @property string $customer_email
- * @property integer $amount
- * @property integer $price_all
+ * @property string $customer_tel
+ * @property double $price_all
  * @property string $order_at
  * @property integer $status
+ *
+ * The followings are the available model relations:
+ * @property WebShopOrderDetail[] $webShopOrderDetails
  */
 class WebShopOrder extends WebShopOrderBase
 {
@@ -43,12 +44,13 @@ class WebShopOrder extends WebShopOrderBase
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_order_id, web_shop_id, web_shop_item_id, customer_name, customer_tel, customer_email, amount, price_all, order_at', 'required'),
-			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount, price_all, status', 'numerical', 'integerOnly'=>true),
-			array('customer_name, customer_tel, customer_email', 'length', 'max'=>100),
+			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at', 'required'),
+			array('web_shop_order_id, web_shop_id, status', 'numerical', 'integerOnly'=>true),
+			array('price_all', 'numerical'),
+			array('customer_name, customer_email, customer_tel', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_order_id, web_shop_id, web_shop_item_id, customer_name, customer_tel, customer_email, amount, price_all, order_at, status', 'safe', 'on'=>'search'),
+			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +62,7 @@ class WebShopOrder extends WebShopOrderBase
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_order_id'),
 		);
 	}
 
@@ -71,11 +74,9 @@ class WebShopOrder extends WebShopOrderBase
 		return array(
 			'web_shop_order_id' => 'Web Shop Order',
 			'web_shop_id' => 'Web Shop',
-			'web_shop_item_id' => 'Web Shop Item',
 			'customer_name' => 'Customer Name',
-			'customer_tel' => 'Customer Tel',
 			'customer_email' => 'Customer Email',
-			'amount' => 'Amount',
+			'customer_tel' => 'Customer Tel',
 			'price_all' => 'Price All',
 			'order_at' => 'Order At',
 			'status' => 'Status',
@@ -95,11 +96,9 @@ class WebShopOrder extends WebShopOrderBase
 
 		$criteria->compare('web_shop_order_id',$this->web_shop_order_id);
 		$criteria->compare('web_shop_id',$this->web_shop_id);
-		$criteria->compare('web_shop_item_id',$this->web_shop_item_id);
 		$criteria->compare('customer_name',$this->customer_name,true);
-		$criteria->compare('customer_tel',$this->customer_tel,true);
 		$criteria->compare('customer_email',$this->customer_email,true);
-		$criteria->compare('amount',$this->amount);
+		$criteria->compare('customer_tel',$this->customer_tel,true);
 		$criteria->compare('price_all',$this->price_all);
 		$criteria->compare('order_at',$this->order_at,true);
 		$criteria->compare('status',$this->status);

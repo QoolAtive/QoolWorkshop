@@ -1,27 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "web_shop_order".
+ * This is the model class for table "web_shop_order_detail".
  *
- * The followings are the available columns in table 'web_shop_order':
+ * The followings are the available columns in table 'web_shop_order_detail':
  * @property integer $web_shop_order_id
  * @property integer $web_shop_id
- * @property string $customer_name
- * @property string $customer_email
- * @property string $customer_tel
- * @property double $price_all
- * @property string $order_at
- * @property integer $status
+ * @property integer $web_shop_item_id
+ * @property integer $amount
  *
  * The followings are the available model relations:
- * @property WebShopOrderDetail[] $webShopOrderDetails
+ * @property WebShop $webShop
+ * @property WebShopItem $webShopItem
+ * @property WebShopOrder $webShopOrder
  */
-class WebShopOrderBase extends CActiveRecord
+class WebShopOrderDetailBase extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return WebShopOrderBase the static model class
+	 * @return WebShopOrderDetailBase the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -33,7 +31,7 @@ class WebShopOrderBase extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'web_shop_order';
+		return 'web_shop_order_detail';
 	}
 
 	/**
@@ -44,13 +42,11 @@ class WebShopOrderBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at', 'required'),
-			array('web_shop_order_id, web_shop_id, status', 'numerical', 'integerOnly'=>true),
-			array('price_all', 'numerical'),
-			array('customer_name, customer_email, customer_tel', 'length', 'max'=>100),
+			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'required'),
+			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'safe', 'on'=>'search'),
+			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +58,9 @@ class WebShopOrderBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_order_id'),
+			'webShop' => array(self::BELONGS_TO, 'WebShop', 'web_shop_id'),
+			'webShopItem' => array(self::BELONGS_TO, 'WebShopItem', 'web_shop_item_id'),
+			'webShopOrder' => array(self::BELONGS_TO, 'WebShopOrder', 'web_shop_order_id'),
 		);
 	}
 
@@ -74,12 +72,8 @@ class WebShopOrderBase extends CActiveRecord
 		return array(
 			'web_shop_order_id' => 'Web Shop Order',
 			'web_shop_id' => 'Web Shop',
-			'customer_name' => 'Customer Name',
-			'customer_email' => 'Customer Email',
-			'customer_tel' => 'Customer Tel',
-			'price_all' => 'Price All',
-			'order_at' => 'Order At',
-			'status' => 'Status',
+			'web_shop_item_id' => 'Web Shop Item',
+			'amount' => 'Amount',
 		);
 	}
 
@@ -96,12 +90,8 @@ class WebShopOrderBase extends CActiveRecord
 
 		$criteria->compare('web_shop_order_id',$this->web_shop_order_id);
 		$criteria->compare('web_shop_id',$this->web_shop_id);
-		$criteria->compare('customer_name',$this->customer_name,true);
-		$criteria->compare('customer_email',$this->customer_email,true);
-		$criteria->compare('customer_tel',$this->customer_tel,true);
-		$criteria->compare('price_all',$this->price_all);
-		$criteria->compare('order_at',$this->order_at,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('web_shop_item_id',$this->web_shop_item_id);
+		$criteria->compare('amount',$this->amount);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
