@@ -2,28 +2,6 @@
 
 class DefaultController extends Controller {
 
-    private function getDataSearch($data) {
-        $criteria = new CDbCriteria;
-        $criteria->join = '
-            left join company_product cp on t.id = cp.main_id
-            ';
-
-        $criteria->compare('t.main_business', $name, true);
-        $criteria->compare('t.main_business_en', $name, true);
-        $criteria->compare('t.sub_business', $name, true);
-        $criteria->compare('t.sub_business_en', $name, true);
-        $criteria->compare('t.name', $name, true);
-        $criteria->compare('t.name_en', $name, true);
-        $criteria->compare('cp.name', $name, true); // ค้นหาจาก ตารางสินค้า
-        $criteria->compare('cp.name_en', $name, true); // ค้นหาจาก ตารางสินค้า
-        $criteria->compare('t.address', $address, true);
-        $criteria->compare('t.address_en', $address, true);
-
-        $dataProvider = new CActiveDataProvider('Company', array(
-            'criteria' => $criteria,
-        ));
-    }
-
     public function actionIndex() {
         $this->render('index');
     }
@@ -41,12 +19,12 @@ class DefaultController extends Controller {
 //        } else {
 //            $address = Yii::app()->user->getState('address');
 //        }
-//        if (isset($_POST['type'])) {
-        $type = $_POST['type'];
-//            Yii::app()->user->setState('type', $type);
-//        } else {
-//            $type = Yii::app()->user->setState('type', $type);
-//        }
+        if (isset($_POST['type'])) {
+            $type = $_POST['type'];
+            Yii::app()->user->setState('type', $type);
+        } else {
+            $type = Yii::app()->user->getState('type');
+        }
 
         $type_name = SpTypeBusiness::model()->find('id=:id', array(':id' => $type))->name;
 
@@ -56,6 +34,7 @@ class DefaultController extends Controller {
             left join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 'name, name_en';
+        $criteria->condition = 'ct.status_appro = 1';
 
         $criteria->compare('t.main_business', $name, true, 'or');
         $criteria->compare('t.main_business_en', $name, true, 'or');
@@ -65,7 +44,7 @@ class DefaultController extends Controller {
         $criteria->compare('t.name_en', $name, true, 'or');
         $criteria->compare('cp.name', $name, true, 'or'); // ค้นหาจาก ตารางสินค้า
         $criteria->compare('cp.name_en', $name, true, 'or'); // ค้นหาจาก ตารางสินค้า
-        $criteria->compare('t.address', $address, true, 'and');
+        $criteria->compare('t.address', $address, true, 'or');
         $criteria->compare('t.address_en', $address, true, 'or');
         $criteria->compare('ct.id', $type, 'and');
 

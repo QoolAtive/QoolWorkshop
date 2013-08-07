@@ -50,7 +50,6 @@ $this->renderPartial('side_bar', array(
         ?>
 
         <div id="show_detail">
-            <h2 class="clearfix">Result</h2><hr>
         </div>
     </div>
 </div>
