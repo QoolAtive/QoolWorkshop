@@ -172,7 +172,7 @@ $this->renderPartial('_side_bar', array(
                     <div class = "_50">
                         <label><?php echo Yii::t('language', 'โลโก้'); ?></label>
                         <?php
-                        echo CHtml::image("/file/logo/" . $model->logo, $model->logo, array('height' => '100'));
+                        echo CHtml::image("/file/logo/" . $model->logo, $model->logo, array('width' => '350'));
                         ?>
                     </div>
                 <?php } ?>
@@ -204,7 +204,7 @@ $this->renderPartial('_side_bar', array(
                         <label><?php echo Yii::t('language', 'แบนเนอร์ทั้งหมด'); ?></label>
                         <?php
                         foreach ($banner as $data) {
-                            echo CHtml::image("/file/banner/" . $data['path'], "image", array('height' => '100'));
+                            echo CHtml::image("/file/banner/" . $data['path'], "image", array('width' => '350'));
                         }
                         ?>
                     </div>
