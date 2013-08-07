@@ -3197,11 +3197,9 @@ text-align: center;
     margin: 0 auto;
     border: 1px solid #d1d1d1;
 }
-
-
-#container .tabfaq {
-    margin-left: 1px;
-    margin-top: -45px;
+#container .tabfaq {    
+    margin-left: -1px;
+    margin-top: -47px;
     position: absolute;
     z-index: 4;
 }
