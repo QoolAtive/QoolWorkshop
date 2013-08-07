@@ -8,19 +8,25 @@ $this->renderPartial('_side_bar', array(
         <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 15px;">
             <h3>
                 <img src="/img/iconform.png"> <?php echo $model->name; ?>
-                
+            </h3>
+            <!--<div class="knowledgeview">-->
                 <?php
                 if (Yii::app()->user->isAdmin()) {
-                    echo CHtml::button(Yii::t('language', 'แก้ไข'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button(
+                            Yii::t('language', 'แก้ไข'), array(
+                        'class' => "grey", // btnedit grey
+                        'style' => 'margin-left: 650px; margin-top: 8px; position:absolute;',
+                        'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertTypeBusiness/id/' . $model->id
                         )) . "'")
                     );
                 }
                 ?>
-            </h3>
-            <div class="clearfix">
-                <?php echo $model->about; ?>    
-            </div>
+
+                <div class="clearfix">
+                    <?php echo $model->about; ?>    
+                </div>
+            <!--</div>-->
         </div>
         <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 15px;margin-top: 5px;">
             <h3><img src="/img/iconform.png"> Partner</h3>
