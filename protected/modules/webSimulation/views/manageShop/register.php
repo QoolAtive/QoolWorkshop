@@ -1,13 +1,42 @@
-<div class="sidebar">
-    <div class="menuitem">
-        <ul>
-            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
-        </ul>
+<?php
+if ($model->web_shop_id == NULL) {
+    ?>
+    <div class="sidebar">
+        <div class="menuitem">
+            <ul>
+                <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
+            </ul>
 
+        </div>
     </div>
-</div>
+    <?
+} else {
+    $this->renderPartial('_side_menu', array('index' => 'shop'));
+}
+?>
 <div class="content">
     <div class="tabcontents">
+        <?php
+        if ($model->web_shop_id != NULL) {
+            ?>
+            <h3 class="barH3">
+                <span>
+                    <i class="icon-shopping-cart"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                        <?php
+                        $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
+                        echo Yii::t('language', 'ร้าน ') . $shop_name;
+                        ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียดร้านค้า'); ?>
+                </span>
+            </h3>
+        <?php } ?>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'shop_detail-form',
@@ -18,23 +47,27 @@
 //        echo $form->errorSummary($model);
         ?>
 
-        <div class="_100">
-            <h4 class="reg">- <?php echo Yii::t('language', 'ทดสองสมัครเปิดร้านค้าออนไลน์'); ?> -</h4>
-        </div>
+        <?php
+        if ($model->web_shop_id == NULL) {
+            ?>
+            <div class="_100">
+                <h4 class="reg">- <?php echo Yii::t('language', 'ทดสองสมัครเปิดร้านค้าออนไลน์'); ?> -</h4>
+            </div>
+        <?php } ?>
         <div class="_50 bootstro" data-bootstro-content="แสดงสินค้าทั้งหมดที่อยู๋ในร้านของคุณ" data-bootstro-width="320px" data-bootstro-title="ส่วนแสดงสินค้า" data-bootstro-placement="top" data-bootstro-step="0">
             <?php
             echo $form->labelEx($model, 'name_th');
             echo $form->textField($model, 'name_th', array(
                 'class' => 'fieldrequire',
                 'readonly' => isset($model->web_shop_id),
-                ));
+            ));
             echo $form->error($model, 'name_th');
 
             echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en', array(
                 'class' => 'fieldrequire',
                 'readonly' => isset($model->web_shop_id),
-                ));
+            ));
             echo $form->error($model, 'name_en');
             ?>
         </div>
