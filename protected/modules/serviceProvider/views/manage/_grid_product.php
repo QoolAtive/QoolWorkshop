@@ -8,7 +8,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'summaryText' => '',
     'columns' => array(
         array(// display 'create_time' using an expression
-            'header' => 'ลำดับ',
+            'header' => Yii::t('language', 'ลำดับ'),
             'headerHtmlOptions' => array('style' => 'width: 7%;'),
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
@@ -17,20 +17,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'name',
             'value' => '$data->name',
         ),
-        array(
-            'name' => 'detail',
-            'value' => '$data->detail',
-//                'filter' => '',
-        ),
+//        array(
+//            'name' => 'detail',
+//            'value' => '$data->detail',
+////                'filter' => '',
+//        ),
         array(
             'name' => 'name_en',
             'value' => '$data->name_en',
         ),
-        array(
-            'name' => 'detail_en',
-            'value' => '$data->detail_en',
-//                'filter' => '',
-        ),
+//        array(
+//            'name' => 'detail_en',
+//            'value' => '$data->detail_en',
+////                'filter' => '',
+//        ),
         array(
             'name' => 'guide',
             'value' => 'SpProduct::model()->getDataTypeList($data->guide)',
@@ -38,16 +38,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'เครื่องมือ',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'header' => Yii::t('language', 'เครื่องมือ'),
             'template' => '{update}{delete}',
             'buttons' => array(
                 'update' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'แก้ไข'),
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertProduct/",array("id"=>' . $id . ', "pro_id" => $data->id))',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => Yii::t('language', 'ลบ'),
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delProduct/",array("id"=>' . $id . ', "pro_id" => $data->id))',
                 ),
             ),
@@ -58,13 +58,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
-        'header' => 'หน้าที่: ',
-        'firstPageLabel' => 'หน้าแรก',
-        'prevPageLabel' => 'ก่อนหน้า',
-        'nextPageLabel' => 'หน้าถัดไป',
-        'lastPageLabel' => 'หน้าสุดท้าย',
+        'header' => Yii::t('language', 'หน้าที่: '),
+        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
 ?>
