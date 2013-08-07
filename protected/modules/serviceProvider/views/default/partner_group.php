@@ -27,7 +27,7 @@ $about = LanguageHelper::changeDB($model->about, $model->about_en);
                 echo CHtml::button(
                         Yii::t('language', 'แก้ไข'), array(
                     'class' => "grey", // btnedit grey
-                    'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
+                    'style' => 'margin-left: 656px; margin-top: 0px; position:absolute;',
                     'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/serviceProvider/manage/insertTypeBusiness/id/' . $model->id
                     )) . "'")
