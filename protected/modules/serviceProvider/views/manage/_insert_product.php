@@ -8,44 +8,61 @@ $this->renderPartial('_side_bar', array(
 <div class="content">
     <div class="tabcontents">
         <?php
-        if (empty($model->id)) {
-            $btnText = 'บันทึก';
-
+        if ($model->id != NULL) {
+            $word = Yii::t('language', 'แก้ไข');
             $link_back = '/serviceProvider/manage/typeBusiness';
         } else {
-            $btnText = 'บันทึก';
-
+            $word = Yii::t('language', 'เพิ่ม');
             $link_back = '/serviceProvider/manage/typeBusiness';
         }
+        $title = SpCompany::model()->find('id=:id', array(':id' => $id));
+        $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'สินค้าและบริการ'); ?></h3>
-
-        <hr>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-compass"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                    <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/company")); ?>">
+                    <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/product/id/" . $id)); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าและบริการ') . ' (' . $company_name . ') '; ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>
+            </span>
+        </h3>
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'insert_type_business-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
-            ?>
-            <div class="_100">
-                <div class="ckleft"> 
-                    <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-                </div>
-                <div class="ckright">
-                    <?php
-                    if (!empty($model->image)) {
-                        ?>
+
+            if (!empty($model->image)) {
+                ?>
+                <div class="_100">
+                    <div class="ckleft"> 
+                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+                    </div>
+                    <div class="ckright">
                         <?php
                         echo CHtml::image("/file/product/" . $model->image, "image", array('height' => '100'));
                         echo $model->image;
-                        ?>
-
-                        <?php
-                    }
-                    ?> 
+                        ?> 
+                    </div>
                 </div>
-            </div>
+                <?php
+            }
+            ?>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'image');
@@ -61,7 +78,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลสินค้าภาษาไทย -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลสินค้า') . ' (' . Yii::t('language', 'ภาษาไทย') . ') - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -73,12 +90,31 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'detail');
-                echo $form->textArea($model, 'detail');
+                $this->widget('ext.ckeditor.CKEditorWidget', array(
+                    "model" => $model, # Data-Model
+                    "attribute" => 'detail', # Attribute in the Data-Model
+                    "defaultValue" => $model->detail, # Optional
+                    "config" => array(
+                        "height" => "240px",
+                        "width" => "730",
+                        'toolbar' => array(
+                            array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
+                                '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                                '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
+                            array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
+                                '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                        ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
+                    ),
+                    "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
+                    # Path to ckeditor.php
+                    "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
+                ));
                 echo $form->error($model, 'detail');
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลสินค้าภาษาอังกฤษ -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลสินค้า') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -90,20 +126,38 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'detail_en');
-                echo $form->textArea($model, 'detail_en');
+                $this->widget('ext.ckeditor.CKEditorWidget', array(
+                    "model" => $model, # Data-Model
+                    "attribute" => 'detail_en', # Attribute in the Data-Model
+                    "defaultValue" => $model->detail_en, # Optional
+                    "config" => array(
+                        "height" => "240px",
+                        "width" => "730",
+                        'toolbar' => array(
+                            array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
+                                '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                                '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
+                            array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
+                                '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                        ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
+                    ),
+                    "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
+                    # Path to ckeditor.php
+                    "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
+                ));
                 echo $form->error($model, 'detail_en');
                 ?>
             </div>
             <div class="_100 textcenter">
                 <?php
-                echo CHtml::submitButton($btnText);
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
 //        echo Yii::app()->user->getState('product_link_back_to_menu');
                 if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                     $link_back = Yii::app()->user->getState('default_link_back_to_menu');
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            $link_back
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array($link_back
                         )) . "'")
                     );
                 } else {
@@ -112,7 +166,7 @@ $this->renderPartial('_side_bar', array(
                         )) . "'")
                     );
                 }
-                echo CHtml::button(Yii::t('language', 'พาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ไปที่') . Yii::t('language', 'พาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/serviceProvider/manage/company'
                     )) . "'")
                 );

@@ -9,7 +9,7 @@
                     <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' ' . $model_count->count_company_view;
+                    echo Yii::t('language', 'จำนวนการเข้าชม') . ': ' . $model_count->count_company_view;
                     ?>
                 </p>
                 <table style=" color: #fff; display: block;
@@ -18,7 +18,7 @@
                     <tr>
                         <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
                         <td> : </td>
-                        <td>
+                        <td style="padding-left: 2px;">
                             <?php
                             $contact_name = LanguageHelper::changeDB($model->contact_name, $model->contact_name_en);
                             echo $contact_name;
@@ -27,17 +27,17 @@
                     </tr>
                     <tr>
                         <td><?php echo Yii::t('language', 'อีเมล์'); ?></td>
-                        <td>:</td>
-                        <td><?php echo $model->contact_email; ?></td>
+                        <td> : </td>
+                        <td style="padding-left: 2px;"><?php echo $model->contact_email; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo Yii::t('language', 'โทรสาร.'); ?></td>
                         <td> : </td>
-                        <td><?php echo $model->contact_fax; ?></td>
+                        <td style="padding-left: 2px;"><?php echo $model->contact_fax; ?></td>
                     </tr>
                     <tr> <td><?php echo Yii::t('language', 'โทร.'); ?></td>
                         <td> : </td>
-                        <td><?php echo $model->contact_tel; ?></td>
+                        <td style="padding-left: 2px;"><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
             </li>
@@ -47,6 +47,19 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
+        <?php
+        $name = LanguageHelper::changeDB($model->name, $model->name_en);
+        ?>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-compass"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                    <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo $name; ?>
+            </span>
+        </h3>
         <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
 
             <div id="featured" > 
@@ -80,7 +93,7 @@
             ?>
 
         </div>
-        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
+        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
             <h2>
                 <img src="/img/icontopic.png" />
                 <?php
@@ -89,7 +102,7 @@
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
                         'class' => "grey", // btnedit grey
-                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
+                        'style' => 'margin-left: 485px; margin-top: 0px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertCompany/id/' . $model->id
                         )) . "'")
@@ -101,9 +114,9 @@
                 <tr>
                     <td><?php echo Yii::t('language', 'ชื่อบริษัท'); ?></td>
                     <td> : </td>
-                    <td>
+                    <td style="padding-left: 2px;">
                         <?php
-                        $name = LanguageHelper::changeDB($model->name, $model->name_en);
+                        //$name = LanguageHelper::changeDB($model->name, $model->name_en); //ย้ายไปอยู่ด้านบน เพื่อเรียกใช้ในหัวข้อด้วย
                         echo $name;
                         ?>
                     </td>
@@ -112,7 +125,7 @@
                 <tr>
                     <td><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?></td>
                     <td> : </td>
-                    <td>
+                    <td style="padding-left: 2px;">
                         <?php
                         $type = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                         foreach ($type as $data) {
@@ -127,9 +140,9 @@
                 <tr>
                     <td><?php echo Yii::t('language', 'ที่ตั้ง'); ?></td>
                     <td> : </td>
-                    <td>
+                    <td style="padding-left: 2px;">
                         <?php
-                        $address = LanguageHelper::changeDB($type_name->address, $type_name->address_en);
+                        $address = LanguageHelper::changeDB($model->address, $model->address_en);
                         echo $address;
                         ?>
                     </td>
@@ -137,13 +150,13 @@
                 <tr>
                     <td><?php echo Yii::t('language', 'เว็บไซต์'); ?></td>
                     <td> : </td>
-                    <td><?php echo $model->website; ?></td>
+                    <td style="padding-left: 2px;"><?php echo $model->website; ?></td>
                 </tr>
                 <?php if ($model->brochure) { ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
                         <td> : </td>
-                        <td>
+                        <td style="padding-left: 2px;">
                             <?php
                             echo CHtml::link('ดาวน์โหลด', array(
                                 '/serviceProvider/default/readingPdf/', 'id' => $model->id), array(
@@ -172,15 +185,17 @@
         ));
         if ($dp_product_best_sell->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
-            <div class="clearfix">
-                <?php
-                $this->widget('zii.widgets.CListView', array(
-                    'dataProvider' => $dp_product_best_sell,
-                    'itemView' => 'list_product',
-                    'summaryText' => false,
-                ));
-                ?>
+            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
+                <div class="clearfix">
+                    <?php
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $dp_product_best_sell,
+                        'itemView' => 'list_product',
+                        'summaryText' => false,
+                    ));
+                    ?>
+                </div>
             </div>
             <?php
         }
@@ -195,15 +210,17 @@
         ));
         if ($dp_product_promo->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
-            <div class="clearfix">
-                <?php
-                $this->widget('zii.widgets.CListView', array(
-                    'dataProvider' => $dp_product_promo,
-                    'itemView' => 'list_product',
-                    'summaryText' => false,
-                ));
-                ?>
+            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
+                <div class="clearfix">
+                    <?php
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $dp_product_promo,
+                        'itemView' => 'list_product',
+                        'summaryText' => false,
+                    ));
+                    ?>
+                </div>
             </div>
             <?php
         }
@@ -219,15 +236,17 @@
 
         if ($dp_product_new->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
-            <div class="clearfix">
-                <?php
-                $this->widget('zii.widgets.CListView', array(
-                    'dataProvider' => $dp_product_new,
-                    'itemView' => 'list_product',
-                    'summaryText' => false,
-                ));
-                ?>
+            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
+                <div class="clearfix">
+                    <?php
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $dp_product_new,
+                        'itemView' => 'list_product',
+                        'summaryText' => false,
+                    ));
+                    ?>
+                </div>   
             </div>
         <?php } ?>
         <div class="textcenter">
