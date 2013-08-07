@@ -47,14 +47,37 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
-        <div class="clearfix" style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
+        <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
 
             <div id="featured" > 
-                <img src="/file/banner/default.jpg" style="height: 220px;" />
-                <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                <?php
+                $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                if ($banner == null) {
+                    ?>
+                    <img src="/file/banner/default.jpg" style="height: 220px;" />
+                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                    <?php
+                } else {
+                    foreach ($banner as $data) {
+                        ?>
+                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;" />
+                        <?php
+                    }
+                }
+                ?>
             </div>
-            <img src="/file/logo/default.jpg" style="float: right;" width="220">
+            <?php
+            if ($model->logo != null) {
+                ?>
+                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" />
+                <?php
+            } else {
+                ?>
+                <img src="/file/logo/default.jpg" style="float: right;" width="220" />
+                <?php
+            }
+            ?>
 
         </div>
         <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
