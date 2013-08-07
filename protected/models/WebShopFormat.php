@@ -41,7 +41,7 @@ class WebShopFormat extends WebShopFormatBase {
             array('web_shop_id, theme', 'required'),
             array('web_shop_id', 'numerical', 'integerOnly' => true),
             array('logo, theme, background', 'length', 'max' => 100),
-            array('char_color, topic_color, link_color', 'length', 'max' => 6),
+            array('char_color, topic_color, link_color', 'length', 'max' => 7),
             array('char_size, topic_size, link_size', 'length', 'max' => 10),
             array('logo, background', 'safe'),
             // The following rule is used by search().

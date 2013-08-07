@@ -201,8 +201,14 @@ class ManageShopController extends Controller {
         
         if (isset($_POST['WebShopFormat'])) {
             $model->attributes = $_POST['WebShopFormat'];
+            if($model->save()){
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')) . "';
+                  </script>";
+            }
         }
-        $this->render('select_logo_bg', array('model' => $model));
+        $this->render('select_font', array('model' => $model));
     }
 
 }
