@@ -47,14 +47,14 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
-        <div class="clearfix" style="border: 1px solid #e0e0e0; display: inline-block; width: 100%;">
+        <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
 
             <div id="featured" > 
-                <img src="/file/banner/default.jpg" style="height: 220px;" />
-                <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                    <img src="/file/banner/default.jpg" style="height: 220px;" />
+                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
             </div>
-            <img src="/file/logo/default.jpg" style="float: right;" width="220">
+                <img src="/file/logo/default.jpg" style="float: right;" width="220">
 
         </div>
         <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
