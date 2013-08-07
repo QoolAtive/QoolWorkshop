@@ -34,11 +34,6 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
         <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script type="text/javascript">
-            // $(window).load(function() {
-            //     $('#featured').orbit()
-            // });
-        </script>
     </head>
 
     <body>

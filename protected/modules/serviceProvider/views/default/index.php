@@ -5,17 +5,77 @@ $this->renderPartial('_side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
-        <?php
-        $criteria = new CDbCriteria;
-        $criteria->order = 'id asc';
-        $partner_group = new CActiveDataProvider('SpTypeBusiness', array(
-            'criteria' => $criteria,
-        ));
+        <div id="view2" class="tabcontent">
+            <div>
+                <h3 class="barH3">
+                    <span>
+                        <i class="icon-compass"></i> 
+                        <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                            <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+                        </a>
+                    </span>
+                </h3>
+                <hr>
+                <div class="linksearch">
+                    <?php
+                    $form = $this->beginWidget('CActiveForm', array(
+                        'id' => 'search-form',
+                    ));
+                    ?>
+                    <div class="_100">
+                        <h3><i class="icon-search"></i><?php echo Yii::t('language', 'ค้นหา'); ?> : </h3>
+                    </div>
+                    <div class="_50">
+                        <?php
+                        echo CHtml::textField('name', $name, array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อบริษัท')));
+                        ?>
+                    </div>
+                    <div class="_50">
 
-        $this->widget('zii.widgets.CListView', array(
-            'dataProvider' => $partner_group,
-            'itemView' => '_list_partner_group',
-            'summaryText' => false,
-        ));
-        ?>
+                        <?php
+//    echo "<br />feild_name: " . $feild_name . "<br />";
+// Change Language TH/EN Select Data for show in Drop Down List
+                        $feild_name = LanguageHelper::changeDB('name', 'name_en');
+                        echo CHtml::DropDownList(
+                                'type_id', $type_id, array('0' => " - " . Yii::t('language', 'ค้นหาตามประเภทผู้ให้บริการ') . " - ") + CHtml::listData(
+                                        SpTypeBusiness::model()->findAll(), "id", $feild_name)
+                        );
+                        ?>
+                    </div>
+                    <div class="_100 textcenter">
+                        <?php
+                        echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
+                        ?>
+
+                    </div>
+                    <?php
+                    $this->endWidget();
+                    ?>
+                </div>
+                <hr>
+                <div>
+                    <?php
+//        $criteria = new CDbCriteria;
+//        $criteria->order = 'id asc';
+//        $partner_group = new CActiveDataProvider('SpTypeBusiness', array(
+//            'criteria' => $criteria,
+//        ));
+//
+//        $this->widget('zii.widgets.CListView', array(
+//            'dataProvider' => $partner_group,
+//            'itemView' => '_list_partner_group',
+//            'summaryText' => false,
+//        ));
+
+
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $model,
+                        'itemView' => '_list_all',
+                        'summaryText' => false,
+                        'template' => "{items}\n{pager}",
+                    ));
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>

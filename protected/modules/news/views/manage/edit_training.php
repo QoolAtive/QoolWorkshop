@@ -25,19 +25,21 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'การอบรม')); ?>
             </span>
         </h3>
+
+        
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
         echo $form->errorSummary($model);
         ?>
-        <div>
+        <div class="_100">
             <?php
             echo $form->labelEx($model, 'link');
             echo $form->textField($model, 'link');
             ?>
         </div>
-        <div>
+        <div class="_50">
             <?php
             //เลือกวันเริ่มต้น
             echo $form->labelEx($model, 'start_at');
@@ -57,7 +59,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             ));
             ?>
         </div>
-        <div>
+        <div class="_50">
             <?php
             //เลือกวันสิ้นสุด
             echo $form->labelEx($model, 'end_at');
@@ -77,15 +79,15 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             ));
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
 //    ภาษาไทย
-            echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
+            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาไทย -') . "</h4>";
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th');
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
             echo $form->labelEx($model, 'detail_th');
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -94,7 +96,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 "defaultValue" => $model->detail_th, # Optional
                 "config" => array(
                     "height" => "240px",
-                    "width" => "600",
+                    "width" => "100%",
                     'toolbar' => array(
                         array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                             '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -110,15 +112,15 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             ));
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
 //    ภาษาอังกฤษ
-            echo "<h4>" . Yii::t('language', 'ภาษาอังกฤษ') . "</h4>";
+            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาอังกฤษ -') . "</h4>";
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en');
             ?>
         </div>
-        <div>
+        <div class="_100">
             <?php
             echo Yii::t('language', $form->labelEx($model, 'detail_en'));
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -127,7 +129,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 "defaultValue" => $model->detail_en, # Optional
                 "config" => array(
                     "height" => "240px",
-                    "width" => "600",
+                    "width" => "100%",
                     'toolbar' => array(
                         array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                             '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -143,7 +145,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             ));
             ?>
         </div>
-        <div class="txt-cen">
+        <div class="txt-cen _100">
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));

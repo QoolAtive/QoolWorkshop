@@ -1,15 +1,18 @@
 <!--NEWS-->
+
+
+
 <?php
     $model_rss = NewsRss::model()->find();
     $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
     ?>
 <div id="view1">
-    <h3>
-        <i class='icon-rss'></i>
-        <?php echo Yii::t('language', 'RSS Feed'); ?>
-        <i class='icon-chevron-right'></i>
-        <?php echo $head_rss; ?>
+    <h3 class="barH3">
+        <i class='icon-rss'></i><?php echo Yii::t('language', 'RSS Feed'); ?> <i class='icon-chevron-right'></i> <?php echo $head_rss; ?>
     </h3>
+
+
+    
     <!-- Feed widget -->
     <?php
     $this->widget(
@@ -27,6 +30,7 @@
             ?>
             <div class="accordion-group">
                 <div class="accordion-heading">
+                    <p class="faqarrow"></p>
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother1" href="#item1<?php echo $i; ?>">
                         <?php echo $subject; ?>
                     </a>

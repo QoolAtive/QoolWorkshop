@@ -1,7 +1,23 @@
-
-
 /* @group Component */
+.orbit-wrapper{
+    width: 525px !important;
+    position: absolute !important;;
 
+}
+.orbit img{
+        width: 525px !important;
+}
+
+#featured, div.orbit-wrapper { 
+     position: absolute;
+   
+}
+ #featured { 
+           width: 525px !important;
+          height: 450px;
+           background: #000 url('orbit/loading.gif') no-repeat center center; overflow: hidden; }
+     #featured img,  
+     #featured div { display: none; }
 * {
     outline:none !important;
     -moz-outline: none !important;
