@@ -33,7 +33,7 @@ class ManageShopController extends Controller {
                     //หน้าแก้ไข
                     echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopList')) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShop')) . "';
                   </script>";
                 }
             }
@@ -58,15 +58,16 @@ class ManageShopController extends Controller {
             if ($model->theme != '') {
                 $model->save();
                 if ($shop_id == NULL) {
-                echo "<script language='javascript'>
+                    //หน้าสมัคร
+                    echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/finish')) . "';
                   </script>";
                 } else {
                     //หน้าแก้ไข
-                echo "<script language='javascript'>
+                    echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShop')) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')) . "';
                   </script>";
                 }
             } else {
@@ -112,20 +113,96 @@ class ManageShopController extends Controller {
     public function actionManageShop() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShop::model()->findByPk($shop_id);
-        $this->render('manage_shop', array('model' => $model, 'shop_id' => $shop_id));
+        $this->render('manage_shop', array('model' => $model));
     }
 
 //    หน้าจัดการสินค้า
     public function actionManageShopItem() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShop::model()->findByPk($shop_id);
-        $this->render('manage_item', array('model' => $model, 'shop_id' => $shop_id));
+        $this->render('manage_item', array('model' => $model));
     }
 
+//    หน้าจัดการรูปแบบร้านค้า
     public function actionManageShopFormat() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShop::model()->findByPk($shop_id);
-        $this->render('manage_shop_format', array('model' => $model, 'shop_id' => $shop_id));
+        $this->render('manage_shop_format', array('model' => $model));
+    }
+
+//    หน้าเลือกโลโก้ และพื้นหลัง
+    public function actionSelectLogoBg() {
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
+
+        if (isset($_POST['WebShopFormat'])) {
+            $model->attributes = $_POST['WebShopFormat'];
+
+            //for upload logo pic
+            $arr_files = CUploadedFile::getInstancesByName('logo_file');
+            if ($arr_files != NULL) {
+                $path = '/upload/img/websim/logo/';
+
+                foreach ($arr_files as $i => $file) {
+                    $arr_file_detail = explode('.', $file->getName());
+                    $formatName = $arr_file_detail[0] . "-" . time() . $i . '.' . $file->getExtensionName();
+                    $file->saveAs('.' . $path . $formatName);
+                    $model->logo = $path . $formatName;
+                }
+//            } else if ($model->img_path == NULL) {
+//                $model->img_path = '/img/link/Link_icon.png';
+            }
+            //END for upload logo pic
+            //
+            //for upload bg pic
+            $arr_files = CUploadedFile::getInstancesByName('bg_file');
+            if ($arr_files != NULL) {
+                $path = '/upload/img/websim/bg/';
+
+                foreach ($arr_files as $i => $file) {
+                    $arr_file_detail = explode('.', $file->getName());
+                    $formatName = $arr_file_detail[0] . "-" . time() . $i . '.' . $file->getExtensionName();
+                    $file->saveAs('.' . $path . $formatName);
+                    $model->background = $path . $formatName;
+                }
+//            } else if ($model->img_path == NULL) {
+//                $model->img_path = '/img/link/Link_icon.png';
+            }
+            //END for upload bg pic
+
+            $valid_logo = FALSE;
+            $valid_bg = FALSE;
+            if ($model->logo != NULL || $model->background != NULL) {
+                if ($model->logo != NULL) {
+                    $valid_logo = WebShopFormat::model()->updateByPk($model->web_shop_format_id, array('logo' => $model->logo));
+                }
+                if ($model->background != NULL) {
+                    $valid_bg = WebShopFormat::model()->updateByPk($model->web_shop_format_id, array('background' => $model->background));
+                }
+            } else {
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'กรุณาเลือกโลโก้หรือพื้นหลังที่ต้องการ') . "');
+                  </script>";
+            }
+
+            if ($valid_logo || $valid_bg) {
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')) . "';
+                  </script>";
+            }
+        }
+        $this->render('select_logo_bg', array('model' => $model));
+    }
+    
+    public function actionSelectCharText(){
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
+        
+        if (isset($_POST['WebShopFormat'])) {
+            $model->attributes = $_POST['WebShopFormat'];
+        }
+        $this->render('select_logo_bg', array('model' => $model));
     }
 
 }
