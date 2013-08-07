@@ -47,15 +47,14 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
+        <?php
+        $name = LanguageHelper::changeDB($model->name, $model->name_en);
+        ?>
         <h3 class="barH3">
             <span>
                 <i class="icon-compass"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
                     <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
-                </a>
-                <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
-                    <?php echo $name; ?>
                 </a>
                 <i class="icon-chevron-right"></i>
                 <?php echo $name; ?>
@@ -117,7 +116,7 @@
                     <td> : </td>
                     <td style="padding-left: 2px;">
                         <?php
-                        $name = LanguageHelper::changeDB($model->name, $model->name_en);
+                        //$name = LanguageHelper::changeDB($model->name, $model->name_en); //ย้ายไปอยู่ด้านบน เพื่อเรียกใช้ในหัวข้อด้วย
                         echo $name;
                         ?>
                     </td>
