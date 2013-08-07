@@ -22,9 +22,9 @@
 
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
  -->
-<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.easing.1.3.js"></script>
-<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.touchSwipe.min.js"></script>
-<script src="http://kevinbatdorf.github.io/liquidslider/js/jquery.liquid-slider.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.touchSwipe.min.js"></script>
+<script src="/js/jquery.liquid-slider.min.js"></script>
 <script>
 
 $(document).ready(function($){
