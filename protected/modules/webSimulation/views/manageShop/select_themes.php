@@ -1,13 +1,45 @@
-<div class="sidebar">
-    <div class="menuitem">
-        <ul>
-            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
-        </ul>
+<?php
+if ($model->web_shop_id == NULL) {
+    ?>
+    <div class="sidebar">
+        <div class="menuitem">
+            <ul>
+                <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
+            </ul>
 
+        </div>
     </div>
-</div>
+    <?
+} else {
+    $this->renderPartial('_side_menu', array('index' => 'shop'));
+}
+?>
 <div class="content">
     <div class="tabcontents" >
+        <?php
+        if ($model->web_shop_id != NULL) {
+            ?>
+            <h3 class="barH3">
+                <span>
+                    <i class="icon-shopping-cart"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                        <?php
+                        $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
+                        echo Yii::t('language', 'ร้าน ') . $shop_name; ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+                    </a>
+                    <i class="icon-chevron-right"></i>
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
+                </span>
+            </h3>
+        <?php } ?>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'shop_themes-form',
@@ -176,9 +208,17 @@
                 'id' => 'theme',
                 'value' => ''
             ));
-            echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
-                'class' => "purple",
-            ));
+            if ($model->web_shop_id == NULL) {
+                echo CHtml::submitButton(Yii::t('language', 'ขั้นตอนเปิดร้านถัดไป >'), array(
+                    'class' => "purple",
+                ));
+            } else {
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array(
+                    'class' => "purple",
+                ));
+                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")) . '"'));
+            }
             ?>
         </p>
 

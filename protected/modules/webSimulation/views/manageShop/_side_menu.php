@@ -5,13 +5,13 @@ $select3 = '';
 $select4 = '';
 $select5 = '';
 switch ($index) {
-    case 2:
+    case 'shop':
         $select2 = 'selected';
         break;
-    case 3:
+    case 'item':
         $select3 = 'selected';
         break;
-    case 4:
+    case 'format':
         $select4 = 'selected';
         break;
     case 5:
@@ -30,20 +30,20 @@ switch ($index) {
 
         <ul class="tabs clearfix">
             <li class='<?php echo $select2; ?>'>
-                <a rel="view-2" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop/shop_id/" . $shop_id)); ?>">
+                <a rel="view-2" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php echo Yii::t('language', 'จัดการร้านค้า'); ?>
                 </a>
             </li>
             <li class='<?php echo $select3; ?>'>
-                <a rel="view-3" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopItem/shop_id/" . $shop_id)); ?>">
+                <a rel="view-3" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopItem")); ?>">
                     <?php echo Yii::t('language', 'จัดการสินค้าในร้าน'); ?>
                 </a>
             </li>
-            <li class='<?php echo $select4; ?>'>
-                <a rel="view-4" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat/shop_id/" . $shop_id)); ?>">
+<!--            <li class='<?php echo $select4; ?>'>
+                <a rel="view-4" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
                     <?php echo Yii::t('language', 'รูปแบบร้านค้า'); ?>
                 </a>
-            </li>
+            </li>-->
             <li class='<?php echo $select5; ?>'>
                 <a rel="view-5" href="#">
                     <?php echo Yii::t('language', 'ดูร้านค้าของคุณ'); ?>

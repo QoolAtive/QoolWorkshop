@@ -24,11 +24,17 @@
         <div class="_50 bootstro" data-bootstro-content="แสดงสินค้าทั้งหมดที่อยู๋ในร้านของคุณ" data-bootstro-width="320px" data-bootstro-title="ส่วนแสดงสินค้า" data-bootstro-placement="top" data-bootstro-step="0">
             <?php
             echo $form->labelEx($model, 'name_th');
-            echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
+            echo $form->textField($model, 'name_th', array(
+                'class' => 'fieldrequire',
+                'readonly' => isset($model->web_shop_id),
+                ));
             echo $form->error($model, 'name_th');
 
             echo $form->labelEx($model, 'name_en');
-            echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+            echo $form->textField($model, 'name_en', array(
+                'class' => 'fieldrequire',
+                'readonly' => isset($model->web_shop_id),
+                ));
             echo $form->error($model, 'name_en');
             ?>
         </div>
@@ -209,7 +215,7 @@
                     'class' => "purple",
                 ));
                 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")) . '"'));
             }
             ?>
         </div>
