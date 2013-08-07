@@ -28,15 +28,39 @@
 <script>
 
 $(document).ready(function($){
-
-
      $('#slider-id').liquidSlider({
-
-
-
-});
+      autoHeight: false,
+      autoSlide: true,
+      autoSlideInterval: 6000
+  });
 });
 </script>
+<style type="text/css">
+  .rss_post {
+    color: #777777;
+    float: right;
+  }
+  i.icon-hand-right{
+    color: goldenrod;
+  }
+  .rss_detail {
+   
+}
+  .panel-wrapper h2{
+   
+  }
+.rss_feed_box  {
+/*    border-radius: 17px 17px 17px 17px;
+*/    box-shadow: 1px 0 9px -1px #AAAAAA inset;
+}
+
+.ls-responsive .liquid-slider{
+  padding: 15px 0px;
+}
+
+
+
+</style>
 <!-- <div class="" >
      <div>
           <h2 class="title">Slide 1</h2>
@@ -54,7 +78,7 @@ $(document).ready(function($){
  -->
 
 
-<div class="rss_feed_box  liquid-slider" id="slider-id">
+<div class="rss_feed_box  liquid-slider ra" id="slider-id">
     <?php
     foreach ($items as $item):
         ?>
