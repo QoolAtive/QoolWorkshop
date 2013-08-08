@@ -41,7 +41,7 @@
                             'name' => 'img_path',
                             'type' => 'raw',
                             'value' => 'CHtml::image($data->img_path,\'\',array(
-                                \'height\' => \'50\'
+                                \'style\' => \'height:50px;\'
                                 ))',
                             'filter' => false,
                         ),
