@@ -174,14 +174,14 @@ $this->renderPartial('_side_bar', array(
                         <label><?php echo Yii::t('language', 'โลโก้'); ?></label>
                         <?php
                         echo CHtml::image("/file/logo/" . $model->logo, $model->logo, array('width' => '350'));
-                        echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
-                            '/serviceProvider/manage/delete', 'id' => $model->id
-                                ), array(
-                            'type' => 'post',
-                                ), array(
-                            'hrel' => '/serviceProvider/manage/delete', 'id' => $model->id,
-                                )
-                        );
+//                        echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+//                            '/serviceProvider/manage/delete', 'id' => $model->id
+//                                ), array(
+//                            'type' => 'post',
+//                                ), array(
+//                            'hrel' => '/serviceProvider/manage/delete', 'id' => $model->id,
+//                                )
+//                        );
                         ?>
                     </div>
                 <?php } ?>
@@ -221,7 +221,7 @@ $this->renderPartial('_side_bar', array(
                                 'data' => array('banner_id' => $data['id'], 'company_id' => $model->id),
                                 'update' => 'div#banner',
                                     ), array(
-                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
+//                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
                                 'hrel' => '/serviceProvider/manage/delBanner', 'id' => $data['id']
                                     )
                             );
@@ -272,7 +272,7 @@ $this->renderPartial('_side_bar', array(
                                 'data' => array('brochure_id' => $data['brochure_id'], 'company_id' => $model->id),
                                 'update' => 'div#brochure',
                                     ), array(
-                                'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
+//                                'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
                                 'hrel' => '/serviceProvider/manage/delBrochure', 'id' => $data['brochure_id']
                                     )
                             );

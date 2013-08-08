@@ -13,7 +13,7 @@ foreach ($brochure as $data) {
         'data' => array('brochure_id' => $data['brochure_id'], 'company_id' => $model->id),
         'update' => 'div#brochure',
             ), array(
-        'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
+//        'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
         'hrel' => '/serviceProvider/manage/delBrochure', 'id' => $data['brochure_id']
             )
     );
