@@ -98,8 +98,10 @@ class ManageShopController extends Controller {
 
     public function actionDeleteShop($shop_id) {
         $model = WebShop::model()->findByPk($shop_id);
+        $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
         if ($model->delete()) {
-            
+            unlink(Yii::app()->basePath . $format->logo);
+            unlink(Yii::app()->basePath . $format->background);
         }
     }
 
@@ -194,14 +196,15 @@ class ManageShopController extends Controller {
         }
         $this->render('select_logo_bg', array('model' => $model));
     }
-    
-    public function actionSelectCharText(){
+
+//    หน้าเลือกอักษรและข้อความ
+    public function actionSelectCharText() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
-        
+
         if (isset($_POST['WebShopFormat'])) {
             $model->attributes = $_POST['WebShopFormat'];
-            if($model->save()){
+            if ($model->save()) {
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')) . "';
@@ -209,6 +212,38 @@ class ManageShopController extends Controller {
             }
         }
         $this->render('select_font', array('model' => $model));
+    }
+
+//    หน้าแสดงใบสั่งซื้อ
+    public function actionOrder() {
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = new WebShopOrder();
+        $model->web_shop_id = $shop_id;
+        if (isset($_GET['WebShopOrder'])) {
+            $model->attributes = $_GET['WebShopOrder'];
+            $model->web_shop_id = $shop_id;
+        }
+        $this->render('order_list', array('model' => $model));
+    }
+
+//    หน้าแสดงรายละเอียดใบสั่งซื้อ
+    public function actionOrderDetail($order_id) {
+        $order = WebShopOrder::model()->findByPk($order_id);
+        $item = new WebShopOrderDetail();
+        $item->web_shop_order_id = $order_id;
+        if (isset($_POST['status'])) {
+            $model->attributes = $_POST['status'];
+            WebShopOrder::model()->updateByPk($order_id, array('status' => $_POST['status']));
+            $order->status = $_POST['status'];
+        }
+        $this->render('order_detail', array('order' => $order, 'item' => $item));
+    }
+
+    public function actionDeleteOrder($order_id) {
+        $model = WebShopOrder::model()->findByPk($order_id);
+        if ($model->delete()) {
+            
+        }
     }
 
 }

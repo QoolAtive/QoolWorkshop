@@ -15,7 +15,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <!--รายการสั่งซื้อ-->
         <div>
             <?php
-            echo CHtml::link(Yii::t('language', 'รายการ') . Yii::t('language', 'สั่งซื้อ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')));
+            echo CHtml::link(Yii::t('language', 'รายการ') . Yii::t('language', 'สั่งซื้อ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/order')));
             ?>
         </div>
         

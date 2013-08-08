@@ -94,7 +94,7 @@ class WebShopOrder extends WebShopOrderBase
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('web_shop_order_id',$this->web_shop_order_id);
+//		$criteria->compare('web_shop_order_id',$this->web_shop_order_id);
 		$criteria->compare('web_shop_id',$this->web_shop_id);
 		$criteria->compare('customer_name',$this->customer_name,true);
 		$criteria->compare('customer_email',$this->customer_email,true);
@@ -102,6 +102,7 @@ class WebShopOrder extends WebShopOrderBase
 		$criteria->compare('price_all',$this->price_all);
 		$criteria->compare('order_at',$this->order_at,true);
 		$criteria->compare('status',$this->status);
+                $criteria->order = 'order_at DESC';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

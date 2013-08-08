@@ -8,6 +8,7 @@
  * @property integer $web_shop_id
  * @property integer $web_shop_item_id
  * @property integer $amount
+ * @property double $price
  *
  * The followings are the available model relations:
  * @property WebShop $webShop
@@ -42,11 +43,12 @@ class WebShopOrderDetailBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'required'),
+			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount, price', 'required'),
 			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'numerical', 'integerOnly'=>true),
+			array('price', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount', 'safe', 'on'=>'search'),
+			array('web_shop_order_id, web_shop_id, web_shop_item_id, amount, price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +76,7 @@ class WebShopOrderDetailBase extends CActiveRecord
 			'web_shop_id' => 'Web Shop',
 			'web_shop_item_id' => 'Web Shop Item',
 			'amount' => 'Amount',
+			'price' => 'Price',
 		);
 	}
 
@@ -92,6 +95,7 @@ class WebShopOrderDetailBase extends CActiveRecord
 		$criteria->compare('web_shop_id',$this->web_shop_id);
 		$criteria->compare('web_shop_item_id',$this->web_shop_item_id);
 		$criteria->compare('amount',$this->amount);
+		$criteria->compare('price',$this->price);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
