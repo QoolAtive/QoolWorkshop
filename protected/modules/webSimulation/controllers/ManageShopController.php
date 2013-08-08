@@ -118,13 +118,6 @@ class ManageShopController extends Controller {
         $this->render('manage_shop', array('model' => $model));
     }
 
-//    หน้าจัดการสินค้า
-    public function actionManageShopItem() {
-        $shop_id = Yii::app()->session['shop_id'];
-        $model = WebShop::model()->findByPk($shop_id);
-        $this->render('manage_item', array('model' => $model));
-    }
-
 //    หน้าจัดการรูปแบบร้านค้า
     public function actionManageShopFormat() {
         $shop_id = Yii::app()->session['shop_id'];
@@ -244,6 +237,13 @@ class ManageShopController extends Controller {
         if ($model->delete()) {
             
         }
+    }
+
+//    หน้าจัดการสินค้า
+    public function actionManageShopItem() {
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = WebShopItem::model()->findByPk($shop_id);
+        $this->render('manage_item', array('model' => $model));
     }
 
 }
