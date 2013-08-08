@@ -8,7 +8,7 @@ foreach ($banner as $data) {
         'type' => 'post',
         'data' => array('banner_id' => $data['id'], 'company_id' => $company_id),
             ), array(
-        'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
+//        'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
         'hrel' => '/serviceProvider/manage/delBanner', 'id' => $data['id']
             )
     );
