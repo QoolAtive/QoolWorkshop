@@ -378,7 +378,7 @@ Class ManageController extends Controller {
                     if ($old_image == null) {
                         $model->image = 'default.jpg';
                     } else {
-                        $model->image = $old_image;
+                        $model->image = $old_image; 
                     }
                 }
 
