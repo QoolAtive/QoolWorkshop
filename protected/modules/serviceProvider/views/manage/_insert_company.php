@@ -155,7 +155,7 @@ $this->renderPartial('_side_bar', array(
                     echo $form->labelEx($model, 'logo');
                     $this->widget('CMultiFileUpload', array(
                         'name' => 'logo',
-                        'accept' => 'png|jpg|gif|bmp|tif',
+                        'accept' => 'png|jpg|gif|bmp|tif|jpeg',
                         'max' => 1,
                         'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
 //            'htmlOptions' => array('size' => 25),
@@ -164,7 +164,8 @@ $this->renderPartial('_side_bar', array(
 //            ),
                     ));
                     ?>
-                    <span>ประเภทไฟล์ที่ยอมรับ (png, jpg, gif, bmp, tif)</span>
+                    <span><?php echo Yii::t('language', 'ประเภทไฟล์ที่ยอมรับ'); ?> (png, jpg, gif, bmp, tif)</span>
+                    <span><?php echo Yii::t('language', 'ขนาดภาพที่เหมาะสม'); ?> (227 x 220)</span>
                 </div>
                 <?php
                 if ($model->logo != null) {
@@ -173,6 +174,14 @@ $this->renderPartial('_side_bar', array(
                         <label><?php echo Yii::t('language', 'โลโก้'); ?></label>
                         <?php
                         echo CHtml::image("/file/logo/" . $model->logo, $model->logo, array('width' => '350'));
+                        echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+                            '/serviceProvider/manage/delete', 'id' => $model->id
+                                ), array(
+                            'type' => 'post',
+                                ), array(
+                            'hrel' => '/serviceProvider/manage/delete', 'id' => $model->id,
+                                )
+                        );
                         ?>
                     </div>
                 <?php } ?>
@@ -183,7 +192,7 @@ $this->renderPartial('_side_bar', array(
                     echo $form->labelEx($model, 'banner');
                     $this->widget('CMultiFileUpload', array(
                         'name' => 'banner',
-                        'accept' => 'png|jpg|gif|bmp|tif',
+                        'accept' => 'png|jpg|gif|bmp|tif|jpeg',
                         'max' => 3,
                         'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
                         'duplicate' => Yii::t('language', 'ไฟล์ได้ถูกเลือกไปแล้ว ลองใหม่อีกครั้ง'),
@@ -192,23 +201,35 @@ $this->renderPartial('_side_bar', array(
 //                'afterFileSelect' => 'function(e, v, m){ alert("afterFileSelect - "+e) }',
 //            ),
                     ));
-                    
                     ?>
-                    <span>ประเภทไฟล์ที่ยอมรับ (png, jpg, gif, bmp, tif)</span>
+                    <span><?php echo Yii::t('language', 'ประเภทไฟล์ที่ยอมรับ'); ?> (png, jpg, gif, bmp, tif)</span>
+                    <span><?php echo Yii::t('language', 'ขนาดภาพที่เหมาะสม'); ?> (525 x 220)</span>
                 </div>
-                <?php
-                $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                if (count($banner) > 0) {
-                    ?>
-                    <div class="_50">
+                <div class="_50" id="banner">
+                    <?php
+                    $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    if (count($banner) > 0) {
+                        ?>
                         <label><?php echo Yii::t('language', 'แบนเนอร์ทั้งหมด'); ?></label>
                         <?php
                         foreach ($banner as $data) {
                             echo CHtml::image("/file/banner/" . $data['path'], "image", array('width' => '350'));
+                            echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+                                '/serviceProvider/manage/delBanner'
+                                    ), array(
+                                'type' => 'post',
+                                'data' => array('banner_id' => $data['id'], 'company_id' => $model->id),
+                                'update' => 'div#banner',
+                                    ), array(
+                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
+                                'hrel' => '/serviceProvider/manage/delBanner', 'id' => $data['id']
+                                    )
+                            );
                         }
                         ?>
-                    </div>
-                <?php } ?>
+
+                    <?php } ?>
+                </div>
             </div>
             <div class="_100">
                 <div class="_50">
@@ -216,9 +237,10 @@ $this->renderPartial('_side_bar', array(
                     echo $form->labelEx($model, 'brochure');
                     $this->widget('CMultiFileUpload', array(
                         'name' => 'brochure',
-                        'accept' => 'pdf|png|jpg|gif|bmp|tif',
-                        'max' => 1,
+                        'accept' => 'docx|doc|xls|pdf|png|jpg|gif|bmp|tif|jpeg',
+                        'max' => 5,
                         'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
+                        'duplicate' => Yii::t('language', 'ไฟล์ได้ถูกเลือกไปแล้ว ลองใหม่อีกครั้ง'),
 //            'options' => array(
 //                'onFileSelect' => 'function(e, v, m){
 //                    if(){
@@ -228,18 +250,38 @@ $this->renderPartial('_side_bar', array(
 //            ),
                     ));
                     ?>
-                    <span>ประเภทไฟล์ที่ยอมรับ (pdf, png, jpg, gif, bmp, tif)</span>
+                    <span><?php echo Yii::t('language', 'ประเภทไฟล์ที่ยอมรับ'); ?> (pdf, png, jpg, gif, bmp, tif)</span>
                 </div>
-                <?php
-                if ($model->brochure != null) {
-                    ?>
-                    <div class="_50">
-                        <label><?php echo Yii::t('language', 'โบรชัวร์'); ?></label>
-                        <?php
-                        echo CHtml::link($model->brochure, array('/serviceProvider/default/readingPdf', 'id' => $model->id));
+                <div class="_50" id='brochure'>
+                    <?php
+                    $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    if (count($brochure) > 0) {
                         ?>
-                    </div>
-                <?php } ?>
+                        <label><?php echo Yii::t('language', 'โบว์ชัวร์'); ?></label>
+                        <?php
+                        foreach ($brochure as $data) {
+                            echo "<ul>";
+                            echo "<li>";
+                            echo CHtml::link($data['path'], array('/serviceProvider/default/readingFile', 'id' => $data['brochure_id'], 'type' => 'brochure'));
+                            echo "</li>";
+                            echo "<li>";
+                            echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+                                '/serviceProvider/manage/delBrochure'
+                                    ), array(
+                                'type' => 'post',
+                                'data' => array('brochure_id' => $data['brochure_id'], 'company_id' => $model->id),
+                                'update' => 'div#brochure',
+                                    ), array(
+                                'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
+                                'hrel' => '/serviceProvider/manage/delBrochure', 'id' => $data['brochure_id']
+                                    )
+                            );
+                            echo "</li>";
+                            echo "</ul>";
+                        }
+                        ?>
+                    <?php } ?>
+                </div>
             </div>
             <div class="_100 textcenter">
                 <?php

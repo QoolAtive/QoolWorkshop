@@ -2,6 +2,20 @@
 
 class DefaultController extends Controller {
 
+    public function actionReadingFile($id, $type) {
+        switch ($type) {
+            case 'brochure':
+                $model = SpBrochure::model()->find('brochure_id=:brochure_id', array(':brochure_id' => $id));
+                $path = './file/brochure/' . $model->path;
+                break;
+        }
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        Yii::app()->end();
+    }
+
     public function actionIndex($id = null) {
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
