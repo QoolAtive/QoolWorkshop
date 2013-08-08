@@ -17,7 +17,7 @@ Class ManageController extends Controller {
             ),
         );
     }
-    
+
     public function actionIndex() {
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
@@ -375,7 +375,11 @@ Class ManageController extends Controller {
                         $model->image = 'default.jpg';
                     }
                 } else {
-                    $model->image = $old_image;
+                    if ($old_image == null) {
+                        $model->image = 'default.jpg';
+                    } else {
+                        $model->image = $old_image;
+                    }
                 }
 
                 if ($model->save()) {
@@ -430,7 +434,7 @@ Class ManageController extends Controller {
         $banner_id = $_POST['banner_id'];
         $company_id = $_POST['company_id'];
         $model_banner = SpBanner::model()->find('id=:id', array(':id' => $banner_id));
-        
+
         $dir = './file/banner/';
         if ($model_banner->path != null && $model_banner->path != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
             if (fopen($dir . $model_banner->path, 'w'))
@@ -451,7 +455,7 @@ Class ManageController extends Controller {
     public function actionDelBrochure() {
         $brochure_id = $_POST['brochure_id'];
         $company_id = $_POST['company_id'];
-        
+
         $dir = './file/brochure/';
         $model_brochure = SpBrochure::model()->find('brochure_id=:brochure_id', array(':brochure_id' => $brochure_id));
         if ($model_brochure->path != null && $model_brochure->path != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
