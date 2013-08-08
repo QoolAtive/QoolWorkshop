@@ -362,6 +362,8 @@
                     echo $form->error($model, 'type_business');
                     ?>
                 </div>
+                <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
+
                 <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'business_name');
@@ -372,7 +374,15 @@
                     echo $form->error($model, 'business_name');
                     ?>
                 </div>
-                <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
+                 <div class="_50">
+                    <?php
+                    echo $form->labelEx($model, 'business_name_en');
+                    echo $form->textField($model, 'business_name_en', array(
+                        'placeholder' => MemRegistration::model()->getAttributeLabel('business_name_en'),
+                    ));
+                    echo $form->error($model, 'business_name_en');
+                    ?>
+                </div> 
                 <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'corporation_registration');
@@ -404,6 +414,16 @@
                     echo $form->error($model, 'trade_name');
                     ?>
                 </div>
+
+                <div class="_50"> 
+                    <?php
+                    echo $form->labelEx($model, 'trade_name_en');
+                    echo $form->textField($model, 'trade_name_en', array(
+                        'placeholder' => MemRegistration::model()->getAttributeLabel('trade_name_en'),
+                    ));
+                    echo $form->error($model, 'trade_name_en');
+                    ?>
+                </div> 
                 <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'product_name');
@@ -414,25 +434,9 @@
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
-                <div class="_100">
-                    <?php
-                    echo $form->labelEx($model, 'business_name_en');
-                    echo $form->textField($model, 'business_name_en', array(
-                        'placeholder' => MemRegistration::model()->getAttributeLabel('business_name_en'),
-                    ));
-                    echo $form->error($model, 'business_name_en');
-                    ?>
-                </div> 
-                <div class="_100"> 
-                    <?php
-                    echo $form->labelEx($model, 'trade_name_en');
-                    echo $form->textField($model, 'trade_name_en', array(
-                        'placeholder' => MemRegistration::model()->getAttributeLabel('trade_name_en'),
-                    ));
-                    echo $form->error($model, 'trade_name_en');
-                    ?>
-                </div> 
-                <div class="_100"> 
+               
+
+                <div class="_50"> 
                     <?php
                     echo $form->labelEx($model, 'product_name_en');
                     echo $form->textField($model, 'product_name_en', array(
@@ -443,21 +447,23 @@
                 </div> 
 
 
-                <div class="_100"></div> 
-                <?php if (CCaptcha::checkRequirements()) { ?>
-                    <div class="_50"> 
-                        <span class="haft"><?php echo $form->labelEx($model_user, 'verifyCode');
-                    ?></span>
-                        <div class="capcha">
-                            <?php
-                            $this->widget('CCaptcha');
-                            echo $form->textField($model_user, 'verifyCode', array('class' => 'fieldrequire'));
-                            echo $form->error($model_user, 'verifyCode');
-                            ?>
-                        </div>
-                    </div>
-                <?php } ?>
+               <div class="_100"></div> 
+            <?php if (CCaptcha::checkRequirements()) { ?>
+                <div class="_25" style="width: 12.7%;"> 
+                    <!-- <span class="haft"> -->
+                        <?php echo $form->labelEx($model_user, 'verifyCode');?>
+                    <!-- </span> -->
+                </div>
 
+                    <div class="capcha _33">
+                        <?php
+                        $this->widget('CCaptcha');
+                        echo $form->textField($model_user, 'verifyCode', array('class' => 'fieldrequire'));
+                        echo $form->error($model_user, 'verifyCode');
+                        ?>
+                    </div>
+                
+            <?php } ?>
 
 
 
