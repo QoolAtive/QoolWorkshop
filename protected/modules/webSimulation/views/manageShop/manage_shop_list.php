@@ -8,17 +8,15 @@
                 </a>
             </span>
         </h3>
-    </div>
-    <div class="txt-cen">
-        <hr>
-        <?php
+        <div class="txt-cen">
+            <hr>
+            <?php
 //        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
-        echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/register")) . '"'));
-        ?>
-        <hr>
-    </div>
-    <div class="grid-view">
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/register")) . '"'));
+            ?>
+            <hr>
+        </div>
         <?php
         $dataProvider = $model->search();
         $this->widget('zii.widgets.grid.CGridView', array(
