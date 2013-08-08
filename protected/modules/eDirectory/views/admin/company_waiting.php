@@ -10,6 +10,15 @@ $this->renderPartial('side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
+        <div class='textcenter'>
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/eDirectory/admin/insertCompany'
+                )) . "'")
+            );
+            ?>
+        </div>
+        <hr>
         <?php
         $this->renderPartial('company_grid', array(
             'dataProvider' => $dataProvider,

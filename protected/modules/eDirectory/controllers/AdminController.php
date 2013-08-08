@@ -141,6 +141,150 @@ class AdminController extends Controller {
         ));
     }
 
+    public function actionInsertCompany($id = null) {
+
+
+        if ($id == null) {
+
+
+            $model = new Company();
+            $model->unsetAttributes();
+
+            $model_type = new CompanyType();
+            $model_type->unsetAttributes();
+        } else {
+            $model = Company::model()->find("id = $id");
+
+            $model_type = new CompanyType();
+            $model_type->unsetAttributes();
+
+            $type_list = CompanyType::model()->findAll('com_id=:com_id', array(':com_id' => $id));
+            $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
+            foreach ($type_list as $data) {
+                array_push($type_list_data, $data['company_type']);
+            }
+        }
+
+        if (isset($_POST['Company']) && isset($_POST['CompanyType'])) {
+            $model->attributes = $_POST['Company'];
+            $model_type->attributes = $_POST['CompanyType'];
+            $type_id = $model_type->type_id;
+
+            $model_type->com_id = 0;
+//            echo "<pre>";
+//            print_r($type_id);
+//            echo "</pre>";
+//            
+            if ($type_id != null)
+                $model_type->company_type = 0;
+
+            $model->validate();
+            $model_type->validate();
+            if ($model->getErrors() == null && $model_type->getErrors() == null) {
+                // ไฟล์ logo
+                $file_logo = CUploadedFile::getInstancesByName('logo');
+                if ($file_logo != null) {
+
+                    $dir = './file/logo/'; // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+                    if ($model->logo != null && $model->logo != 'default.jpg') {
+                        if (fopen($dir . $model->logo, 'w'))
+                            unlink($dir . $model->logo);
+                    }
+
+                    $model->logo = rand(000, 999) . $file_logo[0]->name;
+
+                    if (!is_dir($dir))
+                        mkdir($dir, 0777, true);
+
+                    $file_logo[0]->saveAs($dir . $model->logo);
+                }
+
+                if ($model->save()) {
+                    CompanyType::model()->deleteAll('com_id=:com_id', array(':com_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
+
+                    foreach ($type_id as $key => $value) { // เพิ่มประเภทของ Company
+                        $type = new CompanyType();
+                        $type->com_id = $model->id;
+                        $type->company_type = $value;
+
+                        $type->save();
+                    }
+
+                    // ไฟล์ brochure
+                    $file_brochure = CUploadedFile::getInstancesByName('brochure');
+                    if ($file_brochure != null) {
+
+                        $dir = './file/brochure/';
+
+                        $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+                        foreach ($brochure_old as $data) {
+                            if (fopen($dir . $data['path'], 'w')) {
+                                unlink($dir . $data['path']);
+                            }
+                        }
+                        CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+
+
+                        foreach ($file_brochure as $file) {
+                            $file_name = rand(000, 999) . $file->name;
+                            $file->saveAs($dir . $file_name);
+
+                            $banner = new CompanyBrochure();
+                            $banner->com_id = $model->id;
+                            $banner->path = $file_name;
+                            $banner->save();
+                        }
+                    }
+
+                    $file_banner = CUploadedFile::getInstancesByName('banner');
+                    if ($file_banner != null) {
+                        $dir = './file/banner/';
+                        if (!is_dir($dir))
+                            mkdir($dir, 0777, true);
+
+                        $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+                        foreach ($banner_old as $data) {
+                            if (fopen($dir . $data['path'], 'w')) {
+                                unlink($dir . $data['path']);
+                            }
+                        }
+                        CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+
+                        foreach ($file_banner as $file) {
+                            $file_name = rand(000, 999) . $file->name;
+                            $file->saveAs($dir . $file_name);
+
+                            $banner = new CompanyBanner();
+                            $banner->com_id = $model->id;
+                            $banner->path = $file_name;
+                            $banner->save();
+                        }
+                    }
+                    if ($id == null) {
+                        $this->redirect('/eDirectory/admin/insertProduct/id/' . $model->id);
+                    } else {
+                        echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='/eDirectory/admin/company';
+                            </script>
+                            ";
+                    }
+                } else {
+//                    echo "<pre>";
+//                    print_r(array($model->getErrors()));
+//                    echo "</pre>";
+                }
+            }
+        }
+
+        $this->render('_insert_company', array(
+            'model' => $model,
+            'model_type' => $model_type,
+            'type_list_data' => $type_list_data,
+        ));
+    }
+
 }
 
 ?>

@@ -1,8 +1,12 @@
 <?php
-$this->renderPartial('_side_bar', array(
-    'select1' => '',
-    'select2' => 'selected',
-));
+$list = array(
+    array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '#', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'ร้านค้าที่ยังไม่ได้รับการอนุมัติ'), 'link' => '/eDirectory/admin/companyWaiting', 'select' => ''),
+);
+
+$this->renderPartial('side_bar', array(
+    'list' => $list,
+))
 ?>
 <div class="content">
     <div class="tabcontents">
