@@ -5,7 +5,7 @@
     }
     .profile label{
         display: inline-block;
-        width: 15%;
+        width: 14%;
         text-align: right;
     }
 </style>

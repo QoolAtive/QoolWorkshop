@@ -1,3 +1,24 @@
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        $('.view').fancybox({
+          type : 'ajax',
+          autoSize    : false,
+          width     : '700',
+        height      : 'auto',
+        closeBtn        : false
+
+      
+        });
+});
+</script>
+<style type="text/css">
+    
+    .fancybox-title-float-wrap .child{
+        display: none;
+    }
+</style>
+
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -13,7 +34,19 @@
 <div class="content">
     <div class="tabcontents">
         <div id="view1" class="tabcontent">
-            <h3>สมาชิกนิติบุคคลทั้งหมดที่ยังไม่ได้รับการยืนยัน</h3>
+                <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมดที่ยังไม่ได้รับการยืนยัน'); ?>
+        </span>
+    </h3>
             <?php
             echo $this->renderPartial('_admin_grid_view', array(
                 'dataProvider' => $model->getRegistration(),
@@ -30,7 +63,20 @@
             </div>
         </div>
         <div id="view2" class="tabcontent">
-            <h3>สมาชิกนิติบุคคลทั้งหมด</h3>
+    <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมด'); ?>
+        </span>
+    </h3>
+
             <?php
             echo $this->renderPartial('_admin_grid_view', array(
                 'dataProvider' => $model->getDataRegistration(),
@@ -47,7 +93,21 @@
             </div>
         </div>
         <div id="view3" class="tabcontent">
-            <h3>สมาชิกบุคคลธรรมดาทั้งหมด</h3>
+          
+                <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'สมาชิกบุคคลธรรมดาทั้งหมด'); ?>
+        </span>
+    </h3>
+
             <?php
             echo $this->renderPartial('_admin_grid_view', array(
                 'dataProvider' => $model->getDataPerson(),

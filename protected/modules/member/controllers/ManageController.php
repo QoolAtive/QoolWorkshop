@@ -466,7 +466,7 @@ Class ManageController extends Controller {
             'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
         );
 
-        $this->render('_view_allow_member', array(
+        $this->renderPartial('_view_allow_member', array(
             'data' => $data,
             'confirm' => $confirm,
         ));
@@ -482,7 +482,7 @@ Class ManageController extends Controller {
                         <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
                         <script>
                         alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
-                        window.location='/member/manage/admin';
+                        window.top.location.href ='/member/manage/admin';
                         </script>
                         ";
                 }

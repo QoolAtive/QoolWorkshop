@@ -4,26 +4,31 @@
 //echo "</pre>";
 ?>
 <style>
+    #header,#footer{
+        display: none;
+    }
     .boxdetail{
         display: inline-block; 
-        width: 15%; 
-        background-color: #111; 
-        color: white; 
+        width: 16%; 
+        background-color: #eee; 
+        color: #000;
         font-weight: bold; 
         padding: 5px; 
         text-align: right;
     }
     .boxdetail2{
-        display: inline-block; 
-        background-color: #999999; 
-        width: 79.4%; 
-        color: white; 
-        font-weight: bold; 
-    }
+        background: none repeat scroll 0 0 #EEEEEE;
+        color: #222222;
+        display: inline-block;
+        font-weight: normal;
+        width: 76%;
+    }    
     .boxdetail, .boxdetail2{
         padding: 12px;
     }
+
 </style>
+
 <div style="padding: 0px 5px;">
     <h3>รายละเอียดสมาชิก</h3>
     <hr>
@@ -93,26 +98,35 @@
         <div class="boxdetail" >ทวิตเตอร์ : </div>
         <div class="boxdetail2" ><?php echo $data['twitter']; ?></div>
     <?php } ?>
+
+
 </div>
-<hr>
-<div style="text-align: center;">
+<!-- <hr> -->
+<div style="text-align: center; margin-top: 15px;">
     <?php
     if (isset($confirm)) {
         echo CHtml::button(Yii::t('language', 'ยืนยันสมาชิก'), array(
-            'onclick' => "window.location='" . CHtml::normalizeUrl(array(
-                '/member/manage/allowMember/id/' . $confirm->user_id)) . "'"
-            , 'confirm' => Yii::t('language', 'คุณต้องการยืนยันสมาชิกหรือไม่?'))
-        );
+            'onclick' => "if(confirm('คุณต้องการยืนยันสมาชิกหรือไม่')) window.location='" . CHtml::normalizeUrl(array('/member/manage/allowMember/id/' . $confirm->user_id)) . "'")
+      );
     }
+
+    //  if (isset($confirm)) {
+    //     echo CHtml::button(Yii::t('language', 'ยืนยันสมาชิก'), array(
+             
+    //         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
+    //             '/member/manage/allowMember/id/' . $confirm->user_id)) . "'"
+    //         ,'confirm' => Yii::t('language', 'คุณต้องการยืนยันสมาชิกหรือไม่?'))
+    //     );
+    // }
 
     if ($data['memType'] == '1')
         $linkBack = '/member/manage/admin#view3';
     else
         $linkBack = '/member/manage/admin#view2';
 
-    echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-            $linkBack
-        )) . "'")
-    );
+    // echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+    //         $linkBack
+    //     )) . "'")
+    // );
     ?>
 </div>
