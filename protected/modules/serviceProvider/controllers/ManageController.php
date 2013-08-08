@@ -17,7 +17,7 @@ Class ManageController extends Controller {
             ),
         );
     }
-
+    
     public function actionIndex() {
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
@@ -186,23 +186,7 @@ Class ManageController extends Controller {
 
                     $file_logo[0]->saveAs($dir . $model->logo);
                 }
-                // ไฟล์ brochure
-                $file_brochure = CUploadedFile::getInstancesByName('brochure');
-                if ($file_brochure != null) {
 
-                    $dir = './file/brochure/';
-                    if ($model->brochure != null && $model->brochure != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
-                        if (fopen($dir . $model->brochure, 'w'))
-                            unlink($dir . $model->brochure);
-                    }
-
-                    $model->brochure = rand(000, 999) . $file_brochure[0]->name;
-
-                    if (!is_dir($dir))
-                        mkdir($dir, 0777, true);
-
-                    $file_brochure[0]->saveAs($dir . $model->brochure);
-                }
                 if ($model->save()) {
                     SpTypeCom::model()->deleteAll('com_id=:com_id', array(':com_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
 
@@ -212,6 +196,32 @@ Class ManageController extends Controller {
                         $type->type_id = $value;
 
                         $type->save();
+                    }
+
+                    // ไฟล์ brochure
+                    $file_brochure = CUploadedFile::getInstancesByName('brochure');
+                    if ($file_brochure != null) {
+
+                        $dir = './file/brochure/';
+
+                        $brochure_old = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+                        foreach ($brochure_old as $data) {
+                            if (fopen($dir . $data['path'], 'w')) {
+                                unlink($dir . $data['path']);
+                            }
+                        }
+                        SpBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+
+
+                        foreach ($file_brochure as $file) {
+                            $file_name = rand(000, 999) . $file->name;
+                            $file->saveAs($dir . $file_name);
+
+                            $banner = new SpBrochure();
+                            $banner->com_id = $model->id;
+                            $banner->path = $file_name;
+                            $banner->save();
+                        }
                     }
 
                     $file_banner = CUploadedFile::getInstancesByName('banner');
@@ -364,7 +374,7 @@ Class ManageController extends Controller {
                     }else {
                         $model->image = 'default.jpg';
                     }
-                }else{
+                } else {
                     $model->image = $old_image;
                 }
 
@@ -413,6 +423,51 @@ Class ManageController extends Controller {
 
         if ($model->delete()) {
             echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+        }
+    }
+
+    public function actionDelBanner() {
+        $banner_id = $_POST['banner_id'];
+        $company_id = $_POST['company_id'];
+        $model_banner = SpBanner::model()->find('id=:id', array(':id' => $banner_id));
+        
+        $dir = './file/banner/';
+        if ($model_banner->path != null && $model_banner->path != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+            if (fopen($dir . $model_banner->path, 'w'))
+                unlink($dir . $model_banner->path);
+        }
+        if ($model_banner != null) {
+            $model_banner->delete();
+        }
+        $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $company_id));
+        if ($banner != null) {
+            $this->renderPartial('banner', array(
+                'banner' => $banner,
+                'company_id' => $company_id,
+            ));
+        }
+    }
+
+    public function actionDelBrochure() {
+        $brochure_id = $_POST['brochure_id'];
+        $company_id = $_POST['company_id'];
+        
+        $dir = './file/brochure/';
+        $model_brochure = SpBrochure::model()->find('brochure_id=:brochure_id', array(':brochure_id' => $brochure_id));
+        if ($model_brochure->path != null && $model_brochure->path != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
+            if (fopen($dir . $model_brochure->path, 'w'))
+                unlink($dir . $model_brochure->path);
+        }
+
+        if ($model_brochure != null) {
+            $model_brochure->delete();
+        }
+        $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $company_id));
+        if ($brochure != null) {
+            $this->renderPartial('brochure', array(
+                'brochure' => $brochure,
+                'company_id' => $company_id,
+            ));
         }
     }
 

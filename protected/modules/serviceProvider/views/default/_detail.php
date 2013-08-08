@@ -152,16 +152,26 @@
                     <td> : </td>
                     <td style="padding-left: 2px;"><?php echo $model->website; ?></td>
                 </tr>
-                <?php if ($model->brochure) { ?>
+                <?php
+                $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                if ($brochure > 0) { 
+                    ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
                         <td> : </td>
                         <td style="padding-left: 2px;">
                             <?php
-                            echo CHtml::link('ดาวน์โหลด', array(
-                                '/serviceProvider/default/readingPdf/', 'id' => $model->id), array(
-                                'target' => '_bank'
-                            ));
+                            $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                            echo "<ul>";
+                            foreach ($brochure as $data) {
+                                echo "<li>";
+                                echo CHtml::link($data['path'], array(
+                                    '/serviceProvider/default/readingFile/', 'id' => $data['brochure_id'], 'type' => 'brochure'), array(
+//                                    'target' => '_bank'
+                                ));
+                                echo "</li>";
+                            }
+                            echo "</ul>";
                             ?>
                         </td>
                     </tr>
