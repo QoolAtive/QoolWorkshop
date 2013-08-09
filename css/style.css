@@ -1952,15 +1952,15 @@ box-shadow: inset 0 -30px 3px -30px #f1f1f1;
 }
 
 .demoline{
-  background: none repeat scroll 0 0 #D76BFF;
+    background: none repeat scroll 0 0 #D76BFF;
+    border-radius: 4px 4px 4px 4px;
     display: inline;
-    height: 100%;
+    height: 92%;
     margin-left: 10px;
-    /*margin-top: 16px;*/
+    margin-top: 7px;
     position: absolute;
     width: 3px;
     z-index: -1;
-    border-radius: 4px;
 }
 
 p.demoinnerbold{
