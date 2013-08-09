@@ -1,10 +1,10 @@
 <?php
 
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'type_business-grid',
+    'id' => 'product-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
-//    'ajaxUpdate' => true,
+    'ajaxUpdate' => true,
     'summaryText' => '',
     'columns' => array(
         array(// display 'create_time' using an expression
@@ -18,15 +18,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name',
         ),
         array(
-            'name' => 'main_business',
-//                'value' => '$data->date_write',
-            'value' => '$data->main_business',
-//                'filter' => '',
-        ),
-        array(
-            'name' => 'sub_business',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business',
+            'name' => 'detail',
+            'value' => '$data->detail',
 //                'filter' => '',
         ),
         array(
@@ -34,34 +27,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name_en',
         ),
         array(
-            'name' => 'main_business_en',
-//                'value' => '$data->date_write',
-            'value' => '$data->main_business_en',
+            'name' => 'detail_en',
+            'value' => '$data->detail_en',
 //                'filter' => '',
         ),
         array(
-            'name' => 'sub_business_en',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business_en',
-//                'filter' => '',
+            'name' => 'guide',
+            'value' => 'SpProduct::model()->getDataTypeList($data->guide)',
+            'filter' => SpProduct::model()->getDataTypeList(' ', true),
         ),
         array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
-            'template' => '{view}{update}{delete}',
+            'template' => '{update}{delete}',
             'buttons' => array(
-                'view' => array(
-                    'label' => 'view', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/companyDetail/",array("id"=>$data->id))',
-                ),
                 'update' => array(
                     'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/insertCompany",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/insertProduct/", array("id"=>$data->main->id, "pro_id"=> $data->id))',
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/delCompany/",array("id"=>$data->id))',
+                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/delProduct/",array("id"=>$data->main->id, "pro_id"=>$data->id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){
@@ -69,17 +56,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                         alert(data);
                                     }
                     }'
-        ),
-        array(
-            'class' => 'CButtonColumn',
-            'header' => 'จัดการ<p>สินค้า</p>',
-            'template' => '{view}',
-            'buttons' => array(
-                'view' => array(
-                    'label' => 'view', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/product/",array("id"=>$data->id))',
-                ),
-            ),
         ),
     ),
     'pager' => array(

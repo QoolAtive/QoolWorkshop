@@ -1,7 +1,8 @@
 <?php
 $list = array(
-    array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '#', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
     array('text' => Yii::t('language', 'ร้านค้าที่ยังไม่ได้รับการอนุมัติ'), 'link' => '/eDirectory/admin/companyWaiting', 'select' => ''),
+    array('text' => Yii::t('language', 'ร้านค้า'), 'link' => '#', 'select' => 'selected'),
 );
 
 $this->renderPartial('side_bar', array(
@@ -21,7 +22,7 @@ $this->renderPartial('side_bar', array(
             $link_back = '/serviceProvider/manage/typeBusiness';
         }
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?></h3>
+        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'ร้านค้า'); ?></h3>
 
         <hr>
         <div class="_100">
@@ -30,16 +31,16 @@ $this->renderPartial('side_bar', array(
                 'id' => 'insert_company-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
-            $model_type->type_id = $type_list_data;
+            $model_type->company_type = $type_list_data;
             ?>
             <div class="_100">
                 <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
             </div>
             <div class="_100">
                 <?php
-                echo $form->labelEx($model_type, 'type_id');
-                echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
-                echo $form->error($model_type, 'type_id');
+                echo $form->labelEx($model_type, 'company_type');
+                echo $form->checkBoxList($model_type, 'company_type', SpTypeBusiness::model()->getDataList());
+                echo $form->error($model_type, 'company_type');
                 ?>
             </div>
             <div class="_100">
@@ -57,6 +58,20 @@ $this->renderPartial('side_bar', array(
                 echo $form->labelEx($model, 'infor');
                 echo $form->textArea($model, 'infor');
                 echo $form->error($model, 'infor');
+                ?>
+            </div>
+            <div class="_100">
+                <?php
+                echo $form->label($model, 'main_business');
+                echo $form->textfield($model, 'main_business');
+                echo $form->error($model, 'main_business');
+                ?>
+            </div>
+            <div class="_100">
+                <?php
+                echo $form->label($model, 'sub_business');
+                echo $form->textArea($model, 'sub_business');
+                echo $form->error($model, 'sub_business');
                 ?>
             </div>
             <div class="_100">
@@ -88,6 +103,20 @@ $this->renderPartial('side_bar', array(
                 echo $form->labelEx($model, 'infor_en');
                 echo $form->textArea($model, 'infor_en');
                 echo $form->error($model, 'infor_en');
+                ?>
+            </div>
+            <div class="_100">
+                <?php
+                echo $form->label($model, 'main_business_en');
+                echo $form->textfield($model, 'main_business_en');
+                echo $form->error($model, 'main_business_en');
+                ?>
+            </div>
+            <div class="_100">
+                <?php
+                echo $form->label($model, 'sub_business_en');
+                echo $form->textArea($model, 'sub_business_en');
+                echo $form->error($model, 'sub_business_en');
                 ?>
             </div>
             <div class="_100">
@@ -211,7 +240,7 @@ $this->renderPartial('side_bar', array(
                 </div>
                 <div class="_50" id="banner">
                     <?php
-                    $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                     if (count($banner) > 0) {
                         ?>
                         <label><?php echo Yii::t('language', 'แบนเนอร์ทั้งหมด'); ?></label>
@@ -219,14 +248,14 @@ $this->renderPartial('side_bar', array(
                         foreach ($banner as $data) {
                             echo CHtml::image("/file/banner/" . $data['path'], "image", array('width' => '350'));
                             echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
-                                '/serviceProvider/manage/delBanner'
+                                '/eDirectory/admin/delBanner'
                                     ), array(
                                 'type' => 'post',
-                                'data' => array('banner_id' => $data['id'], 'company_id' => $model->id),
+                                'data' => array('banner_id' => $data['company_banner_id'], 'company_id' => $model->id),
                                 'update' => 'div#banner',
                                     ), array(
 //                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
-                                'hrel' => '/serviceProvider/manage/delBanner', 'id' => $data['id']
+                                'hrel' => '/eDirectory/admin/delBanner', 'id' => $data['company_banner_id']
                                     )
                             );
                         }
@@ -258,7 +287,7 @@ $this->renderPartial('side_bar', array(
                 </div>
                 <div class="_50" id='brochure'>
                     <?php
-                    $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    $brochure = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                     if (count($brochure) > 0) {
                         ?>
                         <label><?php echo Yii::t('language', 'โบว์ชัวร์'); ?></label>
@@ -266,18 +295,18 @@ $this->renderPartial('side_bar', array(
                         foreach ($brochure as $data) {
                             echo "<ul>";
                             echo "<li>";
-                            echo CHtml::link($data['path'], array('/serviceProvider/default/readingFile', 'id' => $data['brochure_id'], 'type' => 'brochure'));
+                            echo CHtml::link($data['path'], array('/eDirectory/default/readingFile', 'id' => $data['company_brochure_id'], 'type' => 'brochure'));
                             echo "</li>";
                             echo "<li>";
                             echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
-                                '/serviceProvider/manage/delBrochure'
+                                '/eDirectory/admin/delBrochure'
                                     ), array(
                                 'type' => 'post',
-                                'data' => array('brochure_id' => $data['brochure_id'], 'company_id' => $model->id),
+                                'data' => array('brochure_id' => $data['company_brochure_id'], 'company_id' => $model->id),
                                 'update' => 'div#brochure',
                                     ), array(
 //                                'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
-                                'hrel' => '/serviceProvider/manage/delBrochure', 'id' => $data['brochure_id']
+                                'hrel' => '/eDirectory/admin/delBrochure', 'id' => $data['company_brochure_id']
                                     )
                             );
                             echo "</li>";

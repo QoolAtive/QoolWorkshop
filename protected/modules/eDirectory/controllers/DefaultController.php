@@ -6,6 +6,20 @@ class DefaultController extends Controller {
         $this->render('index');
     }
 
+    public function actionReadingFile($id, $type) {
+        switch ($type) {
+            case 'brochure':
+                $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
+                $path = './file/brochure/' . $model->path;
+                break;
+        }
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        Yii::app()->end();
+    }
+
     public function actionSearch() {
 //        if (isset($_POST['name'])) {
         $name = $_POST['name'];
