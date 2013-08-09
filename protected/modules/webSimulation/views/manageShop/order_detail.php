@@ -96,6 +96,11 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             )
         ));
         ?>
+        
+        <div>
+            ราคารวม <?php echo $order['price_all'];?>
+        </div>
+        
         <?php $this->endWidget(); ?>
     </div>
 </div>
