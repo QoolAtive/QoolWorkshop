@@ -1,0 +1,16 @@
+<label><?php echo Yii::t('language', 'แบนเนอร์ทั้งหมด'); ?></label>
+<?php
+foreach ($banner as $data) {
+    echo CHtml::image("/file/banner/" . $data['path'], "image", array('width' => '350'));
+    echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+        '/eDirectory/admin/delBanner'
+            ), array(
+        'type' => 'post',
+        'data' => array('banner_id' => $data['company_banner_id'], 'company_id' => $company_id),
+            ), array(
+//        'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
+        'hrel' => '/eDirectory/admin/delBanner', 'id' => $data['company_banner_id']
+            )
+    );
+}
+?>

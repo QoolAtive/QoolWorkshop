@@ -72,7 +72,7 @@ class SpProduct extends SpProductBase {
 
     public function getDataTypeList($p = '', $arr_data = false) {
         $arr = array(
-            '0' => Yii::t('language', 'ไม่เลือก'),
+            '0' => Yii::t('language', 'สินค้าใหม่'),
             '1' => Yii::t('language', 'สินค้าขายดี'),
             '2' => Yii::t('language', 'โปรโมชั่น'),
         );
