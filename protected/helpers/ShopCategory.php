@@ -1,7 +1,8 @@
 <?php
 
 Class ShopCategory {
-    public function getList(){
+
+    public function getList() {
         $list = array(
             '1' => 'เสื้อผ้า',
             '2' => 'เครื่องสำอาง ความงาม',
@@ -24,6 +25,12 @@ Class ShopCategory {
         );
         return $list;
     }
+
+    public function getCategory($index) {
+        $shop_category = ShopCategory::getList();
+        return $shop_category[$index];
+    }
+
 }
 
 ?>

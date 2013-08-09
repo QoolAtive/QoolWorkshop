@@ -2,6 +2,22 @@
 
 class ManageShopController extends Controller {
 
+    public function filters() {
+        return array('accessControl');
+    }
+
+    public function accessRules() {
+        return array(
+            array(
+                'allow',
+                'users' => array('admin')
+            ),
+            array(
+                'deny',
+            ),
+        );
+    }
+
     //หน้า register
     public function actionRegister() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
@@ -242,8 +258,122 @@ class ManageShopController extends Controller {
 //    หน้าจัดการสินค้า
     public function actionManageShopItem() {
         $shop_id = Yii::app()->session['shop_id'];
-        $model = WebShopItem::model()->findByPk($shop_id);
+//        $model = WebShopItem::model()->findByPk($shop_id);
+        $this->render('manage_shop_item', array('shop_id' => $shop_id));
+    }
+
+//    หน้าเพิ่ม/แก้ไขรายละเอียดสินค้า
+    public function actionEditItem($item_id = NULL) {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($item_id == NULL) {
+            $model = new WebShopItem();
+//            $model->web_shop_id = $shop_id;
+        } else {
+            $model = WebShopItem::model()->findByPk($item_id);
+        }
+
+        if (isset($_POST['WebShopItem'])) {
+            $model->attributes = $_POST['WebShopItem'];
+            $model->web_shop_id = $shop_id;
+
+            //for upload pic
+            $arr_files = CUploadedFile::getInstancesByName('pic_file');
+            if ($arr_files != NULL) {
+                $pic = array();
+                $path = '/upload/img/websim/item/';
+
+                foreach ($arr_files as $i => $file) {
+                    $arr_file_detail = explode('.', $file->getName());
+                    $formatName = $arr_file_detail[0] . "-" . time() . $i . '.' . $file->getExtensionName();
+                    $file->saveAs('.' . $path . $formatName);
+                    $pic[$i] = $path . $formatName;
+                }
+
+                //อัพรูปทับของเดิม *******ต้องแก้ใหม่
+                if ($pic[0]) {
+                    $file = '.' . $model->pic_1;
+                    if ($model->pic_1 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_1 = $pic[0];
+                }
+                if ($pic[1]) {
+                    $file = '.' . $model->pic_2;
+                    if ($model->pic_2 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_2 = $pic[1];
+                }
+                if ($pic[2]) {
+                    $file = '.' . $model->pic_3;
+                    if ($model->pic_3 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_3 = $pic[2];
+                }
+                if ($pic[3]) {
+                    $file = '.' . $model->pic_4;
+                    if ($model->pic_4 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_4 = $pic[3];
+                }
+                if ($pic[4]) {
+                    $file = '.' . $model->pic_5;
+                    if ($model->pic_5 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_5 = $pic[4];
+                }
+                if ($pic[5]) {
+                    $file = '.' . $model->pic_6;
+                    if ($model->pic_6 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_6 = $pic[5];
+                }
+                if ($pic[6]) {
+                    $file = '.' . $model->pic_7;
+                    if ($model->pic_7 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_7 = $pic[6];
+                }
+                if ($pic[7]) {
+                    $file = '.' . $model->pic_8;
+                    if ($model->pic_8 != NULL && file_exists($file))
+                        unlink($file);
+                    $model->pic_8 = $pic[7];
+                }
+            }
+            //END for upload pic
+
+            if ($model->save()) {
+//                if ($item_id == NULL) {
+//                    echo "<script language='javascript'>
+//                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+//                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopItem')) . "';
+//                  </script>";
+//                } else {
+                    echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')) . "';
+                  </script>";
+//                }
+            }
+        }
+        $this->render('edit_item', array('model' => $model));
+    }
+
+    public function actionManageItem() {
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = new WebShopItem();
+        $model->web_shop_id = $shop_id;
+        if (isset($_GET['WebShopItem'])) {
+            $model->attributes = $_GET['WebShopItem'];
+            $model->web_shop_id = $shop_id;
+        }
         $this->render('manage_item', array('model' => $model));
+    }
+
+    public function actionDeleteItem($item_id) {
+        $model = WebShopItem::model()->findByPk($item_id);
+        if ($model->delete()) {
+            
+        }
     }
 
 }
