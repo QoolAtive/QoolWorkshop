@@ -1,6 +1,6 @@
 <?php
 
-Class ShopCatagory {
+Class ShopCategory {
     public function getList(){
         $list = array(
             '1' => 'เสื้อผ้า',

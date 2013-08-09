@@ -75,7 +75,7 @@ if ($model->web_shop_id == NULL) {
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'web_shop_catagory_id');
-            echo $form->dropdownList($model, 'web_shop_catagory_id', ShopCatagory::getList(), array(
+            echo $form->dropdownList($model, 'web_shop_catagory_id', ShopCategory::getList(), array(
                 'class' => "fieldrequire",
                 'empty' => 'เลือก',
             ));
