@@ -73,7 +73,7 @@
 }
 
 .evo-colorind,.evo-colorind-ie,.evo-colorind-ff{
-border: 1px solid #C3C3C3;
+   border: 1px solid #C3C3C3;
    float: right;
    height: 20px;
    margin-left: 176px;
@@ -82,8 +82,8 @@ border: 1px solid #C3C3C3;
    width: 20px;
 }
 .evo-colorind{
-	position:relative;
-	top:2px;
+/*	position:relative;
+	top:2px;*/
 }
 .evo-colorind-ie{
 	position:relative;
