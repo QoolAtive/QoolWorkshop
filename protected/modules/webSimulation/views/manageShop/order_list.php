@@ -52,7 +52,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     'filter' => array('0' => 'ยังไม่ได้ส่ง', '1' => 'ส่งแล้ว'),
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคารวม'),
+                    'header' => Yii::t('language', 'ราคารวม (บาท)'),
                     'name' => 'price_all',
                     'filter' => FALSE,
                 ),
