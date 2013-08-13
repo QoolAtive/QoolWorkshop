@@ -102,7 +102,7 @@
 </div>
 
 <div class="_100 textcenter">
-<?
+<?php
             echo CHtml::submitButton(Yii::t('language', 'ส่ง'), array(
                 'submit' => CHtml::normalizeUrl(array('/about/default/sendmail'))));
             $this->endWidget();

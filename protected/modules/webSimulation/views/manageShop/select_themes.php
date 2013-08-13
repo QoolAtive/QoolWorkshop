@@ -51,7 +51,7 @@ if ($model->web_shop_id == NULL) {
         <ul class="clearfix" id="template">
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP015.jpg', '', array(
+                echo CHtml::image('/img/layout/TP001.jpg', '', array(
                     'id' => 'tp1',
                     'width' => '128',
                     'height' => '110',
@@ -60,13 +60,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP015.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP001.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP014.jpg', '', array(
+                echo CHtml::image('/img/layout/TP002.jpg', '', array(
                     'id' => 'tp2',
                     'width' => '128',
                     'height' => '110',
@@ -75,13 +75,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP014.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP002.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP013.jpg', '', array(
+                echo CHtml::image('/img/layout/TP003.jpg', '', array(
                     'id' => 'tp3',
                     'width' => '128',
                     'height' => '110',
@@ -90,13 +90,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP013.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP003.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP012.jpg', '', array(
+                echo CHtml::image('/img/layout/TP004.jpg', '', array(
                     'id' => 'tp4',
                     'width' => '128',
                     'height' => '110',
@@ -105,13 +105,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP012.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP004.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP011.jpg', '', array(
+                echo CHtml::image('/img/layout/TP005.jpg', '', array(
                     'id' => 'tp5',
                     'width' => '128',
                     'height' => '110',
@@ -120,13 +120,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP011.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP005.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP010.jpg', '', array(
+                echo CHtml::image('/img/layout/TP006.jpg', '', array(
                     'id' => 'tp6',
                     'width' => '128',
                     'height' => '110',
@@ -135,13 +135,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP010.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP006.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP009.jpg', '', array(
+                echo CHtml::image('/img/layout/TP007.jpg', '', array(
                     'id' => 'tp7',
                     'width' => '128',
                     'height' => '110',
@@ -150,7 +150,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP009.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP007.jpg");
                     ?>
                 </div>
             </li>
@@ -171,7 +171,7 @@ if ($model->web_shop_id == NULL) {
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP007.jpg', '', array(
+                echo CHtml::image('/img/layout/TP009.jpg', '', array(
                     'id' => 'tp9',
                     'width' => '128',
                     'height' => '110',
@@ -180,13 +180,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP007.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP009.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP006.jpg', '', array(
+                echo CHtml::image('/img/layout/TP010.jpg', '', array(
                     'id' => 'tp10',
                     'width' => '128',
                     'height' => '110',
@@ -195,7 +195,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP006.jpg");
+                    echo CHtml::link('preview', "/img/layout/TP010.jpg");
                     ?>
                 </div>
             </li>

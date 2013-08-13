@@ -15,7 +15,7 @@ var List = {
         this.selectedItem = {index: i, item: o, text: t};
         var input = document.getElementById("selectedItem");
 //            alert(this.selectedItem.index);
-        var path = '/img/layout/' + getPathTheme(this.selectedItem.index);
+        var path = getPathTheme(this.selectedItem.index);
         $('#theme').val(path);
 //            if (input)
 //                input.value = i;
@@ -29,34 +29,34 @@ function getPathTheme(index) {
     switch (index)
     {
         case 1:
-            file = "TP015.jpg";
+            file = "TP001";
             break;
         case 2:
-            file = "TP014.jpg";
+            file = "TP002";
             break;
         case 3:
-            file = "TP013.jpg";
+            file = "TP003";
             break;
         case 4:
-            file = "TP012.jpg";
+            file = "TP004";
             break;
         case 5:
-            file = "TP011.jpg";
+            file = "TP005";
             break;
         case 6:
-            file = "TP010.jpg";
+            file = "TP006";
             break;
         case 7:
-            file = "TP009.jpg";
+            file = "TP007";
             break;
         case 8:
-            file = "TP008.jpg";
+            file = "TP008";
             break;
         case 9:
-            file = "TP007.jpg";
+            file = "TP009";
             break;
         case 10:
-            file = "TP006.jpg";
+            file = "TP010";
             break;
         default:
             file = "";
