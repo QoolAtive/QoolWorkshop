@@ -208,6 +208,7 @@ class ManageShopController extends Controller {
 
 //    หน้าเลือกอักษรและข้อความ
     public function actionSelectCharText() {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/select_text_color.js');
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
 
@@ -358,6 +359,8 @@ class ManageShopController extends Controller {
         $this->render('edit_item', array('model' => $model));
     }
 
+    
+//    หน้า จัดการรายการสินค้า
     public function actionManageItem() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = new WebShopItem();
@@ -374,6 +377,11 @@ class ManageShopController extends Controller {
         if ($model->delete()) {
             
         }
+    }
+    
+    public function actionManageBox(){
+        
+        $this->render('manage_box');
     }
 
 }
