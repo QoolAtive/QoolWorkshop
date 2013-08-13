@@ -13,6 +13,17 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </h3>
 
         <ul class="linklist">
+            <!--จัดการกล่องแสดงสินค้า-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+            
             <!--รายการสั่งซื้อ-->
             <li>
                 <ul class="innerlogo">
