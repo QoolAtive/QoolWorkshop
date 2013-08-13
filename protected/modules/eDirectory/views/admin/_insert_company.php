@@ -1,8 +1,9 @@
 <?php
 $list = array(
-    array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
+    array('text' => Yii::t('language', 'ร้านค้าทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
     array('text' => Yii::t('language', 'ร้านค้าที่ยังไม่ได้รับการอนุมัติ'), 'link' => '/eDirectory/admin/companyWaiting', 'select' => ''),
     array('text' => Yii::t('language', 'ร้านค้า'), 'link' => '#', 'select' => 'selected'),
+    array('text' => Yii::t('language', 'ความเคลื่อนไหว'), 'link' => '/eDirectory/admin/motionSetting', 'select' => ''),
 );
 
 $this->renderPartial('side_bar', array(

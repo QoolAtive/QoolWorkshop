@@ -3,6 +3,8 @@
 class Company extends CompanyBase {
 
     public $status_appro;
+    public $update_at, $motion_status; //company_motion
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -11,7 +13,7 @@ class Company extends CompanyBase {
         return array(
             array('user_id, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
             array('user_id', 'numerical', 'integerOnly' => true),
-            array('name, name_en', 'unique', 'message'=>'{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
+            array('name, name_en', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
             array('logo, main_business, main_business_en, sub_business, sub_business_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, twitter, banner, brochure', 'length', 'max' => 100),
             array('name, name_en, address, address_en, facebook, website', 'length', 'max' => 255),
             // The following rule is used by search().
@@ -46,6 +48,8 @@ class Company extends CompanyBase {
             'banner' => Yii::t('language', 'แบนเนอร์'),
             'brochure' => Yii::t('language', 'โบรชัวร์'),
             'partner' => Yii::t('language', 'หุ้นส่วน'),
+            'motion_status' => Yii::t('language', 'ประเภท'),
+            'update_at' => Yii::t('language', 'อัพเดตล่าสุด'),
         );
     }
 

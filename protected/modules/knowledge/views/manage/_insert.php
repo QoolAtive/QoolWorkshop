@@ -207,7 +207,7 @@
                 ?>
             </div>
             <div class="ckright">   
-                <?
+                <?php
                 echo $form->fileField($file, 'image', array('accept' => 'imaage/*'));
                 echo $form->error($file, 'image');
                 ?>

@@ -1,4 +1,6 @@
 <?php
+
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $dataProvider,
@@ -17,39 +19,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name',
         ),
         array(
-            'name' => 'main_business',
-//                'value' => '$data->date_write',
-            'value' => '$data->main_business',
-//                'filter' => '',
-        ),
-        array(
-            'name' => 'sub_business',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business',
-//                'filter' => '',
-        ),
-        array(
             'name' => 'name_en',
             'value' => '$data->name_en',
         ),
         array(
-            'name' => 'main_business_en',
-//                'value' => '$data->date_write',
-            'value' => '$data->main_business_en',
-//                'filter' => '',
+            'name' => 'update_at',
+            'value' => '$data->update_at',
+            'filter' => false,
         ),
         array(
-            'name' => 'sub_business_en',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business_en',
-//                'filter' => '',
+            'name' => 'motion_status',
+            'value' => 'CompanyMotion::model()->dataStatus($data->motion_status)',
+            'filter' => CompanyMotion::model()->dataStatus(''),
         ),
         array(
-            'name' => 'user_id',
-            'value' => '$data->user_id',
-        ),
-        array(
-            
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
@@ -65,7 +48,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     'visible' => '$data->user_id == Yii::app()->user->id',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => 'delete', //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/delCompany/",array("id"=>$data->id))',
                     'visible' => '$data->user_id == Yii::app()->user->id',
                 ),
@@ -77,7 +60,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
         array(
-            
             'class' => 'CButtonColumn',
             'header' => 'จัดการ<p>สินค้า</p>',
             'template' => '{view}',

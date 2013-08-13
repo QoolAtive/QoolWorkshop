@@ -36,24 +36,10 @@ class AdminController extends Controller {
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
-        $criteria->compare('infor', $model->infor, true);
-        $criteria->compare('infor_en', $model->infor_en, true);
         $criteria->compare('main_business', $model->main_business, true);
         $criteria->compare('main_business_en', $model->main_business_en, true);
         $criteria->compare('sub_business', $model->sub_business, true);
         $criteria->compare('sub_business_en', $model->sub_business_en, true);
-        $criteria->compare('address', $model->address, true);
-        $criteria->compare('address_en', $model->address_en, true);
-        $criteria->compare('contact_name', $model->contact_name, true);
-        $criteria->compare('contact_name_en', $model->contact_name_en, true);
-        $criteria->compare('contact_tel', $model->contact_tel, true);
-        $criteria->compare('contact_fax', $model->contact_fax, true);
-        $criteria->compare('contact_email', $model->contact_email, true);
-        $criteria->compare('facebook', $model->facebook, true);
-        $criteria->compare('twitter', $model->twitter, true);
-        $criteria->compare('website', $model->website, true);
-        $criteria->compare('banner', $model->banner, true);
-        $criteria->compare('brochure', $model->brochure, true);
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
@@ -82,30 +68,142 @@ class AdminController extends Controller {
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
-        $criteria->compare('infor', $model->infor, true);
-        $criteria->compare('infor_en', $model->infor_en, true);
         $criteria->compare('main_business', $model->main_business, true);
         $criteria->compare('main_business_en', $model->main_business_en, true);
         $criteria->compare('sub_business', $model->sub_business, true);
         $criteria->compare('sub_business_en', $model->sub_business_en, true);
-        $criteria->compare('address', $model->address, true);
-        $criteria->compare('address_en', $model->address_en, true);
-        $criteria->compare('contact_name', $model->contact_name, true);
-        $criteria->compare('contact_name_en', $model->contact_name_en, true);
-        $criteria->compare('contact_tel', $model->contact_tel, true);
-        $criteria->compare('contact_fax', $model->contact_fax, true);
-        $criteria->compare('contact_email', $model->contact_email, true);
-        $criteria->compare('facebook', $model->facebook, true);
-        $criteria->compare('twitter', $model->twitter, true);
-        $criteria->compare('website', $model->website, true);
-        $criteria->compare('banner', $model->banner, true);
-        $criteria->compare('brochure', $model->brochure, true);
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
         ));
 
         $this->render('company_waiting', array(
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ));
+    }
+
+    public function actionMotionSetting() {
+
+        $model = new CompanyMotionSetting();
+
+        $criteria = new CDbCriteria;
+        $criteria->order = '`use` = 1 desc, company_motion_setting_id desc';
+
+        $criteria->compare('amount', $model->amount, true);
+        $criteria->compare('type', $model->type, true);
+
+        $dataProvider = new CActiveDataProvider('CompanyMotionSetting', array(
+            'criteria' => $criteria,
+        ));
+
+
+        $this->render('motion_setting', array(
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ));
+    }
+
+    public function actionSetMotion($company_motion_setting_id = null) {
+        $model_old = CompanyMotionSetting::model()->findAll();
+        foreach ($model_old as $data) {
+            $model_old_edit = CompanyMotionSetting::model()->findByPk($data['company_motion_setting_id']);
+            $model_old_edit->use = 0;
+            $model_old_edit->save();
+        }
+
+        if ($company_motion_setting_id != null) {
+            $model = CompanyMotionSetting::model()->findByPk($company_motion_setting_id);
+
+            if ($model->use == 0)
+                $model->use = 1;
+            else
+                $model->use = 0;
+
+            if ($model->save()) {
+                $this->redirect('/eDirectory/admin/motionSetting');
+            }
+        }
+    }
+
+    public function actionMotionSettingInsert($motion_id = null) {
+
+        if ($motion_id == null) {
+            $model = new CompanyMotionSetting();
+        } else {
+            $model = CompanyMotionSetting::model()->findByPk($motion_id);
+        }
+
+        if (isset($_POST['CompanyMotionSetting'])) {
+            $model->attributes = $_POST['CompanyMotionSetting'];
+
+            if ($model->use == 1) {
+                $model_old = CompanyMotionSetting::model()->findAll();
+                foreach ($model_old as $data) {
+                    $model_old_edit = CompanyMotionSetting::model()->findByPk($data['company_motion_setting_id']);
+                    $model_old_edit->use = 0;
+                    $model_old_edit->save();
+                }
+            }
+
+//            echo "<pre>";
+//            print_r($model->attributes);
+//            echo "</pre>";die;
+
+            $model->validate();
+            if ($model->getErrors() == null) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกเรียบร้อย') . "');
+                        window.location='/eDirectory/admin/motionSetting';
+                        </script>
+                        ";
+                }
+            }
+        }
+
+        $this->render('motion_setting_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionCompanyMotion() {
+
+        $model = new Company;
+        if (isset($_GET['Company'])) {
+            $model->attributes = $_GET['Company'];
+            $model->update_at = $_GET['Company']['update_at'];
+            $model->motion_status = $_GET['Company']['motion_status'];
+        }
+
+        $date = date('Y-m-d');
+        $strtime = strtotime($date);
+        $caltime = strtotime("-1 Day", $strtime);
+        $update_at = date('Y-m-d', $caltime);
+//        if ($update_at < date('Y-m-d')) {
+//            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
+//        }
+        $criteria = new CDbCriteria;
+        $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status';
+        $criteria->join = '
+            left join company_them ct on t.id = ct.main_id
+            inner join company_motion cm on t.id = cm.company_id
+            ';
+        $criteria->distinct = 'name, name_en';
+        $criteria->order = 'cm.company_motion_id desc';
+        $criteria->condition = "ct.status_appro = 1 and cm.update_at < '" . $update_at . "'";
+
+        $criteria->compare('name', $model->name, true);
+        $criteria->compare('name_en', $model->name_en, true);
+        $criteria->compare('cm.update_at', $model->update_at, true);
+        $criteria->compare('cm.status', $model->motion_status, true);
+
+        $dataProvider = new CActiveDataProvider('Company', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('company_motion', array(
             'dataProvider' => $dataProvider,
             'model' => $model,
         ));
@@ -523,4 +621,5 @@ class AdminController extends Controller {
     }
 
 }
+
 ?>

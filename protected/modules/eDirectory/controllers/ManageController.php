@@ -116,7 +116,6 @@ class ManageController extends Controller {
                     }
 
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
-                    echo count($company_motion);
                     if (count($company_motion) < 1) {
                         $company_motion = new CompanyMotion();
                         $company_motion->user_id = Yii::app()->user->id;
@@ -300,6 +299,22 @@ class ManageController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
+
+                    $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
+                    echo count($company_motion);
+                    if (count($company_motion) < 1) {
+                        $company_motion = new CompanyMotion();
+                        $company_motion->user_id = Yii::app()->user->id;
+                        $company_motion->company_id = $model->id;
+                        $company_motion->status = '1';
+                        $company_motion->update_at = date('Y-m-d');
+                        $company_motion->save();
+                    } else {
+                        $company_motion->status = '2';
+                        $company_motion->update_at = date('Y-m-d');
+                        $company_motion->save();
+                    }
+
                     if ($pro_id != null) {
                         echo "
                             <script>

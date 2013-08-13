@@ -14,13 +14,7 @@ $this->renderPartial('side_bar', array(
 <div class="content">
     <div class="tabcontents">
         <?php
-        $date = date('2013-01-01');
-        $strtime = strtotime($date);
-        $caltime = strtotime("+2 Month", $strtime);
-        $update_at = date('Y-m-d', $caltime);
-        if ($update_at < date('Y-m-d')) {
-            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
-        }
+        
         if ($model == null) {
             ?>
             <div style='text-align: center;'>
