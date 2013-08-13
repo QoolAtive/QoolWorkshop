@@ -20,7 +20,7 @@ class ManageShopController extends Controller {
 
     //หน้า register
     public function actionRegister() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/shop_register.js');
         $shop_id == NULL;
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id == NULL) {
@@ -59,7 +59,7 @@ class ManageShopController extends Controller {
 
 //    หน้าเลือกธีม
     public function actionSelectThemes() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/select_themes.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/select_themes.js');
         $shop_id = Yii::app()->session['shop_id'];
         $shop_format_id = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id))->web_shop_format_id;
         if ($shop_format_id == NULL) {
@@ -208,7 +208,7 @@ class ManageShopController extends Controller {
 
 //    หน้าเลือกอักษรและข้อความ
     public function actionSelectCharText() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/select_text_color.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/select_text_color.js');
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
 
@@ -382,6 +382,10 @@ class ManageShopController extends Controller {
     public function actionManageBox(){
         
         $this->render('manage_box');
+    }
+    
+    public function actionAddBox(){
+        $this->renderPartial('add_box_');
     }
 
 }
