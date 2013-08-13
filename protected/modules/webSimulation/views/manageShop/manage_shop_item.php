@@ -17,26 +17,41 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าในร้าน'); ?>
             </span>
         </h3>
-        
-        <!--เพิ่มสินค้าในร้าน-->
-<!--        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'เพิ่มสินค้าในร้าน'), CHtml::normalizeUrl(array('/webSimulation/manageShop/editItem')));
-            ?>
-        </div>-->
-        
-        <!--สินค้าทั้งหมดในร้าน-->
-        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'จัดการรายการสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')));
-            ?>
-        </div>
-        
-        <!--หมวดหมู่สินค้า-->
-        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItemCategory')));
-            ?>
-        </div>
+
+        <ul class="linklist">
+            <!--เพิ่มสินค้าในร้าน-->
+<!--            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'เพิ่มสินค้าในร้าน'), CHtml::normalizeUrl(array('/webSimulation/manageShop/editItem')));
+                        ?>
+                    </li>
+                </ul>
+            </li>-->
+
+            <!--สินค้าทั้งหมดในร้าน-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'จัดการรายการสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+
+            <!--หมวดหมู่สินค้า-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItemCategory')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+            
+        </ul>        <!--<ul class="linklist">-->
     </div>
 </div>

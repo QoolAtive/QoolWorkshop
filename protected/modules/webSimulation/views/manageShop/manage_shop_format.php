@@ -17,28 +17,46 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
             </span>
         </h3>
-        
-        <!--แก้ไขธีมร้านค้า-->
-        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'ธีม') . Yii::t('language', 'ร้านค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
-            echo ' : ';
-            echo WebShopFormat::model()->findByAttributes(array('web_shop_id' => $model->web_shop_id))->theme;
-            ?>
-        </div>
-        
-        <!--โลโก้ และ พื้นหลัง-->
-        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'โลโก้ และ พื้นหลัง'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')));
-            ?>
-        </div>
-        
-        <!--อักษรและข้อความ-->
-        <div>
-            <?php
-            echo CHtml::link(Yii::t('language', 'อักษรและข้อความ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')));
-            ?>
-        </div>
+
+        <ul class="linklist">
+            <!--แก้ไขธีมร้านค้า-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(CHtml::image(WebShopFormat::model()->findByAttributes(array('web_shop_id' => $model->web_shop_id))->theme), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
+                        ?>
+                    </li>
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'ธีม') . Yii::t('language', 'ร้านค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+
+            <!--โลโก้ และ พื้นหลัง-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'โลโก้ และ พื้นหลัง'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+
+            <!--อักษรและข้อความ-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'อักษรและข้อความ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
+            
+        </ul>        <!--<ul class="linklist">-->
     </div>
 </div>
