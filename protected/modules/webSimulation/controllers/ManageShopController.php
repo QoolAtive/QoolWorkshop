@@ -20,7 +20,7 @@ class ManageShopController extends Controller {
 
     //หน้า register
     public function actionRegister() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/shop_register.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/shop_register.js');
         $shop_id == NULL;
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id == NULL) {
@@ -59,7 +59,7 @@ class ManageShopController extends Controller {
 
 //    หน้าเลือกธีม
     public function actionSelectThemes() {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/select_themes.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/select_themes.js');
         $shop_id = Yii::app()->session['shop_id'];
         $shop_format_id = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id))->web_shop_format_id;
         if ($shop_format_id == NULL) {
@@ -208,6 +208,7 @@ class ManageShopController extends Controller {
 
 //    หน้าเลือกอักษรและข้อความ
     public function actionSelectCharText() {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/select_text_color.js');
         $shop_id = Yii::app()->session['shop_id'];
         $model = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
 
@@ -348,7 +349,7 @@ class ManageShopController extends Controller {
 //                        window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopItem')) . "';
 //                  </script>";
 //                } else {
-                    echo "<script language='javascript'>
+                echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')) . "';
                   </script>";
@@ -358,6 +359,7 @@ class ManageShopController extends Controller {
         $this->render('edit_item', array('model' => $model));
     }
 
+//    หน้า จัดการรายการสินค้า
     public function actionManageItem() {
         $shop_id = Yii::app()->session['shop_id'];
         $model = new WebShopItem();
@@ -369,10 +371,63 @@ class ManageShopController extends Controller {
         $this->render('manage_item', array('model' => $model));
     }
 
+    public function actionDeletePic($pic, $item_id) {
+        $model = WebShopItem::model()->findByPk($item_id);
+        $file = '.' . $model->$pic;
+        if (file_exists($file))
+            unlink($file);
+        if (WebShopItem::model()->updateByPk($item_id, array($pic => ''))) {
+            
+        }
+    }
+
     public function actionDeleteItem($item_id) {
         $model = WebShopItem::model()->findByPk($item_id);
         if ($model->delete()) {
             
+        }
+    }
+
+    public function actionManageBox() {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/add_box.js');
+
+        $this->render('manage_box');
+    }
+
+    public function actionAddBox() {
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = new WebShopBox();
+        if (isset($_POST['WebShopBox'])) {
+            $model->attributes = $_POST['WebShopBox'];
+            $model->web_shop_id = $shop_id;
+            $model->type = 1;
+
+            $criteria = new CDbCriteria;
+            $criteria->select = 'order_n';
+            $criteria->order = 'order_n desc';
+            $criteria->limit = '1';
+            if ($order = $model->model()->find($criteria)) {
+                $last = $order->order_n + 1;
+            } else {
+                $last = 1;
+            }
+            $model->order_n = $last;
+            $model->show = 1;
+
+            if ($model->save()) {
+                echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+            }
+        }
+        $this->renderPartial('add_box_', array('model' => $model));
+    }
+
+    public function actionDeleteBox($box_id) {
+        $model = WebShopBox::model()->findByPk($box_id);
+        if ($model->delete()) {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')));
         }
     }
 
