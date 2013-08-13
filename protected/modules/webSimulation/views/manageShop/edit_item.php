@@ -139,20 +139,20 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
 
         <div class="_100">
             <h4>รูปภาพ</h4>
-            <div class="_50">
+            <div class="_25" id="pic_1">
                 <?php
 //                pic 1
-                $this->widget('CMultiFileUpload', array(
-//                    'model' => $model,
-//                    'attribute' => 'pic_1',
-                    'name' => 'pic_file',
-                    'accept' => 'jpg|jpeg|gif|png',
-                    'denied' => Yii::t('language', 'allowed_img'),
-                    'max' => 8,
-                    'remove' => '[x]',
-                    'duplicate' => Yii::t('language', 'เลือกไว้แล้ว'),
-                        )
-                );
+                if ($model->pic_1 != NULL) {
+                    echo CHtml::image($model->pic_1, '', array(
+                        'style' => 'width:100px',
+                    ));
+                    echo CHtml::ajaxButton(Yii::t('language', 'ลบ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/deletePic', 'pic' => 'pic_1', 'item_id' => $model->web_shop_item_id)), array(
+                        'update' => '#pic_1',
+                    ));
+                } else {
+                    echo $form->fileField($model, 'pic_1', array('accept' => 'imaage/*'));
+                    echo $form->error($model, 'pic_1');
+                }
                 ?>
             </div>
             <div class="_100">
@@ -194,8 +194,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
 //                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
 //                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopItem")) . '"'));
 //            } else {
-                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem/")) . '"'));
+            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem/")) . '"'));
 //            }
             ?>
         </div>
