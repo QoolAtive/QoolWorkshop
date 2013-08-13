@@ -24,7 +24,7 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
                 <ul class="innerlogo">
                     <li>
                         <?php
-                        echo CHtml::link(CHtml::image(WebShopFormat::model()->findByAttributes(array('web_shop_id' => $model->web_shop_id))->theme), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
+                        echo CHtml::link(CHtml::image('/img/layout/' . WebShopFormat::model()->findByAttributes(array('web_shop_id' => $model->web_shop_id))->theme . '.jpg'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
                         ?>
                     </li>
                     <li>
