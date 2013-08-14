@@ -15,7 +15,8 @@ echo "test2";
 
 echo "Tottenham 5-0 Arsenal";
 echo "<p>";
-echo "ช้าง ช้าง ช้าง....";
+
+echo "bla bla";
 echo "</p>";
 echo "ตับ ตับ ตับ";
 
