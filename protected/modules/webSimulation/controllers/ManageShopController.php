@@ -439,5 +439,22 @@ class ManageShopController extends Controller {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')));
         }
     }
+    
+    public function actionSortBox(){
+//        Yii::app()->clientScript->registerCssFile('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/sort_box.js');
+        if ($_POST['sort_arr'] != '') {
+            $i = 1;
+            $arr = array();
+            $arr = preg_split('/,/', $_POST['sort_arr']);
+            foreach ($arr as $box_id){
+                WebShopBox::model()->updateByPk($box_id, array('order_n' => $i));
+                $i += 1;
+            }
+        }
+        $this->render('sort_box');
+    }
 
 }

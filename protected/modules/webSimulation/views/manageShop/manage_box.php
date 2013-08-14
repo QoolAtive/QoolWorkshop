@@ -23,50 +23,17 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
             <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
             <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
-            <a href="web-sim-box-video.html">จัดลำดับกล่อง</a>
+            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/sortBox')); ?>">จัดลำดับกล่อง</a>
         </div>
         <hr>
 
-
-
         <ul class="droptrue">
-            <li id="recordsArray_1"> 
-
-                <p class="headsort">Hot Product</p>
-                <p class="tool">
-                    <a href="">แก้ไขสินค้า</a>
-                    &nbsp;|&nbsp;
-                    <a href="" onclick="return confirm('Are you sure to Delete?');">ลบ</a>
-                    &nbsp;|&nbsp;
-                    <a href="#">แก้ไขการแสดงผล</a>
-                    &nbsp;|&nbsp;
-                    <a href="#" class="hideshowbox">แสดง/ซ่อน</a>
-
-                </p>
-
-            </li>
-            <li id="recordsArray_2">
-                <p class="headsort">New Release</p>
-
-
-                <p class="tool">
-                    <a href="">แก้ไขสินค้า</a>
-                    &nbsp;|&nbsp;
-                    <a href="" onclick="return confirm('Are you sure to Delete?');">ลบ</a>
-                    &nbsp;|&nbsp;
-                    <a href="#">แก้ไขการแสดงผล</a>
-                    &nbsp;|&nbsp;
-                    <a href="#" class="hideshowbox">แสดง/ซ่อน</a>
-                </p>
-
-
-            </li>
-
             <?php
             $boxs = WebShopBox::model()->findAll();
+            $i = 1;
             foreach ($boxs as $box) {
                 ?>
-                <li id="recordsArray_4">
+                <li id="recordsArray_<?php echo $i; ?>">
                     <p class="headsort"><?php echo $box['name_th']; ?></p>
                     <p class="tool">
                         <a href="">แก้ไขสินค้า</a>
@@ -80,7 +47,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 
                     </p>
                 </li>
-            <?php } ?>
+            <?php 
+            $i += 1;
+            } ?>
         </ul>   
 
 
