@@ -4,12 +4,26 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 
 <div class="content">
     <div class="tabcontents" >
-        <h3 class="_100">จัดการกล่อง </h3>
-        <hr>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-shopping-cart"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                    <?php echo Yii::t('language', 'ร้าน ') . $model->name_th; ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'); ?>
+            </span>
+        </h3>
+        
         <div class="_100">
             <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
-            <a class="addboxbtn fancybox.ajax btn" href="web-sim-box-html.html">ใส่โค๊ด html </a>
-            <a class="addboxbtn fancybox.ajax btn" href="web-sim-box-video.html">วีดีโอ/เพลง</a>
+            <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
+            <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
+            <a href="web-sim-box-video.html">จัดลำดับกล่อง</a>
         </div>
         <hr>
 

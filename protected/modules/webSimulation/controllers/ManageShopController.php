@@ -336,6 +336,7 @@ class ManageShopController extends Controller {
         }
     }
 
+//    หน้าจัดการกล่องแสดงสินค้า
     public function actionManageBox() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/add_box.js');
 
@@ -370,6 +371,66 @@ class ManageShopController extends Controller {
             }
         }
         $this->renderPartial('add_box_', array('model' => $model));
+    }
+    
+    public function actionAddHtml(){
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = new WebShopBox();
+        if (isset($_POST['WebShopBox'])) {
+            $model->attributes = $_POST['WebShopBox'];
+            $model->web_shop_id = $shop_id;
+            $model->type = 2;
+            
+            $criteria = new CDbCriteria;
+            $criteria->select = 'order_n';
+            $criteria->order = 'order_n desc';
+            $criteria->limit = '1';
+            if ($order = $model->model()->find($criteria)) {
+                $last = $order->order_n + 1;
+            } else {
+                $last = 1;
+            }
+            $model->order_n = $last;
+            $model->show = 1;
+            
+            if ($model->save()) {
+                echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+            }
+        }
+        $this->renderPartial('add_html_', array('model' => $model));
+    }
+    
+    public function actionAddVideo(){
+        $shop_id = Yii::app()->session['shop_id'];
+        $model = new WebShopBox();
+        if (isset($_POST['WebShopBox'])) {
+            $model->attributes = $_POST['WebShopBox'];
+            $model->web_shop_id = $shop_id;
+            $model->type = 3;
+            
+            $criteria = new CDbCriteria;
+            $criteria->select = 'order_n';
+            $criteria->order = 'order_n desc';
+            $criteria->limit = '1';
+            if ($order = $model->model()->find($criteria)) {
+                $last = $order->order_n + 1;
+            } else {
+                $last = 1;
+            }
+            $model->order_n = $last;
+            $model->show = 1;
+            
+            if ($model->save()) {
+                echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+            }
+        }
+        $this->renderPartial('add_video_', array('model' => $model));
     }
 
     public function actionDeleteBox($box_id) {
