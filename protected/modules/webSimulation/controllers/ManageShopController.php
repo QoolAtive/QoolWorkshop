@@ -278,68 +278,14 @@ class ManageShopController extends Controller {
             $model->web_shop_id = $shop_id;
 
             //for upload pic
-            $arr_files = CUploadedFile::getInstancesByName('pic_file');
-            if ($arr_files != NULL) {
-                $pic = array();
-                $path = '/upload/img/websim/item/';
-
-                foreach ($arr_files as $i => $file) {
-                    $arr_file_detail = explode('.', $file->getName());
-                    $formatName = $arr_file_detail[0] . "-" . time() . $i . '.' . $file->getExtensionName();
-                    $file->saveAs('.' . $path . $formatName);
-                    $pic[$i] = $path . $formatName;
-                }
-
-                //อัพรูปทับของเดิม *******ต้องแก้ใหม่
-                if ($pic[0]) {
-                    $file = '.' . $model->pic_1;
-                    if ($model->pic_1 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_1 = $pic[0];
-                }
-                if ($pic[1]) {
-                    $file = '.' . $model->pic_2;
-                    if ($model->pic_2 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_2 = $pic[1];
-                }
-                if ($pic[2]) {
-                    $file = '.' . $model->pic_3;
-                    if ($model->pic_3 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_3 = $pic[2];
-                }
-                if ($pic[3]) {
-                    $file = '.' . $model->pic_4;
-                    if ($model->pic_4 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_4 = $pic[3];
-                }
-                if ($pic[4]) {
-                    $file = '.' . $model->pic_5;
-                    if ($model->pic_5 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_5 = $pic[4];
-                }
-                if ($pic[5]) {
-                    $file = '.' . $model->pic_6;
-                    if ($model->pic_6 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_6 = $pic[5];
-                }
-                if ($pic[6]) {
-                    $file = '.' . $model->pic_7;
-                    if ($model->pic_7 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_7 = $pic[6];
-                }
-                if ($pic[7]) {
-                    $file = '.' . $model->pic_8;
-                    if ($model->pic_8 != NULL && file_exists($file))
-                        unlink($file);
-                    $model->pic_8 = $pic[7];
-                }
-            }
+            $model = UploadPic::upload($model, 'pic_1');
+            $model = UploadPic::upload($model, 'pic_2');
+            $model = UploadPic::upload($model, 'pic_3');
+            $model = UploadPic::upload($model, 'pic_4');
+            $model = UploadPic::upload($model, 'pic_5');
+            $model = UploadPic::upload($model, 'pic_6');
+            $model = UploadPic::upload($model, 'pic_7');
+            $model = UploadPic::upload($model, 'pic_8');
             //END for upload pic
 
             if ($model->save()) {
@@ -374,10 +320,12 @@ class ManageShopController extends Controller {
     public function actionDeletePic($pic, $item_id) {
         $model = WebShopItem::model()->findByPk($item_id);
         $file = '.' . $model->$pic;
-        if (file_exists($file))
+        if (file_exists($file) && $model->$pic != '/img/noimage.gif') {
             unlink($file);
-        if (WebShopItem::model()->updateByPk($item_id, array($pic => ''))) {
-            
+        }
+        if (WebShopItem::model()->updateByPk($item_id, array($pic => '/img/noimage.gif'))) {
+            $model->$pic = '/img/noimage.gif';
+            $this->renderPartial('item_pic_', array('model' => $model, 'pic' => $pic));
         }
     }
 

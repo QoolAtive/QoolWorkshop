@@ -1,0 +1,28 @@
+<?php
+
+class UploadPic {
+
+    public static function upload($model, $attribute) {
+        $fileSave = CUploadedFile::getInstance($model, $attribute);
+        if ($fileSave != NULL) {
+            $dir = '/upload/img/websim/item/';
+            if ($model->$attribute != NULL && $model->$attribute != '/img/noimage.gif') {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                if (fopen('.' . $model->$attribute, 'w'))
+                    if (unlink('.' . $model->$attribute)) {
+                        
+                    }
+            }
+
+            $filename = $dir . rand('000', '999') . $fileSave->name;
+            $model->$attribute = $filename;
+            $fileSave->saveAs('.' . $filename);
+        } else {
+            if ($model->$attribute == NULL)
+                $model->$attribute = '/img/noimage.gif';
+        }
+        return $model;
+    }
+
+}
+
+?>
