@@ -16,7 +16,7 @@
 
     echo "Hello Bale";
     echo "Shabu Shabu";
-    echo "Yahooo";
+
     echo "Hooooooo";
 ?>
 </div>
