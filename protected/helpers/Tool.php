@@ -87,7 +87,7 @@ Class Tool {
         $mail = Yii::app()->Smtpmail;
         $mail->IsSMTP();
         $mail->Mailer = "smtp";
-        $mail->SMTPSecure = "ssl";
+        $mail->SMTPSecure = "STARTTLS";
         $mail->CharSet = 'UTF-8';
 
         $mail->SetFrom($data['from'], $data['name']);
