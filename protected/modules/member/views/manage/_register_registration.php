@@ -374,7 +374,7 @@
                     echo $form->error($model, 'business_name');
                     ?>
                 </div>
-                 <div class="_50">
+                <div class="_50">
                     <?php
                     echo $form->labelEx($model, 'business_name_en');
                     echo $form->textField($model, 'business_name_en', array(
@@ -434,7 +434,7 @@
                     echo $form->error($model, 'product_name');
                     ?>
                 </div>
-               
+
 
                 <div class="_50"> 
                     <?php
@@ -447,13 +447,13 @@
                 </div> 
 
 
-               <div class="_100"></div> 
-            <?php if (CCaptcha::checkRequirements()) { ?>
-                <div class="_25" style="width: 12.7%;"> 
-                    <!-- <span class="haft"> -->
-                        <?php echo $form->labelEx($model_user, 'verifyCode');?>
-                    <!-- </span> -->
-                </div>
+                <div class="_100"></div> 
+                <?php if (CCaptcha::checkRequirements()) { ?>
+                    <div class="_25" style="width: 12.7%;"> 
+                        <!-- <span class="haft"> -->
+                        <?php echo $form->labelEx($model_user, 'verifyCode'); ?>
+                        <!-- </span> -->
+                    </div>
 
                     <div class="capcha _33">
                         <?php
@@ -462,8 +462,8 @@
                         echo $form->error($model_user, 'verifyCode');
                         ?>
                     </div>
-                
-            <?php } ?>
+
+                <?php } ?>
 
 
 
@@ -483,10 +483,11 @@
                 <div class="_100 textcenter padud20">
                     <?php
                     echo CHtml::submitButton('สมัครสมาชิก');
+                    echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                            '/site/index'
+                        )) . "'")
+                    );
                     ?>
-                    <input type="reset" name="reset" value="ยกเลิก" />
-
-
                 </div> 
                 <?php $this->endWidget(); ?>
             </div>

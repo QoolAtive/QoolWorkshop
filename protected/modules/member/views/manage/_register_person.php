@@ -49,13 +49,12 @@
                 echo $form->textField($model_user, 'username', array(
                     'class' => 'numberinput fieldrequire',
                     'placeholder' => 'เลขบัตรประจำตัวประชาชน',
-                    // 'placeholder' => MemUser::model()->getAttributeLabel('username'),
-
+                        // 'placeholder' => MemUser::model()->getAttributeLabel('username'),
                 ));
                 echo $form->error($model_user, 'username');
                 ?>
 <!--                 <label><?php echo Yii::t('language', '*' . MemUser::model()->getAttributeLabel('username') . ' ต้องระบุเป็นเลขบัตรประจำตัวประชาชนเท่านั้น'); ?></label>
- -->            </div>
+                -->            </div>
             <!-- new line -->
 
             <!-- password -->
@@ -364,15 +363,15 @@
             </div>
 
             <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
-           
-               
-             <div class="_25">
-                                 <?php echo $form->labelEx($model, 'product_name'); ?> 
 
-             </div>
+
+            <div class="_25">
+                <?php echo $form->labelEx($model, 'product_name'); ?> 
+
+            </div>
             <div class="_75">
                 <?php
-                    echo $form->textField($model, 'product_name', array(
+                echo $form->textField($model, 'product_name', array(
                     'id' => 'trurakitname',
                     // 'class' => 'haft',
                     'placeholder' => MemPerson::model()->getAttributeLabel('product_name')
@@ -381,8 +380,8 @@
                 ?>
             </div>
             <div class="_25">
-                             <?php echo $form->labelEx($model, 'product_name_en'); ?>
-       
+                <?php echo $form->labelEx($model, 'product_name_en'); ?>
+
             </div>
             <div class="_75">
                 <?php
@@ -397,14 +396,14 @@
 
             <div class="_25">
                 <!-- <span class="haft"> -->
-                    <?php echo $form->labelEx($model, 'business_type'); ?>
+                <?php echo $form->labelEx($model, 'business_type'); ?>
                 <!-- </span> -->
             </div>
             <div class="_75">
                 <?php
                 echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
                     'empty' => 'เลือก',
-                    // 'class' => 'haft'
+                        // 'class' => 'haft'
                 ));
                 echo $form->error($model, 'business_type');
                 ?>
@@ -413,25 +412,28 @@
             <?php if (CCaptcha::checkRequirements()) { ?>
                 <div class="_25"> 
                     <!-- <span class="haft"> -->
-                        <?php echo $form->labelEx($model_user, 'verifyCode');?>
+                    <?php echo $form->labelEx($model_user, 'verifyCode'); ?>
                     <!-- </span> -->
                 </div>
 
-                    <div class="capcha _33">
-                        <?php
-                        $this->widget('CCaptcha');
-                        echo $form->textField($model_user, 'verifyCode', array('class' => 'fieldrequire'));
-                        echo $form->error($model_user, 'verifyCode');
-                        ?>
-                    </div>
-                
+                <div class="capcha _33">
+                    <?php
+                    $this->widget('CCaptcha');
+                    echo $form->textField($model_user, 'verifyCode', array('class' => 'fieldrequire'));
+                    echo $form->error($model_user, 'verifyCode');
+                    ?>
+                </div>
+
             <?php } ?>
 
             <div class="_100 textcenter padud20">
                 <?php
                 echo CHtml::submitButton('สมัครสมาชิก');
+                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/site/index'
+                    )) . "'")
+                );
                 ?>
-                <input type="reset" name="reset" value="ยกเลิก" />
 
             </div> 
             <?php $this->endWidget(); ?>
