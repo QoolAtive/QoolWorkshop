@@ -1,5 +1,23 @@
 /* @group Component */
+.Center-Container.is-Inline { 
+/*  text-align: center;
+*/  overflow: auto;
+}
 
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+.servicelist{
+}
+.Center-Container.is-Inline:after {
+  min-height: 145px;
+  content: '';
+  height: 100%;
+  margin-left: -0.25em; /* To offset spacing. May vary font */
+  width: 0px; /* Prevents issues where psuedo element pushes width: auto Center Block to the bottom */
+ }
 * {
     outline:none !important;
     -moz-outline: none !important;
@@ -1174,11 +1192,19 @@ div.grid-view table tr td:first-child {
 }
 /* @end */
 #container .servicelist {
-       border: 1px solid #C9C9C9;
+    border: 1px dotted #F544FF;
     float: left;
     margin: 3px;
     padding: 20px 10px;
     width: 46%;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
+}
+#container .servicelist:hover{
+    border : 1px solid #F544FF;
+}
+
+#container .servicelist label {
+    font-weight: bold;
 }
 
 /*link page */
