@@ -68,7 +68,7 @@ $next_detail = LanguageHelper::changeDB($lessonNext->detail, $lessonNext->detail
         </div>
         <div class="clearfix"></div>
 
-        <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/default/readingPdf/', 'id' => $modelFile->id)); ?>
+        <?php if (isset($modelFile)) echo CHtml::link(CHtml::image('/img/download.png', '', array('class' => 'downloadbtn')), array('/learning/default/readingFile/', 'id' => $modelFile->id)); ?>
         <hr class="demohr"> 
         <?php if (!empty($lessonNext)) { ?>
             <div class="_100">
