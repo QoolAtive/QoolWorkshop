@@ -338,9 +338,10 @@ class ManageShopController extends Controller {
 
 //    หน้าจัดการกล่องแสดงสินค้า
     public function actionManageBox() {
+        $shop_id = Yii::app()->session['shop_id'];
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/add_box.js');
 
-        $this->render('manage_box');
+        $this->render('manage_box', array('shop_id' => $shop_id));
     }
 
     public function actionAddBox() {
@@ -441,6 +442,7 @@ class ManageShopController extends Controller {
     }
     
     public function actionSortBox(){
+        $shop_id = Yii::app()->session['shop_id'];
 //        Yii::app()->clientScript->registerCssFile('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
 //        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
 //        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
@@ -454,7 +456,7 @@ class ManageShopController extends Controller {
                 $i += 1;
             }
         }
-        $this->render('sort_box');
+        $this->render('sort_box', array('shop_id' => $shop_id));
     }
 
 }
