@@ -87,14 +87,14 @@ Class Tool {
         $mail = Yii::app()->Smtpmail;
         $mail->IsSMTP();
         $mail->Mailer = "smtp";
-        $mail->SMTPSecure = "STARTTLS";
+        $mail->SMTPSecure = "ssl";
         $mail->CharSet = 'UTF-8';
 
         $mail->SetFrom($data['from'], $data['name']);
         $mail->Subject = $data['subject'];
         $mail->MsgHTML($data['message']);
         $mail->AddAddress($data['to']);
-        return $mail->send();
+        return $mail->Send();
 //        if (!$mail->Send()) {
 //            echo "Mailer Error: " . $mail->ErrorInfo;
 //        } else {
