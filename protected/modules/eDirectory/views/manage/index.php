@@ -14,7 +14,6 @@ $this->renderPartial('side_bar', array(
 <div class="content">
     <div class="tabcontents">
         <?php
-        
         if ($model == null) {
             ?>
             <div style='text-align: center;'>
@@ -39,8 +38,19 @@ $this->renderPartial('side_bar', array(
                 echo '<label style = "color: red;">' . Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ ร้านค้าของคุณจะยังไม่ได้รับการเพิ่มข้อมูลเข้าสู่ระบบร้านค้า') . '</label>';
             }
             ?>
+
             <?php
             $name = LanguageHelper::changeDB($model->name, $model->name_en);
+            ?>
+            <?php
+            $model_them = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $model->id));
+            if ($model_them->status_block == 1) {
+                ?>
+                <div class="clearfix _100" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
+                    <?php echo Yii::t('language', 'ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน จำเป็นต้องทำการอัพเดทข้อมูล'); ?>
+                </div>
+                <?php
+            }
             ?>
             <h3 class="barH3">
                 <span>
@@ -52,6 +62,7 @@ $this->renderPartial('side_bar', array(
                     <?php echo $name; ?>
                 </span>
             </h3>
+
             <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
 
                 <div id="featured" > 
@@ -84,6 +95,7 @@ $this->renderPartial('side_bar', array(
                 }
                 ?>
             </div>
+
             <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
                 <h2>
                     <img src="/img/icontopic.png" />

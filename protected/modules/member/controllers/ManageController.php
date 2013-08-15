@@ -432,6 +432,7 @@ Class ManageController extends Controller {
             $twitter = $model->twitter;
             $commerce_registration = '';
             $corporation_registration = '';
+            $email = $model->email;
         } else {
 //            $c->join = "left join member_registration r on t.id = r.user_id";
             $memType = '';
@@ -444,6 +445,7 @@ Class ManageController extends Controller {
             $twitter = '';
             $commerce_registration = $model->commerce_registration;
             $corporation_registration = $model->corporation_registration;
+            $email = $model->email;
         }
         $data = array(
             'memType' => $memType,
@@ -464,6 +466,7 @@ Class ManageController extends Controller {
             'fax' => $model->fax,
             'mobile' => $model->mobile,
             'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
+            'email' => $email,
         );
 
         $this->renderPartial('_view_allow_member', array(
@@ -473,9 +476,24 @@ Class ManageController extends Controller {
     }
 
     public function actionAllowMember($id = null) {
+        $url = $_SERVER['SERVER_NAME'];
         if ($id != null) {
             $model = MemConfirm::model()->find('user_id = ' . $id);
+            $model_profile = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $id));
             if (!empty($model)) {
+                $message = '
+                    <strong>เรียน คุณ ' . $model_profile->ftname . ' ' . $model_profile->ltname . ' </strong>
+                    <p>การสมัครสมาชิกของคุณเรียนร้อยแล้ว</p>
+                    '. CHtml::link(Yii::t('language', 'คลิกเพื่อเข้าสู่เว็บไซต์'), $url);
+
+                $sendEmail = array(
+                    'subject' => 'ยืนยันการสมัครสมาชิก',
+                    'message' => $message,
+                    'to' => $model_profile->email,
+                );
+                Tool::mailsend($sendEmail);
+
+
                 $model->status = 1;
                 if ($model->save()) {
                     echo "

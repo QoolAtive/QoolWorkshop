@@ -29,17 +29,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'เครื่องมือ',
+            'header' => 'ตั้งค่า',
             'template' => '{set}{unset}',
             'buttons' => array(
                 'set' => array(
                     'label' => 'set', //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/setMotion/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
+                    'imageUrl' => Yii::app()->request->baseUrl . '/images/setting.png',
                     'visible' => '$data->use == 0',
                 ),
                 'unset' => array(
-                    'label' => 'unset', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/setMotion/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
+                    'label' => 'used', //Text label of the button.
+//                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/setMotion/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
+                    'imageUrl' => Yii::app()->request->baseUrl . '/images/apply.ico',
                     'visible' => '$data->use == 1',
                 ),
             ),
@@ -48,19 +50,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
-            'template' => '{view}{update}{delete}',
+            'template' => '{update}{delete}',
             'buttons' => array(
-                'view' => array(
-                    'label' => 'view', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/companyDetail/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
-                ),
                 'update' => array(
                     'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/insertCompany",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
+                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/motionSettingInsert",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/delCompany/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
+                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/motionSettingDel/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){

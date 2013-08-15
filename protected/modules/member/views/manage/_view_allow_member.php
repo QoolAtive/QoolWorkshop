@@ -70,6 +70,11 @@
         <div class="boxdetail" >ชื่อสินค้า : </div>
         <div class="boxdetail2" ><?php echo $data['productName']; ?></div>
     <?php } ?>
+        
+    <?php if ($data['email'] != null) { ?>
+        <div class="boxdetail" >อีเมล์ : </div>
+        <div class="boxdetail2" ><?php echo $data['email']; ?></div>
+    <?php } ?>
 
     <div class="boxdetail" >ที่อยู่ : </div>
     <div class="boxdetail2" ><?php echo $data['address']; ?></div>
@@ -107,12 +112,11 @@
     if (isset($confirm)) {
         echo CHtml::button(Yii::t('language', 'ยืนยันสมาชิก'), array(
             'onclick' => "if(confirm('คุณต้องการยืนยันสมาชิกหรือไม่')) window.location='" . CHtml::normalizeUrl(array('/member/manage/allowMember/id/' . $confirm->user_id)) . "'")
-      );
+        );
     }
 
     //  if (isset($confirm)) {
     //     echo CHtml::button(Yii::t('language', 'ยืนยันสมาชิก'), array(
-             
     //         'onclick' => "window.location='" . CHtml::normalizeUrl(array(
     //             '/member/manage/allowMember/id/' . $confirm->user_id)) . "'"
     //         ,'confirm' => Yii::t('language', 'คุณต้องการยืนยันสมาชิกหรือไม่?'))

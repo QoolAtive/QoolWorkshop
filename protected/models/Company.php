@@ -3,7 +3,7 @@
 class Company extends CompanyBase {
 
     public $status_appro;
-    public $update_at, $motion_status; //company_motion
+    public $update_at, $motion_status, $status_block, $date_warning; //company_motion
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -50,6 +50,8 @@ class Company extends CompanyBase {
             'partner' => Yii::t('language', 'หุ้นส่วน'),
             'motion_status' => Yii::t('language', 'ประเภท'),
             'update_at' => Yii::t('language', 'อัพเดตล่าสุด'),
+            'status_block' => Yii::t('language', 'สถานะ'),
+            'date_warning' => Yii::t('language', 'แจ้งเตือน'),
         );
     }
 
