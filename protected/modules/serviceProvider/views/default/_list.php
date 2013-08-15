@@ -11,7 +11,7 @@ $name = LanguageHelper::changeDB($data->name, $data->name_en);
             <?php } ?>
         </a>
     </li>
-    <li>
+    <li style='text-align: center;'>
         <a href="/serviceProvider/default/detail/id/<?php echo $data->id; ?>/type/<?php echo $_GET['id']; ?>">
             <label><?php echo $name; ?></label>
         </a>
