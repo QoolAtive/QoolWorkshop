@@ -66,20 +66,20 @@ Class Tool {
     public static function mailsend($data) {
         $mail = Yii::app()->Smtpmail;
         $mail->IsSMTP();
-        $mail->Mailer = "smtp";
-        $mail->SMTPSecure = "STARTTLS";
+//        $mail->Mailer = "smtp";
+//        $mail->SMTPSecure = "STARTTLS";
         $mail->CharSet = 'UTF-8';
 
         $mail->SetFrom('dbdmart2013@gmail.com', 'ผู้ดูแลระบบ DBDmart.');
         $mail->Subject = $data['subject'];
         $mail->MsgHTML($data['message']);
         $mail->AddAddress($data['to']);
-        $mail->send();
-//        if (!$mail->Send()) {
-//            echo "Mailer Error: " . $mail->ErrorInfo;
-//        } else {
+//        $mail->send();
+        if (!$mail->Send()) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
 //            echo "Message sent!";
-//        }
+        }
     }
 
     //ส่ง email Contact

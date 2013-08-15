@@ -1,3 +1,12 @@
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#ChangeAddressForm_province").change(function() {
+//            if ($("#MemPerson_province option:selected").val() == "") {
+            $("#ChangeAddressForm_district option:eq(0)").attr("selected", "selected");
+//            }
+        });
+    });
+</script>
 <div class="content" style="padding: 0% 11.5%;">
     <div class="row-fluid">
         <h3> <img src="/img/iconform.png"> <?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>  </h3>

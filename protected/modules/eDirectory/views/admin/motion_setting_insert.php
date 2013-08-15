@@ -20,7 +20,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="content">
     <div class="tabcontents">
         <div class="_100" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
-            <?php echo Yii::t('language', 'ตั้งค่าร้านค้าที่ไม่มีการอัพเดตของข้อมูล เพื่อนเตือนต่อผู้เป็นเจ้าของร้าน'); ?>
+            <?php echo Yii::t('language', 'ตั้งค่าร้านค้าที่ไม่มีการอัพเดตของข้อมูล เพื่อเตือนต่อผู้เป็นเจ้าของร้าน'); ?>
         </div>
         <div class="_100">
             <?php

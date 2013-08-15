@@ -12,6 +12,7 @@ $this->renderPartial('side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
+        <hr>
         <div class='textcenter'>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -25,6 +26,7 @@ $this->renderPartial('side_bar', array(
         $this->renderPartial('company_grid', array(
             'dataProvider' => $dataProvider,
             'model' => $model,
+            'visible' => true,
         ));
         ?>
     </div>

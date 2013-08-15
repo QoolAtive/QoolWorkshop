@@ -31,8 +31,8 @@ class AdminController extends Controller {
             left join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 'name, name_en';
-        $criteria->condition = 'ct.status_appro = 1';
-        $criteria->order = 't.id desc';
+        $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0';
+//        $criteria->order = 't.id desc';
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
@@ -43,6 +43,17 @@ class AdminController extends Controller {
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'name',
+                    'name_en',
+                    'main_business',
+                    'main_business_en',
+                    'sub_business',
+                    'sub_business_en',
+                ),
+            ),
         ));
 
         $this->render('index', array(
@@ -75,6 +86,17 @@ class AdminController extends Controller {
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'name',
+                    'name_en',
+                    'main_business',
+                    'main_business_en',
+                    'sub_business',
+                    'sub_business_en',
+                ),
+            ),
         ));
 
         $this->render('company_waiting', array(
@@ -86,15 +108,32 @@ class AdminController extends Controller {
     public function actionMotionSetting() {
 
         $model = new CompanyMotionSetting();
+        if (isset($_GET['CompanyMotionSetting'])) {
+            $model->attributes = $_GET['CompanyMotionSetting'];
+        }
 
         $criteria = new CDbCriteria;
-        $criteria->order = '`use` = 1 desc, company_motion_setting_id desc';
+//        $criteria->order = '`use` = 1 desc, company_motion_setting_id desc';
 
         $criteria->compare('amount', $model->amount, true);
         $criteria->compare('type', $model->type, true);
 
         $dataProvider = new CActiveDataProvider('CompanyMotionSetting', array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => '`use` = 1 desc, company_motion_setting_id desc',
+                'attributes' => array(
+                    'amount' => array(
+                        'asc' => 'amount, type',
+                        'desc' => 'amount desc, type',
+                    ),
+                    'type' => array(
+                        'asc' => 'type, amount',
+                        'desc' => 'type desc, amount',
+                    ),
+                    '*',
+                ),
+            ),
         ));
 
 
@@ -102,6 +141,10 @@ class AdminController extends Controller {
             'dataProvider' => $dataProvider,
             'model' => $model,
         ));
+    }
+
+    public function actionCompanyComfirm() {
+        
     }
 
     public function actionSetMotion($company_motion_setting_id = null) {
@@ -115,10 +158,11 @@ class AdminController extends Controller {
         if ($company_motion_setting_id != null) {
             $model = CompanyMotionSetting::model()->findByPk($company_motion_setting_id);
 
-            if ($model->use == 0)
+            if ($model->use == 0) {
                 $model->use = 1;
-            else
+            } else {
                 $model->use = 0;
+            }
 
             if ($model->save()) {
                 $this->redirect('/eDirectory/admin/motionSetting');
@@ -126,12 +170,12 @@ class AdminController extends Controller {
         }
     }
 
-    public function actionMotionSettingInsert($motion_id = null) {
+    public function actionMotionSettingInsert($company_motion_setting_id = null) {
 
-        if ($motion_id == null) {
+        if ($company_motion_setting_id == null) {
             $model = new CompanyMotionSetting();
         } else {
-            $model = CompanyMotionSetting::model()->findByPk($motion_id);
+            $model = CompanyMotionSetting::model()->findByPk($company_motion_setting_id);
         }
 
         if (isset($_POST['CompanyMotionSetting'])) {
@@ -168,6 +212,22 @@ class AdminController extends Controller {
         ));
     }
 
+    public function actionMotionSettingDel($company_motion_setting_id = null) {
+
+        if ($company_motion_setting_id != null) {
+            $model = CompanyMotionSetting::model()->find('company_motion_setting_id = :company_motion_setting_id', array(
+                ':company_motion_setting_id' => $company_motion_setting_id,
+            ));
+
+            if ($model->use == 1) {
+                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากข้อมูลมีการใช้งานอยู่');
+            } else {
+                if ($model->delete())
+                    echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            }
+        }
+    }
+
     public function actionCompanyMotion() {
 
         $model = new Company;
@@ -177,36 +237,117 @@ class AdminController extends Controller {
             $model->motion_status = $_GET['Company']['motion_status'];
         }
 
+        $date_motion = CompanyMotionSetting::model()->find('`use`=:use', array(':use' => 1));
+        $data_motion = $date_motion->amount . ' ' . $date_motion->type;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
-        $caltime = strtotime("-1 Day", $strtime);
+        $caltime = strtotime("-$data_motion", $strtime);
         $update_at = date('Y-m-d', $caltime);
+
 //        if ($update_at < date('Y-m-d')) {
 //            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
 //        }
         $criteria = new CDbCriteria;
-        $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status';
+        $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status, ct.status_block as status_block, ct.date_warning as date_warning';
         $criteria->join = '
             left join company_them ct on t.id = ct.main_id
             inner join company_motion cm on t.id = cm.company_id
             ';
         $criteria->distinct = 'name, name_en';
-        $criteria->order = 'cm.company_motion_id desc';
+//        $criteria->order = 'cm.company_motion_id desc';
         $criteria->condition = "ct.status_appro = 1 and cm.update_at < '" . $update_at . "'";
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
         $criteria->compare('cm.update_at', $model->update_at, true);
         $criteria->compare('cm.status', $model->motion_status, true);
+        $criteria->compare('ct.status_appro', $model->status_block, true);
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'cm.company_motion_id desc',
+                'attributes' => array(
+                    'name',
+                    'name_en',
+                    'update_at' => array(
+                        'asc' => 'cm.update_at',
+                        'desc' => 'cm.update_at desc',
+                    ),
+                    'cm.status' => array(
+                        'asc' => 'cm.status',
+                        'desc' => 'cm.status desc',
+                    ),
+                    'status_block' => array(
+                        'asc' => 'ct.status_appro',
+                        'desc' => 'ct.status_appro desc',
+                    ),
+                ),
+            ),
         ));
 
         $this->render('company_motion', array(
             'dataProvider' => $dataProvider,
             'model' => $model,
         ));
+    }
+
+    public function actionCompanyMotionAlert() {
+        if (isset($_POST['company'])) {
+            $company = $_POST['company'];
+
+            foreach ($company as $data) {
+                $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $data));
+                $model_company = Company::model()->findByPk($data);
+                $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
+
+                $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
+
+                $model->status_block = 1;
+                $model->date_warning = date('Y-m-d');
+                $model->save();
+
+                $message = '
+                <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'คุณ') . $name . '</strong>
+                <p>
+                ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน<br />
+                คุณจำเป็นต้องทำการอัพเดทข้อมูลของร้าน เพื่อที่จะให้ร้านค้าของคุณอยู่ในระบบต่อไป
+                </p>
+                <p>
+                ผู้ดูแลระบบ
+                </p>
+                ';
+
+                $sendEmail = array(
+                    'subject' => Yii::t('language', 'รายการแจ้งเตือน'),
+                    'message' => $message,
+                    'to' => $model_profile_user->email,
+                );
+                Tool::mailsend($sendEmail);
+            }
+
+            $message = Yii::t('language', 'แจ้งไปยังร้านค้าเรียบร้อยแล้ว');
+
+            echo "
+                <script>
+                alert('" . $message . "');
+                window.location='/eDirectory/admin/companyMotion';
+                </script>
+                ";
+        } else {
+            $message = Yii::t('language', 'คุณยังไม่ได้เลือกร้านค้าที่กำหนด');
+
+            echo "
+                <script>
+                alert('" . $message . "');
+                window.location='/eDirectory/admin/companyMotion';
+                </script>
+                ";
+        }
+
+//        $this->renderPartial('company_motion_alert', array(
+//            'message' => $message,
+//        ));
     }
 
     public function actionCompanyDetail($id) {
@@ -509,7 +650,7 @@ class AdminController extends Controller {
                     $model->pic->saveAs($dir . $file_name);
 
                     $model->pic = $file_name;
-                }else {
+                } else {
                     $model->pic = 'default.jpg';
                 }
 //                echo "<pre>";

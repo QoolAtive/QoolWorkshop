@@ -2,26 +2,27 @@
     <div class="menuitem">
         <ul>
             <li class="boxhead">
-                <img src="<?php echo Yii::t('language', '/img/iconpage/serviceprovider.png'); ?>"/>
+                <img src="<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>"/>
             </li>
             <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
                 <p>
                     <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' ' . $model_count->count_company_view;
+                    echo Yii::t('language', 'ข้อมูลผู้ร้องขอ');
                     ?>
                 </p>
                 <table style=" color: #fff; display: block;
                        margin-left: 10px;
                        margin-top: 20px;">
                     <tr>
-                        <td><?php echo Yii::t('language', 'ผู้ร้องขอ'); ?></td>
+                        <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
                         <td> : </td>
                         <td>
                             <?php
-                            $name = LanguageHelper::changeDB($model->ftname, $model->ftname_en);
-                            $ltname = LanguageHelper::changeDB($model->ltname, $model->ltname_en);
+                            $model_profile = MemRegistration::model()->find('user_id = :user_id', array(':user_id' => $model->user_id));
+                            $name = LanguageHelper::changeDB($model_profile->ftname, $model_profile->fename);
+                            $ltname = LanguageHelper::changeDB($model_profile->ltname, $model_profile->lename);
                             echo $name . ' ' . $ltname;
                             ?>
                         </td>
@@ -29,18 +30,28 @@
                     <tr>
                         <td><?php echo Yii::t('language', 'อีเมล์'); ?></td>
                         <td>:</td>
-                        <td><?php echo $model->contact_email; ?></td>
+                        <td><?php echo $model_profile->email; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo Yii::t('language', 'โทรสาร.'); ?></td>
                         <td> : </td>
-                        <td><?php echo $model->contact_fax; ?></td>
+                        <td><?php echo $model_profile->fax; ?></td>
                     </tr>
                     <tr> <td><?php echo Yii::t('language', 'โทร.'); ?></td>
                         <td> : </td>
-                        <td><?php echo $model->contact_tel; ?></td>
+                        <td><?php echo $model_profile->tel; ?></td>
                     </tr>
                 </table>
+
+            </li>
+            <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
+                <p>
+                    <?php
+//                    echo Yii::t('language', 'Memeber Since') . ' ' ;
+//                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
+                    echo Yii::t('language', 'ข้อมูลติดต่อร้านค้า');
+                    ?>
+                </p>
                 <table style=" color: #fff; display: block;
                        margin-left: 10px;
                        margin-top: 20px;">
@@ -114,11 +125,11 @@
                 <img src="/img/icontopic.png" />
                 <?php
                 echo Yii::t('language', 'ข้อมูลของบริษัท');
-                if (Yii::app()->user->isAdmin()) {
+                if ($model->user_id == Yii::app()->user->id) {
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
                         'class' => "grey", // btnedit grey
-                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
+//                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertCompany/id/' . $model->id
                         )) . "'")
@@ -262,15 +273,23 @@
         <div class="textcenter">
             <hr>
             <?php
-            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/serviceProvider/default/index/id/' . $type_business_back
-                )) . "'")
-            );
+//            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+//                    '/serviceProvider/default/index/id/' . $type_business_back
+//                )) . "'")
+//            );
             if (Yii::app()->user->isAdmin()) {
-                echo CHtml::button(Yii::t('language', 'ย้อนกลับจัดการพาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/serviceProvider/manage/company'
+                $model_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id));
+                if ($model_them->status_appro == 0) {
+                    echo CHtml::button(Yii::t('language', 'ยืนยันร้านค้า'), array(
+                        'onclick' => "if(confirm('" . Yii::t('language', 'คุณต้องการยืนยันร้านค้าหรือไม่?') . "')) window.location='" . CHtml::normalizeUrl(array('/eDirectory/admin/companyComfirm/id/' . $model->id)) . "'")
+                    );
+                }
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/eDirectory/admin/companyWaiting'
                     )) . "'")
                 );
+            } else {
+                
             }
             ?>
             <hr>

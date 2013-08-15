@@ -9,11 +9,11 @@ $list = array(
 $this->renderPartial('side_bar', array(
     'list' => $list,
 ));
-
 ?>
 
 <div class="content">
     <div class="tabcontents">
+        <hr>
         <div class='textcenter'>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ความเคลื่อนไหว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(

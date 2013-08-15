@@ -11,10 +11,10 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function actionReadingPdf($id) {
+    public function actionReadingFile($id) {
         $model = LearningFile::model()->find('id=:id', array(':id' => $id));
         $path = './file/learning/pdf/' . $model->path;
-        header('Content-Type: application/pdf');
+        header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="' . $model->path . '";');
         header('Content-Length: ' . filesize($path));
         readfile($path);

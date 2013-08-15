@@ -59,8 +59,22 @@ $this->renderPartial('_side_bar', array(
             ?>
         </div>
         <?php if (isset($modelFile)) { ?>
-            <div class="_100">
-                <?php echo CHtml::link($modelFile->path, array('/learning/manage/readingPdf/', 'id' => $modelFile->id), array('target' => '_bank')); ?>
+            <div class="_100" id="file_">
+                <?php
+                echo CHtml::link($modelFile->path, array('/learning/default/readingfile/', 'id' => $modelFile->id));
+                echo "<br/>";
+                echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
+                    '/learning/manage/delfile'
+                        ), array(
+                    'type' => 'post',
+                    'data' => array('file_id' => $modelFile->id),
+                    'update' => 'div#file_',
+                        ), array(
+//                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
+                    'hrel' => '/learning/manage/delfile', 'id' => $modelFile->id
+                        )
+                );
+                ?>
             </div>
         <?php } ?>
         <div class="_100">

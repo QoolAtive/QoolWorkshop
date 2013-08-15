@@ -106,12 +106,17 @@ class ManageController extends Controller {
 
                 if ($model->save()) {
 
-                    $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
-                    if ($company_them < 1) {
+                    $company_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
+                    if ($company_them == null) {
                         $company_them = new CompanyThem();
                         $company_them->main_id = $model->id;
-                        $company_them->status_appro = '1';
+                        $company_them->status_appro = '0';
                         $company_them->date_write = date("Y-m-d H:i:s");
+                        $company_them->save();
+                    } else {
+                        $company_them->status_appro = '1';
+                        $company_them->status_block = '0';
+                        $company_them->date_warning = null;
                         $company_them->save();
                     }
 

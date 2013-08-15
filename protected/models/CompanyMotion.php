@@ -23,8 +23,9 @@ class CompanyMotion extends CompanyMotionBase {
             'company_motion_id' => 'Company Motion',
             'user_id' => 'User',
             'company_id' => 'Company',
-            'status' => 'ประเภท',
-            'update_at' => 'วันที่อัพเดตล่าสุด',
+            'status' => Yii::t('language','ประเภท'),
+            'date_warnning' => Yii::t('language','วันที่แจ้งเตือน'),
+            'update_at' => Yii::t('language', 'วันที่อัพเดตล่าสุด'),
         );
     }
 
@@ -46,6 +47,18 @@ class CompanyMotion extends CompanyMotionBase {
         $status = array(
             '1' => Yii::t('language', 'ข้อมูลร้านค้า'),
             '2' => Yii::t('language', 'ข้อมูลสินค้า'),
+        );
+        if ($data == null) {
+            return $status;
+        } else {
+            return $status[$data];
+        }
+    }
+
+    public function blockStatus($data = null) {
+        $status = array(
+            '0' => Yii::t('language', 'อยู่ในระบบ'),
+            '1' => Yii::t('language', 'แจ้งเตือน'),
         );
         if ($data == null) {
             return $status;
