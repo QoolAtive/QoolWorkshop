@@ -432,6 +432,7 @@ Class ManageController extends Controller {
             $twitter = $model->twitter;
             $commerce_registration = '';
             $corporation_registration = '';
+            $email = $model->email;
         } else {
 //            $c->join = "left join member_registration r on t.id = r.user_id";
             $memType = '';
@@ -444,6 +445,7 @@ Class ManageController extends Controller {
             $twitter = '';
             $commerce_registration = $model->commerce_registration;
             $corporation_registration = $model->corporation_registration;
+            $email = $model->email;
         }
         $data = array(
             'memType' => $memType,
@@ -464,6 +466,7 @@ Class ManageController extends Controller {
             'fax' => $model->fax,
             'mobile' => $model->mobile,
             'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
+            'email' => $email,
         );
 
         $this->renderPartial('_view_allow_member', array(

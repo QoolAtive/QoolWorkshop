@@ -18,36 +18,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'main_business',
-//                'value' => '$data->date_write',
             'value' => '$data->main_business',
-//                'filter' => '',
         ),
-        array(
-            'name' => 'sub_business',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business',
-//                'filter' => '',
-        ),
+//        array(
+//            'name' => 'sub_business',
+//            'value' => '$data->sub_business',
+//        ),
         array(
             'name' => 'name_en',
             'value' => '$data->name_en',
         ),
         array(
             'name' => 'main_business_en',
-//                'value' => '$data->date_write',
             'value' => '$data->main_business_en',
-//                'filter' => '',
         ),
-        array(
-            'name' => 'sub_business_en',
-//                'value' => '$data->date_write',
-            'value' => '$data->sub_business_en',
-//                'filter' => '',
-        ),
-        array(
-            'name' => 'user_id',
-            'value' => '$data->user_id',
-        ),
+//        array(
+//            'name' => 'sub_business_en',
+//            'value' => '$data->sub_business_en',
+//        ),
+//        array(
+//            'name' => 'user_id',
+//            'value' => '$data->user_id',
+//        ),
         array(
             
             'class' => 'CButtonColumn',

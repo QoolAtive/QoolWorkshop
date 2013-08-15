@@ -7,6 +7,8 @@
  * @property integer $id
  * @property integer $main_id
  * @property integer $status_appro
+ * @property integer $status_block
+ * @property string $date_warning
  * @property string $date_write
  * @property string $date_appro
  *
@@ -42,11 +44,11 @@ class CompanyThemBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('main_id, status_appro, date_write', 'required'),
-			array('main_id, status_appro', 'numerical', 'integerOnly'=>true),
-			array('date_appro', 'safe'),
+			array('main_id, status_appro, status_block', 'numerical', 'integerOnly'=>true),
+			array('date_warning, date_appro', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, main_id, status_appro, date_write, date_appro', 'safe', 'on'=>'search'),
+			array('id, main_id, status_appro, status_block, date_warning, date_write, date_appro', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +73,8 @@ class CompanyThemBase extends CActiveRecord
 			'id' => 'ID',
 			'main_id' => 'Main',
 			'status_appro' => 'Status Appro',
+			'status_block' => 'Status Block',
+			'date_warning' => 'Date Warning',
 			'date_write' => 'Date Write',
 			'date_appro' => 'Date Appro',
 		);
@@ -90,6 +94,8 @@ class CompanyThemBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('main_id',$this->main_id);
 		$criteria->compare('status_appro',$this->status_appro);
+		$criteria->compare('status_block',$this->status_block);
+		$criteria->compare('date_warning',$this->date_warning,true);
 		$criteria->compare('date_write',$this->date_write,true);
 		$criteria->compare('date_appro',$this->date_appro,true);
 
