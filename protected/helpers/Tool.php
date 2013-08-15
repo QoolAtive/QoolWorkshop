@@ -94,12 +94,12 @@ Class Tool {
         $mail->Subject = $data['subject'];
         $mail->MsgHTML($data['message']);
         $mail->AddAddress($data['to']);
-//        return $mail->Send();
-        if (!$mail->Send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
-            echo "Message sent!";
-        }
+        return $mail->Send();
+//        if (!$mail->Send()) {
+//            echo "Mailer Error: " . $mail->ErrorInfo;
+//        } else {
+//            echo "Message sent!";
+//        }
     }
 
     // ข้อความสำหรับการส่งเมล์
