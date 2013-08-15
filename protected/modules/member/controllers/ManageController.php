@@ -476,19 +476,34 @@ Class ManageController extends Controller {
     }
 
     public function actionAllowMember($id = null) {
+        $url = $_SERVER['SERVER_NAME'];
         if ($id != null) {
             $model = MemConfirm::model()->find('user_id = ' . $id);
+            $model_profile = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $id));
             if (!empty($model)) {
-                $model->status = 1;
-                if ($model->save()) {
-                    echo "
-                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
-                        <script>
-                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
-                        window.top.location.href ='/member/manage/admin';
-                        </script>
-                        ";
-                }
+                $message = '
+                    <strong>เรียน คุณ ' . $model_profile->ftname . ' ' . $model_profile->ltname . ' </strong>
+                    <p>การสมัครสมาชิกของคุณเรียนร้อยแล้ว</p>
+                    '. CHtml::link(Yii::t('language', 'คลิกเพื่อเข้าสู่เว็บไซต์'), $url);
+
+                $sendEmail = array(
+                    'subject' => 'ยืนยันการสมัครสมาชิก',
+                    'message' => $message,
+                    'to' => $model_profile->email,
+                );
+                Tool::mailsend($sendEmail);
+
+
+//                $model->status = 1;
+//                if ($model->save()) {
+//                    echo "
+//                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
+//                        <script>
+//                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
+//                        window.top.location.href ='/member/manage/admin';
+//                        </script>
+//                        ";
+//                }
             }
         }
     }

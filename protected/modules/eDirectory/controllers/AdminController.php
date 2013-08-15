@@ -143,6 +143,10 @@ class AdminController extends Controller {
         ));
     }
 
+    public function actionCompanyComfirm() {
+        
+    }
+
     public function actionSetMotion($company_motion_setting_id = null) {
         $model_old = CompanyMotionSetting::model()->findAll();
         foreach ($model_old as $data) {

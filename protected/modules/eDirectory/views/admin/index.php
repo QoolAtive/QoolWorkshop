@@ -26,6 +26,7 @@ $this->renderPartial('side_bar', array(
         $this->renderPartial('company_grid', array(
             'dataProvider' => $dataProvider,
             'model' => $model,
+            'visible' => true,
         ));
         ?>
     </div>

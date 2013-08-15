@@ -278,6 +278,12 @@
 //                )) . "'")
 //            );
             if (Yii::app()->user->isAdmin()) {
+                $model_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id));
+                if ($model_them->status_appro == 0) {
+                    echo CHtml::button(Yii::t('language', 'ยืนยันร้านค้า'), array(
+                        'onclick' => "if(confirm('" . Yii::t('language', 'คุณต้องการยืนยันร้านค้าหรือไม่?') . "')) window.location='" . CHtml::normalizeUrl(array('/eDirectory/admin/companyComfirm/id/' . $model->id)) . "'")
+                    );
+                }
                 echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/eDirectory/admin/companyWaiting'
                     )) . "'")

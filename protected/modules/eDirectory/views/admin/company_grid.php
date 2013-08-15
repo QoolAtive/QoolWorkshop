@@ -1,4 +1,5 @@
 <?php
+
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $dataProvider,
@@ -41,7 +42,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //            'value' => '$data->user_id',
 //        ),
         array(
-            
             'class' => 'CButtonColumn',
             'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
             'header' => 'เครื่องมือ',
@@ -69,7 +69,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
         array(
-            
+            'visible' => $visible,
             'class' => 'CButtonColumn',
             'header' => 'จัดการ<p>สินค้า</p>',
             'template' => '{view}',

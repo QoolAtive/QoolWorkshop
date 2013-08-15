@@ -51,12 +51,18 @@ return array(
         ),
         'Smtpmail' => array(
             'class' => 'application.extensions.smtpmail.PHPMailer',
-            'Host' => "ssl://smtp.gmail.com",
-            'Username' => 'dbdmart2013@gmail.com',
-            'Password' => 'qoolative',
+//            'Host' => "ssl://smtp.gmail.com",
+//            'Username' => 'dbdmart2013@gmail.com',
+//            'Password' => 'qoolative',
+//            'Mailer' => 'smtp',
+//            'Port' => 465,
+//            'SMTPAuth' => true,
+            'Host' => 'ssl://smtp.gmail.com',
             'Mailer' => 'smtp',
             'Port' => 465,
             'SMTPAuth' => true,
+            'Username' => 'dbdmart2013@gmail.com',
+            'Password' => 'qoolative',
         ),
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
