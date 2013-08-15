@@ -1,10 +1,12 @@
 <?php
 $name = LanguageHelper::changeDB($data->name, $data->name_en);
 $address = LanguageHelper::changeDB($data->address, $data->address_en);
-
 $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
 ?>
-<div style="border: 1px #c9c9c9 solid; padding: 10px; margin: 3px; width: 46%;float: left; min-height: 120px;" class="clearfix">
+
+
+<div class="servicelist clearfix Center-Container is-Inline">
+    <div class="Center-Block">
     <h4>
         <?php
         echo CHtml::link($name, CHtml::normalizeUrl(
@@ -45,5 +47,5 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
             <label><?php echo Yii::t('language', 'เว็บไซต์') . ":"; ?></label>
             <?php echo $data->website; ?>
         </li>
-    </ul>
+    </ul></div>
 </div>

@@ -76,6 +76,7 @@ $this->renderPartial('_side_bar', array(
                     ));
                     ?>
                 </div>
+              </div>
             </div>
         </div>
-    </div>
+    </div>    

@@ -1,23 +1,23 @@
 /* @group Component */
-.orbit-wrapper{
-    width: 525px !important;
-    position: absolute !important;;
-
-}
-.orbit img{
-        width: 525px !important;
+.Center-Container.is-Inline { 
+/*  text-align: center;
+*/  overflow: auto;
 }
 
-#featured, div.orbit-wrapper { 
-     position: absolute;
-   
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
 }
- #featured { 
-           width: 525px !important;
-          height: 450px;
-           background: #000 url('orbit/loading.gif') no-repeat center center; overflow: hidden; }
-     #featured img,  
-     #featured div { display: none; }
+.servicelist{
+}
+.Center-Container.is-Inline:after {
+  min-height: 145px;
+  content: '';
+  height: 100%;
+  margin-left: -0.25em; /* To offset spacing. May vary font */
+  width: 0px; /* Prevents issues where psuedo element pushes width: auto Center Block to the bottom */
+ }
 * {
     outline:none !important;
     -moz-outline: none !important;
@@ -1028,6 +1028,7 @@ div.arrow{
     display: inline-block;
     
     padding: 0 10% 24px;
+    padding-top: 10px;
     width: 80%;
 }
 #container .knowledgedata li div.arrow{
@@ -1190,6 +1191,21 @@ div.grid-view table tr td:first-child {
     text-align: center;
 }
 /* @end */
+#container .servicelist {
+    border: 1px dotted #F544FF;
+    float: left;
+    margin: 3px;
+    padding: 20px 10px;
+    width: 46%;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
+}
+#container .servicelist:hover{
+    border : 1px solid #F544FF;
+}
+
+#container .servicelist label {
+    font-weight: bold;
+}
 
 /*link page */
 #container ul.linklist{
@@ -1287,7 +1303,43 @@ text-align: center;
     margin: 0 auto;
     border: 1px solid #d1d1d1;
 }
+.hideshowboxhide{
+    color: #ccc;
+}
+.droptrue.left {
+ float: left;
+    width: 63%;
+}
+.droptrue.right{
+    float: left;
+    width: 30%;
+}
+.droptrue li {
+   background: none repeat scroll 0 0 #EEEEEE;
+    float: left;
+    margin-bottom: 7px;
+    padding: 14px;
+    width: 94%;
+}
+.orbit-wrapper{
+    width: 525px !important;
+    position: absolute !important;;
 
+}
+.orbit img{
+        width: 525px !important;
+}
+
+#featured, div.orbit-wrapper { 
+     position: absolute;
+   
+}
+ #featured { 
+           width: 525px !important;
+          height: 450px;
+           background: #000 url('orbit/loading.gif') no-repeat center center; overflow: hidden; }
+     #featured img,  
+     #featured div { display: none; }
 
 #container .tabfaq {
     margin-left: 1px;

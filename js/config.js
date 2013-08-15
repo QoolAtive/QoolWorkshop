@@ -1,86 +1,61 @@
+// fancybox 
+$(document).ready(function() {
+        $('.linkgroupbtn').fancybox({
+          width  :'100%',
+          closeBtn : 0
+          // afterClose : function() {
+          //         location.reload();
+          //         return;
+          //     }       
+        });
+        $('#gallery a').fancybox({
+          closeBtn : false
+        });
+        $('.fclogin').fancybox({
+          type : 'iframe',
+          padding : 0,
+          width  :'490',
+          closeBtn : 0,
+          maxHeight :'202',
+          scrolling : 'no'
+        });
+        $('.createaccountbtn').fancybox({
+          type : 'iframe'
+        });
+});
 
-
+// Get current url // hilight active page
 $(document).ready(function($){
-        // Get current url
-        // Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
         var url = window.location.pathname;
         $('.rectangle-list li a[href="'+url+'"]').addClass('menuactive listactive')  ;
+});
 
-    });
-
-
-$(function() {
+// show hide textfield after form error 
+$(document).ready(function($){
   var val = $("input[id='MemPerson_mem_type_1']:checked").val();
   if(val === "2") {
-
-      $('.hidden_destiny').show();
-
-  } else {
-    
+        $('.hidden_destiny').show();
+      } else {
   }
 });
-
-
-
 $(document).ready(function() {
-     $('.linkgroupbtn').fancybox({
-         width  :'100%',
-         closeBtn : 0
-        // afterClose : function() {
-        //         location.reload();
-        //         return;
-        //     }       
-    });
-     
- $('#gallery a').fancybox({
-   closeBtn : false
-       });
-
-
-    $('.fclogin').fancybox({
-        type : 'iframe',
-        padding : 0,
-         width  :'490',
-         closeBtn : 0,
-         maxHeight :'202',
-         scrolling : 'no'
-       });
-
-
-    $('.createaccountbtn').fancybox({
-      type : 'iframe'
-    });
-});
-
-
-
-
-
-
-
-$(document).ready(function() {
-
-$("input[type='radio']").change( function() {
-    ($(this).val());
-});
-  $('.fate').click(function () {
+  $("input[type='radio']").change( function() {
+      ($(this).val());
+  });
+    $('.fate').click(function () {
       $('.hidden_destiny').each(function () {
-          if ($(this).is(':visible')) {
-              $(this).stop().slideUp('slow');
-          }
+      if ($(this).is(':visible')) {
+      $(this).stop().slideUp('slow');
+      }
       });
-
-
       var id = $(this).val();
       $('#clicked_' + id).stop().slideDown('slow');
-
-  })
-
+    });
 });
 
 
 
-
+// input number only
 $(document).ready(function () {
     $('input.numberinput').bind('keypress', function (e) {
         return (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && e.which != 46) ? false : true;
@@ -211,21 +186,8 @@ $(document).ready(function() {
 // });
 
 
- // register radiobox
-// $(document).ready(function() {
-//     $("input[type='radio']").change(function(){
-//         if($(this).val()=="member2")
-//         {
-//             $("#panit").show();
-//         }
-//         else
-//         {
-//             $("#panit").hide(); 
-//         }
-//     })
-// });
 
-// Fancy Box
+
   
 
 
