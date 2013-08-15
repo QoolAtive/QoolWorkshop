@@ -139,54 +139,110 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
 
         <div class="_100">
             <h4>รูปภาพ</h4>
-            <div class="_25" id="pic_1">
-                <?php
-//                pic 1
-                if ($model->pic_1 != NULL) {
-                    echo CHtml::image($model->pic_1, '', array(
-                        'style' => 'width:100px',
-                    ));
-                    echo CHtml::ajaxButton(Yii::t('language', 'ลบ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/deletePic', 'pic' => 'pic_1', 'item_id' => $model->web_shop_item_id)), array(
-                        'update' => '#pic_1',
-                    ));
-                } else {
-                    echo $form->fileField($model, 'pic_1', array('accept' => 'imaage/*'));
+            <div class="_100">
+                <div class="_25">
+                    <div id="pic_1">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_1'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_1', array('accept' => 'image/*'));
                     echo $form->error($model, 'pic_1');
-                }
-                ?>
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_2">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_2'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_2', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_2');
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_3">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_3'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_3', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_3');
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_4">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_4'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_4', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_4');
+                    ?>
+                </div>
             </div>
             <div class="_100">
-                <?php
-                echo CHtml::image($model->pic_1, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_2, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_3, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_4, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_5, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_6, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_7, '', array(
-                    'style' => 'width:100px',
-                ));
-                echo CHtml::image($model->pic_8, '', array(
-                    'style' => 'width:100px',
-                ));
-                ?>
+                <div class="_25">
+                    <div id="pic_5">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_5'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_5', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_5');
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_6">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_6'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_6', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_6');
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_7">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_7'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_7', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_7');
+                    ?>
+                </div>
+                <div class="_25">
+                    <div id="pic_8">
+                        <?php
+                        $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_8'));
+                        ?>
+                    </div>
+                    <?php
+                    echo $form->fileField($model, 'pic_8', array('accept' => 'image/*'));
+                    echo $form->error($model, 'pic_8');
+                    ?>
+                </div>
             </div>
         </div>
 
         <div class="_100 textcenter" style="margin-top: 25px;">
             <?php
+            echo $form->hiddenField($model, 'pic_1');
+            echo $form->hiddenField($model, 'pic_2');
+            echo $form->hiddenField($model, 'pic_3');
+            echo $form->hiddenField($model, 'pic_4');
+            echo $form->hiddenField($model, 'pic_5');
+            echo $form->hiddenField($model, 'pic_6');
+            echo $form->hiddenField($model, 'pic_7');
+            echo $form->hiddenField($model, 'pic_8');
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array(
                 'class' => "purple",
             ));

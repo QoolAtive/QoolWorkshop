@@ -39,7 +39,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <li id="recordsArray_<?php echo $i; ?>">
                     <p class="headsort"><?php echo $box['name_th']; ?></p>
                     <p class="tool">
-                        <a href="">แก้ไขสินค้า</a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])); ?>">แก้ไขสินค้า</a>
                         &nbsp;|&nbsp;
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
                            onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'); ?>');" >ลบ</a>
@@ -77,4 +77,5 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             </li>
         </ul>
     </div>
+>>>>>>> ebf0e6ca349225ff72673cfd86fc47df6ffb0b12
 </div>
