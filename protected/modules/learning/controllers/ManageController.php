@@ -285,6 +285,22 @@ class ManageController extends Controller {
             echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
     }
 
+    public function actionDelFile() {
+        $id = $_POST['file_id'];
+        $model = LearningFile::model()->findByPk($id);
+
+        if ($model->path != 'default.jpg' && $model->path != null) {
+            $file_paht = './file/learning/pdf/' . $model->path;
+
+            if (fopen($file_paht, 'w'))
+                unlink($file_paht);
+        }
+
+        if ($model->delete()) {
+            
+        }
+    }
+
 }
 
 ?>
