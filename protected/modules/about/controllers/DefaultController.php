@@ -59,7 +59,8 @@ class DefaultController extends Controller {
         ?>
         <script>
             window.location = "<?php echo CHtml::normalizeUrl(array("/about/default/index/view/2")); ?>";
-        </script><?php
+        </script>
+            <?php
 //        $this->redirect(CHtml::normalizeUrl(array('/about/default/index')));
     }
 
