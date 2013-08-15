@@ -494,16 +494,16 @@ Class ManageController extends Controller {
                 Tool::mailsend($sendEmail);
 
 
-//                $model->status = 1;
-//                if ($model->save()) {
-//                    echo "
-//                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
-//                        <script>
-//                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
-//                        window.top.location.href ='/member/manage/admin';
-//                        </script>
-//                        ";
-//                }
+                $model->status = 1;
+                if ($model->save()) {
+                    echo "
+                        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
+                        <script>
+                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
+                        window.top.location.href ='/member/manage/admin';
+                        </script>
+                        ";
+                }
             }
         }
     }
