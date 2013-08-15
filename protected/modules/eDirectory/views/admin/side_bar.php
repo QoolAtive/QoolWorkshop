@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/edir.png"/></li>
+            <li class="boxhead"><a href="/eDirectory/default/index"><img src="/img/iconpage/edir.png"/></a></li>
         </ul>
         <ul class="tabs clearfix">
 <!--            <li><a href="#" rel="view1">All</a></li>
