@@ -31,7 +31,7 @@ class AdminController extends Controller {
             left join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 'name, name_en';
-        $criteria->condition = 'ct.status_appro = 1';
+        $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0';
 //        $criteria->order = 't.id desc';
 
         $criteria->compare('name', $model->name, true);
@@ -298,9 +298,32 @@ class AdminController extends Controller {
 
             foreach ($company as $data) {
                 $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $data));
+                $model_company = Company::model()->findByPk($data);
+                $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
+
+                $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
+
                 $model->status_block = 1;
                 $model->date_warning = date('Y-m-d');
                 $model->save();
+
+                $message = '
+                <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'คุณ') . $name . '</strong>
+                <p>
+                ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน<br />
+                คุณจำเป็นต้องทำการอัพเดทข้อมูลของร้าน เพื่อที่จะให้ร้านค้าของคุณอยู่ในระบบต่อไป
+                </p>
+                <p>
+                ผู้ดูแลระบบ
+                </p>
+                ';
+
+                $sendEmail = array(
+                    'subject' => Yii::t('language', 'รายการแจ้งเตือน'),
+                    'message' => $message,
+                    'to' => $model_profile_user->email,
+                );
+                Tool::mailsend($sendEmail);
             }
 
             $message = Yii::t('language', 'แจ้งไปยังร้านค้าเรียบร้อยแล้ว');
