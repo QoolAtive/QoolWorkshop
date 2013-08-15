@@ -589,11 +589,11 @@ Class ManageController extends Controller {
 
         if (Yii::app()->user->isMemberType() == '1') { // เช็ค Type Member 
             $modelAddress = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);
-            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name . ' จ.' . Province::model()->findByPk($modelAddress->province)->name . ' ' . $modelAddress->postcode;
+            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name_th . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name_th . ' จ.' . Province::model()->findByPk($modelAddress->province)->name_th . ' ' . $modelAddress->postcode;
         }
         if (Yii::app()->user->isMemberType() == '2') {
             $modelAddress = MemRegistration::model()->find('user_id = ' . Yii::app()->user->id);
-            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name . ' จ.' . Province::model()->findByPk($modelAddress->province)->name . ' ' . $modelAddress->postcode;
+            $address = $modelAddress->address . ' ต.' . District::model()->findByPk($modelAddress->district)->name_th . ' อ.' . Prefecture::model()->findByPk($modelAddress->prefecture)->name_th . ' จ.' . Province::model()->findByPk($modelAddress->province)->name_th . ' ' . $modelAddress->postcode;
         }
 
         if (isset($_POST['ChangeAddressForm'])) {
