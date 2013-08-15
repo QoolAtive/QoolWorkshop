@@ -2,8 +2,23 @@
 
 class DefaultController extends Controller {
 
-    public function actionIndex() {
-        $this->render('index');
+    public function actionIndex($id = null) {
+
+        $criteria = new CDbCriteria();
+        $criteria->join = 'inner join company_type ctype on t.id = ctype.company_id';
+
+        if ($id != null) {
+            $criteria->condition = 'ctype.company_type = ' . $id;
+        }
+        
+        $dataProvider = new CActiveDataProvider('Company', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('index', array(
+            'id' => $id,
+            'dataProvider' => $dataProvider,
+        ));
     }
 
     public function actionReadingFile($id, $type) {
