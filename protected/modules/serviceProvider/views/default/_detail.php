@@ -4,21 +4,19 @@
             <li class="boxhead">
                 <img src="<?php echo Yii::t('language', '/img/iconpage/serviceprovider.png'); ?>"/>
             </li>
-            <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
+            <li class="servicedata">
                 <p>
                     <?php
-//                    echo Yii::t('language', 'Memeber Since') . ' ' ;
+//                  echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'จำนวนการเข้าชม') . ': ' . $model_count->count_company_view;
+                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $model_count->count_company_view;
                     ?>
                 </p>
-                <table style=" color: #fff; display: block;
-                       margin-left: 10px;
-                       margin-top: 20px;">
+                <table>
                     <tr>
                         <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
                         <td> : </td>
-                        <td style="padding-left: 2px;">
+                        <td>
                             <?php
                             $contact_name = LanguageHelper::changeDB($model->contact_name, $model->contact_name_en);
                             echo $contact_name;
@@ -28,16 +26,16 @@
                     <tr>
                         <td><?php echo Yii::t('language', 'อีเมล์'); ?></td>
                         <td> : </td>
-                        <td style="padding-left: 2px;"><?php echo $model->contact_email; ?></td>
+                        <td><?php echo $model->contact_email; ?></td>
                     </tr>
                     <tr>
                         <td><?php echo Yii::t('language', 'โทรสาร.'); ?></td>
                         <td> : </td>
-                        <td style="padding-left: 2px;"><?php echo $model->contact_fax; ?></td>
+                        <td><?php echo $model->contact_fax; ?></td>
                     </tr>
                     <tr> <td><?php echo Yii::t('language', 'โทร.'); ?></td>
                         <td> : </td>
-                        <td style="padding-left: 2px;"><?php echo $model->contact_tel; ?></td>
+                        <td><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
             </li>
@@ -60,40 +58,49 @@
                 <?php echo $name; ?>
             </span>
         </h3>
-        <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
-
-            <div id="featured" > 
+        <div class="clearfix servicebanner">
+            <div style="float: left; width: 525px; height: 220px; ">
+            <div id="featured"> 
                 <?php
                 $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                 if ($banner == null) {
                     ?>
-                    <img src="/file/banner/default.jpg" style="height: 220px;" />
-                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
+                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
+                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
                     <?php
                 } else {
                     foreach ($banner as $data) {
                         ?>
-                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;" />
+                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
                         <?php
                     }
                 }
                 ?>
             </div>
+        </div>
+
+<div class="Center-Container is-Inline-logo">
+  <div class="Center-Block">
             <?php
             if ($model->logo != null) {
                 ?>
-                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" />
+                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" />
                 <?php
             } else {
                 ?>
-                <img src="/file/logo/default.jpg" style="float: right;" width="220" />
+                <img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/>
                 <?php
             }
             ?>
+             </div>
 
-        </div>
-        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+</div>
+</div>
+
+
+        
+        <div class="servicebox"  >
             <h2>
                 <img src="/img/icontopic.png" />
                 <?php
@@ -101,8 +108,7 @@
                 if (Yii::app()->user->isAdmin()) {
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
-                        'class' => "grey", // btnedit grey
-                        'style' => 'margin-left: 485px; margin-top: 0px; position:absolute;',
+                        'class' => "grey right", // btnedit grey
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertCompany/id/' . $model->id
                         )) . "'")
@@ -113,8 +119,8 @@
             <table>
                 <tr>
                     <td><?php echo Yii::t('language', 'ชื่อบริษัท'); ?></td>
-                    <td> : </td>
-                    <td style="padding-left: 2px;">
+                    <td class="colon"> : </td>
+                    <td>
                         <?php
                         //$name = LanguageHelper::changeDB($model->name, $model->name_en); //ย้ายไปอยู่ด้านบน เพื่อเรียกใช้ในหัวข้อด้วย
                         echo $name;
@@ -124,8 +130,8 @@
 
                 <tr>
                     <td><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?></td>
-                    <td> : </td>
-                    <td style="padding-left: 2px;">
+                    <td class="colon"> : </td>
+                    <td>
                         <?php
                         $type = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                         foreach ($type as $data) {
@@ -139,8 +145,8 @@
                 </tr>
                 <tr>
                     <td><?php echo Yii::t('language', 'ที่ตั้ง'); ?></td>
-                    <td> : </td>
-                    <td style="padding-left: 2px;">
+                    <td class="colon"> : </td>
+                    <td>
                         <?php
                         $address = LanguageHelper::changeDB($model->address, $model->address_en);
                         echo $address;
@@ -149,8 +155,8 @@
                 </tr>
                 <tr>
                     <td><?php echo Yii::t('language', 'เว็บไซต์'); ?></td>
-                    <td> : </td>
-                    <td style="padding-left: 2px;"><?php echo $model->website; ?></td>
+                    <td class="colon"> : </td>
+                    <td><?php echo $model->website; ?></td>
                 </tr>
                 <?php
                 $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
@@ -158,8 +164,8 @@
                     ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
-                        <td> : </td>
-                        <td style="padding-left: 2px;">
+                    <td class="colon"> : </td>
+                        <td>
                             <?php
                             $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                             echo "<ul>";
@@ -178,10 +184,12 @@
                 <?php } ?>
 
             </table>
-            <?php
-            $infor = LanguageHelper::changeDB($model->infor, $model->infor_en);
-            echo $infor;
-            ?>
+            <p style="padding: 10px 0px">
+                <?php
+                $infor = LanguageHelper::changeDB($model->infor, $model->infor_en);
+                echo $infor;
+                ?>
+            </p>
         </div>
         <?php
         $dp_product_best_sell = new CActiveDataProvider('SpProduct', array(
@@ -195,7 +203,7 @@
         ));
         if ($dp_product_best_sell->itemCount > 0) {
             ?>
-            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+            <div class="servicebox clearfix">
                 <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
                 <div class="clearfix">
                     <?php
@@ -220,7 +228,7 @@
         ));
         if ($dp_product_promo->itemCount > 0) {
             ?>
-            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
+            <div class="servicebox clearfix" >
                 <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
                 <div class="clearfix">
                     <?php
@@ -246,8 +254,8 @@
 
         if ($dp_product_new->itemCount > 0) {
             ?>
-            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
-                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
+            <div class="servicebox">
+                <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(

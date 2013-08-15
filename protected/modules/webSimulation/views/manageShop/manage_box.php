@@ -54,10 +54,6 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             $i += 1;
             } ?>
         </ul>   
-
-
-
-
         <ul class="droptrue right" style="padding-top:14px;float: right; width:34%; padding: 10px; background: #eee;">
             <li>
                 Calendar 
