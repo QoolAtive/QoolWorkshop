@@ -46,37 +46,39 @@ $this->renderPartial('_side_bar', array(
                 'id' => 'insert_type_business-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
-
-            if (!empty($model->image)) {
-                ?>
-                <div class="_100">
-                    <div class="ckleft"> 
-                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-                    </div>
-                    <div class="ckright">
-                        <?php
-                        echo CHtml::image("/file/product/" . $model->image, "image", array('height' => '100'));
-                        echo $model->image;
-                        ?> 
-                    </div>
-                </div>
-                <?php
-            }
             ?>
-            <div class="_100">
+            <div class="_33">
+                <p><?php echo $form->labelEx($model, 'guide'); ?></p>
                 <?php
-                echo $form->labelEx($model, 'image');
-                echo $form->fileField($model, 'image');
-                echo $form->error($model, 'image');
-                ?>
-            </div>
-            <div class="_100">
-                <?php
-                echo $form->labelEx($model, 'guide');
                 echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList('', true));
                 echo $form->error($model, 'guide');
                 ?>
             </div>
+
+            <div class="_33">
+                <p><?php echo $form->labelEx($model, 'image');?></p>
+                <?php
+                echo $form->fileField($model, 'image');
+                echo $form->error($model, 'image');
+                ?>
+            </div>
+           <?php
+            if (!empty($model->image)) {
+                ?>
+                <div class="_33">
+                    <p>
+                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+                    </p>
+
+                        <?php
+                        echo CHtml::image("/file/product/" . $model->image, "image", array('width' => '200'));
+                        echo $model->image;
+                        ?> 
+                   
+                </div>
+                <?php
+            }
+            ?>
             <div class="_100">
                 <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลสินค้า') . ' (' . Yii::t('language', 'ภาษาไทย') . ') - '; ?></h4>
             </div>
@@ -96,7 +98,7 @@ $this->renderPartial('_side_bar', array(
                     "defaultValue" => $model->detail, # Optional
                     "config" => array(
                         "height" => "240px",
-                        "width" => "730",
+                        "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
@@ -132,7 +134,7 @@ $this->renderPartial('_side_bar', array(
                     "defaultValue" => $model->detail_en, # Optional
                     "config" => array(
                         "height" => "240px",
-                        "width" => "730",
+                        "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
