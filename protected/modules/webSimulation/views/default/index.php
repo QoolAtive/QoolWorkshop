@@ -8,7 +8,7 @@
                 <?php
                 if (isset(Yii::app()->user->id)) {
                     ?>
-                    <a rel="view-1" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
+                    <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
                         <?php
                     } else {
                         ?>
