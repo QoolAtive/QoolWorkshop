@@ -19,7 +19,6 @@ $this->renderPartial('_side_bar', array(
         $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
         ?>
         <h3 class="barH3">
-            <span>
                 <i class="icon-compass"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
                     <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
@@ -37,8 +36,7 @@ $this->renderPartial('_side_bar', array(
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าและบริการ') . ' (' . $company_name . ') '; ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>
-            </span>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>   
         </h3>
         <div class="_100">
             <?php
