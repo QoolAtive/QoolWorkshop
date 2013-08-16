@@ -17,9 +17,22 @@ $this->renderPartial('_side_bar', array(
             $link_back = '/serviceProvider/manage/typeBusiness';
         }
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'กลุ่มพาร์ทเนอร์'); ?></h3>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-compass"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                    <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'กลุ่มพาร์ทเนอร์'); ?>
+            </span>
+        </h3>
 
-        <hr>
+
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(

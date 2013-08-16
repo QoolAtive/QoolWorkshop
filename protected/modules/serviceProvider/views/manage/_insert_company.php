@@ -17,9 +17,23 @@ $this->renderPartial('_side_bar', array(
             $link_back = '/serviceProvider/manage/typeBusiness';
         }
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?></h3>
 
-        <hr>
+
+        <h3 class="barH3">
+            <span>
+                <i class="icon-compass"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                    <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
+            </span>
+        </h3>
+
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
@@ -31,9 +45,13 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
             </div>
+
+            <div class="_100">
+                <?php echo $form->labelEx($model_type, 'type_id'); ?>
+            </div>
             <div class="_100">
                 <?php
-                echo $form->labelEx($model_type, 'type_id');
+             
                 echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
                 echo $form->error($model_type, 'type_id');
                 ?>
@@ -51,14 +69,14 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'infor');
-                echo $form->textArea($model, 'infor');
+                echo $form->textArea($model, 'infor',array('style' => ' font: inherit; height:220px; resize:vertical;'));
                 echo $form->error($model, 'infor');
                 ?>
             </div>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address');
-                echo $form->textArea($model, 'address', array('height' => '100'));
+                echo $form->textArea($model, 'address',array('style' => 'font: inherit; height:40px; resize:vertical;'));
                 echo $form->error($model, 'address');
                 ?>
             </div>
@@ -82,14 +100,14 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'infor_en');
-                echo $form->textArea($model, 'infor_en');
+                echo $form->textArea($model, 'infor_en',array('style' => 'font: inherit; height:220px; resize:vertical;'));
                 echo $form->error($model, 'infor_en');
                 ?>
             </div>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address_en');
-                echo $form->textArea($model, 'address_en', array('height' => '100'));
+                echo $form->textArea($model, 'address_en',array('style' => 'font: inherit; height:40px; resize:vertical;'));
                 echo $form->error($model, 'address_en');
                 ?>
             </div>
