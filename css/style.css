@@ -39,6 +39,9 @@ h2 img{
 .servicebox table{
     margin-top: 10px;
 }
+.servicebox table tr td:first-child{
+    font-weight: bold;
+}
 .productlist {
     width: 100%;
     float: left;
@@ -66,7 +69,7 @@ h2 img{
 
      background: url(/img/edir-leftbg.png) no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
-    height: 138px;
+    min-height: 138px;
     margin-left: -1px;
     width: 227px;
 }
