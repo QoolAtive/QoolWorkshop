@@ -14,7 +14,7 @@
  * @property WebShopBox $webShopBox
  * @property WebShopItem $webShopItem
  */
-class WebShopBoxItem extends WebShopBoxItemBase
+class WebShopBoxItemBase extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.

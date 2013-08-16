@@ -4,9 +4,20 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a rel="view-1" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
-                    <?php echo Yii::t('language', 'จัดการรายการร้านค้าของคุณ'); ?>
-                </a></li>
+            <li>
+                <?php
+                if (isset(Yii::app()->user->id)) {
+                    ?>
+                    <a rel="view-1" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
+                        <?php
+                    } else {
+                        ?>
+                        <a href="#" onclick="alert('<?php echo Yii::t('language', 'กรุณาเข้าระบบก่อนใช้งาน'); ?>');">
+                            <?php
+                        }
+                        ?>
+                        <?php echo Yii::t('language', 'จัดการรายการร้านค้าของคุณ'); ?>
+                    </a></li>
 
     </div>
 </div>
