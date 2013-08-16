@@ -19,9 +19,9 @@ $this->renderPartial('side_bar', array(
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'insert_company-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
-            ));
-            $model_type->company_type = $type_list_data;
+            ));            
             ?>
+            <input type="file" />
             <?php $this->endWidget(); ?>
         </div>
     </div>
