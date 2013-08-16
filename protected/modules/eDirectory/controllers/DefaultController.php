@@ -2,25 +2,6 @@
 
 class DefaultController extends Controller {
 
-    public function actionIndex($id = null) {
-
-        $criteria = new CDbCriteria();
-        $criteria->join = 'inner join company_type ctype on t.id = ctype.company_id';
-
-        if ($id != null) {
-            $criteria->condition = 'ctype.company_type = ' . $id;
-        }
-        
-        $dataProvider = new CActiveDataProvider('Company', array(
-            'criteria' => $criteria,
-        ));
-
-        $this->render('index', array(
-            'id' => $id,
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
     public function actionReadingFile($id, $type) {
         switch ($type) {
             case 'brochure':
@@ -35,47 +16,96 @@ class DefaultController extends Controller {
         Yii::app()->end();
     }
 
-    public function actionSearch() {
-//        if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-//            Yii::app()->user->setState('name', $name);
-//        } else {
-//            $name = Yii::app()->user->getState('name');
-//        }
-//        if (isset($_POST['address'])) {
-        $address = $_POST['address'];
-//            Yii::app()->user->setState('address', $address);
-//        } else {
-//            $address = Yii::app()->user->getState('address');
-//        }
-        if (isset($_POST['type'])) {
-            $type = $_POST['type'];
-            Yii::app()->user->setState('type', $type);
+    public function actionIndex($id = null) {
+
+        $criteria = new CDbCriteria();
+        $criteria->join = '
+            inner join company_type ctype on t.id = ctype.company_id
+            inner join company_them ct on t.id = ct.main_id
+            ';
+        $criteria->distinct = 't.name, t.name_en';
+        if ($id != null) {
+            $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
         } else {
-            $type = Yii::app()->user->getState('type');
+            $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0';
         }
 
-        $type_name = SpTypeBusiness::model()->find('id=:id', array(':id' => $type))->name;
+//        echo "<pre>";
+//        print_r(array($criteria));
+//        echo "</pre>";
+
+        $dataProvider = new CActiveDataProvider('Company', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('index', array(
+            'id' => $id,
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionCompanyDetail($id) {
+
+        $model = Company::model()->find('id=:id', array(':id' => $id));
+        $model_user = MemRegistration::model()->find('id=:id', array(':id' => $model->user_id));
+
+        $this->render('company_detail', array(
+            'model' => $model,
+            'model_user' => $model_user,
+            'type_business_back' => $type,
+        ));
+    }
+
+    public function actionSearch($id = null) {
+        $name = $_POST['name'];
+        $address = $_POST['address'];
 
         $criteria = new CDbCriteria;
         $criteria->join = '
+            inner join company_them ct on t.id = ct.main_id
+            inner join company_type ctype on t.id = ctype.company_id
             left join company_product cp on t.id = cp.main_id
-            left join company_them ct on t.id = ct.main_id
             ';
-        $criteria->distinct = 'name, name_en';
-        $criteria->condition = 'ct.status_appro = 1';
+        if ($name != null || $address != null) {
+            $condition = ' and (';
+            $or = null;
+            if ($name != null) {
 
-        $criteria->compare('t.main_business', $name, true, 'or');
-        $criteria->compare('t.main_business_en', $name, true, 'or');
-        $criteria->compare('t.sub_business', $name, true, 'or');
-        $criteria->compare('t.sub_business_en', $name, true, 'or');
-        $criteria->compare('t.name', $name, true, 'or');
-        $criteria->compare('t.name_en', $name, true, 'or');
-        $criteria->compare('cp.name', $name, true, 'or'); // ค้นหาจาก ตารางสินค้า
-        $criteria->compare('cp.name_en', $name, true, 'or'); // ค้นหาจาก ตารางสินค้า
-        $criteria->compare('t.address', $address, true, 'or');
-        $criteria->compare('t.address_en', $address, true, 'or');
-        $criteria->compare('ct.id', $type, 'and');
+                if ($address != null)
+                    $or = 'or';
+
+                $condition .= '(t.name like "%' . $name . '%") or (t.name_en like "%' . $name . '%") or (t.main_business like "%' . $name . '%") or (t.main_business_en like "%' . $name . '%") or ';
+                $condition .= '(t.sub_business like "%' . $name . '%") or (t.sub_business_en like "%' . $name . '%") or (cp.name like "%' . $name . '%") or (cp.name_en like "%' . $name . '%") ' . $or;
+            }
+
+            if ($address != null) {
+                $condition .= '(t.address like "%' . $address . '%") or (t.address_en like "%' . $address . '%")';
+            }
+            $condition .= ')';
+        }
+
+        $criteria->distinct = 'name, name_en';
+        if ($id != null) {
+            $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0' . $condition;
+        } else {
+            $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0' . $condition;
+        }
+
+//        $criteria->compare('t.name', $name, true, 'and');
+//        $criteria->compare('t.name_en', $name, true, 'or');
+//        $criteria->compare('t.main_business', $name, true);
+//        $criteria->compare('t.main_business_en', $name, true);
+//        $criteria->compare('t.sub_business', $name, true);
+//        $criteria->compare('t.sub_business_en', $name, true);
+//        $criteria->compare('cp.name', $name, true); // ค้นหาจาก ตารางสินค้า
+//        $criteria->compare('cp.name_en', $name, true); // ค้นหาจาก ตารางสินค้า
+//
+//
+//        $criteria->compare('t.address', $address, true, 'and');
+//        $criteria->compare('t.address_en', $address, true, 'or');
+//        echo "<pre>";
+//        print_r($criteria);
+//        echo "</pre>";
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
@@ -85,12 +115,7 @@ class DefaultController extends Controller {
             'dataProvider' => $dataProvider,
             'name' => $name,
             'address' => $address,
-            'type_name' => $type_name,
         ));
-    }
-
-    public function actionSearchLink() {
-        
     }
 
 }
