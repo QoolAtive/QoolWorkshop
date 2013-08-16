@@ -26,7 +26,7 @@ $this->renderPartial('side_bar', array(
             <li style="float: left; padding: 65px 0px ;">
                 <?php
                 echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
-                            '/eDirectory/default/search')
+                            '/eDirectory/default/search/id/'. $id)
                         ), array(
                     'update' => 'div#show_detail'
                         ), array(
@@ -44,6 +44,7 @@ $this->renderPartial('side_bar', array(
                 'dataProvider' => $dataProvider,
                 'itemView' => '_list_all',
                 'summaryText' => false,
+                'emptyText' => Yii::t('language', 'ไม่มีร้านค้า'),
                 'template' => "{items}\n{pager}",
             ));
             ?>

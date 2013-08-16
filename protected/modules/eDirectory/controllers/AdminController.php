@@ -143,8 +143,18 @@ class AdminController extends Controller {
         ));
     }
 
-    public function actionCompanyComfirm() {
-        
+    public function actionCompanyComfirm($id = null) {
+        $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $id));
+
+        $model->status_appro = 1;
+        if ($model->save()) {
+            echo '
+                <script>
+                alert("' . Yii::t('language', 'ยืนยันร้านค้าเรียบร้อย') . '");
+                window.location="/eDirectory/admin/companyWaiting";
+                </script>
+                ';
+        }
     }
 
     public function actionSetMotion($company_motion_setting_id = null) {
@@ -348,37 +358,6 @@ class AdminController extends Controller {
 //        $this->renderPartial('company_motion_alert', array(
 //            'message' => $message,
 //        ));
-    }
-
-    public function actionCompanyDetail($id) {
-//        $count_company_view = ComanyCountView::model()->count('company_id=:company_id', array(':company_id' => $id));
-//        if ($count_company_view < 1) {
-//            $model_count = new ComanyCountView();
-//            $model_count->company_id = $id;
-//            $model_count->count_company_view = 1;
-//            $model_count->update_at = date("Y-m-d H:i:s");
-//            if ($model_count->save()) {
-//                
-//            } else {
-//                echo "<pre>";
-//                print_r($model_count->getErrors());
-//                echo "</pre>";
-//            }
-//        } else {
-//            $model_count = ComanyCountView::model()->find('company_id=:company_id', array(':company_id' => $id));
-//            $model_count->count_company_view = $model_count->count_company_view + 1;
-//            $model_count->update_at = date("Y-m-d H:i:s");
-//            $model_count->save();
-//        }
-
-        $model = Company::model()->find('id=:id', array(':id' => $id));
-        $model_user = MemRegistration::model()->find('id=:id', array(':id' => $model->user_id));
-
-        $this->render('company_detail', array(
-            'model' => $model,
-            'model_user' => $model_user,
-            'type_business_back' => $type,
-        ));
     }
 
     public function actionInsertCompany($id = null) {
@@ -759,6 +738,47 @@ class AdminController extends Controller {
                 'company_id' => $company_id,
             ));
         }
+    }
+    
+    public function getDataFromExcel($file_path) {
+        Yii::import('ext.PHPExcel.Classes.PHPExcel.IOFactory');
+        Yii::import('ext.PHPExcel.Classes.PHPExcel.PHPExcel_IOFactory');
+
+        $inputFileName = '.' . $file_path; // $inputFileName = './upload/file/' . $model->_file;
+        $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+        $objReader->setReadDataOnly(true);
+        $objPHPExcel = $objReader->load($inputFileName);
+
+        $objWorksheet = $objPHPExcel->setActiveSheetIndex(0);
+        $highestRow = $objWorksheet->getHighestRow();
+        $highestColumn = $objWorksheet->getHighestColumn();
+
+        $headingsArray = $objWorksheet->rangeToArray('A1:' . $highestColumn . '1', null, true, true, true);
+        $headingsArray = $headingsArray[1];
+
+        $r = -1;
+
+        $row_old = '';
+        $namedDataArray = array();
+        for ($row = 1; $row <= $highestRow; ++$row) {
+
+            $dataRow = $objWorksheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, true, true);
+//                    if ((isset($dataRow[$row])['A']))) && ($dataRow[$row])['A']) > '')) {
+            $c = -1;
+            ++$r;
+
+            foreach ($headingsArray as $columnKey => $columnHeading) {
+                ++$c;
+                $namedDataArray[$r][$c] = $dataRow[$row][$columnKey];
+            }
+//                    }
+        }
+//        echo "<pre>";
+//        print_r($namedDataArray);
+//        echo "</pre>";
+
+        return $namedDataArray;
     }
 
 }
