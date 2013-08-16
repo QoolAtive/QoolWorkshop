@@ -1,3 +1,19 @@
+<style type="text/css">
+._40{
+     background-color: #EEEEEE;
+    border-radius: 14px 14px 14px 14px;
+    display: inline;
+    float: left;
+    height: 81px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 10px 37px;
+    width: 36%;
+}
+.fieldrequire{
+  background:  url("/img/fieldrequire.png") no-repeat scroll left center #fff;
+}
+</style>
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'learning-form',
@@ -20,7 +36,7 @@ $this->renderPartial('_side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3 class="headfont">
+        <h3 class="barH3">
             <span>
                 <i class="icon-bookmark-empty"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">
@@ -38,22 +54,24 @@ $this->renderPartial('_side_bar', array(
                 <?php echo $word . Yii::t('language', 'บทเรียน'); ?>
             </span>
         </h3>
-        <div class="_100"></div>
-        <div class="_100">
+        <div class="_40">
+                    <?php echo $form->labelEx($model, 'group_id'); ?>
+
             <?php
-            echo $form->labelEx($model, 'group_id');
+            
             echo $form->dropDownList($model, 'group_id', LearningGroup::model()->getListData(), array(
                 'empty' => Yii::t('language', 'เลือก'),
-                'style' => 'width: 200px;',
+                'style' => 'width: 100%;',
                 'class' => 'fieldrequire'
                     )
             );
             echo $form->error($model, 'group_id');
             ?>
         </div>
-        <div class="_100">
+        <div class="_40">
+            <p><?php   echo $form->labelEx($upload, 'file');  ?></p>
             <?php
-            echo $form->labelEx($upload, 'file');
+          
             echo $form->fileField($upload, 'file', array('accept' => "application/pdf"));
             echo $form->error($upload, 'file');
             ?>

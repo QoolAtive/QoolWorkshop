@@ -7,7 +7,7 @@ $this->renderPartial('_side_bar', array(
     <div class="tabcontents">
         <div id="view2" class="tabcontent">
             <div>
-                <h3 class="headfont">
+                <h3 class="barH3">
                     <span>
                         <i class="icon-bookmark-empty"></i> 
                         <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">

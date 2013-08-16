@@ -1,4 +1,31 @@
 /* @group Component */
+.lessonList {
+    background: none repeat scroll 0 0 #fff;
+    border: 5px solid #fff;
+    float: left;
+    padding: 3px;
+    width: 225px;
+     margin-bottom: 10px;
+    text-align: center;
+     margin: 4px;
+     box-shadow:0 0 3px 1px #CCCCCC;
+}
+
+.lessonList iframe:hover{
+    cursor: pointer;
+}
+.lessonList a{
+ color: purple;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.lessonList a:hover, .lessonList:hover a{
+    color: #fff;
+    background: purple;
+}
 
 /*logo service-detail*/
 .Center-Container.is-Inline-logo { 
