@@ -351,11 +351,11 @@ class ManageShopController extends Controller {
     public function actionDeletePic($pic, $item_id) {
         $model = WebShopItem::model()->findByPk($item_id);
         $file = '.' . $model->$pic;
-        if (file_exists($file) && $model->$pic != '/img/noimage.gif') {
+        if (file_exists($file) && $model->$pic != 'NULL') {
             unlink($file);
         }
-        if (WebShopItem::model()->updateByPk($item_id, array($pic => '/img/noimage.gif'))) {
-            $model->$pic = '/img/noimage.gif';
+        if (WebShopItem::model()->updateByPk($item_id, array($pic => NULL))) {
+            $model->$pic = '';
             $this->renderPartial('item_pic_', array('model' => $model, 'pic' => $pic));
         }
     }
@@ -512,23 +512,40 @@ class ManageShopController extends Controller {
 //        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
 //        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/edit_item_in_box.js');
-        if ($_POST['select'] != '') {
-//            $criteria = new CDbCriteria;
-//            $criteria->select = 'order_n';
-//            $criteria->limit = '1';
-//            if ($order = $model->model()->find($criteria)) {
+
+        if (isset($_POST['select'])) {
             WebShopBoxItem::model()->deleteAll('web_shop_box_id = ' . $box_id);
-            $arr = array();
-            $arr = preg_split('/,/', $_POST['select']);
-            foreach ($arr as $item_id) {
-                $model = new WebShopBoxItem();
-                $model->web_shop_id = $shop_id;
-                $model->web_shop_box_id = $box_id;
-                $model->web_shop_item_id = $item_id;
-                $model->save();
+            if ($_POST['select'] != '') {
+                $arr = array();
+                $arr = preg_split('/,/', $_POST['select']);
+                foreach ($arr as $item_id) {
+                    $model = new WebShopBoxItem();
+                    $model->web_shop_id = $shop_id;
+                    $model->web_shop_box_id = $box_id;
+                    $model->web_shop_item_id = $item_id;
+                    $model->save();
+                }
             }
         }
         $this->render('edit_box', array('box_id' => $box_id, 'shop_id' => $shop_id));
+    }
+
+    public function actionShowBox($box_id, $is_show) {
+        if ($is_show) {
+            //เปลี่ยนเป็นซ่อน
+            WebShopBox::model()->updateByPk($box_id, array('show' => '0'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'ซ่อนกล่องแสดงสินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+        } else {
+            //เปลี่ยนเป็นโชว์
+            WebShopBox::model()->updateByPk($box_id, array('show' => '1'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'แสดงกล่องแสดงสินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+        }
     }
 
 }
