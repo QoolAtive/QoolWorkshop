@@ -57,7 +57,7 @@
                 array(
                     'class' => 'CButtonColumn',
                     'header' => Yii::t('language', "ลบ"),
-                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบร้านค้านี้หรือไม่?'),
                     'template' => '{delete}',
                     'buttons' => array(
                         'delete' => array(
