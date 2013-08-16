@@ -2,7 +2,7 @@
 $list = array(
     array('text' => Yii::t('language', 'บทเรียนทั้งหมด'), 'link' => '#', 'select' => 'selected'),
 );
-$this->renderPartial('_side_bar', array(
+$this->renderPartial('_side_bar_noch', array(
     'model' => $model,
     'id' => $id,
     'list' => $list,

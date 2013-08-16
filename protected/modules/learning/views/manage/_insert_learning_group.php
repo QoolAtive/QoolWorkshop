@@ -20,7 +20,7 @@ $this->renderPartial('_side_bar', array(
 ?>
 <div class="content">
     <div class="tabcontents">
-        <h3 class="headfont">
+        <h3 class="barH3">
             <span>
                 <i class="icon-bookmark-empty"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/learning/default/home")); ?>">
@@ -38,8 +38,20 @@ $this->renderPartial('_side_bar', array(
                 <?php echo $word . Yii::t('language', 'กลุ่มการเรียนรู้'); ?>
             </span>
         </h3>
-        <div class="_100">
+        
+
+        <div class="_50">
+
+            <div class="_100">
             <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
+        </div>
+
+         <div class="_100">
+            <?php
+            echo $form->labelEx($model, 'name');
+            echo $form->textField($model, 'name', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'name');
+            ?>
         </div>
         <?php if ($model->pic) { ?>
             <div class="_100">
@@ -56,15 +68,22 @@ $this->renderPartial('_side_bar', array(
             echo $form->error($file, 'image');
             ?>
         </div>
-        <div class="_100">
-            <?php
-            echo $form->labelEx($model, 'name');
-            echo $form->textField($model, 'name', array('class' => 'fieldrequire'));
-            echo $form->error($model, 'name');
-            ?>
-        </div>
-        <div class="_100">
+       
+            </div>
+       
+
+    <div class="_50">
+
+         <div class="_100">
             <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
+        </div>
+
+                <div class="_100">
+            <?php
+            echo $form->labelEx($model, 'name_en');
+            echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'name_en');
+            ?>
         </div>
         <?php if ($model->pic_en) { ?>
             <div class="_100">
@@ -81,13 +100,8 @@ $this->renderPartial('_side_bar', array(
             echo $form->error($file, 'image2');
             ?>
         </div>
-        <div class="_100">
-            <?php
-            echo $form->labelEx($model, 'name_en');
-            echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
-            echo $form->error($model, 'name_en');
-            ?>
-        </div>
+
+    </div>
         <div class="_100 txt-cen">
             <hr>
             <?php
