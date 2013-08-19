@@ -127,7 +127,7 @@ h2 img{
 .servicelist{
 }
 .Center-Container.is-Inline:after {
-  min-height: 145px;
+  /*min-height: 145px;*/
   content: '';
   height: 100%;
   margin-left: -0.25em; /* To offset spacing. May vary font */
@@ -1312,6 +1312,7 @@ div.grid-view table tr td:first-child {
     margin: 3px;
     padding: 20px 10px;
     width: 46%;
+    min-height: 140px;
     background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
 }
 #container .servicelist:hover{
