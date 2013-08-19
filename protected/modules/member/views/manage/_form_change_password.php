@@ -14,6 +14,12 @@
     }
 </style>
 <?php
+$this->renderPartial('_sidebar', array());
+?>
+
+<div class="content">
+    <div class="tabcontents">
+<?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'change_password-form',
     'enableClientValidation' => false,
@@ -25,8 +31,8 @@ $form = $this->beginWidget('CActiveForm', array(
     )
         ));
 ?>
-<div style=" padding: 5px 33%;">
-    <h3 style="text-align: center;">เปลี่ยนรหัสผ่าน</h3>
+<div>
+    <h3 class="barH3">เปลี่ยนรหัสผ่าน</h3>
     <hr>
     <div class="">
         <?php
@@ -61,3 +67,5 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 </div>
 <?php $this->endWidget(); ?>
+
+</div></div>

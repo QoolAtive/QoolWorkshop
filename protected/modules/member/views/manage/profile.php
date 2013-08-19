@@ -9,15 +9,22 @@
         text-align: right;
     }
 </style>
+
+<?php
+$this->renderPartial('_sidebar', array());
+?>
+
+<div class="content">
+    <div class="tabcontents">
 <div>
     <?php
     if (Yii::app()->user->isAdmin()) {
         ?>
-        <div style="width: 30%; display: inline-block;">
+       <!--  <div style="width: 30%; display: inline-block;">
             <ul>
                 <li><a href="/member/manage/changePassword"><?php echo Yii::t('language', 'แก้ไขรหัสผ่าน'); ?></a></li>
             </ul>
-        </div>
+        </div> -->
         <div style="width: 70%;display: inline-block;">
             <ul class="btnMangae">
                 <li><a href="/member/manage/admin"><?php echo Yii::t('language', 'ยืนยันสมาชิกนิติบุคคล'); ?></a></li>
@@ -28,7 +35,7 @@
     } else {
         ?>
         <div class="profile">
-            <h3>ข้อมูลส่วนตัว</h3>
+            <h3 class="barH3">ข้อมูลส่วนตัว</h3>
             <hr>
             <?php if ($profile['name'] != null) { ?>
                 <label>ชื่อ - นามสกุล :</label>
@@ -101,32 +108,32 @@
             <?php // }  ?>
             <hr>
             <?php
-            if (Yii::app()->user->isMemberType() == 1) {
-                echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/member/manage/editMemberPerson'
-                    )) . "'")
-                );
-            } else {
-                echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/member/manage/editMemberRegistration'
-                    )) . "'")
-                );
-                echo CHtml::button(Yii::t('language', 'ใช้งานร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/eDirectory/manage/index'
-                    )) . "'")
-                );
-            }
-            echo CHtml::button(Yii::t('language', 'แก้ไขที่อยู่'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/member/manage/changeAddress'
-                )) . "'")
-            );
-            echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/member/manage/changePassword'
-                )) . "'")
-            );
+            // if (Yii::app()->user->isMemberType() == 1) {
+            //     echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            //             '/member/manage/editMemberPerson'
+            //         )) . "'")
+            //     );
+            // } else {
+            //     echo CHtml::button(Yii::t('language', 'แก้ไขข้อมูลส่วนตัว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            //             '/member/manage/editMemberRegistration'
+            //         )) . "'")
+            //     );
+            //     echo CHtml::button(Yii::t('language', 'ใช้งานร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            //             '/eDirectory/manage/index'
+            //         )) . "'")
+            //     );
+            // }
+            // echo CHtml::button(Yii::t('language', 'แก้ไขที่อยู่'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            //         '/member/manage/changeAddress'
+            //     )) . "'")
+            // );
+            // echo CHtml::button(Yii::t('language', 'แก้ไขรหัสผ่าน'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            //         '/member/manage/changePassword'
+            //     )) . "'")
+            // );
             ?>
         </div>
         <?php
     }
     ?>
-</div>
+</div></div></div>
