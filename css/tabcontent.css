@@ -103,6 +103,55 @@ ul.tabs li.selected a:hover
     /*selected tab style */
     text-decoration: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul.tabs li a.selected{
+    background: url('../img/tabactive.png') no-repeat;
+
+}
+ul.tabs li a.selected
+{
+   
+    line-height         : normal;
+    vertical-align      : middle; 
+    color: gold;
+
+    /*selected tab style */
+    position: relative;
+    top: 0px;
+    font-weight:bold;
+/*    background: white;*/
+/*    border: 1px solid #B7B7B7;*/
+    /*border-bottom-color: white;*/
+}
+        
+        
+ul.tabs li a.selected:hover
+{
+    /*selected tab style */
+    text-decoration: none;
+}
+
+
+
+
+
+
         
 div.tabcontent
 {

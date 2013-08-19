@@ -28,6 +28,8 @@ $(document).ready(function() {
 $(document).ready(function($){
         var url = window.location.pathname;
         $('.rectangle-list li a[href="'+url+'"]').addClass('menuactive listactive')  ;
+        $('.tabs li a[href="'+url+'"]').addClass('selected')  ;
+        // alert (url);
 });
 
 // show hide textfield after form error 

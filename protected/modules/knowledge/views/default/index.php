@@ -4,7 +4,7 @@
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/knowledge.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a rel="view1" href="#view1"><?php echo Yii::t('language', 'บทความ'); ?></a></li>
+            <li><a rel="view1" href="/knowledge/default/index"><?php echo Yii::t('language', 'บทความ'); ?></a></li>
             <li><a rel="view2" href="/learning/default/home"><?php echo Yii::t('language', 'การเรียนรู้'); ?></a></li>
             <?php
 //            $list = array(

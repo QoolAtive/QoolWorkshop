@@ -1,18 +1,3 @@
-<style>
-    input[type=password]{
-        width: 200px;
-    }
-    label{
-        padding-right: 10px;
-        width: 100px;
-        display: inline-block;
-        text-align: right;
-    }
-    row{
-        display: inline-block;
-        padding: 5px 0px;
-    }
-</style>
 <?php
 $this->renderPartial('_sidebar', array());
 ?>
@@ -32,31 +17,41 @@ $form = $this->beginWidget('CActiveForm', array(
         ));
 ?>
 <div>
-    <h3 class="barH3">เปลี่ยนรหัสผ่าน</h3>
-    <hr>
-    <div class="">
+
+
+    <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'เปลี่ยนรหัสผ่าน'); ?>
+        </span>
+    </h3>
+    <div class="_50">
         <?php
         echo $form->labelEx($model, 'old_password');
         echo $form->passwordField($model, 'old_password');
         echo $form->error($model, 'old_password');
         ?>
     </div>
-    <div class="">
+    <div class="_100"></div>
+    <div class="_50">
         <?php
         echo $form->labelEx($model, 'password');
         echo $form->passwordField($model, 'password');
         echo $form->error($model, 'password');
         ?>
     </div>
-    <div class="">
+    <div class="_50">
         <?php
         echo $form->labelEx($model, 're_password');
         echo $form->passwordField($model, 're_password');
         echo $form->error($model, 're_password');
         ?>
     </div>
-    <hr>
-    <div class="btnForm">
+    <div class="btnForm _100 textcenter">
         <?php
         echo CHtml::submitButton(Yii::t('language', 'ยืนยัน'), array());
         echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
