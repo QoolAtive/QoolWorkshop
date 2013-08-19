@@ -9,7 +9,7 @@
     <title>ร้าน DBDshop</title>
   	<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css">
 	<!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
-	<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/tp010/css/style.css">
+	<!--<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/tp010/css/style.css">-->
 </head>
 <body>
 <div id="wrapper">

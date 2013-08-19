@@ -9,7 +9,7 @@ if ($model->web_shop_id == NULL) {
 
         </div>
     </div>
-    <?
+    <?php
 } else {
     $this->renderPartial('_side_menu', array('index' => 'shop'));
 }
@@ -25,18 +25,19 @@ if ($model->web_shop_id == NULL) {
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                         <?php
                         $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                        echo Yii::t('language', 'ร้าน ') . $shop_name; ?>
+                        echo Yii::t('language', 'ร้าน ') . $shop_name;
+                        ?>
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
                 </span>
             </h3>
         <?php } ?>
@@ -51,7 +52,7 @@ if ($model->web_shop_id == NULL) {
         <ul class="clearfix" id="template">
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP001.jpg', '', array(
+                echo CHtml::image('/img/layout/tp001.jpg', '', array(
                     'id' => 'tp1',
                     'width' => '128',
                     'height' => '110',
@@ -60,13 +61,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP001.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp001.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP002.jpg', '', array(
+                echo CHtml::image('/img/layout/tp002.jpg', '', array(
                     'id' => 'tp2',
                     'width' => '128',
                     'height' => '110',
@@ -75,13 +76,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP002.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp002.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP003.jpg', '', array(
+                echo CHtml::image('/img/layout/tp003.jpg', '', array(
                     'id' => 'tp3',
                     'width' => '128',
                     'height' => '110',
@@ -90,13 +91,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP003.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp003.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP004.jpg', '', array(
+                echo CHtml::image('/img/layout/tp004.jpg', '', array(
                     'id' => 'tp4',
                     'width' => '128',
                     'height' => '110',
@@ -105,13 +106,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP004.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp004.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP005.jpg', '', array(
+                echo CHtml::image('/img/layout/tp005.jpg', '', array(
                     'id' => 'tp5',
                     'width' => '128',
                     'height' => '110',
@@ -120,13 +121,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP005.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp005.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP006.jpg', '', array(
+                echo CHtml::image('/img/layout/tp006.jpg', '', array(
                     'id' => 'tp6',
                     'width' => '128',
                     'height' => '110',
@@ -135,13 +136,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP006.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp006.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP007.jpg', '', array(
+                echo CHtml::image('/img/layout/tp007.jpg', '', array(
                     'id' => 'tp7',
                     'width' => '128',
                     'height' => '110',
@@ -150,13 +151,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP007.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp007.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP008.jpg', '', array(
+                echo CHtml::image('/img/layout/tp008.jpg', '', array(
                     'id' => 'tp8',
                     'width' => '128',
                     'height' => '110',
@@ -165,13 +166,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP008.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp008.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP009.jpg', '', array(
+                echo CHtml::image('/img/layout/tp009.jpg', '', array(
                     'id' => 'tp9',
                     'width' => '128',
                     'height' => '110',
@@ -180,13 +181,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP009.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp009.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP010.jpg', '', array(
+                echo CHtml::image('/img/layout/tp010.jpg', '', array(
                     'id' => 'tp10',
                     'width' => '128',
                     'height' => '110',
@@ -195,7 +196,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP010.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp010.jpg");
                     ?>
                 </div>
             </li>
@@ -222,6 +223,6 @@ if ($model->web_shop_id == NULL) {
             ?>
         </p>
 
-        <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
     </div>
 </div>
