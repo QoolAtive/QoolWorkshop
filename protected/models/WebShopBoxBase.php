@@ -11,7 +11,7 @@
  * @property integer $type
  * @property string $code
  * @property integer $order_n
- * @property integer $show
+ * @property integer $show_box
  *
  * The followings are the available model relations:
  * @property WebShop $webShop
@@ -45,13 +45,13 @@ class WebShopBoxBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_id, name_th, name_en, type, order_n, show', 'required'),
-			array('web_shop_id, type, order_n, show', 'numerical', 'integerOnly'=>true),
+			array('web_shop_id, name_th, name_en, type, order_n, show_box', 'required'),
+			array('web_shop_id, type, order_n, show_box', 'numerical', 'integerOnly'=>true),
 			array('name_th, name_en', 'length', 'max'=>100),
 			array('code', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_box_id, web_shop_id, name_th, name_en, type, code, order_n, show', 'safe', 'on'=>'search'),
+			array('web_shop_box_id, web_shop_id, name_th, name_en, type, code, order_n, show_box', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,7 +81,7 @@ class WebShopBoxBase extends CActiveRecord
 			'type' => 'Type',
 			'code' => 'Code',
 			'order_n' => 'Order N',
-			'show' => 'Show',
+			'show_box' => 'Show',
 		);
 	}
 
@@ -103,7 +103,7 @@ class WebShopBoxBase extends CActiveRecord
 		$criteria->compare('type',$this->type);
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('order_n',$this->order_n);
-		$criteria->compare('show',$this->show);
+		$criteria->compare('show_box',$this->show_box);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
