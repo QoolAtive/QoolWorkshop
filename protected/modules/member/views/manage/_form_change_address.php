@@ -7,9 +7,12 @@
         });
     });
 </script>
-<div class="content" style="padding: 0% 11.5%;">
+<?php
+$this->renderPartial('_sidebar', array());
+?>
+<div class="content" >
     <div class="row-fluid">
-        <h3> <img src="/img/iconform.png"> <?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>  </h3>
+        <h3 class="barH3"> <img src="/img/iconform.png"> <?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>  </h3>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'insert-form',
