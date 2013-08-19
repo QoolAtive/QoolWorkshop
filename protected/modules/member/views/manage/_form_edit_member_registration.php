@@ -1,6 +1,18 @@
-<div class="content" style="padding: 0% 11.5%;">
-    <div class="row-fluid">
-        <h3> <img src="/img/iconform.png"> แก้ไขข้อมูลนิติบุคคล</h3>
+<?php
+$this->renderPartial('_sidebar', array());
+?>
+<div class="content">
+    <div class="row-fluid"> <h3> 
+       <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'แก้ไขข้อมูลนิติบุคคล'); ?>
+        </span>
+    </h3>
         <hr>
         <?php
         $form = $this->beginWidget('CActiveForm', array(

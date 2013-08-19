@@ -11,8 +11,18 @@
 $this->renderPartial('_sidebar', array());
 ?>
 <div class="content" >
-    <div class="row-fluid">
-        <h3 class="barH3"> <img src="/img/iconform.png"> <?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>  </h3>
+    <div class="tabcontents">
+        <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i>
+            
+            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+            </a>
+            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>
+        </span>
+        </h3>
+
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'insert-form',
@@ -94,7 +104,7 @@ $this->renderPartial('_sidebar', array());
             ?>
         </div>
         <div class="_100"></div>
-        <div class="_100 textcen">
+        <div class="_100 textcenter">
             <?php
             echo CHtml::submitButton(Yii::t('language', 'ยืนยันการแก้ไขที่อยู่'));
             echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(

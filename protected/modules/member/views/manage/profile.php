@@ -8,6 +8,14 @@
         width: 14%;
         text-align: right;
     }
+    .btnMangae li{
+        width: 24%;
+        padding: 50px 0   !important;
+        float: left;
+    }
+    .btnMangae._100 {
+    margin-top: -17px;
+}
 </style>
 
 <?php
@@ -24,16 +32,37 @@ $this->renderPartial('_sidebar', array());
             <ul>
                 <li><a href="/member/manage/changePassword"><?php echo Yii::t('language', 'แก้ไขรหัสผ่าน'); ?></a></li>
             </ul>
-        </div> -->
-        <div style="width: 70%;display: inline-block;">
-            <ul class="btnMangae">
-                <li><a href="/member/manage/admin"><?php echo Yii::t('language', 'ยืนยันสมาชิกนิติบุคคล'); ?></a></li>
-                <li><a href="/dataCenter/default/"><?php echo Yii::t('language', 'จัดการข้อมูลทัวไป'); ?></a></li>
+        </div> --> <div class="_100">
+
+                      <h3 class="barH3">
+        <span>
+            <i class="icon-user"></i> </i><?php echo Yii::t('language', 'จัดการสมาชิก'); ?>
+        </span>
+        </h3>
+     
+         </div>
+            <ul class="btnMangae _100">
+                <li><a href="/member/manage/admin#view1"><?php echo Yii::t('language', 'ยืนยันสมาชิกนิติบุคคล'); ?></a></li>
+                 <li><a href="/member/manage/admin#view2"><?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมด'); ?></a></li>
+                 <li><a href="/member/manage/admin#view3"><?php echo Yii::t('language', 'สมาชิกบุคคลธรรมดาทั้งหมด'); ?></a></li>
+
             </ul>
-        </div>
+            <div class="_100">
+
+              <h3 class="barH3">
+        <span>
+            <i class="icon-cog"></i> </i><?php echo Yii::t('language', 'จัดการข้อมูลทัวไปของเว็บไซต์'); ?>
+        </span>
+        </h3>
+     
+      </div>
+          <?php
+$this->renderPartial('_setting', array());
+?>
         <?php
     } else {
         ?>
+
         <div class="profile">
             <h3 class="barH3">ข้อมูลส่วนตัว</h3>
             <hr>
