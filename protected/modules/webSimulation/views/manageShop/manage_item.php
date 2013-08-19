@@ -1,5 +1,5 @@
 <?php
-$this->renderPartial('_side_menu', array('index' => 'shop'));
+$this->renderPartial('_side_menu', array('index' => 'item'));
 ?>
 
 <div class="content">

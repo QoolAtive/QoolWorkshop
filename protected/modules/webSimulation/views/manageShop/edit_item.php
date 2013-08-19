@@ -1,8 +1,13 @@
 <?php
 $this->renderPartial('_side_menu', array('index' => 'item'));
 ?>
+<style>
+    .item_pic img{
+        height: 124px;
+        width: 124px;}
+    </style>
 
-<div class="content">
+    <div class="content">
     <div class="tabcontents">
         <h3 class="barH3">
             <span>
@@ -141,7 +146,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <h4>รูปภาพ</h4>
             <div class="_100">
                 <div class="_25">
-                    <div id="pic_1">
+                    <div class="item_pic" id="pic_1">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_1'));
                         ?>
@@ -152,7 +157,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_2">
+                    <div class="item_pic" id="pic_2">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_2'));
                         ?>
@@ -163,7 +168,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_3">
+                    <div class="item_pic" id="pic_3">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_3'));
                         ?>
@@ -174,7 +179,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_4">
+                    <div class="item_pic" id="pic_4">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_4'));
                         ?>
@@ -187,7 +192,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             </div>
             <div class="_100">
                 <div class="_25">
-                    <div id="pic_5">
+                    <div class="item_pic" id="pic_5">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_5'));
                         ?>
@@ -198,7 +203,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_6">
+                    <div class="item_pic" id="pic_6">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_6'));
                         ?>
@@ -209,7 +214,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_7">
+                    <div class="item_pic" id="pic_7">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_7'));
                         ?>
@@ -220,7 +225,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     ?>
                 </div>
                 <div class="_25">
-                    <div id="pic_8">
+                    <div class="item_pic" id="pic_8">
                         <?php
                         $this->renderPartial('item_pic_', array('model' => $model, 'pic' => 'pic_8'));
                         ?>

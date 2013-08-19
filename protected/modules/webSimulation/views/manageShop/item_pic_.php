@@ -1,13 +1,9 @@
 <?php
 
 if ($model->$pic == NULL) {
-    echo CHtml::image('/img/noimage.gif', '', array(
-        'style' => 'width: 100%'
-    ));
+    echo CHtml::image('/img/noimage.gif');
 } else {
-    echo CHtml::image($model->$pic, '', array(
-        'style' => 'width: 100%'
-    ));
+    echo CHtml::image($model->$pic);
 }
 
 if ($model->$pic != NULL) {
