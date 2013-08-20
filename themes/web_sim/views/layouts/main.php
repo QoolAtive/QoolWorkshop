@@ -6,10 +6,10 @@
 	<meta name="description" content="">
 	<meta name="language" content="th">
 	<meta name="robots" content="index, follow">
-    <title>ร้าน DBDshop</title>
+    <title>ร้าน <?php echo $this->shop['name_th']; ?></title>
   	<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css">
 	<!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
-	<!--<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/tp010/css/style.css">-->
+        <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css">
 </head>
 <body>
 <div id="wrapper">
@@ -18,7 +18,7 @@
 		<h1 id="logo">
 					<a href="#">
 					<!-- LOGO QUERY FORM DATABASE -->
-					<img src="/themes/web_sim/file/logo/logo_book.png" alt="QoolBook">
+					<img src="<?php echo $this->format['logo']; ?>" alt="<?php echo $this->shop['name_th']; ?>">
 			</a>
 		</h1>
 		<!-- quicksearch -->
@@ -66,7 +66,7 @@
 	        		<h2>Your Recent History</h2>
 					<div class="right_item clearfix">
 	                	<a href="#">
-	                		<img src="/themes/web_sim/file/book/book02.png" alt="">
+	                		<img src="/file/book/book02.png" alt="">
 	           			</a>
 	            		<p><a href="#">Professional Database Programming with VB 2010 &amp; VC# 2010</a></p>
 	                </div>

@@ -1,5 +1,5 @@
 <?php
-$boxs = WebShopBox::model()->findAll(array('order' => 'order_n'));
+$boxs = WebShopBox::model()->findAll(array('condition' => 'show_box = \'1\' and web_shop_id = ' . $id, 'order' => 'order_n'));
 foreach ($boxs as $box) {
     ?>
 
@@ -43,15 +43,34 @@ foreach ($boxs as $box) {
                     </div>
                     <div class="info_item">
                         <h3><a href="#" alt="<?php echo $item_detail['name_th']; ?>" title="<?php echo $item_detail['name_th']; ?>">
-            <?php echo $item_detail['name_th']; ?>
+                                <?php echo $item_detail['name_th']; ?>
                                 <span class="promotion_price"></span>
                             </a></h3>
                     </div>
                 </div>
                 <?php
             } //END item
-        } else { //END if ($box['type'] == '1')
-            //กล่องแสดง HTML, Video
+        } else if ($box['type'] == '2') {
+            //กล่องแสดง HTML
+            echo $box['code'];
+        } else if ($box['type'] == '3') {
+            //กล่องแสดง Video
+//            $url = $box['code'];
+//
+//            parse_str(parse_url($url, PHP_URL_QUERY), $qstring);
+//
+//            echo '<object width="425" height="344">
+//                <param name="movie" value="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"></param>
+//                <param name="allowFullScreen" value="true"></param>
+//                <param name="allowscriptaccess" value="always"></param>
+//                <embed src="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"
+//                       type="application/x-shockwave-flash"
+//                       allowscriptaccess="always"
+//                       allowfullscreen="true"
+//                       width="425"
+//                       height="344"></embed>
+//                </object>';
+            //==============
             echo $box['code'];
         }
         ?>
@@ -60,3 +79,9 @@ foreach ($boxs as $box) {
 
 <?php }
 ?>
+
+<script>
+//    $('body').html(function(i, html) {
+//        return html.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<iframe width="420" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+//    });
+</script>

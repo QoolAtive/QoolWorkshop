@@ -2,10 +2,20 @@
 
 class ShopController extends Controller {
 
-    public $layout='//layouts/web_sim_main';
-    
+    public $format;
+    public $shop;
+
+    public function init() {
+        Yii::app()->theme = 'web_sim';
+        parent::init();
+    }
+
     public function actionIndex($id) {
         $model = WebShop::model()->findByPk($id);
+        $this->shop = $model;
+        $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $id));
+        $this->format = $format;
+//        Yii::app()->getClientScript()->registerCssFile(yii::app()->theme->baseUrl . '/' . $format['theme'] . '/css/style.css', 'screen');
         if ($model != NULL) {
             $this->render('index', array('id' => $id));
         } else {
