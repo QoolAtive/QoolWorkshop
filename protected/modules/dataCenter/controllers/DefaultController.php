@@ -43,7 +43,7 @@ class DefaultController extends Controller {
             $link = '/dataCenter/default/insertHighEducation';
         } else {
             $model = HighEducation::model()->findByPk($id);
-            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/highEducation';
         }
 
@@ -103,7 +103,7 @@ class DefaultController extends Controller {
             $link = '/dataCenter/default/insertCompanyTypeBusiness';
         } else {
             $model = CompanyTypeBusiness::model()->findByPk($id);
-            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/companyTypeBusiness';
         }
 
@@ -163,7 +163,7 @@ class DefaultController extends Controller {
             $link = '/dataCenter/default/insertSex';
         } else {
             $model = MemSex::model()->findByPk($id);
-            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/sex';
         }
 
@@ -223,7 +223,7 @@ class DefaultController extends Controller {
             $link = '/dataCenter/default/insertTitleName';
         } else {
             $model = TitleName::model()->findByPk($id);
-            $alert = 'แก้ไขข้อมูลเรียบร้อย';
+            $alert = 'บันทึกข้อมูลเรียบร้อย';
             $link = '/dataCenter/default/titleName';
         }
 

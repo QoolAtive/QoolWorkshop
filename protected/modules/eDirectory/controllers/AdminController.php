@@ -397,7 +397,7 @@ class AdminController extends Controller {
 //        ));
     }
 
-    public function actionInsertCompany($id = null) {
+    public function actionInsertCompany($id = null, $page = null) {
         if ($id == null) {
             $model = new Company();
             $model->unsetAttributes();
@@ -533,12 +533,21 @@ class AdminController extends Controller {
                     if ($id == null) {
                         $this->redirect('/eDirectory/admin/insertProduct/id/' . $model->id);
                     } else {
-                        echo "
+                        if ($page == null) {
+                            echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/admin/index';
                             </script>
                             ";
+                        } else {
+                            echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='/eDirectory/default/companyDetail/id/$id';
+                            </script>
+                            ";
+                        }
                     }
                 } else {
 //                    echo "<pre>";
@@ -681,7 +690,6 @@ class AdminController extends Controller {
                             window.location='/eDirectory/default/companyDetail/id/$id';
                             </script>
                             ";
-                            
                         } else {
                             echo "
                             <script>

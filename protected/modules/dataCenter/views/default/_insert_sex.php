@@ -28,9 +28,16 @@ $this->renderPartial('_sidebar', array());
         ?>
         <li>
             <?php
-            echo $form->label($model, 'name');
+            echo $form->labelEx($model, 'name');
             echo $form->textField($model, 'name');
             echo $form->error($model, 'name')
+            ?>
+        </li>
+        <li>
+            <?php
+            echo $form->labelEx($model, 'name_en');
+            echo $form->textField($model, 'name_en');
+            echo $form->error($model, 'name_en')
             ?>
         </li>
         <li class="textcenter">

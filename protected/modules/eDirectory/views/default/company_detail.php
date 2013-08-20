@@ -93,7 +93,7 @@
 
             <div id="featured" > 
                 <?php
-                $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                 if ($banner == null) {
                     ?>
                     <img src="/file/banner/default.jpg" style="height: 220px;" />
@@ -133,7 +133,7 @@
                         'class' => "grey right", // btnedit grey
 //                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/serviceProvider/manage/insertCompany/id/' . $model->id
+                            '/eDirectory/admin/insertCompany/id/' . $model->id .'/page/detail'
                         )) . "'")
                     );
                 }
