@@ -42,7 +42,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </div>
         <hr>
 
-        <ul class="droptrue">
+        <ul class="droptrue left">
             <?php
             $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
@@ -87,7 +87,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 
 
 
-        <ul class="droptrue" style="padding-top:14px;float: right; width:34%; padding: 10px; background: #eee;">
+        <ul class="droptrue right" style="padding-top:14px;float: right; width:34%; padding: 10px; background: #eee;">
             <li>
                 Calendar 
 
