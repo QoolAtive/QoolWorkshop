@@ -1,4 +1,21 @@
 /* @group Component */
+
+.listpartner{
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+
+}
+.listpartner li:first-child {
+    line-height: 100px;
+    vertical-align: middle;
+}
+.listpartner li:first-child img{
+    max-width: 123px ; 
+    max-height: 100px; 
+    vertical-align: middle;
+}
+
 .lessonList {
     background: none repeat scroll 0 0 #fff;
     border: 5px solid #fff;
