@@ -29,11 +29,11 @@ $this->renderPartial('side_bar', array(
     <div class="tabcontents">
         <div id='show_detail' class='clearfix'></div>
         <hr>
-        <div style='padding: 10px 5px; background: url("/img/bggridview.png") repeat-x scroll left top white !important; color: #FFFFFF; font-weight: bold; text-align: center;'>
+        <div style='border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;'>
             <?php
             $date_motion = CompanyMotionSetting::model()->find('`use`=:use', array(':use' => 1));
             $data_motion = $date_motion->amount . ' ' . Yii::t('language', $date_motion->type);
-            echo Yii::t('language', 'หากไม่มีการอัพเดทข้อมูล') . ' ' . Yii::t('language', $data_motion);
+            echo Yii::t('language', 'ร้านค้าที่ข้อมูลไม่มีการอัพเดทเกิน') . ' ' . Yii::t('language', $data_motion);
             ?>
         </div>
         <?php

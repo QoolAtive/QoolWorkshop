@@ -11,7 +11,7 @@ class Company extends CompanyBase {
 
     public function rules() {
         return array(
-            array('user_id, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
+            array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
             array('user_id', 'numerical', 'integerOnly' => true),
             array('name, name_en', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
             array('logo, main_business, main_business_en, sub_business, sub_business_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, twitter, banner, brochure', 'length', 'max' => 100),
@@ -26,10 +26,10 @@ class Company extends CompanyBase {
         return array(
             'id' => 'ID',
             'logo' => Yii::t('language', 'โลโก้'),
-            'name' => Yii::t('language', 'ชื่อบริษัทภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อบริษัทภาษาอังกฤษ'),
-            'infor' => Yii::t('language', 'เกี่ยวกับบริษัทภาษาไทย'),
-            'infor_en' => Yii::t('language', 'เกี่ยวกับบริษัทภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'ชื่อร้านค้าภาษาไทย'),
+            'name_en' => Yii::t('language', 'ชื่อร้านค้าภาษาอังกฤษ'),
+            'infor' => Yii::t('language', 'เกี่ยวกับร้านค้าภาษาไทย'),
+            'infor_en' => Yii::t('language', 'เกี่ยวกับร้านค้าภาษาอังกฤษ'),
             'type_business' => Yii::t('language', 'ประเภทธุรกิจ'),
             'address' => Yii::t('language', 'ที่อยู่ภาษาไทย'),
             'address_en' => Yii::t('language', 'ที่อยู่ภาษาอังกฤษ'),

@@ -27,21 +27,39 @@ class AdminController extends Controller {
 
         $criteria = new CDbCriteria;
         $criteria->join = '
+            inner join mem_user mu on t.user_id = mu.id
             left join company_product cp on t.id = cp.main_id
             left join company_them ct on t.id = ct.main_id
             ';
-        $criteria->distinct = 'name, name_en';
-        $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0';
+        $criteria->distinct = 't.name, t.name_en';
+        $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0 and mu.type = 3';
 //        $criteria->order = 't.id desc';
 
-        $criteria->compare('name', $model->name, true);
-        $criteria->compare('name_en', $model->name_en, true);
-        $criteria->compare('main_business', $model->main_business, true);
-        $criteria->compare('main_business_en', $model->main_business_en, true);
-        $criteria->compare('sub_business', $model->sub_business, true);
-        $criteria->compare('sub_business_en', $model->sub_business_en, true);
+        $criteria->compare('t.name', $model->name, true);
+        $criteria->compare('t.name_en', $model->name_en, true);
+        $criteria->compare('t.main_business', $model->main_business, true);
+        $criteria->compare('t.main_business_en', $model->main_business_en, true);
+        $criteria->compare('t.sub_business', $model->sub_business, true);
+        $criteria->compare('t.sub_business_en', $model->sub_business_en, true);
 
-        $dataProvider = new CActiveDataProvider('Company', array(
+        $criteria2 = new CDbCriteria;
+        $criteria2->join = '
+            inner join mem_user mu on t.user_id = mu.id
+            left join company_product cp on t.id = cp.main_id
+            left join company_them ct on t.id = ct.main_id
+            ';
+        $criteria2->distinct = 'name, name_en';
+        $criteria2->condition = 'ct.status_appro = 1 and ct.status_block = 0 and mu.id != 3';
+//        $criteria->order = 't.id desc';
+
+        $criteria2->compare('t.name', $model->name, true);
+        $criteria2->compare('t.name_en', $model->name_en, true);
+        $criteria2->compare('t.main_business', $model->main_business, true);
+        $criteria2->compare('t.main_business_en', $model->main_business_en, true);
+        $criteria2->compare('t.sub_business', $model->sub_business, true);
+        $criteria2->compare('t.sub_business_en', $model->sub_business_en, true);
+
+        $dataProviderAdmin = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
             'sort' => array(
                 'defaultOrder' => 'id desc',
@@ -56,9 +74,26 @@ class AdminController extends Controller {
             ),
         ));
 
+        $dataProviderUser = new CActiveDataProvider('Company', array(
+            'criteria' => $criteria2,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    'name',
+                    'name_en',
+                    'main_business',
+                    'main_business_en',
+                    'sub_business',
+                    'sub_business_en',
+                ),
+            ),
+        ));
+
         $this->render('index', array(
-            'dataProvider' => $dataProvider,
-            'model' => $model,
+            'dataProviderAdmin' => $dataProviderAdmin,
+            'dataProviderUser' => $dataProviderUser,
+            'modelAdmin' => $model,
+            'modelUser' => $model,
         ));
     }
 
@@ -121,7 +156,8 @@ class AdminController extends Controller {
         $dataProvider = new CActiveDataProvider('CompanyMotionSetting', array(
             'criteria' => $criteria,
             'sort' => array(
-                'defaultOrder' => '`use` = 1 desc, company_motion_setting_id desc',
+//                'defaultOrder' => '`use` = 1 desc, company_motion_setting_id desc',
+                'defaultOrder' => 'company_motion_setting_id desc',
                 'attributes' => array(
                     'amount' => array(
                         'asc' => 'amount, type',
@@ -150,6 +186,7 @@ class AdminController extends Controller {
         if ($model->save()) {
             echo '
                 <script>
+                <meta http-equiv="content-type" content="text/html; charset=UTF-8">
                 alert("' . Yii::t('language', 'ยืนยันร้านค้าเรียบร้อย') . '");
                 window.location="/eDirectory/admin/companyWaiting";
                 </script>
@@ -739,12 +776,13 @@ class AdminController extends Controller {
             ));
         }
     }
-    
+
     public function getDataFromExcel($file_path) {
         Yii::import('ext.PHPExcel.Classes.PHPExcel.IOFactory');
         Yii::import('ext.PHPExcel.Classes.PHPExcel.PHPExcel_IOFactory');
+        Yii::import('ext.PHPExcel.Classes.PHPExcel.Cell.PHPExcel_Cell_DataType');
 
-        $inputFileName = '.' . $file_path; // $inputFileName = './upload/file/' . $model->_file;
+        $inputFileName = $file_path; // $inputFileName = './upload/file/' . $model->_file;
         $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
         $objReader = PHPExcel_IOFactory::createReader($inputFileType);
         $objReader->setReadDataOnly(true);
@@ -779,6 +817,229 @@ class AdminController extends Controller {
 //        echo "</pre>";
 
         return $namedDataArray;
+    }
+
+    public function actionCompanyUpload() {
+
+        $model = new CompanyUpload();
+
+        $path = './file/company/';
+
+        if (isset($_POST['CompanyUpload'])) {
+            $model->file = CUploadedFile::getInstance($model, 'file');
+            $file_name = time() . '_' . $model->file->getName();
+            $model->file->saveAs($path . $file_name);
+
+            $data_array = $this->getDataFromExcel($path . $file_name);
+
+//            echo "<pre>";
+//            print_r($data_array);
+//            echo "</pre>";
+//            die;
+
+            $n = 0;
+            $error = '';
+            $errorTable = '';
+            foreach ($data_array as $data) {
+                if ($n >= 2) {
+                    $modelCompany = new Company();
+                    $typeBusiness = explode(',', $data[1]);
+
+                    $modelCompany->user_id = Yii::app()->user->id;
+
+                    $messageError = Company::model()->getAttributeLabel('name');
+                    $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                    $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->name = $data[2];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('name_en') . ' ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
+                    $stError = CheckErrorCompany::haveErrorDup('name_en', $data[8], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->name_en = $data[8];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('infor') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->infor = $data[3];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('infor_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[9], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->infor_en = $data[9];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('main_business') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->main_business = $data[4];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('main_business_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[10], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->main_business_en = $data[10];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('sub_business') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->sub_business = $data[5];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('sub_business_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[11], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->sub_business_en = $data[11];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('address') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[6], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->address = $data[6];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    $messageError = Company::model()->getAttributeLabel('address_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[12], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->address_en = $data[12];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+                    $messageError = Company::model()->getAttributeLabel('contact_name') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[7], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->contact_name = $data[7];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+                    $messageError = Company::model()->getAttributeLabel('contact_name_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[13], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->contact_name_en = $data[13];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+                    $messageError = Company::model()->getAttributeLabel('contact_tel') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[14], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->contact_tel = $data[14];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+//                    $messageError = Company::model()->getAttributeLabel('contact_fax') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+//                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+//                    if ($stError == null) {
+                    $modelCompany->contact_fax = $data[15];
+//                    } else {
+//                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+//                    }
+
+                    $messageError = Company::model()->getAttributeLabel('contact_email') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::verify_email($data[16], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->contact_email = $data[16];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+//                    echo $data[16]. " : Email<br />";
+
+                    $messageError = Company::model()->getAttributeLabel('website') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+                    $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError);
+                    if ($stError == null) {
+                        $modelCompany->website = $data[17];
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+//                    $messageError = Company::model()->getAttributeLabel('facebook') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+//                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+//                    if ($stError == null) {
+                    $modelCompany->facebook = $data[18];
+//                    } else {
+//                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+//                    }
+//                    $messageError = Company::model()->getAttributeLabel('twitter') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
+//                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+//                    if ($stError == null) {
+                    $modelCompany->twitter = $data[19];
+//                    } else {
+//                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+//                    }
+
+                    $errorTypeBusiness = null;
+                    $stError = CheckErrorCompany::haveErrorNull($data[1], 'ประเภทธุรกิจ ไม่ควรเป็นค่าว่าง');
+                    if ($stError == null) {
+                        foreach ($typeBusiness as $dataType) {
+                            $stError = CheckErrorCompany::haveBusiness($dataType);
+                            if ($stError != null) {
+                                if ($errorTypeBusiness == null) {
+                                    $errorTypeBusiness .= $stError;
+                                } else {
+                                    $errorTypeBusiness .= ', ' . $stError;
+                                }
+                            }
+                        }
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                    }
+
+                    if ($errorTypeBusiness != null) {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
+                    }
+
+                    if (!empty($error)) {
+//                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
+                        $t_detail .= $error;
+                        $error = '';
+                    } else {
+//                        echo $n . 'error null';
+                        if ($modelCompany->save()) {
+                            foreach ($typeBusiness as $dataType) {
+                                $modelTypeBusiness = new CompanyType();
+                                $modelTypeBusiness->company_id = $modelCompany->id;
+                                $modelTypeBusiness->company_type = $dataType;
+                                $modelTypeBusiness->save();
+                            }
+                        }
+                        $error .= CheckErrorCompany::errorTableDetail($n, '', true);
+                        $t_detail .= $error;
+//                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
+                        $error = '';
+                    }
+                }
+                $n++;
+            }
+            if ($t_detail != null) {
+                $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+            }
+        }
+
+        $this->render('company_upload_form', array(
+            'model' => $model,
+            'errorTable' => $errorTable,
+        ));
     }
 
 }
