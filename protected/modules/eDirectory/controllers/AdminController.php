@@ -847,7 +847,7 @@ class AdminController extends Controller {
 
                     $modelCompany->user_id = Yii::app()->user->id;
 
-                    $messageError = Company::model()->getAttributeLabel('name') . ' ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
+                    $messageError = Company::model()->getAttributeLabel('name');
                     $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
                     if ($stError == null) {
                         $modelCompany->name = $data[2];
@@ -957,7 +957,7 @@ class AdminController extends Controller {
 //                    }
 
                     $messageError = Company::model()->getAttributeLabel('contact_email') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[16], $messageError);
+                    $stError = CheckErrorCompany::verify_email($data[16], $messageError);
                     if ($stError == null) {
                         $modelCompany->contact_email = $data[16];
                     } else {
@@ -988,15 +988,20 @@ class AdminController extends Controller {
 //                    }
 
                     $errorTypeBusiness = null;
-                    foreach ($typeBusiness as $dataType) {
-                        $stError = CheckErrorCompany::haveBusiness($dataType);
-                        if ($stError != null) {
-                            if ($errorTypeBusiness == null) {
-                                $errorTypeBusiness .= $stError;
-                            } else {
-                                $errorTypeBusiness .= ', ' . $stError;
+                    $stError = CheckErrorCompany::haveErrorNull($data[1], 'ประเภทธุรกิจ ไม่ควรเป็นค่าว่าง');
+                    if ($stError == null) {
+                        foreach ($typeBusiness as $dataType) {
+                            $stError = CheckErrorCompany::haveBusiness($dataType);
+                            if ($stError != null) {
+                                if ($errorTypeBusiness == null) {
+                                    $errorTypeBusiness .= $stError;
+                                } else {
+                                    $errorTypeBusiness .= ', ' . $stError;
+                                }
                             }
                         }
+                    } else {
+                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                     }
 
                     if ($errorTypeBusiness != null) {
@@ -1008,7 +1013,7 @@ class AdminController extends Controller {
                         $t_detail .= $error;
                         $error = '';
                     } else {
-                        echo $n . 'error null';
+//                        echo $n . 'error null';
                         if ($modelCompany->save()) {
                             foreach ($typeBusiness as $dataType) {
                                 $modelTypeBusiness = new CompanyType();
