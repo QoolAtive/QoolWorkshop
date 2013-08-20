@@ -13,29 +13,36 @@ Class CheckErrorCompany {
     }
 
     public static function haveErrorDup($attribute, $value, $messageError) {
-        
         $count = Company::model()->findAll("{$attribute}=:{$attribute}", array(":{$attribute}" => $value));
         if (Count($count) < 1) {
             $message = null;
         } else {
-            $message = $messageError;
+            $message = $messageError . ' มีอยู่ในระบบแล้ว กรุณาตรวจสอบ';
+        }
+
+        return $message;
+    }
+
+    public static function haveErrorDupProduct($attribute = array(), $value = array(), $messageError) {
+        $count = CompanyProduct::model()->findAll(
+                "{$attribute[0]}=:{$attribute[0]} and {$attribute[1]}=:{$attribute[1]}", array(":{$attribute[0]}" => $value[0], ":{$attribute[1]}" => $value[1])
+        );
+        if (Count($count) < 1) {
+            $message = null;
+        } else {
+            $message = $messageError . ' มีอยู่ในระบบแล้ว กรุณาตรวจสอบ';
         }
 
         return $message;
     }
 
     public static function verify_email($value, $messageError) {
-        $stError = CheckErrorCompany::haveErrorNull($value, $messageError);
-        if ($stError != null) {
-            list($email_user, $email_host) = explode("@", $value);
-            $host_ip = gethostbyname($email_host);
-            if (eregi("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$", $value) && !ereg($host_ip, $email_host)) {
-                return null;
-            } else {
-                return 'รูปแบบอีเมล์หรืออีเมล์ผิดพลาด กรุณาตรวจสอบ';
-            }
+        list($email_user, $email_host) = explode("@", $value);
+        $host_ip = gethostbyname($email_host);
+        if (eregi("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,3})$", $value) && !ereg($host_ip, $email_host)) {
+            return null;
         } else {
-            return $stError;
+            return 'รูปแบบอีเมล์หรืออีเมล์ผิดพลาด กรุณาตรวจสอบ';
         }
     }
 
@@ -44,16 +51,15 @@ Class CheckErrorCompany {
     }
 
     public static function haveErrorNull($value, $messageError) {
+//        echo "Value : " . $value . "<br />";
         if ($value != null) {
             $message = null;
         } else {
-            $message = $messageError;
+            $message = $messageError . ' ไม่ควรเป็นค่าว่าง';
         }
 
-        return $message . ' ไม่ควรเป็นค่าว่าง';
+        return $message;
     }
-    
-    
 
     public static function errorTableBegin() {
         return '<table style="width:100%; border:#000 1px solid;">

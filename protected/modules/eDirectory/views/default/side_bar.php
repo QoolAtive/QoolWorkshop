@@ -5,7 +5,7 @@
         </ul>
         <ul class="tabs clearfix">
             <?php
-            $type_list = SpTypeBusiness::model()->findAll();
+            $type_list = CompanyTypeBusiness::model()->findAll();
             echo "<li>";
             echo CHtml::link(Yii::t('language', 'ทั้งหมด'), array('/eDirectory/default/index', 'id' => null), array('rel' => 'view1'));
             echo "</li>";

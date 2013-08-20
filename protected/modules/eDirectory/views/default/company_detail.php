@@ -130,7 +130,7 @@
                 if ($model->user_id == Yii::app()->user->id) {
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
-                        'class' => "grey", // btnedit grey
+                        'class' => "grey right", // btnedit grey
 //                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertCompany/id/' . $model->id
@@ -152,13 +152,13 @@
                 </tr>
 
                 <tr>
-                    <td><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?></td>
+                    <td><?php echo Yii::t('language', 'ประเภทร้านค้า'); ?></td>
                     <td> : </td>
                     <td>
                         <?php
-                        $type = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                        $type = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
                         foreach ($type as $data) {
-                            $type_name = SpTypeBusiness::model()->find('id=:id', array(':id' => $data['type_id']));
+                            $type_name = CompanyTypeBusiness::model()->find('id=:id', array(':id' => $data['company_type']));
                             $type_name = LanguageHelper::changeDB($type_name->name, $type_name->name_en);
                             $data_type .= $type_name . ', ';
                         }
@@ -181,16 +181,26 @@
                     <td> : </td>
                     <td><?php echo $model->website; ?></td>
                 </tr>
-                <?php if ($model->brochure) { ?>
+                <?php
+                $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                if ($brochure > 0) {
+                    ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
-                        <td> : </td>
+                        <td class="colon"> : </td>
                         <td>
                             <?php
-                            echo CHtml::link('ดาวน์โหลด', array(
-                                '/serviceProvider/default/readingPdf/', 'id' => $model->id), array(
-                                'target' => '_bank'
-                            ));
+                            $brochure = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                            echo "<ul>";
+                            foreach ($brochure as $data) {
+                                echo "<li>";
+                                echo CHtml::link($data['path'], array(
+                                    '/eDirectory/default/readingFile/', 'id' => $data['company_brochure_id'], 'type' => 'brochure'), array(
+//                                    'target' => '_bank'
+                                ));
+                                echo "</li>";
+                            }
+                            echo "</ul>";
                             ?>
                         </td>
                     </tr>
@@ -203,7 +213,7 @@
             ?>
         </div>
         <?php
-        $dp_product_best_sell = new CActiveDataProvider('SpProduct', array(
+        $dp_product_best_sell = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => array(
                 'condition' => 'guide = 1 and main_id = ' . $model->id,
                 'order' => 'id desc',
@@ -221,12 +231,13 @@
                     'dataProvider' => $dp_product_best_sell,
                     'itemView' => 'list_product',
                     'summaryText' => false,
+                    'viewData' => array('user_id' => $model->user_id),
                 ));
                 ?>
             </div>
             <?php
         }
-        $dp_product_promo = new CActiveDataProvider('SpProduct', array(
+        $dp_product_promo = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => array(
                 'condition' => 'guide = 2 and main_id = ' . $model->id,
                 'order' => 'id desc',
@@ -244,12 +255,13 @@
                     'dataProvider' => $dp_product_promo,
                     'itemView' => 'list_product',
                     'summaryText' => false,
+                    'viewData' => array('user_id' => $model->user_id),
                 ));
                 ?>
             </div>
             <?php
         }
-        $dp_product_new = new CActiveDataProvider('SpProduct', array(
+        $dp_product_new = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => array(
                 'condition' => 'main_id = ' . $model->id,
                 'order' => 'id desc',
@@ -268,6 +280,7 @@
                     'dataProvider' => $dp_product_new,
                     'itemView' => 'list_product',
                     'summaryText' => false,
+                    'viewData' => array('user_id' => $model->user_id),
                 ));
                 ?>
             </div>
@@ -275,10 +288,10 @@
         <div class="textcenter">
             <hr>
             <?php
-//            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-//                    '/serviceProvider/default/index/id/' . $type_business_back
-//                )) . "'")
-//            );
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/eDirectory/default/index'
+                )) . "'")
+            );
             if (Yii::app()->user->isAdmin()) {
                 $model_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id));
                 if ($model_them->status_appro == 0) {
