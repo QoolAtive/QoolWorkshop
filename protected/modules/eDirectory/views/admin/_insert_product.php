@@ -50,6 +50,26 @@ $this->renderPartial('side_bar', array(
                 </div>
             </div>
             <div class="_100">
+                <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment->payment_id = $payment_array;
+                echo $form->labelEx($model_payment, 'payment_id') . "<br />";
+                echo $form->checkBoxList($model_payment, 'payment_id', Payment::model()->getListData());
+                echo $form->error($model_payment, 'payment_id');
+                ?>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment->option = $payment_option_array;
+                echo $form->labelEx($model_payment, 'option') . "<br />";
+                echo $form->checkBoxList($model_payment, 'option', Payment::model()->getListDataOption());
+                echo $form->error($model_payment, 'option');
+                ?>
+            </div>
+
+            <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'pic');
                 echo $form->fileField($model, 'pic');
