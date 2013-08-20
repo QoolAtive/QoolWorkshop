@@ -1,7 +1,7 @@
 <?php
 
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'type_business-grid',
+    'id' => 'company_admin-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
 //    'ajaxUpdate' => true,
@@ -69,7 +69,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
         array(
-            'visible' => $visible,
             'class' => 'CButtonColumn',
             'header' => 'จัดการ<p>สินค้า</p>',
             'template' => '{view}',

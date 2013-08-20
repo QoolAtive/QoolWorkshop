@@ -19,14 +19,26 @@ $this->renderPartial('side_bar', array(
                     '/eDirectory/admin/insertCompany'
                 )) . "'")
             );
+            echo CHtml::button(Yii::t('language', 'อัพโหลด') . Yii::t('language', 'ร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/eDirectory/admin/companyUpload'
+                )) . "'")
+            );
             ?>
         </div>
         <hr>
+        <h3><?php echo Yii::t('language', 'ร้านค้าโดยผู้ดูแลระบบ'); ?></h3>
         <?php
-        $this->renderPartial('company_grid', array(
-            'dataProvider' => $dataProvider,
-            'model' => $model,
-            'visible' => true,
+        $this->renderPartial('company_grid_admin', array(
+            'dataProvider' => $dataProviderAdmin,
+            'model' => $modelAdmin,
+        ));
+        ?>
+        <hr>
+        <h3><?php echo Yii::t('language', 'ร้านค้าโดยสมาชิก'); ?></h3>
+        <?php
+        $this->renderPartial('company_grid_user', array(
+            'dataProvider' => $dataProviderUser,
+            'model' => $modelUser,
         ));
         ?>
     </div>

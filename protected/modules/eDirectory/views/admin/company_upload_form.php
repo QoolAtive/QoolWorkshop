@@ -19,9 +19,29 @@ $this->renderPartial('side_bar', array(
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'insert_company-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
-            ));            
+            ));
             ?>
-            <input type="file" />
+            <div class="clearfix" style="padding: 0px 50px; text-align: center;">
+                <div>
+                    <?php
+                    echo $form->labelEx($model, 'file');
+                    echo $form->fileField($model, 'file');
+                    echo $form->error($model, 'file');
+                    ?>
+                </div>
+                <div>
+                    <?php
+                    echo CHtml::submitButton(Yii::t('language', 'อัพโหลด'));
+                    ?>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <?php if ($errorTable != null) { ?>
+                <div class='clearfix' style="border: 1px solid blueviolet; padding: 5px;">
+                    <?php echo $errorTable; ?>
+                </div>
+            <?php } ?>
+
             <?php $this->endWidget(); ?>
         </div>
     </div>
