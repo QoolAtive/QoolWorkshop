@@ -40,7 +40,7 @@ $this->renderPartial('side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model_type, 'company_type');
-                echo $form->checkBoxList($model_type, 'company_type', SpTypeBusiness::model()->getDataList());
+                echo $form->checkBoxList($model_type, 'company_type', CompanyTypeBusiness::model()->getListData());
                 echo $form->error($model_type, 'company_type');
                 ?>
             </div>
@@ -61,20 +61,20 @@ $this->renderPartial('side_bar', array(
                 echo $form->error($model, 'infor');
                 ?>
             </div>
-            <div class="_100">
-                <?php
-                echo $form->label($model, 'main_business');
-                echo $form->textfield($model, 'main_business');
-                echo $form->error($model, 'main_business');
-                ?>
-            </div>
-            <div class="_100">
-                <?php
-                echo $form->label($model, 'sub_business');
-                echo $form->textArea($model, 'sub_business');
-                echo $form->error($model, 'sub_business');
-                ?>
-            </div>
+            <!--<div class="_100">-->
+            <?php
+//                echo $form->label($model, 'main_business');
+//                echo $form->textfield($model, 'main_business');
+//                echo $form->error($model, 'main_business');
+            ?>
+            <!--            </div>
+                        <div class="_100">-->
+            <?php
+//                echo $form->label($model, 'sub_business');
+//                echo $form->textArea($model, 'sub_business');
+//                echo $form->error($model, 'sub_business');
+            ?>
+            <!--</div>-->
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address');
@@ -106,20 +106,20 @@ $this->renderPartial('side_bar', array(
                 echo $form->error($model, 'infor_en');
                 ?>
             </div>
-            <div class="_100">
-                <?php
-                echo $form->label($model, 'main_business_en');
-                echo $form->textfield($model, 'main_business_en');
-                echo $form->error($model, 'main_business_en');
-                ?>
-            </div>
-            <div class="_100">
-                <?php
-                echo $form->label($model, 'sub_business_en');
-                echo $form->textArea($model, 'sub_business_en');
-                echo $form->error($model, 'sub_business_en');
-                ?>
-            </div>
+            <!--<div class="_100">-->
+            <?php
+//                echo $form->label($model, 'main_business_en');
+//                echo $form->textfield($model, 'main_business_en');
+//                echo $form->error($model, 'main_business_en');
+            ?>
+            <!--            </div>
+                        <div class="_100">-->
+            <?php
+//                echo $form->label($model, 'sub_business_en');
+//                echo $form->textArea($model, 'sub_business_en');
+//                echo $form->error($model, 'sub_business_en');
+            ?>
+            <!--</div>-->
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address_en');
