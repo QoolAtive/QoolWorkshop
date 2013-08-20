@@ -5,6 +5,7 @@
         <li class="websim"><a href="/webSimulation/default/index"></a></li>
         <!--<li class="edir"><a href="/eDirectory/default/index"></a></li>-->
         <li class="edir"><a href="/eDirectory/default/index"></a></li>
+        <li class="edir"><a href="/eDirectory/default/index"></a></li>
         <li class="servicepro"><a href="/serviceProvider/default/index"></a></li>
         <li class="link"><a href="/link/default/index"></a></li>
         <li class="faq"><a href="/faq/default/index"></a></li>
