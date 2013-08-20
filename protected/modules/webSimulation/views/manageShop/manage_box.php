@@ -21,40 +21,73 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'); ?>
             </span>
         </h3>
-        
+
         <div class="_100">
-            <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
-            <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
-            <a class="addboxbtn fancybox.ajax btn" href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
-            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/sortBox')); ?>">จัดลำดับกล่อง</a>
+            <!--class="addboxbtn fancybox.ajax btn"-->
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่มกล่องแสดงสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addBox")) . '"'));
+            echo CHtml::button(Yii::t('language', 'ใส่โค๊ด html'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addHtml")) . '"'));
+            echo CHtml::button(Yii::t('language', 'วีดีโอ/เพลง'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
+            ?>
+            <!--        fancybox    
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/sortBox')); ?>">จัดลำดับกล่อง</a>-->
         </div>
         <hr>
 
-        <ul class="droptrue left">
+        <ul class="droptrue">
             <?php
-            $boxs = WebShopBox::model()->findAll();
+            $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
             foreach ($boxs as $box) {
                 ?>
                 <li id="recordsArray_<?php echo $i; ?>">
                     <p class="headsort"><?php echo $box['name_th']; ?></p>
                     <p class="tool">
-                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])); ?>">แก้ไขสินค้า</a>
+                        <?php
+                        if ($box['type'] == '1') {
+                            echo CHtml::link('แก้ไขสินค้า', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
+                        } else if ($box['type'] == '2') {
+                            echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
+                        } else if ($box['type'] == '3') {
+                            echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
+                        }
+                        ?>
                         &nbsp;|&nbsp;
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
-                           onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'); ?>');" >ลบ</a>
+                           onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
                         &nbsp;|&nbsp;
                         <a href="#">แก้ไขการแสดงผล</a>
                         &nbsp;|&nbsp;
-                        <a href="#" class="hideshowbox">แสดง/ซ่อน</a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
+                            <?php
+                            if ($box['show_box']) {
+                                echo 'ซ่อน';
+                            } else {
+                                echo 'แสดง';
+                            }
+                            ?>
+                        </a>
 
                     </p>
                 </li>
-            <?php 
-            $i += 1;
-            } ?>
+                <?php
+                $i += 1;
+            }
+            ?>
         </ul>   
-        <ul class="droptrue right" style="padding-top:14px;float: right; width:34%; padding: 10px; background: #eee;">
+
+
+
+
+        <ul class="droptrue" style="padding-top:14px;float: right; width:34%; padding: 10px; background: #eee;">
             <li>
                 Calendar 
 
@@ -73,5 +106,4 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             </li>
         </ul>
     </div>
->>>>>>> ebf0e6ca349225ff72673cfd86fc47df6ffb0b12
 </div>
