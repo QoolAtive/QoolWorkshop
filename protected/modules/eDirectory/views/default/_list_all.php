@@ -7,45 +7,46 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
 
 <div class="servicelist clearfix Center-Container is-Inline">
     <div class="Center-Block">
-    <h4>
-        <?php
-        echo CHtml::link($name, CHtml::normalizeUrl(
-                        array('/eDirectory/default/detail/id/' . $data->id)
-        ));
-        ?>
-    </h4>
-    <ul>
-        <li>
-            <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . ":"; ?></label>
+        <h4>
             <?php
-            $size_type_com = sizeof($model_type_com);
-            $i = 1;
-            foreach ($model_type_com as $m_tc) {
-                $model_type = SpTypeBusiness::model()->findByPk($m_tc->company_type);
-                $type_name = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
-                $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
-                                        array('/serviceProvider/default/partnerGroup/id/' . $m_tc->company_type)
-                ));
-                if ($size_type_com == $i) {
-                    echo $type_name_link;
-                } else {
-                    echo $type_name_link . ", ";
-                    $i++;
-                }
-            }
+            echo CHtml::link($name, CHtml::normalizeUrl(
+                            array('/eDirectory/default/companyDetail/id/' . $data->id)
+            ));
             ?>
-        </li>
-        <li>
-            <label><?php echo Yii::t('language', 'ที่ตั้ง') . ":"; ?></label>
-            <?php echo $address; ?>
-        </li>
-        <li>
-            <label><?php echo Yii::t('language', 'โทร.') . ":"; ?></label>
-            <?php echo $data->contact_tel; ?>
-        </li>
-        <li>
-            <label><?php echo Yii::t('language', 'เว็บไซต์') . ":"; ?></label>
-            <?php echo $data->website; ?>
-        </li>
-    </ul></div>
+        </h4>
+        <ul>
+            <li>
+                <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . ":"; ?></label>
+                <?php
+                $size_type_com = sizeof($model_type_com);
+                $i = 1;
+                foreach ($model_type_com as $m_tc) {
+                    $model_type = CompanyTypeBusiness::model()->findByPk($m_tc->company_type);
+                    $type_name = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
+//                    $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
+//                                            array('/serviceProvider/default/partnerGroup/id/' . $m_tc->company_type)
+//                    ));
+                    $type = $type_name;
+                    if ($size_type_com == $i) {
+                        echo $type;
+                    } else {
+                        echo $type . ", ";
+                        $i++;
+                    }
+                }
+                ?>
+            </li>
+            <li>
+                <label><?php echo Yii::t('language', 'ที่ตั้ง') . ":"; ?></label>
+                <?php echo $address; ?>
+            </li>
+            <li>
+                <label><?php echo Yii::t('language', 'โทร.') . ":"; ?></label>
+                <?php echo $data->contact_tel; ?>
+            </li>
+            <li>
+                <label><?php echo Yii::t('language', 'เว็บไซต์') . ":"; ?></label>
+                <?php echo $data->website; ?>
+            </li>
+        </ul></div>
 </div>

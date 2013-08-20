@@ -26,7 +26,7 @@ $this->renderPartial('side_bar', array(
             <li style="float: left; padding: 65px 0px ;">
                 <?php
                 echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
-                            '/eDirectory/default/search/id/'. $id)
+                            '/eDirectory/default/search/id/' . $id)
                         ), array(
                     'update' => 'div#show_detail'
                         ), array(

@@ -15,6 +15,10 @@ $this->renderPartial('side_bar', array(
                     '/eDirectory/admin/insertProduct/id/' . $id // id = id บริษัท
                 )) . "'")
             );
+            echo CHtml::button(Yii::t('language', 'อัพโหลดสินค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/eDirectory/admin/companyProductUpload/company_id/' . $id // id = id บริษัท
+                )) . "'")
+            );
             ?>
         </div>
         <hr>
