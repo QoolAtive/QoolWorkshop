@@ -14,6 +14,15 @@ $this->renderPartial('side_bar', array(
 <div class="content">
     <div class="tabcontents">
         <hr>
+        <div class="_100 clearfix" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
+            <?php
+            $motion_setting = CompanyMotionSetting::model()->find('`use` = 1');
+            echo Yii::t('language', 'กำหนดความเคลื่อนไหวร้านค้าไม่เกิน') . ' ' . $motion_setting->amount . ' ' . Yii::t('language', $motion_setting->type) . "<br />";
+            ?>
+        </div>
+        <hr>
+        <div class='clearfix'></div>
+        <hr>
         <div class='textcenter'>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ความเคลื่อนไหว'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -23,6 +32,8 @@ $this->renderPartial('side_bar', array(
             ?>
         </div>
         <hr>
+
+
         <?php
         $this->renderPartial('motion_setting_grid', array(
             'dataProvider' => $dataProvider,
