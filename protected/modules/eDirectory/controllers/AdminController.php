@@ -404,11 +404,25 @@ class AdminController extends Controller {
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
+
+            $model_delivery = new DelivSer();
+            $model_delivery->unsetAttributes();
         } else {
             $model = Company::model()->find("id = $id");
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
+
+            $model_delivery = DelivSer::model()->find('com_id = :com_id', array(':com_id' => $id));
+            $delivery = array();
+            if ($model_delivery->option == 0) { // ส่งในประเทศ
+                array_push($delivery, 0);
+            } else if ($model_delivery->option == 1) { // ส่งนอกประเทศ
+                array_push($delivery, 1);
+            } else if ($model_delivery->option == 2) { // ส่งในและนอกประเทศ
+                array_push($delivery, 0);
+                array_push($delivery, 1);
+            }
 
             $type_list = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $id));
             $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
@@ -417,9 +431,17 @@ class AdminController extends Controller {
             }
         }
 
-        if (isset($_POST['Company']) && isset($_POST['CompanyType'])) {
+        if (isset($_POST['Company']) && isset($_POST['CompanyType']) && isset($_POST['DelivSer'])) {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
+            $model_delivery->attributes = $_POST['DelivSer'];
+
+            if ($_POST['Delivery']['option'] == array()) {
+                $model_delivery->option = 0;
+            }
+
+            $model_delivery->com_id = 0;
+
             $type_id = $model_type->company_type;
 
             $model->user_id = Yii::app()->user->id; // กำหนดเจ้าของ ธุรกิจ
@@ -434,12 +456,13 @@ class AdminController extends Controller {
 
             $model->validate();
             $model_type->validate();
+            $model_delivery->validate();
 
 //            echo "<pre>";
 //            print_r(array($model->getErrors(), array($model_type->getErrors())));
 //            echo "</pre>";
 
-            if ($model->getErrors() == null && $model_type->getErrors() == null) {
+            if ($model->getErrors() == null && $model_type->getErrors() == null && $model_delivery->getErrors() == null) {
                 // ไฟล์ logo
                 $file_logo = CUploadedFile::getInstancesByName('logo');
                 if ($file_logo != null) {
@@ -460,6 +483,44 @@ class AdminController extends Controller {
 
                 if ($model->save()) {
 
+                    // การบริการจัดส่ง
+                    $model_delivery->com_id = $model->id;
+                    if ($_POST['DelivSer']['delivery_id'] == 1) {
+
+                        echo "<pre>";
+                        print_r($_POST['Delivery']['option']);
+                        echo '</pre>';
+
+                        if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] != null) { // ส่งในประเทศ และ ส่งนอกประเทศ
+                            $model_delivery->option = 2;
+                        } else if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] == null) { // ส่งในประเทศ ไม่ส่งนอกประเทศ
+                            $model_delivery->option = 0;
+                            $model_delivery->other2 = null;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] != null) { // ไม่ส่งในประเทศ ส่งนอกประเทศ
+                            $model_delivery->other = null;
+                            $model_delivery->option = 1;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] == null) { // ไม่ส่งเลย
+                            $model_delivery->option = null;
+                        }
+
+                        if ($_POST['DelivSer']['option2'] == 1) {
+                            $model_delivery->other = $_POST['DelivSer']['other'];
+                        }
+                    } else {
+                        $model_delivery->option = null;
+                        $model_delivery->option2 = null;
+                        $model_delivery->other = null;
+                        $model_delivery->other2 = null;
+                    }
+//                    echo "<pre>";
+//                    print_r($model_delivery->attributes);
+//                    echo "</pre>";
+                    if ($model_delivery->save()) { //บันทึกการจัดส่ง
+                    } else {
+                        echo "<pre>";
+                        print_r($model_delivery->getErrors());
+                        echo '</pre>';
+                    }
                     $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
                     if ($company_them < 1) {
                         $company_them = new CompanyThem();
@@ -566,6 +627,8 @@ class AdminController extends Controller {
         $this->render('_insert_company', array('model' => $model,
             'model_type' => $model_type,
             'type_list_data' => $type_list_data,
+            'model_delivery' => $model_delivery,
+            'delivery' => $delivery,
         ));
     }
 
@@ -646,6 +709,8 @@ class AdminController extends Controller {
             $model = new CompanyProduct();
             $model->unsetAttributes();
 
+            $model_payment = new PaymentCondition();
+
 //            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
@@ -653,12 +718,34 @@ class AdminController extends Controller {
 
         $return = new CHttpRequest();
 
-        if (isset($_POST['CompanyProduct'])) {
+        if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition'])) {
             $model->attributes = $_POST['CompanyProduct'];
+            $model_payment->attributes = $_POST['PaymentCondition'];
+
+//            echo "<pre>";
+//            print_r($model_payment->payment_id);
+//            echo '</pre>';
+//            die;
+
+            if (!empty($model_payment->payment_id)) {
+                $payment_array = $model_payment->payment_id;
+                $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+//            echo "<pre>";
+//            print_r($model_payment->option);
+//            echo '</pre>';
+//            die;
+
+            if (!empty($model_payment->option)) {
+                $payment_option_array = $model_payment->option;
+                $model_payment->option = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+
             $model->main_id = $id;
             $model->date_write = date('Y-m-d H:i:s');
             $model->validate();
-            if ($model->getErrors() == null) {
+            $model_payment->validate();
+            if ($model->getErrors() == null && $model_payment->getErrors() == null) {
 
                 $model->pic = CUploadedFile::getInstance($model, 'pic');
                 if ($model->pic != null && $model->pic != 'default') {
@@ -721,6 +808,9 @@ class AdminController extends Controller {
 
         $this->render('_insert_product', array(
             'model' => $model,
+            'model_payment' => $model_payment,
+            'payment_array' => $payment_array,
+            'payment_option_array' => $payment_option_array,
             'id' => $id,
         ));
     }
