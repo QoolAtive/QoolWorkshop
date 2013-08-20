@@ -848,6 +848,7 @@ class AdminController extends Controller {
                     $modelCompany->user_id = Yii::app()->user->id;
 
                     $messageError = Company::model()->getAttributeLabel('name');
+                    $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
                     $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
                     if ($stError == null) {
                         $modelCompany->name = $data[2];
