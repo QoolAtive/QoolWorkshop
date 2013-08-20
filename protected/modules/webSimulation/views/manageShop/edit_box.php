@@ -42,11 +42,13 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <ul id="all_item" class="connectedSortable">
                 <?php
                 $items = WebShopItem::model()->findAll(array('condition' => '
+                    web_shop_id = ' . $shop_id . '
+                    AND
                     NOT EXISTS (SELECT NULL
                     FROM web_shop_box_item box
                     WHERE t.web_shop_item_id = box.web_shop_item_id
                     and web_shop_box_id = ' . $box_id . ')'
-                    ));
+                ));
                 foreach ($items as $item) {
                     ?>
                     <li id="<?php echo $item['web_shop_item_id']; ?>" class="ui-state-default" ><?php echo $item['name_th']; ?></li>

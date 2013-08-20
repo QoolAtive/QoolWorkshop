@@ -23,28 +23,28 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </h3>
 
         <div class="_100">
-             <!--class="addboxbtn fancybox.ajax btn"-->
-             <?php
-             echo CHtml::button(Yii::t('language', 'เพิ่มกล่องแสดงสินค้า'), array(
-                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addBox")) . '"'));
-             echo CHtml::button(Yii::t('language', 'ใส่โค๊ด html'), array(
-                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addHtml")) . '"'));
-             echo CHtml::button(Yii::t('language', 'วีดีโอ/เพลง'), array(
-                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
-             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
-                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
-             ?>
-<!--        fancybox    
-            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
-            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
-            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
-            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/sortBox')); ?>">จัดลำดับกล่อง</a>-->
+            <!--class="addboxbtn fancybox.ajax btn"-->
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่มกล่องแสดงสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addBox")) . '"'));
+            echo CHtml::button(Yii::t('language', 'ใส่โค๊ด html'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addHtml")) . '"'));
+            echo CHtml::button(Yii::t('language', 'วีดีโอ/เพลง'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
+            ?>
+            <!--        fancybox    
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml')); ?>">ใส่โค๊ด html </a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo')); ?>">วีดีโอ/เพลง</a>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/sortBox')); ?>">จัดลำดับกล่อง</a>-->
         </div>
         <hr>
 
         <ul class="droptrue">
             <?php
-            $boxs = WebShopBox::model()->findAll(array('order' => 'order_n'));
+            $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
             foreach ($boxs as $box) {
                 ?>
@@ -54,9 +54,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <?php
                         if ($box['type'] == '1') {
                             echo CHtml::link('แก้ไขสินค้า', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
-                        } else if($box['type'] == '2'){
+                        } else if ($box['type'] == '2') {
                             echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
-                        } else if($box['type'] == '3'){
+                        } else if ($box['type'] == '3') {
                             echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
                         }
                         ?>
@@ -68,7 +68,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         &nbsp;|&nbsp;
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
                             <?php
-                            if($box['show_box']){
+                            if ($box['show_box']) {
                                 echo 'ซ่อน';
                             } else {
                                 echo 'แสดง';
