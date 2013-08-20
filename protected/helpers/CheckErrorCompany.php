@@ -3,7 +3,7 @@
 Class CheckErrorCompany {
 
     public static function haveBusiness($idBusiness) {
-        $countBusiness = SpTypeBusiness::model()->count('id=:id', array(':id' => $idBusiness));
+        $countBusiness = CompanyTypeBusiness::model()->count('id=:id', array(':id' => $idBusiness));
         if ($countBusiness > 0)
             $message = null;
         else
