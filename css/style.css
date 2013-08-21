@@ -141,11 +141,15 @@
 }
 
 .listpartner{
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
     display: inline-block;
-    text-align: center;
     margin: 5px;
+    padding: 20px 0;
+    text-align: center;
+    width: 227px;
+  }
 
-}
 .listpartner li:first-child {
     line-height: 100px;
     vertical-align: middle;
