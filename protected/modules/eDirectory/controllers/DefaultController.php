@@ -24,7 +24,7 @@ class DefaultController extends Controller {
             inner join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 't.name, t.name_en';
-        $criteria->order = 't.id desc';
+        $criteria->order = 't.id desc'; 
         if ($id != null) {
             $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
         } else {

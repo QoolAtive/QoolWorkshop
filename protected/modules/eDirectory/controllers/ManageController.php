@@ -50,6 +50,9 @@ class ManageController extends Controller {
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
+
+            $model_delivery = new DelivSer();
+            $model_delivery->unsetAttributes();
         } else {
             $model = Company::model()->find("id = $id");
 
@@ -61,31 +64,44 @@ class ManageController extends Controller {
             foreach ($type_list as $data) {
                 array_push($type_list_data, $data['company_type']);
             }
+
+            $model_delivery = DelivSer::model()->find('com_id = :com_id', array(':com_id' => $id));
+            $delivery = array();
+            if ($model_delivery->option == 0) { // ส่งในประเทศ
+                array_push($delivery, 0);
+            } else if ($model_delivery->option == 1) { // ส่งนอกประเทศ
+                array_push($delivery, 1);
+            } else if ($model_delivery->option == 2) { // ส่งในและนอกประเทศ
+                array_push($delivery, 0);
+                array_push($delivery, 1);
+            }
         }
 
-        if (isset($_POST['Company']) && isset($_POST['CompanyType'])) {
+        if (isset($_POST['Company']) && isset($_POST['CompanyType']) && isset($_POST['DelivSer'])) {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
-            $type_id = $model_type->company_type;
+            $model_delivery->attributes = $_POST['DelivSer'];
+
+            if (!empty($model_type->company_type)) {
+                $type_id = $model_type->company_type;
+                $model_type->company_type = 0;
+            }
+
+            $model_type->company_id = 0;
+
+            if (!empty($model_delivery->option)) {
+                $model_delivery->option = 0;
+            }
+
+            $model_delivery->com_id = 0;
 
             $model->user_id = Yii::app()->user->id; // กำหนดเจ้าของ ธุรกิจ
 
-            $model_type->company_id = 0;
-//            echo "<pre>";
-//            print_r($type_id);
-//            echo "</pre>";
-//            
-            if ($type_id != null)
-                $model_type->company_type = 0;
-
             $model->validate();
             $model_type->validate();
+            $model_delivery->validate();
 
-//            echo "<pre>";
-//            print_r(array($model->getErrors(), array($model_type->getErrors())));
-//            echo "</pre>";
-
-            if ($model->getErrors() == null && $model_type->getErrors() == null) {
+            if ($model->getErrors() == null && $model_type->getErrors() == null && $model_delivery->getErrors() == null) {
                 // ไฟล์ logo
                 $file_logo = CUploadedFile::getInstancesByName('logo');
                 if ($file_logo != null) {
@@ -106,6 +122,41 @@ class ManageController extends Controller {
 
                 if ($model->save()) {
 
+                    // การบริการจัดส่ง
+                    $model_delivery->com_id = $model->id;
+                    if ($_POST['DelivSer']['delivery_id'] == 1) {
+
+                        if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] != null) { // ส่งในประเทศ และ ส่งนอกประเทศ
+                            $model_delivery->option = 2;
+                        } else if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] == null) { // ส่งในประเทศ ไม่ส่งนอกประเทศ
+                            $model_delivery->option = 0;
+                            $model_delivery->other2 = null;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] != null) { // ไม่ส่งในประเทศ ส่งนอกประเทศ
+                            $model_delivery->other = null;
+                            $model_delivery->option = 1;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] == null) { // ไม่ส่งเลย
+                            $model_delivery->option = null;
+                        }
+
+                        if ($_POST['DelivSer']['option2'] == 1) {
+                            $model_delivery->other = $_POST['DelivSer']['other'];
+                        }
+                    } else {
+                        $model_delivery->option = null;
+                        $model_delivery->option2 = null;
+                        $model_delivery->other = null;
+                        $model_delivery->other2 = null;
+                    }
+//                    echo "<pre>";
+//                    print_r($model_delivery->attributes);
+//                    echo "</pre>";
+                    if ($model_delivery->save()) { //บันทึกการจัดส่ง
+                    } else {
+//                        echo "<pre>";
+//                        print_r($model_delivery->getErrors());
+//                        echo '</pre>';
+                    }
+
                     $company_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
                     if ($company_them == null) {
                         $company_them = new CompanyThem();
@@ -114,10 +165,12 @@ class ManageController extends Controller {
                         $company_them->date_write = date("Y-m-d H:i:s");
                         $company_them->save();
                     } else {
-                        $company_them->status_appro = '1';
-                        $company_them->status_block = '0';
-                        $company_them->date_warning = null;
-                        $company_them->save();
+                        if ($company_them->status_block == '1') {
+                            $company_them->status_appro = '1';
+                            $company_them->status_block = '0';
+                            $company_them->date_warning = null;
+                            $company_them->save();
+                        }
                     }
 
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
@@ -212,10 +265,13 @@ class ManageController extends Controller {
                 }
             } else {
                 $type_list_data = $type_id;
+//                echo "<pre>";
+//                print_r(array($model->getErrors(), array($model_type->getErrors()), array($model_delivery->getErrors())));
+//                echo "</pre>";
             }
         } else {
 //            echo "<pre>";
-//            print_r(array($model->getErrors(), array($model_type->getErrors())));
+//            print_r(array($model->getErrors(), array($model_type->getErrors()), array($model_delivery->getErrors())));
 //            echo "</pre>";
         }
 
@@ -223,6 +279,8 @@ class ManageController extends Controller {
             'model' => $model,
             'model_type' => $model_type,
             'type_list_data' => $type_list_data,
+            'model_delivery' => $model_delivery,
+            'delivery' => $delivery,
         ));
     }
 
@@ -268,19 +326,64 @@ class ManageController extends Controller {
             $model = new CompanyProduct();
             $model->unsetAttributes();
 
+            $model_payment = new PaymentCondition();
+            $model_payment_special = new PaymentSpecial();
+
 //            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+
+            $model_payment = new PaymentCondition();
+            $model_payment_special = new PaymentSpecial();
+
+            $payment_condition = PaymentCondition::model()->findAll("product_id = :product_id", array(":product_id" => $pro_id));
+            $payment_array = array();
+            foreach ($payment_condition as $data) {
+                array_push($payment_array, $data['payment_id']);
+                if ($data['payment_id'] == 5) {
+                    $model_payment->other = $data['other'];
+                }
+            }
+
+            $payment_special = PaymentSpecial::model()->findAll("product_id = :product_id", array(":product_id" => $pro_id));
+            $payment_special_array = array();
+            foreach ($payment_special as $data) {
+                array_push($payment_special_array, $data['special_id']);
+                if ($data['special_id'] == 0) {
+                    $model_payment_special->other1 = $data['other'];
+                } else if ($data['special_id'] == 1) {
+                    $model_payment_special->other2 = $data['other'];
+                }
+            }
         }
 
         $return = new CHttpRequest();
 
-        if (isset($_POST['CompanyProduct'])) {
+        if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition']) && isset($_POST['PaymentSpecial'])) {
             $model->attributes = $_POST['CompanyProduct'];
+            $model_payment->attributes = $_POST['PaymentCondition'];
+            $model_payment_special->attributes = $_POST['PaymentSpecial'];
+
+            $model_payment->product_id = 0;
+            $model_payment_special->product_id = 0;
+
+            if (!empty($model_payment->payment_id)) {
+                $payment_array = $model_payment->payment_id;
+                $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+            if (!empty($model_payment_special->special_id)) {
+                $payment_special_array = $model_payment_special->special_id;
+                $model_payment_special->special_id = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+
             $model->main_id = $id;
             $model->date_write = date('Y-m-d H:i:s');
+
             $model->validate();
-            if ($model->getErrors() == null) {
+            $model_payment->validate();
+            $model_payment_special->validate();
+
+            if ($model->getErrors() == null && $model_payment->getErrors() == null && $model_payment_special->getErrors() == null) {
 
                 $model->pic = CUploadedFile::getInstance($model, 'pic');
                 if ($model->pic != null && $model->pic != 'default') {
@@ -305,6 +408,36 @@ class ManageController extends Controller {
 //                echo "</pre>";
                 if ($model->save()) {
 
+                    PaymentCondition::model()->deleteAll("product_id = :product_id", array(":product_id" => $pro_id));
+                    foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                        $add_payment = new PaymentCondition;
+                        $add_payment->product_id = $model->id;
+                        $add_payment->payment_id = $payData;
+
+                        if ($payData == 5) {
+                            $add_payment->other = $model_payment->other;
+                        } else {
+                            $add_payment->other = null;
+                        }
+
+                        $add_payment->save();
+                    }
+
+                    PaymentSpecial::model()->deleteAll("product_id = :product_id", array(":product_id" => $pro_id));
+                    foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                        $add_special = new PaymentSpecial;
+                        $add_special->product_id = $model->id;
+                        $add_special->special_id = $data;
+
+                        if ($data == 0) {
+                            $add_special->other = $model_payment_special->other1;
+                        } else {
+                            $add_special->other = $model_payment_special->other2;
+                        }
+
+                        $add_special->save();
+                    }
+
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
                     echo count($company_motion);
                     if (count($company_motion) < 1) {
@@ -324,7 +457,7 @@ class ManageController extends Controller {
                         echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                            window.location=\"/eDirectory/admin/product/id/$id\";
+                            window.location=\"/eDirectory/manage/index/\";
                             </script>
                             ";
                     } else {
@@ -359,6 +492,10 @@ class ManageController extends Controller {
 
         $this->render('_insert_product', array(
             'model' => $model,
+            'model_payment' => $model_payment,
+            'model_payment_special' => $model_payment_special,
+            'payment_array' => $payment_array,
+            'payment_special_array' => $payment_special_array,
             'id' => $id,
         ));
     }
