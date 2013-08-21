@@ -171,7 +171,7 @@
                     <td> : </td>
                     <td>
                         <?php
-                        $address = LanguageHelper::changeDB($type_name->address, $type_name->address_en);
+                        $address = LanguageHelper::changeDB($model->address, $model->address_en);
                         echo $address;
                         ?>
                     </td>
