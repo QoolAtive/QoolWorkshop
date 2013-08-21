@@ -6,7 +6,7 @@ class UploadPic {
         $fileSave = CUploadedFile::getInstance($model, $attribute);
         if ($fileSave != NULL) {
             $dir = '/upload/img/websim/item/';
-            if ($model->$attribute != NULL && $model->$attribute != '/img/noimage.gif') {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+            if ($model->$attribute != NULL) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
                 if (fopen('.' . $model->$attribute, 'w'))
                     if (unlink('.' . $model->$attribute)) {
                         
@@ -18,7 +18,7 @@ class UploadPic {
             $fileSave->saveAs('.' . $filename);
         } else {
             if ($model->$attribute == NULL)
-                $model->$attribute = '/img/noimage.gif';
+                $model->$attribute = NULL;
         }
         return $model;
     }

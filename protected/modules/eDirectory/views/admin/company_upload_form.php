@@ -17,7 +17,7 @@ $this->renderPartial('side_bar', array(
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
-                'id' => 'insert_company-form',
+                'id' => 'company_upload-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
             ?>

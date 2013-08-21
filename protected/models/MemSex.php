@@ -11,8 +11,8 @@ class MemSex extends MemSexBase {
         // will receive user inputs.
         return array(
             array('name', 'required'),
-            array('name', 'length', 'max' => 20),
-            array('name', 'unique'),
+            array('name, name_en', 'length', 'max' => 20),
+            array('name, name_en', 'unique'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name', 'safe', 'on' => 'search'),
@@ -22,7 +22,8 @@ class MemSex extends MemSexBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'ชื่อ'),
+            'name' => Yii::t('language', 'เพศภาษาไทย'),
+            'name_en' => Yii::t('language', 'เพศภาษาอังกฤษ'),
         );
     }
 

@@ -21,7 +21,6 @@ class ManageShopController extends Controller {
     //หน้า register
     public function actionRegister() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/shop_register.js');
-        $shop_id == NULL;
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id == NULL) {
             $model = new WebShop();
@@ -64,6 +63,7 @@ class ManageShopController extends Controller {
         $shop_format_id = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id))->web_shop_format_id;
         if ($shop_format_id == NULL) {
             $model = new WebShopFormat();
+            $is_new = TRUE;
         } else {
             $model = WebShopFormat::model()->findByPk($shop_format_id);
         }
@@ -73,7 +73,7 @@ class ManageShopController extends Controller {
 
             if ($model->theme != '') {
                 $model->save();
-                if ($shop_id == NULL) {
+                if ($is_new) {
                     //หน้าสมัคร
                     echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
@@ -116,8 +116,12 @@ class ManageShopController extends Controller {
         $model = WebShop::model()->findByPk($shop_id);
         $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
         if ($model->delete()) {
-            unlink(Yii::app()->basePath . $format->logo);
-            unlink(Yii::app()->basePath . $format->background);
+            if ($format->logo != NULL) {
+                unlink(Yii::app()->basePath . $format->logo);
+            }
+            if ($format->background != NULL) {
+                unlink(Yii::app()->basePath . $format->background);
+            }
         }
     }
 
@@ -347,11 +351,11 @@ class ManageShopController extends Controller {
     public function actionDeletePic($pic, $item_id) {
         $model = WebShopItem::model()->findByPk($item_id);
         $file = '.' . $model->$pic;
-        if (file_exists($file) && $model->$pic != '/img/noimage.gif') {
+        if (file_exists($file) && $model->$pic != 'NULL') {
             unlink($file);
         }
-        if (WebShopItem::model()->updateByPk($item_id, array($pic => '/img/noimage.gif'))) {
-            $model->$pic = '/img/noimage.gif';
+        if (WebShopItem::model()->updateByPk($item_id, array($pic => NULL))) {
+            $model->$pic = '';
             $this->renderPartial('item_pic_', array('model' => $model, 'pic' => $pic));
         }
     }
@@ -375,26 +379,32 @@ class ManageShopController extends Controller {
         }
     }
 
-    public function actionAddBox() {
+    public function actionAddBox($box_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
-            $model = new WebShopBox();
+            if ($box_id == NULL) {
+                $model = new WebShopBox();
+            } else {
+                $model = WebShopBox::model()->findByPk($box_id);
+            }
             if (isset($_POST['WebShopBox'])) {
                 $model->attributes = $_POST['WebShopBox'];
                 $model->web_shop_id = $shop_id;
                 $model->type = 1;
 
-                $criteria = new CDbCriteria;
-                $criteria->select = 'order_n';
-                $criteria->order = 'order_n desc';
-                $criteria->limit = '1';
-                if ($order = $model->model()->find($criteria)) {
-                    $last = $order->order_n + 1;
-                } else {
-                    $last = 1;
+                if ($box_id == NULL) {
+                    $criteria = new CDbCriteria;
+                    $criteria->select = 'order_n';
+                    $criteria->order = 'order_n desc';
+                    $criteria->limit = '1';
+                    if ($order = $model->model()->find($criteria)) {
+                        $last = $order->order_n + 1;
+                    } else {
+                        $last = 1;
+                    }
+                    $model->order_n = $last;
                 }
-                $model->order_n = $last;
-                $model->show = 1;
+                $model->show_box = 1;
 
                 if ($model->save()) {
                     echo "<script language='javascript'>
@@ -403,32 +413,39 @@ class ManageShopController extends Controller {
                   </script>";
                 }
             }
-            $this->renderPartial('add_box_', array('model' => $model));
+//            $this->renderPartial('add_box_', array('model' => $model));
+            $this->render('add_box_', array('model' => $model));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
 
-    public function actionAddHtml() {
+    public function actionAddHtml($box_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
-            $model = new WebShopBox();
+            if ($box_id == NULL) {
+                $model = new WebShopBox();
+            } else {
+                $model = WebShopBox::model()->findByPk($box_id);
+            }
             if (isset($_POST['WebShopBox'])) {
                 $model->attributes = $_POST['WebShopBox'];
                 $model->web_shop_id = $shop_id;
                 $model->type = 2;
 
-                $criteria = new CDbCriteria;
-                $criteria->select = 'order_n';
-                $criteria->order = 'order_n desc';
-                $criteria->limit = '1';
-                if ($order = $model->model()->find($criteria)) {
-                    $last = $order->order_n + 1;
-                } else {
-                    $last = 1;
+                if ($box_id == NULL) {
+                    $criteria = new CDbCriteria;
+                    $criteria->select = 'order_n';
+                    $criteria->order = 'order_n desc';
+                    $criteria->limit = '1';
+                    if ($order = $model->model()->find($criteria)) {
+                        $last = $order->order_n + 1;
+                    } else {
+                        $last = 1;
+                    }
+                    $model->order_n = $last;
                 }
-                $model->order_n = $last;
-                $model->show = 1;
+                $model->show_box = 1;
 
                 if ($model->save()) {
                     echo "<script language='javascript'>
@@ -437,32 +454,39 @@ class ManageShopController extends Controller {
                   </script>";
                 }
             }
-            $this->renderPartial('add_html_', array('model' => $model));
+//            $this->renderPartial('add_html_', array('model' => $model));
+            $this->render('add_html_', array('model' => $model));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
 
-    public function actionAddVideo() {
+    public function actionAddVideo($box_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
-            $model = new WebShopBox();
+            if ($box_id == NULL) {
+                $model = new WebShopBox();
+            } else {
+                $model = WebShopBox::model()->findByPk($box_id);
+            }
             if (isset($_POST['WebShopBox'])) {
                 $model->attributes = $_POST['WebShopBox'];
                 $model->web_shop_id = $shop_id;
                 $model->type = 3;
 
-                $criteria = new CDbCriteria;
-                $criteria->select = 'order_n';
-                $criteria->order = 'order_n desc';
-                $criteria->limit = '1';
-                if ($order = $model->model()->find($criteria)) {
-                    $last = $order->order_n + 1;
-                } else {
-                    $last = 1;
+                if ($box_id == NULL) {
+                    $criteria = new CDbCriteria;
+                    $criteria->select = 'order_n';
+                    $criteria->order = 'order_n desc';
+                    $criteria->limit = '1';
+                    if ($order = $model->model()->find($criteria)) {
+                        $last = $order->order_n + 1;
+                    } else {
+                        $last = 1;
+                    }
+                    $model->order_n = $last;
                 }
-                $model->order_n = $last;
-                $model->show = 1;
+                $model->show_box = 1;
 
                 if ($model->save()) {
                     echo "<script language='javascript'>
@@ -471,7 +495,8 @@ class ManageShopController extends Controller {
                   </script>";
                 }
             }
-            $this->renderPartial('add_video_', array('model' => $model));
+//            $this->renderPartial('add_video_', array('model' => $model));
+            $this->render('add_video_', array('model' => $model));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
@@ -501,9 +526,48 @@ class ManageShopController extends Controller {
         }
         $this->render('sort_box', array('shop_id' => $shop_id));
     }
-    
-    public function actionEditBox(){
-        
+
+    public function actionEditBox($box_id) {
+        $shop_id = Yii::app()->session['shop_id'];
+//        Yii::app()->clientScript->registerCssFile('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/edit_item_in_box.js');
+
+        if (isset($_POST['select'])) {
+            WebShopBoxItem::model()->deleteAll('web_shop_box_id = ' . $box_id);
+            if ($_POST['select'] != '') {
+                $arr = array();
+                $arr = preg_split('/,/', $_POST['select']);
+                foreach ($arr as $item_id) {
+                    $model = new WebShopBoxItem();
+                    $model->web_shop_id = $shop_id;
+                    $model->web_shop_box_id = $box_id;
+                    $model->web_shop_item_id = $item_id;
+                    $model->save();
+                }
+            }
+        }
+        $this->render('edit_box', array('box_id' => $box_id, 'shop_id' => $shop_id));
+    }
+
+    public function actionShowBox($box_id, $is_show) {
+        if ($is_show) {
+            //เปลี่ยนเป็นซ่อน
+            WebShopBox::model()->updateByPk($box_id, array('show_box' => '0'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'ซ่อนกล่องแสดงสินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+        } else {
+            //เปลี่ยนเป็นโชว์
+            WebShopBox::model()->updateByPk($box_id, array('show_box' => '1'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'แสดงกล่องแสดงสินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+        }
     }
 
 }
+

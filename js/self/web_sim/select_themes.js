@@ -29,34 +29,34 @@ function getPathTheme(index) {
     switch (index)
     {
         case 1:
-            file = "TP001";
+            file = "tp001";
             break;
         case 2:
-            file = "TP002";
+            file = "tp002";
             break;
         case 3:
-            file = "TP003";
+            file = "tp003";
             break;
         case 4:
-            file = "TP004";
+            file = "tp004";
             break;
         case 5:
-            file = "TP005";
+            file = "tp005";
             break;
         case 6:
-            file = "TP006";
+            file = "tp006";
             break;
         case 7:
-            file = "TP007";
+            file = "tp007";
             break;
         case 8:
-            file = "TP008";
+            file = "tp008";
             break;
         case 9:
-            file = "TP009";
+            file = "tp009";
             break;
         case 10:
-            file = "TP010";
+            file = "tp010";
             break;
         default:
             file = "";

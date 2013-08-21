@@ -10,9 +10,9 @@
  * @property integer $web_shop_item_id
  *
  * The followings are the available model relations:
- * @property WebShop $webShop
  * @property WebShopBox $webShopBox
  * @property WebShopItem $webShopItem
+ * @property WebShop $webShop
  */
 class WebShopBoxItemBase extends CActiveRecord
 {
@@ -42,8 +42,8 @@ class WebShopBoxItemBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_box_item_id, web_shop_box_id, web_shop_id, web_shop_item_id', 'required'),
-			array('web_shop_box_item_id, web_shop_box_id, web_shop_id, web_shop_item_id', 'numerical', 'integerOnly'=>true),
+			array('web_shop_box_id, web_shop_id, web_shop_item_id', 'required'),
+			array('web_shop_box_id, web_shop_id, web_shop_item_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('web_shop_box_item_id, web_shop_box_id, web_shop_id, web_shop_item_id', 'safe', 'on'=>'search'),
@@ -58,9 +58,9 @@ class WebShopBoxItemBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'webShop' => array(self::BELONGS_TO, 'WebShop', 'web_shop_id'),
 			'webShopBox' => array(self::BELONGS_TO, 'WebShopBox', 'web_shop_box_id'),
 			'webShopItem' => array(self::BELONGS_TO, 'WebShopItem', 'web_shop_item_id'),
+			'webShop' => array(self::BELONGS_TO, 'WebShop', 'web_shop_id'),
 		);
 	}
 

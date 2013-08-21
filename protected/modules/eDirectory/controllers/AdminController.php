@@ -397,18 +397,32 @@ class AdminController extends Controller {
 //        ));
     }
 
-    public function actionInsertCompany($id = null) {
+    public function actionInsertCompany($id = null, $page = null) {
         if ($id == null) {
             $model = new Company();
             $model->unsetAttributes();
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
+
+            $model_delivery = new DelivSer();
+            $model_delivery->unsetAttributes();
         } else {
             $model = Company::model()->find("id = $id");
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
+
+            $model_delivery = DelivSer::model()->find('com_id = :com_id', array(':com_id' => $id));
+            $delivery = array();
+            if ($model_delivery->option == 0) { // ส่งในประเทศ
+                array_push($delivery, 0);
+            } else if ($model_delivery->option == 1) { // ส่งนอกประเทศ
+                array_push($delivery, 1);
+            } else if ($model_delivery->option == 2) { // ส่งในและนอกประเทศ
+                array_push($delivery, 0);
+                array_push($delivery, 1);
+            }
 
             $type_list = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $id));
             $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
@@ -417,9 +431,17 @@ class AdminController extends Controller {
             }
         }
 
-        if (isset($_POST['Company']) && isset($_POST['CompanyType'])) {
+        if (isset($_POST['Company']) && isset($_POST['CompanyType']) && isset($_POST['DelivSer'])) {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
+            $model_delivery->attributes = $_POST['DelivSer'];
+
+            if ($_POST['Delivery']['option'] == array()) {
+                $model_delivery->option = 0;
+            }
+
+            $model_delivery->com_id = 0;
+
             $type_id = $model_type->company_type;
 
             $model->user_id = Yii::app()->user->id; // กำหนดเจ้าของ ธุรกิจ
@@ -434,12 +456,13 @@ class AdminController extends Controller {
 
             $model->validate();
             $model_type->validate();
+            $model_delivery->validate();
 
 //            echo "<pre>";
 //            print_r(array($model->getErrors(), array($model_type->getErrors())));
 //            echo "</pre>";
 
-            if ($model->getErrors() == null && $model_type->getErrors() == null) {
+            if ($model->getErrors() == null && $model_type->getErrors() == null && $model_delivery->getErrors() == null) {
                 // ไฟล์ logo
                 $file_logo = CUploadedFile::getInstancesByName('logo');
                 if ($file_logo != null) {
@@ -460,6 +483,44 @@ class AdminController extends Controller {
 
                 if ($model->save()) {
 
+                    // การบริการจัดส่ง
+                    $model_delivery->com_id = $model->id;
+                    if ($_POST['DelivSer']['delivery_id'] == 1) {
+
+//                        echo "<pre>";
+//                        print_r($_POST['Delivery']['option']);
+//                        echo '</pre>';
+
+                        if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] != null) { // ส่งในประเทศ และ ส่งนอกประเทศ
+                            $model_delivery->option = 2;
+                        } else if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] == null) { // ส่งในประเทศ ไม่ส่งนอกประเทศ
+                            $model_delivery->option = 0;
+                            $model_delivery->other2 = null;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] != null) { // ไม่ส่งในประเทศ ส่งนอกประเทศ
+                            $model_delivery->other = null;
+                            $model_delivery->option = 1;
+                        } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] == null) { // ไม่ส่งเลย
+                            $model_delivery->option = null;
+                        }
+
+                        if ($_POST['DelivSer']['option2'] == 1) {
+                            $model_delivery->other = $_POST['DelivSer']['other'];
+                        }
+                    } else {
+                        $model_delivery->option = null;
+                        $model_delivery->option2 = null;
+                        $model_delivery->other = null;
+                        $model_delivery->other2 = null;
+                    }
+//                    echo "<pre>";
+//                    print_r($model_delivery->attributes);
+//                    echo "</pre>";
+                    if ($model_delivery->save()) { //บันทึกการจัดส่ง
+                    } else {
+//                        echo "<pre>";
+//                        print_r($model_delivery->getErrors());
+//                        echo '</pre>';
+                    }
                     $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
                     if ($company_them < 1) {
                         $company_them = new CompanyThem();
@@ -533,12 +594,21 @@ class AdminController extends Controller {
                     if ($id == null) {
                         $this->redirect('/eDirectory/admin/insertProduct/id/' . $model->id);
                     } else {
-                        echo "
+                        if ($page == null) {
+                            echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/admin/index';
                             </script>
                             ";
+                        } else {
+                            echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='/eDirectory/default/companyDetail/id/$id';
+                            </script>
+                            ";
+                        }
                     }
                 } else {
 //                    echo "<pre>";
@@ -557,6 +627,8 @@ class AdminController extends Controller {
         $this->render('_insert_company', array('model' => $model,
             'model_type' => $model_type,
             'type_list_data' => $type_list_data,
+            'model_delivery' => $model_delivery,
+            'delivery' => $delivery,
         ));
     }
 
@@ -586,7 +658,8 @@ class AdminController extends Controller {
             }
         }
         CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
-
+        CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+        
         if ($model->delete()) {
 
             echo "ลบข้อมูลเรียบร้อย";
@@ -629,7 +702,7 @@ class AdminController extends Controller {
         ));
     }
 
-    public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
+    public function actionInsertProduct($id = null, $pro_id = null, $page = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
         if ($id == null) {
             $this->redirect('/eDirectory/admin/index');
         }
@@ -637,19 +710,54 @@ class AdminController extends Controller {
             $model = new CompanyProduct();
             $model->unsetAttributes();
 
+            $model_payment = new PaymentCondition();
+
 //            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+
+            $model_payment = PaymentCondition::model()->find('product_id = :product_id', array(':product_id' => $pro_id));
+            $payment_array = array();
+            if ($model_payment->option == 0) { // ส่งในประเทศ
+                array_push($payment_array, 0);
+            } else if ($model_payment->option == 1) { // ส่งนอกประเทศ
+                array_push($payment_array, 1);
+            } else if ($model_payment->option == 2) { // ส่งในและนอกประเทศ
+                array_push($payment_array, 0);
+                array_push($payment_array, 1);
+            }
         }
 
         $return = new CHttpRequest();
 
-        if (isset($_POST['CompanyProduct'])) {
+        if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition'])) {
             $model->attributes = $_POST['CompanyProduct'];
+            $model_payment->attributes = $_POST['PaymentCondition'];
+
+//            echo "<pre>";
+//            print_r($model_payment->payment_id);
+//            echo '</pre>';
+//            die;
+
+            if (!empty($model_payment->payment_id)) {
+                $payment_array = $model_payment->payment_id;
+                $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+//            echo "<pre>";
+//            print_r($model_payment->option);
+//            echo '</pre>';
+//            die;
+
+            if (!empty($model_payment->option)) {
+                $payment_option_array = $model_payment->option;
+                $model_payment->option = 0; // กำหนดค่า default ให้กับ payment_id
+            }
+
             $model->main_id = $id;
             $model->date_write = date('Y-m-d H:i:s');
             $model->validate();
-            if ($model->getErrors() == null) {
+            $model_payment->validate();
+            if ($model->getErrors() == null && $model_payment->getErrors() == null) {
 
                 $model->pic = CUploadedFile::getInstance($model, 'pic');
                 if ($model->pic != null && $model->pic != 'default') {
@@ -673,30 +781,41 @@ class AdminController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
+
+                    if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] == null) { // ไม่มีการให้ส่วนลด และ ไม่ให้เครดิต
+                        $model_payment->other2 = null;
+                        $model_payment->other3 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] == null) { // มีการให้ส่วนลด 
+                        $model_payment->other3 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] != null) { // มีการให้เครดิต
+                        $model_payment->other2 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] != null) { //ให้ส่วนลด และ ให้เครดิต
+                    }
+
                     if ($pro_id != null) {
-                        echo "
+                        if ($page == 'detail') {
+                            echo "
+                            <script>
+                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.location='/eDirectory/default/companyDetail/id/$id';
+                            </script>
+                            ";
+                        } else {
+                            echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location=\"/eDirectory/admin/product/id/$id\";
                             </script>
                             ";
+                        }
                     } else {
-//                    if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
-//                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
-//                        echo "
-//                            <script>
-//                            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-//                            window.location='" . $link_back . "';
-//                            </script>
-//                            ";
-//                    } else {
+
                         echo "
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $return->getUrl() . "';
                             </script>
                             ";
-//                    }
                     }
                 } else {
 //                    echo "<pre>";
@@ -712,6 +831,9 @@ class AdminController extends Controller {
 
         $this->render('_insert_product', array(
             'model' => $model,
+            'model_payment' => $model_payment,
+            'payment_array' => $payment_array,
+            'payment_option_array' => $payment_option_array,
             'id' => $id,
         ));
     }
@@ -827,218 +949,334 @@ class AdminController extends Controller {
 
         if (isset($_POST['CompanyUpload'])) {
             $model->file = CUploadedFile::getInstance($model, 'file');
-            $file_name = time() . '_' . $model->file->getName();
-            $model->file->saveAs($path . $file_name);
+            $model->validate();
+            if ($model->getErrors() == null) {
 
-            $data_array = $this->getDataFromExcel($path . $file_name);
+
+                $file_name = time() . '_' . $model->file->getName();
+                $model->file->saveAs($path . $file_name);
+
+                $data_array = $this->getDataFromExcel($path . $file_name);
 
 //            echo "<pre>";
 //            print_r($data_array);
 //            echo "</pre>";
 //            die;
 
-            $n = 0;
-            $error = '';
-            $errorTable = '';
-            foreach ($data_array as $data) {
-                if ($n >= 2) {
-                    $modelCompany = new Company();
-                    $typeBusiness = explode(',', $data[1]);
+                $n = 0;
+                $error = '';
+                $errorTable = '';
+                foreach ($data_array as $data) {
+                    if ($n >= 2) {
+                        $modelCompany = new Company();
+                        $typeBusiness = explode(',', $data[1]);
 
-                    $modelCompany->user_id = Yii::app()->user->id;
+                        $modelCompany->user_id = Yii::app()->user->id;
 
-                    $messageError = Company::model()->getAttributeLabel('name');
-                    $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
-                    $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->name = $data[2];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('name');
+                        $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
+                            if ($stError == null) {
+                                $modelCompany->name = $data[2];
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('name_en') . ' ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ');
-                    $stError = CheckErrorCompany::haveErrorDup('name_en', $data[8], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->name_en = $data[8];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('name_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::haveErrorDup('name_en', $data[6], $messageError);
+                            if ($stError == null) {
+                                $modelCompany->name_en = $data[6];
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('infor') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->infor = $data[3];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
 
-                    $messageError = Company::model()->getAttributeLabel('infor_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[9], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->infor_en = $data[9];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('infor');
+                        $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->infor = $data[3];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('main_business') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->main_business = $data[4];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('infor_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[7], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->infor_en = $data[7];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('main_business_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[10], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->main_business_en = $data[10];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('address');
+                        $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->address = $data[4];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('sub_business') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->sub_business = $data[5];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('address_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[8], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->address_en = $data[8];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('sub_business_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[11], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->sub_business_en = $data[11];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('contact_name');
+                        $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->contact_name = $data[5];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('address') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[6], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->address = $data[6];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('contact_name_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[9], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->contact_name_en = $data[9];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
-                    $messageError = Company::model()->getAttributeLabel('address_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[12], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->address_en = $data[12];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
-                    $messageError = Company::model()->getAttributeLabel('contact_name') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[7], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->contact_name = $data[7];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
-                    $messageError = Company::model()->getAttributeLabel('contact_name_en') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[13], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->contact_name_en = $data[13];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
-                    $messageError = Company::model()->getAttributeLabel('contact_tel') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[14], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->contact_tel = $data[14];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('contact_tel');
+                        $stError = CheckErrorCompany::haveErrorNull($data[10], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->contact_tel = $data[10];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 
 //                    $messageError = Company::model()->getAttributeLabel('contact_fax') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                    $modelCompany->contact_fax = $data[15];
+                        $modelCompany->contact_fax = $data[11];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
 
-                    $messageError = Company::model()->getAttributeLabel('contact_email') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::verify_email($data[16], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->contact_email = $data[16];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('contact_email');
+                        $stError = CheckErrorCompany::haveErrorNull($data[12], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::verify_email($data[12], $messageError);
+                            if ($stError == null) {
+                                $modelCompany->contact_email = $data[12];
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 //                    echo $data[16]. " : Email<br />";
 
-                    $messageError = Company::model()->getAttributeLabel('website') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
-                    $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError);
-                    if ($stError == null) {
-                        $modelCompany->website = $data[17];
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
+                        $messageError = Company::model()->getAttributeLabel('website');
+                        $stError = CheckErrorCompany::haveErrorNull($data[13], $messageError);
+                        if ($stError == null) {
+                            $modelCompany->website = $data[13];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
 //                    $messageError = Company::model()->getAttributeLabel('facebook') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                    $modelCompany->facebook = $data[18];
+                        $modelCompany->facebook = $data[14];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
 //                    $messageError = Company::model()->getAttributeLabel('twitter') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                    $modelCompany->twitter = $data[19];
+                        $modelCompany->twitter = $data[15];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
-
-                    $errorTypeBusiness = null;
-                    $stError = CheckErrorCompany::haveErrorNull($data[1], 'ประเภทธุรกิจ ไม่ควรเป็นค่าว่าง');
-                    if ($stError == null) {
-                        foreach ($typeBusiness as $dataType) {
-                            $stError = CheckErrorCompany::haveBusiness($dataType);
-                            if ($stError != null) {
-                                if ($errorTypeBusiness == null) {
-                                    $errorTypeBusiness .= $stError;
-                                } else {
-                                    $errorTypeBusiness .= ', ' . $stError;
+//                    echo "<pre>";
+//                    print_r($modelCompany->attributes);
+//                    echo "</pre>";
+                        $errorTypeBusiness = null;
+                        $stError = CheckErrorCompany::haveErrorNull($data[1], 'ประเภทธุรกิจ');
+                        if ($stError == null) {
+                            foreach ($typeBusiness as $dataType) {
+                                $stError = CheckErrorCompany::haveBusiness($dataType);
+                                if ($stError != null) {
+                                    if ($errorTypeBusiness == null) {
+                                        $errorTypeBusiness .= $stError;
+                                    } else {
+                                        $errorTypeBusiness .= ', ' . $stError;
+                                    }
                                 }
                             }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
-                    } else {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
-                    }
 
-                    if ($errorTypeBusiness != null) {
-                        $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
-                    }
+                        if ($errorTypeBusiness != null) {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
+                        }
 
-                    if (!empty($error)) {
+                        if (!empty($error)) {
 //                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
-                        $t_detail .= $error;
-                        $error = '';
-                    } else {
-//                        echo $n . 'error null';
-                        if ($modelCompany->save()) {
-                            foreach ($typeBusiness as $dataType) {
-                                $modelTypeBusiness = new CompanyType();
-                                $modelTypeBusiness->company_id = $modelCompany->id;
-                                $modelTypeBusiness->company_type = $dataType;
-                                $modelTypeBusiness->save();
+                            $t_detail .= $error;
+                            $error = '';
+                        } else {
+                            if ($modelCompany->save()) {
+
+                                $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $modelCompany->id)); // เพิ่มสถานะการการยอมรับ
+                                if ($company_them < 1) {
+                                    $company_them = new CompanyThem();
+                                    $company_them->main_id = $modelCompany->id;
+                                    $company_them->status_appro = '1';
+                                    $company_them->date_write = date("Y-m-d H:i:s");
+                                    $company_them->save();
+                                }
+
+                                foreach ($typeBusiness as $dataType) {
+                                    $modelTypeBusiness = new CompanyType();
+                                    $modelTypeBusiness->company_id = $modelCompany->id;
+                                    $modelTypeBusiness->company_type = $dataType;
+                                    $modelTypeBusiness->save();
+                                }
+                            } else {
+                                echo "<pre>";
+                                print_r($modelCompany->getErrors());
+                                echo "</pre>";
                             }
-                        }
-                        $error .= CheckErrorCompany::errorTableDetail($n, '', true);
-                        $t_detail .= $error;
+
+                            $error .= CheckErrorCompany::errorTableDetail($n, '', true);
+                            $t_detail .= $error;
 //                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
-                        $error = '';
+                            $error = '';
+                        }
                     }
+                    $n++;
                 }
-                $n++;
-            }
-            if ($t_detail != null) {
-                $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+                if ($t_detail != null) {
+                    $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+                } else if ($n == 2) {
+                    $error .= CheckErrorCompany::errorTableDetail($n, 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ');
+                    $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
+                }
             }
         }
 
         $this->render('company_upload_form', array(
             'model' => $model,
             'errorTable' => $errorTable,
+        ));
+    }
+
+    public function actionCompanyProductUpload($company_id = null) {
+        $model = new CompanyUpload();
+
+        $path = './file/company/';
+
+        if (isset($_POST['CompanyUpload'])) {
+            $model->file = CUploadedFile::getInstance($model, 'file');
+            $model->validate();
+            if ($model->getErrors() == null) {
+
+                $model->file = CUploadedFile::getInstance($model, 'file');
+                $file_name = time() . '_' . $model->file->getName();
+                $model->file->saveAs($path . $file_name);
+
+                $data_array = $this->getDataFromExcel($path . $file_name);
+
+//                echo "<pre>";
+//                print_r($data_array);
+//                echo "</pre>";
+
+                $n = 0;
+                $error = null;
+                $errorTable = null;
+                $t_detail = null;
+                foreach ($data_array as $data) {
+                    if ($n >= 4) {
+                        $modelProduct = new CompanyProduct();
+                        $modelProduct->main_id = $company_id;
+                        $modelProduct->date_write = Date("Y-m-d H:i:s");
+
+                        $messageError = CompanyProduct::model()->getAttributeLabel('name');
+                        $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::haveErrorDupProduct(array('main_id', 'name'), array($company_id, $data[3]), $messageError);
+                            if ($stError == null) {
+                                $modelProduct->name = $data[3];
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
+                        $messageError = CompanyProduct::model()->getAttributeLabel('name_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::haveErrorDupProduct(array('main_id', 'name_en'), array($company_id, $data[5]), $messageError);
+                            if ($stError == null) {
+                                $modelProduct->name_en = $data[5];
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
+                        $messageError = CompanyProduct::model()->getAttributeLabel('detail');
+                        $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
+                        if ($stError == null) {
+                            $modelProduct->detail = $data[4];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
+                        $messageError = CompanyProduct::model()->getAttributeLabel('detail_en');
+                        $stError = CheckErrorCompany::haveErrorNull($data[6], $messageError);
+                        if ($stError == null) {
+                            $modelProduct->detail_en = $data[6];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
+                        $messageError = CompanyProduct::model()->getAttributeLabel('guide');
+                        $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                        if ($stError == null) {
+                            $modelProduct->guide = $data[2];
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+                        if ($error != null) {
+                            $t_detail .= $error;
+                            $error = null;
+                        } else {
+                            if ($modelProduct->save()) {
+                                $t_detail .= CheckErrorCompany::errorTableDetail($n, '');
+                                $error = null;
+                            }
+                        }
+//                        echo "<pre>";
+//                        print_r($modelProduct->attributes);
+//                        echo "</pre>";
+                    }
+                    $n++;
+                }
+
+                $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+            }
+        }
+
+        $this->render('company_product_upload_form', array(
+            'model' => $model,
+            'errorTable' => $errorTable,
+            'id' => $company_id,
         ));
     }
 

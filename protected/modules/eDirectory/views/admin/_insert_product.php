@@ -1,3 +1,51 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#other").hide();
+        $("#other2").hide();
+        $("#other3").hide();
+
+        if ($("#PaymentCondition_payment_id_4").is(":checked")) { // เลือกเป็นอื่นๆ
+            $("#other").show();
+        } else {
+            $("#other").hide();
+        }
+        
+        if ($("#PaymentCondition_option_0").is(":checked")) {// เลือกส่วนลด
+                $("#other2").show();
+            } else {
+                $("#other2").hide();
+            }
+
+            if ($("#PaymentCondition_option_1").is(":checked")) { // บัตรเครดิต
+                $("#other3").show();
+            } else {
+                $("#other3").hide();
+            }
+
+        $("[id^=PaymentCondition_payment_id_]").click(function() {
+            if ($("#PaymentCondition_payment_id_4").is(":checked")) {
+                $("#other").show();
+            } else {
+                $("#other").hide();
+            }
+        });
+
+        $("[id^=PaymentCondition_option_]").click(function() {
+            if ($("#PaymentCondition_option_0").is(":checked")) {
+                $("#other2").show();
+            } else {
+                $("#other2").hide();
+            }
+
+            if ($("#PaymentCondition_option_1").is(":checked")) {
+                $("#other3").show();
+            } else {
+                $("#other3").hide();
+            }
+        });
+
+    });
+</script>
 <?php
 $list = array(
     array('text' => Yii::t('language', 'ร้านค้าทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
@@ -49,6 +97,44 @@ $this->renderPartial('side_bar', array(
                     ?> 
                 </div>
             </div>
+            <div class="_100">
+                <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment->payment_id = $payment_array;
+                echo $form->labelEx($model_payment, 'payment_id') . "<br />";
+                echo $form->checkBoxList($model_payment, 'payment_id', Payment::model()->getListData());
+                echo $form->error($model_payment, 'payment_id');
+                ?>
+                <div id="other" class="_100">
+                    <?php
+                    echo $form->labelEx($model_payment, 'other');
+                    echo $form->textField($model_payment, 'other');
+                    ?>
+                </div>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment->option = $payment_option_array;
+                echo $form->labelEx($model_payment, 'option') . "<br />";
+                echo $form->checkBoxList($model_payment, 'option', Payment::model()->getListDataOption());
+                echo $form->error($model_payment, 'option');
+                ?>
+                <div id="other2" class="_100">
+                    <?php
+                    echo $form->labelEx($model_payment, 'other2');
+                    echo $form->textField($model_payment, 'other2');
+                    ?>
+                </div>
+                <div id="other3" class="_100">
+                    <?php
+                    echo $form->labelEx($model_payment, 'other3');
+                    echo $form->textField($model_payment, 'other3');
+                    ?>
+                </div>
+            </div>
+
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'pic');

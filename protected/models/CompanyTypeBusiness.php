@@ -9,16 +9,17 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
     public function rules() {
         return array(
             array('name', 'required'),
-            array('name', 'length', 'max' => 255),
-            array('name', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวบสอบ'),
-            array('id, name', 'safe', 'on' => 'search'),
+            array('name, name_en', 'length', 'max' => 255),
+            array('id,name', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวบสอบ'),
+            array('id, name, name_en', 'safe', 'on' => 'search'),
         );
     }
 
     public function attributeLabels() {
         return array(
-            'id' => 'ID',
-            'name' => 'ชื่อ',
+            'id' => Yii::t('language', 'ลำดับ'),
+            'name' => Yii::t('language', 'ประเภทภาษาไทย'),
+            'name_en' => Yii::t('language', 'ประเภทภาษาอังกฤษ'),
         );
     }
 
