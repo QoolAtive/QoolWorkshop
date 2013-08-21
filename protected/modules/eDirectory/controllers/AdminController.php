@@ -659,7 +659,7 @@ class AdminController extends Controller {
         }
         CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
         CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
-        
+
         if ($model->delete()) {
 
             echo "ลบข้อมูลเรียบร้อย";
@@ -711,53 +711,61 @@ class AdminController extends Controller {
             $model->unsetAttributes();
 
             $model_payment = new PaymentCondition();
+            $model_payment_special = new PaymentSpecial();
 
 //            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+            $model_payment = new PaymentCondition();
+            $model_payment_special = new PaymentSpecial();
 
-            $model_payment = PaymentCondition::model()->find('product_id = :product_id', array(':product_id' => $pro_id));
+            $payment_condition = PaymentCondition::model()->findAll("product_id = :product_id", array(":product_id" => $pro_id));
             $payment_array = array();
-            if ($model_payment->option == 0) { // ส่งในประเทศ
-                array_push($payment_array, 0);
-            } else if ($model_payment->option == 1) { // ส่งนอกประเทศ
-                array_push($payment_array, 1);
-            } else if ($model_payment->option == 2) { // ส่งในและนอกประเทศ
-                array_push($payment_array, 0);
-                array_push($payment_array, 1);
+            foreach ($payment_condition as $data) {
+                array_push($payment_array, $data['payment_id']);
+                if ($data['payment_id'] == 5) {
+                    $model_payment->other = $data['other'];
+                }
+            }
+
+            $payment_special = PaymentSpecial::model()->findAll("product_id = :product_id", array(":product_id" => $pro_id));
+            $payment_special_array = array();
+            foreach ($payment_special as $data) {
+                array_push($payment_special_array, $data['special_id']);
+                if ($data['special_id'] == 0) {
+                    $model_payment_special->other1 = $data['other'];
+                } else if ($data['special_id'] == 1) {
+                    $model_payment_special->other2 = $data['other'];
+                }
             }
         }
 
         $return = new CHttpRequest();
 
-        if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition'])) {
+        if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition']) && isset($_POST['PaymentSpecial'])) {
             $model->attributes = $_POST['CompanyProduct'];
             $model_payment->attributes = $_POST['PaymentCondition'];
+            $model_payment_special->attributes = $_POST['PaymentSpecial'];
 
-//            echo "<pre>";
-//            print_r($model_payment->payment_id);
-//            echo '</pre>';
-//            die;
+            $model_payment->product_id = 0;
+            $model_payment_special->product_id = 0;
 
             if (!empty($model_payment->payment_id)) {
                 $payment_array = $model_payment->payment_id;
                 $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
-//            echo "<pre>";
-//            print_r($model_payment->option);
-//            echo '</pre>';
-//            die;
-
-            if (!empty($model_payment->option)) {
-                $payment_option_array = $model_payment->option;
-                $model_payment->option = 0; // กำหนดค่า default ให้กับ payment_id
+            if (!empty($model_payment_special->special_id)) {
+                $payment_special_array = $model_payment_special->special_id;
+                $model_payment_special->special_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
 
             $model->main_id = $id;
             $model->date_write = date('Y-m-d H:i:s');
+
             $model->validate();
             $model_payment->validate();
-            if ($model->getErrors() == null && $model_payment->getErrors() == null) {
+            $model_payment_special->validate();
+            if ($model->getErrors() == null && $model_payment->getErrors() == null && $model_payment_special->getErrors() == null) {
 
                 $model->pic = CUploadedFile::getInstance($model, 'pic');
                 if ($model->pic != null && $model->pic != 'default') {
@@ -782,14 +790,32 @@ class AdminController extends Controller {
 //                echo "</pre>";
                 if ($model->save()) {
 
-                    if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] == null) { // ไม่มีการให้ส่วนลด และ ไม่ให้เครดิต
-                        $model_payment->other2 = null;
-                        $model_payment->other3 = null;
-                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] == null) { // มีการให้ส่วนลด 
-                        $model_payment->other3 = null;
-                    } else if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] != null) { // มีการให้เครดิต
-                        $model_payment->other2 = null;
-                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] != null) { //ให้ส่วนลด และ ให้เครดิต
+                    foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                        $add_payment = new PaymentCondition;
+                        $add_payment->product_id = $model->id;
+                        $add_payment->payment_id = $payData;
+
+                        if ($payData == 5) {
+                            $add_payment->other = $model_payment->other;
+                        } else {
+                            $add_payment->other = null;
+                        }
+
+                        $add_payment->save();
+                    }
+
+                    foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                        $add_special = new PaymentSpecial;
+                        $add_special->product_id = $model->id;
+                        $add_special->special_id = $data;
+
+                        if ($data == 0) {
+                            $add_special->other = $model_payment_special->other1;
+                        } else {
+                            $add_special->other = $model_payment_special->other2;
+                        }
+
+                        $add_special->save();
                     }
 
                     if ($pro_id != null) {
@@ -824,7 +850,7 @@ class AdminController extends Controller {
                 }
             } else {
 //                echo "<pre>";
-//                print_r($model->getErrors());
+//                print_r(array($model->getErrors(), $model_payment->getErrors(), $model_payment_special->getErrors()));
 //                echo "</pre>";
             }
         }
@@ -832,8 +858,9 @@ class AdminController extends Controller {
         $this->render('_insert_product', array(
             'model' => $model,
             'model_payment' => $model_payment,
+            'model_payment_special' => $model_payment_special,
             'payment_array' => $payment_array,
-            'payment_option_array' => $payment_option_array,
+            'payment_special_array' => $payment_special_array,
             'id' => $id,
         ));
     }
