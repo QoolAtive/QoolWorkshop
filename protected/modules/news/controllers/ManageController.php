@@ -17,7 +17,7 @@ class ManageController extends Controller {
             ),
         );
     }
-
+    
     public function actionIndex() {
         $model = new News();
         if (isset($_GET['News'])) {
