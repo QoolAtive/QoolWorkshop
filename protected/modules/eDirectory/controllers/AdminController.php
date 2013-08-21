@@ -487,9 +487,9 @@ class AdminController extends Controller {
                     $model_delivery->com_id = $model->id;
                     if ($_POST['DelivSer']['delivery_id'] == 1) {
 
-                        echo "<pre>";
-                        print_r($_POST['Delivery']['option']);
-                        echo '</pre>';
+//                        echo "<pre>";
+//                        print_r($_POST['Delivery']['option']);
+//                        echo '</pre>';
 
                         if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] != null) { // ส่งในประเทศ และ ส่งนอกประเทศ
                             $model_delivery->option = 2;
@@ -517,9 +517,9 @@ class AdminController extends Controller {
 //                    echo "</pre>";
                     if ($model_delivery->save()) { //บันทึกการจัดส่ง
                     } else {
-                        echo "<pre>";
-                        print_r($model_delivery->getErrors());
-                        echo '</pre>';
+//                        echo "<pre>";
+//                        print_r($model_delivery->getErrors());
+//                        echo '</pre>';
                     }
                     $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $model->id)); // เพิ่มสถานะการการยอมรับ
                     if ($company_them < 1) {
