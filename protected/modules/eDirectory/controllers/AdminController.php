@@ -689,7 +689,7 @@ class AdminController extends Controller {
         $criteria->compare('t.detail', $model->detail, true);
         $criteria->compare('t.detail_en', $model->detail_en, true);
         $criteria->compare('t.date_write', $model->date_write, true);
-        $criteria->compaere('t.guide', $model->guide, true);
+        $criteria->compaer('t.guide', $model->guide, true);
 
         $dataProvider = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => $criteria,
