@@ -78,23 +78,8 @@ $this->renderPartial('side_bar', array(
                 'id' => 'insert_type_business-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
-            if (!empty($model->pic)) {
-                ?>
-                <div class="_100">
-                    <div class="ckleft"> 
-                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-                    </div>
-                    <div class="ckright">
+            ?>
 
-                        <?php
-                        echo CHtml::image("/file/product/" . $model->pic, "image", array('height' => '100'));
-                        echo $model->pic;
-                        ?>
-                    </div>
-                </div>
-                <?php
-            }
-            ?> 
             <div class="_100">
                 <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
             </div>
@@ -132,7 +117,26 @@ $this->renderPartial('side_bar', array(
                     ?>
                 </div>
             </div>
+            
+            <?php
+            if (!empty($model->pic)) {
+                ?>
+                <div class="_100">
+                    <div class="ckleft"> 
+                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+                    </div>
+                    <div class="ckright">
 
+                        <?php
+                        echo CHtml::image("/file/product/" . $model->pic, "image", array('height' => '100'));
+                        echo $model->pic;
+                        ?>
+                    </div>
+                </div>
+                <?php
+            }
+            ?> 
+            
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'pic');
