@@ -35,7 +35,7 @@ class PaymentCondition extends PaymentConditionBase {
             'product_id' => 'Product',
             'payment_id' => Yii::t('language', 'เงื่อนไขการชำระเงิน'),
             'option' => Yii::t('language', 'สิทธิพิเศษ'),
-            'other' => Yii::t('language', 'อื่นๆ'),
+            'other' => Yii::t('language', 'ระบุ'),
             'other2' => Yii::t('language', 'จำนวนส่วนลด'),
             'other3' => Yii::t('language', 'จำนวนเครดิต'),
         );

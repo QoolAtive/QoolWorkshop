@@ -658,7 +658,8 @@ class AdminController extends Controller {
             }
         }
         CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
-
+        CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+        
         if ($model->delete()) {
 
             echo "ลบข้อมูลเรียบร้อย";
@@ -688,7 +689,7 @@ class AdminController extends Controller {
         $criteria->compare('t.detail', $model->detail, true);
         $criteria->compare('t.detail_en', $model->detail_en, true);
         $criteria->compare('t.date_write', $model->date_write, true);
-        $criteria->compare('t.guide', $model->guide, true);
+        $criteria->compaere('t.guide', $model->guide, true);
 
         $dataProvider = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => $criteria,
@@ -714,6 +715,17 @@ class AdminController extends Controller {
 //            Yii::app()->user->setState('product_link_back_to_menu', '');
         } else {
             $model = CompanyProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
+
+            $model_payment = PaymentCondition::model()->find('product_id = :product_id', array(':product_id' => $pro_id));
+            $payment_array = array();
+            if ($model_payment->option == 0) { // ส่งในประเทศ
+                array_push($payment_array, 0);
+            } else if ($model_payment->option == 1) { // ส่งนอกประเทศ
+                array_push($payment_array, 1);
+            } else if ($model_payment->option == 2) { // ส่งในและนอกประเทศ
+                array_push($payment_array, 0);
+                array_push($payment_array, 1);
+            }
         }
 
         $return = new CHttpRequest();
@@ -769,6 +781,17 @@ class AdminController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
+
+                    if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] == null) { // ไม่มีการให้ส่วนลด และ ไม่ให้เครดิต
+                        $model_payment->other2 = null;
+                        $model_payment->other3 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] == null) { // มีการให้ส่วนลด 
+                        $model_payment->other3 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] == null && $_POST['PaymentCondition']['option'][1] != null) { // มีการให้เครดิต
+                        $model_payment->other2 = null;
+                    } else if ($_POST['PaymentCondition']['option'][0] != null && $_POST['PaymentCondition']['option'][1] != null) { //ให้ส่วนลด และ ให้เครดิต
+                    }
+
                     if ($pro_id != null) {
                         if ($page == 'detail') {
                             echo "

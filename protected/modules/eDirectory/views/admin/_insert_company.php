@@ -437,19 +437,15 @@ $this->renderPartial('side_bar', array(
                     echo CHtml::submitButton($btnText);
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
-                    if (Yii::app()->user->getState('default_link_back_to_menu')) {
-                        $link_back = Yii::app()->user->getState('default_link_back_to_menu');
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                            '/eDirectory/admin/index'
+                        )) . "'")
+                    );
 
-                        echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                                $link_back
-                            )) . "'")
-                        );
-                    } else {
-                        echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                                '/serviceProvider/manage/company'
-                            )) . "'")
-                        );
-                    }
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับหน้ารายละเอียด'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                            '/eDirectory/default/companyDetail/id/' . $id
+                        )) . "'")
+                    );
                     ?>
                 </div>
                 <?php $this->endWidget(); ?>
