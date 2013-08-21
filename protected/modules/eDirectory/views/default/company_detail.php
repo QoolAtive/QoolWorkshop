@@ -133,7 +133,7 @@
                         'class' => "grey right", // btnedit grey
 //                        'style' => 'margin-left: 656px; margin-top: 5px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/admin/insertCompany/id/' . $model->id .'/page/detail'
+                            '/eDirectory/admin/insertCompany/id/' . $model->id . '/page/detail'
                         )) . "'")
                     );
                 }
@@ -182,8 +182,8 @@
                     <td><?php echo $model->website; ?></td>
                 </tr>
                 <?php
-                $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                if ($brochure > 0) {
+                $brochure_count = SpBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
+                if ($brochure_count > 0) {
                     ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
