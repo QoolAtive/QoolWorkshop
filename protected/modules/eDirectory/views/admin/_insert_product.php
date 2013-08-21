@@ -1,26 +1,26 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $("#other").hide();
-        $("#other2").hide();
-        $("#other3").hide();
+        $("#special_other_1").hide();
+        $("#special_other_2").hide();
 
         if ($("#PaymentCondition_payment_id_4").is(":checked")) { // เลือกเป็นอื่นๆ
             $("#other").show();
         } else {
             $("#other").hide();
         }
-        
-        if ($("#PaymentCondition_option_0").is(":checked")) {// เลือกส่วนลด
-                $("#other2").show();
-            } else {
-                $("#other2").hide();
-            }
 
-            if ($("#PaymentCondition_option_1").is(":checked")) { // บัตรเครดิต
-                $("#other3").show();
-            } else {
-                $("#other3").hide();
-            }
+        if ($("#PaymentSpecial_special_id_0").is(":checked")) {// เลือกส่วนลด
+            $("#special_other_1").show();
+        } else {
+            $("#special_other_1").hide();
+        }
+
+        if ($("#PaymentSpecial_special_id_1").is(":checked")) { // บัตรเครดิต
+            $("#special_other_2").show();
+        } else {
+            $("#special_other_2").hide();
+        }
 
         $("[id^=PaymentCondition_payment_id_]").click(function() {
             if ($("#PaymentCondition_payment_id_4").is(":checked")) {
@@ -30,17 +30,17 @@
             }
         });
 
-        $("[id^=PaymentCondition_option_]").click(function() {
-            if ($("#PaymentCondition_option_0").is(":checked")) {
-                $("#other2").show();
+        $("[id^=PaymentSpecial_special_id_]").click(function() {
+            if ($("#PaymentSpecial_special_id_0").is(":checked")) {
+                $("#special_other_1").show();
             } else {
-                $("#other2").hide();
+                $("#special_other_1").hide();
             }
 
-            if ($("#PaymentCondition_option_1").is(":checked")) {
-                $("#other3").show();
+            if ($("#PaymentSpecial_special_id_1").is(":checked")) {
+                $("#special_other_2").show();
             } else {
-                $("#other3").hide();
+                $("#special_other_2").hide();
             }
         });
 
@@ -79,24 +79,7 @@ $this->renderPartial('side_bar', array(
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
             ?>
-            <div class="_100">
-                <div class="ckleft"> 
-                    <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-                </div>
-                <div class="ckright">
-                    <?php
-                    if (!empty($model->pic)) {
-                        ?>
-                        <?php
-                        echo CHtml::image("/file/product/" . $model->pic, "image", array('height' => '100'));
-                        echo $model->pic;
-                        ?>
 
-                        <?php
-                    }
-                    ?> 
-                </div>
-            </div>
             <div class="_100">
                 <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
             </div>
@@ -116,25 +99,44 @@ $this->renderPartial('side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                $model_payment->option = $payment_option_array;
-                echo $form->labelEx($model_payment, 'option') . "<br />";
-                echo $form->checkBoxList($model_payment, 'option', Payment::model()->getListDataOption());
-                echo $form->error($model_payment, 'option');
+                $model_payment_special->special_id = $payment_special_array;
+                echo $form->labelEx($model_payment_special, 'special_id') . "<br />";
+                echo $form->checkBoxList($model_payment_special, 'special_id', Payment::model()->getListDataOption());
+                echo $form->error($model_payment_special, 'special_id');
                 ?>
-                <div id="other2" class="_100">
+                <div id="special_other_1" class="_100">
                     <?php
-                    echo $form->labelEx($model_payment, 'other2');
-                    echo $form->textField($model_payment, 'other2');
+                    echo $form->labelEx($model_payment_special, 'other1');
+                    echo $form->textField($model_payment_special, 'other1');
                     ?>
                 </div>
-                <div id="other3" class="_100">
+                <div id="special_other_2" class="_100">
                     <?php
-                    echo $form->labelEx($model_payment, 'other3');
-                    echo $form->textField($model_payment, 'other3');
+                    echo $form->labelEx($model_payment_special, 'other2');
+                    echo $form->textField($model_payment_special, 'other2');
                     ?>
                 </div>
             </div>
+            
+            <?php
+            if (!empty($model->pic)) {
+                ?>
+                <div class="_100">
+                    <div class="ckleft"> 
+                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+                    </div>
+                    <div class="ckright">
 
+                        <?php
+                        echo CHtml::image("/file/product/" . $model->pic, "image", array('height' => '100'));
+                        echo $model->pic;
+                        ?>
+                    </div>
+                </div>
+                <?php
+            }
+            ?> 
+            
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'pic');

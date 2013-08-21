@@ -2,6 +2,22 @@
 
 class ManageController extends Controller {
 
+    public function filters() {
+        return array('accessControl');
+    }
+
+    public function accessRules() {
+        return array(
+            array(
+                'allow',
+                'users' => array('admin')
+            ),
+            array(
+                'deny',
+            ),
+        );
+    }
+
     public function actionIndex() {
         $model = new News();
         if (isset($_GET['News'])) {
@@ -152,6 +168,55 @@ class ManageController extends Controller {
         $this->render('edit_rss', array(
             'model' => $model,
         ));
+    }
+
+    public function actionSendNewsMail($news_id) {
+        if ($news_id !== NULL) {
+            $this->render('send_mail');
+            $news = News::model()->findByPk($news_id);
+            $email_list = NewsMail::model()->findAll();
+
+            $data['from'] = 'dbdmart2013@gmail.com';
+            $data['name'] = Yii::t('language', 'ข่าวสารจาก DBD Mart');
+            $data['subject'] = $news['subject_th'];
+            $data['message'] = $news['detail_th'];
+            $counter = 0;
+            foreach ($email_list as $email) {
+                $data['to'] = $email['email'];
+                if (Tool::sendNewsMail($data)) {
+                    $counter += 1;
+                }
+            }
+            
+            if ($counter > 0) {
+                echo "<script>
+                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน ') . $counter . Yii::t('language', ' ฉบับ ') . "');
+                        window.close();
+                    </script>";
+            } else {
+                echo "<script>
+                        alert('" . Yii::t('language', 'เกิดข้อผิดพลาดขณะส่งข้อมูล') . "');
+                        window.close();
+                    </script>";
+            }
+        }
+    }
+    
+    public function actionManageEmail(){
+        $model = new NewsMail();
+        if (isset($_GET['NewsMail'])) {
+            $model->attributes = $_GET['NewsMail'];
+        }
+        $this->render('manage_email', array(
+            'model' => $model,
+        ));
+    }
+    
+    public function actionDeleteEmail($email) {
+        $model = NewsMail::model()->findByAttributes(array('email' => $email));
+        if ($model->delete()) {
+//            $this->redirect("/faq/default/manageFaq");
+        }
     }
 
 }

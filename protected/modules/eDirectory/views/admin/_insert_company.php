@@ -256,6 +256,9 @@ $this->renderPartial('side_bar', array(
                     ?>
                 </div>
                 <div class="_100">
+                    <h4 class="reg"><?php echo Yii::t('language', '- บริการจัดส่ง -'); ?></h4>
+                </div>
+                <div class="_100">
                     <?php
                     echo $form->labelEx($model_delivery, 'delivery_id') . "<br />";
                     echo $form->radioButtonList($model_delivery, 'delivery_id', CompanyDelivery::model()->getListData());

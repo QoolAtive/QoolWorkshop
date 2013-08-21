@@ -4,16 +4,25 @@ switch ($manage) {
         $select1 = '';
         $select2 = 'selected';
         $select3 = '';
+        $select4 = '';
         break;
     case 3:
         $select1 = '';
         $select2 = '';
         $select3 = 'selected';
+        $select4 = '';
+        break;
+    case 4:
+        $select1 = '';
+        $select2 = '';
+        $select3 = '';
+        $select4 = 'selected';
         break;
     default:
         $select1 = 'selected';
         $select2 = '';
         $select3 = '';
+        $select4 = '';
         break;
 }
 ?>
@@ -58,6 +67,13 @@ switch ($manage) {
                         <?php echo Yii::t('language', 'จัดการ'); ?>
                         <br />
                         <?php echo Yii::t('language', 'RSS Feed'); ?>
+                    </a>
+                </li>
+                <li class='<?php echo $select4; ?>'>
+                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageEmail')); ?>" rel='manage-4'>
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์'); ?>
+                        <br />
+                        <?php echo Yii::t('language', 'อีเมล์ที่สมัครรับข่าวสาร'); ?>
                     </a>
                 </li>
             <?php } ?>

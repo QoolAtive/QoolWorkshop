@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "payment_condition".
+ * This is the model class for table "payment_special".
  *
- * The followings are the available columns in table 'payment_condition':
- * @property integer $payment_condition_id
+ * The followings are the available columns in table 'payment_special':
+ * @property integer $payment_special_id
  * @property integer $product_id
  * @property integer $payment_id
  * @property string $other
  */
-class PaymentConditionBase extends CActiveRecord
+class PaymentSpecialBase extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return PaymentConditionBase the static model class
+	 * @return PaymentSpecialBase the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +26,7 @@ class PaymentConditionBase extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'payment_condition';
+		return 'payment_special';
 	}
 
 	/**
@@ -37,12 +37,12 @@ class PaymentConditionBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id, payment_id', 'required'),
+			array('product_id, payment_id, other', 'required'),
 			array('product_id, payment_id', 'numerical', 'integerOnly'=>true),
 			array('other', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('payment_condition_id, product_id, payment_id, other', 'safe', 'on'=>'search'),
+			array('payment_special_id, product_id, payment_id, other', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +63,7 @@ class PaymentConditionBase extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'payment_condition_id' => 'Payment Condition',
+			'payment_special_id' => 'Payment Special',
 			'product_id' => 'Product',
 			'payment_id' => 'Payment',
 			'other' => 'Other',
@@ -81,7 +81,7 @@ class PaymentConditionBase extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('payment_condition_id',$this->payment_condition_id);
+		$criteria->compare('payment_special_id',$this->payment_special_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('payment_id',$this->payment_id);
 		$criteria->compare('other',$this->other,true);
