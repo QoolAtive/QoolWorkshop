@@ -1150,6 +1150,84 @@ class AdminController extends Controller {
                             $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
                         }
 
+                        $model_delively = new CompanyDelivery; // บริการจัดส่ง
+
+                        $messageError = CompanyDelivery::model()->getAttributeLabel('delivery_id');
+                        $stError = CheckErrorCompany::haveErrorNull($data[16], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::verify_delively($data[16], $messageError);
+                            if ($stError == null) {
+                                $model_delively->delivery_id = $data[16];
+                                if ($model_delively->delivery_id == 1) { // ถ้ามี บริการจัดส่ง (1)
+                                    $messageError = CompanyDelivery::model()->getAttributeLabel('option');
+                                    $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError); // เช็คว่าเท่ากับค่าว่างหรือไม่
+                                    if ($stError == null) {
+                                        $stError = CheckErrorCompany::verify_type_delively($data[17], $messageError);
+                                        if ($stError == null) {
+                                            $model_delively->option = $data[17];
+                                            if ($model_delively->option == 0) { // ส่งในประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('option2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                if ($stError == null) {
+                                                    $stError = CheckErrorCompany::verify_option2($data[18], $messageError); // ประเภทการจัดส่งในประเทศ
+                                                    if ($stError == null) {
+                                                        $model_delively->option2 = $data[18];
+                                                        if ($model_delively->option2 == 1) {
+                                                            $messageError = Company::model()->getAttributeLabel('other');
+                                                            $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
+                                                            if ($stError == null) {
+                                                                $model_delively->other = $data[19];
+                                                            } else {
+                                                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                    }
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            } else if ($model_delively->option == 1) { // ส่งนอกประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('other2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->other2 = $data[20];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            } else if ($model_delively->option == 2) { // มีการส่ง ทั้งในและนอกประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('option2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->option2 = $data[18];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+
+                                                $messageError = Company::model()->getAttributeLabel('other2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->other2 = $data[20];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            }
+                                        } else {
+                                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                        }
+                                    } else {
+                                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                    }
+                                } else { // ถ้าไม่ เท่ากับค่าว่างให้ กำหลด option เป็น null
+                                    $model_delively->option = null;
+                                }
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
                         if (!empty($error)) {
 //                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
                             $t_detail .= $error;
@@ -1217,7 +1295,7 @@ class AdminController extends Controller {
 
                 $data_array = $this->getDataFromExcel($path . $file_name);
 
-//                echo "<pre>";
+//                echo "<                         pre>";
 //                print_r($data_array);
 //                echo "</pre>";
 
@@ -1289,7 +1367,7 @@ class AdminController extends Controller {
                                 $error = null;
                             }
                         }
-//                        echo "<pre>";
+//                        echo "<                         pre>";
 //                        print_r($modelProduct->attributes);
 //                        echo "</pre>";
                     }
@@ -1308,5 +1386,4 @@ class AdminController extends Controller {
     }
 
 }
-
 ?>
