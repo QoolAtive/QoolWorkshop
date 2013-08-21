@@ -132,7 +132,7 @@ $this->renderPartial('side_bar', array(
                             <?php
                             $type = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
                             foreach ($type as $data) {
-                                $type_name = SpTypeBusiness::model()->find('id=:id', array(':id' => $data['company_type']));
+                                $type_name = CompanyTypeBusiness::model()->find('id=:id', array(':id' => $data['company_type']));
                                 $type_name = LanguageHelper::changeDB($type_name->name, $type_name->name_en);
                                 $data_type .= $type_name . ', ';
                             }
@@ -156,8 +156,8 @@ $this->renderPartial('side_bar', array(
                         <td style="padding-left: 2px;"><?php echo $model->website; ?></td>
                     </tr>
                     <?php
-                    $brochure = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                    if ($brochure > 0) {
+                    $brochure_count = CompanyBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
+                    if ($brochure_count > 0) {
                         ?>
                         <tr>
                             <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>

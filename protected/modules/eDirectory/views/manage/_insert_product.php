@@ -1,3 +1,51 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#other").hide();
+        $("#special_other_1").hide();
+        $("#special_other_2").hide();
+
+        if ($("#PaymentCondition_payment_id_4").is(":checked")) { // เลือกเป็นอื่นๆ
+            $("#other").show();
+        } else {
+            $("#other").hide();
+        }
+
+        if ($("#PaymentSpecial_special_id_0").is(":checked")) {// เลือกส่วนลด
+            $("#special_other_1").show();
+        } else {
+            $("#special_other_1").hide();
+        }
+
+        if ($("#PaymentSpecial_special_id_1").is(":checked")) { // บัตรเครดิต
+            $("#special_other_2").show();
+        } else {
+            $("#special_other_2").hide();
+        }
+
+        $("[id^=PaymentCondition_payment_id_]").click(function() {
+            if ($("#PaymentCondition_payment_id_4").is(":checked")) {
+                $("#other").show();
+            } else {
+                $("#other").hide();
+            }
+        });
+
+        $("[id^=PaymentSpecial_special_id_]").click(function() {
+            if ($("#PaymentSpecial_special_id_0").is(":checked")) {
+                $("#special_other_1").show();
+            } else {
+                $("#special_other_1").hide();
+            }
+
+            if ($("#PaymentSpecial_special_id_1").is(":checked")) {
+                $("#special_other_2").show();
+            } else {
+                $("#special_other_2").hide();
+            }
+        });
+
+    });
+</script>
 <?php
 $list = array(
     array('text' => Yii::t('language', 'ข้อมูลทั้งหมด'), 'link' => '/eDirectory/manage/index', 'select' => ''),
@@ -31,24 +79,64 @@ $this->renderPartial('side_bar', array(
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
             ?>
+
             <div class="_100">
-                <div class="ckleft"> 
-                    <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-                </div>
-                <div class="ckright">
+                <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment->payment_id = $payment_array;
+                echo $form->labelEx($model_payment, 'payment_id') . "<br />";
+                echo $form->checkBoxList($model_payment, 'payment_id', Payment::model()->getListData());
+                echo $form->error($model_payment, 'payment_id');
+                ?>
+                <div id="other" class="_100">
                     <?php
-                    if (!empty($model->pic)) {
-                        ?>
+                    echo $form->labelEx($model_payment, 'other');
+                    echo $form->textField($model_payment, 'other');
+                    ?>
+                </div>
+            </div>
+            <div class="_100">
+                <?php
+                $model_payment_special->special_id = $payment_special_array;
+                echo $form->labelEx($model_payment_special, 'special_id') . "<br />";
+                echo $form->checkBoxList($model_payment_special, 'special_id', Payment::model()->getListDataOption());
+                echo $form->error($model_payment_special, 'special_id');
+                ?>
+                <div id="special_other_1" class="_100">
+                    <?php
+                    echo $form->labelEx($model_payment_special, 'other1');
+                    echo $form->textField($model_payment_special, 'other1');
+                    ?>
+                </div>
+                <div id="special_other_2" class="_100">
+                    <?php
+                    echo $form->labelEx($model_payment_special, 'other2');
+                    echo $form->textField($model_payment_special, 'other2');
+                    ?>
+                </div>
+            </div>
+
+            <?php
+            if (!empty($model->pic)) {
+                ?>
+                <div class="_100">
+                    <div class="ckleft"> 
+                        <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
+                    </div>
+                    <div class="ckright">
+
                         <?php
                         echo CHtml::image("/file/product/" . $model->pic, "image", array('height' => '100'));
                         echo $model->pic;
                         ?>
-
-                        <?php
-                    }
-                    ?> 
+                    </div>
                 </div>
-            </div>
+                <?php
+            }
+            ?> 
+
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'pic');
