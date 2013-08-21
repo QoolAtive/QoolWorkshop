@@ -1,3 +1,11 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+bootstro.start('.bootstro', {
+               
+                    finishButton : ''
+                });    
+                    });
+</script>
 <?php
 if ($model->web_shop_id == NULL) {
     ?>
@@ -46,15 +54,15 @@ if ($model->web_shop_id == NULL) {
         ));
 //        echo $form->errorSummary($model);
         ?>
-
-        <?php
-        if ($model->web_shop_id == NULL) {
-            ?>
-            <div class="_100">
-                <h4 class="reg">- <?php echo Yii::t('language', 'ทดสองสมัครเปิดร้านค้าออนไลน์'); ?> -</h4>
-            </div>
-        <?php } ?>
-        <div class="_50 bootstro" data-bootstro-content="แสดงสินค้าทั้งหมดที่อยู๋ในร้านของคุณ" data-bootstro-width="320px" data-bootstro-title="ส่วนแสดงสินค้า" data-bootstro-placement="top" data-bootstro-step="0">
+        
+                <?php
+                if ($model->web_shop_id == NULL) {
+                    ?> 
+                    <div class="_100 bootstro" data-bootstro-step="0" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="ระบบแนะนำการใช้งานจำลองการเปิดร้านค้าออนไลน์ " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
+                        <h4 class="reg clearfix" >- <?php echo Yii::t('language', 'ทดสองสมัครเปิดร้านค้าออนไลน์'); ?> -</h4>
+                    </div>       
+                <?php } ?>
+        <div class="_50 bootstro clearfix" data-bootstro-step="1" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="ชื่อร้านของคุณ ควรตั้งเป็นชื่อที่จดจำง่าย ไม่ยาวเกินไป " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <?php
             echo $form->labelEx($model, 'name_th');
             echo $form->textField($model, 'name_th', array(
@@ -71,8 +79,8 @@ if ($model->web_shop_id == NULL) {
             echo $form->error($model, 'name_en');
             ?>
         </div>
-
-        <div class="_50">
+        
+        <div class="_50 bootstro clearfix"  data-bootstro-step="2" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="เลือกหมวดหมู่ร้านของคุณ เพื่อให้ง่ายต่อการค้นหา และแยกประภทของร้านค้า ทำให้ผู้ซื้อค้นหาร้านค้าของคุณได้ง่ายขึ้น" data-bootstro-title="แนะนำการใช้งาน :: สมัครสมาชิก" data-original-title="" >
             <?php
             echo $form->labelEx($model, 'web_shop_catagory_id');
             echo $form->dropdownList($model, 'web_shop_catagory_id', ShopCategory::getList(), array(
@@ -82,20 +90,22 @@ if ($model->web_shop_id == NULL) {
             echo $form->error($model, 'web_shop_catagory_id');
             ?>
         </div>
-
+        <div class="_100 clearfix"></div>
+        
+        <div class="bootstro clearfix" style="display: inline-block;" data-bootstro-step="3" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="รายละเอียดร้านค้าของคุณ สามารถใส่คำอธิบายเพื่อบอกว่าร้านค้าของคุณเป็นอย่างไร " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
         <!--        <div class="_100">
-        <?php
-        echo $form->labelEx($model, 'url');
-        echo $form->textField($model, 'url', array(
-            'class' => 'fieldrequire input_text form_input',
-            'disabled' => 'disabled'
-        ));
-        echo $form->error($model, 'url');
-        ?>
+                <?php
+                echo $form->labelEx($model, 'url');
+                echo $form->textField($model, 'url', array(
+                    'class' => 'fieldrequire input_text form_input',
+                    'disabled' => 'disabled'
+                ));
+                echo $form->error($model, 'url');
+                ?>
                     Url <input class="input_text form_input" type="text" value="" name="url" >
                 </div>-->
 
-        <div class="_100">  
+        <div class="_100 ">  
             <?php
             echo $form->labelEx($model, 'description_th');
             echo $form->error($model, 'description_th');
@@ -110,7 +120,6 @@ if ($model->web_shop_id == NULL) {
             ));
             ?>
         </div>
-
         <div class="_100">  
             <?php
             echo $form->labelEx($model, 'description_en');
@@ -125,7 +134,9 @@ if ($model->web_shop_id == NULL) {
                 'rows' => "4",));
             ?>
         </div>
-
+        </div>
+        
+        <div class="bootstro clearfix"  data-bootstro-step="4" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="ข้อมูลติดต่อของร้านค้า เพื่อเพิ่มความน่าเชื่อถือร้านค้าของคุณกับผู้ซื้อ และยังให้ผู้ซื้อติดต่อได้อย่างสะดวกรวดเร็ว เพิ่มโอกาสทางการค้ามากขึ้น" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
         <div class="_100">
             <h4 class="reg">- <?php echo Yii::t('language', 'รายละเอียดร้านค้าเพิ่มเติม'); ?> -</h4>
         </div>
@@ -231,9 +242,10 @@ if ($model->web_shop_id == NULL) {
             echo $form->error($model, 'email');
             ?>
         </div>
+        </div>
         <!-- line -->
 
-        <div class="_100 textcenter" style="margin-top: 50px;">
+        <div class="_100 textcenter bootstro" data-bootstro-content="กรอกข้อมูลเสร็จเรียบร้อย คลิ๊กเพื่อไปยังขั้นตอนถัดไป" data-bootstro-title="แนะนำการใช้งาน" data-original-title=""  data-bootstro-step="5" data-bootstro-placement="top" data-bootstro-width="400px"  style="margin-top: 50px;">
             <!-- go to select theme -->
             <?php
 //            echo $form->hiddenField($model, 'url', array(
