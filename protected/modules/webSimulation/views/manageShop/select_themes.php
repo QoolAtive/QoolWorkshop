@@ -1,3 +1,12 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+bootstro.start('.bootstro', {
+               
+                    finishButton : ''
+                });    
+                    });
+</script>
+
 <?php
 if ($model->web_shop_id == NULL) {
     ?>
@@ -9,7 +18,7 @@ if ($model->web_shop_id == NULL) {
 
         </div>
     </div>
-    <?
+    <?php
 } else {
     $this->renderPartial('_side_menu', array('index' => 'shop'));
 }
@@ -25,18 +34,19 @@ if ($model->web_shop_id == NULL) {
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                         <?php
                         $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                        echo Yii::t('language', 'ร้าน ') . $shop_name; ?>
+                        echo Yii::t('language', 'ร้าน ') . $shop_name;
+                        ?>
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
+    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
                 </span>
             </h3>
         <?php } ?>
@@ -47,26 +57,29 @@ if ($model->web_shop_id == NULL) {
 //        echo $form->errorSummary($model);
         ?>
         <!-- THEME -->
-        <h3 class="headfont _100"> Themes </h3>
-        <ul class="clearfix" id="template">
+        <h3 class="headfont _100 bootstro" data-bootstro-step="0" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="Theme ส่วนนี้จะเป็นการเลือกธีมให้ร้านค้าของคุณ เลือกให้เหมาะกับสินค้าของคุณ จะช่วยเพิ่มความสวยงามความน่าเชื่อถือและยอดขายของร้านคุณ  " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> Themes </h3>
+        <ul class="clearfix bootstro" id="template" data-bootstro-step="3" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="มีธีมกว่า 10 แบบให้เลือกใช้งาน" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <li>
+              <div class="bootstro"   data-bootstro-step="1" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="คุณสามารถเลือกธีมร้านค้าของคุณโดยการคลิ๊กทีธีมนั้น " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> 
                 <?php
-                echo CHtml::image('/img/layout/TP001.jpg', '', array(
+                echo CHtml::image('/img/layout/tp001.jpg', '', array(
                     'id' => 'tp1',
                     'width' => '128',
                     'height' => '110',
+
                     'onclick' => 'List.select(1, this);',
                 ));
                 ?>
-                <div id="gallery">
+            </div>
+                <div id="gallery" class="bootstro"   data-bootstro-step="2" data-bootstro-placement="bottom" data-bootstro-width="400px" data-bootstro-content="คุณสามารถคลิ๊กเพื่อดูตัวอย่างก่อนได้" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP001.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp001.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP002.jpg', '', array(
+                echo CHtml::image('/img/layout/tp002.jpg', '', array(
                     'id' => 'tp2',
                     'width' => '128',
                     'height' => '110',
@@ -75,13 +88,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP002.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp002.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP003.jpg', '', array(
+                echo CHtml::image('/img/layout/tp003.jpg', '', array(
                     'id' => 'tp3',
                     'width' => '128',
                     'height' => '110',
@@ -90,13 +103,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP003.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp003.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP004.jpg', '', array(
+                echo CHtml::image('/img/layout/tp004.jpg', '', array(
                     'id' => 'tp4',
                     'width' => '128',
                     'height' => '110',
@@ -105,13 +118,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP004.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp004.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP005.jpg', '', array(
+                echo CHtml::image('/img/layout/tp005.jpg', '', array(
                     'id' => 'tp5',
                     'width' => '128',
                     'height' => '110',
@@ -120,13 +133,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP005.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp005.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP006.jpg', '', array(
+                echo CHtml::image('/img/layout/tp006.jpg', '', array(
                     'id' => 'tp6',
                     'width' => '128',
                     'height' => '110',
@@ -135,13 +148,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP006.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp006.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP007.jpg', '', array(
+                echo CHtml::image('/img/layout/tp007.jpg', '', array(
                     'id' => 'tp7',
                     'width' => '128',
                     'height' => '110',
@@ -150,13 +163,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP007.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp007.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP008.jpg', '', array(
+                echo CHtml::image('/img/layout/tp008.jpg', '', array(
                     'id' => 'tp8',
                     'width' => '128',
                     'height' => '110',
@@ -165,13 +178,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP008.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp008.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP009.jpg', '', array(
+                echo CHtml::image('/img/layout/tp009.jpg', '', array(
                     'id' => 'tp9',
                     'width' => '128',
                     'height' => '110',
@@ -180,13 +193,13 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP009.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp009.jpg");
                     ?>
                 </div>
             </li>
             <li>
                 <?php
-                echo CHtml::image('/img/layout/TP010.jpg', '', array(
+                echo CHtml::image('/img/layout/tp010.jpg', '', array(
                     'id' => 'tp10',
                     'width' => '128',
                     'height' => '110',
@@ -195,14 +208,14 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/TP010.jpg");
+                    echo CHtml::link('preview', "/img/layout/tp010.jpg");
                     ?>
                 </div>
             </li>
 
         </ul>
 
-        <p class="textcenter">
+        <p class="textcenter bootstro" data-bootstro-step="4" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="เมื่อเลือกเสร็จแล้วก็ไปยังขั้นตอนต่อไปกันเลย " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <?php
             echo $form->hiddenField($model, 'theme', array(
                 'id' => 'theme',
@@ -222,6 +235,6 @@ if ($model->web_shop_id == NULL) {
             ?>
         </p>
 
-        <?php $this->endWidget(); ?>
+<?php $this->endWidget(); ?>
     </div>
 </div>
