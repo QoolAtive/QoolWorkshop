@@ -3,16 +3,16 @@
 
 
 <?php
-    $model_rss = NewsRss::model()->find();
-    $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
-    ?>
+$model_rss = NewsRss::model()->find();
+$head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
+?>
 <div id="view1">
     <h3 class="barH3">
         <i class='icon-rss'></i><?php echo Yii::t('language', 'RSS Feed'); ?> <i class='icon-chevron-right'></i> <?php echo $head_rss; ?>
     </h3>
 
 
-    
+
     <!-- Feed widget -->
     <?php
     $this->widget(

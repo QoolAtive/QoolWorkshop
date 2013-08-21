@@ -60,8 +60,28 @@ switch ($view) {
                         <?php echo Yii::t('language', 'RSS Feed'); ?>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageEmail')); ?>" rel='manage-4'>
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์'); ?>
+                        <br />
+                        <?php echo Yii::t('language', 'ที่สมัครรับข่าวสาร'); ?>
+                    </a>
+                </li>
             <?php } ?>
         </ul>
+        
+        <?php
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'news_mail-form',
+        ));
+//        echo $form->errorSummary($model);
+        echo 'E-mail :' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
+        echo $form->error($model, 'email');
+        
+        echo CHtml::submitButton(Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'));
+        ?>
+        
+        <?php $this->endWidget(); ?>
     </div>
 </div>
 <div class="content">
@@ -76,7 +96,7 @@ switch ($view) {
             $this->renderPartial('_view3', array('trainlist' => $trainlist, 'pages2' => $pages2));
         } else {
             //news
-            $this->renderPartial('_view1', array('newslist' => $newslist, 'pages1' => $pages1)); // เริ่มต้นที่หน้านี้
+            $this->renderPartial('_view1', array('newslist' => $newslist, 'pages1' => $pages1, 'model' => $model)); // เริ่มต้นที่หน้านี้
         }
         ?>
 

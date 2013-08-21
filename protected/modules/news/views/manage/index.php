@@ -50,6 +50,19 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 ),
                 array(
                     'class' => 'CButtonColumn',
+                    'header' => Yii::t('language', "ส่งเมล์ข่าว"),
+                    'template' => '{email}',
+                    'buttons' => array(
+                        'email' => array(
+                            'label' => Yii::t('language', 'ส่งเมล์ข่าว'),
+                            'imageUrl' => Yii::app()->request->baseUrl . '/images/mail_icon.png',
+                            'url' => 'CHtml::normalizeUrl(array("/news/manage/sendNewsMail", "news_id"=> $data->id))',
+                            'options' => array("target" => "_blank"),
+                        ),
+                    ),
+                ),
+                array(
+                    'class' => 'CButtonColumn',
                     'header' => Yii::t('language', "แก้ไข"),
                     'template' => '{update}',
                     'buttons' => array(

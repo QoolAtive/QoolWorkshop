@@ -82,12 +82,32 @@ Class Tool {
         }
     }
 
+    //ส่ง news email
+    public static function sendNewsMail($data) {
+        $mail = Yii::app()->Smtpmail;
+        $mail->IsSMTP();
+//        $mail->Mailer = "smtp";
+//        $mail->SMTPSecure = "STARTTLS";
+        $mail->CharSet = 'UTF-8';
+
+        $mail->SetFrom('dbdmart2013@gmail.com', $data['name']);
+        $mail->Subject = $data['subject'];
+        $mail->MsgHTML($data['message']);
+        $mail->AddAddress($data['to']);
+        return $mail->Send();
+//        if (!$mail->Send()) {
+//            echo "Mailer Error: " . $mail->ErrorInfo;
+//        } else {
+//            echo "Message sent!";
+//        }
+    }
+
     //ส่ง email Contact
     public static function mailsendContact($data) {
         $mail = Yii::app()->Smtpmail;
         $mail->IsSMTP();
-        $mail->Mailer = "smtp";
-        $mail->SMTPSecure = "STARTTLS";
+//        $mail->Mailer = "smtp";
+//        $mail->SMTPSecure = "STARTTLS";
         $mail->CharSet = 'UTF-8';
 
         $mail->SetFrom($data['from'], $data['name']);
