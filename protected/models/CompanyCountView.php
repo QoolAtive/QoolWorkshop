@@ -1,14 +1,12 @@
 <?php
 
-class ComanyCountView extends ComanyCountViewBase {
+class CompanyCountView extends CompanyCountViewBase {
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
     public function rules() {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
             array('company_id, count_company_view, update_at', 'required'),
             array('company_id, count_company_view', 'numerical', 'integerOnly' => true),
@@ -28,9 +26,6 @@ class ComanyCountView extends ComanyCountViewBase {
     }
 
     public function search() {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
         $criteria = new CDbCriteria;
 
         $criteria->compare('company_count_view_id', $this->company_count_view_id);
@@ -41,6 +36,15 @@ class ComanyCountView extends ComanyCountViewBase {
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
+    }
+
+    public function getDataArray($company_id) {
+        $data = $this->model()->find('company_id = :company_id', array(':company_id' => $company_id));
+
+        return array(
+            'count' => $data->count_company_view,
+            'update_at' => $data->update_at,
+        );
     }
 
 }

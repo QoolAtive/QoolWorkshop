@@ -483,6 +483,22 @@ class AdminController extends Controller {
 
                 if ($model->save()) {
 
+                    // เพิ่มความเคลื่อนไหว
+                    $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
+                    if (count($company_motion) < 1) {
+                        $company_motion = new CompanyMotion();
+                        $company_motion->user_id = Yii::app()->user->id;
+                        $company_motion->company_id = $model->id;
+                        $company_motion->status = '1';
+                        $company_motion->update_at = date('Y-m-d');
+                        $company_motion->create_at = date('Y-m-d');
+                        $company_motion->save();
+                    } else {
+                        $company_motion->status = '1';
+                        $company_motion->update_at = date('Y-m-d');
+                        $company_motion->save();
+                    }
+
                     // การบริการจัดส่ง
                     $model_delivery->com_id = $model->id;
                     if ($_POST['DelivSer']['delivery_id'] == 1) {
