@@ -31,7 +31,7 @@
             <?php
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'กลุ่มพาร์ทเนอร์'), array(
+                echo CHtml::link(Yii::t('language', 'ประเภทผู้ให้บริการ'), array(
                     '/serviceProvider/manage/typeBusiness'), array(
                     'rel' => 'view3',
                     'class' => $select1 == 'selected' ? 'menuactive listactive' : ''
