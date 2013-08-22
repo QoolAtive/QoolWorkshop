@@ -46,40 +46,46 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <?php
             $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
-            foreach ($boxs as $box) {
-                ?>
-                <li id="recordsArray_<?php echo $i; ?>">
-                    <p class="headsort"><?php echo $box['name_th']; ?></p>
-                    <p class="tool">
-                        <?php
-                        if ($box['type'] == '1') {
-                            echo CHtml::link('แก้ไขสินค้า', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
-                        } else if ($box['type'] == '2') {
-                            echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
-                        } else if ($box['type'] == '3') {
-                            echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
-                        }
-                        ?>
-                        &nbsp;|&nbsp;
-                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
-                           onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
-                        &nbsp;|&nbsp;
-                        <a href="#">แก้ไขการแสดงผล</a>
-                        &nbsp;|&nbsp;
-                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
+            if ($boxs == NULL) {
+                echo '<div class="_100">';
+                echo Yii::t('language', 'ไม่พบกล่องแสดงสินค้า');
+                echo '</div>';
+            } else {
+                foreach ($boxs as $box) {
+                    ?>
+                    <li id="recordsArray_<?php echo $i; ?>">
+                        <p class="headsort"><?php echo $box['name_th']; ?></p>
+                        <p class="tool">
                             <?php
-                            if ($box['show_box']) {
-                                echo 'ซ่อน';
-                            } else {
-                                echo 'แสดง';
+                            if ($box['type'] == '1') {
+                                echo CHtml::link('แก้ไขสินค้า', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
+                            } else if ($box['type'] == '2') {
+                                echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
+                            } else if ($box['type'] == '3') {
+                                echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
                             }
                             ?>
-                        </a>
+                            &nbsp;|&nbsp;
+                            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
+                               onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
+                            &nbsp;|&nbsp;
+                            <a href="#">แก้ไขการแสดงผล</a>
+                            &nbsp;|&nbsp;
+                            <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
+                                <?php
+                                if ($box['show_box']) {
+                                    echo 'ซ่อน';
+                                } else {
+                                    echo 'แสดง';
+                                }
+                                ?>
+                            </a>
 
-                    </p>
-                </li>
-                <?php
-                $i += 1;
+                        </p>
+                    </li>
+                    <?php
+                    $i += 1;
+                }//END foreach
             }
             ?>
         </ul>   

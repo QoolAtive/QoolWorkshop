@@ -567,6 +567,11 @@ class ManageShopController extends Controller {
                     window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
                   </script>";
         }
+        $this->render('blank');
+    }
+    
+    public function actionManageItemCategory(){
+        
     }
 
 }
