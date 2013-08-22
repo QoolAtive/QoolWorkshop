@@ -19,6 +19,9 @@ Class ManageController extends Controller {
     }
 
     public function actionIndex() {
+        
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Index', 3);
+        
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
@@ -38,6 +41,8 @@ Class ManageController extends Controller {
     }
 
     public function actionTypeBusiness() {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'TypeBusiness', 3);
+        
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
@@ -53,6 +58,7 @@ Class ManageController extends Controller {
     }
 
     public function actionInsertTypeBusiness($id = null) {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'InsertTypeBusiness', 3);
         if ($id == null) {
             Yii::app()->user->setState('product_link_back_to_menu', ''); //จาก controller Default. actionDetail
 
@@ -100,6 +106,7 @@ Class ManageController extends Controller {
     }
 
     public function actionDelTypeBusiness($id = null) {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelTypeBusiness', 3);
         $count = SpCompany::model()->count('type_business=:type_id', array(':type_id' => $id));
 
         if ($count < 1) {
@@ -113,6 +120,7 @@ Class ManageController extends Controller {
     }
 
     public function actionCompany() {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Company', 3);
         Yii::app()->user->setState('default_link_back_to_menu', ''); //จาก controller Default. actionDetail
 
         $model = new SpCompany();
@@ -128,7 +136,7 @@ Class ManageController extends Controller {
     }
 
     public function actionInsertCompany($id = null) {
-
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'InsertCompany', 3);
 
         if ($id == null) {
 
@@ -284,6 +292,8 @@ Class ManageController extends Controller {
     }
 
     public function actionDelCompany($id = null) {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelCompany', 3);
+        
         $model = SpCompany::model()->find('id=:id', array('id' => $id));
 
         $dir = './file/logo/'; // ลบไฟล์ logo
@@ -314,6 +324,8 @@ Class ManageController extends Controller {
     }
 
     public function actionProduct($id = null, $pro_id = null) {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Product', 3);
+        
         if ($id == null) {
             $this->redirect('/serviceProvider/manage/company');
         }
@@ -334,6 +346,8 @@ Class ManageController extends Controller {
     }
 
     public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'InsertProduct', 3);
+        
         if ($id == null) {
             $this->redirect('/serviceProvider/manage/company');
         }
@@ -418,6 +432,8 @@ Class ManageController extends Controller {
     }
 
     public function actionDelProduct($id = null, $pro_id = null) {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelProduct', 3);
+        
         $model = SpProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
         $dir = './file/product/';
         if ($model->image != null && $model->image != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
@@ -431,6 +447,8 @@ Class ManageController extends Controller {
     }
 
     public function actionDelBanner() {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelBanner', 3);
+        
         $banner_id = $_POST['banner_id'];
         $company_id = $_POST['company_id'];
         $model_banner = SpBanner::model()->find('id=:id', array(':id' => $banner_id));
@@ -453,6 +471,8 @@ Class ManageController extends Controller {
     }
 
     public function actionDelBrochure() {
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelBrochure', 3);
+        
         $brochure_id = $_POST['brochure_id'];
         $company_id = $_POST['company_id'];
 

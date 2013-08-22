@@ -23,49 +23,67 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
         <link rel="stylesheet" href="/css/orbit.css"  type="text/css"></link>
         <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/evol.colorpicker.css" type="text/css">
-        <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
-        <link type="text/css" rel="stylesheet" media="and (min-width: 560px) and (max-device-width: 1136px)" href="/iPhone5Retina.css" />
-        <!--JS-->
-        <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="/js/modernizr.js" type="text/javascript"></script>
-        <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
-        <script src="/js/tabcontent.js" type="text/javascript"></script>
-        <script src="/js/jquery.orbit-1.2.3.js" type="text/javascript"></script>
-        <script src="/js/fullcalendar.js"></script>
-        <script src="/js/evol.colorpicker.js" type="text/javascript" charset="utf-8"></script>
-        <script src="/js/bootstro.js"></script>
-        <script src="/js/config.js" type="text/javascript"></script>
-        <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
+            <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
+                <link type="text/css" rel="stylesheet" media="and (min-width: 560px) and (max-device-width: 1136px)" href="/iPhone5Retina.css" />
+                <!--JS-->
+                <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+                <script src="/js/modernizr.js" type="text/javascript"></script>
+                <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
+                <script src="/js/tabcontent.js" type="text/javascript"></script>
+                <script src="/js/jquery.orbit-1.2.3.js" type="text/javascript"></script>
+                <script src="/js/fullcalendar.js"></script>
+                <script src="/js/evol.colorpicker.js" type="text/javascript" charset="utf-8"></script>
+                <script src="/js/bootstro.js"></script>
+                <script src="/js/config.js" type="text/javascript"></script>
+                <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                <![endif]-->
 
-    <body>
-        <div id="wrapper"> 
+                <script>
+                    (function(i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function() {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                                m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            <!--head-->
-            <div id="header" class="headerpage clearfix">
-                <div  class="page" >
+                    ga('create', 'UA-43356253-1', 'qoolative.com');
+                    ga('send', 'pageview');
+                </script>
+                
+                </head>
 
-                    <!-- logo -->
-                    <?php echo $this->renderPartial("//layouts/_main-logo"); ?>
+                <body>
+                    <div id="wrapper"> 
 
-                    <!--right side top menu-->
-                    <?php echo $this->renderPartial("//layouts/_main-menu_head"); ?>
-                </div>
-            </div><!--head-->
+                        <!--head-->
+                        <div id="header" class="headerpage clearfix">
+                            <div  class="page" >
 
-            <!-- container -->
-            <div id="container"  class="bg clearfix">
-                <div class="page pageborder white clearfix" >
-                    <?php echo $content; ?>
-                </div>
-            </div><!-- container -->
+                                <!-- logo -->
+<?php echo $this->renderPartial("//layouts/_main-logo"); ?>
 
-            <!-- footer -->
-            <?php echo $this->renderPartial("//layouts/_main-footer"); ?>
-        </div><!-- page -->
+                                <!--right side top menu-->
+                                <?php echo $this->renderPartial("//layouts/_main-menu_head"); ?>
+                            </div>
+                        </div><!--head-->
 
-    </body>
-</html>
+                        <!-- container -->
+                        <div id="container"  class="bg clearfix">
+                            <div class="page pageborder white clearfix" >
+<?php echo $content; ?>
+                            </div>
+                        </div><!-- container -->
+
+                        <!-- footer -->
+<?php echo $this->renderPartial("//layouts/_main-footer"); ?>
+                    </div><!-- page -->
+
+                </body>
+                </html>

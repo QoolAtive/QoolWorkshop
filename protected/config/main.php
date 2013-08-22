@@ -43,7 +43,12 @@ return array(
         'eDirectory',
     ),
     // application components
-    'components' => array(
+    'components' => array(        
+        'googleAnalytics' => array(
+            'class' => 'ext.TPGoogleAnalytics.components.TPGoogleAnalytics',
+            'account' => 'UA-43356253-1',
+            'autoRender' => true,
+        ),
         'user' => array(
             'class' => 'WebUser',
             // enable cookie-based authentication
