@@ -31,7 +31,7 @@
             <?php
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
-                echo CHtml::link(Yii::t('language', 'กลุ่มพาร์ทเนอร์'), array(
+                echo CHtml::link(Yii::t('language', 'ประเภทผู้ให้บริการ'), array(
                     '/serviceProvider/manage/typeBusiness'), array(
                     'rel' => 'view3',
                     'class' => $select1 == 'selected' ? 'menuactive listactive' : ''
@@ -48,7 +48,7 @@
 
                 if ($select3 != null) {
                     echo "<li>";
-                    echo CHtml::link(Yii::t('language', 'เพิ่มสินค้าและบริการ'), array(
+                    echo CHtml::link(Yii::t('language', 'เพิ่ม').Yii::t('language', 'สินค้าและบริการ'), array(
                         '#'), array(
                         'rel' => 'view5',
                         'class' => $select3 == 'selected' ? 'menuactive listactive' : ''

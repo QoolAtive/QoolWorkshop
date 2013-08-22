@@ -1,5 +1,12 @@
 // fancybox 
 $(document).ready(function() {
+  $("#reply").click(function() {
+      $('#replyuser').toggle();
+     ($(this).text() === "เก็บเข้ารายการโปรดแล้ว") ? $(this).text("เก็บเข้ารายการโปรด") : $(this).text("เก็บเข้ารายการโปรดแล้ว");
+  });
+});
+
+$(document).ready(function() {
         $('.linkgroupbtn').fancybox({
           width  :'100%',
           closeBtn : 0

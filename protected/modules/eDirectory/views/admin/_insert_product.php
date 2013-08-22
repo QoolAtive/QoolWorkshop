@@ -146,7 +146,7 @@ $this->renderPartial('side_bar', array(
             </div>
             <div class="_100">
                 <?php
-                echo $form->labelEx($model, 'guide');
+                echo $form->labelEx($model, 'guide') . "<br />";
                 echo $form->radioButtonList($model, 'guide', SpProduct::model()->getDataTypeList('', true));
                 echo $form->error($model, 'guide');
                 ?>

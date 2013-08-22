@@ -25,7 +25,8 @@
             echo ' ' . Yii::t('language', 'สายด่วน 1570');
             ?>
         </div>
-        <div class="footright"> 
+        <div class="footright">
+             <a href="/index.php/about/default/index/view/3">Sitemap</a>
             <?php
             $this->widget('application.extensions.addThis.addThis', array(
                 'id' => 'addThis',

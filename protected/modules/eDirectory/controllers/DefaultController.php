@@ -2,15 +2,27 @@
 
 class DefaultController extends Controller {
 
-    public function actionReadingFile($id, $type) {
+    public function actionReadingFile($id = null, $type = null) {
         switch ($type) {
             case 'brochure':
                 $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
                 $path = './file/brochure/' . $model->path;
+                $filename = $model->path;
+                break;
+            case 'companyXLS':
+//                $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
+                $filename = 'default_company.xls';
+                $path = './file/company/' . $filename;
+                break;
+            case 'productXLS':
+//                $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
+                $filename = 'default_product.xls';
+                $path = './file/company/' . $filename;
+
                 break;
         }
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
         header('Content-Length: ' . filesize($path));
         readfile($path);
         Yii::app()->end();
@@ -24,7 +36,7 @@ class DefaultController extends Controller {
             inner join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 't.name, t.name_en';
-        $criteria->order = 't.id desc'; 
+        $criteria->order = 't.id desc';
         if ($id != null) {
             $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
         } else {
