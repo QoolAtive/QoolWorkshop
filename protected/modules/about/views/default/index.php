@@ -3,14 +3,23 @@ switch ($view) {
     case 1:
         $select1 = 'selected';
         $select2 = '';
+        $select3 = '';
         break;
     case 2:
         $select1 = '';
         $select2 = 'selected';
+        $select3 = '';
+        break;
+    case 3:
+        $select1 = '';
+        $select2 = '';
+        $select3 = 'selected';
         break;
     default:
         $select1 = '';
         $select2 = '';
+                $select3 = '';
+
         break;
 }
 ?>
@@ -34,6 +43,15 @@ switch ($view) {
                         Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
                                 array('/about/default/index/view/2')
                         ), array('rel' => 'view2')
+                );
+                ?>
+            </li>
+            <li class="<?php echo $select3; ?>">
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'Sitemap'), CHtml::normalizeUrl(
+                                array('/about/default/index/view/3')
+                        ), array('rel' => 'view3')
                 );
                 ?>
             </li>
@@ -61,7 +79,13 @@ switch ($view) {
         <?php
         if ($view == '2') {
             $this->renderPartial('_view2', array('model' => $model));
-        } else {
+        } 
+        else if ($view == '3'){
+            $this->renderPartial('_view3', array('model' => $model)); // เริ่มต้นที่หน้านี้
+        }
+
+        else {
+
             $this->renderPartial('_view1', array('model' => $model)); // เริ่มต้นที่หน้านี้
         }
         ?>
