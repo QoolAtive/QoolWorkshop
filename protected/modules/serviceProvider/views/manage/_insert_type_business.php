@@ -8,13 +8,9 @@ $this->renderPartial('_side_bar', array(
     <div class="tabcontents">
         <?php
         if (empty($model->id)) {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'เพิ่ม';
         } else {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+             $word = 'แก้ไข';
         }
         ?>
         <h3 class="barH3">
@@ -28,7 +24,11 @@ $this->renderPartial('_side_bar', array(
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
                 </a> 
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'กลุ่มพาร์ทเนอร์'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
+                    <?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word).Yii::t('language', 'ประเภทผู้ให้บริการ'); ?>
             </span>
         </h3>
 
@@ -41,7 +41,7 @@ $this->renderPartial('_side_bar', array(
             ));
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- กลุ่มพาร์ทเนอร์ภาษาไทย -'); ?></h4>
+                <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาไทย').') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -78,7 +78,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- กลุ่มพาร์ทเนอร์ภาษาอังกฤษ -'); ?></h4>
+                 <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -116,9 +116,7 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100 textcenter">
                 <?php
-                echo CHtml::submitButton($btnText);
-//        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
-//        );
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
                 if (Yii::app()->user->getState('default_link_back_to_menu')) {
                     $link_back = Yii::app()->user->getState('default_link_back_to_menu');
 
