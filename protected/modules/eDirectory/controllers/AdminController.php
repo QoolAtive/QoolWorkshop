@@ -633,36 +633,51 @@ class AdminController extends Controller {
     }
 
     public function actionDelCompany($id = null) {
-        $model = Company::model()->find('id=:id', array('id' => $id));
 
-        $dir = './file/logo/'; // ลบไฟล์ logo
-        if ($model->logo != null && $model->logo != 'default.jpg') {
-            if (fopen($dir . $model->logo, 'w'))
-                unlink($dir . $model->logo);
-        }
+        if ($id != null) {
+            $model = Company::model()->find('id=:id', array('id' => $id));
 
-        $dir = './file/brochure/';
-        $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-        foreach ($brochure_old as $data) {
-            if (fopen($dir . $data['path'], 'w')) {
-                unlink($dir . $data['path']);
+            $dir = './file/logo/'; // ลบไฟล์ logo
+            if ($model->logo != null && $model->logo != 'default.jpg') {
+                if (fopen($dir . $model->logo, 'w'))
+                    unlink($dir . $model->logo);
             }
-        }
-        CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-        $dir = './file/banner/';
-        $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-        foreach ($banner_old as $data) {
-            if (fopen($dir . $data['path'], 'w')) {
-                unlink($dir . $data['path']);
+            $dir = './file/brochure/';
+            $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($brochure_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
+                }
             }
-        }
-        CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
-        CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-        if ($model->delete()) {
+            $dir = './file/banner/';
+            $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($banner_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
+                }
+            }
+            CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-            echo "ลบข้อมูลเรียบร้อย";
+            $modelProduct = CompanyProduct::model()->findAll('main_id = :main_id', array(':main_id' => $id));
+
+            foreach ($modelProduct as $productArray) {
+                PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+                PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+            }
+
+            CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
+            CompanyThem::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+
+            if ($model->delete()) {
+
+                echo "ลบข้อมูลเรียบร้อย";
+            }
+        } else {
+            echo "ข้อมูลไม่มีอยู่ในระบบ";
         }
     }
 
@@ -1220,6 +1235,9 @@ class AdminController extends Controller {
                                     }
                                 } else { // ถ้าไม่ เท่ากับค่าว่างให้ กำหลด option เป็น null
                                     $model_delively->option = null;
+                                    $model_delively->option2 = null;
+                                    $model_delively->other = null;
+                                    $model_delively->other2 = null;
                                 }
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
@@ -1234,6 +1252,8 @@ class AdminController extends Controller {
                             $error = '';
                         } else {
                             if ($modelCompany->save()) {
+                                
+                                $model_delively->save();
 
                                 $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $modelCompany->id)); // เพิ่มสถานะการการยอมรับ
                                 if ($company_them < 1) {
@@ -1386,4 +1406,5 @@ class AdminController extends Controller {
     }
 
 }
+
 ?>
