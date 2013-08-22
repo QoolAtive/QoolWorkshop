@@ -1235,12 +1235,10 @@ class AdminController extends Controller {
                                     }
                                 } else { // ถ้าไม่ เท่ากับค่าว่างให้ กำหลด option เป็น null
                                     $model_delively->option = null;
-<<<<<<< HEAD
-=======
                                     $model_delively->option2 = null;
                                     $model_delively->other = null;
                                     $model_delively->other2 = null;
->>>>>>> origin/b_edit_07_edirectory
+
                                 }
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
