@@ -59,7 +59,9 @@
                 </p>
                 <p>
                     <?php
-                    echo Yii::t('language', 'สร้าง') . ' : ' . $create->create_at;
+                    $date_create = explode('-', $create->create_at);
+                    $y = $date_create[0] + 543;
+                    echo Yii::t('language', 'สร้าง') . ' : ' . $date_create[2] . '/' . '/' . $y;
                     ?>
                 </p>
                 <table style=" color: #fff; display: block;
