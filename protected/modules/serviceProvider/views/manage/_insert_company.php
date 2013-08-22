@@ -8,13 +8,9 @@ $this->renderPartial('_side_bar', array(
     <div class="tabcontents">
         <?php
         if (empty($model->id)) {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'เพิ่ม';
         } else {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'แก้ไข';
         }
         ?>
 
@@ -30,7 +26,11 @@ $this->renderPartial('_side_bar', array(
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
                 </a> 
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/company")); ?>">
+                    <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . Yii::t('language', 'พาร์ทเนอร์'); ?>
             </span>
         </h3>
 
@@ -43,7 +43,7 @@ $this->renderPartial('_side_bar', array(
             $model_type->type_id = $type_list_data;
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' -'; ?></h4>
             </div>
 
             <div class="_100">
@@ -51,13 +51,12 @@ $this->renderPartial('_side_bar', array(
             </div>
             <div class="_100">
                 <?php
-             
                 echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
                 echo $form->error($model_type, 'type_id');
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลภาษาไทย -'); ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -69,14 +68,14 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'infor');
-                echo $form->textArea($model, 'infor',array('style' => ' font: inherit; height:220px; resize:vertical;'));
+                echo $form->textArea($model, 'infor', array('style' => ' font: inherit; height:220px; resize:vertical;'));
                 echo $form->error($model, 'infor');
                 ?>
             </div>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address');
-                echo $form->textArea($model, 'address',array('style' => 'font: inherit; height:40px; resize:vertical;'));
+                echo $form->textArea($model, 'address', array('style' => 'font: inherit; height:40px; resize:vertical;'));
                 echo $form->error($model, 'address');
                 ?>
             </div>
@@ -88,7 +87,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลภาษาอังกฤษ -'); ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -100,14 +99,14 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'infor_en');
-                echo $form->textArea($model, 'infor_en',array('style' => 'font: inherit; height:220px; resize:vertical;'));
+                echo $form->textArea($model, 'infor_en', array('style' => 'font: inherit; height:220px; resize:vertical;'));
                 echo $form->error($model, 'infor_en');
                 ?>
             </div>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'address_en');
-                echo $form->textArea($model, 'address_en',array('style' => 'font: inherit; height:40px; resize:vertical;'));
+                echo $form->textArea($model, 'address_en', array('style' => 'font: inherit; height:40px; resize:vertical;'));
                 echo $form->error($model, 'address_en');
                 ?>
             </div>
@@ -119,7 +118,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลติดต่อใช้ร่วมกัน -'); ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ข้อมูลติดต่อใช้ร่วมกัน') . ' -'; ?></h4>
             </div>
             <div class="_50">
                 <?php
@@ -165,7 +164,7 @@ $this->renderPartial('_side_bar', array(
             </div>
 
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- เอกสารอิเล็กทรอนิกส์ -'); ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'เอกสารอิเล็กทรอนิกส์') . ' -'; ?></h4>
             </div>
             <div class="_100">
                 <div class="_50">
@@ -183,6 +182,7 @@ $this->renderPartial('_side_bar', array(
                     ));
                     ?>
                     <span><?php echo Yii::t('language', 'ประเภทไฟล์ที่ยอมรับ'); ?> (png, jpg, gif, bmp, tif)</span>
+                    <br />
                     <span><?php echo Yii::t('language', 'ขนาดภาพที่เหมาะสม'); ?> (227 x 220)</span>
                 </div>
                 <?php
@@ -221,6 +221,7 @@ $this->renderPartial('_side_bar', array(
                     ));
                     ?>
                     <span><?php echo Yii::t('language', 'ประเภทไฟล์ที่ยอมรับ'); ?> (png, jpg, gif, bmp, tif)</span>
+                    <br />
                     <span><?php echo Yii::t('language', 'ขนาดภาพที่เหมาะสม'); ?> (525 x 220)</span>
                 </div>
                 <div class="_50" id="banner">
@@ -302,10 +303,9 @@ $this->renderPartial('_side_bar', array(
                 </div>
             </div>
             <div class="_100 textcenter">
+                <hr>
                 <?php
-                echo CHtml::submitButton($btnText);
-//        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
-//        );
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
                 if (Yii::app()->user->getState('default_link_back_to_menu')) {
                     $link_back = Yii::app()->user->getState('default_link_back_to_menu');
 
@@ -320,6 +320,7 @@ $this->renderPartial('_side_bar', array(
                     );
                 }
                 ?>
+                <hr>
             </div>
             <?php $this->endWidget(); ?>
         </div>

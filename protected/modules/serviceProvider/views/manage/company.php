@@ -24,12 +24,15 @@ $this->renderPartial('_side_bar', array(
         <div style="text-align: center;">
             <hr>
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'พาร์ทเนอร์'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'พาร์ทเนอร์'), array(
+                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/insertCompany'
                 )) . "'")
             );
             ?>
             <hr>
+            </div>
+        <div>
             <?php
             $this->renderPartial('_grid_company', array(
                 'model' => $model,

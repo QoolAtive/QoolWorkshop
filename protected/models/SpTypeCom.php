@@ -23,7 +23,7 @@ class SpTypeCom extends SpTypeComBase {
         return array(
             'id' => 'ID',
             'com_id' => 'Com',
-            'type_id' => Yii::t('language', 'ประเภท'),
+            'type_id' => Yii::t('language', 'ประเภทผู้ให้บริการ'),
         );
     }
 
