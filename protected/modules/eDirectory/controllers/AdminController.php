@@ -633,36 +633,51 @@ class AdminController extends Controller {
     }
 
     public function actionDelCompany($id = null) {
-        $model = Company::model()->find('id=:id', array('id' => $id));
 
-        $dir = './file/logo/'; // ลบไฟล์ logo
-        if ($model->logo != null && $model->logo != 'default.jpg') {
-            if (fopen($dir . $model->logo, 'w'))
-                unlink($dir . $model->logo);
-        }
+        if ($id != null) {
+            $model = Company::model()->find('id=:id', array('id' => $id));
 
-        $dir = './file/brochure/';
-        $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-        foreach ($brochure_old as $data) {
-            if (fopen($dir . $data['path'], 'w')) {
-                unlink($dir . $data['path']);
+            $dir = './file/logo/'; // ลบไฟล์ logo
+            if ($model->logo != null && $model->logo != 'default.jpg') {
+                if (fopen($dir . $model->logo, 'w'))
+                    unlink($dir . $model->logo);
             }
-        }
-        CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-        $dir = './file/banner/';
-        $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-        foreach ($banner_old as $data) {
-            if (fopen($dir . $data['path'], 'w')) {
-                unlink($dir . $data['path']);
+            $dir = './file/brochure/';
+            $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($brochure_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
+                }
             }
-        }
-        CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
-        CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-        if ($model->delete()) {
+            $dir = './file/banner/';
+            $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($banner_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
+                }
+            }
+            CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-            echo "ลบข้อมูลเรียบร้อย";
+            $modelProduct = CompanyProduct::model()->findAll('main_id = :main_id', array(':main_id' => $id));
+
+            foreach ($modelProduct as $productArray) {
+                PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+                PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+            }
+
+            CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
+            CompanyThem::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+
+            if ($model->delete()) {
+
+                echo "ลบข้อมูลเรียบร้อย";
+            }
+        } else {
+            echo "ข้อมูลไม่มีอยู่ในระบบ";
         }
     }
 
@@ -789,33 +804,38 @@ class AdminController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
+                    if (!empty($payment_array)) {
+                        foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                            $add_payment = new PaymentCondition;
+                            $add_payment->product_id = $model->id;
+                            $add_payment->payment_id = $payData;
 
-                    foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
-                        $add_payment = new PaymentCondition;
-                        $add_payment->product_id = $model->id;
-                        $add_payment->payment_id = $payData;
+                            if ($payData == 5) {
+                                $add_payment->other = $model_payment->other;
+                            } else {
+                                $add_payment->other = null;
+                            }
 
-                        if ($payData == 5) {
-                            $add_payment->other = $model_payment->other;
-                        } else {
-                            $add_payment->other = null;
+                            $add_payment->save();
                         }
-
-                        $add_payment->save();
                     }
+                    
+                    
+                        
+                    if (!empty($payment_special_array)) {
+                        foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                            $add_special = new PaymentSpecial;
+                            $add_special->product_id = $model->id;
+                            $add_special->special_id = $data;
 
-                    foreach ($payment_special_array as $data) { // สิทธิพิเศษ
-                        $add_special = new PaymentSpecial;
-                        $add_special->product_id = $model->id;
-                        $add_special->special_id = $data;
+                            if ($data == 0) {
+                                $add_special->other = $model_payment_special->other1;
+                            } else {
+                                $add_special->other = $model_payment_special->other2;
+                            }
 
-                        if ($data == 0) {
-                            $add_special->other = $model_payment_special->other1;
-                        } else {
-                            $add_special->other = $model_payment_special->other2;
+                            $add_special->save();
                         }
-
-                        $add_special->save();
                     }
 
                     if ($pro_id != null) {
@@ -1150,12 +1170,95 @@ class AdminController extends Controller {
                             $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
                         }
 
+                        $model_delively = new CompanyDelivery; // บริการจัดส่ง
+
+                        $messageError = CompanyDelivery::model()->getAttributeLabel('delivery_id');
+                        $stError = CheckErrorCompany::haveErrorNull($data[16], $messageError);
+                        if ($stError == null) {
+                            $stError = CheckErrorCompany::verify_delively($data[16], $messageError);
+                            if ($stError == null) {
+                                $model_delively->delivery_id = $data[16];
+                                if ($model_delively->delivery_id == 1) { // ถ้ามี บริการจัดส่ง (1)
+                                    $messageError = CompanyDelivery::model()->getAttributeLabel('option');
+                                    $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError); // เช็คว่าเท่ากับค่าว่างหรือไม่
+                                    if ($stError == null) {
+                                        $stError = CheckErrorCompany::verify_type_delively($data[17], $messageError);
+                                        if ($stError == null) {
+                                            $model_delively->option = $data[17];
+                                            if ($model_delively->option == 0) { // ส่งในประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('option2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                if ($stError == null) {
+                                                    $stError = CheckErrorCompany::verify_option2($data[18], $messageError); // ประเภทการจัดส่งในประเทศ
+                                                    if ($stError == null) {
+                                                        $model_delively->option2 = $data[18];
+                                                        if ($model_delively->option2 == 1) {
+                                                            $messageError = Company::model()->getAttributeLabel('other');
+                                                            $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
+                                                            if ($stError == null) {
+                                                                $model_delively->other = $data[19];
+                                                            } else {
+                                                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                    }
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            } else if ($model_delively->option == 1) { // ส่งนอกประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('other2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->other2 = $data[20];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            } else if ($model_delively->option == 2) { // มีการส่ง ทั้งในและนอกประเทศ
+                                                $messageError = Company::model()->getAttributeLabel('option2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->option2 = $data[18];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+
+                                                $messageError = Company::model()->getAttributeLabel('other2');
+                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                if ($stError == null) {
+                                                    $model_delively->other2 = $data[20];
+                                                } else {
+                                                    $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                                }
+                                            }
+                                        } else {
+                                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                        }
+                                    } else {
+                                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                                    }
+                                } else { // ถ้าไม่ เท่ากับค่าว่างให้ กำหลด option เป็น null
+                                    $model_delively->option = null;
+                                    $model_delively->option2 = null;
+                                    $model_delively->other = null;
+                                    $model_delively->other2 = null;
+                                }
+                            } else {
+                                $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
                         if (!empty($error)) {
 //                        $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
                             $t_detail .= $error;
                             $error = '';
                         } else {
                             if ($modelCompany->save()) {
+
+                                $model_delively->save();
 
                                 $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $modelCompany->id)); // เพิ่มสถานะการการยอมรับ
                                 if ($company_them < 1) {
@@ -1217,7 +1320,7 @@ class AdminController extends Controller {
 
                 $data_array = $this->getDataFromExcel($path . $file_name);
 
-//                echo "<pre>";
+//                echo "<                         pre>";
 //                print_r($data_array);
 //                echo "</pre>";
 
@@ -1289,7 +1392,7 @@ class AdminController extends Controller {
                                 $error = null;
                             }
                         }
-//                        echo "<pre>";
+//                        echo "<                         pre>";
 //                        print_r($modelProduct->attributes);
 //                        echo "</pre>";
                     }

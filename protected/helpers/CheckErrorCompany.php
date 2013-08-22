@@ -46,6 +46,33 @@ Class CheckErrorCompany {
         }
     }
 
+    public static function verify_delively($value, $messageError) { // ตรวจสอบการจัดส่ง 
+        if ($value != 1 || $value != 2) {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 1 หรือ 2 เท่านั้น';
+        } else {
+            $message = null;
+        }
+        return $message;
+    }
+
+    public static function verify_type_delively($value, $messageError) { // ตรวจสอบการจัดส่ง 
+        if ($value != 0 || $value != 1 || $value != 2) {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0, 1 หรือ 2 เท่านั้น';
+        } else {
+            $message = null;
+        }
+        return $message;
+    }
+    
+    public static function verify_option2($value, $messageError) { // ตรวจสอบการจัดส่ง 
+        if ($value != 0 || $value != 1) {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0 หรือ 1 เท่านั้น';
+        } else {
+            $message = null;
+        }
+        return $message;
+    }
+
     public static function varify_web($value, $message) {
         
     }

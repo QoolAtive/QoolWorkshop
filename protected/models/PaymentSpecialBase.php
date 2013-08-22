@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'payment_special':
  * @property integer $payment_special_id
  * @property integer $product_id
- * @property integer $payment_id
+ * @property integer $special_id
  * @property string $other
  */
 class PaymentSpecialBase extends CActiveRecord
@@ -37,12 +37,12 @@ class PaymentSpecialBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id, payment_id, other', 'required'),
-			array('product_id, payment_id', 'numerical', 'integerOnly'=>true),
+			array('product_id', 'required'),
+			array('product_id, special_id', 'numerical', 'integerOnly'=>true),
 			array('other', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('payment_special_id, product_id, payment_id, other', 'safe', 'on'=>'search'),
+			array('payment_special_id, product_id, special_id, other', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,7 +65,7 @@ class PaymentSpecialBase extends CActiveRecord
 		return array(
 			'payment_special_id' => 'Payment Special',
 			'product_id' => 'Product',
-			'payment_id' => 'Payment',
+			'special_id' => 'Special',
 			'other' => 'Other',
 		);
 	}
@@ -83,7 +83,7 @@ class PaymentSpecialBase extends CActiveRecord
 
 		$criteria->compare('payment_special_id',$this->payment_special_id);
 		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('payment_id',$this->payment_id);
+		$criteria->compare('special_id',$this->special_id);
 		$criteria->compare('other',$this->other,true);
 
 		return new CActiveDataProvider($this, array(

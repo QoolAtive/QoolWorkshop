@@ -1,18 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "news_mail".
+ * This is the model class for table "web_shop_category".
  *
- * The followings are the available columns in table 'news_mail':
- * @property integer $news_mail_id
- * @property string $email
+ * The followings are the available columns in table 'web_shop_category':
+ * @property integer $web_shop_category_id
+ * @property integer $web_shop_id
+ * @property string $name_th
+ * @property string $name_en
+ * @property integer $order_n
+ * @property integer $show_box
+ *
+ * The followings are the available model relations:
+ * @property WebShopCategoryItem[] $webShopCategoryItems
  */
-class NewsMailBase extends CActiveRecord
+class WebShopCategory extends WebShopCategoryBase
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return NewsMailBase the static model class
+	 * @return WebShopCategoryBase the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +31,7 @@ class NewsMailBase extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'news_mail';
+		return 'web_shop_category';
 	}
 
 	/**
@@ -35,11 +42,12 @@ class NewsMailBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email', 'required'),
-			array('email', 'length', 'max'=>100),
+			array('web_shop_id, name_th, name_en, order_n, show_box', 'required'),
+			array('web_shop_id, order_n, show_box', 'numerical', 'integerOnly'=>true),
+			array('name_th, name_en', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('news_mail_id, email', 'safe', 'on'=>'search'),
+			array('web_shop_category_id, web_shop_id, name_th, name_en, order_n, show_box', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +59,7 @@ class NewsMailBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_category_id'),
 		);
 	}
 
@@ -60,8 +69,12 @@ class NewsMailBase extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'news_mail_id' => 'News Mail',
-			'email' => 'Email',
+			'web_shop_category_id' => 'Web Shop Category',
+			'web_shop_id' => 'Web Shop',
+			'name_th' => 'Name Th',
+			'name_en' => 'Name En',
+			'order_n' => 'Order N',
+			'show_box' => 'Show Box',
 		);
 	}
 
@@ -76,8 +89,12 @@ class NewsMailBase extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('news_mail_id',$this->news_mail_id);
-		$criteria->compare('email',$this->email,true);
+		$criteria->compare('web_shop_category_id',$this->web_shop_category_id);
+		$criteria->compare('web_shop_id',$this->web_shop_id);
+		$criteria->compare('name_th',$this->name_th,true);
+		$criteria->compare('name_en',$this->name_en,true);
+		$criteria->compare('order_n',$this->order_n);
+		$criteria->compare('show_box',$this->show_box);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

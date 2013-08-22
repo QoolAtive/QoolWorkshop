@@ -41,11 +41,14 @@ switch ($index) {
             </li>
 <!--            <li class='<?php echo $select4; ?>'>
                 <a rel="view-4" href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-                    <?php echo Yii::t('language', 'รูปแบบร้านค้า'); ?>
+            <?php echo Yii::t('language', 'รูปแบบร้านค้า'); ?>
                 </a>
             </li>-->
             <li class='<?php echo $select5; ?>'>
-                <a rel="view-5" href="#">
+                <?php
+                $shop_url = WebShop::model()->findByPk(Yii::app()->session['shop_id'])->url;
+                ?>
+                <a rel="view-5" href="<?php echo $shop_url; ?>" target="_blank">
                     <?php echo Yii::t('language', 'ดูร้านค้าของคุณ'); ?>
                 </a>
             </li>

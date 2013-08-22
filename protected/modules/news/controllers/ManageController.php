@@ -40,7 +40,7 @@ class ManageController extends Controller {
             $model->author = Yii::app()->user->id;
             $model->date_write = date("Y-m-d H:i:s");
 
-            //for upload pic
+//for upload pic
             $arr_files = CUploadedFile::getInstancesByName('link_file');
             if ($arr_files != NULL) {
                 $path = '/upload/img/news/';
@@ -54,7 +54,7 @@ class ManageController extends Controller {
 //            } else if ($model->img_path == NULL) {
 //                $model->img_path = '/img/link/Link_icon.png';
             }
-            //END for upload pic
+//END for upload pic
 
             if ($model->save()) {
                 echo "<script language='javascript'>
@@ -187,7 +187,7 @@ class ManageController extends Controller {
                     $counter += 1;
                 }
             }
-            
+
             if ($counter > 0) {
                 echo "<script>
                         alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน ') . $counter . Yii::t('language', ' ฉบับ ') . "');
@@ -201,8 +201,8 @@ class ManageController extends Controller {
             }
         }
     }
-    
-    public function actionManageEmail(){
+
+    public function actionManageEmail() {
         $model = new NewsMail();
         if (isset($_GET['NewsMail'])) {
             $model->attributes = $_GET['NewsMail'];
@@ -211,12 +211,32 @@ class ManageController extends Controller {
             'model' => $model,
         ));
     }
-    
+
     public function actionDeleteEmail($email) {
         $model = NewsMail::model()->findByAttributes(array('email' => $email));
         if ($model->delete()) {
 //            $this->redirect("/faq/default/manageFaq");
         }
+    }
+
+    public function actionEditEmail($email_id = NULL) {
+        if ($email_id == NULL) {
+            $model = new NewsMail();
+        } else {
+            $model = NewsMail::model()->findByPk($email_id);
+        }
+        if (isset($_POST['NewsMail'])) {
+            $model->attributes = $_POST['NewsMail'];
+            if ($model->save()) {
+                echo "<script language='javascript'>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/manageEmail')) . "';
+                  </script>";
+            }
+        }
+        $this->render('edit_email', array(
+            'model' => $model,
+        ));
     }
 
 }

@@ -47,10 +47,10 @@ class Payment extends PaymentBase {
         return $list;
     }
 
-    public function getListDataOption($data = null) {
+    public static function getListDataOption($data = null) {
         $status = array(
-            '0' => Yii::t('language', 'การให้ส่วนลด'),
-            '1' => Yii::t('language', 'การให้เครดิต'),
+            '0' => Yii::t('language', 'ให้ส่วนลด'),
+            '1' => Yii::t('language', 'ให้เครดิต'),
         );
 
         if ($data == null) {

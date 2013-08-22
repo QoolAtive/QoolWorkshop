@@ -55,23 +55,25 @@ foreach ($boxs as $box) {
             echo $box['code'];
         } else if ($box['type'] == '3') {
             //กล่องแสดง Video
-//            $url = $box['code'];
-//
-//            parse_str(parse_url($url, PHP_URL_QUERY), $qstring);
-//
-//            echo '<object width="425" height="344">
-//                <param name="movie" value="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"></param>
-//                <param name="allowFullScreen" value="true"></param>
-//                <param name="allowscriptaccess" value="always"></param>
-//                <embed src="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"
-//                       type="application/x-shockwave-flash"
-//                       allowscriptaccess="always"
-//                       allowfullscreen="true"
-//                       width="425"
-//                       height="344"></embed>
-//                </object>';
+            $url = $box['code'];
+
+            parse_str(parse_url($url, PHP_URL_QUERY), $qstring);
+
+            echo '<div style="text-align: center;">
+                    <object width="560" height="315">
+                    <param name="movie" value="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"></param>
+                    <param name="allowFullScreen" value="true"></param>
+                    <param name="allowscriptaccess" value="always"></param>
+                    <embed src="http://www.youtube.com/v/' . $qstring['v'] . '&hl=en&fs=1"
+                           type="application/x-shockwave-flash"
+                           allowscriptaccess="always"
+                           allowfullscreen="true"
+                           width="560"
+                           height="315"></embed>
+                    </object>
+                </div>';
             //==============
-            echo $box['code'];
+//            echo $box['code'];
         }
         ?>
 

@@ -4,7 +4,7 @@
             <li class="boxhead">
                 <img src="<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>"/>
             </li>
-            <?php if (!Yii::app()->user->isAdmin()) { ?>
+            <?php if (Yii::app()->user->isAdmin()) { ?>
                 <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
                     <p>
                         <?php
@@ -182,7 +182,7 @@
                     <td><?php echo $model->website; ?></td>
                 </tr>
                 <?php
-                $brochure_count = SpBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
+                $brochure_count = CompanyBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
                 if ($brochure_count > 0) {
                     ?>
                     <tr>

@@ -38,6 +38,11 @@ switch ($view) {
                     <?php echo Yii::t('language', 'การอบรม'); ?>
                 </a>
             </li>
+            <li>
+                <a class="regist fancybox.ajax" href="<?php echo CHtml::normalizeUrl(array('/news/default/registNewsEmail')); ?>" rel='view-2'>
+                    <?php echo Yii::t('language', 'สมัครรับข่าวสาร'); ?>
+                </a>
+            </li>
             <?php if (Yii::app()->user->isAdmin()) { ?>
                 <li>
                     <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>" rel='manage-1'>
@@ -69,19 +74,7 @@ switch ($view) {
                 </li>
             <?php } ?>
         </ul>
-        
-        <?php
-        $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'news_mail-form',
-        ));
-//        echo $form->errorSummary($model);
-        echo 'E-mail :' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
-        echo $form->error($model, 'email');
-        
-        echo CHtml::submitButton(Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'));
-        ?>
-        
-        <?php $this->endWidget(); ?>
+
     </div>
 </div>
 <div class="content">

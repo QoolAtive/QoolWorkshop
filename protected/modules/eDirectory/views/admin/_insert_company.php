@@ -455,3 +455,4 @@ $this->renderPartial('side_bar', array(
             </div>
         </div>
     </div>
+</div>

@@ -37,7 +37,7 @@ class NewsMail extends NewsMailBase {
             array('email', 'length', 'max' => 100),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('email', 'safe', 'on' => 'search'),
+            array('news_mail_id, email', 'safe', 'on' => 'search'),
         );
     }
 
@@ -56,6 +56,7 @@ class NewsMail extends NewsMailBase {
      */
     public function attributeLabels() {
         return array(
+            'news_mail_id' => 'News Mail ID',
             'email' => 'E-mail',
         );
     }
