@@ -14,7 +14,15 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์') . Yii::t('language', 'ที่สมัครรับข่าวสาร'); ?>
             </span>
         </h3>
-        
+        <div class="txt-cen">
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'อีเมล์') . Yii::t('language', 'ที่สมัครรับข่าวสาร'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/editEmail")) . '"'));
+            ?>
+            <hr>
+        </div>
+
         <?php
         $dataProvider = $model->search();
         $this->widget('zii.widgets.grid.CGridView', array(
@@ -32,6 +40,17 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
                 array(
                     'header' => Yii::t('language', 'อีเมล์'),
                     'name' => 'email',
+                ),
+                array(
+                    'class' => 'CButtonColumn',
+                    'header' => Yii::t('language', "แก้ไข"),
+                    'template' => '{update}',
+                    'buttons' => array(
+                        'update' => array(
+                            'label' => Yii::t('language', 'แก้ไข'),
+                            'url' => 'CHtml::normalizeUrl(array("/news/manage/editEmail", "email_id"=> $data->news_mail_id))',
+                        ),
+                    ),
                 ),
                 array(
                     'class' => 'CButtonColumn',
