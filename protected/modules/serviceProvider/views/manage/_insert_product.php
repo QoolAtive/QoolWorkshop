@@ -19,24 +19,24 @@ $this->renderPartial('_side_bar', array(
         $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
         ?>
         <h3 class="barH3">
-                <i class="icon-compass"></i> 
-                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
-                    <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
-                </a>
-                <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
-                </a> 
-                <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/company")); ?>">
-                    <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
-                </a>
-                <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/product/id/" . $id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าและบริการ') . ' (' . $company_name . ') '; ?>
-                </a>
-                <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>   
+            <i class="icon-compass"></i> 
+            <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
+                <?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/typeBusiness")); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บริการ'); ?>
+            </a> 
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/company")); ?>">
+                <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/manage/product/id/" . $id)); ?>">
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าและบริการ') . ' (' . $company_name . ') '; ?>
+            </a>
+            <i class="icon-chevron-right"></i>
+            <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>   
         </h3>
         <div class="_100">
             <?php
@@ -54,13 +54,13 @@ $this->renderPartial('_side_bar', array(
             </div>
 
             <div class="_33">
-                <p><?php echo $form->labelEx($model, 'image');?></p>
+                <p><?php echo $form->labelEx($model, 'image'); ?></p>
                 <?php
                 echo $form->fileField($model, 'image');
                 echo $form->error($model, 'image');
                 ?>
             </div>
-           <?php
+            <?php
             if (!empty($model->image)) {
                 ?>
                 <div class="_33">
@@ -68,11 +68,11 @@ $this->renderPartial('_side_bar', array(
                         <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
                     </p>
 
-                        <?php
-                        echo CHtml::image("/file/product/" . $model->image, "image", array('width' => '200'));
-                        echo $model->image;
-                        ?> 
-                   
+                    <?php
+                    echo CHtml::image("/file/product/" . $model->image, "", array('width' => '200'));
+                    echo $model->image;
+                    ?> 
+
                 </div>
                 <?php
             }
@@ -150,6 +150,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100 textcenter">
+                <hr>
                 <?php
                 echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
@@ -171,6 +172,7 @@ $this->renderPartial('_side_bar', array(
                     )) . "'")
                 );
                 ?>
+                <hr>
             </div>
             <?php $this->endWidget(); ?>
         </div>
