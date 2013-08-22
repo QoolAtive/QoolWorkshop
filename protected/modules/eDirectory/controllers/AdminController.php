@@ -820,18 +820,20 @@ class AdminController extends Controller {
                         }
                     }
 
-                    foreach ($payment_special_array as $data) { // สิทธิพิเศษ
-                        $add_special = new PaymentSpecial;
-                        $add_special->product_id = $model->id;
-                        $add_special->special_id = $data;
+                    if (!empty($payment_array)) {
+                        foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                            $add_special = new PaymentSpecial;
+                            $add_special->product_id = $model->id;
+                            $add_special->special_id = $data;
 
-                        if ($data == 0) {
-                            $add_special->other = $model_payment_special->other1;
-                        } else {
-                            $add_special->other = $model_payment_special->other2;
+                            if ($data == 0) {
+                                $add_special->other = $model_payment_special->other1;
+                            } else {
+                                $add_special->other = $model_payment_special->other2;
+                            }
+
+                            $add_special->save();
                         }
-
-                        $add_special->save();
                     }
 
                     if ($pro_id != null) {
