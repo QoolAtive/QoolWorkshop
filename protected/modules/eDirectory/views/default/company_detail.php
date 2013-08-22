@@ -80,11 +80,20 @@
                         <td> : </td>
                         <td><?php echo $model->contact_fax; ?></td>
                     </tr>
-                    <tr> <td><?php echo Yii::t('language', 'โทร.'); ?></td>
+                    <tr> 
+                        <td><?php echo Yii::t('language', 'โทร.'); ?></td>
                         <td> : </td>
                         <td><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
+                <?php
+                if ($model->facebook != null) {
+                    echo CHtml::link(CHtml::image('/images/facebook.png', ''), $model->facebook, array('target' => '_bank'));
+                }
+                if ($model->twitter != null) {
+                    echo CHtml::link(CHtml::image('/images/twitter.png', ''), $model->twitter, array('target' => '_bank'));
+                }
+                ?>
             </li>
         </ul>
 
