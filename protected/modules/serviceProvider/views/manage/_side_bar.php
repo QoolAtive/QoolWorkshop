@@ -48,7 +48,7 @@
 
                 if ($select3 != null) {
                     echo "<li>";
-                    echo CHtml::link(Yii::t('language', 'เพิ่มสินค้าและบริการ'), array(
+                    echo CHtml::link(Yii::t('language', 'เพิ่ม').Yii::t('language', 'สินค้าและบริการ'), array(
                         '#'), array(
                         'rel' => 'view5',
                         'class' => $select3 == 'selected' ? 'menuactive listactive' : ''
