@@ -4,7 +4,7 @@
             <li class="boxhead">
                 <img src="<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>"/>
             </li>
-            <?php if (Yii::app()->user->isAdmin()) { ?>
+            <?php if (Yii::app()->user->isAdmin() && Yii::app()->user->id != $model->user_id) { ?>
                 <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
                     <p>
                         <?php

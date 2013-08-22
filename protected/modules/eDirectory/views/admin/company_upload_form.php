@@ -37,7 +37,7 @@ $this->renderPartial('side_bar', array(
             </div>
             <div class="clearfix"></div>
             <?php if ($errorTable != null) { ?>
-                <div class='clearfix' style="border: 1px solid blueviolet; padding: 5px;">
+                <div class='clearfix' style="border: 1px solid blueviolet; padding: 5px; margin: 10px 0px;">
                     <?php echo $errorTable; ?>
                 </div>
             <?php } ?>
