@@ -4,6 +4,7 @@
  * This is the model class for table "news_mail".
  *
  * The followings are the available columns in table 'news_mail':
+ * @property integer $news_mail_id
  * @property string $email
  */
 class NewsMailBase extends CActiveRecord
@@ -38,7 +39,7 @@ class NewsMailBase extends CActiveRecord
 			array('email', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('email', 'safe', 'on'=>'search'),
+			array('news_mail_id, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +60,7 @@ class NewsMailBase extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'news_mail_id' => 'News Mail',
 			'email' => 'Email',
 		);
 	}
@@ -74,6 +76,7 @@ class NewsMailBase extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('news_mail_id',$this->news_mail_id);
 		$criteria->compare('email',$this->email,true);
 
 		return new CActiveDataProvider($this, array(
