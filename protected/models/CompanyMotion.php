@@ -14,7 +14,7 @@ class CompanyMotion extends CompanyMotionBase {
             array('user_id, company_id, status', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('company_motion_id, user_id, company_id, status, update_at', 'safe', 'on' => 'search'),
+            array('company_motion_id, user_id, company_id, status, update_at, create_at', 'safe', 'on' => 'search'),
         );
     }
 
@@ -26,6 +26,7 @@ class CompanyMotion extends CompanyMotionBase {
             'status' => Yii::t('language','ประเภท'),
             'date_warnning' => Yii::t('language','วันที่แจ้งเตือน'),
             'update_at' => Yii::t('language', 'วันที่อัพเดตล่าสุด'),
+            'create_at' => Yii::t('language', 'วันที่สร้างร้านค้า'),
         );
     }
 

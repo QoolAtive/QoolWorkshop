@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "comany_count_view".
+ * This is the model class for table "company_count_view".
  *
- * The followings are the available columns in table 'comany_count_view':
+ * The followings are the available columns in table 'company_count_view':
  * @property integer $company_count_view_id
  * @property integer $company_id
  * @property integer $count_company_view
  * @property string $update_at
  */
-class ComanyCountViewBase extends CActiveRecord
+class CompanyCountViewBase extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ComanyCountViewBase the static model class
+	 * @return CompanyCountViewBase the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +26,7 @@ class ComanyCountViewBase extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'comany_count_view';
+		return 'company_count_view';
 	}
 
 	/**

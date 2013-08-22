@@ -180,6 +180,7 @@ class ManageController extends Controller {
                         $company_motion->company_id = $model->id;
                         $company_motion->status = '1';
                         $company_motion->update_at = date('Y-m-d');
+                        $company_motion->create_at = date('Y-m-d');
                         $company_motion->save();
                     } else {
                         $company_motion->status = '1';

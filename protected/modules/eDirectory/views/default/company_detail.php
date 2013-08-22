@@ -54,7 +54,12 @@
                     <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'ข้อมูลติดต่อร้านค้า');
+                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $count['count'];
+                    ?>
+                </p>
+                <p>
+                    <?php
+                    echo Yii::t('language', 'สร้าง') . ' : ' . $create->create_at;
                     ?>
                 </p>
                 <table style=" color: #fff; display: block;
