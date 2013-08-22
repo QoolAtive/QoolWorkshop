@@ -10,7 +10,7 @@ class ManageShopController extends Controller {
         return array(
             array(
                 'allow',
-                'users' => array('admin')
+                'users' => array('@')
             ),
             array(
                 'deny',
@@ -98,7 +98,8 @@ class ManageShopController extends Controller {
 
 //    หน้าสิ้นสุดการสร้างร้านค้า
     public function actionFinish() {
-        $this->render('finish');
+        $shop_id = Yii::app()->session['shop_id'];
+        $this->render('finish', array('shop_id' => $shop_id));
     }
 
 //    หน้าจัดการรายการร้านค้า
@@ -371,7 +372,7 @@ class ManageShopController extends Controller {
     public function actionManageBox() {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
-            Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/add_box.js');
+//            Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/add_box.js');
 
             $this->render('manage_box', array('shop_id' => $shop_id));
         } else {
@@ -569,10 +570,108 @@ class ManageShopController extends Controller {
         }
         $this->render('blank');
     }
+
+//    หน้าจัดหมวดหมู่
+    public function actionManageItemCategory() {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+            $this->render('manage_category', array('shop_id' => $shop_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
+
+    public function actionAddCategory($category_id = NULL) {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+            if ($category_id == NULL) {
+                $model = new WebShopCategory();
+            } else {
+                $model = WebShopCategory::model()->findByPk($category_id);
+            }
+            if (isset($_POST['WebShopCategory'])) {
+                $model->attributes = $_POST['WebShopCategory'];
+                $model->web_shop_id = $shop_id;
+
+                if ($box_id == NULL) {
+                    $criteria = new CDbCriteria;
+                    $criteria->select = 'order_n';
+                    $criteria->order = 'order_n desc';
+                    $criteria->limit = '1';
+                    if ($order = $model->model()->find($criteria)) {
+                        $last = $order->order_n + 1;
+                    } else {
+                        $last = 1;
+                    }
+                    $model->order_n = $last;
+                }
+                $model->show_box = 1;
+
+                if ($model->save()) {
+                    echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')) . "';
+                  </script>";
+                }
+            }
+            $this->render('add_category', array('model' => $model));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
     
-    public function actionManageItemCategory(){
-        
+    public function actionEditCategory($category_id = NULL) {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+//        Yii::app()->clientScript->registerCssFile('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
+            Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/edit_item_in_box.js');
+
+            if (isset($_POST['select'])) {
+                WebShopCategory::model()->deleteAll('web_shop_category_id = ' . $category_id);
+                if ($_POST['select'] != '') {
+                    $arr = array();
+                    $arr = preg_split('/,/', $_POST['select']);
+                    foreach ($arr as $item_id) {
+                        $model = new WebShopCategoryItem();
+                        $model->web_shop_id = $shop_id;
+                        $model->web_shop_box_id = $category_id;
+                        $model->web_shop_item_id = $item_id;
+                        $model->save();
+                    }
+                }
+            }
+            $this->render('edit_category', array('category_id' => $category_id, 'shop_id' => $shop_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
+
+    public function actionShowCategory($category_id, $is_show) {
+        if ($is_show) {
+            //เปลี่ยนเป็นซ่อน
+            WebShopCategory::model()->updateByPk($category_id, array('show_box' => '0'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'ซ่อนหมวดหมู่สินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')) . "';
+                  </script>";
+        } else {
+            //เปลี่ยนเป็นโชว์
+            WebShopCategory::model()->updateByPk($category_id, array('show_box' => '1'));
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'แสดงหมวดหมู่สินค้า') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')) . "';
+                  </script>";
+        }
+        $this->render('blank');
+    }
+
+    public function actionDeleteCategory($category_id) {
+        $model = WebShopCategory::model()->findByPk($category_id);
+        if ($model->delete()) {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')));
+        }
     }
 
 }
-
