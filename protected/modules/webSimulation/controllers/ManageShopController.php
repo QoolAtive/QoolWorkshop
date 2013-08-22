@@ -570,7 +570,7 @@ class ManageShopController extends Controller {
         }
         $this->render('blank');
     }
-
+    
 //    หน้าจัดหมวดหมู่
     public function actionManageItemCategory() {
         $shop_id = Yii::app()->session['shop_id'];
@@ -580,7 +580,7 @@ class ManageShopController extends Controller {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
-
+        
     public function actionAddCategory($category_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
@@ -588,7 +588,7 @@ class ManageShopController extends Controller {
                 $model = new WebShopCategory();
             } else {
                 $model = WebShopCategory::model()->findByPk($category_id);
-            }
+    }
             if (isset($_POST['WebShopCategory'])) {
                 $model->attributes = $_POST['WebShopCategory'];
                 $model->web_shop_id = $shop_id;
@@ -602,7 +602,7 @@ class ManageShopController extends Controller {
                         $last = $order->order_n + 1;
                     } else {
                         $last = 1;
-                    }
+}
                     $model->order_n = $last;
                 }
                 $model->show_box = 1;
