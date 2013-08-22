@@ -666,7 +666,7 @@ class AdminController extends Controller {
                 PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
                 PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
             }
-            
+
             DelivSer::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
             CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
@@ -894,6 +894,9 @@ class AdminController extends Controller {
             if (fopen($dir . $model->pic, 'w'))
                 unlink($dir . $model->pic);
         }
+
+        PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $pro_id));
+        PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $pro_id));
 
         if ($model->delete()) {
             echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
@@ -1200,7 +1203,7 @@ class AdminController extends Controller {
                                                             } else {
                                                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                             }
-                                                        }else{
+                                                        } else {
                                                             $model_delively->other = null;
                                                         }
                                                     } else {
@@ -1386,11 +1389,84 @@ class AdminController extends Controller {
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
+
+                        $modelPayment = new PaymentCondition();
+                        $modelPaySpecial = new PaymentSpecial();
+
+                        $paymentArray = explode(',', $data[7]);
+                        $errorPaymentId = null;
+                        $stError = CheckErrorCompany::haveErrorNull($data[7], 'เงื่อนไขการชำระเงิน');
+                        if ($stError == null) {
+                            foreach ($paymentArray as $dataPayment) {
+                                $stError = CheckErrorCompany::verify_payment($dataPayment);
+                                if ($stError != null) {
+                                    if ($errorPaymentId == null) {
+                                        $errorPaymentId .= $stError;
+                                    } else {
+                                        $errorPaymentId .= ', ' . $stError;
+                                    }
+                                }
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
+                        if ($errorPaymentId != null) {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $errorPaymentId);
+                        }
+
+                        $specialArray = array();
+
+                        if ($data[9] != null) {
+                            array_push($specialArray, array('dc' => $data[9])); // ถ้าเลือกการให้ส่วนลด
+                        }
+                        if ($data[11] != null) {
+                            array_push($specialArray, array('credit' => $data[11])); // ถ้าเลือกการให้เครดิต
+                        }
+
+//                        echo "<pre>";
+//                        print_r($specialArray);
+
                         if ($error != null) {
                             $t_detail .= $error;
                             $error = null;
                         } else {
                             if ($modelProduct->save()) {
+
+                                // เพิ่มเงือนไขการชำระเงิน
+                                if (!empty($paymentArray)) {
+                                    foreach ($paymentArray as $dataPaymentArray) {
+                                        $addPayment = new PaymentCondition;
+                                        $addPayment->product_id = $modelProduct->id;
+                                        $addPayment->payment_id = $dataPaymentArray;
+                                        if ($dataPaymentArray == 5) {
+                                            $addPayment->other = $data[8];
+                                        }
+                                        $addPayment->save();
+                                    }
+                                }
+                                //------------------
+                                // เพิ่มสิทธิพิเศษ
+                                if (!empty($specialArray)) {
+                                    foreach ($specialArray as $dataSpecialArray) {
+                                        if (!empty($dataSpecialArray['dc'])) {
+                                            $addSpecial = new PaymentSpecial;
+                                            $addSpecial->product_id = $modelProduct->id;
+                                            $addSpecial->special_id = 0;
+                                            $addSpecial->other = $data[10];
+                                            $addSpecial->save();
+                                        }
+
+                                        if (!empty($dataSpecialArray['credit'])) {
+                                            $addSpecial = new PaymentSpecial;
+                                            $addSpecial->product_id = $modelProduct->id;
+                                            $addSpecial->special_id = 1;
+                                            $addSpecial->other = $data[12];
+                                            $addSpecial->save();
+                                        }
+                                    }
+                                }
+
                                 $t_detail .= CheckErrorCompany::errorTableDetail($n, '');
                                 $error = null;
                             }

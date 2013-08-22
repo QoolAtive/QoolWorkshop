@@ -12,6 +12,16 @@ Class CheckErrorCompany {
         return $message;
     }
 
+    public static function verify_payment($payment_id) {
+        $count = Payment::model()->count('payment_id=:payment_id', array(':payment_id' => $payment_id));
+        if ($count > 0)
+            $message = null;
+        else
+            $message = PaymentCondition::model()->getAttributeLable('payment') . ' ' . $payment_id . ' ' . 'ไม่มีอยู่ในระบบ';
+
+        return $message;
+    }
+
     public static function haveErrorDup($attribute, $value, $messageError) {
         $count = Company::model()->findAll("{$attribute}=:{$attribute}", array(":{$attribute}" => $value));
         if (Count($count) < 1) {
