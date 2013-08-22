@@ -804,19 +804,20 @@ class AdminController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
+                    if (!empty($payment_array)) {
+                        foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                            $add_payment = new PaymentCondition;
+                            $add_payment->product_id = $model->id;
+                            $add_payment->payment_id = $payData;
 
-                    foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
-                        $add_payment = new PaymentCondition;
-                        $add_payment->product_id = $model->id;
-                        $add_payment->payment_id = $payData;
+                            if ($payData == 5) {
+                                $add_payment->other = $model_payment->other;
+                            } else {
+                                $add_payment->other = null;
+                            }
 
-                        if ($payData == 5) {
-                            $add_payment->other = $model_payment->other;
-                        } else {
-                            $add_payment->other = null;
+                            $add_payment->save();
                         }
-
-                        $add_payment->save();
                     }
 
                     foreach ($payment_special_array as $data) { // สิทธิพิเศษ
@@ -1238,7 +1239,6 @@ class AdminController extends Controller {
                                     $model_delively->option2 = null;
                                     $model_delively->other = null;
                                     $model_delively->other2 = null;
-
                                 }
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
@@ -1253,7 +1253,7 @@ class AdminController extends Controller {
                             $error = '';
                         } else {
                             if ($modelCompany->save()) {
-                                
+
                                 $model_delively->save();
 
                                 $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $modelCompany->id)); // เพิ่มสถานะการการยอมรับ
@@ -1407,4 +1407,5 @@ class AdminController extends Controller {
     }
 
 }
+
 ?>
