@@ -24,7 +24,7 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
         <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/evol.colorpicker.css" type="text/css">
         <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
-
+        <link type="text/css" rel="stylesheet" media="and (min-width: 560px) and (max-device-width: 1136px)" href="/iPhone5Retina.css" />
         <!--JS-->
         <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
