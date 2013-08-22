@@ -662,11 +662,12 @@ class AdminController extends Controller {
             CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
             $modelProduct = CompanyProduct::model()->findAll('main_id = :main_id', array(':main_id' => $id));
-
             foreach ($modelProduct as $productArray) {
                 PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
                 PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
             }
+            
+            DelivSer::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
             CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
             CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
