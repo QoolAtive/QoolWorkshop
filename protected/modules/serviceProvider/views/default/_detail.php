@@ -1,3 +1,6 @@
+<style type="text/css">
+#replyuser{display:none;}
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -60,47 +63,48 @@
         </h3>
         <div class="clearfix servicebanner">
             <div style="float: left; width: 525px; height: 220px; ">
-            <div id="featured"> 
-                <?php
-                $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                if ($banner == null) {
-                    ?>
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                <div id="featured"> 
                     <?php
-                } else {
-                    foreach ($banner as $data) {
+                    $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    if ($banner == null) {
                         ?>
-                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                        <?php
+                    } else {
+                        foreach ($banner as $data) {
+                            ?>
+                            <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="Center-Container is-Inline-logo">
+                <div class="Center-Block">
+                    <?php
+                    if ($model->logo != null) {
+                        ?>
+                        <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" />
+                        <?php
+                    } else {
+                        ?>
+                        <img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/>
                         <?php
                     }
-                }
-                ?>
+                    ?>
+                </div>
+
             </div>
         </div>
-
-<div class="Center-Container is-Inline-logo">
-  <div class="Center-Block">
-            <?php
-            if ($model->logo != null) {
-                ?>
-                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" />
-                <?php
-            } else {
-                ?>
-                <img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/>
-                <?php
-            }
-            ?>
-             </div>
-
-</div>
-</div>
 
 
         
         <div class="servicebox"  >
+
             <h2>
                 <img src="/img/icontopic.png" />
                 <?php
@@ -115,7 +119,14 @@
                     );
                 }
                 ?>
+
+                <span class="right" style=" font-size: 13px;
+    margin-top: 3px; cursor:pointer; z-index: 9999; ">
+                    <i class="icon-star" style="color: goldenrod;"></i> 
+                <span id="reply"> เก็บเข้ารายการโปรด</span>
+                <span></span>
             </h2>
+
             <table>
                 <tr>
                     <td><?php echo Yii::t('language', 'ชื่อบริษัท'); ?></td>
