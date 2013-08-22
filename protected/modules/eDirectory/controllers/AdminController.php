@@ -819,8 +819,10 @@ class AdminController extends Controller {
                             $add_payment->save();
                         }
                     }
-
-                    if (!empty($payment_array)) {
+                    
+                    
+                        
+                    if (!empty($payment_special_array)) {
                         foreach ($payment_special_array as $data) { // สิทธิพิเศษ
                             $add_special = new PaymentSpecial;
                             $add_special->product_id = $model->id;
