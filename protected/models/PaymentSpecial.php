@@ -17,7 +17,7 @@ class PaymentSpecial extends PaymentSpecialBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('product_id, special_id', 'required'),
+            array('product_id', 'required'),
             array('product_id, special_id', 'numerical', 'integerOnly' => true),
             array('other,other1, other2', 'length', 'max' => 255),
             // The following rule is used by search().
