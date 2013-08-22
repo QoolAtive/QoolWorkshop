@@ -1,15 +1,13 @@
-<script type="text/javascript">
-    $(document).ready(function(){
-bootstro.start('.bootstro', {
-               
-                    finishButton : ''
-                });    
-                    });
-</script>
-
 <?php
 if ($model->web_shop_id == NULL) {
     ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            bootstro.start('.bootstro', {
+                finishButton: ''
+            });
+        });
+    </script>
     <div class="sidebar">
         <div class="menuitem">
             <ul>
@@ -39,14 +37,14 @@ if ($model->web_shop_id == NULL) {
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
-    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
-    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
                 </span>
             </h3>
         <?php } ?>
@@ -60,17 +58,16 @@ if ($model->web_shop_id == NULL) {
         <h3 class="headfont _100 bootstro" data-bootstro-step="0" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="Theme ส่วนนี้จะเป็นการเลือกธีมให้ร้านค้าของคุณ เลือกให้เหมาะกับสินค้าของคุณ จะช่วยเพิ่มความสวยงามความน่าเชื่อถือและยอดขายของร้านคุณ  " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> Themes </h3>
         <ul class="clearfix bootstro" id="template" data-bootstro-step="3" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="มีธีมกว่า 10 แบบให้เลือกใช้งาน" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <li>
-              <div class="bootstro"   data-bootstro-step="1" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="คุณสามารถเลือกธีมร้านค้าของคุณโดยการคลิ๊กทีธีมนั้น " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> 
-                <?php
-                echo CHtml::image('/img/layout/tp001.jpg', '', array(
-                    'id' => 'tp1',
-                    'width' => '128',
-                    'height' => '110',
-
-                    'onclick' => 'List.select(1, this);',
-                ));
-                ?>
-            </div>
+                <div class="bootstro"   data-bootstro-step="1" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="คุณสามารถเลือกธีมร้านค้าของคุณโดยการคลิ๊กทีธีมนั้น " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> 
+                    <?php
+                    echo CHtml::image('/img/layout/tp001.jpg', '', array(
+                        'id' => 'tp1',
+                        'width' => '128',
+                        'height' => '110',
+                        'onclick' => 'List.select(1, this);',
+                    ));
+                    ?>
+                </div>
                 <div id="gallery" class="bootstro"   data-bootstro-step="2" data-bootstro-placement="bottom" data-bootstro-width="400px" data-bootstro-content="คุณสามารถคลิ๊กเพื่อดูตัวอย่างก่อนได้" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
                     <?php
                     echo CHtml::link('preview', "/img/layout/tp001.jpg");
@@ -235,6 +232,6 @@ if ($model->web_shop_id == NULL) {
             ?>
         </p>
 
-<?php $this->endWidget(); ?>
+        <?php $this->endWidget(); ?>
     </div>
 </div>
