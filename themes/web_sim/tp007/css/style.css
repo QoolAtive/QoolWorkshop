@@ -89,7 +89,7 @@ input#btnTopsearch:hover{
 #nav li a{
 	padding: 10px 55px 0px 55px;
 	color:#fff!important;
-	height340px;
+	height: 340px;
 	display:inline-block;
 }
 #nav li a:hover{

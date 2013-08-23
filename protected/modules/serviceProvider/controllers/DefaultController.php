@@ -3,6 +3,9 @@
 class DefaultController extends Controller {
 
     public function actionReadingFile($id, $type) {
+        
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'ReadingFile', 3);
+        
         switch ($type) {
             case 'brochure':
                 $model = SpBrochure::model()->find('brochure_id=:brochure_id', array(':brochure_id' => $id));
@@ -17,6 +20,9 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex($id = null) {
+//        Yii::app()->googleAnalytics->_setCustomVar(1, 'Section', 'Life & Style', 3);
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'Index', 3);
+        
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -54,6 +60,9 @@ class DefaultController extends Controller {
     }
 
     public function actionPartnerGroup($id = null) {
+        
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'PartnerGroup', 3);
+        
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -66,6 +75,9 @@ class DefaultController extends Controller {
     }
 
     public function actionDetail($id = null, $type = null) {
+        
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'Detail', 3);
+        
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -100,6 +112,9 @@ class DefaultController extends Controller {
     }
 
     public function actionReadingPdf($id) {
+        
+        Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'ReadingPdf', 3);
+        
         $model = SpCompany::model()->find('id=:id', array(':id' => $id));
         $path = './file/brochure/' . $model->brochure;
         header('Content-Type: application/pdf');

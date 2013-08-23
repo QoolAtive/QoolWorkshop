@@ -2,15 +2,27 @@
 
 class DefaultController extends Controller {
 
-    public function actionReadingFile($id, $type) {
+    public function actionReadingFile($id = null, $type = null) {
         switch ($type) {
             case 'brochure':
                 $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
                 $path = './file/brochure/' . $model->path;
+                $filename = $model->path;
+                break;
+            case 'companyXLS':
+//                $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
+                $filename = 'default_company.xls';
+                $path = './file/company/' . $filename;
+                break;
+            case 'productXLS':
+//                $model = CompanyBrochure::model()->find('company_brochure_id=:company_brochure_id', array(':company_brochure_id' => $id));
+                $filename = 'default_product.xls';
+                $path = './file/company/' . $filename;
+
                 break;
         }
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . $model->path . '";');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
         header('Content-Length: ' . filesize($path));
         readfile($path);
         Yii::app()->end();
@@ -24,7 +36,7 @@ class DefaultController extends Controller {
             inner join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 't.name, t.name_en';
-        $criteria->order = 't.id desc'; 
+        $criteria->order = 't.id desc';
         if ($id != null) {
             $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
         } else {
@@ -50,10 +62,31 @@ class DefaultController extends Controller {
         $model = Company::model()->find('id=:id', array(':id' => $id));
         $model_user = MemRegistration::model()->find('id=:id', array(':id' => $model->user_id));
 
+        // นับจำนวนคนเข้ามาชม
+        $num = CompanyCountView::model()->count('company_id = :company_id', array(':company_id' => $id));
+        if ($num < 1) {
+            $model_count_company = new CompanyCountView();
+            $model_count_company->company_id = $id;
+            $model_count_company->count_company_view = 1;
+            $model_count_company->update_at = date('Y-m-d');
+            $model_count_company->save();
+        } else {
+            $model_count_company = CompanyCountView::model()->find('company_id = :company_id', array(':company_id' => $id));
+            $model_count_company->count_company_view = ($model_count_company->count_company_view + 1);
+            $model_count_company->update_at = date('Y-m-d');
+            $model_count_company->save();
+        }
+
+        $create = CompanyMotion::model()->find('company_id = :company_id', array(':company_id' => $id));
+
+        //------
+
         $this->render('company_detail', array(
             'model' => $model,
             'model_user' => $model_user,
             'type_business_back' => $type,
+            'count' => $model_count_company->getDataArray($id),
+            'create' => $create,
         ));
     }
 
@@ -85,28 +118,13 @@ class DefaultController extends Controller {
             $condition .= ')';
         }
 
-        $criteria->distinct = 'name, name_en';
+        $criteria->distinct = 't.name, t.name_en';
+        $criteria->order = 't.id desc';
         if ($id != null) {
             $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0' . $condition;
         } else {
             $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0' . $condition;
         }
-
-//        $criteria->compare('t.name', $name, true, 'and');
-//        $criteria->compare('t.name_en', $name, true, 'or');
-//        $criteria->compare('t.main_business', $name, true);
-//        $criteria->compare('t.main_business_en', $name, true);
-//        $criteria->compare('t.sub_business', $name, true);
-//        $criteria->compare('t.sub_business_en', $name, true);
-//        $criteria->compare('cp.name', $name, true); // ค้นหาจาก ตารางสินค้า
-//        $criteria->compare('cp.name_en', $name, true); // ค้นหาจาก ตารางสินค้า
-//
-//
-//        $criteria->compare('t.address', $address, true, 'and');
-//        $criteria->compare('t.address_en', $address, true, 'or');
-//        echo "<pre>";
-//        print_r($criteria);
-//        echo "</pre>";
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,

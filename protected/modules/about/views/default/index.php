@@ -78,10 +78,10 @@ switch ($view) {
 
         <?php
         if ($view == '2') {
-            $this->renderPartial('_view2', array('model' => $model));
+            $this->renderPartial('_view2');
         } 
         else if ($view == '3'){
-            $this->renderPartial('_view3', array('model' => $model)); // เริ่มต้นที่หน้านี้
+            $this->renderPartial('_view3', array('model' => $model));
         }
 
         else {

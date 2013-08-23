@@ -40,7 +40,7 @@
                 array(
                     'header' => Yii::t('language', 'ลิ้งก์ URL'),
                     'name' => 'url',
-                    'value' => 'CHtml::link("$data->url", $data->url)',
+                    'value' => 'CHtml::link("$data->url", $data->url, array(target=>_blank))',
                     'type' => 'raw',
                 ),
 //                array(

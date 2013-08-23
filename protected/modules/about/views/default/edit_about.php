@@ -21,6 +21,15 @@
                 );
                 ?>
             </li>
+            <li class="noselect">
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'Sitemap'), CHtml::normalizeUrl(
+                                array('/about/default/index/view/3')
+                        ), array('rel' => 'view3')
+                );
+                ?>
+            </li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 ?>

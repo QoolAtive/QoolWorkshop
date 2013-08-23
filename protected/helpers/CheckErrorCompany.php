@@ -12,6 +12,16 @@ Class CheckErrorCompany {
         return $message;
     }
 
+    public static function verify_payment($payment_id) {
+        $count = Payment::model()->count('payment_id=:payment_id', array(':payment_id' => $payment_id));
+        if ($count > 0)
+            $message = null;
+        else
+            $message = PaymentCondition::model()->getAttributeLable('payment') . ' ' . $payment_id . ' ' . 'ไม่มีอยู่ในระบบ';
+
+        return $message;
+    }
+
     public static function haveErrorDup($attribute, $value, $messageError) {
         $count = Company::model()->findAll("{$attribute}=:{$attribute}", array(":{$attribute}" => $value));
         if (Count($count) < 1) {
@@ -47,28 +57,28 @@ Class CheckErrorCompany {
     }
 
     public static function verify_delively($value, $messageError) { // ตรวจสอบการจัดส่ง 
-        if ($value != 1 || $value != 2) {
-            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 1 หรือ 2 เท่านั้น';
-        } else {
+        if ($value == 1 || $value == 2) {
             $message = null;
+        } else {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 1 หรือ 2 เท่านั้น';
         }
         return $message;
     }
 
     public static function verify_type_delively($value, $messageError) { // ตรวจสอบการจัดส่ง 
-        if ($value != 0 || $value != 1 || $value != 2) {
-            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0, 1 หรือ 2 เท่านั้น';
-        } else {
+        if ($value == 0 || $value == 1 || $value == 2) {
             $message = null;
+        } else {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0, 1 หรือ 2 เท่านั้น';
         }
         return $message;
     }
-    
+
     public static function verify_option2($value, $messageError) { // ตรวจสอบการจัดส่ง 
-        if ($value != 0 || $value != 1) {
-            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0 หรือ 1 เท่านั้น';
-        } else {
+        if ($value == 0 || $value == 1) {
             $message = null;
+        } else {
+            $message = $messageError . ' ข้อมูลผิดพลาด จะต้องเป็น 0 หรือ 1 เท่านั้น';
         }
         return $message;
     }

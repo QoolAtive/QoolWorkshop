@@ -2,11 +2,11 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="title" content="ร้าน DBDshop">
+	<meta name="title" content="ร้าน <?php echo $this->shop['name_th']; ?>">
 	<meta name="description" content="">
 	<meta name="language" content="th">
 	<meta name="robots" content="index, follow">
-    <title>ร้าน <?php echo $this->shop['name_th']; ?></title>
+        <title>ร้าน <?php echo $this->shop['name_th']; ?></title>
   	<link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css">
 	<!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css">
@@ -85,6 +85,23 @@
 				</div>
 			</div><!-- end Track & Trace-->
 
+                        <div>
+                        <!--share fb-->
+                            <a href="#" onclick="
+                                window.open(
+                                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+                                  'facebook-share-dialog', 
+                                  'width=626,height=436'); 
+                                return false;">
+                                    <img src="/img/fbshare.jpg" alt="Share on Facebook" />
+                            </a>
+                        <!--share fb-->
+                        </div>
+                        <div>
+                            <!--like button-->
+                            <iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $this->shop['url']; ?>&amp;width=450&amp;height=80&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+                            <!--like button-->
+                        </div>
 		</div><!-- end col_right -->
 	</div><!-- end content -->
 </div><!-- wrapper -->

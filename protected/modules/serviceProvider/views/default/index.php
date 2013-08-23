@@ -53,7 +53,29 @@ $this->renderPartial('_side_bar', array(
                     ?>
                 </div>
                 <hr>
+                <div id="hot_shop">
+                    <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ยอดนิยม'); ?></h3>
+                    <?php
+                    $dataHotshop = new CActiveDataProvider('SpCompany', array(
+                        'criteria' => array(
+                            'join' => 'left join sp_count_comany_view sccv on t.id = sccv.sp_company_id',
+                            'order' => 'sccv.count_company_view desc, t.id desc',
+                            'limit' => 4
+                        ),
+                        'pagination' => array(
+                            'pageSize' => 4,
+                        ),
+                    ));
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $dataHotshop,
+                        'itemView' => '_list_all',
+                        'summaryText' => false,
+                        'template' => "{items}\n{pager}",
+                    ));
+                    ?>
+                </div>
                 <div>
+                    <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ล่าสุด'); ?></h3>
                     <?php
 //        $criteria = new CDbCriteria;
 //        $criteria->order = 'id asc';
@@ -76,7 +98,7 @@ $this->renderPartial('_side_bar', array(
                     ));
                     ?>
                 </div>
-              </div>
             </div>
         </div>
-    </div>    
+    </div>
+</div>    

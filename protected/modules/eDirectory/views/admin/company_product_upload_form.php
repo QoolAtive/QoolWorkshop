@@ -21,22 +21,27 @@ $this->renderPartial('side_bar', array(
             ));
             ?>
             <div class="clearfix" style="padding: 0px 50px; text-align: center;">
-                <div>
+                <div style="width: 48%; float: left;">
                     <?php
                     echo $form->labelEx($model, 'file');
                     echo $form->fileField($model, 'file');
                     echo $form->error($model, 'file');
                     ?>
+                    <div>
+                        <?php
+                        echo CHtml::submitButton(Yii::t('language', 'อัพโหลด'));
+                        ?>  
+                    </div>
                 </div>
                 <div>
                     <?php
-                    echo CHtml::submitButton(Yii::t('language', 'อัพโหลด'));
+                    echo CHtml::link(Yii::t('language', 'ดาวน์โหลดแบบฟอร์ม'), array('/eDirectory/default/readingFile', 'id' => null, 'type' => 'productXLS'));
                     ?>
                 </div>
             </div>
             <div class="clearfix"></div>
             <?php if ($errorTable != null) { ?>
-                <div class='clearfix' style="border: 1px solid blueviolet; padding: 5px;">
+                <div class='clearfix' style="border: 1px solid blueviolet; padding: 5px; margin: 10px 0px;">
                     <?php echo $errorTable; ?>
                 </div>
             <?php } ?>

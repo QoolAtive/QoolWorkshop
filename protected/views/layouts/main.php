@@ -23,8 +23,9 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
         <link rel="stylesheet" href="/css/orbit.css"  type="text/css"></link>
         <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/evol.colorpicker.css" type="text/css">
-            <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
-            <link rel="stylesheet" href="/css/responsive.css" type="text/css">
+        <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
+        <link rel="stylesheet" href="/css/responsive.css" type="text/css">
+
                 <!--JS-->
                 <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
                 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -86,4 +87,5 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
                     </div><!-- page -->
 
                 </body>
+
                 </html>

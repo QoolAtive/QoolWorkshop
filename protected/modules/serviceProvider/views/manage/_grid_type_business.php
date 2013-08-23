@@ -4,11 +4,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $model->getData(),
     'filter' => $model,
-    'ajaxUpdate' => true,
     'summaryText' => '',
+    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
         array(// display 'create_time' using an expression
-            'header' => 'ลำดับ',
+            'header' => Yii::t('language', 'ลำดับ'),
             'headerHtmlOptions' => array('style' => 'width: 7%;'),
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
@@ -35,16 +35,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //            ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'เครื่องมือ',
-            'template' => '{update}{delete}',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'header' => Yii::t('language', 'เครื่องมือ'),
+            'template' => '{update} &nbsp; {delete}',
             'buttons' => array(
                 'update' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'แก้ไข'), //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/insertTypeBusiness/",array("id"=>$data->id))',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => Yii::t('language', 'ลบ'), //Text label of the button.
                     'url' => 'Yii::app()->createUrl("/serviceProvider/manage/delTypeBusiness/",array("id"=>$data->id))',
                 ),
             ),
@@ -57,11 +57,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     ),
     'pager' => array(
         'class' => 'CLinkPager',
-        'header' => 'หน้าที่: ',
-        'firstPageLabel' => 'หน้าแรก',
-        'prevPageLabel' => 'ก่อนหน้า',
-        'nextPageLabel' => 'หน้าถัดไป',
-        'lastPageLabel' => 'หน้าสุดท้าย',
+        'header' => Yii::t('language', 'หน้าที่: '),
+        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
 ?>

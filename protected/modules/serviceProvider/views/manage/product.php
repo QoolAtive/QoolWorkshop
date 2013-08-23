@@ -50,7 +50,8 @@ $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
         <div class="_100 textcenter">
             <hr>
             <?php
-            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/company'
                 )) . "'")
             );
