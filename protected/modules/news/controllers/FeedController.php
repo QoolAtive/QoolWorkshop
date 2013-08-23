@@ -18,13 +18,13 @@ class FeedController extends Controller {
         // convert to the format needed by Zend_Feed
         $entries = array();
         foreach ($news_list as $news) {
-            $pubDate = $news['date_write']; 
-            $pubDate= date("D, d M Y H:i:s T", strtotime($pubDate));
+//            $timestamp = strtotime($news['date_write']);
+//            $rssDateTime = gmdate('r', $timestamp);
             $entries[] = array(
                 'title' => $news['subject_th'],
                 'link' => CHtml::normalizeUrl(array("/news/default/index/view/1")),
                 'description' => $news['detail_th'],
-                'lastUpdate' => date("D, d M Y H:i:s T", strtotime($pubDate)),
+                'lastUpdate' => strtotime($news['date_write']),
             );
         }
         // generate and render RSS feed
