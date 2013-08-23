@@ -1660,16 +1660,16 @@ text-align: center;
 }
 
 .learninglist li{
-    border: 1px solid #CCCCCC;
+    /*border: 1px solid #CCCCCC;*/
     float: left;
-    height: 183px;
-    margin: 1px;
+    /*height: 183px;*/
+    /*margin: 1px;*/
     text-align: center;
     width: 245px;
 }
 
 .learninglist li:hover img{
-    opacity: 0.8;
+    opacity: 0.7;
 }
 ul.yiiPager a:link, ul.yiiPager a:visited{
      padding: 3px 6px 1px;
