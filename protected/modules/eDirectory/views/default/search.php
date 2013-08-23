@@ -1,3 +1,4 @@
+<h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ร้านค้าล่าสุด'); ?></h3>
 <?php
 $this->widget('zii.widgets.CListView', array(
     'dataProvider' => $dataProvider,
