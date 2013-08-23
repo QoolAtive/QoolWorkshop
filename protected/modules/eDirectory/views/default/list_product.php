@@ -40,24 +40,30 @@
             ?>
         </p>
         <hr />
-        <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'สิทธิพิเศษ'); ?></label>
-        
-        <p>
-            <?php
-            $special = null;
-            $specialother = null;
-            $paymentSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $data->id));
-            foreach ($paymentSpecial as $paymentSpecialdata) {
+        <?php
+        $paymentSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $data->id));
+//        echo "<pre>";
+//        print_r($paymentSpecial);
+        if (count($paymentSpecial) > 0) {
+            ?>
+            <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'สิทธิพิเศษ'); ?></label>
+            <p>
+                <?php
+                $special = null;
+                $specialother = null;
+                $paymentSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $data->id));
+                foreach ($paymentSpecial as $paymentSpecialdata) {
 //                $typePayment = ::model()->findByPk($data['special_id']);
 //                if ($special == null) {
-                $special = Payment::model()->getListDataOption($paymentSpecialdata['special_id']);
+                    $special = Payment::model()->getListDataOption($paymentSpecialdata['special_id']);
 //                } else {
 //                    $special .= ',' . Payment::model()->getListDataOption($paymentSpecialdata['special_id']);
 //                }
-                $specialother = $paymentSpecialdata['other'];
-                echo '- ' . $special . ' ' . $specialother . "<br />";
-            }
-            ?>
-        </p>
+                    $specialother = $paymentSpecialdata['other'];
+                    echo '- ' . $special . ' ' . $specialother . "<br />";
+                }
+                ?>
+            </p>
+        <?php } ?>
     </li>
 </ul>
