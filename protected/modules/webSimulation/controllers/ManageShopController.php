@@ -553,6 +553,7 @@ class ManageShopController extends Controller {
     }
 
     public function actionShowBox($box_id, $is_show) {
+        $this->render('blank');
         if ($is_show) {
             //เปลี่ยนเป็นซ่อน
             WebShopBox::model()->updateByPk($box_id, array('show_box' => '0'));
@@ -568,11 +569,10 @@ class ManageShopController extends Controller {
                     window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
                   </script>";
         }
-        $this->render('blank');
     }
     
 //    หน้าจัดหมวดหมู่
-    public function actionManageItemCategory() {
+    public function actionManageCategory() {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
             $this->render('manage_category', array('shop_id' => $shop_id));
@@ -629,14 +629,14 @@ class ManageShopController extends Controller {
             Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/edit_item_in_box.js');
 
             if (isset($_POST['select'])) {
-                WebShopCategory::model()->deleteAll('web_shop_category_id = ' . $category_id);
+                WebShopCategoryItem::model()->deleteAll('web_shop_category_id = ' . $category_id);
                 if ($_POST['select'] != '') {
                     $arr = array();
                     $arr = preg_split('/,/', $_POST['select']);
                     foreach ($arr as $item_id) {
                         $model = new WebShopCategoryItem();
                         $model->web_shop_id = $shop_id;
-                        $model->web_shop_box_id = $category_id;
+                        $model->web_shop_category_id = $category_id;
                         $model->web_shop_item_id = $item_id;
                         $model->save();
                     }
@@ -649,6 +649,7 @@ class ManageShopController extends Controller {
     }
 
     public function actionShowCategory($category_id, $is_show) {
+        $this->render('blank');
         if ($is_show) {
             //เปลี่ยนเป็นซ่อน
             WebShopCategory::model()->updateByPk($category_id, array('show_box' => '0'));
@@ -664,7 +665,6 @@ class ManageShopController extends Controller {
                     window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')) . "';
                   </script>";
         }
-        $this->render('blank');
     }
 
     public function actionDeleteCategory($category_id) {
