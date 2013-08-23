@@ -1491,7 +1491,7 @@ div.grid-view table tr td:first-child {
     color: #FEAC00;
     margin-left: 17px;
 }
-#hot_shop {
+#hot_shop,.lastshop {
     padding: 10px;
 }
 #container .servicelist h4{

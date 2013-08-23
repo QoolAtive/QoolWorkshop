@@ -9,7 +9,7 @@ and (max-width : 480px) {
     border: 0px;
 }
 h3.barH3{
-    margin: 0px;
+    text-align: center;
 }
 .menuitem ul.tabs{
     width: 100%;
@@ -133,7 +133,7 @@ ul.tabs li a{
             padding: 10px 50px;
             background: goldenrod;
             -webkit-border-radius: 2px;
-            border-radius: 2px;
+            /*border-radius: 2px;*/
             text-align: center;
             font-size: 12px;
             color: #FFFFFF;
