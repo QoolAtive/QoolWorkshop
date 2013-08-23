@@ -18,7 +18,7 @@
             <?php
             $shop_url = WebShop::model()->findByPk($shop_id)->url;
             echo CHtml::button(Yii::t('language', 'ดูร้านค้าของคุณ'), array(
-                'onclick' => "window.location = '" . $shop_url . "'",
+                'onclick' => "window.open('" . $shop_url . "', '_blank');",
             ));
             echo CHtml::button(Yii::t('language', 'จัดการร้านค้าของคุณ'), array(
                 'onclick' => "window.location = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopList')) . "'",
