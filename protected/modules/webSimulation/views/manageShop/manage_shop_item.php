@@ -46,7 +46,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <ul class="innerlogo">
                     <li>
                         <?php
-                        echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItemCategory')));
+                        echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')));
                         ?>
                     </li>
                 </ul>

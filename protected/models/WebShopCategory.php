@@ -71,8 +71,8 @@ class WebShopCategory extends WebShopCategoryBase
 		return array(
 			'web_shop_category_id' => 'Web Shop Category',
 			'web_shop_id' => 'Web Shop',
-			'name_th' => 'Name Th',
-			'name_en' => 'Name En',
+			'name_th' => 'ชื่อหมวดหมู่ภาษาไทย',
+			'name_en' => 'ชื่อหมวดหมู่ภาษาอังกฤษ',
 			'order_n' => 'Order N',
 			'show_box' => 'Show Box',
 		);
