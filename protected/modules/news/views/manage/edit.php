@@ -103,23 +103,25 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 <div>
 
                     <?php
-                    $model_news_file = NewsFile::model()->findAll("news_id=" . $model->id);
-                    if (isset($model_news_file)) {
-                        echo "<div class='file_old clearfix'>";
-                        echo "<ul class='list_files'> ";
+                    if (isset($model->id)) {
+                        $model_news_file = NewsFile::model()->findAll("news_id=" . $model->id);
+                        if (isset($model_news_file)) {
+                            echo "<div class='file_old clearfix'>";
+                            echo "<ul class='list_files'> ";
 //                        $arr_file_detail = explode('.', $model_news_file->file_name);
 //
 //                        $arr_file_name = explode('/upload/file/news/', $model_news_file->file_path);
 
-                        foreach ($model_news_file as $k => $m) {
-                            echo "<li class='link_img'>";
-                            echo CHtml::link($m->file_name, $m->file_path, array('target' => '_blank'));
-                            echo "</li>";
-                        }
+                            foreach ($model_news_file as $k => $m) {
+                                echo "<li class='link_img'>";
+                                echo CHtml::link($m->file_name, $m->file_path, array('target' => '_blank'));
+                                echo "</li>";
+                            }
 
-                        echo "</ul>";
-                        echo "</div>";
-                    }
+                            echo "</ul>";
+                            echo "</div>";
+                        }
+                    }//end  isset($model->id)
                     ?>
 
                     <div class="descAttach">
