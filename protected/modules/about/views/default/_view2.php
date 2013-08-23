@@ -1,6 +1,5 @@
 <!--        Contact-->
 <div id="view2">
-    <div class="row-fluid fade">
         <!-- MAP -->
         <!--                จุดที่ถูกต้อง ll=13.882871,100.486858-->
         <div id="map_correct">
@@ -17,15 +16,6 @@
             <ul class="contactus">   
                 <h3><i class="icon-envelope-alt"></i><?php echo Yii::t('language', 'ติดต่อเรา'); ?></h3>
 
-                <?php
-#ไม่ใช้ปุ่ม edit แล้ว
-//                        if (Yii::app()->user->isAdmin()) {
-//                            echo CHtml::ajaxButton(Yii::t('language', 'แก้ไข'), CHtml::normalizeUrl(array(
-//                                        '/about/default/editContact')), array(
-//                                'update' => '#view2')
-//                            );
-//                        }
-                ?>
                 <li><i class="icon-map-marker"></i><?php echo Yii::t('language', '44/100 ถนนนนทบุรี 1 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000'); ?> 
                 </li>
                 <li>
@@ -107,7 +97,4 @@
             <?php $this->endWidget(); ?>
         </div>
 
-    </div>
-
 </div>
-<!--        <div id="view2" class="tabcontent ">-->
