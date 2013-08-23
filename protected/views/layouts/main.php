@@ -4,10 +4,11 @@
 if (!ereg("[.]+", Yii::app()->request->getUrl())) {
     Yii::app()->user->returnUrl = Yii::app()->request->getUrl();
 }
+$title = TitleWeb::model()->find('status = :status', array(':status' => 1));
 ?>
 <html lang="en" class="no-js">
     <head>
-        <title>DBDmart.com</title>
+        <title><?php echo $title->detail; ?></title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
@@ -57,7 +58,7 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
                     ga('create', 'UA-43356253-1', 'qoolative.com');
                     ga('send', 'pageview');
                 </script>
-                
+
                 </head>
 
                 <body>
@@ -68,7 +69,7 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
                             <div  class="page" >
 
                                 <!-- logo -->
-<?php echo $this->renderPartial("//layouts/_main-logo"); ?>
+                                <?php echo $this->renderPartial("//layouts/_main-logo"); ?>
 
                                 <!--right side top menu-->
                                 <?php echo $this->renderPartial("//layouts/_main-menu_head"); ?>
@@ -78,12 +79,12 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
                         <!-- container -->
                         <div id="container"  class="bg clearfix">
                             <div class="page pageborder white clearfix" >
-<?php echo $content; ?>
+                                <?php echo $content; ?>
                             </div>
                         </div><!-- container -->
 
                         <!-- footer -->
-<?php echo $this->renderPartial("//layouts/_main-footer"); ?>
+                        <?php echo $this->renderPartial("//layouts/_main-footer"); ?>
                     </div><!-- page -->
 
                 </body>
