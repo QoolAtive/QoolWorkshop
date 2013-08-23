@@ -54,7 +54,7 @@ $this->renderPartial('_side_bar', array(
                 </div>
                 <hr>
                 <div id="hot_shop">
-                    <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ยอดนิยม'); ?></h3>
+                    <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ยอดนิยม'); ?></h3>
                     <?php
                     $dataHotshop = new CActiveDataProvider('SpCompany', array(
                         'criteria' => array(
@@ -74,8 +74,8 @@ $this->renderPartial('_side_bar', array(
                     ));
                     ?>
                 </div>
-                <div>
-                    <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ล่าสุด'); ?></h3>
+                <div class="lastshop">
+                    <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ล่าสุด'); ?></h3>
                     <?php
 //        $criteria = new CDbCriteria;
 //        $criteria->order = 'id asc';
