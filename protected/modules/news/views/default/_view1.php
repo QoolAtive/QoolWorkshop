@@ -46,6 +46,30 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                         <div><?php echo $detail; ?></div>
                         <!--รูปภาพ-->
                         <div><img src="<?php echo $news['pic']; ?>" /></div>
+                        <?php
+                        $model_news_file = NewsFile::model()->findAll("news_id=" . $news['id']);
+                        if (isset($model_news_file)) {
+                            ?>
+                            <div>
+                                <?php
+                                echo "<h4 style='font-weight: bold'><u>" . Yii::t('language', 'แนบไฟล์') . ": </u></h4>";
+                                ?>
+                                <!--<ul class='list_files'>-->
+                                <ul class='icons-ul'>
+                                    <?php
+                                    foreach ($model_news_file as $k => $m) {
+//                                       echo "<li class='files'>"; 
+                                        echo "<li>";
+                                        echo CHtml::link(" <i class='icon-file-text'></i> " . $m->file_name, $m->file_path, array('target' => '_blank'));
+                                        echo "</li>";
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
                     </div>
                 </div>
             </div>
