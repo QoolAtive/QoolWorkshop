@@ -1,4 +1,10 @@
 /* @group Component */
+
+.edirsearchbox{
+  padding: 16px 8px;
+  background-image: url('/img/searchbg.png');
+  height: 104px;
+}
 .bootstro-highlight{
 /*    display: inline-block;
 */    border: 0px !important;
@@ -315,6 +321,7 @@ html, body{
     font-family: 'Open Sans', sans-serif; 
     font-size:12px; 
     color:#666;
+
 }
 
 input, textarea, select {
@@ -1473,17 +1480,39 @@ div.grid-view table tr td:first-child {
 }
 /* @end */
 #container .servicelist {
-    border: 1px dotted #F544FF;
-    float: left;
-    margin: 3px;
-    padding: 20px 10px;
-    width: 46%;
-    min-height: 140px;
     background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
+    border-radius: 9px 9px 9px 9px;
+    float: left;
+    margin: 3px 3px 5px;
+    min-height: 140px;
+    width: 100%;
 }
-#container .servicelist:hover{
+#container .servicelist h4 a{
+    color: #FEAC00;
+    margin-left: 17px;
+}
+#hot_shop {
+    padding: 10px;
+}
+#container .servicelist h4{
+   background: none repeat scroll 0 0 #4E2A81;
+    border-radius: 4px 4px 0 0;
+    color: #FFFFFF;
+    font-size: 1.125em;
+    padding-top: 4px;
+}
+.servicelist > ul {
+    border-color: #999999; 
+    border-image: none;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #999;
+    
+    border-width: 0 1px 1px;
+    padding: 18px;
+}
+/*#container .servicelist:hover{
     border : 1px solid #F544FF;
-}
+}*/
 
 #container .servicelist label {
     font-weight: bold;
@@ -2316,4 +2345,12 @@ ul.btnMangae li{
     margin: 5px 2px;
     text-align: center;
     padding: 3px;
+}
+
+
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)  {
+
+  #header{  
+    display: none;
+  }
 }

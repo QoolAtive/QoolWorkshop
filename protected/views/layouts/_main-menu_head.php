@@ -34,18 +34,22 @@
                 </li>
             </ul>
         </div>
-
+<input type="checkbox" id="toggle" />
+<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick></label>
         <ul class="menu clearfix">
             <li><a href="/knowledge/default/index"><?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?></a></li>
             <li><a href="/webSimulation/default/index"><?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?></a></li>
             <li><a href="/eDirectory/default/index"><?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?></a></li>
             <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'บริการ'); ?></a></li>
-        </ul>
-        <ul class="menu clearfix">
             <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?></a></li>
             <li><a href="/faq/default/index"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
             <li><a href="/about/default/index"><?php echo Yii::t('language', 'เกี่ยวกับเรา'); ?></a></li>
             <li><a href="/news/default/index"><?php echo Yii::t('language', 'ข่าวสารและกิจกรรม'); ?></a> </li>
+       
         </ul>
+        
+            
+
+
     </div>
 </div>
