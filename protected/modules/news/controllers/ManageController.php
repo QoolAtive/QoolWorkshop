@@ -56,7 +56,26 @@ class ManageController extends Controller {
             }
 //END for upload pic
 
+
             if ($model->save()) {
+//for upload news file
+                $arr_news_files = CUploadedFile::getInstancesByName('file_path');
+                if($arr_news_files != NULL) {
+                    $news_path = '/upload/file/news/';
+
+                    foreach ($arr_news_files as $news_i => $news_file) {
+                        $model_news_file = new NewsFile;
+                        $model_news_file->news_id = $model->id;
+                        $arr_news_file_detail = explode('.', $news_file->getName());
+                        $news_formatName = $arr_news_file_detail[0] . "-" . time() . $news_i . '.' . $news_file->getExtensionName();
+                        $news_file->saveAs('.' . $news_path . $news_formatName);
+                        $model_news_file->file_name = $arr_news_file_detail[0] . '.' . $news_file->getExtensionName();
+                        $model_news_file->file_path = $news_path . $news_formatName;
+                        $model_news_file->save();
+                    }
+                }
+//END for upload news file
+
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/index')) . "';
