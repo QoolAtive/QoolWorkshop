@@ -270,4 +270,101 @@ class DefaultController extends Controller {
         }
     }
 
+    public function actionTitleWeb() {
+
+        $model = new TitleWeb();
+        if ($_GET['TitleWeb']) {
+            $model->attributes = $_GET['TitleWeb'];
+        }
+
+        $criteria = new CDbCriteria;
+        $criteria->order = 't.title_web_id desc';
+        $criteria->compare('detail', $model->detail, true);
+
+        $dataProvider = new CActiveDataProvider('TitleWeb', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('title_web', array(
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ));
+    }
+
+    public function actionTitleWebInsert($title_web_id = null) {
+        if ($title_web_id == null) {
+            $model = new TitleWeb();
+        } else {
+            $model = TitleWeb::model()->findByPk($title_web_id);
+        }
+        if ($_POST['TitleWeb']) {
+            $model->attributes = $_POST['TitleWeb'];
+            $model->validate();
+            if ($model->getErrors() == null) {
+                
+                if ($model->status == 1) {
+                    $setDefault = TitleWeb::model()->findAll();
+                    foreach ($setDefault as $dataSet) {
+                        $set = TitleWeb::model()->find('title_web_id = :title_web_id', array(':title_web_id' => $dataSet['title_web_id']));
+                        $set->status = 0;
+                        $set->save();
+                    }
+                }
+
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกเรียบข้อมูลเรียบร้อย') . "');
+                        window.location='/dataCenter/default/titleWeb';
+                        </script>
+                        ";
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                }
+            }
+        }
+
+        $this->render('title_web_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionTitleWebSet($title_web_id = null) {
+        if ($title_web_id != null) {
+            $setDefault = TitleWeb::model()->findAll();
+            foreach ($setDefault as $dataSet) {
+                $set = TitleWeb::model()->find('title_web_id = :title_web_id', array(':title_web_id' => $dataSet['title_web_id']));
+                $set->status = 0;
+                $set->save();
+            }
+
+            $model = TitleWeb::model()->find('title_web_id = :title_web_id', array(':title_web_id' => $title_web_id));
+            $model->status = 1;
+            if ($model->save()) {
+                echo "
+                    <meta charset='UTF-8'></meta>
+                    <script>
+                    alert('" . Yii::t('language', 'ตั้งค่าเรียบร้อย') . "');
+                    window.location='/dataCenter/default/titleWeb';
+                    </script>
+                    ";
+            }
+        }
+    }
+
+    public function actionTitleWebDel($title_web_id = null) {
+        if ($title_web_id != null) {
+            $model = TitleWeb::model()->find('title_web_id = :title_web_id', array(':title_web_id' => $title_web_id));
+            if ($model->status == 1) {
+                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+            } else {
+                if ($model->delete()) {
+                    echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+                }
+            }
+        }
+    }
+
 }
