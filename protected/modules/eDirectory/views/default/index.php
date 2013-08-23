@@ -30,7 +30,15 @@ $this->renderPartial('side_bar', array(
                         ), array(
                     'update' => 'div#show_detail'
                         ), array(
-                    'style' => "color: blue; display: inline-block; background:url('/img/searchbtn.png');text-align: center ; font-size: 20px; line-height: 106px; height: 106px; width: 100%;",
+                    'style' => "    background: url('/img/searchbtn.png') no-repeat scroll 0 0 transparent;
+    color: #0000FF;
+    display: inline-block;
+    font-size: 20px;
+    height: 106px;
+    line-height: 106px;
+    margin-left: 16%;
+    text-align: center;
+    width: 75%;",
                 ));
                 ?>
             </li>
@@ -39,7 +47,7 @@ $this->renderPartial('side_bar', array(
         $this->endWidget();
         ?>
         <div id="hot_shop">
-            <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ร้านค้ายอดนิยม'); ?></h3>
+            <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้ายอดนิยม'); ?></h3>
             <?php
 //            $c = new CDbCriteria;
             $dataHotshop = new CActiveDataProvider('Company', array(
@@ -62,7 +70,7 @@ $this->renderPartial('side_bar', array(
             ?>
         </div>
         <div id="show_detail">
-            <h3><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'ร้านค้าล่าสุด'); ?></h3>
+            <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้าล่าสุด'); ?></h3>
             <?php
             $this->widget('zii.widgets.CListView', array(
                 'dataProvider' => $dataProvider,
