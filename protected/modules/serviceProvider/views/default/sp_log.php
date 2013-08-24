@@ -36,3 +36,31 @@
         </ul>
     </div>
 </div>
+
+<div class="content">
+    <div class="tabcontents">
+        <h3 class="barH3">
+            <span>
+                <i class="icon-cog"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                    <?php echo Yii::t('language', 'บริการ'); ?>
+                </a>
+                <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'บริการโปรด'); ?>
+            </span>
+        </h3>
+        <?php
+        $this->renderPartial('sp_log_grid', array(
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ));
+        ?>
+        <div style="text-align: center;">
+            <?php
+            echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/member/manage/profile'
+                )) . "'")
+            );
+            ?>
+        </div>
+    </div>
+</div>

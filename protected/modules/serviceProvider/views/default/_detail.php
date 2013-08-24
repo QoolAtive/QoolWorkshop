@@ -1,5 +1,5 @@
 <style type="text/css">
-#replyuser{display:none;}
+    #replyuser{display:none;}
 </style>
 <div class="sidebar">
     <div class="menuitem">
@@ -102,7 +102,7 @@
         </div>
 
 
-        
+
         <div class="servicebox"  >
 
             <h2>
@@ -119,12 +119,38 @@
                     );
                 }
                 ?>
-
-                <span class="right" style=" font-size: 13px;
-    margin-top: 3px; cursor:pointer; z-index: 9999; ">
+                <span class="right" style="font-size: 12px; padding: 3px 5px;">
                     <i class="icon-star" style="color: goldenrod;"></i> 
-                <span id="reply"> เก็บเข้ารายการโปรด</span>
-                <span></span>
+                    <?php
+                    $countSpLog = SpLog::model()->count('user_id = :user_id and service_company_id  = :service_company_id ', array(
+                        ':user_id' => Yii::app()->user->id,
+                        ':service_company_id' => $model->id,
+                    ));
+                    if ($countSpLog > 0) {
+                        echo CHtml::link(Yii::t('language', 'เก็บเข้ารายการโปรดแล้ว', '#'));
+                    } else {
+                        echo CHtml::ajaxLink(
+                                Yii::t('language', 'เก็บเข้ารายการโปรด'), Yii::app()->createUrl('/serviceProvider/default/insertLog'), array(
+                            'type' => 'POST',
+                            'beforeSend' => "function( request )
+                                        {
+                                          // Set up any pre-sending stuff like initializing progress indicators
+                                        }",
+                            'success' => "function( data )
+                                    {
+                                      alert( data );
+                                    }",
+                            'data' => array(
+                                'sp_id' => $model->id,
+                            ),
+                            array(//htmlOptions
+                                'href' => Yii::app()->createUrl('serviceProvider/default/insertLog'),
+                            )
+//                        'update' => '#student_panel_handler'
+                        ));
+                    }
+                    ?>
+                </span>
             </h2>
 
             <table>
@@ -171,11 +197,11 @@
                 </tr>
                 <?php
                 $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                if ($brochure > 0) { 
+                if ($brochure > 0) {
                     ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'โบรชัวร์'); ?></td>
-                    <td class="colon"> : </td>
+                        <td class="colon"> : </td>
                         <td>
                             <?php
                             $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
