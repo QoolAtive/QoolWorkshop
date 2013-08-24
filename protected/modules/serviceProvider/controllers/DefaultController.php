@@ -136,6 +136,7 @@ class DefaultController extends Controller {
         $criteria = new CDbCriteria;
         $criteria->select = "t.*, spc.name as companyName, spc.name_en as companyName_en";
         $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
+        $criteria->condition = "t.user_id = " . Yii::app()->user->id;
 
         $criteria->compare('spc.name', $model->companyName, true);
         $criteria->compare('spc.name_en', $model->companyName_en, true);
