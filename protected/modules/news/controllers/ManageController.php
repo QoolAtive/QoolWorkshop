@@ -56,7 +56,26 @@ class ManageController extends Controller {
             }
 //END for upload pic
 
+
             if ($model->save()) {
+//for upload news file
+                $arr_news_files = CUploadedFile::getInstancesByName('file_path');
+                if($arr_news_files != NULL) {
+                    $news_path = '/upload/file/news/';
+
+                    foreach ($arr_news_files as $news_i => $news_file) {
+                        $model_news_file = new NewsFile;
+                        $model_news_file->news_id = $model->id;
+                        $arr_news_file_detail = explode('.', $news_file->getName());
+                        $news_formatName = $arr_news_file_detail[0] . "-" . time() . $news_i . '.' . $news_file->getExtensionName();
+                        $news_file->saveAs('.' . $news_path . $news_formatName);
+                        $model_news_file->file_name = $arr_news_file_detail[0] . '.' . $news_file->getExtensionName();
+                        $model_news_file->file_path = $news_path . $news_formatName;
+                        $model_news_file->save();
+                    }
+                }
+//END for upload news file
+
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.top.location.href = '" . CHtml::normalizeUrl(array('/news/manage/index')) . "';
@@ -176,6 +195,9 @@ class ManageController extends Controller {
             $news = News::model()->findByPk($news_id);
             $email_list = NewsMail::model()->findAll();
 
+            // Add By Ann 23-08-56 For AddAttachment in E-mail
+            $data['news_id'] = $news_id;
+            
             $data['from'] = 'dbdmart2013@gmail.com';
             $data['name'] = Yii::t('language', 'ข่าวสารจาก DBD Mart');
             $data['subject'] = $news['subject_th'];
@@ -190,7 +212,7 @@ class ManageController extends Controller {
 
             if ($counter > 0) {
                 echo "<script>
-                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน ') . $counter . Yii::t('language', ' ฉบับ ') . "');
+                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน').' ' . $counter .' '. Yii::t('language', 'ฉบับ') . "');
                         window.close();
                     </script>";
             } else {
