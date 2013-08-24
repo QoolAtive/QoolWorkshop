@@ -5,12 +5,24 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
     Yii::app()->user->returnUrl = Yii::app()->request->getUrl();
 }
 $title = TitleWeb::model()->find('status = :status', array(':status' => 1));
+$description = Description::model()->find('status = :status', array(':status' => 1));
+$key = null;
+$keyword = Keyword::model()->findAll();
+foreach ($keyword as $keyData) {
+    if ($key == null) {
+        $key .= $keyData->name;
+    } else {
+        $key .= ', ' . $keyData->name;
+    }
+}
 ?>
 <html lang="en" class="no-js">
     <head>
         <title><?php echo $title->detail; ?></title>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
+        <meta content="<?php echo $description->detail; ?>" name="description"></meta>
+        <meta content="<?php echo $key; ?>" name="keywords"></meta>
 
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
