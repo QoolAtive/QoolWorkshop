@@ -44,7 +44,7 @@ $this->renderPartial('_sidebar', array());
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'status') . "<br />";
-                echo $form->dropDownList($model, 'status', TitleWeb::model()->getStatus(), array('style' => 'width: 150px;'));
+                echo $form->textArea($model, 'status', TitleWeb::model()->getStatus(), array('style' => 'width: 150px;'));
                 echo $form->error($model, 'status')
                 ?>
             </div>
