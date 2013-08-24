@@ -13,9 +13,9 @@ foreach ($boxs as $box) {
                 $item_detail = WebShopItem::model()->findByPk($item['web_shop_item_id']);
                 ?>
                 <div class="item">
-                    <div class="pdf"></div>
+                    <a class="pdf" href="#"></a>
                     <div class="item_pic">
-                        <a href="/webSimulation/shop/productDetail/id/<?php echo $item_detail['web_shop_id']; ?>/p_id/<?php echo $item_detail['web_shop_item_id']; ?>" alt="<?php echo $item_detail['name_th']; ?>">
+                        <a href="#">
                             <img alt="<?php echo $item_detail['name_th']; ?>" src="
                             <?php
                             if ($item_detail['pic_1'] != NULL) {
@@ -42,7 +42,7 @@ foreach ($boxs as $box) {
                         <span class="price">฿<?php echo $item_detail['price_normal']; ?></span>
                     </div>
                     <div class="info_item">
-                        <h3><a href="/webSimulation/shop/productDetail/id/<?php echo $item_detail['web_shop_id']; ?>/p_id/<?php echo $item_detail['web_shop_item_id']; ?>" alt="<?php echo $item_detail['name_th']; ?>" title="<?php echo $item_detail['name_th']; ?>">
+                        <h3><a href="#" alt="<?php echo $item_detail['name_th']; ?>" title="<?php echo $item_detail['name_th']; ?>">
                                 <?php echo $item_detail['name_th']; ?>
                                 <span class="promotion_price"></span>
                             </a></h3>

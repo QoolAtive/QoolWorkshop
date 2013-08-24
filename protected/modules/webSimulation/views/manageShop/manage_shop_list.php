@@ -38,7 +38,7 @@
                     'type' => 'raw',
                 ),
                 array(
-                    'header' => Yii::t('language', 'ลิ้งก์ URL'),
+                    'header' => Yii::t('language', 'ที่อยู่ลิงก์'),
                     'name' => 'url',
                     'value' => 'CHtml::link("$data->url", $data->url, array(target=>_blank))',
                     'type' => 'raw',
