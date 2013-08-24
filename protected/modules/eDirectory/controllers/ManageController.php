@@ -410,33 +410,37 @@ class ManageController extends Controller {
                 if ($model->save()) {
 
                     PaymentCondition::model()->deleteAll("product_id = :product_id", array(":product_id" => $pro_id));
-                    foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
-                        $add_payment = new PaymentCondition;
-                        $add_payment->product_id = $model->id;
-                        $add_payment->payment_id = $payData;
+                    if (!empty($payment_array)) {
+                        foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                            $add_payment = new PaymentCondition;
+                            $add_payment->product_id = $model->id;
+                            $add_payment->payment_id = $payData;
 
-                        if ($payData == 5) {
-                            $add_payment->other = $model_payment->other;
-                        } else {
-                            $add_payment->other = null;
+                            if ($payData == 5) {
+                                $add_payment->other = $model_payment->other;
+                            } else {
+                                $add_payment->other = null;
+                            }
+
+                            $add_payment->save();
                         }
-
-                        $add_payment->save();
                     }
 
                     PaymentSpecial::model()->deleteAll("product_id = :product_id", array(":product_id" => $pro_id));
-                    foreach ($payment_special_array as $data) { // สิทธิพิเศษ
-                        $add_special = new PaymentSpecial;
-                        $add_special->product_id = $model->id;
-                        $add_special->special_id = $data;
+                    if (!empty($payment_special_array)) {
+                        foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                            $add_special = new PaymentSpecial;
+                            $add_special->product_id = $model->id;
+                            $add_special->special_id = $data;
 
-                        if ($data == 0) {
-                            $add_special->other = $model_payment_special->other1;
-                        } else {
-                            $add_special->other = $model_payment_special->other2;
+                            if ($data == 0) {
+                                $add_special->other = $model_payment_special->other1;
+                            } else {
+                                $add_special->other = $model_payment_special->other2;
+                            }
+
+                            $add_special->save();
                         }
-
-                        $add_special->save();
                     }
 
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
