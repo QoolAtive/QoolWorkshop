@@ -273,13 +273,14 @@ class DefaultController extends Controller {
     public function actionTitleWeb() {
 
         $model = new TitleWeb();
-        if ($_GET['TitleWeb']) {
+        if (isset($_GET['TitleWeb'])) {
             $model->attributes = $_GET['TitleWeb'];
         }
 
         $criteria = new CDbCriteria;
         $criteria->order = 't.title_web_id desc';
         $criteria->compare('detail', $model->detail, true);
+        $criteria->compare('detail_en', $model->detail_en, true);
 
         $dataProvider = new CActiveDataProvider('TitleWeb', array(
             'criteria' => $criteria,
@@ -297,11 +298,11 @@ class DefaultController extends Controller {
         } else {
             $model = TitleWeb::model()->findByPk($title_web_id);
         }
-        if ($_POST['TitleWeb']) {
+        if (isset($_POST['TitleWeb'])) {
             $model->attributes = $_POST['TitleWeb'];
             $model->validate();
             if ($model->getErrors() == null) {
-                
+
                 if ($model->status == 1) {
                     $setDefault = TitleWeb::model()->findAll();
                     foreach ($setDefault as $dataSet) {
@@ -363,6 +364,157 @@ class DefaultController extends Controller {
                 if ($model->delete()) {
                     echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
                 }
+            }
+        }
+    }
+
+    public function actionDescription() {
+        $model = new Description();
+        if (isset($_GET['Description'])) {
+            $model->attributes = $_GET['Description'];
+        }
+
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('description_id', $model->description_id);
+        $criteria->compare('detail', $model->detail, true);
+        $criteria->compare('detail', $model->detail_en, true);
+        $criteria->compare('status', $model->status);
+
+        $dataProvider = new CActiveDataProvider('Description', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('description', array(
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionDescriptionInsert($description_id = null) {
+        if ($description_id == null) {
+            $model = new Description();
+        } else {
+            $model = Description::model()->find('description_id = :description_id', array(':description_id' => $description_id));
+        }
+
+        if (isset($_POST['Description'])) {
+            $model->attributes = $_POST['Description'];
+
+            $model->validate();
+
+            if ($model->getErrors() == null) {
+
+                if ($model->save()) {
+                    echo "
+                    <meta charset='UTF-8'></meta>
+                    <script>
+                    alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                    window.location='/dataCenter/default/description';
+                    </script>
+                    ";
+                } else {
+                    
+                }
+            }
+        }
+
+        $this->render('description_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionDescriptionSet($description_id = null) {
+        if ($description_id != null) {
+            $setDefault = Description::model()->findAll();
+            foreach ($setDefault as $dataSet) {
+                $set = Description::model()->find('description_id = :description_id', array(':description_id' => $dataSet['description_id']));
+                $set->status = 0;
+                $set->save();
+            }
+
+            $model = Description::model()->find('description_id = :description_id', array(':description_id' => $description_id));
+            $model->status = 1;
+            if ($model->save()) {
+                echo "
+                    <meta charset='UTF-8'></meta>
+                    <script>
+                    alert('" . Yii::t('language', 'ตั้งค่าเรียบร้อย') . "');
+                    window.location='/dataCenter/default/description';
+                    </script>
+                    ";
+            }
+        }
+    }
+
+    public function actionDescriptionDel($description_id = null) {
+        if ($description_id != null) {
+            $model = Description::model()->find('description_id = :description_id', array(':description_id' => $description_id));
+            if ($model->status == 1) {
+                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+            } else {
+                if ($model->delete()) {
+                    echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+                }
+            }
+        }
+    }
+
+    public function actionKeyword() {
+        $model = new Keyword();
+        if ($_GET['Keyword']) {
+            $model->attributes = $_GET['Keyword'];
+        }
+
+        $criteria = new CDbCriteria;
+        $criteria->order = 't.keyword_id desc';
+
+        $criteria->compare('name', $model->name, true);
+
+        $dataProvider = new CActiveDataProvider('Keyword', array(
+            'criteria' => $criteria,
+        ));
+
+        $this->render('keyword', array(
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionKeywordInsert($keyword_id = null) {
+        if ($keyword_id == null) {
+            $model = new Keyword();
+        } else {
+            $model = Keyword::model()->find('keyword_id = :keyword_id', array(':keyword_id' => $keyword_id));
+        }
+
+        if ($_POST['Keyword']) {
+            $model->attributes = $_POST['Keyword'];
+
+            $model->validate();
+            if ($model->getErrors() == null) {
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.location='/dataCenter/default/keyword';
+                        </script>
+                        ";
+                }
+            }
+        }
+
+        $this->render('keyword_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionKeywordDel($keyword_id = null) {
+        if ($keyword_id != null) {
+            $model = Keyword::model()->find('keyword_id = :keyword_id', array(':keyword_id' => $keyword_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         }
     }

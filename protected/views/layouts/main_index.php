@@ -6,10 +6,14 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
 }
 
 $title = TitleWeb::model()->find('status = :status', array(':status' => 1));
+$description = Description::model()->find('status = :status', array(':status' => 1));
 ?>
 <html lang="en" class="no-js">
     <head>
         <title><?php echo $title->detail; ?></title>
+        <meta content="<?php echo $description->detail; ?>" name="description"></meta>
+        <meta content="<?php echo $key; ?>" name="keywords"></meta>
+        
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
         <meta charset="UTF-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
