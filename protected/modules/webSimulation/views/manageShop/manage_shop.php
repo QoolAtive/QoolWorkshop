@@ -56,6 +56,17 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     </li>
                 </ul>
             </li>
+            
+            <!--แก้ไขวิธีสั่งซื้อและชำระเงิน-->
+            <li>
+                <ul class="innerlogo">
+                    <li>
+                        <?php
+                        echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน'), CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy')));
+                        ?>
+                    </li>
+                </ul>
+            </li>
 
         </ul><!--<ul class="linklist">-->
     </div>

@@ -58,9 +58,10 @@ class WebShop extends WebShopBase {
             array('email', 'email'),
             array('mobile, tel, email', 'length', 'max' => 100),
             array('name_th, name_en, url, address_th, address_en', 'length', 'max' => 255),
+            array('how_to_buy_th, how_to_buy_en', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
+            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
         );
     }
 
@@ -74,6 +75,13 @@ class WebShop extends WebShopBase {
             'province' => array(self::BELONGS_TO, 'Province', 'province_id'),
             'prefecture' => array(self::BELONGS_TO, 'Prefecture', 'prefecture_id'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+            'memUser' => array(self::BELONGS_TO, 'MemUser', 'mem_user_id'),
+            'webShopBoxes' => array(self::HAS_MANY, 'WebShopBox', 'web_shop_id'),
+            'webShopBoxItems' => array(self::HAS_MANY, 'WebShopBoxItem', 'web_shop_id'),
+            'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
+            'webShopFormats' => array(self::HAS_MANY, 'WebShopFormat', 'web_shop_id'),
+            'webShopItems' => array(self::HAS_MANY, 'WebShopItem', 'web_shop_id'),
+            'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_id'),
         );
     }
 
@@ -90,6 +98,8 @@ class WebShop extends WebShopBase {
             'url' => Yii::t('language', 'ที่อยู่ลิ้งก์'),
             'description_th' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . Yii::t('language', 'ภาษาไทย'),
             'description_en' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . Yii::t('language', 'ภาษาอังกฤษ'),
+            'how_to_buy_th' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . Yii::t('language', 'ภาษาไทย'),
+            'how_to_buy_en' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . Yii::t('language', 'ภาษาอังกฤษ'),
             'address_th' => Yii::t('language', 'ที่อยู่') . Yii::t('language', 'ภาษาไทย'),
             'address_en' => Yii::t('language', 'ที่อยู่') . Yii::t('language', 'ภาษาอังกฤษ'),
             'province_id' => Yii::t('language', 'จังหวัด'),
@@ -120,6 +130,8 @@ class WebShop extends WebShopBase {
         $criteria->compare('url', $this->url, true);
         $criteria->compare('description_th', $this->description_th, true);
         $criteria->compare('description_en', $this->description_en, true);
+        $criteria->compare('how_to_buy_th', $this->how_to_buy_th, true);
+        $criteria->compare('how_to_buy_en', $this->how_to_buy_en, true);
         $criteria->compare('address_th', $this->address_th, true);
         $criteria->compare('address_en', $this->address_en, true);
         $criteria->compare('province_id', $this->province_id);

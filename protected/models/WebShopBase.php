@@ -12,6 +12,8 @@
  * @property string $url
  * @property string $description_th
  * @property string $description_en
+ * @property string $how_to_buy_th
+ * @property string $how_to_buy_en
  * @property string $address_th
  * @property string $address_en
  * @property integer $province_id
@@ -27,7 +29,13 @@
  * @property Province $province
  * @property Prefecture $prefecture
  * @property District $district
+ * @property MemUser $memUser
+ * @property WebShopBox[] $webShopBoxes
+ * @property WebShopBoxItem[] $webShopBoxItems
+ * @property WebShopCategoryItem[] $webShopCategoryItems
  * @property WebShopFormat[] $webShopFormats
+ * @property WebShopItem[] $webShopItems
+ * @property WebShopOrderDetail[] $webShopOrderDetails
  */
 class WebShopBase extends CActiveRecord
 {
@@ -61,9 +69,10 @@ class WebShopBase extends CActiveRecord
 			array('mem_user_id, web_shop_catagory_id, province_id, prefecture_id, district_id, postcode', 'numerical', 'integerOnly'=>true),
 			array('name_th, name_en, url, address_th, address_en', 'length', 'max'=>255),
 			array('mobile, tel, email', 'length', 'max'=>100),
+			array('how_to_buy_th, how_to_buy_en', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on'=>'search'),
+			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,7 +87,13 @@ class WebShopBase extends CActiveRecord
 			'province' => array(self::BELONGS_TO, 'Province', 'province_id'),
 			'prefecture' => array(self::BELONGS_TO, 'Prefecture', 'prefecture_id'),
 			'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+			'memUser' => array(self::BELONGS_TO, 'MemUser', 'mem_user_id'),
+			'webShopBoxes' => array(self::HAS_MANY, 'WebShopBox', 'web_shop_id'),
+			'webShopBoxItems' => array(self::HAS_MANY, 'WebShopBoxItem', 'web_shop_id'),
+			'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
 			'webShopFormats' => array(self::HAS_MANY, 'WebShopFormat', 'web_shop_id'),
+			'webShopItems' => array(self::HAS_MANY, 'WebShopItem', 'web_shop_id'),
+			'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_id'),
 		);
 	}
 
@@ -96,6 +111,8 @@ class WebShopBase extends CActiveRecord
 			'url' => 'Url',
 			'description_th' => 'Description Th',
 			'description_en' => 'Description En',
+			'how_to_buy_th' => 'How To Buy Th',
+			'how_to_buy_en' => 'How To Buy En',
 			'address_th' => 'Address Th',
 			'address_en' => 'Address En',
 			'province_id' => 'Province',
@@ -128,6 +145,8 @@ class WebShopBase extends CActiveRecord
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('description_th',$this->description_th,true);
 		$criteria->compare('description_en',$this->description_en,true);
+		$criteria->compare('how_to_buy_th',$this->how_to_buy_th,true);
+		$criteria->compare('how_to_buy_en',$this->how_to_buy_en,true);
 		$criteria->compare('address_th',$this->address_th,true);
 		$criteria->compare('address_en',$this->address_en,true);
 		$criteria->compare('province_id',$this->province_id);
