@@ -28,7 +28,7 @@
             <!--<span class="price"><label>ราคาปกติ:</label> ฿<?php echo $item_detail['price_normal']; ?></span>-->
         </div>
         <div class="detail_info">
-            <p><label>ชื่อสินค้า:</label> ฿<?php echo $item_detail['name_th']; ?></p>
+            <p><label>ชื่อสินค้า:</label> <?php echo $item_detail['name_th']; ?></p>
             <p><label>ราคาปกติ:</label> ฿<?php echo $item_detail['price_normal']; ?></p>
             <p><label>ราคาพิเศษ:</label> ฿<?php echo $item_detail['price_special']; ?></p>
             <p><label>หมวดหมู่สินค้า:</label> <?php echo $item_detail['category']; ?></p>
