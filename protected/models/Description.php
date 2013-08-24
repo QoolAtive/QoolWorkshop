@@ -12,14 +12,15 @@ class Description extends DescriptionBase {
             array('status', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('description_id, detail, status', 'safe', 'on' => 'search'),
+            array('description_id, detail, detail_en, status', 'safe', 'on' => 'search'),
         );
     }
 
     public function attributeLabels() {
         return array(
             'description_id' => 'Description',
-            'detail' => Yii::t('language', 'รายละเอียด'),
+            'detail' => Yii::t('language', 'รายละเอียดภาษาไทย'),
+            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
             'status' => Yii::t('language', 'สถานะ'),
         );
     }
