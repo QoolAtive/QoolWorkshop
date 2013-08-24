@@ -185,8 +185,8 @@ class AdminController extends Controller {
         $model->status_appro = 1;
         if ($model->save()) {
             echo '
+                <meta charset="UTF-8">
                 <script>
-                <meta http-equiv="content-type" content="text/html; charset=UTF-8">
                 alert("' . Yii::t('language', 'ยืนยันร้านค้าเรียบร้อย') . '");
                 window.location="/eDirectory/admin/companyWaiting";
                 </script>
