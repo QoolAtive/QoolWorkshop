@@ -2,7 +2,11 @@
 $this->renderPartial('_sidebar', array());
 ?>
 
-
+<style>
+    textArea{
+        height: 100px;
+    }
+</style>
 
 <div class="content">
     <div class="tabcontents">
@@ -37,14 +41,14 @@ $this->renderPartial('_sidebar', array());
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'detail_en');
-                echo $form->textField($model, 'detail_en');
+                echo $form->textArea($model, 'detail_en');
                 echo $form->error($model, 'detail_en')
                 ?>
             </div>
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'status') . "<br />";
-                echo $form->textArea($model, 'status', TitleWeb::model()->getStatus(), array('style' => 'width: 150px;'));
+                echo $form->dropDownList($model, 'status', TitleWeb::model()->getStatus(), array('style' => 'width: 150px;'));
                 echo $form->error($model, 'status')
                 ?>
             </div>
