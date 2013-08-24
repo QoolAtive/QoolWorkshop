@@ -36,7 +36,7 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
                 }
                 ?>
             </li>
-    <li>
+        <li>
             <i class="icon-map-marker"></i> <label><?php echo Yii::t('language', 'ที่ตั้ง') . " : "; ?></label>
             <?php echo $address; ?>
         </li>

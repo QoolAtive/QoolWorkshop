@@ -425,6 +425,9 @@ h3 > img {
 form#insert-form .errorMessage{
     color: red !important;
 }
+.errorMessage{
+  color: red  !important;
+}
 .error.bgnoimg{
     background-image: none;
 }

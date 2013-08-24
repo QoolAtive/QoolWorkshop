@@ -1,17 +1,18 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-                       <li class="boxhead" style="background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>'); background-size: 227px; margin-left: -1px; " ></li>
+            <li class="boxhead" style="background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>'); background-size: 227px; margin-left: -1px; " ></li>
 
             <?php
             $model_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id));
             if (Yii::app()->user->isAdmin() && $model_them->status_appro == 0) {
                 ?>
-                <li style=" background: url("/img/edir-leftbg.png") no-repeat scroll 0 0 transparent;
+                <li style=" background: url(/img/edir-leftbg.png) no-repeat scroll 0 0 / 225px auto transparent;
     color: #FFFFFF;
     height: 138px;
-    margin-left: -1px;
-    width: 100%;">
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 224px;">
                     <p>
                         <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
@@ -49,7 +50,6 @@
                             <td><?php echo $model_profile->tel; ?></td>
                         </tr>
                     </table>
-
                 </li>
             <?php } ?>
             <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
@@ -112,38 +112,47 @@
     </div>
 </div>
 <div class="content">
-    <div class="tabcontents" >
-        <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
+    
 
-            <div id="featured" > 
-                <?php
-                $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                if ($banner == null) {
-                    ?>
-                    <img src="/file/banner/default.jpg" style="height: 220px;" />
-                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                    <img src="/file/banner/default.jpg" style="height: 220px;"/>
+
+        <div class="clearfix servicebanner">
+            <div style="float: left; width: 525px; height: 220px; ">
+                <div id="featured"> 
                     <?php
-                } else {
-                    foreach ($banner as $data) {
+                    $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    if ($banner == null) {
                         ?>
-                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;" />
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                        <?php
+                    } else {
+                        foreach ($banner as $data) {
+                            ?>
+                            <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+
+<div class="Center-Container is-Inline-logo">
+                <div class="Center-Block">
+                    <?php
+                    if ($model->logo != null) {
+                        ?>
+                        <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" />
+                        <?php
+                    } else {
+                        ?>
+                        <img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/>
                         <?php
                     }
-                }
-                ?>
+                    ?>
+                </div>
+
             </div>
-            <?php
-            if ($model->logo != null) {
-                ?>
-                <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" />
-                <?php
-            } else {
-                ?>
-                <img src="/file/logo/default.jpg" style="float: right;" width="220" />
-                <?php
-            }
-            ?>
 
         </div>
         <div class="edirbox clearfix">
@@ -263,7 +272,7 @@
                 ?>
             </div>
         </div>
-        <div class="edirbox">
+        
             <?php
         }
         $dp_product_promo = new CActiveDataProvider('CompanyProduct', array(
@@ -277,6 +286,7 @@
         ));
         if ($dp_product_promo->itemCount > 0) {
             ?>
+            <div class="edirbox">
             <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
             <div class="clearfix">
                 <?php
@@ -289,10 +299,8 @@
                 ?>
             </div>
             </div>
-                    <div class="edirbox">
-
             <?php
-        }
+             }
         $dp_product_new = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => array(
                 'condition' => 'main_id = ' . $model->id,
@@ -302,21 +310,21 @@
                 'pageSize' => 5,
             ),
         ));
-
         if ($dp_product_new->itemCount > 0) {
             ?>
+            <div class="edirbox">
             <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
-            <div class="clearfix">
-                <?php
-                $this->widget('zii.widgets.CListView', array(
-                    'dataProvider' => $dp_product_new,
-                    'itemView' => 'list_product',
-                    'summaryText' => false,
-                    'viewData' => array('user_id' => $model->user_id),
-                ));
-                ?>
+                <div class="clearfix">
+                    <?php
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $dp_product_new,
+                        'itemView' => 'list_product',
+                        'summaryText' => false,
+                        'viewData' => array('user_id' => $model->user_id),
+                    ));
+                    ?>
+                </div>
             </div>
-        </div>
         <?php } ?>
         <div class="textcenter">
             <hr>
