@@ -306,18 +306,53 @@ class ManageShopController extends Controller {
             $model->web_shop_id = $shop_id;
 
             //for upload pic
-            if($_POST['is_delete_pic_1']){
+            if ($_POST['is_delete_pic_1']) {
                 $model->pic_1 = NULL;
             } else {
                 $model = UploadPic::upload($model, 'pic_1');
             }
-            $model = UploadPic::upload($model, 'pic_2');
-            $model = UploadPic::upload($model, 'pic_3');
-            $model = UploadPic::upload($model, 'pic_4');
-            $model = UploadPic::upload($model, 'pic_5');
-            $model = UploadPic::upload($model, 'pic_6');
-            $model = UploadPic::upload($model, 'pic_7');
-            $model = UploadPic::upload($model, 'pic_8');
+
+            if ($_POST['is_delete_pic_2']) {
+                $model->pic_2 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_2');
+            }
+
+            if ($_POST['is_delete_pic_3']) {
+                $model->pic_3 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_3');
+            }
+
+            if ($_POST['is_delete_pic_4']) {
+                $model->pic_4 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_4');
+            }
+
+            if ($_POST['is_delete_pic_5']) {
+                $model->pic_5 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_5');
+            }
+
+            if ($_POST['is_delete_pic_6']) {
+                $model->pic_6 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_6');
+            }
+
+            if ($_POST['is_delete_pic_7']) {
+                $model->pic_7 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_7');
+            }
+
+            if ($_POST['is_delete_pic_8']) {
+                $model->pic_8 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_8');
+            }
             //END for upload pic
 
             if ($model->save()) {
@@ -574,7 +609,7 @@ class ManageShopController extends Controller {
                   </script>";
         }
     }
-    
+
 //    หน้าจัดหมวดหมู่
     public function actionManageCategory() {
         $shop_id = Yii::app()->session['shop_id'];
@@ -584,7 +619,7 @@ class ManageShopController extends Controller {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
-        
+
     public function actionAddCategory($category_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
@@ -592,7 +627,7 @@ class ManageShopController extends Controller {
                 $model = new WebShopCategory();
             } else {
                 $model = WebShopCategory::model()->findByPk($category_id);
-    }
+            }
             if (isset($_POST['WebShopCategory'])) {
                 $model->attributes = $_POST['WebShopCategory'];
                 $model->web_shop_id = $shop_id;
@@ -606,7 +641,7 @@ class ManageShopController extends Controller {
                         $last = $order->order_n + 1;
                     } else {
                         $last = 1;
-}
+                    }
                     $model->order_n = $last;
                 }
                 $model->show_box = 1;
@@ -623,7 +658,7 @@ class ManageShopController extends Controller {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
-    
+
     public function actionEditCategory($category_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
@@ -675,6 +710,24 @@ class ManageShopController extends Controller {
         $model = WebShopCategory::model()->findByPk($category_id);
         if ($model->delete()) {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')));
+        }
+    }
+
+    public function actionEditHowToBuy() {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+            $model = WebShop::model()->findByPk($shop_id);
+            if (isset($_POST['WebShop'])) {
+                $model->attributes = $_POST['WebShop'];
+                WebShop::model()->updateByPk($shop_id, array('how_to_buy_th' => $model->how_to_buy_th, 'how_to_buy_en' => $model->how_to_buy_en));
+                echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.top.location.href = '/webSimulation/manageShop/manageShop';
+                </script>";
+            }
+            $this->render('edit_how_to_buy', array('model' => $model, 'shop_id' => $shop_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
     }
 
