@@ -253,6 +253,7 @@ class ManageController extends Controller {
                         $this->redirect('/eDirectory/manage/insertProduct/id/' . $model->id);
                     } else {
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/manage/index';
@@ -460,6 +461,7 @@ class ManageController extends Controller {
 
                     if ($pro_id != null) {
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location=\"/eDirectory/manage/index/\";
@@ -476,6 +478,7 @@ class ManageController extends Controller {
 //                            ";
 //                    } else {
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $return->getUrl() . "';
