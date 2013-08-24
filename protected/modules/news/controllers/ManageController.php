@@ -195,13 +195,17 @@ class ManageController extends Controller {
             $news = News::model()->findByPk($news_id);
             $email_list = NewsMail::model()->findAll();
 
+            // Add By Ann 23-08-56 For AddAttachment in E-mail
+            $data['news_id'] = $news_id;
+            
             $data['from'] = 'dbdmart2013@gmail.com';
             $data['name'] = Yii::t('language', 'ข่าวสารจาก DBD Mart');
             $data['subject'] = $news['subject_th'];
             $data['message'] = $news['detail_th'];
             $counter = 0;
             foreach ($email_list as $email) {
-                $data['to'] = $email['email'];
+//                $data['to'] = $email['email'];
+                $data['to'] = 'ann.kanowan@gmail.com';
                 if (Tool::sendNewsMail($data)) {
                     $counter += 1;
                 }
