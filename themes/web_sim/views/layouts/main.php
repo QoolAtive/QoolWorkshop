@@ -56,17 +56,9 @@
                 <!--Coloumn Right-->
                 <div id="col_right" class="clearfix">
                     <!--categories-->
-                    <div id="col_right_cate" class="clearfix">
-                        <h2>หมวดหมู่สินค้า</h2>
-                        <ul>
-                            <li><a href="#">ดูสินค้าทั้งหมด</a></li>
-                            <li><a href="#">ท่องเที่ยว</a></li>
-                            <li><a href="#">บริหารธุรกิจ</a></li>
-                            <li><a href="#">คอมพิวเตอร์</a></li>
-                            <li><a href="#">ความรู้ทั่วไป</a></li>
-                            <li><a href="#">การตลาด</a></li>
-                        </ul>
-                    </div>
+                    <?php
+                    $this->renderPartial('//layouts/category_', array('shop_id' => $shop_id));
+                    ?>
 
                     <!--History-->
                     <div id="col_right_history" class="clearfix">
@@ -80,7 +72,7 @@
                     </div>
 
                     <!--Track & Trace-->
-                    <div id="col_right_track" class="clearfix" >
+<!--                    <div id="col_right_track" class="clearfix" >
                         <h2>Track &amp; Trace</h2>
                         <div>
                             <form action="http://track.thailandpost.co.th/trackinternet/Default.aspx" method="post" name="tracking_form" id="tracking_form">
@@ -90,7 +82,8 @@
                                 <input type="submit" value="ตรวจสอบ" />
                             </form>
                         </div>
-                    </div><!-- end Track & Trace-->
+                    </div>-->
+                    <!-- end Track & Trace-->
 
                     <div>
                         <!--share fb-->
