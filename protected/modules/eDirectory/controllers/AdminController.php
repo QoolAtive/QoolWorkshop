@@ -181,6 +181,22 @@ class AdminController extends Controller {
 
     public function actionCompanyComfirm($id = null) {
         $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $id));
+        $modelCompany = Company::model()->find('id = :id', array(':id' => $model->main_id));
+        $userData = MemRegistration::model()->find('user_id = :user_id', array(':user_id' => $modelCompany->user_id));
+        
+        if (count($userData) > 0) {
+            $message = '
+                    <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'เรียน') . ' ' . $userData->ftname . ' ' . $userData->ltname . ' </strong>
+                    <p>' . Yii::t('language', 'ร้าน') . ' ' . $modelCompany->name . ' ' . Yii::t('language', 'สามารถใช้งานได้แล้ว') . '</p>
+                    ';
+
+            $sendEmail = array(
+                'subject' => Yii::t('language', 'ยืนยันการใช้งานร้านค้า'),
+                'message' => $message,
+                'to' => $userData->email,
+            );
+            Tool::mailsend($sendEmail);
+        }
 
         $model->status_appro = 1;
         if ($model->save()) {
@@ -465,7 +481,7 @@ class AdminController extends Controller {
 //            echo "</pre>";
 
             if ($model->getErrors() == null && $model_type->getErrors() == null && $model_delivery->getErrors() == null) {
-                // ไฟล์ logo
+// ไฟล์ logo
                 $file_logo = CUploadedFile::getInstancesByName('logo');
                 if ($file_logo != null) {
 
@@ -485,7 +501,7 @@ class AdminController extends Controller {
 
                 if ($model->save()) {
 
-                    // เพิ่มความเคลื่อนไหว
+// เพิ่มความเคลื่อนไหว
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
                     if (count($company_motion) < 1) {
                         $company_motion = new CompanyMotion();
@@ -501,7 +517,7 @@ class AdminController extends Controller {
                         $company_motion->save();
                     }
 
-                    // การบริการจัดส่ง
+// การบริการจัดส่ง
                     $model_delivery->com_id = $model->id;
                     if ($_POST['DelivSer']['delivery_id'] == 1) {
 
@@ -558,7 +574,7 @@ class AdminController extends Controller {
                         $type->save();
                     }
 
-                    // ไฟล์ brochure
+// ไฟล์ brochure
                     $file_brochure = CUploadedFile::getInstancesByName('brochure');
                     if ($file_brochure != null) {
 
@@ -1454,7 +1470,7 @@ class AdminController extends Controller {
                         } else {
                             if ($modelProduct->save()) {
 
-                                // เพิ่มเงือนไขการชำระเงิน
+// เพิ่มเงือนไขการชำระเงิน
                                 if (!empty($paymentArray)) {
                                     foreach ($paymentArray as $dataPaymentArray) {
                                         $addPayment = new PaymentCondition;
@@ -1466,8 +1482,8 @@ class AdminController extends Controller {
                                         $addPayment->save();
                                     }
                                 }
-                                //------------------
-                                // เพิ่มสิทธิพิเศษ
+//------------------
+// เพิ่มสิทธิพิเศษ
                                 if (!empty($specialArray)) {
                                     foreach ($specialArray as $dataSpecialArray) {
                                         if (!empty($dataSpecialArray['dc'])) {
