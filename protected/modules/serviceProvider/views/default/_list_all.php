@@ -5,8 +5,8 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
 ?>
 
 
-<div class="servicelist clearfix Center-Container is-Inline">
-    <div class="Center-Block">
+<div class="servicelist">
+    
     <h4>
         <?php
         echo CHtml::link($name, CHtml::normalizeUrl(
@@ -16,7 +16,7 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
     </h4>
     <ul>
         <li>
-            <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . ":"; ?></label>
+            <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . " : "; ?></label>
             <?php
             $size_type_com = sizeof($model_type_com);
             $i = 1;
@@ -36,16 +36,16 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
             ?>
         </li>
         <li>
-            <label><?php echo Yii::t('language', 'ที่ตั้ง') . ":"; ?></label>
+            <i class="icon-map-marker"></i> <label><?php echo Yii::t('language', 'ที่ตั้ง') . " : "; ?></label>
             <?php echo $address; ?>
         </li>
         <li>
-            <label><?php echo Yii::t('language', 'โทร.') . ":"; ?></label>
+            <i class="icon-phone"></i> <label><?php echo Yii::t('language', 'โทร.') . " : "; ?></label> 
             <?php echo $data->contact_tel; ?>
         </li>
         <li>
-            <label><?php echo Yii::t('language', 'เว็บไซต์') . ":"; ?></label>
+            <i class="icon-globe"></i> <label><?php echo Yii::t('language', 'เว็บไซต์') . " : "; ?></label>
             <?php echo $data->website; ?>
         </li>
-    </ul></div>
+    </ul>
 </div>
