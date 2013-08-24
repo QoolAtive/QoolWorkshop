@@ -1,14 +1,17 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead">
-                <img src="<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>"/>
-            </li>
+                       <li class="boxhead" style="background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>'); background-size: 227px; margin-left: -1px; " ></li>
+
             <?php
             $model_them = CompanyThem::model()->find('main_id=:main_id', array(':main_id' => $model->id));
             if (Yii::app()->user->isAdmin() && $model_them->status_appro == 0) {
                 ?>
-                <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
+                <li style=" background: url("/img/edir-leftbg.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    height: 138px;
+    margin-left: -1px;
+    width: 100%;">
                     <p>
                         <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
@@ -50,23 +53,23 @@
                 </li>
             <?php } ?>
             <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
-                <p>
+                <p class="left" style="padding:10px 10px;"><i class="icon-eye-open"></i>
                     <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $count['count'];
+                    // echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $count['count'];
+                    echo   ' : ' . $count['count']  ;
                     ?>
                 </p>
-                <p>
+                <p class="right" style="padding:10px 10px;">
                     <?php
                     $date_create = explode('-', $create->create_at);
                     $y = $date_create[0] + 543;
                     echo Yii::t('language', 'สร้าง') . ' : ' . $date_create[2] . '/' . $date_create[1] . '/' . $y;
                     ?>
                 </p>
-                <table style=" color: #fff; display: block;
-                       margin-left: 10px;
-                       margin-top: 20px;">
+                <div style="padding: 2px 10px;">
+                <table width="100">
                     <tr>
                         <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
                         <td> : </td>
@@ -93,7 +96,12 @@
                         <td><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
-                <?php
+                </div>
+            
+               
+            </li>
+        </ul>
+ <?php
                 if ($model->facebook != null) {
                     echo CHtml::link(CHtml::image('/images/facebook.png', ''), $model->facebook, array('target' => '_bank'));
                 }
@@ -101,9 +109,6 @@
                     echo CHtml::link(CHtml::image('/images/twitter.png', ''), $model->twitter, array('target' => '_bank'));
                 }
                 ?>
-            </li>
-        </ul>
-
     </div>
 </div>
 <div class="content">
@@ -141,7 +146,7 @@
             ?>
 
         </div>
-        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
+        <div class="edirbox clearfix">
             <h2>
                 <img src="/img/icontopic.png" />
                 <?php
@@ -161,7 +166,7 @@
             <table>
                 <tr>
                     <td><?php echo Yii::t('language', 'ชื่อบริษัท'); ?></td>
-                    <td> : </td>
+                    <td class="colon"> : </td>
                     <td>
                         <?php
                         $name = LanguageHelper::changeDB($model->name, $model->name_en);
@@ -172,7 +177,7 @@
 
                 <tr>
                     <td><?php echo Yii::t('language', 'ประเภทร้านค้า'); ?></td>
-                    <td> : </td>
+                    <td class="colon"> : </td>
                     <td>
                         <?php
                         $type = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
@@ -187,7 +192,7 @@
                 </tr>
                 <tr>
                     <td><?php echo Yii::t('language', 'ที่ตั้ง'); ?></td>
-                    <td> : </td>
+                    <td class="colon"> : </td>
                     <td>
                         <?php
                         $address = LanguageHelper::changeDB($model->address, $model->address_en);
@@ -197,7 +202,7 @@
                 </tr>
                 <tr>
                     <td><?php echo Yii::t('language', 'เว็บไซต์'); ?></td>
-                    <td> : </td>
+                    <td class="colon"> : </td>
                     <td><?php echo $model->website; ?></td>
                 </tr>
                 <?php
@@ -231,6 +236,8 @@
             echo $infor;
             ?>
         </div>
+                
+
         <?php
         $dp_product_best_sell = new CActiveDataProvider('CompanyProduct', array(
             'criteria' => array(
@@ -243,7 +250,8 @@
         ));
         if ($dp_product_best_sell->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
+        <div class="edirbox">
+            <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
             <div class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CListView', array(
@@ -254,6 +262,8 @@
                 ));
                 ?>
             </div>
+        </div>
+        <div class="edirbox">
             <?php
         }
         $dp_product_promo = new CActiveDataProvider('CompanyProduct', array(
@@ -267,7 +277,7 @@
         ));
         if ($dp_product_promo->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
+            <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'โปรโมชั่น'); ?></h2>
             <div class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CListView', array(
@@ -278,6 +288,9 @@
                 ));
                 ?>
             </div>
+            </div>
+                    <div class="edirbox">
+
             <?php
         }
         $dp_product_new = new CActiveDataProvider('CompanyProduct', array(
@@ -292,7 +305,7 @@
 
         if ($dp_product_new->itemCount > 0) {
             ?>
-            <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
+            <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
             <div class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CListView', array(
@@ -303,6 +316,7 @@
                 ));
                 ?>
             </div>
+        </div>
         <?php } ?>
         <div class="textcenter">
             <hr>

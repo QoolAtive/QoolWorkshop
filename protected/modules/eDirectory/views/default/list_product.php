@@ -17,7 +17,6 @@
         <p>
             <?php echo $data->detail; ?>
         </p>
-        <hr />
         <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'เงื่อนไขการชำระเงิน'); ?></label>
         <p>
             <?php
@@ -39,7 +38,6 @@
             echo $other . "<br />";
             ?>
         </p>
-        <hr />
         <?php
         $paymentSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $data->id));
 //        echo "<pre>";
