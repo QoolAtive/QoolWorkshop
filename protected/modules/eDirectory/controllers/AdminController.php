@@ -857,7 +857,7 @@ class AdminController extends Controller {
                     if ($pro_id != null) {
                         if ($page == 'detail') {
                             echo "
-                            <meta charset'UTF-8'></meta>
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/default/companyDetail/id/$id';
@@ -865,7 +865,7 @@ class AdminController extends Controller {
                             ";
                         } else {
                             echo "
-                            <meta charset'UTF-8'></meta>
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location=\"/eDirectory/admin/product/id/$id\";
@@ -875,7 +875,7 @@ class AdminController extends Controller {
                     } else {
 
                         echo "
-                            <meta charset'UTF-8'></meta>
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $return->getUrl() . "';
