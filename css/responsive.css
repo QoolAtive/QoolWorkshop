@@ -110,16 +110,27 @@ ul.tabs li a{
 
         #footer{
             padding: 0px;
+            background-size: 480px 320px ;
+
         }
+        #footer, #push {
+            height: 200px;
+        }
+        #footer > div {
+            padding: 0 20px;
+        }
+
         #footer .foottext{ 
             width: 100%;
             text-align: center;
         }
-        .footright {
-            display: none;
+
+        #footer .footright {
+            display: block;
+            width: 100%;
+            padding-top: 23px;
         }
-
-
+       
         .menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
         .menu > li { display: block; width: 100%; margin: 0; }
         .menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
@@ -157,27 +168,3 @@ ul.tabs li a{
 
 
 }
-
-/*iPhone 2G-4S in landscape*/
-@media only screen 
-and (min-width : 320px) 
-and (max-width : 480px) 
-and (orientation : landscape) { }
-
-
-
-
-
-
-
-
-/*iPhone 5 in portrait & landscape*/
-@media only screen 
-and (min-width : 320px) 
-and (max-width : 568px) { /* STYLES GO HERE */}
-
-/*iPhone 5 in landscape*/
-@media only screen 
-and (min-width : 320px) 
-and (max-width : 568px) 
-and (orientation : landscape) { /* STYLES GO HERE */}

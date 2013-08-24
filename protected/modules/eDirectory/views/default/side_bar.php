@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>           
-             <li class="boxhead" style="background-size: 225px; background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>');" ></li>
+             <li class="boxhead" style="background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>'); background-size: 227px; margin-left: -1px; " ></li>
         </ul>
         <ul class="tabs clearfix">
             <?php

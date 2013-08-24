@@ -5,12 +5,24 @@ if (!ereg("[.]+", Yii::app()->request->getUrl())) {
     Yii::app()->user->returnUrl = Yii::app()->request->getUrl();
 }
 $title = TitleWeb::model()->find('status = :status', array(':status' => 1));
+$description = Description::model()->find('status = :status', array(':status' => 1));
+$key = null;
+$keyword = Keyword::model()->findAll();
+foreach ($keyword as $keyData) {
+    if ($key == null) {
+        $key .= $keyData->name;
+    } else {
+        $key .= ', ' . $keyData->name;
+    }
+}
 ?>
 <html lang="en" class="no-js">
     <head>
         <title><?php echo $title->detail; ?></title>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
+        <meta content="<?php echo $description->detail; ?>" name="description"></meta>
+        <meta content="<?php echo $key; ?>" name="keywords"></meta>
 
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
@@ -26,7 +38,6 @@ $title = TitleWeb::model()->find('status = :status', array(':status' => 1));
         <link rel="stylesheet" href="/css/evol.colorpicker.css" type="text/css">
         <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
         <link rel="stylesheet" href="/css/responsive.css" type="text/css">
-
                 <!--JS-->
                 <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
                 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -88,5 +99,4 @@ $title = TitleWeb::model()->find('status = :status', array(':status' => 1));
                     </div><!-- page -->
 
                 </body>
-
                 </html>
