@@ -271,15 +271,16 @@ return array(
     'ขนาดภาพที่เหมาะสม' => 'Appropriate size',
     'ไฟล์ได้ถูกเลือกไปแล้ว ลองใหม่อีกครั้ง' => 'File has been selected already. Try again.',
     'แบนเนอร์ทั้งหมด' => 'All banner',
-    // News send E-mail
+// News send E-mail
     'ข่าวสารจาก DBD Mart' => 'News from DBD Mart.',
     'ส่งอีเมล์เป็นจำนวน' => 'Send an E-mail',
     'ฉบับ' => 'copy.',
     'เกิดข้อผิดพลาดขณะส่งข้อมูล' => 'An error occurred while sending data.',
+//web Simulation
     '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'คุณต้องการลบร้านค้านี้หรือไม่?' => 'Do you want to delete this shop?',
+    'ไม่พบร้านค้าที่ท่านต้องการ' => 'Not found a shop that you want.',
+    'ไม่พบสินค้าที่ท่านต้องการ' => 'Not found the product you want.',
     '' => '',
     '' => '',
     '' => '',
