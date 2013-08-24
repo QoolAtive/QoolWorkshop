@@ -12,6 +12,11 @@
  * @property string $detail_en
  * @property string $author
  * @property string $date_write
+ * @property integer $counter
+ *
+ * The followings are the available model relations:
+ * @property FaqAnswer[] $faqAnswers
+ * @property FaqMain $fm
  */
 class FaqQuestionBase extends CActiveRecord
 {
@@ -41,13 +46,13 @@ class FaqQuestionBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write', 'required'),
-			array('fm_id', 'numerical', 'integerOnly'=>true),
+			array('fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'required'),
+			array('fm_id, counter', 'numerical', 'integerOnly'=>true),
 			array('subject_th, subject_en', 'length', 'max'=>255),
 			array('author', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write', 'safe', 'on'=>'search'),
+			array('id, fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,6 +64,8 @@ class FaqQuestionBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'faqAnswers' => array(self::HAS_MANY, 'FaqAnswer', 'fq_id'),
+			'fm' => array(self::BELONGS_TO, 'FaqMain', 'fm_id'),
 		);
 	}
 
@@ -76,6 +83,7 @@ class FaqQuestionBase extends CActiveRecord
 			'detail_en' => 'Detail En',
 			'author' => 'Author',
 			'date_write' => 'Date Write',
+			'counter' => 'Counter',
 		);
 	}
 
@@ -98,6 +106,7 @@ class FaqQuestionBase extends CActiveRecord
 		$criteria->compare('detail_en',$this->detail_en,true);
 		$criteria->compare('author',$this->author,true);
 		$criteria->compare('date_write',$this->date_write,true);
+		$criteria->compare('counter',$this->counter);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

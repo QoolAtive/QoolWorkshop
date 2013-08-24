@@ -3,8 +3,10 @@
 class DefaultController extends Controller {
 
     public function actionIndex($view = NULL) {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/faq/count_view_faq.js');
         $criteria = new CDbCriteria();
         $criteria->condition = "fm_id = '1'";
+        $criteria->order = "counter desc";
         $count = FaqQuestion::model()->count($criteria);
         $pages1 = new CPagination($count);
         // results per page
@@ -14,6 +16,7 @@ class DefaultController extends Controller {
 
         $criteria = new CDbCriteria();
         $criteria->condition = "fm_id = '2'";
+        $criteria->order = "counter desc";
         $count = FaqQuestion::model()->count($criteria);
         $pages2 = new CPagination($count);
         // results per page
@@ -23,6 +26,7 @@ class DefaultController extends Controller {
 
         $criteria = new CDbCriteria();
         $criteria->condition = "fm_id = '3'";
+        $criteria->order = "counter desc";
         $count = FaqQuestion::model()->count($criteria);
         $pages3 = new CPagination($count);
         // results per page
@@ -32,6 +36,7 @@ class DefaultController extends Controller {
 
         $criteria = new CDbCriteria();
         $criteria->condition = "fm_id = '4'";
+        $criteria->order = "counter desc";
         $count = FaqQuestion::model()->count($criteria);
         $pages4 = new CPagination($count);
         // results per page
@@ -94,6 +99,12 @@ class DefaultController extends Controller {
             'model' => $model,
             'view' => $view
         ));
+    }
+    
+    public function actionCountView($faq_id){
+        $counter = FaqQuestion::model()->findByPk($faq_id)->counter;
+        $counter += 1;
+        FaqQuestion::model()->updateByPk($faq_id, array('counter' => $counter));
     }
 
 }

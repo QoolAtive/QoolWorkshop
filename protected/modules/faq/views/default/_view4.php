@@ -13,15 +13,15 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <p class="faqarrow"></p>
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother4" href="#item4<?php echo $i; ?>">
+                    <a class="accordion-toggle" id="subject<?php echo $i; ?>" data-toggle="collapse" data-parent="#hideother4" href="#item4<?php echo $i; ?>" onclick="addHit('<?php echo $this->createAbsoluteUrl('/faq/default/countView', array('faq_id' => $faq['id'])); ?>');">
                         <?php echo $subject; ?>
                     </a>
                 </div>
                 <div id="item4<?php echo $i; ?>" class="accordion-body collapse <?php
-                if ($i == 1)
-                    echo 'in';
-                else
-                    echo '';
+//                if ($i == 1)
+//                    echo 'in';
+//                else
+//                    echo '';
                 ?>">
                     <div class="accordion-inner">
                         <?php echo $detail; ?>
