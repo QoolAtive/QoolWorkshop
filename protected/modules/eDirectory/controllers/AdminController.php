@@ -185,8 +185,8 @@ class AdminController extends Controller {
         $model->status_appro = 1;
         if ($model->save()) {
             echo '
+                <meta charset="UTF-8">
                 <script>
-                <meta http-equiv="content-type" content="text/html; charset=UTF-8">
                 alert("' . Yii::t('language', 'ยืนยันร้านค้าเรียบร้อย') . '");
                 window.location="/eDirectory/admin/companyWaiting";
                 </script>
@@ -277,6 +277,8 @@ class AdminController extends Controller {
 
     public function actionCompanyMotion() {
 
+//        Tool::AutoMotionWarning();
+
         $model = new Company;
         if (isset($_GET['Company'])) {
             $model->attributes = $_GET['Company'];
@@ -302,7 +304,7 @@ class AdminController extends Controller {
             ';
         $criteria->distinct = 'name, name_en';
 //        $criteria->order = 'cm.company_motion_id desc';
-        $criteria->condition = "(ct.status_block = 1) or (ct.status_appro = 1 and cm.update_at < '" . $update_at . "')";
+        $criteria->condition = "((ct.status_block = 1) or (ct.status_appro = 1 and cm.update_at < '" . $update_at . "')) and cm.user_id != 3";
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);

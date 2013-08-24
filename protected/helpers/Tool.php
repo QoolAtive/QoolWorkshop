@@ -230,6 +230,44 @@ Class Tool {
 
     }
 
+    public static function AutoMotionWarning() {
+        $model_motion = CompanyMotionSetting::model()->find('`use`= :use', array(':use' => 1));
+        $dataCondition = '-' . $model_motion->amount . ' ' . $model_motion->type;
+        $motion = CompanyMotion::model()->findAll("update_at < date_add(now(),interval {$dataCondition})");
+
+        foreach ($motion as $data) {
+            
+            $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $data->company_id));
+            $model_company = Company::model()->findByPk($data->company_id);
+            $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
+            if (count($model_profile_user)) {
+                $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
+
+                $model->status_block = 1;
+                $model->date_warning = date('Y-m-d');
+                $model->save();
+
+                $message = '
+                <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'คุณ') . $name . '</strong>
+                <p>
+                ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน<br />
+                คุณจำเป็นต้องทำการอัพเดทข้อมูลของร้าน เพื่อที่จะให้ร้านค้าของคุณอยู่ในระบบต่อไป
+                </p>
+                <p>
+                ผู้ดูแลระบบ
+                </p>
+                ';
+
+                $sendEmail = array(
+                    'subject' => Yii::t('language', 'รายการแจ้งเตือน'),
+                    'message' => $message,
+                    'to' => $model_profile_user->email,
+                );
+                Tool::mailsend($sendEmail);
+            }
+        }
+    }
+
 }
 
 ?>

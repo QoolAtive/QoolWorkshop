@@ -3,9 +3,9 @@
 class DefaultController extends Controller {
 
     public function actionReadingFile($id, $type) {
-        
+
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'ReadingFile', 3);
-        
+
         switch ($type) {
             case 'brochure':
                 $model = SpBrochure::model()->find('brochure_id=:brochure_id', array(':brochure_id' => $id));
@@ -22,7 +22,7 @@ class DefaultController extends Controller {
     public function actionIndex($id = null) {
 //        Yii::app()->googleAnalytics->_setCustomVar(1, 'Section', 'Life & Style', 3);
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'Index', 3);
-        
+
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -60,9 +60,9 @@ class DefaultController extends Controller {
     }
 
     public function actionPartnerGroup($id = null) {
-        
+
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'PartnerGroup', 3);
-        
+
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -75,9 +75,9 @@ class DefaultController extends Controller {
     }
 
     public function actionDetail($id = null, $type = null) {
-        
+
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'Detail', 3);
-        
+
         $link = new CHttpRequest();
         Yii::app()->user->setState('default_link_back_to_menu', '');
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
@@ -112,9 +112,9 @@ class DefaultController extends Controller {
     }
 
     public function actionReadingPdf($id) {
-        
+
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'ReadingPdf', 3);
-        
+
         $model = SpCompany::model()->find('id=:id', array(':id' => $id));
         $path = './file/brochure/' . $model->brochure;
         header('Content-Type: application/pdf');
@@ -122,6 +122,73 @@ class DefaultController extends Controller {
         header('Content-Length: ' . filesize($path));
         readfile($path);
         Yii::app()->end();
+    }
+
+    public function actionSpLog() {
+        $model = new SpLog();
+
+        if (isset($_GET['SpLog'])) {
+            $model->attributes = $_GET['SpLog'];
+//            $model->companyName = $_GET['SpLog']['companyNmae'];
+//            $model->companyName_en = $_GET['SpLog']['companyNmae_en'];
+        }
+
+        $criteria = new CDbCriteria;
+        $criteria->select = "t.*, spc.name as companyName, spc.name_en as companyName_en";
+        $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
+
+        $criteria->compare('spc.name', $model->companyName, true);
+        $criteria->compare('spc.name_en', $model->companyName_en, true);
+
+        $dataProvider = new CActiveDataProvider('SpLog', array(
+            'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => 'id desc',
+                'attributes' => array(
+                    't.companyNmae' => array(
+                        'asc' => 'spc.name, t.id',
+                        'desc' => 'spc.name desc, t.id',
+                    ),
+                    't.companyNmae_en' => array(
+                        'asc' => 'spc.name, t.id',
+                        'desc' => 'spc.name_en desc, t.id',
+                    ),
+                ),
+            ),
+        ));
+
+        $this->render('sp_log', array(
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionInsertLog() {
+        if (isset($_POST['sp_id'])) {
+            $model = SpLog::model()->find('service_company_id = :service_company_id', array(':service_company_id' => $_POST['sp_id']));
+            if (count($model) > 0) {
+                
+            } else {
+                $model = new SpLog();
+                $model->user_id = Yii::app()->user->id;
+                $model->service_company_id = $_POST['sp_id'];
+                if ($model->save()) {
+                    echo Yii::t('language', 'เก็บเข้ารายการโปรดเรียบร้อย');
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                }
+            }
+        }
+    }
+
+    public function actionSpLogDel($sp_log_id = null) {
+        if ($sp_log_id != null) {
+            $model = SpLog::model()->find('sp_log_id = :sp_log_id', array(':sp_log_id' => $sp_log_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            }
+        }
     }
 
 }
