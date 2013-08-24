@@ -11,4 +11,6 @@ if ($model->$pic != NULL) {
         'update' => '#' . $pic,
     ));
 }
+
+echo CHtml::hiddenField('is_delete_' . $pic, $is_delete);
 ?>

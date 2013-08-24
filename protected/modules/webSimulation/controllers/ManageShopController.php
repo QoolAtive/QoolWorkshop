@@ -117,10 +117,10 @@ class ManageShopController extends Controller {
         $model = WebShop::model()->findByPk($shop_id);
         $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $shop_id));
         if ($model->delete()) {
-            if ($format->logo != NULL) {
+            if ($format->logo != NULL && file_exists($format->logo)) {
                 unlink(Yii::app()->basePath . $format->logo);
             }
-            if ($format->background != NULL) {
+            if ($format->background != NULL && file_exists($format->background)) {
                 unlink(Yii::app()->basePath . $format->background);
             }
         }
@@ -306,7 +306,11 @@ class ManageShopController extends Controller {
             $model->web_shop_id = $shop_id;
 
             //for upload pic
-            $model = UploadPic::upload($model, 'pic_1');
+            if($_POST['is_delete_pic_1']){
+                $model->pic_1 = NULL;
+            } else {
+                $model = UploadPic::upload($model, 'pic_1');
+            }
             $model = UploadPic::upload($model, 'pic_2');
             $model = UploadPic::upload($model, 'pic_3');
             $model = UploadPic::upload($model, 'pic_4');
@@ -357,7 +361,7 @@ class ManageShopController extends Controller {
         }
         if (WebShopItem::model()->updateByPk($item_id, array($pic => NULL))) {
             $model->$pic = '';
-            $this->renderPartial('item_pic_', array('model' => $model, 'pic' => $pic));
+            $this->renderPartial('item_pic_', array('model' => $model, 'pic' => $pic, 'is_delete' => '1'));
         }
     }
 
