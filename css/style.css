@@ -238,15 +238,15 @@ h2 img{
 .colon{
     padding:  0 10px;
 }
-.servicebox{
+.servicebox,.edirbox{
     border: 1px solid #c9c9c9;
     padding: 15px;
     margin: 5px 0;
 }
-.servicebox table{
+.servicebox table ,.edirbox table{
     margin-top: 10px;
 }
-.servicebox table tr td:first-child{
+.servicebox table tr td:first-child ,.edirbox table tr td:first-child{
     font-weight: bold;
 }
 .productlist {
@@ -277,7 +277,7 @@ h2 img{
      background: url(/img/edir-leftbg.png) no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     min-height: 138px;
-    margin-left: -1px;
+    margin-left: -2px;
     width: 227px;
 }
 

@@ -8,13 +8,18 @@
                 <img src="<?php echo Yii::t('language', '/img/iconpage/serviceprovider.png'); ?>"/>
             </li>
             <li class="servicedata">
-                <p>
+                
+                <span class="left" style="padding:10px 10px; ">
+
+                    <i class="icon-eye-open"></i>
                     <?php
 //                  echo Yii::t('language', 'Memeber Since') . ' ' ;
 //                  echo Tool::ChangeDateTimeToShow($model_count->update_at) . ' ' ;
-                    echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $model_count->count_company_view;
+                    // echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $model_count->count_company_view;
+echo ' : ' . $model_count->count_company_view;
                     ?>
-                </p>
+                </span>
+                <div style="padding: 2px 10px;">
                 <table>
                     <tr>
                         <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
@@ -41,6 +46,7 @@
                         <td><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
+            </div>
             </li>
         </ul>
 
