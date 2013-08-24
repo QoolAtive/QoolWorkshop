@@ -204,8 +204,7 @@ class ManageController extends Controller {
             $data['message'] = $news['detail_th'];
             $counter = 0;
             foreach ($email_list as $email) {
-//                $data['to'] = $email['email'];
-                $data['to'] = 'ann.kanowan@gmail.com';
+                $data['to'] = $email['email'];
                 if (Tool::sendNewsMail($data)) {
                     $counter += 1;
                 }
@@ -213,7 +212,7 @@ class ManageController extends Controller {
 
             if ($counter > 0) {
                 echo "<script>
-                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน ') . $counter . Yii::t('language', ' ฉบับ ') . "');
+                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน').' ' . $counter .' '. Yii::t('language', 'ฉบับ') . "');
                         window.close();
                     </script>";
             } else {
