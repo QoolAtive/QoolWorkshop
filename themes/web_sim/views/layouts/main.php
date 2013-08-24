@@ -62,27 +62,51 @@
 
                     <!--History-->
                     <div id="col_right_history" class="clearfix">
-                        <h2>Your Recent History</h2>
+                        <h2><?php echo Yii::t('language', 'สินค้าใหม่ล่าสุด'); ?></h2>
                         <div class="right_item clearfix">
+                            <?php
+                            $item = WebShopItem::model()->find(array('condition' => 'web_shop_id = '.$shop_id,'order' => 'web_shop_item_id desc'));
+                            ?>
                             <a href="#">
-                                <img src="/file/book/book02.png" alt="" />
+                                <img src="
+                                <?php
+                                if ($item['pic_1'] != NULL) {
+                                    echo $item['pic_1'];
+                                } else if ($item['pic_2'] != NULL) {
+                                    echo $item['pic_2'];
+                                } else if ($item['pic_3'] != NULL) {
+                                    echo $item['pic_3'];
+                                } else if ($item['pic_4'] != NULL) {
+                                    echo $item['pic_4'];
+                                } else if ($item['pic_5'] != NULL) {
+                                    echo $item['pic_5'];
+                                } else if ($item['pic_6'] != NULL) {
+                                    echo $item['pic_6'];
+                                } else if ($item['pic_7'] != NULL) {
+                                    echo $item['pic_7'];
+                                } else if ($item['pic_8'] != NULL) {
+                                    echo $item['pic_8'];
+                                } else {
+                                    echo '/img/noimage.gif';
+                                }
+                                ?>" alt="" />
                             </a>
-                            <p><a href="#">Professional Database Programming with VB 2010 &amp; VC# 2010</a></p>
+                            <p><a href="#"><?php echo $item->name_th; ?></a></p>
                         </div>
                     </div>
 
                     <!--Track & Trace-->
-<!--                    <div id="col_right_track" class="clearfix" >
-                        <h2>Track &amp; Trace</h2>
-                        <div>
-                            <form action="http://track.thailandpost.co.th/trackinternet/Default.aspx" method="post" name="tracking_form" id="tracking_form">
-                                <label>หมายเลขพัสดุไปรษณีย์</label>
-                                <input type="text" name="TextBarcode" id="TextBarcode" />
-                                <input type="hidden" value="Login" id="__EVENTTARGET" name="__EVENTTARGET" />
-                                <input type="submit" value="ตรวจสอบ" />
-                            </form>
-                        </div>
-                    </div>-->
+                    <!--                    <div id="col_right_track" class="clearfix" >
+                                            <h2>Track &amp; Trace</h2>
+                                            <div>
+                                                <form action="http://track.thailandpost.co.th/trackinternet/Default.aspx" method="post" name="tracking_form" id="tracking_form">
+                                                    <label>หมายเลขพัสดุไปรษณีย์</label>
+                                                    <input type="text" name="TextBarcode" id="TextBarcode" />
+                                                    <input type="hidden" value="Login" id="__EVENTTARGET" name="__EVENTTARGET" />
+                                                    <input type="submit" value="ตรวจสอบ" />
+                                                </form>
+                                            </div>
+                                        </div>-->
                     <!-- end Track & Trace-->
 
                     <div>
