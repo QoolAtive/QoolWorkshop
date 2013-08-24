@@ -90,10 +90,35 @@ Class Tool {
 //        $mail->SMTPSecure = "STARTTLS";
         $mail->CharSet = 'UTF-8';
 
+
+
         $mail->SetFrom('dbdmart2013@gmail.com', $data['name']);
         $mail->Subject = $data['subject'];
-        $mail->MsgHTML($data['message']);
+
         $mail->AddAddress($data['to']);
+        
+
+        // Add By Ann 23-08-56 For AddAttachment in E-mail
+//        $mail->ClearAttachments();
+        $model_news_file = NewsFile::model()->findAll("news_id=" . $data['news_id']);
+        if (isset($model_news_file)) {
+            foreach ($model_news_file as $k => $m) {
+                $url = 'http://' . Yii::app()->request->getServerName();
+                $url .= CController::createUrl($m->file_path);
+                 $mail->AddAttachment($url,  $m->file_name);
+                $file_path = substr($m->file_path, 1);
+                $mail->AddAttachment($file_path,  $m->file_name);
+                $data['message'] .= '<br />-- '.$url.' --------- ' . $m->file_path . ' --------- ' . $m->file_name . ' --------- ';
+//                $mail->attachment[] = $m->file_path;
+            }
+            $data['message'] .= "<br />GetAttachments: <pre>" . $mail->GetAttachments() . "</pre>";
+        }
+        $mail->AddAttachment('upload/file/news/news-13772499810.docx',  '- TEST FILE -');
+
+        // End Add By Ann 23-08-56 For AddAttachment in E-mail
+//$mail->Body = $mail->CreateBody();
+$mail->MsgHTML($data['message']);
+
         return $mail->Send();
 //        if (!$mail->Send()) {
 //            echo "Mailer Error: " . $mail->ErrorInfo;
