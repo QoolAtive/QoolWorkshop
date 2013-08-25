@@ -13,6 +13,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
+//        array(
+//            'name' => 'service_company_id',
+//            'value' => '$data->service_company_id',
+//        ),
         array(
             'name' => 'companyName',
             'value' => '$data->companyName',
