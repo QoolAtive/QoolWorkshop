@@ -119,7 +119,7 @@
             <div style="float: left; width: 525px; height: 220px; ">
                 <div id="featured"> 
                     <?php
-                    $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                    $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                     if ($banner == null) {
                         ?>
                         <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
