@@ -42,4 +42,22 @@ class SpLog extends SpLogBase {
         ));
     }
 
+    public function getData() {
+        $criteria = new CDbCriteria;
+        
+        $criteria->select = "t.*,spc.*, spc.name as companyName, spc.name_en as companyName_en";
+        $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
+        $criteria->condition = "t.user_id = " . Yii::app()->user->id;
+
+        $criteria->compare('sp_log_id', $this->sp_log_id);
+        $criteria->compare('user_id', $this->user_id);
+        $criteria->compare('spc.name', $this->companyName);
+        $criteria->compare('spc.name_en', $this->companyName_en);
+        $criteria->compare('service_company_id', $this->service_company_id);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
 }

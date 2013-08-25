@@ -133,34 +133,36 @@ class DefaultController extends Controller {
 //            $model->companyName_en = $_GET['SpLog']['companyNmae_en'];
         }
 
-        $criteria = new CDbCriteria;
-        $criteria->select = "t.*, spc.name as companyName, spc.name_en as companyName_en";
-        $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
-        $criteria->condition = "t.user_id = " . Yii::app()->user->id;
-
-        $criteria->compare('spc.name', $model->companyName, true);
-        $criteria->compare('spc.name_en', $model->companyName_en, true);
-
-        $dataProvider = new CActiveDataProvider('SpLog', array(
-            'criteria' => $criteria,
-            'sort' => array(
-                'defaultOrder' => 'id desc',
-                'attributes' => array(
-                    't.companyNmae' => array(
-                        'asc' => 'spc.name, t.id',
-                        'desc' => 'spc.name desc, t.id',
-                    ),
-                    't.companyNmae_en' => array(
-                        'asc' => 'spc.name, t.id',
-                        'desc' => 'spc.name_en desc, t.id',
-                    ),
-                ),
-            ),
-        ));
+//        $criteria = new CDbCriteria;
+//        $criteria->select = "t.*,spc.*, spc.name as companyName, spc.name_en as companyName_en";
+//        $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
+//        $criteria->condition = "t.user_id = " . Yii::app()->user->id;
+//
+//        $criteria->compare('spc.name', $model->companyName, true);
+//        $criteria->compare('service_company_id', $model->service_company_id, true);
+//        $criteria->compare('spc.name_en', $model->companyName_en, true);
+//
+//        $dataProvider = new CActiveDataProvider('SpLog', array(
+//            'criteria' => $criteria,
+//            'sort' => array(
+//                'defaultOrder' => 'id desc',
+//                'attributes' => array(
+//                    't.companyNmae' => array(
+//                        'asc' => 'spc.name, t.id',
+//                        'desc' => 'spc.name desc, t.id',
+//                    ),
+//                    't.companyNmae_en' => array(
+//                        'asc' => 'spc.name, t.id',
+//                        'desc' => 'spc.name_en desc, t.id',
+//                    ),
+//                ),
+//            ),
+//        ));
 
         $this->render('sp_log', array(
             'model' => $model,
-            'dataProvider' => $dataProvider,
+//            'dataProvider' => $dataProvider,
+            'dataProvider' => $model->getData(),
         ));
     }
 
