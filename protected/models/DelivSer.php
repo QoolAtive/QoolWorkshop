@@ -27,8 +27,8 @@ class DelivSer extends DelivSerBase {
             'option' => Yii::t('language', 'มีการจัดส่ง'),
             'option2' => Yii::t('language', 'ในประเทศ'),
             'delivery_id' => Yii::t('language', 'บริการจัดส่ง'),
-            'other' => Yii::t('language', 'ระบุอื่นๆ ในประเทศ'),
-            'other2' => Yii::t('language', 'ระบุอื่นๆ ต่างประเทศ'),
+            'other' => Yii::t('language', 'ระบุอื่นๆ').' ('.Yii::t('language', 'ในประเทศ').')',
+            'other2' => Yii::t('language', 'ระบุอื่นๆ').' ('.Yii::t('language', 'ต่างประเทศ').')',
         );
     }
 
