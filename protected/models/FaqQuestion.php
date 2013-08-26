@@ -40,7 +40,7 @@ class FaqQuestion extends FaqQuestionBase {
             array('fm_id', 'numerical', 'integerOnly' => true),
             array('subject_th', 'length', 'max' => 255),
             array('author', 'length', 'max' => 100),
-            array('author', 'safe'),
+            array('author, counter', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, fm_id, subject_th, detail_th, subject_en, detail_en, author, date_write', 'safe', 'on' => 'search'),
@@ -70,6 +70,7 @@ class FaqQuestion extends FaqQuestionBase {
             'detail_en' => Yii::t('language', 'คำตอบภาษาอังกฤษ'),
             'author' => Yii::t('language', 'ผู้เขียน'),
             'date_write' => Yii::t('language', 'วันที่เขียน'),
+			'counter' => 'Counter',
         );
     }
 

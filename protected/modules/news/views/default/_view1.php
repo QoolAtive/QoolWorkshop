@@ -20,7 +20,11 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
     );
     ?>
     <br/>
-    <h3><i class='icon-bell-alt'></i><?php echo Yii::t('language', 'ข่าว'); ?></h3>
+    <h3><i class='icon-bell-alt'></i><?php echo Yii::t('language', 'ข่าว'); ?>&nbsp;
+        <a href="/news/feed/feed" alt="<?php echo Yii::t('language', 'Rss Feed') . Yii::t('language', 'ข่าว'); ?>" target="_blank">
+            <i class='icon-rss'></i>
+        </a>
+    </h3>
     <div class="accordion" id="hideother1">
         <?php
         $i = 1;
