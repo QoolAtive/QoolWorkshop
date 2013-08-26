@@ -9,9 +9,9 @@
 /* PUT IN YOUR SLIDER ID AND SIZE TO MAKE LOAD BEAUTIFULLY
    ================================================== */
 #featured { 
-	width: 940px;
+	width: 100%;
 	height: 450px;
-	background: #000 url('/../img/loading.gif') no-repeat center center;
+	background: transparent url('/../img/loading.gif') no-repeat center center;
 	overflow: hidden; }
 #featured>img,  
 #featured>div,
