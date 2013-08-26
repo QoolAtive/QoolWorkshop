@@ -43,7 +43,8 @@ class Payment extends PaymentBase {
     }
 
     public function getListData() {
-        $list = CHtml::listData($this->model()->findAll(), 'payment_id', 'name');
+        $field = LanguageHelper::changeDB('name', 'name_en');
+        $list = CHtml::listData($this->model()->findAll(), 'payment_id', $field);
         return $list;
     }
 
