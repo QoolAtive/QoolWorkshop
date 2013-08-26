@@ -1,5 +1,7 @@
 <?php
-$this->renderPartial('_sidebar', array());
+$this->renderPartial('_sidebar', array(
+    'selectEdu' => 'selected',
+));
 ?>
 
 <div class="content">
@@ -24,7 +26,7 @@ $this->renderPartial('_sidebar', array());
         ?>
         <div class="_50">
             <?php
-            echo $form->label($model, 'name');
+            echo $form->labelEx($model, 'name');
             echo $form->textField($model, 'name');
             echo $form->error($model, 'name')
             ?>
@@ -32,7 +34,7 @@ $this->renderPartial('_sidebar', array());
       
        <div class="_50">
             <?php
-            echo $form->label($model, 'name_en');
+            echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en');
             echo $form->error($model, 'name_en')
             ?>
@@ -41,14 +43,14 @@ $this->renderPartial('_sidebar', array());
 
    <div class="_50">
             <?php
-            echo $form->label($model, 'abbreviation');
+            echo $form->labelEx($model, 'abbreviation');
             echo $form->textField($model, 'abbreviation');
             echo $form->error($model, 'abbreviation')
             ?>
        </div>
     <div class="_50">
             <?php
-            echo $form->label($model, 'abbreviation_en');
+            echo $form->labelEx($model, 'abbreviation_en');
             echo $form->textField($model, 'abbreviation_en');
             echo $form->error($model, 'abbreviation_en')
             ?>
