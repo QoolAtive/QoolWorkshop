@@ -1,5 +1,7 @@
 <?php
-$this->renderPartial('_sidebar', array());
+$this->renderPartial('_sidebar', array(
+    'selectEdu' => 'selected',
+));
 ?>
 
 <div class="content">

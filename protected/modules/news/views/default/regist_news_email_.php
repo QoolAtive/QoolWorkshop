@@ -5,12 +5,18 @@
     ));
 //        echo $form->errorSummary($model);
     ?>
+    <h3>E-mail : </h3>
     <?php
-    echo 'E-mail :' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
+    echo $form->textField($model, 'email', array(
+        'class' => 'fieldrequire',
+        'size' => '40'
+    ));
     echo $form->error($model, 'email');
     ?>
-    <?php
-    echo CHtml::submitButton(Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'));
-    ?>
+    <div class="txt-cen _100">
+        <?php
+        echo CHtml::submitButton(Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'));
+        ?>
+    </div>
     <?php $this->endWidget(); ?>
 </div>
