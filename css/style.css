@@ -1,5 +1,10 @@
 /* @group Component */
 
+
+.tabs.clearfix > li.admin{
+  background: none repeat scroll 0 0 #4F2A81;
+  opacity: 1;
+}
 .edirsearchbox{
   padding: 16px 8px;
   background-image: url('/img/searchbg.png');
