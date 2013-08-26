@@ -675,7 +675,10 @@ class AdminController extends Controller {
     }
 
     public function actionDelCompany($id = null) {
-
+        $modelCheck = Company::model()->find('id=:id', array('id' => $id));
+        if ($modelCheck->user_id != Yii::app()->user->id) {
+            $this->redirect('/site/index');
+        }
         if ($id != null) {
             $model = Company::model()->find('id=:id', array('id' => $id));
 
@@ -714,6 +717,8 @@ class AdminController extends Controller {
             CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
             CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
             CompanyThem::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyCountView::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
+            CompanyMotion::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
 
             if ($model->delete()) {
 
