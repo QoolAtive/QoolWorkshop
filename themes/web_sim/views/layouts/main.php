@@ -23,7 +23,7 @@
                 </h1>
                 <!-- quicksearch -->
                 <div id="first_search">
-                    <form name="quicksearch" id="quicksearch" action="/QoolBook/search" method="get">
+                    <form name="quicksearch" id="quicksearch" action="/webSimulation/shop/search" method="get">
                         <input name="keyword" id="txtSearch" type="text" />
                         <input id="btnTopsearch" onclick="javascript:document.quicksearch.submit();" type="button" />
                     </form>
@@ -67,7 +67,7 @@
                             <?php
                             $item = WebShopItem::model()->find(array('condition' => 'web_shop_id = '.$shop_id,'order' => 'web_shop_item_id desc'));
                             ?>
-                            <a href="#">
+                            <a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>">
                                 <img src="
                                 <?php
                                 if ($item['pic_1'] != NULL) {
@@ -91,7 +91,7 @@
                                 }
                                 ?>" alt="" />
                             </a>
-                            <p><a href="#"><?php echo $item->name_th; ?></a></p>
+                            <p><a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>"><?php echo $item->name_th; ?></a></p>
                         </div>
                     </div>
 

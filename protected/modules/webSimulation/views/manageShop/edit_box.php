@@ -6,7 +6,13 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <style>
     #all_item, #select_item { list-style-type: none; margin: 0; padding: 0; width: 100%; height: 400px; border: 1px solid;}
-    #all_item li, #select_item li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 1em; text-align: center; }
+    #all_item li, #select_item li { margin: 3px 3px 15px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 1em; text-align: center; }
+</style>
+<style>
+    .item_pic img{
+        height: 90px;
+        width: 100px;
+    }
 </style>
 <div class="content">
     <div class="tabcontents" >
@@ -39,6 +45,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 //        echo $form->errorSummary($model);
         ?>
         <div class="_50">
+            <div class="txt-cen">
+                สินค้าทั้งหมด
+            </div>
             <ul id="all_item" class="connectedSortable">
                 <?php
                 $items = WebShopItem::model()->findAll(array('condition' => '
@@ -51,7 +60,33 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 ));
                 foreach ($items as $item) {
                     ?>
-                    <li id="<?php echo $item['web_shop_item_id']; ?>" class="ui-state-default" ><?php echo $item['name_th']; ?></li>
+                    <li id="<?php echo $item['web_shop_item_id']; ?>" class="ui-state-default" >
+                        <div class="item_pic">
+                            <img alt="<?php echo $item['name_th']; ?>" src="
+                            <?php
+                            if ($item['pic_1'] != NULL) {
+                                echo $item['pic_1'];
+                            } else if ($item['pic_2'] != NULL) {
+                                echo $item['pic_2'];
+                            } else if ($item['pic_3'] != NULL) {
+                                echo $item['pic_3'];
+                            } else if ($item['pic_4'] != NULL) {
+                                echo $item['pic_4'];
+                            } else if ($item['pic_5'] != NULL) {
+                                echo $item['pic_5'];
+                            } else if ($item['pic_6'] != NULL) {
+                                echo $item['pic_6'];
+                            } else if ($item['pic_7'] != NULL) {
+                                echo $item['pic_7'];
+                            } else if ($item['pic_8'] != NULL) {
+                                echo $item['pic_8'];
+                            } else {
+                                echo '/img/noimage.gif';
+                            }
+                            ?>" />
+                        </div>
+                        <?php echo $item['name_th']; ?>
+                    </li>
                     <?php
                 }
                 ?>
@@ -59,13 +94,42 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </div>
 
         <div class="_50">
+            <div class="txt-cen">
+                สินค้าที่เลือก
+            </div>
             <ul id="select_item" class="connectedSortable">
                 <?php
                 $items = WebShopBoxItem::model()->findAll(array('condition' => 'web_shop_box_id = ' . $box_id));
                 foreach ($items as $item) {
-                    $item_name = WebShopItem::model()->findByPk($item['web_shop_item_id']);
+                    $item_detail = WebShopItem::model()->findByPk($item['web_shop_item_id']);
                     ?>
-                    <li id="<?php echo $item['web_shop_item_id']; ?>" class="ui-state-default" ><?php echo $item_name['name_th']; ?></li>
+                    <li id="<?php echo $item['web_shop_item_id']; ?>" class="ui-state-default" >
+                        <div class="item_pic">
+                            <img alt="<?php echo $item_detail['name_th']; ?>" src="
+                            <?php
+                            if ($item_detail['pic_1'] != NULL) {
+                                echo $item_detail['pic_1'];
+                            } else if ($item_detail['pic_2'] != NULL) {
+                                echo $item_detail['pic_2'];
+                            } else if ($item_detail['pic_3'] != NULL) {
+                                echo $item_detail['pic_3'];
+                            } else if ($item_detail['pic_4'] != NULL) {
+                                echo $item_detail['pic_4'];
+                            } else if ($item_detail['pic_5'] != NULL) {
+                                echo $item_detail['pic_5'];
+                            } else if ($item_detail['pic_6'] != NULL) {
+                                echo $item_detail['pic_6'];
+                            } else if ($item_detail['pic_7'] != NULL) {
+                                echo $item_detail['pic_7'];
+                            } else if ($item_detail['pic_8'] != NULL) {
+                                echo $item_detail['pic_8'];
+                            } else {
+                                echo '/img/noimage.gif';
+                            }
+                            ?>" />
+                        </div>
+                        <?php echo $item_detail['name_th']; ?>
+                    </li>
                     <?php
                 }
                 ?>
