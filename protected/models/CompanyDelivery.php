@@ -22,8 +22,8 @@ class CompanyDelivery extends CompanyDeliveryBase {
     public function attributeLabels() {
         return array(
             'company_delivery_id' => 'Company Delivery',
-            'name' => Yii::t('language', 'บริการจัดส่งภาษาไทย'),
-            'name_en' => Yii::t('language', 'บริการจัดส่งภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'บริการจัดส่ง').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'name_en' => Yii::t('language', 'บริการจัดส่ง').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
             'num' => Yii::t('language', 'ลำดับการแสดงผล'),
         );
     }
@@ -41,8 +41,9 @@ class CompanyDelivery extends CompanyDeliveryBase {
         ));
     }
 
-    public function getListData() {
-        $list = CHtml::listData($this->model()->findAll(), 'company_delivery_id', 'name');
+    public function getListData() {        
+        $field = LanguageHelper::changeDB('name', 'name_en');
+        $list = CHtml::listData($this->model()->findAll(), 'company_delivery_id', $field);
         return $list;
     }
 
