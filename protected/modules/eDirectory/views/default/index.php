@@ -139,7 +139,7 @@ $this->renderPartial('side_bar', array(
         <?php
         $this->endWidget();
         ?>
-<div id="hot_shop">
+        <div id="hot_shop">
             <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้ายอดนิยม'); ?></h3>
             <?php
 //            $c = new CDbCriteria;
@@ -174,7 +174,7 @@ $this->renderPartial('side_bar', array(
             ));
             ?>
         </div>
-        
+       
 
     </div>
 </div>
