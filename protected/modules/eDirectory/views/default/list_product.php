@@ -1,3 +1,7 @@
+<?php
+$name = LanguageHelper::changeDB($data->name, $data->name_en);
+$detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
+?>
 <ul class="productlist">
     <li>
         <?php
@@ -13,9 +17,9 @@
         ?>
     </li>
     <li>
-        <label  style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo $data->name; ?></label>
+        <label  style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo $name; ?></label>
         <p>
-            <?php echo $data->detail; ?>
+            <?php echo $detail; ?>
         </p>
         <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'เงื่อนไขการชำระเงิน'); ?></label>
         <p>
@@ -26,15 +30,17 @@
             foreach ($paymentCondition as $paymentConditiondata) {
                 $typePayment = Payment::model()->findByPk($paymentConditiondata['payment_id']);
                 if ($payment == null) {
-                    $payment .= $typePayment->name;
+//                    $payment .= $typePayment->name;
+                    $payment .= LanguageHelper::changeDB($typePayment->name, $typePayment->name_en);
                 } else {
-                    $payment .= ',' . $typePayment->name;
+//                    $payment .= ',' . $typePayment->name;                    
+                    $payment .= ',' . LanguageHelper::changeDB($typePayment->name, $typePayment->name_en);
                 }
                 if ($paymentConditiondata['payment_id'] == 5) {
-                    $other = 'รายละเอียดอื่นๆ : ' . $paymentConditiondata['other'];
+                    $other = Yii::t('language', 'รายละเอียดอื่นๆ') . ' : ' . $paymentConditiondata['other'];
                 }
             }
-            echo 'ประเภท : ' . $payment . "<br />";
+            echo Yii::t('language', 'ประเภท') . ' : ' . $payment . "<br />";
             echo $other . "<br />";
             ?>
         </p>

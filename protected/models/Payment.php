@@ -20,8 +20,8 @@ class Payment extends PaymentBase {
     public function attributeLabels() {
         return array(
             'payment_id' => 'Payment',
-            'name' => Yii::t('language', 'เงื่อนไขการชำระเงินภาษาไทย'),
-            'name_en' => Yii::t('language', 'เงื่อนไขการชำระเงินภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'เงื่อนไขการชำระเงิน').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'name_en' => Yii::t('language', 'เงื่อนไขการชำระเงิน').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
             'num' => Yii::t('language', 'ลำดับการแสดงผล'),
         );
     }

@@ -6,6 +6,16 @@ $(document).ready(function() {
   });
 });
 
+
+$(document).ready(function() {
+    $(".edirsearchbtn input").click(function () {
+      $("#hot_shop").hide("slow");
+    });
+
+    //   $(".linksearch #search-form _100 input").click(function () {
+    //   $("#hot_shop").hide("slow");
+    // });
+});
 $(document).ready(function() {
         $('.linkgroupbtn').fancybox({
           width  :'100%',

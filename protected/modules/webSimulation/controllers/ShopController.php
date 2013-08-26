@@ -77,5 +77,33 @@ class ShopController extends Controller {
             throw new CHttpException(404, Yii::t('language', 'ไม่พบสินค้าที่ท่านต้องการ'));
         }
     }
+    
+    public function actionCategory($id, $category_id){
+        $model = $this->settingShop($id);
+        $category = WebShopCategory::model()->findByPk($category_id);
+        if ($model != NULL) {
+            $this->render('category', array(
+                'id' => $id,
+                'category_id' => $category_id,
+                'category' => $category,
+            ));
+        } else {
+            throw new CHttpException(404, Yii::t('language', 'ไม่พบหมวดหมู่ที่ท่านต้องการ'));
+        }
+    }
+    
+    public function actionBox($id, $box_id){
+        $model = $this->settingShop($id);
+        $box = WebShopBox::model()->findByPk($box_id);
+        if ($model != NULL) {
+            $this->render('box', array(
+                'id' => $id,
+                'box_id' => $box_id,
+                'box' => $box,
+            ));
+        } else {
+            throw new CHttpException(404, Yii::t('language', 'ไม่พบกล่องแสดงสินค้าที่ท่านต้องการ'));
+        }
+    }
 
 }
