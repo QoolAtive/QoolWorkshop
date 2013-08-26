@@ -6,7 +6,7 @@
         $category_list = WebShopCategory::model()->findAllByAttributes(array('web_shop_id' => $shop_id));
         foreach ($category_list as $category) {
             ?>
-            <li><a href="#"><?php echo $category['name_th']; ?></a></li>
+            <li><a href="/webSimulation/shop/category/id/<?php echo $shop_id; ?>/category_id/<?php echo $category['web_shop_category_id']; ?>"><?php echo $category['name_th']; ?></a></li>
         <?php }
         ?>
     </ul>

@@ -8,7 +8,7 @@
         <div class="item">
             <a class="pdf" href="#"></a>
             <div class="item_pic">
-                <a href="#">
+                <a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>"  alt="<?php echo $item['name_th']; ?>">
                     <img alt="<?php echo $item['name_th']; ?>" src="
                     <?php
                     if ($item['pic_1'] != NULL) {
@@ -35,9 +35,15 @@
                 <span class="price">฿<?php echo $item['price_normal']; ?></span>
             </div>
             <div class="info_item">
-                <h3><a href="#" alt="<?php echo $item['name_th']; ?>" title="<?php echo $item['name_th']; ?>">
+                <h3><a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>" title="<?php echo $item['name_th']; ?>">
                         <?php echo $item['name_th']; ?>
-                        <span class="promotion_price"></span>
+                        <span class="promotion_price">
+                            <?php
+                            if ($item['price_special'] != '' && $item['price_special'] != NULL) {
+                                echo Yii::t('language', 'ราคาพิเศษ') . ' ฿' . $item['price_special'];
+                            }
+                            ?>
+                        </span>
                     </a></h3>
             </div>
         </div>
