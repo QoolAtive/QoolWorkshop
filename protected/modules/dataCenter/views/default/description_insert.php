@@ -1,5 +1,7 @@
 <?php
-$this->renderPartial('_sidebar', array());
+$this->renderPartial('_sidebar', array(
+    'selectDes' => 'selected',
+));
 ?>
 
 <style>
