@@ -12,9 +12,9 @@ $(document).ready(function() {
       $("#hot_shop").hide("slow");
     });
 
-      $(".linksearch #search-form _100 input").click(function () {
-      $("#hot_shop").hide("slow");
-    });
+    //   $(".linksearch #search-form _100 input").click(function () {
+    //   $("#hot_shop").hide("slow");
+    // });
 });
 $(document).ready(function() {
         $('.linkgroupbtn').fancybox({
