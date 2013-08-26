@@ -30,7 +30,54 @@ class DefaultController extends Controller {
 //        $model->unsetAttributes();
 //        $model_type = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
 
+        $cHot = new CDbCriteria;
+        $cHot->join = '
+                        inner join sp_count_comany_view sccv on t.id = sccv.sp_company_id
+                        inner join sp_type_com spct on t.id = spct.com_id
+                       ';
 
+        if ($id != null) {
+            $cHot->condition = 'type_id = ' . $id;
+        }
+
+        $cHot->order = 'sccv.count_company_view desc, t.id desc';
+
+        $dataHotshop = new CActiveDataProvider('SpCompany', array(
+            'criteria' => $cHot,
+            'pagination' => array(
+                'pageSize' => 4,
+            )
+        ));
+
+        $feild_name = LanguageHelper::changeDB('name', 'name_en');
+        $c = new CDbCriteria;
+        $c->order = $feild_name . ' ASC';
+
+//        if (isset($_POST['type_id']) && $_POST['type_id'] != '0') {
+//            $type_id = $_POST['type_id'];
+//            $c->join = "LEFT JOIN sp_type_com AS type ON type.com_id=t.id";
+//            $c->addCondition('type.type_id = ' . $type_id);
+//        }
+//        if (isset($_POST['name'])) {
+//            $name = $_POST['name'];
+//            $c->addCondition($feild_name . ' like "%' . $name . '%"');
+//        }
+//        $model = SpCompany::model()->findAll($c);
+        $model = new CActiveDataProvider('SpCompany', array(
+            'criteria' => $c,
+        ));
+
+        $this->render('index', array(
+            'model' => $model,
+            'model_type' => $model_type,
+            'id' => $id,
+            'type_id' => $type_id,
+            'name' => $name,
+            'dataHotshop' => $dataHotshop,
+        ));
+    }
+
+    public function actionSearch() {
         $feild_name = LanguageHelper::changeDB('name', 'name_en');
         $c = new CDbCriteria;
         $c->order = $feild_name . ' ASC';
@@ -45,17 +92,12 @@ class DefaultController extends Controller {
             $c->addCondition($feild_name . ' like "%' . $name . '%"');
         }
 
-//        $model = SpCompany::model()->findAll($c);
         $model = new CActiveDataProvider('SpCompany', array(
             'criteria' => $c,
         ));
 
-        $this->render('index', array(
+        $this->renderPartial('search', array(
             'model' => $model,
-            'model_type' => $model_type,
-            'id' => $id,
-            'type_id' => $type_id,
-            'name' => $name,
         ));
     }
 
