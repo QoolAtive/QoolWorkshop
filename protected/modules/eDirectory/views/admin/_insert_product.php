@@ -201,7 +201,7 @@ $this->renderPartial('side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'detail_en');
-                echo $form->textArea($model, 'detail_en');
+//                echo $form->textArea($model, 'detail_en');
                 $this->widget('ext.ckeditor.CKEditorWidget', array(
                     "model" => $model, # Data-Model
                     "attribute" => 'detail_en', # Attribute in the Data-Model
