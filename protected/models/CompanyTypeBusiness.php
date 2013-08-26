@@ -18,8 +18,8 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
     public function attributeLabels() {
         return array(
             'id' => Yii::t('language', 'ลำดับ'),
-            'name' => Yii::t('language', 'ประเภทภาษาไทย'),
-            'name_en' => Yii::t('language', 'ประเภทภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'ประเภท').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'name_en' => Yii::t('language', 'ประเภท').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
         );
     }
 
@@ -45,7 +45,8 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
     }
 
     public function getListData() {
-        $list = CHtml::listData(CompanyTypeBusiness::model()->findAll(), 'id', 'name');
+        $field = LanguageHelper::changeDB('name', 'name_en');
+        $list = CHtml::listData(CompanyTypeBusiness::model()->findAll(), 'id', $field);
         return $list;
     }
 
