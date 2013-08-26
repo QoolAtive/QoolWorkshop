@@ -195,10 +195,11 @@
     cursor: pointer;
 }
 .lessonList a{
- color: purple;
+    color: #800080;
     display: inline-block;
     font-weight: bold;
-    padding: 8px 0;
+    min-height: 39px;
+    padding-top: 11px;
     width: 100%;
 }
 
