@@ -43,6 +43,11 @@
                 'value' => 'strip(LanguageHelper::changeDB($data->detail_th,$data->detail_en), 30);'
             ),
             array(
+                'header' => Yii::t('language', ' ผู้เข้าชม(ครั้ง) '),
+                'name' => 'counter',
+                'filter' => false
+            ),
+            array(
                 'class' => 'CButtonColumn',
                 'header' => Yii::t('language', "แก้ไข"),
                 'template' => '{update}',

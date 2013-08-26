@@ -23,6 +23,13 @@
                 ?>">
                     <div class="accordion-inner">
                         <?php echo $detail; ?>
+                        <div class="right">
+                            <?php
+                            echo Yii::t('language', 'ผู้เข้าชม');
+                            echo ' ' . $faq['counter'] . ' ';
+                            echo Yii::t('language', 'ครั้ง');
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
