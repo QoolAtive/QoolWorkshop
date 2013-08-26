@@ -3,6 +3,7 @@ $this->renderPartial('side_bar', array(
     'id' => $id,
 ));
 ?>
+
 <script type="text/javascript">  
 $(function(){  
     $("ul#navi_containTab > li").click(function(event){  
@@ -121,19 +122,8 @@ ul#detail_containTab li{
         $this->endWidget();
         ?>
 
-         <div id="show_detail">
-            <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้าล่าสุด'); ?></h3>
-            <?php
-            $this->widget('zii.widgets.CListView', array(
-                'dataProvider' => $dataProvider,
-                'itemView' => '_list_all',
-                'summaryText' => false,
-                'emptyText' => Yii::t('language', 'ไม่มีร้านค้า'),
-                'template' => "{items}\n{pager}",
-            ));
-            ?>
-        </div>
-        <div id="hot_shop">
+
+                <div id="hot_shop">
             <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้ายอดนิยม'); ?></h3>
             <?php
 //            $c = new CDbCriteria;
@@ -156,6 +146,19 @@ ul#detail_containTab li{
             ));
             ?>
         </div>
+         <div id="show_detail">
+            <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้าล่าสุด'); ?></h3>
+            <?php
+            $this->widget('zii.widgets.CListView', array(
+                'dataProvider' => $dataProvider,
+                'itemView' => '_list_all',
+                'summaryText' => false,
+                'emptyText' => Yii::t('language', 'ไม่มีร้านค้า'),
+                'template' => "{items}\n{pager}",
+            ));
+            ?>
+        </div>
+
        
     </div>
 </div>

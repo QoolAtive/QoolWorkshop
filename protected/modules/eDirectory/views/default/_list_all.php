@@ -3,8 +3,6 @@ $name = LanguageHelper::changeDB($data->name, $data->name_en);
 $address = LanguageHelper::changeDB($data->address, $data->address_en);
 $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'");
 ?>
-
-
 <div class="servicelist clearfix">
 
         <h4>
