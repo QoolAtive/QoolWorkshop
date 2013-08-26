@@ -35,7 +35,11 @@ $this->renderPartial('side_bar', array(
             <?php
         } else {
             if ($model->status_appro == 0) {
-                echo '<label style = "color: red;">' . Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ ร้านค้าของคุณจะยังไม่ได้รับการเพิ่มข้อมูลเข้าสู่ระบบร้านค้า') . '</label>';
+                ?>
+                <div class="clearfix _100" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
+                    <?php echo Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ ร้านค้าของคุณจะยังไม่ได้รับการเพิ่มข้อมูลเข้าสู่ระบบร้านค้า'); ?>
+                </div> 
+                <?php
             }
             ?>
 
