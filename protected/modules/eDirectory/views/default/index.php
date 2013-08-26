@@ -142,13 +142,18 @@ $this->renderPartial('side_bar', array(
         <div id="hot_shop">
             <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ร้านค้ายอดนิยม'); ?></h3>
             <?php
-//            $c = new CDbCriteria;
+            $c = new CDbCriteria;
+            $c->join = '
+                inner join company_count_view ccv on t.id = ccv.company_id
+                inner join company_type type on t.id = type.company_id
+                ';
+            if ($id != null) {
+                $c->condition = 'type.company_type = ' . $id;
+            }
+            $c->order = 'ccv.count_company_view desc, t.id desc';
+
             $dataHotshop = new CActiveDataProvider('Company', array(
-                'criteria' => array(
-                    'join' => 'left join company_count_view ccv on t.id = ccv.company_id',
-                    'order' => 'ccv.count_company_view desc, t.id desc',
-                    'limit' => 4
-                ),
+                'criteria' => $c,
                 'pagination' => array(
                     'pageSize' => 4,
                 ),
@@ -174,7 +179,7 @@ $this->renderPartial('side_bar', array(
             ));
             ?>
         </div>
-       
+
 
     </div>
 </div>
