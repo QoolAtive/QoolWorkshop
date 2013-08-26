@@ -47,31 +47,41 @@
     });
 </script>
 <?php
-$list = array(
-    array('text' => Yii::t('language', 'ร้านค้าทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
-    array('text' => Yii::t('language', 'จัดการสินค้าและบริการ'), 'link' => '/eDirectory/admin/product/id/' . $id, 'select' => ''),
-    array('text' => Yii::t('language', 'เพิ่มข้อมูลสินค้าและบริการ'), 'link' => '#', 'select' => 'selected'),
-);
 $this->renderPartial('side_bar', array(
-    'list' => $list,
+    'active' => 5,
+    'company_id' => $id,
 ));
+$title = Company::model()->find('id=:id', array(':id' => $id));
+$company_name = LanguageHelper::changeDB($title->name, $title->name_en);
 ?>
 <div class="content">
     <div class="tabcontents">
         <?php
         if (empty($model->id)) {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'เพิ่ม';
         } else {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'แก้ไข';
         }
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'สินค้าและบริการ'); ?></h3>
-
-        <hr>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-home"></i>
+                <?php
+                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'), array('/eDirectory/admin/index'));
+                ?>
+                <i class="icon-chevron-right"></i>
+                <?php echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/admin/index')); ?>
+                <i class="icon-chevron-right"></i>
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าและบริการ') . ' (' . $company_name . ') ', array(
+                    '/eDirectory/admin/product/id/' . $id
+                ));
+                ?>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'สินค้าและบริการ')); ?>   
+            </span>
+        </h3>
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
@@ -81,7 +91,7 @@ $this->renderPartial('side_bar', array(
             ?>
 
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- เงื่อนไขการชำระเงิน -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'เงื่อนไขการชำระเงิน') . ' - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -152,7 +162,7 @@ $this->renderPartial('side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลสินค้าภาษาไทย -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลสินค้า') . ' (' . Yii::t('language', 'ภาษาไทย') . ') - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -189,7 +199,7 @@ $this->renderPartial('side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลสินค้าภาษาอังกฤษ -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลสินค้า') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -225,9 +235,15 @@ $this->renderPartial('side_bar', array(
                 ?>
             </div>
             <div class="_100 textcenter">
+                <hr>
                 <?php
-                echo CHtml::submitButton($btnText);
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/eDirectory/admin/product/id/' . $id
+                    )) . "'")
+                );
                 ?>
+                <hr>
             </div>
             <?php $this->endWidget(); ?>
         </div>

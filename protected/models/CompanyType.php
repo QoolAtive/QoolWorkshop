@@ -20,7 +20,7 @@ class CompanyType extends CompanyTypeBase {
         return array(
             'id' => 'ID',
             'company_id' => 'Company',
-            'company_type' => Yii::t('language', 'ประเภทธุกิจ'),
+            'company_type' => Yii::t('language', 'ประเภทธุรกิจ'),
         );
     }
 

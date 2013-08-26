@@ -81,23 +81,30 @@ $list = array(
 );
 
 $this->renderPartial('side_bar', array(
-    'list' => $list,
+    'active' => '1',
 ))
 ?>
 <div class="content">
     <div class="tabcontents">
         <?php
         if (empty($model->id)) {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'เพิ่ม';
         } else {
-            $btnText = 'บันทึก';
-
-            $link_back = '/serviceProvider/manage/typeBusiness';
+            $word = 'แก้ไข';
         }
         ?>
-        <h3>  <i class="icon-plus"></i> <?php echo Yii::t('language', 'ร้านค้า'); ?></h3>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-home"></i>
+                <?php
+                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'), array('/eDirectory/admin/index'));
+                ?>
+                <i class="icon-chevron-right"></i>
+                <?php echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/admin/index')); ?>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'ร้านค้า')); ?>   
+            </span>
+        </h3>
 
         <hr>
         <div class="_100">
@@ -109,7 +116,7 @@ $this->renderPartial('side_bar', array(
             $model_type->company_type = $type_list_data;
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
+                <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'เลือกประเภท') . ' - '; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -121,7 +128,7 @@ $this->renderPartial('side_bar', array(
             <div class="_100">
 
                 <div class="_100">
-                    <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลภาษาไทย -'); ?></h4>
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาไทย') . ') - '; ?></h4>
                 </div>
                 <div class="_100">
                     <?php
@@ -187,7 +194,7 @@ $this->renderPartial('side_bar', array(
                     ?>
                 </div>
                 <div class="_100">
-                    <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลภาษาอังกฤษ -'); ?></h4>
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') - '; ?></h4>
                 </div>
                 <div class="_100">
                     <?php
@@ -252,7 +259,7 @@ $this->renderPartial('side_bar', array(
                     ?>
                 </div>
                 <div class="_100">
-                    <h4 class="reg"><?php echo Yii::t('language', '- ข้อมูลติดต่อใช้ร่วมกัน -'); ?></h4>
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูลติดต่อใช้ร่วมกัน') . ' - '; ?></h4>
                 </div>
                 <div class="_50">
                     <?php
@@ -297,7 +304,7 @@ $this->renderPartial('side_bar', array(
                     ?>
                 </div>
                 <div class="_100">
-                    <h4 class="reg"><?php echo Yii::t('language', '- บริการจัดส่ง -'); ?></h4>
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'บริการจัดส่ง') . ' - '; ?></h4>
                 </div>
                 <div class="_100">
                     <?php
@@ -309,14 +316,20 @@ $this->renderPartial('side_bar', array(
                         <?php
                         $model_delivery->option = $delivery;
                         echo $form->labelEx($model_delivery, 'option') . '<br />';
-                        echo $form->checkBoxList($model_delivery, 'option', array('0' => 'ในประเทศ', '1' => 'ต่างประเทศ'));
+                        echo $form->checkBoxList($model_delivery, 'option', array(
+                            '0' => Yii::t('language', 'ในประเทศ'),
+                            '1' => Yii::t('language', 'ต่างประเทศ'),
+                        ));
                         echo $form->error($model_delivery, 'option');
                         ?>
 
                         <div id="inLocal" class="_100" style="display: none;">
                             <?php
                             echo $form->labelEx($model_delivery, 'option2') . '<br />';
-                            echo $form->radioButtonList($model_delivery, 'option2', array('0' => 'ทั่วประเทศ', '1' => 'บางพื้นที่'));
+                            echo $form->radioButtonList($model_delivery, 'option2', array(
+                                '0' => Yii::t('language', 'ทั่วประเทศ'), 
+                                '1' => Yii::t('language', 'บางพื้นที่'),
+                                ));
                             echo $form->error($model_delivery, 'option2');
                             ?>
 
@@ -340,7 +353,7 @@ $this->renderPartial('side_bar', array(
 
 
                 <div class="_100">
-                    <h4 class="reg"><?php echo Yii::t('language', '- เอกสารอิเล็กทรอนิกส์ -'); ?></h4>
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'เอกสารอิเล็กทรอนิกส์') . ' - '; ?></h4>
                 </div>
                 <div class="_100">
                     <div class="_50">
@@ -450,7 +463,7 @@ $this->renderPartial('side_bar', array(
                         $brochure = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                         if (count($brochure) > 0) {
                             ?>
-                            <label><?php echo Yii::t('language', 'โบว์ชัวร์'); ?></label>
+                            <label><?php echo Yii::t('language', 'โบรชัวร์'); ?></label>
                             <?php
                             foreach ($brochure as $data) {
                                 echo "<ul>";
@@ -478,7 +491,7 @@ $this->renderPartial('side_bar', array(
                 </div>
                 <div class="_100 textcenter">
                     <?php
-                    echo CHtml::submitButton($btnText);
+                    echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
