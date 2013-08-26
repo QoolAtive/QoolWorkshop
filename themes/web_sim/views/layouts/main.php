@@ -16,7 +16,7 @@
             <!--Header-->
             <div id="header">
                 <h1 id="logo">
-                    <a href="#">
+                    <a href="/webSimulation/shop/index/id/<?php echo $shop_id; ?>">
                         <!-- LOGO QUERY FORM DATABASE -->
                         <img src="<?php echo $this->format['logo']; ?>" alt="<?php echo $this->shop['name_th']; ?>" />
                     </a>
@@ -65,7 +65,7 @@
                         <h2><?php echo Yii::t('language', 'สินค้าใหม่ล่าสุด'); ?></h2>
                         <div class="right_item clearfix">
                             <?php
-                            $item = WebShopItem::model()->find(array('condition' => 'web_shop_id = '.$shop_id,'order' => 'web_shop_item_id desc'));
+                            $item = WebShopItem::model()->find(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'web_shop_item_id desc'));
                             ?>
                             <a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>">
                                 <img src="

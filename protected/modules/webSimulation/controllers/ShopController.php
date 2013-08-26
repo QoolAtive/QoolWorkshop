@@ -81,7 +81,7 @@ class ShopController extends Controller {
     public function actionCategory($id, $category_id){
         $model = $this->settingShop($id);
         $category = WebShopCategory::model()->findByPk($category_id);
-        if ($model != NULL) {
+        if ($category != NULL) {
             $this->render('category', array(
                 'id' => $id,
                 'category_id' => $category_id,
@@ -95,7 +95,7 @@ class ShopController extends Controller {
     public function actionBox($id, $box_id){
         $model = $this->settingShop($id);
         $box = WebShopBox::model()->findByPk($box_id);
-        if ($model != NULL) {
+        if ($box != NULL) {
             $this->render('box', array(
                 'id' => $id,
                 'box_id' => $box_id,
@@ -104,6 +104,10 @@ class ShopController extends Controller {
         } else {
             throw new CHttpException(404, Yii::t('language', 'ไม่พบกล่องแสดงสินค้าที่ท่านต้องการ'));
         }
+    }
+
+    public function actionSearch($id, $keyword){
+        $model = $this->settingShop($id);
     }
 
 }
