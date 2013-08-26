@@ -44,7 +44,7 @@ class SpLog extends SpLogBase {
 
     public function getData() {
         $criteria = new CDbCriteria;
-        
+
         $criteria->select = "t.*,spc.*, spc.name as companyName, spc.name_en as companyName_en";
         $criteria->join = "inner join sp_company spc on t.service_company_id = spc.id";
         $criteria->condition = "t.user_id = " . Yii::app()->user->id;
