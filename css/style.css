@@ -2,7 +2,7 @@
 
 
 .tabs.clearfix > li.admin{
-  background: none repeat scroll 0 0 #4F2A81;
+  background: none repeat scroll 0 0 #9F00AA;
   opacity: 1;
 }
 .edirsearchbox{
@@ -1853,95 +1853,118 @@ ul#navi_containTab li {
 /*menu index */
 .gridmenu li{
     float: left;
-    padding-right: 6px;
+    padding-right: 2px;
     padding-bottom :6px;
 }
 
 .gridmenu li a{
-    height:139px;
-    width: 139px;
+    height: 143px;    
+    width:143px;
     display: block;
 }
+
 .gridmenu .knowledge {
-    background: url(../img/icon/knowledge.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/1knowledge.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .knowledge:hover {
-    background: url(../img/icon/knowledgeth.png) no-repeat;
-    height: 139px;
-    width: 139px;
-}
-.gridmenu .websim {
-    background: url(../img/icon/websim.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/1knowledge.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom; 
 }
 
+.gridmenu .websim {
+    background: url(../img/index/2websim.png) no-repeat;
+    height: 138px;
+    width: 143px;
+     background-position:top; 
+}
 .gridmenu .websim:hover {
-    background: url(../img/icon/websimth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/2websim.png) no-repeat;
+    height: 137px;
+    width: 143px;
+     background-position:bottom; 
 }
 .gridmenu .edir {
-    background: url(../img/icon/edir.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/3edir.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .edir:hover {
-    background: url(../img/icon/edirth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/3edir.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom; 
 }
+
 .gridmenu .servicepro {
-    background: url(../img/icon/servicepro.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/4service.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .servicepro:hover {
-    background: url(../img/icon/serviceth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/4service.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom;
 }
+
 .gridmenu .link {
-    background: url(../img/icon/link.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/5link.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .link:hover {
-    background: url(../img/icon/linkth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/5link.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom;
 }
+
 .gridmenu .faq {
-    background: url(../img/icon/faq.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/6faq.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .faq:hover {
-    background: url(../img/icon/faqth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/6faq.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom;
 }
 .gridmenu .aboutus {
-    background: url(../img/icon/aboutus.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/7aboutus.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
+
 }
 .gridmenu .aboutus:hover {
-    background: url(../img/icon/aboutusth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/7aboutus.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom;
+
 }
 .gridmenu .news {
-    background: url(../img/icon/news.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/8news.png) no-repeat;
+    height: 138px;
+    width: 143px;
+    background-position:top; 
 }
 .gridmenu .news:hover {
-    background: url(../img/icon/newsth.png) no-repeat;
-    height: 139px;
-    width: 139px;
+    background: url(../img/index/8news.png) no-repeat;
+    height: 137px;
+    width: 143px;
+    background-position:bottom;
+
 }
 
 
@@ -1964,6 +1987,7 @@ ul#navi_containTab li {
 #wrapper .colright img.mascot{
     margin-left: 30px;
 }
+
 
 /* @end */
 
