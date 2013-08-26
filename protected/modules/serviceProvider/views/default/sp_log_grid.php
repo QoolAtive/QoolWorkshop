@@ -18,12 +18,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //            'value' => '$data->service_company_id',
 //        ),
         array(
-            'name' => 'companyName',
-            'value' => '$data->companyName',
+            'name' => 'name',
+            'value' => '$data->name',
         ),
         array(
-            'name' => 'companyName_en',
-            'value' => '$data->companyName_en',
+            'name' => 'name_en',
+            'value' => '$data->name_en',
         ),
         array(
             'class' => 'CButtonColumn',
@@ -32,8 +32,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'template' => '{view}{delete}',
             'buttons' => array(
                 'view' => array(
-                    'label' => 'edit', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/serviceProvider/default/detail/",array("id"=>$data->service_company_id))',
+                    'label' => 'view', //Text label of the button.
+                    'url' => 'Yii::app()->createUrl("/serviceProvider/default/detail/",array("id"=>$data->id))',
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.

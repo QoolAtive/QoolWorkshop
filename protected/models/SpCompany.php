@@ -3,6 +3,7 @@
 class SpCompany extends SpCompanyBase {
 
     public $type_id;
+    public $sp_log_id;
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -18,6 +19,12 @@ class SpCompany extends SpCompanyBase {
             array('id, logo, name, name_en, infor, infor_en, type_business, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure, partner', 'safe', 'on' => 'search'),
         );
     }
+
+//    public function relations() {
+//        return array(
+//            'logSpCompany' => array(self::HAS_MANY, 'SpLog', 'service_company_id'),
+//        );
+//    }
 
     public function attributeLabels() {
         return array(
