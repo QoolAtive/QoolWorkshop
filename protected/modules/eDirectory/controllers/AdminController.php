@@ -183,7 +183,7 @@ class AdminController extends Controller {
         $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $id));
         $modelCompany = Company::model()->find('id = :id', array(':id' => $model->main_id));
         $userData = MemRegistration::model()->find('user_id = :user_id', array(':user_id' => $modelCompany->user_id));
-        
+
         if (count($userData) > 0) {
             $message = '
                     <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'เรียน') . ' ' . $userData->ftname . ' ' . $userData->ltname . ' </strong>
@@ -261,6 +261,7 @@ class AdminController extends Controller {
             if ($model->getErrors() == null) {
                 if ($model->save()) {
                     echo "
+                        <meta charset='UTF-8'></meta>
                         <script>
                         alert('" . Yii::t('language', 'บันทึกเรียบร้อย') . "');
                         window.location='/eDirectory/admin/motionSetting';
@@ -315,18 +316,21 @@ class AdminController extends Controller {
         $criteria = new CDbCriteria;
         $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status, ct.status_block as status_block, ct.date_warning as date_warning';
         $criteria->join = '
-            left join company_them ct on t.id = ct.main_id
+            inner join company_them ct on t.id = ct.main_id
             inner join company_motion cm on t.id = cm.company_id
             ';
         $criteria->distinct = 'name, name_en';
 //        $criteria->order = 'cm.company_motion_id desc';
-        $criteria->condition = "((ct.status_block = 1) or (ct.status_appro = 1 and cm.update_at < '" . $update_at . "')) and cm.user_id != 3";
+        $criteria->condition = "((ct.status_block = 1) or (ct.status_appro = 1 and cm.update_at < '" . $update_at . "')) and t.user_id != 3";
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
         $criteria->compare('cm.update_at', $model->update_at, true);
         $criteria->compare('cm.status', $model->motion_status, true);
         $criteria->compare('ct.status_appro', $model->status_block, true);
+
+//        echo "<pre>";
+//        print_r($criteria);
 
         $dataProvider = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,
@@ -394,6 +398,7 @@ class AdminController extends Controller {
             $message = Yii::t('language', 'แจ้งไปยังร้านค้าเรียบร้อยแล้ว');
 
             echo "
+                <meta charset='UTF-8'></meta>
                 <script>
                 alert('" . $message . "');
                 window.location='/eDirectory/admin/companyMotion';
@@ -403,6 +408,7 @@ class AdminController extends Controller {
             $message = Yii::t('language', 'คุณยังไม่ได้เลือกร้านค้าที่กำหนด');
 
             echo "
+                <meta charset='UTF-8'></meta>
                 <script>
                 alert('" . $message . "');
                 window.location='/eDirectory/admin/companyMotion';
@@ -630,6 +636,7 @@ class AdminController extends Controller {
                     } else {
                         if ($page == null) {
                             echo "
+                                <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/admin/index';
@@ -637,6 +644,7 @@ class AdminController extends Controller {
                             ";
                         } else {
                             echo "
+                                <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/eDirectory/default/companyDetail/id/$id';
