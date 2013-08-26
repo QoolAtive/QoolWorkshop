@@ -310,7 +310,7 @@ return array(
     'ให้ส่วนลด' => 'Give discount ',
     'ให้เครดิต' => 'Give credit ',
     'ลำดับการแสดงผล' => 'The display order',
-    '' => '',
+    'ข้อมูลผู้ร้องขอ' => 'Requesting information',
     '' => '',
     '' => '',
     '' => '',
