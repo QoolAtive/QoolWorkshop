@@ -550,7 +550,7 @@ class AdminController extends Controller {
                         if ($_POST['DelivSer']['option2'] == 1) {
                             $model_delivery->other = $_POST['DelivSer']['other'];
                             $model_delivery->other_en = $_POST['DelivSer']['other_en'];
-                        } else if($_POST['DelivSer']['option2'] == 0){
+                        } else if ($_POST['DelivSer']['option2'] == 0) {
                             $model_delivery->other = null;
                             $model_delivery->other_en = null;
                         }
@@ -798,6 +798,7 @@ class AdminController extends Controller {
                 array_push($payment_array, $data['payment_id']);
                 if ($data['payment_id'] == 5) {
                     $model_payment->other = $data['other'];
+                    $model_payment->other_en = $data['other_en'];
                 }
             }
 
@@ -807,8 +808,10 @@ class AdminController extends Controller {
                 array_push($payment_special_array, $data['special_id']);
                 if ($data['special_id'] == 0) {
                     $model_payment_special->other1 = $data['other'];
+                    $model_payment_special->other1_en = $data['other_en'];
                 } else if ($data['special_id'] == 1) {
                     $model_payment_special->other2 = $data['other'];
+                    $model_payment_special->other2_en = $data['other_en'];
                 }
             }
 
@@ -898,6 +901,9 @@ class AdminController extends Controller {
                         $deleteSpecial_array->delete();
                     }
 
+//                    echo "<pre>";
+//                    print_r($payment_special_array2);
+
                     if (!empty($payment_special_array2)) {
                         foreach ($payment_special_array2 as $data) { // สิทธิพิเศษ
                             $add_special = new PaymentSpecial;
@@ -911,6 +917,9 @@ class AdminController extends Controller {
                                 $add_special->other = $model_payment_special->other2;
                                 $add_special->other_en = $model_payment_special->other2_en;
                             }
+
+                            echo "<pre>";
+                            print_r($add_special->attributes);
 
                             $add_special->save();
                         }
@@ -1281,11 +1290,13 @@ class AdminController extends Controller {
                                                             $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
                                                             if ($stError == null) {
                                                                 $model_delively->other = $data[19];
+                                                                $model_delively->other_en = $data[21];
                                                             } else {
                                                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                             }
                                                         } else {
                                                             $model_delively->other = null;
+                                                            $model_delively->other_en = null;
                                                         }
                                                     } else {
                                                         $error .= CheckErrorCompany::errorTableDetail($n, $stError);
@@ -1298,6 +1309,7 @@ class AdminController extends Controller {
                                                 $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
                                                 if ($stError == null) {
                                                     $model_delively->other2 = $data[20];
+                                                    $model_delively->other2_en = $data[22];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
@@ -1306,6 +1318,8 @@ class AdminController extends Controller {
                                                 $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
                                                 if ($stError == null) {
                                                     $model_delively->option2 = $data[18];
+                                                    $model_delively->other = $data[19];
+                                                    $model_delively->other_en = $data[21];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
@@ -1314,6 +1328,7 @@ class AdminController extends Controller {
                                                 $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
                                                 if ($stError == null) {
                                                     $model_delively->other2 = $data[20];
+                                                    $model_delively->other2_en = $data[22];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
@@ -1329,6 +1344,8 @@ class AdminController extends Controller {
                                     $model_delively->option2 = null;
                                     $model_delively->other = null;
                                     $model_delively->other2 = null;
+                                    $model_delively->other_en = null;
+                                    $model_delively->other2_en = null;
                                 }
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
@@ -1346,6 +1363,21 @@ class AdminController extends Controller {
 
                                 $model_delively->com_id = $modelCompany->id;
                                 $model_delively->save();
+
+                                $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $modelCompany->id));
+                                if (count($company_motion) < 1) {
+                                    $company_motion = new CompanyMotion();
+                                    $company_motion->user_id = Yii::app()->user->id;
+                                    $company_motion->company_id = $modelCompany->id;
+                                    $company_motion->status = '1';
+                                    $company_motion->update_at = date('Y-m-d');
+                                    $company_motion->create_at = date('Y-m-d');
+                                    $company_motion->save();
+                                } else {
+                                    $company_motion->status = '1';
+                                    $company_motion->update_at = date('Y-m-d');
+                                    $company_motion->save();
+                                }
 
                                 $company_them = CompanyThem::model()->count('main_id=:main_id', array(':main_id' => $modelCompany->id)); // เพิ่มสถานะการการยอมรับ
                                 if ($company_them < 1) {
@@ -1498,11 +1530,11 @@ class AdminController extends Controller {
 
                         $specialArray = array();
 
-                        if ($data[9] != null) {
-                            array_push($specialArray, array('dc' => $data[9])); // ถ้าเลือกการให้ส่วนลด
+                        if ($data[10] != null) {
+                            array_push($specialArray, array('dc' => $data[10])); // ถ้าเลือกการให้ส่วนลด
                         }
-                        if ($data[11] != null) {
-                            array_push($specialArray, array('credit' => $data[11])); // ถ้าเลือกการให้เครดิต
+                        if ($data[13] != null) {
+                            array_push($specialArray, array('credit' => $data[13])); // ถ้าเลือกการให้เครดิต
                         }
 
 //                        echo "<pre>";
@@ -1522,6 +1554,7 @@ class AdminController extends Controller {
                                         $addPayment->payment_id = $dataPaymentArray;
                                         if ($dataPaymentArray == 5) {
                                             $addPayment->other = $data[8];
+                                            $addPayment->other_en = $data[9];
                                         }
                                         $addPayment->save();
                                     }
@@ -1534,7 +1567,8 @@ class AdminController extends Controller {
                                             $addSpecial = new PaymentSpecial;
                                             $addSpecial->product_id = $modelProduct->id;
                                             $addSpecial->special_id = 0;
-                                            $addSpecial->other = $data[10];
+                                            $addSpecial->other = $data[11];
+                                            $addSpecial->other_en = $data[12];
                                             $addSpecial->save();
                                         }
 
@@ -1542,7 +1576,8 @@ class AdminController extends Controller {
                                             $addSpecial = new PaymentSpecial;
                                             $addSpecial->product_id = $modelProduct->id;
                                             $addSpecial->special_id = 1;
-                                            $addSpecial->other = $data[12];
+                                            $addSpecial->other = $data[14];
+                                            $addSpecial->other_en = $data[15];
                                             $addSpecial->save();
                                         }
                                     }
@@ -1559,7 +1594,13 @@ class AdminController extends Controller {
                     $n++;
                 }
 
-                $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+
+                if ($t_detail != null) {
+                    $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
+                } else if ($n == 4) {
+                    $error .= CheckErrorCompany::errorTableDetail($n, 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ');
+                    $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
+                }
             }
         }
 
