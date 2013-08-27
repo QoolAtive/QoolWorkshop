@@ -46,7 +46,7 @@ switch ($view) {
                 <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/2')); ?>" rel='view-2'>
                     <?php
                     //FAQ Knowledge & Learning
-                    echo Yii::t('language', 'คำถาม') . Yii::t('language', 'การเรียนรู้และบทความ');
+                    echo Yii::t('language', 'คำถาม') . Yii::t('language', 'การเรียนรู้<br />และบทความ');
                     ?>
                 </a>
             </li>
@@ -62,7 +62,7 @@ switch ($view) {
                 <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/index/view/4')); ?>" rel='view-4'>
                     <?php
                     //FAQ Web Simulation
-                    echo Yii::t('language', 'คำถาม') . Yii::t('language', 'แนะนำการใช้งาน');
+                    echo Yii::t('language', 'คำถาม') . Yii::t('language', 'แนะนำ<br />การใช้งาน');
                     ?>
                 </a>
             </li>
@@ -76,7 +76,7 @@ switch ($view) {
                 <li class=''>
                     <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/2')); ?>" rel='manage2'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?><br/>
-                        <?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?>
+                        <?php echo Yii::t('language', 'การเรียนรู้<br />และบทความ'); ?>
                     </a>
                 </li>
                 <li class=''>
