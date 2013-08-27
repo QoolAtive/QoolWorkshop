@@ -113,7 +113,7 @@ class ShopController extends Controller {
         $this->busket[$item_id] =  $number;
         Yii::app()->session['busket'] = $this->busket;
         
-        print_r(Yii::app()->session['busket']);
+//        print_r(Yii::app()->session['busket']);
         $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
     }
     
@@ -122,7 +122,7 @@ class ShopController extends Controller {
         unset($this->busket[$item_id]);
         Yii::app()->session['busket'] = $this->busket;
         
-        print_r(Yii::app()->session['busket']);
+//        print_r(Yii::app()->session['busket']);
         $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
     }
     public function actionRemoveAllItem(){
