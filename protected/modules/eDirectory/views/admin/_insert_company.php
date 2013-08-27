@@ -338,14 +338,18 @@ $this->renderPartial('side_bar', array(
                             <?php
                             echo $form->labelEx($model_delivery, 'other');
                             echo $form->textfield($model_delivery, 'other');
-                            echo $form->error($model_delivery, 'other');
+                            
+                            echo $form->labelEx($model_delivery, 'other_en');
+                            echo $form->textfield($model_delivery, 'other_en');
                             ?>
                         </div>
                         <div id="other2" class="_100" style="display: none;">
                             <?php
                             echo $form->labelEx($model_delivery, 'other2');
                             echo $form->textfield($model_delivery, 'other2');
-                            echo $form->error($model_delivery, 'other2');
+                            
+                            echo $form->labelEx($model_delivery, 'other2_en');
+                            echo $form->textfield($model_delivery, 'other2_en');
                             ?>
                         </div>
                     </div>

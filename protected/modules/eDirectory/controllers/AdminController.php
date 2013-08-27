@@ -459,6 +459,8 @@ class AdminController extends Controller {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
             $model_delivery->attributes = $_POST['DelivSer'];
+            $model_delivery->other_en = $_POST['DelivSer']['other_en'];
+            $model_delivery->other2_en = $_POST['DelivSer']['other2_en'];
 
             if ($_POST['Delivery']['option'] == array()) {
                 $model_delivery->option = 0;
@@ -536,8 +538,10 @@ class AdminController extends Controller {
                         } else if ($_POST['DelivSer']['option'][0] != null && $_POST['DelivSer']['option'][1] == null) { // ส่งในประเทศ ไม่ส่งนอกประเทศ
                             $model_delivery->option = 0;
                             $model_delivery->other2 = null;
+                            $model_delivery->other2_en = null;
                         } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] != null) { // ไม่ส่งในประเทศ ส่งนอกประเทศ
                             $model_delivery->other = null;
+                            $model_delivery->other_en = null;
                             $model_delivery->option = 1;
                         } else if ($_POST['DelivSer']['option'][0] == null && $_POST['DelivSer']['option'][1] == null) { // ไม่ส่งเลย
                             $model_delivery->option = null;
@@ -545,12 +549,18 @@ class AdminController extends Controller {
 
                         if ($_POST['DelivSer']['option2'] == 1) {
                             $model_delivery->other = $_POST['DelivSer']['other'];
+                            $model_delivery->other_en = $_POST['DelivSer']['other_en'];
+                        } else if($_POST['DelivSer']['option2'] == 0){
+                            $model_delivery->other = null;
+                            $model_delivery->other_en = null;
                         }
                     } else {
                         $model_delivery->option = null;
                         $model_delivery->option2 = null;
                         $model_delivery->other = null;
+                        $model_delivery->other_en = null;
                         $model_delivery->other2 = null;
+                        $model_delivery->other2_en = null;
                     }
 //                    echo "<pre>";
 //                    print_r($model_delivery->attributes);

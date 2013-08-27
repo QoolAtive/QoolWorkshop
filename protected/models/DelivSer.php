@@ -15,7 +15,7 @@ class DelivSer extends DelivSerBase {
             array('other, other2', 'length', 'max' => 255),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('deliv_ser_id, com_id, delivery_id, other, other2', 'safe', 'on' => 'search'),
+            array('deliv_ser_id, com_id, delivery_id, other, other_en, other2, other2_en', 'safe', 'on' => 'search'),
         );
     }
 
@@ -27,8 +27,15 @@ class DelivSer extends DelivSerBase {
             'option' => Yii::t('language', 'มีการจัดส่ง'),
             'option2' => Yii::t('language', 'ในประเทศ'),
             'delivery_id' => Yii::t('language', 'บริการจัดส่ง'),
+<<<<<<< HEAD
             'other' => Yii::t('language', 'ระบุอื่นๆ').' ('.Yii::t('language', 'ในประเทศ').')',
             'other2' => Yii::t('language', 'ระบุอื่นๆ').' ('.Yii::t('language', 'ต่างประเทศ').')',
+=======
+            'other' => Yii::t('language', 'ระบุอื่นๆ ในประเทศภาษาไทย'),
+            'other2' => Yii::t('language', 'ระบุอื่นๆ ต่างประเทศภาษาไทย'),
+            'other_en' => Yii::t('language', 'ระบุอื่นๆ ในประเทศภาษาอังกฤษ'),
+            'other2_en' => Yii::t('language', 'ระบุอื่นๆ ต่างประเทศภาษาอังกฤษ'),
+>>>>>>> origin/b_edit_edirectory_03
         );
     }
 
