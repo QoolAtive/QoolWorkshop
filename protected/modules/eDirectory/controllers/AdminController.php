@@ -366,8 +366,11 @@ class AdminController extends Controller {
             $company = $_POST['company'];
 
             foreach ($company as $data) {
-                $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $data));
-                $model_company = Company::model()->findByPk($data);
+                $model = CompanyThem::model()->find('main_id = :main_id and status_appro = :status', array(
+                    ':main_id' => $data,
+                    ':status' => 1,
+                ));
+                $model_company = Company::model()->findByPk($model->main_id);
                 $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
 
                 $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
