@@ -28,7 +28,7 @@
             <h3 class="textcenter" style="padding-top: 20px;">Web Simulation</h3>
                         <p class="textcenter">ระบบแนะนำการทดลองการเปิดร้านค้าออนไลน์</p>
 
-            <div style="padding:20px 100px">
+            <div class="textcenter" style="padding:20px 100px">
             <p>คำแนะนำการใช้งานระบบ</p>
                         <p style="text-indent: 20px;"> - ระบบนี้เป็นระบบจำลองเปิดร้านค้าออนไลน์ เพื่อให้ผู้สนใจ มีความรู้ความเข้าใจในการเปิดร้านค้าออนไลน์</p>
                         <!-- <p style="text-indent: 20px;"> - </p> -->

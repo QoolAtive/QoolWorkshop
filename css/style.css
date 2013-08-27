@@ -1,4 +1,31 @@
 /* @group Component */
+.websimboxlist{
+ 
+}
+.websimtexthead{
+  font-size: 16px;
+}
+.websimboxlist li ul.innerlogo > li {
+    text-align: center;
+}.websimboxlist li ul.innerlogo > li > a > img {
+  width: 83px;
+}
+
+.websimboxlist > li{
+  margin: 10px;
+  width: 22%;
+  float: left;
+  border: 1px solid #aaa;
+    padding: 20px 0;
+}
+.websimboxlist > li:hover{
+  background: #f1f1f1;
+}
+.websimboxlist i{
+  font-size:48px;
+  display: block;
+  padding: 10px 0;
+}
 
 .ckfix *{
   list-style: disc;

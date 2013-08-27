@@ -18,7 +18,7 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
             </span>
         </h3>
 
-        <ul class="linklist">
+        <ul class="websimboxlist">
             <!--แก้ไขธีมร้านค้า-->
             <li>
                 <ul class="innerlogo">
@@ -38,7 +38,7 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
             <!--โลโก้ และ พื้นหลัง-->
             <li>
                 <ul class="innerlogo">
-                    <li>
+                    <li><i class="icon-magic"></i>
                         <?php
                         echo CHtml::link(Yii::t('language', 'โลโก้ และ พื้นหลัง'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')));
                         ?>
@@ -49,7 +49,7 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
             <!--อักษรและข้อความ-->
             <li>
                 <ul class="innerlogo">
-                    <li>
+                    <li><i class="icon-font"></i>
                         <?php
                         echo CHtml::link(Yii::t('language', 'อักษรและข้อความ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')));
                         ?>
