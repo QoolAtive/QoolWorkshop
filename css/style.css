@@ -1,6 +1,24 @@
 /* @group Component */
 
+.ckfix *{
+  list-style: disc;
 
+}
+p.p1:after ul {
+  list-style: disc;
+}
+p.p1 strong{
+  font-weight: bold;
+}
+p.p1 em {
+  font-style: italic;
+}
+
+
+p.p1 ul , p1 ol{
+  list-style: disc;
+  
+}
 .tabs.clearfix > li.admin{
   background: none repeat scroll 0 0 #9F00AA;
   opacity: 1;
@@ -268,12 +286,12 @@ h2 img{
     border-bottom: 0px solid #fff;
 }
 
-.productlist li:first-child{
+.productlist > li:first-child{
     width: 15%;
     float: left;
      margin-right: 3%;
 }
-.productlist li:last-child{
+.productlist > li:last-child{
     width: 82%;
     float: left;
 

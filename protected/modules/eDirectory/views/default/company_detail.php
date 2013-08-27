@@ -251,10 +251,12 @@
             <?php } ?>
 
         </table>
+        <div class="ckfix">
         <?php
-        $infor = LanguageHelper::changeDB($model->infor, $model->infor_en);
-        echo $infor;
-        ?>
+            $infor = LanguageHelper::changeDB($model->infor, $model->infor_en);
+            echo $infor;
+            ?>
+        </div>
     </div>
 
 
