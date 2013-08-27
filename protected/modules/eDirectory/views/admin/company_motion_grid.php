@@ -4,11 +4,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
-//    'ajaxUpdate' => true,
     'summaryText' => '',
+    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
-        array(// display 'create_time' using an expression
-            'header' => 'ลำดับ',
+        array(
+            'header' => Yii::t('language', 'ลำดับ'),
             'headerHtmlOptions' => array('style' => 'width: 7%;'),
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
@@ -30,12 +30,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'update_at',
-            'value' => '$data->update_at',
+            'value' => 'Tool::ChangeDateTimeToShow($data->update_at)',
             'filter' => false,
         ),
         array(
             'name' => 'date_warning',
-            'value' => '$data->date_warning',
+            'value' => 'Tool::ChangeDateTimeToShow($data->date_warning)',
             'filter' => false,
         ),
         array(
@@ -76,13 +76,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //                    }'
 //        ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
-        'header' => 'หน้าที่: ',
-        'firstPageLabel' => 'หน้าแรก',
-        'prevPageLabel' => 'ก่อนหน้า',
-        'nextPageLabel' => 'หน้าถัดไป',
-        'lastPageLabel' => 'หน้าสุดท้าย',
+        'header' => Yii::t('language', 'หน้าที่: '),
+        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
 ?>
