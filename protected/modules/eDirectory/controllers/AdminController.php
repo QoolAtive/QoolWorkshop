@@ -801,24 +801,33 @@ class AdminController extends Controller {
                     $model_payment_special->other2 = $data['other'];
                 }
             }
+
+//            echo '<pre>';
+//            print_r($payment_special_array);
         }
 
         $return = new CHttpRequest();
 
         if (isset($_POST['CompanyProduct']) && isset($_POST['PaymentCondition']) && isset($_POST['PaymentSpecial'])) {
             $model->attributes = $_POST['CompanyProduct'];
+
             $model_payment->attributes = $_POST['PaymentCondition'];
+            $model_payment->other_en = $_POST['PaymentCondition']['other_en'];
+
             $model_payment_special->attributes = $_POST['PaymentSpecial'];
+            $model_payment_special->other1_en = $_POST['PaymentSpecial']['other1_en'];
+            $model_payment_special->other2_en = $_POST['PaymentSpecial']['other2_en'];
 
             $model_payment->product_id = 0;
             $model_payment_special->product_id = 0;
 
             if (!empty($model_payment->payment_id)) {
-                $payment_array = $model_payment->payment_id;
+                $payment_array2 = $model_payment->payment_id;
                 $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
+
             if (!empty($model_payment_special->special_id)) {
-                $payment_special_array = $model_payment_special->special_id;
+                $payment_special_array2 = $model_payment_special->special_id;
                 $model_payment_special->special_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
 
@@ -852,16 +861,21 @@ class AdminController extends Controller {
 //                print_r($model->attributes);
 //                echo "</pre>";
                 if ($model->save()) {
-                    if (!empty($payment_array)) {
-                        foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+
+                    PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $pro_id));
+
+                    if (!empty($payment_array2)) {
+                        foreach ($payment_array2 as $payData) { // เงื่อนไขการชำระเงิน
                             $add_payment = new PaymentCondition;
                             $add_payment->product_id = $model->id;
                             $add_payment->payment_id = $payData;
 
                             if ($payData == 5) {
                                 $add_payment->other = $model_payment->other;
+                                $add_payment->other_en = $model_payment->other_en;
                             } else {
                                 $add_payment->other = null;
+                                $add_payment->other_en = null;
                             }
 
                             $add_payment->save();
@@ -869,16 +883,23 @@ class AdminController extends Controller {
                     }
 
 
-                    if (!empty($payment_special_array)) {
-                        foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                    $deleteSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $model->id));
+                    foreach ($deleteSpecial as $deleteSpecial_array) {
+                        $deleteSpecial_array->delete();
+                    }
+
+                    if (!empty($payment_special_array2)) {
+                        foreach ($payment_special_array2 as $data) { // สิทธิพิเศษ
                             $add_special = new PaymentSpecial;
                             $add_special->product_id = $model->id;
                             $add_special->special_id = $data;
 
                             if ($data == 0) {
                                 $add_special->other = $model_payment_special->other1;
+                                $add_special->other_en = $model_payment_special->other1_en;
                             } else {
                                 $add_special->other = $model_payment_special->other2;
+                                $add_special->other_en = $model_payment_special->other2_en;
                             }
 
                             $add_special->save();

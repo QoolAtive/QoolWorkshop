@@ -8,6 +8,7 @@
  * @property integer $product_id
  * @property integer $payment_id
  * @property string $other
+ * @property string $other_en
  */
 class PaymentConditionBase extends CActiveRecord
 {
@@ -39,10 +40,10 @@ class PaymentConditionBase extends CActiveRecord
 		return array(
 			array('product_id, payment_id', 'required'),
 			array('product_id, payment_id', 'numerical', 'integerOnly'=>true),
-			array('other', 'length', 'max'=>255),
+			array('other, other_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('payment_condition_id, product_id, payment_id, other', 'safe', 'on'=>'search'),
+			array('payment_condition_id, product_id, payment_id, other, other_en', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class PaymentConditionBase extends CActiveRecord
 			'product_id' => 'Product',
 			'payment_id' => 'Payment',
 			'other' => 'Other',
+			'other_en' => 'Other En',
 		);
 	}
 
@@ -85,6 +87,7 @@ class PaymentConditionBase extends CActiveRecord
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('payment_id',$this->payment_id);
 		$criteria->compare('other',$this->other,true);
+		$criteria->compare('other_en',$this->other_en,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
