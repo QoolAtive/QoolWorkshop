@@ -18,11 +18,11 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
     </li>
     <li>
         <label  style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo $name; ?></label>
-        <p>
+        <div class="ckfix clearfix">
             <?php echo $detail; ?>
-        </p>
-        <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'เงื่อนไขการชำระเงิน'); ?></label>
-        <p>
+        </div>
+        <label class="clearfix" style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'เงื่อนไขการชำระเงิน'); ?></label>
+        <p class="ckfix">
             <?php
             $payment = null;
             $other = null;
@@ -51,7 +51,7 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
         if (count($paymentSpecial) > 0) {
             ?>
             <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'สิทธิพิเศษ'); ?></label>
-            <p>
+            <p class="ckfix">
                 <?php
                 $special = null;
                 $specialother = null;
