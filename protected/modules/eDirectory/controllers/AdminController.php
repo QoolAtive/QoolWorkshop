@@ -184,10 +184,14 @@ class AdminController extends Controller {
         $modelCompany = Company::model()->find('id = :id', array(':id' => $model->main_id));
         $userData = MemRegistration::model()->find('user_id = :user_id', array(':user_id' => $modelCompany->user_id));
 
+        $userData_name = LanguageHelper::changeDB($userData->ftname, $userData->fename);
+        $userData_lname = LanguageHelper::changeDB($userData->ltname, $userData->lename);
+        $company_name = LanguageHelper::changeDB($modelCompany->name, $modelCompany->name_en);
+
         if (count($userData) > 0) {
             $message = '
-                    <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'เรียน') . ' ' . $userData->ftname . ' ' . $userData->ltname . ' </strong>
-                    <p>' . Yii::t('language', 'ร้าน') . ' ' . $modelCompany->name . ' ' . Yii::t('language', 'สามารถใช้งานได้แล้ว') . '</p>
+                    <strong>' . Yii::t('language', 'เรียน คุณ') . ' ' . $userData_name . ' ' . $userData_lname . ' </strong>
+                    <p>' . $company_name . ' ' . Yii::t('language', 'สามารถใช้งานได้แล้ว') . '</p>
                     ';
 
             $sendEmail = array(
@@ -263,7 +267,7 @@ class AdminController extends Controller {
                     echo "
                         <meta charset='UTF-8'></meta>
                         <script>
-                        alert('" . Yii::t('language', 'บันทึกเรียบร้อย') . "');
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.location='/eDirectory/admin/motionSetting';
                         </script>
                         ";
@@ -284,7 +288,7 @@ class AdminController extends Controller {
             ));
 
             if ($model->use == 1) {
-                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากข้อมูลมีการใช้งานอยู่');
+                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
             } else {
                 if ($model->delete())
                     echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
@@ -370,25 +374,25 @@ class AdminController extends Controller {
                 $model_company = Company::model()->findByPk($data);
                 $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
 
-                $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
+                $name_th = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
+                $name_en = $model_profile_user->fename . ' ' . $model_profile_user->lename;
+                $name = LanguageHelper::changeDB($name_th, $name_en);
 
                 $model->status_block = 1;
                 $model->date_warning = date('Y-m-d');
                 $model->save();
 
-                $message = '
-                <strong>' . Yii::t('language', 'เรียน') . ' ' . Yii::t('language', 'คุณ') . $name . '</strong>
-                <p>
-                ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน<br />
-                คุณจำเป็นต้องทำการอัพเดทข้อมูลของร้าน เพื่อที่จะให้ร้านค้าของคุณอยู่ในระบบต่อไป
-                </p>
-                <p>
-                ผู้ดูแลระบบ
-                </p>
-                ';
+                $message = '<strong>' . Yii::t('language', 'เรียน คุณ') . ' ' . $name . '</strong>
+                            <p>' .
+                        Yii::t('language', 'ร้านค้าของคุณไม่ได้รับการอัพเดทข้อมูลเป็นระยะเวลานาน') . '<br />' .
+                        Yii::t('language', 'คุณจำเป็นต้องทำการอัพเดทข้อมูลของร้าน') .
+                        Yii::t('language', 'เพื่อที่จะให้ร้านค้าของคุณอยู่ในระบบต่อไป') .
+                        '</p><p>' .
+                        Yii::t('language', 'ผู้ดูแลระบบ') .
+                        '</p>';
 
                 $sendEmail = array(
-                    'subject' => Yii::t('language', 'รายการแจ้งเตือน'),
+                    'subject' => Yii::t('language', 'รายการการแจ้งเตือน'),
                     'message' => $message,
                     'to' => $model_profile_user->email,
                 );
@@ -732,10 +736,10 @@ class AdminController extends Controller {
 
             if ($model->delete()) {
 
-                echo "ลบข้อมูลเรียบร้อย";
+                echo Yii::t('language', "ลบข้อมูลเรียบร้อย");
             }
         } else {
-            echo "ข้อมูลไม่มีอยู่ในระบบ";
+            echo Yii::t('language', "ข้อมูลไม่มีอยู่ในระบบ");
         }
     }
 
@@ -809,7 +813,7 @@ class AdminController extends Controller {
                 if ($data['special_id'] == 0) {
                     $model_payment_special->other1 = $data['other'];
                     $model_payment_special->other1_en = $data['other_en'];
-                } else if ($data['special_id'] == 1) {
+                } elseif ($data['special_id'] == 1) {
                     $model_payment_special->other2 = $data['other'];
                     $model_payment_special->other2_en = $data['other_en'];
                 }
@@ -1243,7 +1247,7 @@ class AdminController extends Controller {
 //                    print_r($modelCompany->attributes);
 //                    echo "</pre>";
                         $errorTypeBusiness = null;
-                        $stError = CheckErrorCompany::haveErrorNull($data[1], 'ประเภทธุรกิจ');
+                        $stError = CheckErrorCompany::haveErrorNull($data[1], Yii::t('language', 'ประเภทธุรกิจ'));
                         if ($stError == null) {
                             foreach ($typeBusiness as $dataType) {
                                 $stError = CheckErrorCompany::haveBusiness($dataType);
@@ -1411,7 +1415,7 @@ class AdminController extends Controller {
                 if ($t_detail != null) {
                     $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
                 } else if ($n == 2) {
-                    $error .= CheckErrorCompany::errorTableDetail($n, 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ');
+                    $error .= CheckErrorCompany::errorTableDetail($n, Yii::t('language', 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ'));
                     $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
                 }
             }
@@ -1508,7 +1512,7 @@ class AdminController extends Controller {
 
                         $paymentArray = explode(',', $data[7]);
                         $errorPaymentId = null;
-                        $stError = CheckErrorCompany::haveErrorNull($data[7], 'เงื่อนไขการชำระเงิน');
+                        $stError = CheckErrorCompany::haveErrorNull($data[7], Yii::t('language', 'เงื่อนไขการชำระเงิน'));
                         if ($stError == null) {
                             foreach ($paymentArray as $dataPayment) {
                                 $stError = CheckErrorCompany::verify_payment($dataPayment);
@@ -1598,7 +1602,7 @@ class AdminController extends Controller {
                 if ($t_detail != null) {
                     $errorTable = CheckErrorCompany::errorTableBegin() . $t_detail . CheckErrorCompany::errorTableEnd();
                 } else if ($n == 4) {
-                    $error .= CheckErrorCompany::errorTableDetail($n, 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ');
+                    $error .= CheckErrorCompany::errorTableDetail($n, ii::t('language', 'ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบ'));
                     $errorTable = CheckErrorCompany::errorTableBegin() . $error . CheckErrorCompany::errorTableEnd();
                 }
             }
