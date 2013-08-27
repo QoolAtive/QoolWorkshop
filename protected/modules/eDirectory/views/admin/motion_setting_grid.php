@@ -4,11 +4,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'type_business-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model,
-//    'ajaxUpdate' => true,
     'summaryText' => '',
+    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
-        array(// display 'create_time' using an expression
-            'header' => 'ลำดับ',
+        array(
+            'header' => Yii::t('language', 'ลำดับ'),
             'headerHtmlOptions' => array('style' => 'width: 7%;'),
             'htmlOptions' => array('style' => 'text-align: center;'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
@@ -19,7 +19,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'type',
-            'value' => '$data->type',
+            'value' => 'Yii::t(\'language\', $data->type)',
         ),
         array(
             'name' => 'use',
@@ -28,18 +28,18 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'ตั้งค่า',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'header' => Yii::t('language', 'ตั้งค่า'),
             'template' => '{set}{unset}',
             'buttons' => array(
                 'set' => array(
-                    'label' => 'set', //Text label of the button.
+                    'label' => Yii::t('language', 'ตั้งค่า'),
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/setMotion/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                     'imageUrl' => Yii::app()->request->baseUrl . '/images/setting.png',
                     'visible' => '$data->use == 0',
                 ),
                 'unset' => array(
-                    'label' => 'used', //Text label of the button.
+                    'label' => Yii::t('language', 'ใช้งานอยู่'),
 //                    'url' => 'Yii::app()->createUrl("/eDirectory/admin/setMotion/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                     'imageUrl' => Yii::app()->request->baseUrl . '/images/apply.ico',
                     'visible' => '$data->use == 1',
@@ -48,16 +48,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-            'header' => 'เครื่องมือ',
-            'template' => '{update}{delete}',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'header' => Yii::t('language', 'เครื่องมือ'),
+            'template' => '{update} &nbsp; {delete}',
             'buttons' => array(
                 'update' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'แก้ไข'),
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/motionSettingInsert",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => Yii::t('language', 'ลบ'),
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/motionSettingDel/",array("company_motion_setting_id"=>$data->company_motion_setting_id))',
                 ),
             ),
@@ -68,13 +68,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
-        'header' => 'หน้าที่: ',
-        'firstPageLabel' => 'หน้าแรก',
-        'prevPageLabel' => 'ก่อนหน้า',
-        'nextPageLabel' => 'หน้าถัดไป',
-        'lastPageLabel' => 'หน้าสุดท้าย',
+        'header' => Yii::t('language', 'หน้าที่: '),
+        'firstPageLabel' => Yii::t('language', 'หน้าแรก'),
+        'prevPageLabel' => Yii::t('language', 'ก่อนหน้า'),
+        'nextPageLabel' => Yii::t('language', 'หน้าถัดไป'),
+        'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
 ?>
