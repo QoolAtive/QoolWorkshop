@@ -43,8 +43,12 @@ $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
             ?>
             <div class="clearfix" style="padding: 0px 50px; text-align: center;">
                 <div style="width: 48%; float: left;">
+                    <label class="required" for="CompanyUpload_file">
+                        <?php echo Yii::t('language', 'ไฟล์'); ?>
+                        <span class="required">*</span>
+                    </label>
                     <?php
-                    echo $form->labelEx($model, 'file');
+//                    echo $form->labelEx($model, 'file');
                     echo $form->fileField($model, 'file');
                     echo $form->error($model, 'file');
                     ?>                    
@@ -59,6 +63,10 @@ $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
                 <hr>
                 <?php
                 echo CHtml::submitButton(Yii::t('language', 'อัพโหลด'));
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                        '/eDirectory/admin/product/id/' . $id
+                    )) . "'")
+                );
                 ?>  
                 <hr>
             </div>

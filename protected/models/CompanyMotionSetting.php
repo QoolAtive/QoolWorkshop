@@ -22,7 +22,7 @@ class CompanyMotionSetting extends CompanyMotionSettingBase {
             'company_motion_setting_id' => 'Company Motion Setting',
             'amount' => Yii::t('language', 'จำนวน'),
             'type' => Yii::t('language', 'ประเภท'),
-            'use' => Yii::t('language', 'เลือกใช้'),
+            'use' => Yii::t('language', 'เลือกใช้งาน'),
         );
     }
 

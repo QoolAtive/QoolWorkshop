@@ -1,5 +1,5 @@
 <div class="main_box clearfix col4">
-    <h2><?php echo Yii::t('language', 'สินค้าในร้าน'); ?></h2>
+    <h2 class="topic"><?php echo Yii::t('language', 'สินค้าในร้าน'); ?></h2>
 
     <?php
     $items = WebShopItem::model()->findAll(array('condition' => 'web_shop_id = ' . $id));
