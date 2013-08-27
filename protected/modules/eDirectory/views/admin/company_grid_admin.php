@@ -1,4 +1,4 @@
-<h3><?php echo Yii::t('language', 'ร้านค้าโดยผู้ดูแลระบบ'); ?></h3>
+<!-- <h3><?php echo Yii::t('language', 'ร้านค้าโดยผู้ดูแลระบบ'); ?></h3> -->
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'company_admin-grid',
