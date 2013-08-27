@@ -1,5 +1,5 @@
 <div class="main_box clearfix col4">
-    <h2><?php echo $category->name_th ?></h2>
+    <h2 class="topic"><?php echo $category->name_th ?></h2>
 
     <?php
     $items = WebShopCategoryItem::model()->findAll(array('condition' => 'web_shop_id = ' . $id . ' and web_shop_category_id = ' . $category_id));
@@ -37,7 +37,9 @@
             </div>
             <div class="info_item">
                 <h3><a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>"  alt="<?php echo $item_detail['name_th']; ?>" alt="<?php echo $item_detail['name_th']; ?>" title="<?php echo $item_detail['name_th']; ?>">
-                        <?php echo $item_detail['name_th']; ?>
+                        <span class="normal">
+                            <?php echo $item_detail['name_th']; ?>
+                        </span>
                         <span class="promotion_price">
                             <?php
                             if ($item_detail['price_special'] != '' && $item_detail['price_special'] != NULL) {

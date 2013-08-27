@@ -4,7 +4,12 @@ foreach ($boxs as $box) {
     ?>
 
     <div class="main_box clearfix col4">
-        <h2><a href="/webSimulation/shop/box/id/<?php echo $id; ?>/box_id/<?php echo $box['web_shop_box_id']; ?>"><?php echo $box['name_th']; ?></a></h2>
+
+        <a href="/webSimulation/shop/box/id/<?php echo $id; ?>/box_id/<?php echo $box['web_shop_box_id']; ?>">
+            <h2 class="topic">
+                <?php echo $box['name_th']; ?>
+            </h2>
+        </a>
 
         <?php
         if ($box['type'] == '1') {
@@ -43,7 +48,7 @@ foreach ($boxs as $box) {
                     </div>
                     <div class="info_item">
                         <h3><a href="/webSimulation/shop/productDetail/id/<?php echo $item_detail['web_shop_id']; ?>/p_id/<?php echo $item_detail['web_shop_item_id']; ?>" alt="<?php echo $item_detail['name_th']; ?>" title="<?php echo $item_detail['name_th']; ?>">
-                                <?php echo $item_detail['name_th']; ?>
+                                <span class="normal"><?php echo $item_detail['name_th']; ?></span>
                                 <span class="promotion_price">
                                     <?php
                                     if ($item_detail['price_special'] != '' && $item_detail['price_special'] != NULL) {

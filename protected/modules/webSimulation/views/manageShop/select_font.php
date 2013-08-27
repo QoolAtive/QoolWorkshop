@@ -83,7 +83,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </div>
         <div class="_100"></div>
 
-        <!--สีอักษรลิ้งก์-->
+        <!--สีอักษรลิ้งก์เมนู-->
         <div class="_50">
             <div class="right">
                 <?php
@@ -96,7 +96,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             </div>
         </div>
 
-        <!--ขนาดอักษรลิ้งก์-->
+        <!--ขนาดอักษรลิ้งก์เมนู-->
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'link_size');
