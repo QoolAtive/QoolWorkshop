@@ -94,6 +94,8 @@ $this->renderPartial('side_bar', array(
                     <?php
                     echo $form->labelEx($model_payment, 'other');
                     echo $form->textField($model_payment, 'other');
+                    echo $form->labelEx($model_payment, 'other_en');
+                    echo $form->textField($model_payment, 'other_en');
                     ?>
                 </div>
             </div>
@@ -108,12 +110,16 @@ $this->renderPartial('side_bar', array(
                     <?php
                     echo $form->labelEx($model_payment_special, 'other1');
                     echo $form->textField($model_payment_special, 'other1');
+                    echo $form->labelEx($model_payment_special, 'other1_en');
+                    echo $form->textField($model_payment_special, 'other1_en');
                     ?>
                 </div>
                 <div id="special_other_2" class="_100">
                     <?php
                     echo $form->labelEx($model_payment_special, 'other2');
                     echo $form->textField($model_payment_special, 'other2');
+                    echo $form->labelEx($model_payment_special, 'other2_en');
+                    echo $form->textField($model_payment_special, 'other2_en');
                     ?>
                 </div>
             </div>

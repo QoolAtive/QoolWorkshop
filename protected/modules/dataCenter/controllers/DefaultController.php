@@ -19,7 +19,7 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-
+        Tool::AutoMotionWarning();
         $this->render('index');
     }
 

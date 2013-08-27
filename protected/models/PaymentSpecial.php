@@ -2,7 +2,7 @@
 
 class PaymentSpecial extends PaymentSpecialBase {
 
-    public $other1, $other2;
+    public $other1, $other1_en, $other2, $other2_en;
 
     /**
      * Returns the static model of the specified AR class.
@@ -22,7 +22,7 @@ class PaymentSpecial extends PaymentSpecialBase {
             array('other,other1, other2', 'length', 'max' => 255),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('payment_special_id, product_id, special_id, other, other1, other2', 'safe', 'on' => 'search'),
+            array('payment_special_id, product_id, special_id, other, other_en, other1, other1_en, other2, other2_en', 'safe', 'on' => 'search'),
         );
     }
 
@@ -32,8 +32,10 @@ class PaymentSpecial extends PaymentSpecialBase {
             'product_id' => 'Product',
             'special_id' => Yii::t('language', 'สิทธิพิเศษ'),
             'other' => 'Other',
-            'other1' => Yii::t('language', 'ระบุการให้ส่วนลด'),
-            'other2' => Yii::t('language', 'ระบุการให้เครดิต'),
+            'other1' => Yii::t('language', 'ระบุการให้ส่วนลดภาษาไทย'),
+            'other2' => Yii::t('language', 'ระบุการให้เครดิตภาษาไทย'),
+            'other1_en' => Yii::t('language', 'ระบุการให้ส่วนลดภาษาอังกฤษ'),
+            'other2_en' => Yii::t('language', 'ระบุการให้เครดิตภาษาอังกฤษ'),
         );
     }
 
