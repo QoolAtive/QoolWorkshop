@@ -801,7 +801,7 @@ class AdminController extends Controller {
                     $model_payment_special->other2 = $data['other'];
                 }
             }
-            
+
 //            echo '<pre>';
 //            print_r($payment_special_array);
         }
@@ -822,11 +822,12 @@ class AdminController extends Controller {
             $model_payment_special->product_id = 0;
 
             if (!empty($model_payment->payment_id)) {
-                $payment_array = $model_payment->payment_id;
+                $payment_array2 = $model_payment->payment_id;
                 $model_payment->payment_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
+
             if (!empty($model_payment_special->special_id)) {
-                $payment_special_array = $model_payment_special->special_id;
+                $payment_special_array2 = $model_payment_special->special_id;
                 $model_payment_special->special_id = 0; // กำหนดค่า default ให้กับ payment_id
             }
 
@@ -863,8 +864,8 @@ class AdminController extends Controller {
 
                     PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $pro_id));
 
-                    if (!empty($payment_array)) {
-                        foreach ($payment_array as $payData) { // เงื่อนไขการชำระเงิน
+                    if (!empty($payment_array2)) {
+                        foreach ($payment_array2 as $payData) { // เงื่อนไขการชำระเงิน
                             $add_payment = new PaymentCondition;
                             $add_payment->product_id = $model->id;
                             $add_payment->payment_id = $payData;
@@ -882,13 +883,13 @@ class AdminController extends Controller {
                     }
 
 
-                    PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $model->id));
-                    
-//                    echo "<pre>";
-//                    print_r($payment_special_array);
-                    
-                    if (!empty($payment_special_array)) {
-                        foreach ($payment_special_array as $data) { // สิทธิพิเศษ
+                    $deleteSpecial = PaymentSpecial::model()->findAll('product_id = :product_id', array(':product_id' => $model->id));
+                    foreach ($deleteSpecial as $deleteSpecial_array) {
+                        $deleteSpecial_array->delete();
+                    }
+
+                    if (!empty($payment_special_array2)) {
+                        foreach ($payment_special_array2 as $data) { // สิทธิพิเศษ
                             $add_special = new PaymentSpecial;
                             $add_special->product_id = $model->id;
                             $add_special->special_id = $data;
