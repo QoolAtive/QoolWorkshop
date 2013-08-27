@@ -72,8 +72,8 @@ $this->renderPartial('side_bar', array(
         $this->widget('zii.widgets.jui.CJuiTabs', array(
             'tabs' => $tabs,
             'options' => array(
-//                'collapsible' => true,
-                'collapsible' => false,
+                'collapsible' => true,
+//                'collapsible' => false,
             ),
             'id' => 'tab_all_shop',
         ));

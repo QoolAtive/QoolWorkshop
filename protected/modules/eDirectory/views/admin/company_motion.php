@@ -14,26 +14,28 @@
     });
 </script>
 <?php
-$list = array(
-    array('text' => Yii::t('language', 'ร้านค้าทั้งหมด'), 'link' => '/eDirectory/admin/index', 'select' => ''),
-    array('text' => Yii::t('language', 'ร้านค้าที่ยังไม่ได้รับการอนุมัติ'), 'link' => '/eDirectory/admin/companyWaiting', 'select' => ''),
-    array('text' => Yii::t('language', 'ความเคลื่อนไหว'), 'link' => '#', 'select' => 'selected'),
-    array('text' => Yii::t('language', 'ตั้งค่าความเคลื่อนไหว'), 'link' => '/eDirectory/admin/motionSetting', 'select' => ''),
-);
-
 $this->renderPartial('side_bar', array(
-    'list' => $list,
+    'active' => 3,
 ));
 ?>
 <div class="content">
     <div class="tabcontents">
-        <div id='show_detail' class='clearfix'></div>
-        <hr>
-        <div style='border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;'>
+        <h3 class="barH3">
+            <span>
+                <i class="icon-home"></i>
+                <?php
+                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'), array('/eDirectory/admin/index'));
+                ?>        
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'ความเคลื่อนไหว'); ?>   
+            </span>
+        </h3>
+        <!--<div id='show_detail' class='clearfix'></div>-->
+        <div style='border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center; margin-bottom: 10px;'>
             <?php
             $date_motion = CompanyMotionSetting::model()->find('`use`=:use', array(':use' => 1));
             $data_motion = $date_motion->amount . ' ' . Yii::t('language', $date_motion->type);
-            echo Yii::t('language', 'ร้านค้าที่ข้อมูลไม่มีการอัพเดทเกิน') . ' ' . Yii::t('language', $data_motion);
+            echo Yii::t('language', 'ร้านค้าที่ข้อมูลไม่มีการอัพเดทเกิน') . ' ' . $data_motion;
             ?>
         </div>
         <?php
@@ -41,7 +43,7 @@ $this->renderPartial('side_bar', array(
             'id' => 'company_motion-form'
         ));
         ?>
-        <hr>
+
         <div>
             <?php
             echo CHtml::button(Yii::t('language', 'เลือกทั้งหมด'), array(
@@ -59,6 +61,7 @@ $this->renderPartial('side_bar', array(
         ));
         ?>
         <div class="textcenter">
+            <hr>
             <?php
 //            echo CHtml::ajaxSubmitButton(Yii::t('language', 'แจ้งเตือน'), CHtml::normalizeUrl(array(
 //                        '/eDirectory/admin/companyMotionAlert',
@@ -71,11 +74,12 @@ $this->renderPartial('side_bar', array(
                 ))
             ));
 
-            echo CHtml::button(Yii::t('language', 'บล๊อคร้านค้า'), array('submit' => CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'บล็อกร้านค้า'), array('submit' => CHtml::normalizeUrl(array(
                     '/eDirectory/admin/companyMotionBlock'
                 ))
             ));
             ?>
+            <hr>
         </div>
         <?php $this->endWidget(); ?>
     </div>
