@@ -918,8 +918,8 @@ class AdminController extends Controller {
                                 $add_special->other_en = $model_payment_special->other2_en;
                             }
 
-                            echo "<pre>";
-                            print_r($add_special->attributes);
+//                            echo "<pre>";
+//                            print_r($add_special->attributes);
 
                             $add_special->save();
                         }
@@ -1395,9 +1395,9 @@ class AdminController extends Controller {
                                     $modelTypeBusiness->save();
                                 }
                             } else {
-                                echo "<pre>";
-                                print_r($modelCompany->getErrors());
-                                echo "</pre>";
+//                                echo "<pre>";
+//                                print_r($modelCompany->getErrors());
+//                                echo "</pre>";
                             }
 
                             $error .= CheckErrorCompany::errorTableDetail($n, '', true);
