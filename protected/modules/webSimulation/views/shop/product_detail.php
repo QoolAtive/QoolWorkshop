@@ -1,5 +1,5 @@
 <div class="main_box clearfix col4">
-    <h2><a href="#"><?php echo $item_detail['name_th']; ?></a></h2>
+    <h2 class="topic"><?php echo $item_detail['name_th']; ?></h2>
     <div class="item_detail">
         <a class="pdf" href="#"></a>
         <div class="item_pic">
@@ -27,7 +27,7 @@
             ?>" />
             <!--<span class="price"><label>ราคาปกติ:</label> ฿<?php echo $item_detail['price_normal']; ?></span>-->
         </div>
-        <div class="detail_info">
+        <div class="detail_info normal">
             <p><label>ชื่อสินค้า:</label> <?php echo $item_detail['name_th']; ?></p>
             <p><label>ราคาปกติ:</label> ฿<?php echo $item_detail['price_normal']; ?></p>
             <p><label>ราคาพิเศษ:</label> ฿<?php echo $item_detail['price_special']; ?></p>
@@ -65,6 +65,12 @@
                 }
                 ?>
             </ul>
+        </div>
+        <!--หยิบใส่ตะกร้า-->
+        <div id="busket_btn">
+            <?php
+            $this->renderPartial('busket_btn_', array('busket' => $busket, 'item_id' => $item_detail['web_shop_item_id']));
+            ?>
         </div>
     </div>
 </div>

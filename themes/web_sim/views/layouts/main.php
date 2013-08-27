@@ -10,13 +10,72 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css" />
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
+        <?php
+        //set bg
+        if ($this->format['background'] != '' && $this->format['background'] != NULL) {
+            echo '<style>';
+            echo 'body {
+                    background: url("' . $this->format['background'] . '") repeat scroll center -100px #FFFFFF;
+                }';
+            echo '</style>';
+        }
+
+        //set ขนาดอักษรทั่วไป
+        if ($this->format['char_size'] != '' && $this->format['char_size'] != NULL) {
+            echo '<style>';
+            echo '.normal {
+                        font-size: ' . $this->format['char_size'] . 'px;
+                    }';
+            echo '</style>';
+        }
+        if ($this->format['char_color'] != '' && $this->format['char_color'] != NULL) {
+            echo '<style>';
+            echo '.normal {
+                        color: ' . $this->format['char_color'] . ';
+                    }';
+            echo '</style>';
+        }
+        
+        //set ขนาดอักษรหัวข้อ
+        if ($this->format['topic_size'] != '' && $this->format['topic_size'] != NULL) {
+            echo '<style>';
+            echo '.topic {
+                        font-size: ' . $this->format['topic_size'] . 'px;
+                        font-weight: normal;
+                    }';
+            echo '</style>';
+        }
+        if ($this->format['topic_color'] != '' && $this->format['topic_color'] != NULL) {
+            echo '<style>';
+            echo '.topic {
+                        color: ' . $this->format['topic_color'] . ';
+                    }';
+            echo '</style>';
+        }
+        
+        //set ขนาดอักษรลิ้งก์
+        if ($this->format['link_size'] != '' && $this->format['link_size'] != NULL) {
+            echo '<style>';
+            echo '.link {
+                        font-size: ' . $this->format['link_size'] . 'px;
+                    }';
+            echo '</style>';
+        }
+        if ($this->format['link_color'] != '' && $this->format['link_color'] != NULL) {
+            echo '<style>';
+            echo '.link {
+                        color: ' . $this->format['link_color'] . ';
+                    }';
+            echo '</style>';
+        }
+        ?>
     </head>
     <body>
         <div id="wrapper">
             <!--Header-->
             <div id="header">
                 <h1 id="logo">
-                    <a href="/webSimulation/shop/index/id/<?php echo $shop_id; ?>">
+                    <a href="/webSimulation/shop/index/id/<?php echo $this->shop['web_shop_id']; ?>">
                         <!-- LOGO QUERY FORM DATABASE -->
                         <img src="<?php echo $this->format['logo']; ?>" alt="<?php echo $this->shop['name_th']; ?>" />
                     </a>
@@ -32,17 +91,13 @@
 
             <!--Navigator-->
             <?php
-//        $shop_id = $_GET['id']; 
             $shop_id = $this->shop['web_shop_id'];
-//        echo "<pre>";
-//        print_r($this->shop);
-//        echo "</pre>";
             ?>
             <ul id="nav">
-                <li><a href="/webSimulation/shop/index/id/<?php echo $shop_id; ?>">หน้าหลัก</a></li>
-                <li><a href="/webSimulation/shop/productShop/id/<?php echo $shop_id; ?>">สินค้าในร้าน</a></li>
-                <li><a href="/webSimulation/shop/payShop/id/<?php echo $shop_id; ?>">วิธีสั่งซื้อและชำระเงิน</a></li>
-                <li><a href="/webSimulation/shop/aboutShop/id/<?php echo $shop_id; ?>">เกี่ยวกับร้านค้า</a></li>
+                <li><a class="link" href="/webSimulation/shop/index/id/<?php echo $shop_id; ?>">หน้าหลัก</a></li>
+                <li><a class="link" href="/webSimulation/shop/productShop/id/<?php echo $shop_id; ?>">สินค้าในร้าน</a></li>
+                <li><a class="link" href="/webSimulation/shop/payShop/id/<?php echo $shop_id; ?>">วิธีสั่งซื้อและชำระเงิน</a></li>
+                <li><a class="link" href="/webSimulation/shop/aboutShop/id/<?php echo $shop_id; ?>">เกี่ยวกับร้านค้า</a></li>
             </ul>
 
             <!--Content	-->
@@ -62,7 +117,7 @@
 
                     <!--History-->
                     <div id="col_right_history" class="clearfix">
-                        <h2><?php echo Yii::t('language', 'สินค้าใหม่ล่าสุด'); ?></h2>
+                        <h2 class="topic"><?php echo Yii::t('language', 'สินค้าใหม่ล่าสุด'); ?></h2>
                         <div class="right_item clearfix">
                             <?php
                             $item = WebShopItem::model()->find(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'web_shop_item_id desc'));
@@ -91,7 +146,11 @@
                                 }
                                 ?>" alt="" />
                             </a>
-                            <p><a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>"><?php echo $item->name_th; ?></a></p>
+                            <p>
+                                <a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>">
+                                    <span class="normal"><?php echo $item->name_th; ?></span>
+                                </a>
+                            </p>
                         </div>
                     </div>
 

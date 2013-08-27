@@ -4,6 +4,7 @@ class ShopController extends Controller {
 
     public $format;
     public $shop;
+    public $busket;
 
     public function init() {
         Yii::app()->theme = 'web_sim';
@@ -64,7 +65,6 @@ class ShopController extends Controller {
 
     public function actionProductDetail($id, $p_id) {
         $model = $this->settingShop($id);
-
         $model_item = WebShopItem::model()->findByPk($p_id);
 
         if ($model_item != NULL) {
@@ -72,6 +72,7 @@ class ShopController extends Controller {
                 'id' => $id,
                 'p_id' => $p_id,
                 'item_detail' => $model_item,
+                'busket' => Yii::app()->session['busket'],
             ));
         } else {
             throw new CHttpException(404, Yii::t('language', 'ไม่พบสินค้าที่ท่านต้องการ'));
@@ -105,9 +106,30 @@ class ShopController extends Controller {
             throw new CHttpException(404, Yii::t('language', 'ไม่พบกล่องแสดงสินค้าที่ท่านต้องการ'));
         }
     }
-
-    public function actionSearch($id, $keyword){
-        $model = $this->settingShop($id);
+    
+    public function actionSelectItem($item_id){
+        $number = $_POST['number'];
+        $this->busket = Yii::app()->session['busket'];
+        $this->busket[$item_id] =  $number;
+        Yii::app()->session['busket'] = $this->busket;
+        
+//        print_r(Yii::app()->session['busket']);
+        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
     }
-
+    
+    public function actionRemoveItem($item_id){
+        $this->busket = Yii::app()->session['busket'];
+        unset($this->busket[$item_id]);
+        Yii::app()->session['busket'] = $this->busket;
+        
+//        print_r(Yii::app()->session['busket']);
+        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
+    }
+    public function actionRemoveAllItem(){
+        unset(Yii::app()->session['busket']);
+        echo "<script language='javascript'>
+            alert('" . Yii::t('language', 'ตะกร้าว่างแล้ว') . "');
+                    history.back();
+        </script>";
+    }
 }

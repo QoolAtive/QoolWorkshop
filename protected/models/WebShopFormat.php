@@ -75,8 +75,8 @@ class WebShopFormat extends WebShopFormatBase {
             'char_size' => 'ขนาดอักษรทั่วไป',
             'topic_color' => 'สีอักษรหัวข้อ',
             'topic_size' => 'ขนาดอักษรหัวข้อ',
-            'link_color' => 'สีอักษรลิ้งก์',
-            'link_size' => 'ขนาดอักษรลิ้งก์',
+            'link_color' => 'สีอักษรเมนู',
+            'link_size' => 'ขนาดอักษรเมนู',
         );
     }
 
