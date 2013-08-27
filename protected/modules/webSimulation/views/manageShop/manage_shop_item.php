@@ -18,7 +18,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             </span>
         </h3>
 
-        <ul class="linklist">
+        <ul class="websimboxlist">
             <!--เพิ่มสินค้าในร้าน-->
 <!--            <li>
                 <ul class="innerlogo">
@@ -33,7 +33,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <!--สินค้าทั้งหมดในร้าน-->
             <li>
                 <ul class="innerlogo">
-                    <li>
+                    <li><i class="icon-gift"></i> 
                         <?php
                         echo CHtml::link(Yii::t('language', 'จัดการรายการสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')));
                         ?>
@@ -44,7 +44,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <!--หมวดหมู่สินค้า-->
             <li>
                 <ul class="innerlogo">
-                    <li>
+                    <li><i class="icon-tag"></i> 
                         <?php
                         echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')));
                         ?>

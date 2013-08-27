@@ -5,8 +5,19 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <style>
-    #all_item, #select_item { list-style-type: none; margin: 0; padding: 0; width: 100%; height: 400px; border: 1px solid;}
-    #all_item li, #select_item li { margin: 3px 3px 15px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 1em; text-align: center; }
+    #all_item, #select_item { list-style-type: none; margin: 0; padding: 0; width: 100%; height: 400px; border: 1px dashed #aaa;}
+    #all_item li, #select_item li {   
+        float: left;
+        font-size: 1em;
+        height: 90px;
+        margin: 8px 3px 15px 6px;
+        padding: 1px;
+        text-align: center;
+        width: 100px;
+    }
+    .item_pic{
+        cursor: move;
+    }
 </style>
 <style>
     .item_pic img{
@@ -45,7 +56,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 //        echo $form->errorSummary($model);
         ?>
         <div class="_50">
-            <div class="txt-cen">
+            <div class="txt-cen websimtexthead">
                 สินค้าทั้งหมด
             </div>
             <ul id="all_item" class="connectedSortable">
@@ -94,7 +105,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         </div>
 
         <div class="_50">
-            <div class="txt-cen">
+            <div class="txt-cen websimtexthead">
                 สินค้าที่เลือก
             </div>
             <ul id="select_item" class="connectedSortable">
