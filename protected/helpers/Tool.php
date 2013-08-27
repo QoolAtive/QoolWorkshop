@@ -232,14 +232,28 @@ Class Tool {
 
     public static function AutoMotionWarning() {
         $model_motion = CompanyMotionSetting::model()->find('`use`= :use', array(':use' => 1));
-        $dataCondition = '-' . $model_motion->amount . ' ' . $model_motion->type;
-        $motion = CompanyMotion::model()->findAll("update_at < date_add(now(),interval {$dataCondition})");
+
+        if ($model_motion->type == 'วัน') {
+            $type = "DAY";
+        } else if ($model_motion->type == 'เดือน') {
+            $type = "MONTH";
+        } else if ($model_motion->type == 'ปี') {
+            $type = "YEAR";
+        }
+
+        $dataCondition = '-' . $model_motion->amount . ' ' . $type;
+        $motion = CompanyMotion::model()->findAll("update_at < date_add(now(),interval {$dataCondition}) and user_id != 3");
 
         foreach ($motion as $data) {
-            
-            $model = CompanyThem::model()->find('main_id = :main_id', array(':main_id' => $data->company_id));
-            $model_company = Company::model()->findByPk($data->company_id);
+
+            $model = CompanyThem::model()->find('main_id = :main_id and status_appro = :status', array(
+                ':main_id' => $data->company_id,
+                ':status' => 1,
+            ));
+            $model_company = Company::model()->findByPk($model->main_id);
             $model_profile_user = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $model_company->user_id));
+
+//            echo $model_profile_user->email . ' < < ';
             if (count($model_profile_user)) {
                 $name = $model_profile_user->ftname . ' ' . $model_profile_user->ltname;
 
