@@ -33,7 +33,8 @@ class DefaultController extends Controller {
         $model = new NewsMail();
         if (isset($_POST['NewsMail'])) {
             $model->attributes = $_POST['NewsMail'];
-            $this->render('blank');
+//            $this->render('blank');
+            echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
             if ($model->save()) {
                 echo "<script language='javascript'>
                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
@@ -50,5 +51,5 @@ class DefaultController extends Controller {
             'model' => $model
         ));
     }
-    
+
 }
