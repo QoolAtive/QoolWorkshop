@@ -6,5 +6,5 @@ class DefaultController extends Controller {
         unset(Yii::app()->session['shop_id']);
         $this->render('index');
     }
-
+    
 }
