@@ -41,13 +41,14 @@ class WebShopOrder extends WebShopOrderBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at', 'required'),
-            array('web_shop_order_id, web_shop_id, status', 'numerical', 'integerOnly' => true),
+            array('web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'required'),
+            array('web_shop_id, status', 'numerical', 'integerOnly' => true),
+            array('customer_email', 'email'),
             array('price_all', 'numerical'),
-            array('customer_name, customer_email, customer_tel', 'length', 'max' => 100),
+            array('customer_name, customer_email, customer_tel, track_code', 'length', 'max' => 100),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'safe', 'on' => 'search'),
+            array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, track_code, order_at, status', 'safe', 'on' => 'search'),
         );
     }
 
@@ -69,10 +70,11 @@ class WebShopOrder extends WebShopOrderBase {
         return array(
             'web_shop_order_id' => 'Web Shop Order',
             'web_shop_id' => 'Web Shop',
-            'customer_name' => 'Customer Name',
-            'customer_email' => 'Customer Email',
-            'customer_tel' => 'Customer Tel',
+            'customer_name' => 'ชื่อ',
+            'customer_email' => 'อีเมล์',
+            'customer_tel' => 'โทรศัพท์',
             'price_all' => 'Price All',
+            'track_code' => 'Track Code',
             'order_at' => 'Order At',
             'status' => 'Status',
         );
@@ -94,6 +96,7 @@ class WebShopOrder extends WebShopOrderBase {
         $criteria->compare('customer_email', $this->customer_email, true);
         $criteria->compare('customer_tel', $this->customer_tel, true);
         $criteria->compare('price_all', $this->price_all);
+        $criteria->compare('track_code', $this->track_code, true);
         $criteria->compare('order_at', $this->order_at, true);
         $criteria->compare('status', $this->status);
         $criteria->order = 'order_at DESC';
