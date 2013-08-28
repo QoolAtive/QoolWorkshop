@@ -16,7 +16,10 @@ if ($busket[$item_id] == NULL) {
     ));
     $this->endWidget();
 } else {
-    echo CHtml::ajaxSubmitButton('หยิบออกจากตะกร้า', '/webSimulation/shop/removeItem/item_id/' . $item_id, array(
+    echo Yii::t('language', 'จำนวนในตะกร้า');
+    echo ' ' . $busket[$item_id] . ' ';
+    echo Yii::t('language', 'ชิ้น');
+    echo CHtml::ajaxSubmitButton('หยิบออกจากตะกร้า', '/webSimulation/shop/selectItem/item_id/' . $item_id, array(
         'update' => '#busket_btn',
             ), array(
         'id' => 'select',

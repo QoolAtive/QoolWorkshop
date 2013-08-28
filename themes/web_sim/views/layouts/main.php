@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css" />
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
+        
         <?php
         //set bg
         if ($this->format['background'] != '' && $this->format['background'] != NULL) {
@@ -96,6 +97,7 @@
             <ul id="nav">
                 <li><a class="link" href="/webSimulation/shop/index/id/<?php echo $shop_id; ?>">หน้าหลัก</a></li>
                 <li><a class="link" href="/webSimulation/shop/productShop/id/<?php echo $shop_id; ?>">สินค้าในร้าน</a></li>
+                <!--<li><a class="link" href="/webSimulation/shop/busket/id/<?php echo $shop_id; ?>">ตะกร้าสินค้า</a></li>-->
                 <li><a class="link" href="/webSimulation/shop/payShop/id/<?php echo $shop_id; ?>">วิธีสั่งซื้อและชำระเงิน</a></li>
                 <li><a class="link" href="/webSimulation/shop/aboutShop/id/<?php echo $shop_id; ?>">เกี่ยวกับร้านค้า</a></li>
             </ul>
@@ -153,7 +155,7 @@
                             </p>
                         </div>
                     </div>
-
+                    
                     <!--Track & Trace-->
                     <!--                    <div id="col_right_track" class="clearfix" >
                                             <h2>Track &amp; Trace</h2>

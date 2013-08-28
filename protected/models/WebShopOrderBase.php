@@ -10,6 +10,7 @@
  * @property string $customer_email
  * @property string $customer_tel
  * @property double $price_all
+ * @property string $track_code
  * @property string $order_at
  * @property integer $status
  *
@@ -44,13 +45,13 @@ class WebShopOrderBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at', 'required'),
-			array('web_shop_order_id, web_shop_id, status', 'numerical', 'integerOnly'=>true),
+			array('web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'required'),
+			array('web_shop_id, status', 'numerical', 'integerOnly'=>true),
 			array('price_all', 'numerical'),
-			array('customer_name, customer_email, customer_tel', 'length', 'max'=>100),
+			array('customer_name, customer_email, customer_tel, track_code', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, order_at, status', 'safe', 'on'=>'search'),
+			array('web_shop_order_id, web_shop_id, customer_name, customer_email, customer_tel, price_all, track_code, order_at, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +79,7 @@ class WebShopOrderBase extends CActiveRecord
 			'customer_email' => 'Customer Email',
 			'customer_tel' => 'Customer Tel',
 			'price_all' => 'Price All',
+			'track_code' => 'Track Code',
 			'order_at' => 'Order At',
 			'status' => 'Status',
 		);
@@ -100,6 +102,7 @@ class WebShopOrderBase extends CActiveRecord
 		$criteria->compare('customer_email',$this->customer_email,true);
 		$criteria->compare('customer_tel',$this->customer_tel,true);
 		$criteria->compare('price_all',$this->price_all);
+		$criteria->compare('track_code',$this->track_code,true);
 		$criteria->compare('order_at',$this->order_at,true);
 		$criteria->compare('status',$this->status);
 
