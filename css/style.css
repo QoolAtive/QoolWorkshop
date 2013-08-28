@@ -1,4 +1,7 @@
 /* @group Component */
+.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide {
+    display: none;
+}
 .websimboxlist{
  
 }
