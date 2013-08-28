@@ -18,14 +18,6 @@ class ManageShopController extends Controller {
         );
     }
 
-    public function actionTest(){
-        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
-        $str = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
-        echo "<script language='javascript'>
-    alert('" . $str . "');
-</script>";
-    }
-
     //หน้า register
     public function actionRegister() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/shop_register.js');
