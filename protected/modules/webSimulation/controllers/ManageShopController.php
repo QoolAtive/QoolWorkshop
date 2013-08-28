@@ -18,6 +18,14 @@ class ManageShopController extends Controller {
         );
     }
 
+    public function actionTest(){
+        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
+        $str = Yii::t('language', 'บันทึกข้อมูลเรียบร้อย');
+        echo "<script language='javascript'>
+    alert('" . $str . "');
+</script>";
+    }
+
     //หน้า register
     public function actionRegister() {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/shop_register.js');
@@ -34,6 +42,8 @@ class ManageShopController extends Controller {
             $model->url = 'temp';
             $model->creat_at = date("Y-m-d H:i:s");
             if ($model->save()) {
+//                $this->render('blank');
+                echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 //url ที่อยู่ร้านค้า
                 $url = $this->createAbsoluteUrl('/webSimulation/shop/index/id/' . $model->getPrimaryKey());
                 WebShop::model()->updateByPk($model->getPrimaryKey(), array('url' => $url));
@@ -73,6 +83,8 @@ class ManageShopController extends Controller {
 
             if ($model->theme != '') {
                 $model->save();
+//                $this->render('blank');
+                echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 if ($is_new) {
                     //หน้าสมัคร
                     echo "<script language='javascript'>
@@ -592,7 +604,8 @@ class ManageShopController extends Controller {
     }
 
     public function actionShowBox($box_id, $is_show) {
-        $this->render('blank');
+//        $this->render('blank');
+        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         if ($is_show) {
             //เปลี่ยนเป็นซ่อน
             WebShopBox::model()->updateByPk($box_id, array('show_box' => '0'));
@@ -688,7 +701,8 @@ class ManageShopController extends Controller {
     }
 
     public function actionShowCategory($category_id, $is_show) {
-        $this->render('blank');
+//        $this->render('blank');
+        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         if ($is_show) {
             //เปลี่ยนเป็นซ่อน
             WebShopCategory::model()->updateByPk($category_id, array('show_box' => '0'));
