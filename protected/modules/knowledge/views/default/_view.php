@@ -11,7 +11,7 @@
 
             $list2 = array(
                 array('text' => Yii::t('language', 'บทความ'), 'link' => '/knowledge/default/index'),
-                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/knowledge/default/index#view2'),
+                array('text' => Yii::t('language', 'การเรียนรู้'), 'link' => '/learning/default/home'),
             );
             $n2 = 3;
             foreach ($list2 as $ls) {
