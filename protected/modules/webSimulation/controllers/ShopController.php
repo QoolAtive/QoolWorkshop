@@ -16,6 +16,7 @@ class ShopController extends Controller {
         $this->shop = $model;
         $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $id));
         $this->format = $format;
+        $this->busket = Yii::app()->session['busket'];
         return $model;
     }
 
@@ -118,7 +119,13 @@ class ShopController extends Controller {
         Yii::app()->session['busket'] = $this->busket;
 
 //        print_r(Yii::app()->session['busket']);
-        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
+//        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
+        echo CJSON::encode(
+                array(
+                    'div1' => $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id), true, true),
+                    'div2' => $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket), true, true),
+                )
+        );
     }
 
     public function actionRemoveAllItem() {

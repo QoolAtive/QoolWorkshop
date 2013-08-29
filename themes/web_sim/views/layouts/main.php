@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css" />
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
-        
+
         <?php
         //set bg
         if ($this->format['background'] != '' && $this->format['background'] != NULL) {
@@ -36,7 +36,7 @@
                     }';
             echo '</style>';
         }
-        
+
         //set ขนาดอักษรหัวข้อ
         if ($this->format['topic_size'] != '' && $this->format['topic_size'] != NULL) {
             echo '<style>';
@@ -53,7 +53,7 @@
                     }';
             echo '</style>';
         }
-        
+
         //set ขนาดอักษรลิ้งก์
         if ($this->format['link_size'] != '' && $this->format['link_size'] != NULL) {
             echo '<style>';
@@ -155,7 +155,32 @@
                             </p>
                         </div>
                     </div>
-                    
+
+                    <!--busket-->
+                    <div id="col_right_history" class="clearfix" >
+                        <a href="/webSimulation/shop/busket/id/<?php echo $shop_id; ?>">
+                            <h2 class="topic">ตะกร้าสินค้า</h2>
+                        </a>
+                        <div id="busket_side">
+                            <?php
+                            $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket));
+                            ?>
+                        </div>
+                        <?php
+                        if ($this->busket != NULL) {
+                            echo '<div style="text-align: center; margin-top: 10px;">';
+                            echo CHtml::button('   สั่งชื้อ   ', array(
+                                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                                    "/webSimulation/shop/busket",
+                                    'id' => $shop_id,
+//            'price_all' => $price_total
+                                )) . '"'
+                            ));
+                            echo '</div>';
+                        }
+                        ?>
+                    </div>
+
                     <!--Track & Trace-->
                     <!--                    <div id="col_right_track" class="clearfix" >
                                             <h2>Track &amp; Trace</h2>

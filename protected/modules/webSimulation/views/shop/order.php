@@ -40,7 +40,7 @@
         <?php
         echo CHtml::submitButton(Yii::t('language', '    สั่งซื้อ    '));
         echo CHtml::button(Yii::t('language', '    ยกเลิก    '), array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/about/default/index")) . '"'));
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/shop/busket", 'id' => $id)) . '"'));
         ?>
     </div>
     <?php $this->endWidget(); ?>
