@@ -274,6 +274,7 @@ Class ManageController extends Controller {
                         if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                             $link_back = Yii::app()->user->getState('default_link_back_to_menu');
                             echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $link_back . "';
@@ -281,6 +282,7 @@ Class ManageController extends Controller {
                             ";
                         } else {
                             echo "
+                                <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/serviceProvider/manage/company';
@@ -412,6 +414,7 @@ Class ManageController extends Controller {
                     if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                         $link_back = Yii::app()->user->getState('default_link_back_to_menu');
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $link_back . "';
@@ -419,6 +422,7 @@ Class ManageController extends Controller {
                             ";
                     } else {
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $return->getUrl() . "';
