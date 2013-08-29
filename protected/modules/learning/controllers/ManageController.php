@@ -210,6 +210,7 @@ class ManageController extends Controller {
 
             $modelVideo->attributes = $_POST['LearningVideo'];
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
+            $modelVideo->video_en = str_replace('watch?v=', 'embed/', $modelVideo->video_en);
 
             $upload->attributes = $_POST['UploadPDF'];
 
