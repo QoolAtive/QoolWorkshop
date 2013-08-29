@@ -147,15 +147,15 @@ $this->renderPartial('side_bar', array(
                         "attribute" => 'infor', # Attribute in the Data-Model
                         "defaultValue" => $model->infor, # Optional
                         "config" => array(
-                            "height" => "240px",
+                            "height" => "220px",
                             "width" => "100%",
                             'toolbar' => array(
                                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                                     '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                                 array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                                    '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                                    '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                             ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                         ),
                         "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -212,15 +212,15 @@ $this->renderPartial('side_bar', array(
                         "attribute" => 'infor_en', # Attribute in the Data-Model
                         "defaultValue" => $model->infor_en, # Optional
                         "config" => array(
-                            "height" => "240px",
+                            "height" => "220px",
                             "width" => "100%",
                             'toolbar' => array(
                                 array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                     '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                                     '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                                 array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                                    '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                                    '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                             ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                         ),
                         "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -327,9 +327,9 @@ $this->renderPartial('side_bar', array(
                             <?php
                             echo $form->labelEx($model_delivery, 'option2') . '<br />';
                             echo $form->radioButtonList($model_delivery, 'option2', array(
-                                '0' => Yii::t('language', 'ทั่วประเทศ'), 
+                                '0' => Yii::t('language', 'ทั่วประเทศ'),
                                 '1' => Yii::t('language', 'บางพื้นที่'),
-                                ));
+                            ));
                             echo $form->error($model_delivery, 'option2');
                             ?>
 
@@ -338,7 +338,7 @@ $this->renderPartial('side_bar', array(
                             <?php
                             echo $form->labelEx($model_delivery, 'other');
                             echo $form->textfield($model_delivery, 'other');
-                            
+
                             echo $form->labelEx($model_delivery, 'other_en');
                             echo $form->textfield($model_delivery, 'other_en');
                             ?>
@@ -347,7 +347,7 @@ $this->renderPartial('side_bar', array(
                             <?php
                             echo $form->labelEx($model_delivery, 'other2');
                             echo $form->textfield($model_delivery, 'other2');
-                            
+
                             echo $form->labelEx($model_delivery, 'other2_en');
                             echo $form->textfield($model_delivery, 'other2_en');
                             ?>

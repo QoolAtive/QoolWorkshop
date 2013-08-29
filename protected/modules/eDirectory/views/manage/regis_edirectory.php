@@ -135,7 +135,27 @@ $this->renderPartial('side_bar', array(
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'infor');
-                    echo $form->textArea($model, 'infor');
+//                    echo $form->textArea($model, 'infor');
+                    $this->widget('ext.ckeditor.CKEditorWidget', array(
+                        "model" => $model, # Data-Model
+                        "attribute" => 'infor', # Attribute in the Data-Model
+                        "defaultValue" => $model->infor, # Optional
+                        "config" => array(
+                            "height" => "220px",
+                            "width" => "100%",
+                            'toolbar' => array(
+                                array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
+                                    '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                                    '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
+                                array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
+                                    '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
+                            ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
+                        ),
+                        "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
+                        # Path to ckeditor.php
+                        "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
+                    ));
                     echo $form->error($model, 'infor');
                     ?>
                 </div>
@@ -180,7 +200,27 @@ $this->renderPartial('side_bar', array(
                 <div class="_100">
                     <?php
                     echo $form->labelEx($model, 'infor_en');
-                    echo $form->textArea($model, 'infor_en');
+//                    echo $form->textArea($model, 'infor_en');
+                    $this->widget('ext.ckeditor.CKEditorWidget', array(
+                        "model" => $model, # Data-Model
+                        "attribute" => 'infor_en', # Attribute in the Data-Model
+                        "defaultValue" => $model->infor_en, # Optional
+                        "config" => array(
+                            "height" => "220px",
+                            "width" => "100%",
+                            'toolbar' => array(
+                                array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
+                                    '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                                    '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
+                                array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
+                                    '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                    '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
+                            ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
+                        ),
+                        "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
+                        # Path to ckeditor.php
+                        "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
+                    ));
                     echo $form->error($model, 'infor_en');
                     ?>
                 </div>
