@@ -34,6 +34,14 @@ $this->renderPartial('_sidebar', array(
         ));
         ?>
         <h3><?php echo Yii::t('language', 'หัวข้อรอง'); ?></h3>
+        <div style="text-align: center;">
+            <?php
+            echo CHtml::button('เพิ่มหมวดหมูรอง', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/dataCenter/default/siteMapSubInsert'
+                )) . "'")
+            );
+            ?>
+        </div>
         <?php
         $this->renderPartial('site_map_sub_grid', array(
             'modelSiteMapSub' => $modelSiteMapSub,

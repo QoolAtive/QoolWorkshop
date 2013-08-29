@@ -94,13 +94,14 @@ class ManageController extends Controller {
                 if ($model->save()) {
 
                     //เพิ่มลง site map
-//                    $dataSiteMap = array(
-//                        'id_code' => $model->id,
-//                        'name' => $model->name,
-//                        'name_en' => $model->name_en,
-//                        'link' => '/learning/default/index/id/' . $model->id,
-//                    );
-//                    Tool::addSiteMap(2, $dataSiteMap);
+                    $dataSiteMap = array(
+                        'id_code' => $model->id,
+                        'sub_id' => null,
+                        'name' => $model->name,
+                        'name_en' => $model->name_en,
+                        'link' => '/learning/default/index/id/' . $model->id,
+                    );
+                    Tool::addSiteMap(2, $dataSiteMap);
                     // - - - - -- 
 
                     $dir = './file/learning/';
@@ -229,13 +230,14 @@ class ManageController extends Controller {
                     if ($modelVideo->save()) {
 
                         //เพิ่มลง site map
-//                        $dataSiteMap = array(
-//                            'name' => $model->subject,
-//                            'name_en' => $model->subject_en,
-//                            'link' => '/learning/default/lesson/id/' . $model->id,
-//                            'sub_id' => $model->group_id,
-//                        );
-//                        Tool::addSiteMap(2, $dataSiteMap);
+                        $dataSiteMap = array(
+                            'id_code' => null,
+                            'name' => $model->subject,
+                            'name_en' => $model->subject_en,
+                            'link' => '/learning/default/lesson/id/' . $model->id,
+                            'sub_id' => $model->group_id,
+                        );
+                        Tool::addSiteMap(2, $dataSiteMap);
                         // - - - - -- 
 
                         if (isset($file)) {

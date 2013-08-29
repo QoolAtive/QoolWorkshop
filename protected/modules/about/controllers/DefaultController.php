@@ -60,8 +60,17 @@ class DefaultController extends Controller {
         <script>
             window.location = "<?php echo CHtml::normalizeUrl(array("/about/default/index/view/2")); ?>";
         </script>
-            <?php
+        <?php
 //        $this->redirect(CHtml::normalizeUrl(array('/about/default/index')));
+    }
+
+    public function actionSiteMap() {
+
+        $modelSiteMapMain = SiteMap::model()->findAll();
+        
+        $this->render('site_map', array(
+            'modelSiteMapMain' => $modelSiteMapMain,
+        ));
     }
 
 }

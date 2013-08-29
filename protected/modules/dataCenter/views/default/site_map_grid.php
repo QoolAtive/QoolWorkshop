@@ -35,7 +35,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 ),
                 'delete' => array(
                     'label' => 'del', //Text label of the button.
-                    'url' => 'Yii::app()->createUrl("/dataCenter/default/siteMapDelete",array("site_map_id"=>$data->site_map_id))',
+                    'url' => 'Yii::app()->createUrl("/dataCenter/default/siteMapDel",array("site_map_id"=>$data->site_map_id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){
