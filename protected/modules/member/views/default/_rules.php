@@ -64,12 +64,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <p style="margin-left:40px"><strong>5.1</strong> อาจมีการปรับปรุง แก้ไขนโยบายคุ้มครองข้อมูลส่วนบุคคลของผู้ใช้บริการ โดยไม่ได้แจ้งให้ผู้ใช้บริการทราบล่วงหน้า ทั้งนี้เพื่อความเหมาะสม และมีประสิทธิภาพในการให้บริการ จึงขอให้ผู้ใช้บริการอ่านนโยบายคุ้มครองข้อมูลส่วนบุคคลของผู้ใช้บริการทุก ครั้งที่ใช้บริการของสำนักพาณิชย์อิเล็กทรอนิกส์ กรมพัฒนาธุรกิจการค้า</p>
 
-<div style="text-align: center; padding:10px 0;">	
-    <!--<a href="/member/manage/registerPerson" class="btn purple twhite " target="_parent" >Accept</a>-->
-    <?php echo CHtml::submitButton(Yii::t('language', 'Accept'), array('class' => 'btn purple twhite', 'target' => '_parent')); ?>
-    <input type="button" value="Cancle" class="grey" onClick="javascript:parent.jQuery.fancybox.close();"> 
-<!--  -->
-</div>
+
 
 
 <?php
