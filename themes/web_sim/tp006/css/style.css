@@ -1,6 +1,9 @@
 ﻿/*-----------------------------
 BEGIN : Layout
 -----------------------------*/
+.normal {
+    color: #FFFFFF !important;
+}
 body{
  	background:#000 url('../img/bg.jpg') no-repeat center top;
 }
@@ -41,6 +44,9 @@ BEGIN : Header
 h1#logo{
 	float:left;
 	margin:50px 0 0 0;
+}
+h1#logo a > img {
+    width: 130px;
 }
 
 /* Search */

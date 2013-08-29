@@ -6,4 +6,5 @@
     <li><?php echo CHtml::link('Title Web', array('/dataCenter/default/titleWeb')); ?></li>
     <li><?php echo CHtml::link('Description', array('/dataCenter/default/description')); ?></li>
     <li><?php echo CHtml::link('Keyword', array('/dataCenter/default/keyword')); ?></li>
+    <li><?php echo CHtml::link('Site Map', array('/dataCenter/default/siteMap')); ?></li>
 </ul>

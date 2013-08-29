@@ -64,7 +64,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     "defaultValue" => $model->code, # Optional
                     "config" => array(
                         "height" => "240px",
-                        "width" => "600",
+                        "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',

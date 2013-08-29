@@ -1,7 +1,8 @@
 <div class="main_box clearfix col4">
     <h2 class="topic"><?php echo $item_detail['name_th']; ?></h2>
-    <div class="item_detail">
-        <a class="pdf" href="#"></a>
+    <div class="item_detail clearfix">
+        <!-- <a class="pdf" href="#"></a> -->
+    <div class="clearfix" style="width: 100%; display: block; height: auto;margin-bottom: 50px;">
         <div class="item_pic">
             <img alt="<?php echo $item_detail['name_th']; ?>" src="
             <?php
@@ -36,6 +37,15 @@
             <p><label>น้ำหนักสินค้า (กรัม):</label> <?php echo $item_detail['weight']; ?></p>
             <p><label>รายละเอียดสินค้า:</label> <?php echo $item_detail['description_th']; ?></p>
         </div>
+
+    </div>
+    <div class="clearfix" style="width: 100%; display: block;"></div>
+         <!--หยิบใส่ตะกร้า-->
+        <div id="busket_btn" style="width: 100%; display: block; padding: 40px 0; text-align: center;">
+            <?php
+            $this->renderPartial('busket_btn_', array('busket' => $busket, 'item_id' => $item_detail['web_shop_item_id']));
+            ?>
+        </div>
         <div class="list_pic">
             <ul>
                 <?php
@@ -66,11 +76,6 @@
                 ?>
             </ul>
         </div>
-        <!--หยิบใส่ตะกร้า-->
-        <div id="busket_btn">
-            <?php
-            $this->renderPartial('busket_btn_', array('busket' => $busket, 'item_id' => $item_detail['web_shop_item_id']));
-            ?>
-        </div>
+       
     </div>
 </div>

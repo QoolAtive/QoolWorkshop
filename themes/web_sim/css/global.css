@@ -1,4 +1,41 @@
-﻿html, body, #wrapper {
+﻿.promotion_price {
+	display: block;
+}
+
+.item_detail .list_pic > ul li:first-child{
+	display: none;
+}
+
+
+.item_detail .list_pic > ul li {
+ /*   margin-left: 5px;*/
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.item_detail div.item_pic{
+  width: 40% !important;
+  float: left;
+  margin-top: 30px;
+}
+.item_detail .list_pic img{
+  	max-width: 670px;
+    min-width: 220px;
+}
+.item_detail > div.clearfix > .item_pic > img{
+	max-width: 170px;
+	margin-left: 40px;
+}
+.item_detail > div.clearfix > .detail_info.normal{
+  width :60% !important;
+  float: left;
+   height: 200px;
+/*   margin-top: 25px;
+*/}
+
+
+
+html, body, #wrapper {
 	height: 100%;
 }
 body > #wrapper {

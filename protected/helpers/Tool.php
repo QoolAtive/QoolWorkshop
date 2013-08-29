@@ -282,6 +282,54 @@ Class Tool {
         }
     }
 
+    public static function addSiteMap($main_id = null, $data = array()) {
+
+        $model = SiteMapSub::model()->findByAttributes(array('name' => $data['name']));
+        if (count($model) > 0) {
+
+
+            $model->name = $data['name'];
+            $model->name_en = $data['name_en'];
+            $model->link = $data['link'];
+            $model->main_id = $main_id;
+
+//            if ($main_id != null) // เป็นหัวข้อหลัก
+//                $model->main_id = $main_id;
+//
+            if (!empty($data['id_code']))
+                $model->id_code = $data['id_code'];
+
+            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
+                $model->sub_id = $data['sub_id'];
+
+            if (!$model->save()) {
+                echo "<pre>";
+                print_r($model->getErrors());
+            }
+        } else {
+
+            $model = new SiteMapSub();
+
+            $model->name = $data['name'];
+            $model->name_en = $data['name_en'];
+            $model->link = $data['link'];
+
+//            if ($main_id != null) // เป็นหัวข้อหลัก
+            $model->main_id = $main_id;
+            
+            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
+                $model->sub_id = $data['sub_id'];
+//
+            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
+                $model->sub_id = $data['sub_id'];
+
+            if (!$model->save()) {
+                echo "<pre>";
+                print_r($model->getErrors());
+            }
+        }
+    }
+
 }
 
 ?>
