@@ -19,7 +19,7 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-        Tool::AutoMotionWarning();
+//        Tool::AutoMotionWarning();
         $this->render('index');
     }
 
@@ -517,6 +517,59 @@ class DefaultController extends Controller {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         }
+    }
+
+    public function actionSiteMap() {
+        $modelSiteMap = new SiteMap();
+        $modelSiteMapSub = new SiteMapSub();
+
+        if (isset($_GET['SiteMap']) || $_GET['SiteMapSub']) {
+            $modelSiteMap->attributes = $_GET['SiteMap'];
+            $modelSiteMapSub->attributes = $_GET['SiteMapSub'];
+        }
+        
+        $this->render('site_map', array(
+            'modelSiteMap' => $modelSiteMap,
+            'dataProvider' => $modelSiteMap->getData(),
+            'modelSiteMapSub' => $modelSiteMapSub,
+            'dataProviderSub' => $modelSiteMapSub->getData(),
+        ));
+    }
+
+    public function actionSiteMapInsert($site_map_id = null) {
+        if ($site_map_id == null) {
+            $model = new SiteMap();
+        } else {
+            $model = SiteMap::model()->find('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
+        }
+
+        if (isset($_POST['SiteMap'])) {
+            $model->attributes = $_POST['SiteMap'];
+
+            $model->validate();
+            if ($model->getErrors() == null) {
+
+//                echo "<pre>";
+//                print_r($model->attributes);die;
+
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.location='/dataCenter/default/siteMap';
+                        </script>
+                        ";
+                }
+            } else {
+//                echo "<pre>";
+//                print_r($model->getErrors());
+            }
+        }
+
+        $this->render('site_map_insert', array(
+            'model' => $model,
+        ));
     }
 
 }
