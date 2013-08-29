@@ -26,7 +26,7 @@
             ?>
         </div>
         <div class="footright">
-            
+
             <?php
             $this->widget('application.extensions.addThis.addThis', array(
                 'id' => 'addThis',
@@ -45,9 +45,9 @@
             );
             ?>
             <div class="footrtext">
-             <a href="/index.php/about/default/siteMap">แผนผังเว็บไซต์</a> | 
-             <a class="createaccountbtn fancybox" href="/member/manage/_rules.php">นโยบายและเงื่อนไขการใช้งาน</a>
-         </div>
+                <a href="/index.php/about/default/siteMap">แผนผังเว็บไซต์</a> | 
+                <a class="createaccountbtn fancybox" href="/member/default/rules">นโยบายและเงื่อนไขการใช้งาน</a>
+            </div>
         </div>
     </div>
 </div>
