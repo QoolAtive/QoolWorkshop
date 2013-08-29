@@ -14,8 +14,8 @@
 <style type="text/css">
 html,body{
     overflow: hidden !important;
-     padding: 0 2%;
-}
+/*     padding: 0 2%;
+*/}
 
 </style>
   </head>
