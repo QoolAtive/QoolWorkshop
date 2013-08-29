@@ -588,7 +588,11 @@ class DefaultController extends Controller {
     }
 
     public function actionSiteMapDel($site_map_id = null) {
+<<<<<<< HEAD
         $count = SiteMap::model()->count('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
+=======
+        $count = SiteMapSub::model()->count('main_id = :main_id', array(':main_id' => $site_map_id));
+>>>>>>> a2daf3474cfbc49a651b34f5d5aca50e0f8cf600
         if ($count < 1) {
             $model = SiteMap::model()->find('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
             if ($model->delete()) {

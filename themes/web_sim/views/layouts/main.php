@@ -156,6 +156,7 @@
                         </div>
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                     <!--busket-->
                     <div id="col_right_history" class="clearfix" >
@@ -183,6 +184,8 @@
                     </div>
 
 =======
+=======
+>>>>>>> a2daf3474cfbc49a651b34f5d5aca50e0f8cf600
 <!--                    
                         กดซ่อนแล้วแปลี่ยนเป็น - - - > style="display:none;"
                         หรือจะเช็คให้ Query มาแสดงก็ได้ 

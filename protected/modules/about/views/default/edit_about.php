@@ -25,7 +25,7 @@
                 <?php
                 echo CHtml::link(
                         Yii::t('language', 'Sitemap'), CHtml::normalizeUrl(
-                                array('/about/default/index/view/3')
+                                array('/about/default/siteMap')
                         ), array('rel' => 'view3')
                 );
                 ?>
