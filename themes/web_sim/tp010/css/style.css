@@ -45,6 +45,9 @@ h1#logo{
 	float:left;
 	margin:20px 0px 0px 4px;
 }
+h1#logo a > img {
+    width: 130px;
+}
 
 /* Search */
 #first_search{

@@ -37,7 +37,10 @@ BEGIN : Header
 }
 h1#logo{
 	float:left;
-	margin-top:20px;
+	margin-top:10px;
+}
+h1#logo a > img {
+    width: 130px;
 }
 
 /* Search */
@@ -129,7 +132,8 @@ BEGIN : Layout Product Box
 	min-height:200px;
 	margin-bottom: 20px;
 	padding:0px 0px 10px 0px;
-	background:url('../img/bg_box.png') repeat 0 0;
+	/*background:url('../img/bg_box.png') repeat 0 0;*/
+	background: #f9f9f9;
 	box-shadow: 0px 0px 5px #000000;
 	-webkit-box-shadow:0px 0px 5px #000000;
 	-moz-box-shadow: 0px 0px 5px #000000;

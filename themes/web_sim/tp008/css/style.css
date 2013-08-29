@@ -30,7 +30,9 @@ h1#logo{
 	float:left;
 	margin-top:20px;
 }
-
+h1#logo a > img {
+    width: 130px;
+}
 /* Search */
 #first_search{
 	float:right;

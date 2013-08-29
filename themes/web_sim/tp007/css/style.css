@@ -1,4 +1,5 @@
-﻿/*-----------------------------
+﻿
+/*-----------------------------
 BEGIN : Layout
 -----------------------------*/
 body{
@@ -44,6 +45,10 @@ h1#logo{
 	margin:20px 0px 0px 4px;
 }
 
+h1#logo a > img {
+    width: 130px;
+}
+
 /* Search */
 #first_search{
 	float:right;
@@ -85,6 +90,7 @@ input#btnTopsearch:hover{
 	color: #fff;
 	background:none;
 	padding:0px;
+	height: 50px;
 }
 #nav li a{
 	padding: 10px 55px 0px 55px;
