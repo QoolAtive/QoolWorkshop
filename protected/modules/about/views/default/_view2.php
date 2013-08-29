@@ -79,7 +79,7 @@
             <div  class="_100">
                 <?php
                 echo CHtml::textArea('description', '', array(
-                    'class' => "span12",
+                    'class' => "span12 fieldrequire",
                     'rows' => "4",
                     'cols' => "50",
                     'style' => "font: 100%/120% Verdana, Arial, Helvetica, sans-serif; display: block; height:100px;",
