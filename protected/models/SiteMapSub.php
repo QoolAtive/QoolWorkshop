@@ -23,9 +23,9 @@ class SiteMapSub extends SiteMapSubBase {
             'name' => Yii::t('language', 'ชื่อหัวข้อภาษาไทย'),
             'name_en' => Yii::t('language', 'ชื่อหัวข้อภาษาอังกฤษ'),
             'link' => Yii::t('language', 'ลิ้งก์'),
-            'main_id' => Yii::t('language', 'รหัสหลัก'),
+            'main_id' => Yii::t('language', 'หัวข้อหลัก'),
             'sub_id' => Yii::t('language', 'รหัสรอง'),
-            'sort' => Yii::t('language', ''),
+            'sort' => Yii::t('language', 'ลำดับการแสดง'),
         );
     }
 

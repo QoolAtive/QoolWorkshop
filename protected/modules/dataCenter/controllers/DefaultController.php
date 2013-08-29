@@ -111,7 +111,20 @@ class DefaultController extends Controller {
             $model->attributes = $_POST['CompanyTypeBusiness'];
             if ($model->validate()) {
                 if ($model->save()) {
+
+                    //เพิ่มลง site map
+                    $dataSiteMap = array(
+                        'id_code' => $model->id,
+                        'sub_id' => null,
+                        'name' => $model->name,
+                        'name_en' => $model->name_en,
+                        'link' => '/eDirectory/default/index/id/' . $model->id,
+                    );
+                    Tool::addSiteMap(4, $dataSiteMap);
+                    // - - - - -- 
+
                     echo "
+                        <meta charset='UTF-8'></meta>
                         <script>
                         alert('$alert');
                         window.location='$link';
@@ -527,7 +540,7 @@ class DefaultController extends Controller {
             $modelSiteMap->attributes = $_GET['SiteMap'];
             $modelSiteMapSub->attributes = $_GET['SiteMapSub'];
         }
-        
+
         $this->render('site_map', array(
             'modelSiteMap' => $modelSiteMap,
             'dataProvider' => $modelSiteMap->getData(),
@@ -567,9 +580,66 @@ class DefaultController extends Controller {
             }
         }
 
+
+
         $this->render('site_map_insert', array(
             'model' => $model,
         ));
+    }
+
+    public function actionSiteMapDel($site_map_id = null) {
+        $count = SiteMap::model()->count('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
+        if ($count < 1) {
+            $model = SiteMap::model()->find('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+        }
+    }
+
+    public function actionSiteMapSubInsert($site_map_sub_id = null) {
+        if ($site_map_sub_id == null) {
+            $model = new SiteMapSub();
+        } else {
+            $model = SiteMapSub::model()->find('site_map_sub_id = :site_map_sub_id', array(':site_map_sub_id' => $site_map_sub_id));
+        }
+
+        if (isset($_POST['SiteMapSub'])) {
+            $model->attributes = $_POST['SiteMapSub'];
+
+            $model->validate();
+            if ($model->getErrors() == null) {
+
+//                echo "<pre>";
+//                print_r($model->attributes);die;
+
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.location='/dataCenter/default/siteMap';
+                        </script>
+                        ";
+                }
+            } else {
+//                echo "<pre>";
+//                print_r($model->getErrors());
+            }
+        }
+
+        $this->render('site_map_sub_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionSiteMapSubDel($site_map_sub_id = null) {
+            $model = SiteMapSub::model()->find('site_map_sub_id = :site_map_sub_id', array(':site_map_sub_id' => $site_map_sub_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            }
     }
 
 }
