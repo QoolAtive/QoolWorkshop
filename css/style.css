@@ -1870,16 +1870,23 @@ ul#navi_containTab li {
     padding-top: 26px;
     text-align: left;
     vertical-align: middle;
-    width: 78%;
+    width: 76%;
 }
 
 #footer .footright{
     float: right;
-    padding-top: 50px;
-    width: 22%;
+    padding-top: 40px;
+    width: 24%;
 }
 .footright a {
     color: #FFFFFF;
+}
+.footrtext{
+    display: block;
+    float: right;
+    margin-right: -4px;
+    margin-top: 10px;
+    width: 100%;
 }
 #footer .footright img{
     border:2px solid #fff;
