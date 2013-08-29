@@ -47,6 +47,10 @@ h1#logo{
 	margin:20px 0px 0px 4px;
 }
 
+h1#logo a > img {
+    width: 130px;
+}
+
 /* Search */
 #first_search{
 	float:right;
@@ -295,6 +299,7 @@ span.price {
 	bottom:30px\9;
 }
 span.promotion_price{
+	display: block;
 	color:#059DF0;
 	font-style:italic;
 	font-weight:bold;

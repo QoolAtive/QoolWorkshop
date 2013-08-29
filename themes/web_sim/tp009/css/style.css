@@ -1,4 +1,33 @@
-﻿/*-----------------------------
+﻿.promotion_price {
+	display: block;
+}
+
+.list_pic > ul li:first-child{
+	display: none;
+}
+
+
+.list_pic > ul li {
+ /*   margin-left: 5px;*/
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.main_box{
+	background: #fff;
+	border: 1px solid #AAAAAA;
+    box-shadow: 0 0 3px 1px #DDDDDD;
+}
+
+.item_detail > div.clearfix > .detail_info.normal{
+  width :60%;
+  float: left;
+   height: 200px;
+   margin-top: 25px;
+}
+
+/*-----------------------------
 BEGIN : Layout
 -----------------------------*/
 body{
@@ -40,6 +69,9 @@ BEGIN : Header
 h1#logo{
 	float:left;
 	margin:25px 0px 0px 0px;
+}
+h1#logo a > img {
+    width: 130px;
 }
 
 /* Search */
@@ -243,7 +275,7 @@ BEGIN : Column in Product Box
 .col4 .item {
 	width:130px ;
 	margin:10px;
-	padding:0px 10px 10px;
+	padding:0px 9px 10px;
 	float: left;
 	height:180px;
      overflow:hidden;
@@ -254,9 +286,9 @@ BEGIN : Column in Product Box
 	height:124px;
 }
 .col4 .item_pic{
-	width:124px;
-	position:relative; 
-	bottom:29px;
+/*	width:124px;
+*/	position:relative; 
+/*	bottom:29px;*/
 }
 .col4 .info_item{
     position:relative;
@@ -268,7 +300,7 @@ BEGIN : Column in Product Box
 }
 .col4 .info_item h3{
 	font-weight:normal;
-	height:70px;
+	/*height:70px;*/
 	overflow:hidden;
 }
 /*-----------------------------
@@ -411,12 +443,14 @@ BEGIN : Column Right
 	font-size:1.6em;
 	font-weight:normal;
 }
-#col_right_submenu, #col_right_cate, #col_right_history{
+ #busket_side, #col_right_submenu, #col_right_cate, #col_right_history {
 	width:290px;
 	min-height:50px;
 	_height:50px;/* Only IE6 */
 	padding: 0px;
 	margin-bottom: 20px;
+	background: #fff;
+	padding-bottom: 10px;
 }
 /* Sub Menu */
 #col_right_submenu li, #col_right_cate li {
@@ -530,7 +564,7 @@ span.redbold{
 @media screen and (-webkit-min-device-pixel-ratio:0){#col_right_track div{width:270px;}}/*Only Chrome*/
 /* Detail in Column Right */
 .right_item {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 .right_item img {
 	width: 62px;

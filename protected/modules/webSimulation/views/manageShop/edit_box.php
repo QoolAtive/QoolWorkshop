@@ -4,27 +4,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<style>
-    #all_item, #select_item { list-style-type: none; margin: 0; padding: 0; width: 100%; height: 400px; border: 1px dashed #aaa;}
-    #all_item li, #select_item li {   
-        float: left;
-        font-size: 1em;
-        height: 90px;
-        margin: 8px 3px 15px 6px;
-        padding: 1px;
-        text-align: center;
-        width: 100px;
-    }
-    .item_pic{
-        cursor: move;
-    }
-</style>
-<style>
-    .item_pic img{
-        height: 90px;
-        width: 100px;
-    }
-</style>
+
 <div class="content">
     <div class="tabcontents" >
         <h3 class="barH3">

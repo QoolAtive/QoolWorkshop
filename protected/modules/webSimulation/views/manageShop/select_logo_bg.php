@@ -1,6 +1,11 @@
 <?php
 $this->renderPartial('_side_menu', array('index' => 'shop'));
 ?>
+<style type="text/css">
+.right img{ 
+    width: 200px;
+}
+</style>
 <div class="content">
     <div class="tabcontents">
         <h3 class="barH3">
@@ -107,5 +112,5 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             ?>
             <hr>
         </div>
-        <?php $this->endWidget(); ?>
+        <?php $this->endWidget(); ?></div>
     </div>

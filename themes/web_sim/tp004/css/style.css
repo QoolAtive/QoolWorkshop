@@ -38,13 +38,17 @@ END : Layout
 BEGIN : Header
 -----------------------------*/
 #header {
-	background:#38BEC1 url('../img/headerBG.jpg') no-repeat 0 0;
+	/*background:#38BEC1 url('../img/headerBG.jpg') no-repeat 0 0;*/
+	background: transparent;
 	height:109px;
 	padding:0px;
 }
 h1#logo{
 	float:left;
-	margin:20px 0px 0px 4px;
+	margin:10px 0px 0px 4px;
+}
+h1#logo a > img {
+    width: 130px;
 }
 
 /* Search */

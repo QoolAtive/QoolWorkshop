@@ -61,7 +61,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <?php
                 echo $form->textField($model, 'code', array(
                     'class' => 'fieldrequire',
-                    'style' => 'width: 98%;  margin-bottom: 10px;',
+                    'style' => '',
                 ));
                 echo $form->error($model, 'code');
                 ?>

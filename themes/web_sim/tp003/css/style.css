@@ -1,4 +1,7 @@
-﻿/*-----------------------------
+﻿.item_detail .list_pic img{
+    max-width: 653px !important;
+ }
+/*-----------------------------
 BEGIN : Layout
 -----------------------------*/
 body{
@@ -39,9 +42,11 @@ BEGIN : Header
 }
 h1#logo{
 	float:left;
-	margin:20px 0px 0px 4px;
+	margin:10px 0px 0px 4px;
 }
-
+h1#logo a > img {
+    width: 130px;
+}
 /* Search */
 #first_search{
 	float:right;
