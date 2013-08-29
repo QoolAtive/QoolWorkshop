@@ -10,7 +10,13 @@ if ($busket[$item_id] == NULL) {
     )) . ' ';
     echo Yii::t('language', 'ชิ้น');
     echo CHtml::ajaxSubmitButton('หยิบใส่ตะกร้า', '/webSimulation/shop/selectItem/item_id/' . $item_id, array(
-        'update' => '#busket_btn',
+//        'update' => '#busket_btn',
+        'type' => 'POST',
+        'dataType' => 'json',
+        'success' => "function (data){
+            $('#busket_btn').html(data.div1);
+            $('#busket_side').html(data.div2);
+        }"
             ), array(
         'id' => 'select',
     ));
@@ -20,7 +26,13 @@ if ($busket[$item_id] == NULL) {
     echo ' ' . $busket[$item_id] . ' ';
     echo Yii::t('language', 'ชิ้น');
     echo CHtml::ajaxSubmitButton('หยิบออกจากตะกร้า', '/webSimulation/shop/selectItem/item_id/' . $item_id, array(
-        'update' => '#busket_btn',
+//        'update' => '#busket_btn',
+        'type' => 'POST',
+        'dataType' => 'json',
+        'success' => "function (data){
+            $('#busket_btn').html(data.div1);
+            $('#busket_side').html(data.div2);
+        }"
             ), array(
         'id' => 'select',
     ));

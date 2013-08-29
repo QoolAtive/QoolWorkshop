@@ -28,27 +28,27 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'name_en',
             'value' => 'CHtml::link($data->name_en, array($data->link), array("target" => "_bank"))',
         ),
-//        array(
-//            'class' => 'CButtonColumn',
-//            'header' => Yii::t('language', 'เครื่องมือ'),
-//            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
-//            'template' => '{update}{delete}',
-//            'buttons' => array(
-//                'update' => array(
-//                    'label' => 'edit', //Text label of the button.
-//                    'url' => 'Yii::app()->createUrl("/dataCenter/default/titleWebInsert/",array("title_web_id"=>$data->title_web_id))',
-//                ),
-//                'delete' => array(
-//                    'label' => 'del', //Text label of the button.
-//                    'url' => 'Yii::app()->createUrl("/dataCenter/default/titleWebDel",array("title_web_id"=>$data->title_web_id))',
-//                ),
-//            ),
-//            'afterDelete' => 'function(link,success,data){
-//                                    if(data != ""){
-//                                        alert(data);
-//                                    }
-//                    }'
-//        ),
+        array(
+            'class' => 'CButtonColumn',
+            'header' => Yii::t('language', 'เครื่องมือ'),
+            'deleteConfirmation' => 'คุณต้องการลบบทความหรือไม่?',
+            'template' => '{update}{delete}',
+            'buttons' => array(
+                'update' => array(
+                    'label' => 'edit', //Text label of the button.
+                    'url' => 'Yii::app()->createUrl("/dataCenter/default/siteMapSubInsert/",array("site_map_sub_id"=>$data->site_map_sub_id))',
+                ),
+                'delete' => array(
+                    'label' => 'del', //Text label of the button.
+                    'url' => 'Yii::app()->createUrl("/dataCenter/default/siteMapSubDel",array("site_map_sub_id"=>$data->site_map_sub_id))',
+                ),
+            ),
+            'afterDelete' => 'function(link,success,data){
+                                    if(data != ""){
+                                        alert(data);
+                                    }
+                    }'
+        ),
     ),
     'pager' => array(
         'class' => 'CLinkPager',

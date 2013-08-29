@@ -30,7 +30,7 @@ class SpCompany extends SpCompanyBase {
         return array(
             'id' => 'ID',
             'logo' => Yii::t('language', 'โลโก้'),
-            'name' => Yii::t('language', 'ชื่อบริษัท') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'name' => Yii::t('language', 'ชื่อบริษัท') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
             'name_en' => Yii::t('language', 'ชื่อบริษัท') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'infor' => Yii::t('language', 'เกี่ยวกับบริษัท') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
             'infor_en' => Yii::t('language', 'เกี่ยวกับบริษัท') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',

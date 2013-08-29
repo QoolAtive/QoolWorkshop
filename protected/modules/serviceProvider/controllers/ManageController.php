@@ -19,9 +19,9 @@ Class ManageController extends Controller {
     }
 
     public function actionIndex() {
-        
+
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Index', 3);
-        
+
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
@@ -42,7 +42,7 @@ Class ManageController extends Controller {
 
     public function actionTypeBusiness() {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'TypeBusiness', 3);
-        
+
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
@@ -80,6 +80,18 @@ Class ManageController extends Controller {
             $model->validate();
             if ($model->getErrors() == null) {
                 if ($model->save()) {
+
+                    //เพิ่มลง site map
+                    $dataSiteMap = array(
+                        'id_code' => $model->id,
+                        'sub_id' => null,
+                        'name' => $model->name,
+                        'name_en' => $model->name_en,
+                        'link' => '/serviceProvider/default/partnerGroup/id/' . $model->id,
+                    );
+                    Tool::addSiteMap(5, $dataSiteMap);
+                    // - - - - -- 
+
                     if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                         $link_back = Yii::app()->user->getState('default_link_back_to_menu');
                         echo "
@@ -262,6 +274,7 @@ Class ManageController extends Controller {
                         if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                             $link_back = Yii::app()->user->getState('default_link_back_to_menu');
                             echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $link_back . "';
@@ -269,6 +282,7 @@ Class ManageController extends Controller {
                             ";
                         } else {
                             echo "
+                                <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='/serviceProvider/manage/company';
@@ -293,7 +307,7 @@ Class ManageController extends Controller {
 
     public function actionDelCompany($id = null) {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelCompany', 3);
-        
+
         $model = SpCompany::model()->find('id=:id', array('id' => $id));
 
         $dir = './file/logo/'; // ลบไฟล์ logo
@@ -325,7 +339,7 @@ Class ManageController extends Controller {
 
     public function actionProduct($id = null, $pro_id = null) {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Product', 3);
-        
+
         if ($id == null) {
             $this->redirect('/serviceProvider/manage/company');
         }
@@ -347,7 +361,7 @@ Class ManageController extends Controller {
 
     public function actionInsertProduct($id = null, $pro_id = null) { // $id = รหัสพาร์ทเนอร์ pro_id = รหัสสินค้า
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'InsertProduct', 3);
-        
+
         if ($id == null) {
             $this->redirect('/serviceProvider/manage/company');
         }
@@ -392,7 +406,7 @@ Class ManageController extends Controller {
                     if ($old_image == null) {
                         $model->image = 'default.jpg';
                     } else {
-                        $model->image = $old_image; 
+                        $model->image = $old_image;
                     }
                 }
 
@@ -400,6 +414,7 @@ Class ManageController extends Controller {
                     if (Yii::app()->user->getState('default_link_back_to_menu') != null) {
                         $link_back = Yii::app()->user->getState('default_link_back_to_menu');
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $link_back . "';
@@ -407,6 +422,7 @@ Class ManageController extends Controller {
                             ";
                     } else {
                         echo "
+                            <meta charset='UTF-8'></meta>
                             <script>
                             alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                             window.location='" . $return->getUrl() . "';
@@ -433,7 +449,7 @@ Class ManageController extends Controller {
 
     public function actionDelProduct($id = null, $pro_id = null) {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelProduct', 3);
-        
+
         $model = SpProduct::model()->find(array('condition' => 'main_id=:main_id AND id=:id', 'params' => array(':main_id' => $id, ':id' => $pro_id)));
         $dir = './file/product/';
         if ($model->image != null && $model->image != 'default.jpg') { // ลบไฟล์เดิม (ถ้ามีการอัพไฟล์ใหม่)
@@ -448,7 +464,7 @@ Class ManageController extends Controller {
 
     public function actionDelBanner() {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelBanner', 3);
-        
+
         $banner_id = $_POST['banner_id'];
         $company_id = $_POST['company_id'];
         $model_banner = SpBanner::model()->find('id=:id', array(':id' => $banner_id));
@@ -472,7 +488,7 @@ Class ManageController extends Controller {
 
     public function actionDelBrochure() {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelBrochure', 3);
-        
+
         $brochure_id = $_POST['brochure_id'];
         $company_id = $_POST['company_id'];
 
