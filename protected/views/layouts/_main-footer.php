@@ -20,13 +20,13 @@
             </br>
 
             <?php
-            echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192');
+            echo Yii::t('language', 'โทร. 0-2547-5959');
             echo ' ' . Yii::t('language', 'โทรสาร. 0-2547-5973');
             echo ' ' . Yii::t('language', 'สายด่วน 1570');
             ?>
         </div>
         <div class="footright">
-             <a href="/index.php/about/default/index/view/3">Sitemap</a>
+            
             <?php
             $this->widget('application.extensions.addThis.addThis', array(
                 'id' => 'addThis',
@@ -44,6 +44,10 @@
                     )
             );
             ?>
+            <div class="footrtext">
+             <a href="/index.php/about/default/siteMap">แผนผังเว็บไซต์</a> | 
+             <a class="createaccountbtn fancybox" href="/member/default/rules">นโยบายและเงื่อนไขการใช้งาน</a>
+         </div>
         </div>
     </div>
 </div>
