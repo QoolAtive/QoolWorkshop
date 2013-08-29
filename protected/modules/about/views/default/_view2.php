@@ -19,7 +19,7 @@
                 <li><i class="icon-map-marker"></i><?php echo Yii::t('language', '44/100 ถนนนนทบุรี 1 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000'); ?> 
                 </li>
                 <li>
-                    <i class="icon-phone"></i><?php echo Yii::t('language', 'โทร. 0-2528-7600 ต่อ 3191,3192'); ?>
+                    <i class="icon-phone"></i><?php echo Yii::t('language', 'โทร. 0-2547-5959'); ?>
                     <i class="icon-print"></i><?php echo Yii::t('language', 'โทรสาร. 0-2547-5973'); ?> 
                     <i class="icon-phone-sign"></i><?php echo Yii::t('language', 'สายด่วน 1570'); ?>
                 </li>
