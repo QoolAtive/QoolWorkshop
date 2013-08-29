@@ -92,6 +92,17 @@ class ManageController extends Controller {
             $model->validate();
             if ($model->getErrors() == null) {
                 if ($model->save()) {
+
+                    //เพิ่มลง site map
+//                    $dataSiteMap = array(
+//                        'id_code' => $model->id,
+//                        'name' => $model->name,
+//                        'name_en' => $model->name_en,
+//                        'link' => '/learning/default/index/id/' . $model->id,
+//                    );
+//                    Tool::addSiteMap(2, $dataSiteMap);
+                    // - - - - -- 
+
                     $dir = './file/learning/';
                     if ($file1 != NULL) {
 
@@ -110,6 +121,7 @@ class ManageController extends Controller {
                         $file2->saveAs($image);
                     }
                     echo "
+                        <meta charset='UTF-8'></meta>
                         <script>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                         window.location='/learning/manage/insertLearningGroup';
@@ -198,6 +210,7 @@ class ManageController extends Controller {
 
             $modelVideo->attributes = $_POST['LearningVideo'];
             $modelVideo->video = str_replace('watch?v=', 'embed/', $modelVideo->video);
+            $modelVideo->video_en = str_replace('watch?v=', 'embed/', $modelVideo->video_en);
 
             $upload->attributes = $_POST['UploadPDF'];
 
@@ -215,6 +228,17 @@ class ManageController extends Controller {
                 if ($model->save()) {
                     $modelVideo->main_id = $model->id;
                     if ($modelVideo->save()) {
+
+                        //เพิ่มลง site map
+//                        $dataSiteMap = array(
+//                            'name' => $model->subject,
+//                            'name_en' => $model->subject_en,
+//                            'link' => '/learning/default/lesson/id/' . $model->id,
+//                            'sub_id' => $model->group_id,
+//                        );
+//                        Tool::addSiteMap(2, $dataSiteMap);
+                        // - - - - -- 
+
                         if (isset($file)) {
                             $path = './file/learning/pdf/';
                             if (isset($modelFile->path)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
@@ -241,10 +265,13 @@ class ManageController extends Controller {
                                 }
                             }
                         }
-                        echo "<script>
+                        echo "
+                            <meta charset='UTF-8'></meta>
+                            <script>
                                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
                                 window.location='$link';
-                              </script>";
+                              </script>
+                                ";
                     }
                 } else {
 //                    echo "<pre>";

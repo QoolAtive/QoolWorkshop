@@ -1,18 +1,18 @@
 <style type="text/css">
-._40{
-     background-color: #EEEEEE;
-    border-radius: 14px 14px 14px 14px;
-    display: inline;
-    float: left;
-    height: 81px;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding: 10px 37px;
-    width: 36%;
-}
-.fieldrequire{
-  background:  url("/img/fieldrequire.png") no-repeat scroll left center #fff;
-}
+    ._40{
+        background-color: #EEEEEE;
+        border-radius: 14px 14px 14px 14px;
+        display: inline;
+        float: left;
+        height: 81px;
+        margin-left: 2%;
+        margin-right: 2%;
+        padding: 10px 37px;
+        width: 36%;
+    }
+    .fieldrequire{
+        background:  url("/img/fieldrequire.png") no-repeat scroll left center #fff;
+    }
 </style>
 <?php
 $form = $this->beginWidget('CActiveForm', array(
@@ -55,10 +55,9 @@ $this->renderPartial('_side_bar', array(
             </span>
         </h3>
         <div class="_40">
-                    <?php echo $form->labelEx($model, 'group_id'); ?>
+            <?php echo $form->labelEx($model, 'group_id'); ?>
 
             <?php
-            
             echo $form->dropDownList($model, 'group_id', LearningGroup::model()->getListData(), array(
                 'empty' => Yii::t('language', 'เลือก'),
                 'style' => 'width: 100%;',
@@ -69,9 +68,8 @@ $this->renderPartial('_side_bar', array(
             ?>
         </div>
         <div class="_40">
-            <p><?php   echo $form->labelEx($upload, 'file');  ?></p>
+            <p><?php echo $form->labelEx($upload, 'file'); ?></p>
             <?php
-          
             echo $form->fileField($upload, 'file', array('accept' => "application/pdf"));
             echo $form->error($upload, 'file');
             ?>
@@ -128,7 +126,7 @@ $this->renderPartial('_side_bar', array(
                             '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                             '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                         array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                            '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                            '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
                             '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                     ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                 ),
@@ -172,7 +170,7 @@ $this->renderPartial('_side_bar', array(
                             '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                             '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                         array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                            '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                            '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
                             '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                     ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                 ),

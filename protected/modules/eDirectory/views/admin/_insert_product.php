@@ -186,15 +186,15 @@ $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
                     "attribute" => 'detail', # Attribute in the Data-Model
                     "defaultValue" => $model->detail, # Optional
                     "config" => array(
-                        "height" => "240px",
+                        "height" => "220px",
                         "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                                 '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                             array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                                '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                                '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                         ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                     ),
                     "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
@@ -222,15 +222,15 @@ $company_name = LanguageHelper::changeDB($title->name, $title->name_en);
                     "attribute" => 'detail_en', # Attribute in the Data-Model
                     "defaultValue" => $model->detail_en, # Optional
                     "config" => array(
-                        "height" => "240px",
+                        "height" => "220px",
                         "width" => "100%",
                         'toolbar' => array(
                             array('Font', 'FontSize', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript',
                                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
                                 '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'),
                             array('TextColor', 'BGColor', '-', 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo',
-                                '-', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
-                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About'),
+                                '-', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak',
+                                '-', 'Source', '-', 'Link', 'Unlink', '-', 'Maximize', '-', 'About',),
                         ), # EXISTING(!) Toolbar (see: ckeditor.js) Ex. "toolbar" => "Basic"
                     ),
                     "ckEditor" => Yii::app()->basePath . "/../js/ckeditor/ckeditor.php",
