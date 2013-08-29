@@ -148,13 +148,14 @@
                                 }
                                 ?>" alt="" />
                             </a>
-                            <p>
+                            <p >
                                 <a href="/webSimulation/shop/productDetail/id/<?php echo $item['web_shop_id']; ?>/p_id/<?php echo $item['web_shop_item_id']; ?>" alt="<?php echo $item['name_th']; ?>">
                                     <span class="normal"><?php echo $item->name_th; ?></span>
                                 </a>
                             </p>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <!--busket-->
                     <div id="col_right_history" class="clearfix" >
@@ -181,6 +182,56 @@
                         ?>
                     </div>
 
+=======
+<!--                    
+                        กดซ่อนแล้วแปลี่ยนเป็น - - - > style="display:none;"
+                        หรือจะเช็คให้ Query มาแสดงก็ได้ 
+                    -->            
+                <div class="right_item_list" style="display:block;">
+                    <h2 class="topic">พยากรณ์อากาศ</h2>
+                    <p align="center">
+                    <iframe src="http://www.tmd.go.th/daily_forecast_forweb.php" width="100%" height="260" scrolling="no" frameborder=0></iframe>
+                </p>
+                </div>
+
+                <div class="right_item_list">
+                    <h2 class="topic">อัตราดอกเบี้ยและอัตราแลกเปลี่ยน</h2>
+                    <p align="center">
+                    <iframe id="ifrmBanner" scrolling="no" src="http://www.bangkokbank.com/MajorRates/MainBannerThai.htm" height="155" width="170" frameborder="0"></iframe>
+                </p>
+                </div>
+
+                <div class="right_item_list">
+                    <h2 class="topic">ผลสลากกินแบ่ง</h2>
+                    <p align="center">
+                        <iframe src ="http://www.numwan.com/lottery/lottery.htm" marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=No width=150 height=190></iframe>  
+                    </p>
+                </div>
+                <div class="right_item_list">
+                    <h2 class="topic">ราคาน้ำมัน</h2>
+                    <p align="center">
+                        <iframe frameborder=0 width="195" height="360" scrolling="no" src=http://www.pttplc.com/th/getoilprice.aspx></iframe>   
+                    </p>
+                </div>
+                <div class="right_item_list">
+                    <h2 class="topic">ราคาทองคำ</h2>
+                    <p align="center">
+                        <iframe src="http://namchiang.com/ncgp2-1.swf" width="172" height="165" frameborder="0" marginheight=0 marginwidth=0 scrolling="no"></iframe>
+                    </p>
+                    </div>
+
+                    <div class="right_item_list">
+                        <h2 class="topic">ดัชนีหุ้น</h2>
+                        <p align="center">
+<iframe src="http://www.settrade.com/banner/banner3.jsp" marginwidth="0" marginleft="0" height="210" width="200" scrolling=no frameborder=no></iframe>  
+                      </p>
+                    </div>
+                    
+                </div>
+
+
+                    
+>>>>>>> 8751ede413f58f0430e4a95693222a33f73066aa
                     <!--Track & Trace-->
                     <!--                    <div id="col_right_track" class="clearfix" >
                                             <h2>Track &amp; Trace</h2>

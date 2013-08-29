@@ -1,28 +1,14 @@
-<?php
-switch ($view) {
-    case 1:
-        $select1 = 'selected';
-        $select2 = '';
-        $select3 = '';
-        break;
-    case 2:
-        $select1 = '';
-        $select2 = 'selected';
-        $select3 = '';
-        break;
-    case 3:
-        $select1 = '';
-        $select2 = '';
-        $select3 = 'selected';
-        break;
-    default:
-        $select1 = '';
-        $select2 = '';
-                $select3 = '';
-
-        break;
-}
-?>
+<style type="text/css">
+    .sitemap > p {
+        margin-left: 50px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 14px;
+    }
+    .sitemap ul li{
+        text-indent: 85px;
+    }
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -50,7 +36,7 @@ switch ($view) {
                 <?php
                 echo CHtml::link(
                         Yii::t('language', 'Sitemap'), CHtml::normalizeUrl(
-                                array('/about/default/siteMap')
+                                array('/about/default/index/view/3')
                         ), array('rel' => 'view3')
                 );
                 ?>
@@ -73,31 +59,33 @@ switch ($view) {
 </div>
 <div class="content">
     <div class="tabcontents">
-
-        <img src="<?php echo Yii::t('language', '/img/banner/about.png'); ?>" class="pagebanner" alt="pagebanner"/>
-
-        <?php
-        if ($view == '2') {
-            $this->renderPartial('_view2');
-        } 
-        else if ($view == '3'){
-            $this->renderPartial('_view3', array('model' => $model));
-        }
-
-        else {
-
-            $this->renderPartial('_view1', array('model' => $model)); // เริ่มต้นที่หน้านี้
-        }
-        ?>
+        <div class="sitemap">
+            <h2 class="textcenter"><strong>แผนผังเว็บไซต์ DBD Mart</strong></h2>
+            <?php
+            foreach ($modelSiteMapMain as $main) {
+                ?>
+                <p><?php echo CHtml::link($main->name, array($main->link), array('target' => '_bank')); ?></p>
+                <?php
+                $cSub = new CDbCriteria();
+                $cSub->condition = 'main_id = :main_id and sub_id is null';
+                $cSub->params = array(':main_id' => $main->site_map_id);
+                $cSub->order = 'sort asc, id_code asc';
+                $modelSiteMapSub = SiteMapSub::model()->findAll($cSub);
+                if (count($modelSiteMapSub) > 0) {
+                    ?>
+                    <ul>
+                        <?php
+                        foreach ($modelSiteMapSub as $sub) {
+                            ?>
+                            <li><?php echo CHtml::link($sub->name, array($sub->link), array('target' => '_bank')); ?></li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                    <?php
+                }
+            }
+            ?>
+        </div>
     </div>
 </div>
-<!-- end <div class="content">-->
-
-<script>
-//    $(document).ready(function() {
-//        if (location.hash == "#view2") {
-//            $('#map_correct').show();
-//            $('#map_fix').hide();
-//        }
-//    });
-</script>

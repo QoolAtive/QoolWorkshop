@@ -296,10 +296,10 @@ Class Tool {
 //            if ($main_id != null) // เป็นหัวข้อหลัก
 //                $model->main_id = $main_id;
 //
-            if (!empty($data['id_code']))
+            if ($data['id_code'] != null)
                 $model->id_code = $data['id_code'];
 
-            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
+            if ($data['sub_id'] != null) // ถ้าเป็นหัวข้อรอง
                 $model->sub_id = $data['sub_id'];
 
             if (!$model->save()) {
@@ -316,11 +316,11 @@ Class Tool {
 
 //            if ($main_id != null) // เป็นหัวข้อหลัก
             $model->main_id = $main_id;
-            
-            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
-                $model->sub_id = $data['sub_id'];
-//
-            if (!empty($data['sub_id'])) // ถ้าเป็นหัวข้อรอง
+
+            if ($data['id_code'] != null)
+                $model->id_code = $data['id_code'];
+
+            if ($data['sub_id'] != null) // ถ้าเป็นหัวข้อรอง
                 $model->sub_id = $data['sub_id'];
 
             if (!$model->save()) {
