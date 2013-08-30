@@ -18,7 +18,14 @@
         </li>
 
         <li class="clearfix">
-            <input class="searchbox" placeholder="Search" type="text" name="" value="" /> 
+            <!--<input class="searchbox" placeholder="Search" type="text" name="" value="" />--> 
+            <?php
+//            $this->widget('ext.esearch.SearchBoxPortlet');
+//or
+            SearchAction::renderInputBox();
+//or
+//            $this->renderPartial('extensions/esearch/views/inputBox.php');
+            ?>
         </li>
 
         <li class="clearfix " style="width: 100%;">

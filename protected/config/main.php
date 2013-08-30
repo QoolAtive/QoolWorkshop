@@ -13,11 +13,13 @@ return array(
     'preload' => array('log'),
     // autoloading model and component classes
     'import' => array(
+        'application.vendors.*',
         'application.models.*',
         'application.components.*',
         'application.ckeditor.*',
         'application.helpers.*',
         'application.extensions.PHPExcel.*',
+        'ext.esearch.*',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
