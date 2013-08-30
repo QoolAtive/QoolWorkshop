@@ -84,14 +84,40 @@
   padding: 10px 0;
 }
 
+/*.ckfix *{
+  list-style: disc;
+}*/
 .ckfix *{
-  list-style: disc;
+  margin: auto;
+}
+.ckfix table[border="1"] ,
+.ckfix table[border="1"] th ,
+.ckfix table[border="1"] td{
+  border: 1px solid #777777; 
+}
 
+.ckfix table ul,
+.ckfix table ol{
+  padding-left: 20px;
 }
-p.p1:after ul {
+.ckfix ul{
+  list-style: disc;
+  padding-left: 40px;
+}
+
+.ckfix ol{
+  list-style: decimal;
+  padding-left: 40px;
+}
+.ckfix b,.ckfix strong{
+  font-weight: bold;
+}
+
+p.p1:after ul,p.p1:after ol{
+  padding-left: 40px;
   list-style: disc;
 }
-p.p1 strong{
+p.p1 strong ,p.p1 b{
   font-weight: bold;
 }
 p.p1 em {

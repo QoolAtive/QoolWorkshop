@@ -66,7 +66,7 @@
                 <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
             </span>
         </h3>
-        <div class="knowledgeview">
+        <div class="knowledgeview ckfix">
             <!-- <div class="btnedit"> -->
             <?php
             if (Yii::app()->user->isAdmin()) {
