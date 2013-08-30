@@ -17,8 +17,15 @@ class SiteController extends Controller {
             'page' => array(
                 'class' => 'CViewAction',
             ),
+            'search' => array(
+                'class' => 'ext.esearch.SearchAction',
+                'model' => 'Company',
+                'attributes' => array('name', 'name_en', 'infor', 'infor_en'),
+                'showAttributes'  => array('name', 'name_en', 'infor', 'infor_en', 'address', 'address_en', 'main_business', 'main_business_en'),
+            )
         );
     }
+    
 
     /**
      * This is the default 'index' action that is invoked
@@ -169,7 +176,7 @@ class SiteController extends Controller {
         foreach ($data as $id => $name)
             echo CHtml::tag('option', array('value' => $id), CHtml::encode($name), true);
     }
-    
+
     public function actionTnameToEng() {
         $data = TitleName::model()->findAll('id=:id', array(
             ':id' => (int) $_POST['tname'])
