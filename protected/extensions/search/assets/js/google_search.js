@@ -64,6 +64,13 @@ $(document).ready(function() {
         // If no parameters are supplied to the function,
         // it takes its defaults from the config object above:
 
+
+                    // ดูตัวแปรทั้งหมด
+//                    $.each(settings,function(index,r){
+//                        console.log(index + " = " + r);
+//                    });
+
+
         settings = $.extend({}, config, settings);
         settings.term = settings.term || $('#s').val();
 
@@ -92,10 +99,16 @@ $(document).ready(function() {
                 // after which append them to the #resultsDiv:
 
                 var pageContainer = $('<div>', {className: 'pageContainer', class: 'page pageborder white clearfix'});
-
+                pageContainer.append('จำนวนทั้งหมด ' + results.length + ' รายการ');
                 for (var i = 0; i < results.length; i++) {
                     // Creating a new result object and firing its toString method:
                     pageContainer.append(new result(results[i]) + '');
+
+                    // ดูตัวแปรทั้งหมด
+//                    $.each(results[i],function(index,r){
+//                        console.log(index + " = " + r);
+//                    });
+
                 }
 
                 if (!settings.append) {
@@ -121,11 +134,13 @@ $(document).ready(function() {
                 }
             }
             else {
-
                 // No results were found for this search.
-
-                resultsDiv.empty();
-                $('<p>', {className: 'notFound', html: '<div class="error">ไม่พบข้อมูล</div>'}).hide().appendTo(resultsDiv).fadeIn();
+//                resultsDiv.empty();//ย้ายไปไว้ก่อนหน้า
+                $('<div>', {
+                    className: 'notFound',
+                    class: 'notFound page pageborder white clearfix',
+                    html: '<div class="error">ไม่พบข้อมูล!!</div>'
+                }).hide().appendTo(resultsDiv).fadeIn();
             }
         });
     }
@@ -142,10 +157,10 @@ $(document).ready(function() {
 
             case 'GwebSearch':
                 arr = [
-                    '<div class="webResult">',
-                    '<h2><a href="', r.unescapedUrl, '" target="_blank">', r.title, '</a></h2>',
+                    '<div class="webResult web">',
+                    '<h2><a href="', r.unescapedUrl, '" target="_blank">', r.titleNoFormatting, '</a></h2>',
                     '<p>', r.content, '</p>',
-                    '<a href="', r.unescapedUrl, '" target="_blank">', r.visibleUrl, '</a>',
+                    '<a href="', r.unescapedUrl, '" target="_blank">', r.url, '</a>',
                     '</div>'
                 ];
                 break;
@@ -169,7 +184,7 @@ $(document).ready(function() {
                 break;
             case 'GnewsSearch':
                 arr = [
-                    '<div class="webResult">',
+                    '<div class="webResult news">',
                     '<h2><a href="', r.unescapedUrl, '" target="_blank">', r.title, '</a></h2>',
                     '<p>', r.content, '</p>',
                     '<a href="', r.unescapedUrl, '" target="_blank">', r.publisher, '</a>',
