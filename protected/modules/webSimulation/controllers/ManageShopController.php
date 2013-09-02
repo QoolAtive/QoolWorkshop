@@ -693,7 +693,6 @@ class ManageShopController extends Controller {
     }
 
     public function actionShowCategory($category_id, $is_show) {
-//        $this->render('blank');
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         if ($is_show) {
             //เปลี่ยนเป็นซ่อน
@@ -734,6 +733,31 @@ class ManageShopController extends Controller {
             $this->render('edit_how_to_buy', array('model' => $model, 'shop_id' => $shop_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
+    
+    public function actionShowSideBox($shop_id, $box_name, $is_show) {
+        $side_box = WebShopSideBox::model()->findByAttributes(array('web_shop_id' => $shop_id));
+        if($side_box == NULL){
+            $model = new WebShopSideBox();
+            $model->web_shop_id = $shop_id;
+            $model->save();
+        }
+        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
+        if ($is_show) {
+            //เปลี่ยนเป็นซ่อน
+            WebShopSideBox::model()->updateAll(array($box_name => '0'), 'web_shop_id = ' . $shop_id);
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'ซ่อนกล่อง') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
+        } else {
+            //เปลี่ยนเป็นโชว์
+            WebShopSideBox::model()->updateAll(array($box_name => '1'), 'web_shop_id = ' . $shop_id);
+            echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'แสดงกล่อง') . Yii::t('language', 'เรียบร้อย') . "');
+                    window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
+                  </script>";
         }
     }
 
