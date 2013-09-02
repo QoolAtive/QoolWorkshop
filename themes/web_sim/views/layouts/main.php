@@ -163,69 +163,84 @@
                         </a>
                         <div id="busket_side">
                             <?php
-                            $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket));
+                            $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket, 'shop_id' => $shop_id));
                             ?>
                         </div>
-                        <?php
-                        if ($this->busket != NULL) {
-                            echo '<div style="text-align: center; margin-top: 10px;">';
-                            echo CHtml::button('   สั่งชื้อ   ', array(
-                                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
-                                    "/webSimulation/shop/busket",
-                                    'id' => $shop_id,
-//            'price_all' => $price_total
-                                )) . '"'
-                            ));
-                            echo '</div>';
-                        }
-                        ?>
                     </div>
 
-<!--                    
-                        กดซ่อนแล้วแปลี่ยนเป็น - - - > style="display:none;"
-                        หรือจะเช็คให้ Query มาแสดงก็ได้ 
+                    <!--                    
+                                            กดซ่อนแล้วแปลี่ยนเป็น - - - > style="display:none;"
+                                            หรือจะเช็คให้ Query มาแสดงก็ได้ 
                     -->            
-                <div class="right_item_list" style="display:block;">
-                    <h2 class="topic">พยากรณ์อากาศ</h2>
-                    <p align="center">
-                    <iframe src="http://www.tmd.go.th/daily_forecast_forweb.php" width="100%" height="260" scrolling="no" frameborder=0></iframe>
-                </p>
-                </div>
-
-                <div class="right_item_list">
-                    <h2 class="topic">อัตราดอกเบี้ยและอัตราแลกเปลี่ยน</h2>
-                    <p align="center">
-                    <iframe id="ifrmBanner" scrolling="no" src="http://www.bangkokbank.com/MajorRates/MainBannerThai.htm" height="155" width="170" frameborder="0"></iframe>
-                </p>
-                </div>
-
-                <div class="right_item_list">
-                    <h2 class="topic">ผลสลากกินแบ่ง</h2>
-                    <p align="center">
-                        <iframe src ="http://www.numwan.com/lottery/lottery.htm" marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=No width=150 height=190></iframe>  
-                    </p>
-                </div>
-                <div class="right_item_list">
-                    <h2 class="topic">ราคาน้ำมัน</h2>
-                    <p align="center">
-                        <iframe frameborder=0 width="195" height="360" scrolling="no" src=http://www.pttplc.com/th/getoilprice.aspx></iframe>   
-                    </p>
-                </div>
-                <div class="right_item_list">
-                    <h2 class="topic">ราคาทองคำ</h2>
-                    <p align="center">
-                        <iframe src="http://namchiang.com/ncgp2-1.swf" width="172" height="165" frameborder="0" marginheight=0 marginwidth=0 scrolling="no"></iframe>
-                    </p>
-                    </div>
-
-                    <div class="right_item_list">
-                        <h2 class="topic">ดัชนีหุ้น</h2>
-                        <p align="center">
-<iframe src="http://www.settrade.com/banner/banner3.jsp" marginwidth="0" marginleft="0" height="210" width="200" scrolling=no frameborder=no></iframe>  
-                      </p>
-                    </div>
+                    <?php
+                    $side_box = WebShopSideBox::model()->findByAttributes(array('web_shop_id' => $shop_id));
                     
-                </div>
+                    if ($side_box['forecast']) {
+                        ?>
+                        <div class="right_item_list" style="display:block;">
+                            <h2 class="topic">พยากรณ์อากาศ</h2>
+                            <p align="center">
+                                <iframe src="http://www.tmd.go.th/daily_forecast_forweb.php" width="100%" height="260" scrolling="no" frameborder=0></iframe>
+                            </p>
+                        </div>
+                    <?php } ?>
+
+                    <?php
+                    if ($side_box['exchange']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">อัตราดอกเบี้ยและอัตราแลกเปลี่ยน</h2>
+                            <p align="center">
+                                <iframe id="ifrmBanner" scrolling="no" src="http://www.bangkokbank.com/MajorRates/MainBannerThai.htm" height="155" width="170" frameborder="0"></iframe>
+                            </p>
+                        </div>
+                    <?php } ?>
+
+                    <?php
+                    if ($side_box['lottery']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">ผลสลากกินแบ่ง</h2>
+                            <p align="center">
+                                <iframe src ="http://www.numwan.com/lottery/lottery.htm" marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=No width=150 height=190></iframe>  
+                            </p>
+                        </div>
+                    <?php } ?>
+
+                    <?php
+                    if ($side_box['oil']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">ราคาน้ำมัน</h2>
+                            <p align="center">
+                                <iframe frameborder=0 width="195" height="360" scrolling="no" src=http://www.pttplc.com/th/getoilprice.aspx></iframe>   
+                            </p>
+                        </div>
+                    <?php } ?>
+
+                    <?php
+                    if ($side_box['gold']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">ราคาทองคำ</h2>
+                            <p align="center">
+                                <iframe src="http://namchiang.com/ncgp2-1.swf" width="172" height="165" frameborder="0" marginheight=0 marginwidth=0 scrolling="no"></iframe>
+                            </p>
+                        </div>
+                    <?php } ?>
+
+                    <?php
+                    if ($side_box['stock']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">ดัชนีหุ้น</h2>
+                            <p align="center">
+                                <iframe src="http://www.settrade.com/banner/banner3.jsp" marginwidth="0" marginleft="0" height="210" width="200" scrolling=no frameborder=no></iframe>  
+                            </p>
+                        </div>
+
+                    </div>
+                    <?php } ?>
 
                     <!--Track & Trace-->
                     <!--                    <div id="col_right_track" class="clearfix" >
@@ -256,10 +271,10 @@
                     <div>
                         <!--like button-->
                         <iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $this->shop['url']; ?>&amp;width=450&amp;height=80&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
-                        <!--like button-->
-                    </div>
-                </div><!-- end col_right -->
-            </div><!-- end content -->
+                    <!--like button-->
+                </div>
+            </div><!-- end col_right -->
+        </div><!-- end content -->
         </div><!-- wrapper -->
     </body>
 </html>

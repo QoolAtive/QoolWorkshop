@@ -29,7 +29,13 @@
                         $price = $item['price_normal'];
                     }
                     echo '<td>';
+                    echo '<a href="' . CHtml::normalizeUrl(array(
+                        "/webSimulation/shop/productDetail",
+                        'id' => $id,
+                        'p_id' => $item_id
+                    )) . '">';
                     echo $item['name_th']; //ชื่อสินค้า
+                    echo '</a>';
                     echo '</td>';
                     echo '<td>';
                     echo $number; //จำนวน
@@ -47,26 +53,34 @@
             ?>
             <td colspan="2"></td>
             <td>
-                ราคารวมทั้งหมด
+                <span style="font-weight:bold;">ราคารวมทั้งหมด</span>
             </td>
             <td>
-                <?php echo $price_total; ?>
+                <span style="font-weight:bold;"><?php echo $price_total; ?></span>
             </td>
         </table>
+        <div style="text-align: center; margin-top: 10px;">
+            <?php
+            echo CHtml::button('   สั่งชื้อ   ', array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                    "/webSimulation/shop/order",
+                    'id' => $id,
+                    'price_all' => $price_total
+                )) . '"'
+            ));
+
+            echo CHtml::button('  เอาสินค้าทั้งหมดออก  ', array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                    "/webSimulation/shop/removeAllItem"
+                )) . '"'
+            ));
+            ?>
+        </div>
         <?php
     } else {//end if($busket != NULL){
+        echo '<div style="text-align: center;">';
         echo 'ไม่พบสินค้าในตะกร้า';
+        echo '</div>';
     }
     ?>
-    <div style="text-align: center; margin-top: 10px;">
-        <?php
-        echo CHtml::button('   สั่งชื้อ   ', array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
-                "/webSimulation/shop/order",
-                'id' => $id,
-                'price_all' => $price_total
-                )) . '"'
-        ));
-        ?>
-    </div>
 </div>

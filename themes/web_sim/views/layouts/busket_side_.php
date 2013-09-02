@@ -39,9 +39,22 @@ if ($busket != NULL) {
             ราคารวมทั้งหมด
         </td>
         <td style="font-weight: bold;">
-            <?php echo $price_total; ?>
+            <?php echo $price_total . ' บาท'; ?>
         </td>
     </table>
+
+    <?php
+    if ($busket != NULL) {
+        echo '<div style="text-align: center; margin-top: 10px;">';
+        echo CHtml::button('   สั่งชื้อ   ', array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                "/webSimulation/shop/busket",
+                'id' => $shop_id,
+            )) . '"'
+        ));
+        echo '</div>';
+    }
+    ?>
     <?php
 } else {//end if($busket != NULL){
     echo 'ไม่พบสินค้าในตะกร้า';

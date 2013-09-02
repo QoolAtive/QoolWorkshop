@@ -92,24 +92,112 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 
 
 
-
+        <?php
+        $is_show = WebShopSideBox::model()->findByAttributes(array('web_shop_id' => $shop_id));
+        ?>
         <ul class="ws-boxadmin right">
             <li>
-                Calendar 
-
+                <?php
+                echo Yii::t('language', 'พยากรณ์อากาศ');
+                ?>
                 <p class="tool">
-
-                    <a href="#" class="hideshowbox">แสดง/ซ่อน</a>
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'forecast', 'is_show' => $is_show['forecast'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['forecast']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
                 </p>
             </li>
 
-            <li> อัตราแลกเปลี่ยน 
-
+            <li>
+                <?php
+                echo Yii::t('language', 'อัตราดอกเบี้ยและอัตราแลกเปลี่ยน');
+                ?>
                 <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'exchange', 'is_show' => $is_show['exchange'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['exchange']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
+                </p>
+            </li>
 
-                    <a href="#" class="hideshowbox">แสดง/ซ่อน</a>
+            <li>
+                <?php
+                echo Yii::t('language', 'ผลสลากกินแบ่ง');
+                ?>
+                <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'lottery', 'is_show' => $is_show['lottery'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['lottery']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
+                </p>
+            </li>
+
+            <li>
+                <?php
+                echo Yii::t('language', 'ราคาน้ำมัน');
+                ?>
+                <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'oil', 'is_show' => $is_show['oil'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['oil']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
+                </p>
+            </li>
+
+            <li>
+                <?php
+                echo Yii::t('language', 'ราคาทองคำ');
+                ?>
+                <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'gold', 'is_show' => $is_show['gold'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['gold']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
+                </p>
+            </li>
+
+            <li>
+                <?php
+                echo Yii::t('language', 'ดัชนีหุ้น');
+                ?>
+                <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'stock', 'is_show' => $is_show['stock'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['stock']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
                 </p>
             </li>
         </ul>
+
     </div>
 </div>

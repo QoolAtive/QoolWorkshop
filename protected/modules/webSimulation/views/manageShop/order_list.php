@@ -48,8 +48,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 array(
                     'header' => Yii::t('language', 'สถานะการส่ง'),
                     'name' => 'status',
-                    'value' => '$data->status == 0 ? "ยังไม่ได้ส่ง" : "ส่งแล้ว"',
-                    'filter' => array('0' => 'ยังไม่ได้ส่ง', '1' => 'ส่งแล้ว'),
+                    'value' => 'getStatus($data->status)',
+                    'filter' => array('0' => 'ยังไม่ชำระเงิน', '1' => 'การชำระเงินสมบูรณ์แล้ว', '2' => 'กำลังดำเนินการ', '3' => 'จัดส่งเรียบร้อยแล้ว'),
                 ),
                 array(
                     'header' => Yii::t('language', 'ราคารวม (บาท)'),
@@ -93,3 +93,19 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         ?>
     </div>
 </div>
+
+<?php
+function getStatus($index) {
+    switch ($index) {
+        case 1: $role = 'การชำระเงินสมบูรณ์แล้ว';
+            break;
+        case 2: $role = 'กำลังดำเนินการ';
+            break;
+        case 3: $role = 'จัดส่งเรียบร้อยแล้ว';
+            break;
+        default: $role = 'ยังไม่ชำระเงิน';
+            break;
+    }
+    return $role;
+}
+?>

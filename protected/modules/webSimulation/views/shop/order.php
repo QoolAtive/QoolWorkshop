@@ -1,3 +1,13 @@
+<style>
+    ._100 {
+    display: inline;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 5px 0;
+    width: 96%;
+}
+</style>
 <div class="main_box clearfix">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
@@ -10,7 +20,6 @@
         echo $form->labelEx($order, 'customer_name');
         echo $form->textField($order, 'customer_name', array(
             'class' => 'fieldrequire',
-            'placeholder' => Yii::t('language', 'ชื่อ'),
         ));
         echo $form->error($order, 'customer_name');
         ?>
@@ -20,7 +29,6 @@
         echo $form->labelEx($order, 'customer_email');
         echo $form->textField($order, 'customer_email', array(
             'class' => 'fieldrequire',
-            'placeholder' => Yii::t('language', 'อีเมล์'),
         ));
         echo $form->error($order, 'customer_email');
         ?>
@@ -30,7 +38,6 @@
         echo $form->labelEx($order, 'customer_tel');
         echo $form->textField($order, 'customer_tel', array(
             'class' => 'fieldrequire',
-            'placeholder' => Yii::t('language', 'โทรศัพท์'),
         ));
         echo $form->error($order, 'customer_tel');
         ?>

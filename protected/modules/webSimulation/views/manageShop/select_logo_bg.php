@@ -2,9 +2,9 @@
 $this->renderPartial('_side_menu', array('index' => 'shop'));
 ?>
 <style type="text/css">
-.right img{ 
-    width: 200px;
-}
+    .right img{ 
+        width: 200px;
+    }
 </style>
 <div class="content">
     <div class="tabcontents">
@@ -59,7 +59,13 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     </li>
                     <li class = "right">
                         <?php
-                        echo CHtml::image($model->logo);
+                        if ($model->logo != NULL) {
+                            echo CHtml::image($model->logo);
+                            echo '<div class="txt-cen">';
+                            echo CHtml::button(Yii::t('language', 'ลบ'), array(
+                                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/deleteLogo")) . '"'));
+                            echo '</div>';
+                        }
                         ?>
                     </li>
                 </ul>
@@ -94,9 +100,13 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     </li>
                     <li class = "right">
                         <?php
-                        echo CHtml::image($model->background, '', array(
-//                            'width' => '100',
-                        ));
+                        if ($model->background != NULL) {
+                            echo CHtml::image($model->background);
+                            echo '<div class="txt-cen">';
+                            echo CHtml::button(Yii::t('language', 'ลบ'), array(
+                                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/deleteBg")) . '"'));
+                            echo '</div>';
+                        }
                         ?>
                     </li>
                 </ul>
@@ -113,4 +123,4 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <hr>
         </div>
         <?php $this->endWidget(); ?></div>
-    </div>
+</div>

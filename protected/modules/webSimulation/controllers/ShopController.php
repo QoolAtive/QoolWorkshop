@@ -108,7 +108,7 @@ class ShopController extends Controller {
         }
     }
 
-    public function actionSelectItem($item_id) {
+    public function actionSelectItem($id, $item_id) {
         $this->busket = Yii::app()->session['busket'];
         if (isset($_POST['number'])) {
             $number = $_POST['number'];
@@ -123,15 +123,16 @@ class ShopController extends Controller {
         echo CJSON::encode(
                 array(
                     'div1' => $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id), true, true),
-                    'div2' => $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket), true, true),
+                    'div2' => $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket, 'shop_id' => $id), true, true),
                 )
         );
     }
 
     public function actionRemoveAllItem() {
         unset(Yii::app()->session['busket']);
+        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         echo "<script language='javascript'>
-            alert('" . Yii::t('language', 'ตะกร้าว่างแล้ว') . "');
+            alert('" . Yii::t('language', 'ตะกร้าสินค้าว่างแล้ว') . "');
                     history.back();
         </script>";
     }
@@ -175,6 +176,8 @@ class ShopController extends Controller {
                     $order_detail->price = $price;
                     $order_detail->save();
                 }
+                unset(Yii::app()->session['busket']);
+                echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'สั่งซื้อสินค้าเรียบร้อย') . "');
                             window.top.location.href = '/webSimulation/shop/index/id/" . $id . "';
