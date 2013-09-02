@@ -125,7 +125,11 @@ $(document).ready(function() {
                 // No results were found for this search.
 
                 resultsDiv.empty();
-                $('<p>', {className: 'notFound', html: '<div class="error">ไม่พบข้อมูล</div>'}).hide().appendTo(resultsDiv).fadeIn();
+                $('<div>', {
+                    className: 'notFound',
+                    class: 'notFound page pageborder white clearfix',
+                    html: '<div class="error">ไม่พบข้อมูล</div>'
+                }).hide().appendTo(resultsDiv).fadeIn();
             }
         });
     }
