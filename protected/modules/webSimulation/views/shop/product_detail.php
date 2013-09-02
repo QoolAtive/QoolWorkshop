@@ -58,7 +58,7 @@
             } else {
                 $is_in_busket = true;
             }
-            echo CHtml::ajaxSubmitButton(($is_in_busket) ? 'หยิบออกจากตะกร้า' : 'หยิบใส่ตะกร้า', '/webSimulation/shop/selectItem/item_id/' . $item_detail['web_shop_item_id'], array(
+            echo CHtml::ajaxSubmitButton(($is_in_busket) ? 'หยิบออกจากตะกร้า' : 'หยิบใส่ตะกร้า', CHtml::normalizeUrl(array('/webSimulation/shop/selectItem', 'item_id' => $item_detail['web_shop_item_id'], 'id' => $id)), array(
                 'type' => 'POST',
                 'dataType' => 'json',
                 'success' => "function (data){
