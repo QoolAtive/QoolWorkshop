@@ -1,3 +1,8 @@
+<style>
+    a [class^="icon-"], a [class*=" icon-"] {
+        display: block;
+    }
+</style>
 <?php
 $this->renderPartial('_side_menu', array('index' => 'item'));
 ?>
@@ -19,24 +24,17 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </h3>
 
         <ul class="websimboxlist">
-            <!--เพิ่มสินค้าในร้าน-->
-<!--            <li>
-                <ul class="innerlogo">
-                    <li>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'เพิ่มสินค้าในร้าน'), CHtml::normalizeUrl(array('/webSimulation/manageShop/editItem')));
-                        ?>
-                    </li>
-                </ul>
-            </li>-->
 
             <!--สินค้าทั้งหมดในร้าน-->
             <li>
                 <ul class="innerlogo">
-                    <li><i class="icon-gift"></i> 
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')); ?>">
+                        <i class="icon-gift"></i> 
                         <?php
-                        echo CHtml::link(Yii::t('language', 'จัดการรายการสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageItem')));
+                        echo Yii::t('language', 'จัดการรายการสินค้า');
                         ?>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -44,10 +42,13 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <!--หมวดหมู่สินค้า-->
             <li>
                 <ul class="innerlogo">
-                    <li><i class="icon-tag"></i> 
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')); ?>">
+                        <i class="icon-tag"></i> 
                         <?php
-                        echo CHtml::link(Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')));
+                        echo Yii::t('language', 'หมวดหมู่สินค้า');
                         ?>
+                        </a>
                     </li>
                 </ul>
             </li>

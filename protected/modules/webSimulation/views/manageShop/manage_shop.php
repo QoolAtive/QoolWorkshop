@@ -1,3 +1,8 @@
+<style>
+    a [class^="icon-"], a [class*=" icon-"] {
+        display: block;
+    }
+</style>
 <?php
 $this->renderPartial('_side_menu', array('index' => 'shop'));
 ?>
@@ -17,22 +22,26 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <li>
                 <ul class="innerlogo">
                     <li>
-                        <i class="icon-inbox"></i>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')));
-                        ?>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')); ?>">
+                            <i class="icon-inbox"></i>
+                            <?php
+                            echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
-            
+
             <!--รายการสั่งซื้อ-->
             <li>
                 <ul class="innerlogo">
                     <li>
-                        <i class="icon-list"></i>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'รายการ') . Yii::t('language', 'สั่งซื้อ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/order')));
-                        ?>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/order')); ?>">
+                            <i class="icon-list"></i>
+                            <?php
+                            echo Yii::t('language', 'รายการ') . Yii::t('language', 'สั่งซื้อ');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -40,10 +49,13 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <!--แก้ไขรายละเอียดร้านค้า-->
             <li>
                 <ul class="innerlogo">
-                    <li><i class="icon-edit"></i>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียด') . Yii::t('language', 'ร้านค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/register')));
-                        ?>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/register')); ?>">
+                            <i class="icon-edit"></i>
+                            <?php
+                            echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียด');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -52,22 +64,26 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <li>
                 <ul class="innerlogo">
                     <li>
-                        <i class="icon-desktop"></i>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบ') . Yii::t('language', 'ร้านค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')));
-                        ?>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/manageShopFormat')); ?>">
+                            <i class="icon-desktop"></i>
+                            <?php
+                            echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบ') . Yii::t('language', 'ร้านค้า');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
-            
+
             <!--แก้ไขวิธีสั่งซื้อและชำระเงิน-->
             <li>
                 <ul class="innerlogo">
                     <li>
-                        <i class="icon-usd"></i> 
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน'), CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy')));
-                        ?>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy')); ?>">
+                            <i class="icon-usd"></i>
+                            <?php
+                            echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
