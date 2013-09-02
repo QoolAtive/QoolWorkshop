@@ -1,4 +1,31 @@
 /* @group Component */
+
+#more{
+    background: url("../img/searchmore.png") no-repeat scroll center center transparent;
+    cursor: pointer;
+    height: 49px;
+    margin: 31px auto;
+    width: 190px;
+
+}
+.webResult {
+    padding: 20px;
+    width: 800px
+}
+
+.webResult h2 a{
+  text-decoration: underline;
+}
+.webResult b{
+  color: red;
+}
+#search-form > input#s {
+    border-radius: 4px 4px 4px 4px;
+    height: 13px;
+    margin-bottom: 12px;
+    margin-left: 3px;
+    width: 245px;
+}
 .search-input{
    margin-left: 3px;
     width: 245px !important;
