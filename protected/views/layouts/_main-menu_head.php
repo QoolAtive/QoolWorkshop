@@ -4,7 +4,7 @@
             <div class="lang"> 
                 <?php
                 $this->widget('application.components.widgets.LanguageSelector');
-                echo Yii::t('language', 'language');
+//                echo Yii::t('language', 'language');
                 ?>
             </div>
             <ul class="loginbtnbox clearfix">
@@ -16,7 +16,9 @@
                         <a class="createaccountbtn fancybox.iframe" href="/member/manage/registerRules">
                             <?php echo Yii::t('language', 'สร้างผู้ใช้งาน'); ?>
                         </a> 
-                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login"><?php echo Yii::t('language', 'เข้าระบบ'); ?></a>
+                        <a class="loginbtn  fancybox.iframe fclogin" href="/site/login">
+                            <?php echo Yii::t('language', 'เข้าระบบ'); ?>
+                        </a>
                         <?php
                     } else {
                         $profile = Tool::getProfile(Yii::app()->user->id);
@@ -24,19 +26,17 @@
                         <a href="/site/logout" class="loginbtn " onClick="return confirm('<?php echo Yii::t('language', 'คุณต้องการออกจากระบบหรือไม่?'); ?>')">
                             <?php echo Yii::t('language', 'ออกจากระบบ'); ?>
                         </a>
-                        <a href="/member/manage/profile" class="loginbtn "><?php echo $profile['name']; ?></a>
+                        <a href="/member/manage/profile" class="loginbtn ">
+                            <?php echo $profile['name']; ?>
+                        </a>
                         <?php
                     }
                     ?>
                 </li>
                 <li>
-                    <!--<input class="searchbox" placeholder="Search" type="text"  name="" value="" />-->     
                     <?php
-//                    $this->widget('ext.esearch.SearchBoxPortlet');
-//or
-            SearchAction::renderInputBox();
-//or
-//            $this->renderPartial('extensions/esearch/views/inputBox.php');
+                    // google_search
+                    $this->widget('application.extensions.search.GoogleSearch');
                     ?>
                 </li>
             </ul>

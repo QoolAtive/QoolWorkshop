@@ -1,2 +1,6 @@
+assets/
+nbproject/
+protected/runtime/
+themes/classic/views/
 /nbproject/private/
 .DS_Store

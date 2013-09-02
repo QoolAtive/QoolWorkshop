@@ -19,7 +19,8 @@ return array(
         'application.ckeditor.*',
         'application.helpers.*',
         'application.extensions.PHPExcel.*',
-        'ext.esearch.*',
+        'application.extensions.search.*',
+//        'ext.esearch.*',
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
