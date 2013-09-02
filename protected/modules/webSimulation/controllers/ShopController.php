@@ -176,6 +176,7 @@ class ShopController extends Controller {
                     $order_detail->price = $price;
                     $order_detail->save();
                 }
+                unset(Yii::app()->session['busket']);
                 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'สั่งซื้อสินค้าเรียบร้อย') . "');

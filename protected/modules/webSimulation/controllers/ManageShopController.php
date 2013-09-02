@@ -319,6 +319,9 @@ class ManageShopController extends Controller {
             $model->attributes = $_POST['status'];
             WebShopOrder::model()->updateByPk($order_id, array('status' => $_POST['status']));
             $order->status = $_POST['status'];
+            echo "<script language='javascript'>
+                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+            </script>";
         }
         $this->render('order_detail', array('order' => $order, 'item' => $item));
     }
