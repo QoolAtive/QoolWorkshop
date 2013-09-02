@@ -20,9 +20,11 @@
         <li class="clearfix">
             <!--<input class="searchbox" placeholder="Search" type="text" name="" value="" />--> 
             <?php
+            // google_search
+            $this->widget('application.extensions.search.GoogleSearch');
 //            $this->widget('ext.esearch.SearchBoxPortlet');
 //or
-            SearchAction::renderInputBox();
+//            SearchAction::renderInputBox();
 //or
 //            $this->renderPartial('extensions/esearch/views/inputBox.php');
             ?>
