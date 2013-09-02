@@ -17,12 +17,12 @@ class SiteController extends Controller {
             'page' => array(
                 'class' => 'CViewAction',
             ),
-            'search' => array(
-                'class' => 'ext.esearch.SearchAction',
-                'model' => 'Company',
-                'attributes' => array('name', 'name_en', 'infor', 'infor_en'),
-                'showAttributes'  => array('name', 'name_en', 'infor', 'infor_en', 'address', 'address_en', 'main_business', 'main_business_en'),
-            )
+//            'search' => array(
+//                'class' => 'ext.esearch.SearchAction',
+//                'model' => 'Company',
+//                'attributes' => array('name', 'name_en', 'infor', 'infor_en'),
+//                'showAttributes'  => array('name', 'name_en', 'infor', 'infor_en', 'address', 'address_en', 'main_business', 'main_business_en'),
+//            )
         );
     }
     
