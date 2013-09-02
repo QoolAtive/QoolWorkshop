@@ -39,7 +39,7 @@ if ($busket != NULL) {
             ราคารวมทั้งหมด
         </td>
         <td style="font-weight: bold;">
-            <?php echo $price_total; ?>
+            <?php echo $price_total . ' บาท'; ?>
         </td>
     </table>
     <?php
