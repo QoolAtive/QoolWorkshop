@@ -59,20 +59,28 @@
                 <span style="font-weight:bold;"><?php echo $price_total; ?></span>
             </td>
         </table>
+        <div style="text-align: center; margin-top: 10px;">
+            <?php
+            echo CHtml::button('   สั่งชื้อ   ', array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                    "/webSimulation/shop/order",
+                    'id' => $id,
+                    'price_all' => $price_total
+                )) . '"'
+            ));
+
+            echo CHtml::button('  เอาสินค้าทั้งหมดออก  ', array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                    "/webSimulation/shop/removeAllItem"
+                )) . '"'
+            ));
+            ?>
+        </div>
         <?php
     } else {//end if($busket != NULL){
+        echo '<div style="text-align: center;">';
         echo 'ไม่พบสินค้าในตะกร้า';
+        echo '</div>';
     }
     ?>
-    <div style="text-align: center; margin-top: 10px;">
-        <?php
-        echo CHtml::button('   สั่งชื้อ   ', array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
-                "/webSimulation/shop/order",
-                'id' => $id,
-                'price_all' => $price_total
-            )) . '"'
-        ));
-        ?>
-    </div>
 </div>
