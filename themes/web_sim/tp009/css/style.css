@@ -443,7 +443,7 @@ BEGIN : Column Right
 	font-size:1.6em;
 	font-weight:normal;
 }
- #busket_side, #col_right_submenu, #col_right_cate, #col_right_history {
+ #busket_side, #col_right_submenu, #col_right_cate, #col_right_history,.right_item_list {
 	width:290px;
 	min-height:50px;
 	_height:50px;/* Only IE6 */
