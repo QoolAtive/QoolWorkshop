@@ -30,13 +30,13 @@ $this->renderPartial('_sidebar', array());
                 ?>
                 <!--  <div style="width: 30%; display: inline-block;">
                      <ul>
-                         <li><a href="/member/manage/changePassword"><?php // echo Yii::t('language', 'แก้ไขรหัสผ่าน');   ?></a></li>
+                         <li><a href="/member/manage/changePassword"><?php // echo Yii::t('language', 'แก้ไขรหัสผ่าน');    ?></a></li>
                      </ul>
                  </div> --> <div class="_100">
 
                     <h3 class="barH3">
                         <span>
-                            <i class="icon-user"></i> </i><?php echo Yii::t('language', 'จัดการสมาชิก'); ?>
+                            <i class="icon-user"></i> </i><?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
                         </span>
                     </h3>
 
@@ -51,7 +51,7 @@ $this->renderPartial('_sidebar', array());
 
                     <h3 class="barH3">
                         <span>
-                            <i class="icon-cog"></i> </i><?php echo Yii::t('language', 'จัดการข้อมูลทัวไปของเว็บไซต์'); ?>
+                            <i class="icon-cog"></i> </i><?php echo Yii::t('language', 'จัดการ').Yii::t('language', 'ข้อมูลทั่วไปของเว็บไซต์'); ?>
                         </span>
                     </h3>
 
@@ -64,76 +64,76 @@ $this->renderPartial('_sidebar', array());
                 ?>
 
                 <div class="profile">
-                    <h3 class="barH3">ข้อมูลส่วนตัว</h3>
+                    <h3 class="barH3"><?php echo Yii::t("language", 'ข้อมูลส่วนตัว'); ?></h3>
                     <hr>
                     <?php if ($profile['name'] != null) { ?>
-                        <label>ชื่อ - นามสกุล :</label>
+                        <label><?php echo Yii::t("language", 'ชื่อ').' - '.Yii::t("language", 'นามสกุล')." :"; ?></label>
                         <div class="detail"><?php echo $profile['name']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['sex'] != null) { ?>
-                        <label>เพศ :</label>
+                        <label><?php echo Yii::t("language", 'เพศ')." :"; ?></label>
                         <div class="detail"><?php echo $profile['sex']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['high_education'] != null) { ?>
-                        <label>วุฒิการศึกษา :</label>
+                        <label><?php echo Yii::t("language", 'วุฒิการศึกษา')." :"; ?></label>
                         <div class="detail"><?php echo $profile['high_education']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['commerce_registration'] != null) { ?>
-                        <label>เลขพาณิชย์ :</label>
+                        <label><?php echo Yii::t("language", 'เลขพาณิชย์')." :"; ?></label>
                         <div class="detail"><?php echo $profile['commerce_registration']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['corporation_registration'] != null) { ?>
-                        <label>เลขนิติบุคคล :</label>
+                        <label><?php echo Yii::t("language", 'เลขนิติบุคคล')." :"; ?></label>
                         <div class="detail"><?php echo $profile['corporation_registration']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['businessType'] != null) { ?>
-                        <label>ประเภทธุรกิจ :</label>
+                        <label><?php echo Yii::t("language", 'ประเภทธุรกิจ')." :"; ?></label>
                         <div class="detail"><?php echo $profile['businessType']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['member_type'] != null) { ?>
-                        <label>ประเภทสมาชิก :</label>
+                        <label><?php echo Yii::t("language", 'ประเภทสมาชิก')." :"; ?></label>
                         <div class="detail"><?php echo $profile['member_type']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['panit'] != null) { ?>
-                        <label>ชื่อสินค้าและบริการ :</label>
+                        <label><?php echo Yii::t("language", 'ชื่อสินค้าและบริการ')." :"; ?></label>
                         <div class="detail"><?php echo $profile['panit']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['address'] != null) { ?>
-                        <label>ที่อยู่ :</label>
+                        <label><?php echo Yii::t("language", 'ที่อยู่')." :"; ?></label>
                         <div class="detail"><?php echo $profile['address']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['tel'] != null) { ?>
-                        <label>โทรศัพท์ :</label>
+                        <label><?php echo Yii::t("language", 'โทร.')." :"; ?></label>
                         <div class="detail"><?php echo $profile['tel']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['mobile'] != null) { ?>
-                        <label>มือถือ :</label>
+                        <label><?php echo Yii::t("language", 'มือถือ')." :"; ?></label>
                         <div class="detail"><?php echo $profile['mobile']; ?></div>
                     <?php } ?>
 
                     <?php if ($profile['fax'] != null) { ?>
-                        <label>แฟกช์ :</label>
+                        <label><?php echo Yii::t("language", 'โทรสาร.')." :"; ?></label>
                         <div class="detail"><?php echo $profile['fax']; ?></div>
                     <?php } ?>
 
                     <?php // if ($profile['facebook'] != null) {  ?>
                     <!--<label>เฟสบุ๊ค :</label>-->
-                    <!--<div class="detail"><?php // echo $profile['facebook'];            ?></div>-->
+                    <!--<div class="detail"><?php // echo $profile['facebook'];             ?></div>-->
                     <?php // }  ?>
 
                     <?php // if ($profile['twitter'] != null) {  ?>
                     <!--<label>ทวิตเตอร์ :</label>-->
-                    <!--<div class="detail"><?php // echo $profile['twitter'];            ?></div>-->
+                    <!--<div class="detail"><?php // echo $profile['twitter'];             ?></div>-->
                     <?php // }  ?>
                     <hr>
                     <?php
