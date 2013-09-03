@@ -32,7 +32,11 @@
             <?php
             $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'insert-form',
-                'enableAjaxValidation' => false,
+                'enableAjaxValidation' => true,
+                'enableClientValidation' => true,
+//                'clientOptions' => array(
+//                    'validateOnSubmit' => false,
+//                ),
                 'htmlOptions' => array(
                     'autocomplete' => 'off',
                 )

@@ -426,7 +426,7 @@ END : Webboard
 /*-----------------------------
 BEGIN : Column Right
 -----------------------------*/
-#col_right_submenu, #col_right_cate, #col_right_history{
+#col_right_submenu, #col_right_cate, #col_right_history,.right_item_list{
 	background:#333333 url('../img/bg_boxRight.jpg') repeat 0 0;
 	width:290px;
 	min-height:80px;
@@ -440,7 +440,7 @@ BEGIN : Column Right
 	-moz-box-shadow:0 0 5px #000;
 	box-shadow:0 0 5px #000;
 }
-#col_right_cate h2, #col_right_history h2, #col_right_track h2{
+#col_right_cate h2, #col_right_history h2, #col_right_track h2,.right_item_list h2{
     color:#fff;
     font-size:1.6em;
     margin:0px 0px 0px 0px;

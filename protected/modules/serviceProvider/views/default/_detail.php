@@ -59,38 +59,41 @@
                 <i class="icon-chevron-right"></i>
                 <?php echo $name; ?>
             </span>
-            <span class="right" style="font-size: 12px; padding: 3px 5px;">
-                <i class="icon-star" style="color: goldenrod;"></i> 
-                <?php
-                $countSpLog = SpLog::model()->count('user_id = :user_id and service_company_id  = :service_company_id ', array(
-                    ':user_id' => Yii::app()->user->id,
-                    ':service_company_id' => $model->id,
-                ));
-                if ($countSpLog > 0) {
-                    echo CHtml::link(Yii::t('language', 'เก็บเข้ารายการโปรดแล้ว', '#'));
-                } else {
-                    echo CHtml::ajaxLink(
-                            Yii::t('language', 'เก็บเข้ารายการโปรด'), Yii::app()->createUrl('/serviceProvider/default/insertLog'), array(
-                        'type' => 'POST',
-                        'beforeSend' => "function( request )
-                                        {
-                                          // Set up any pre-sending stuff like initializing progress indicators
-                                        }",
-                        'success' => "function( data )
+
+            <?php if (isset(Yii::app()->user->id)) { ?>
+                <span id="select_service" class="right" style="font-size: 12px; padding: 3px 5px;">
+                    <i class="icon-star" style="color: goldenrod;"></i> 
+                    <?php
+                    $countSpLog = SpLog::model()->count('user_id = :user_id and service_company_id  = :service_company_id ', array(
+                        ':user_id' => Yii::app()->user->id,
+                        ':service_company_id' => $model->id,
+                    ));
+                    if ($countSpLog > 0) {
+                        echo CHtml::link(Yii::t('language', 'เก็บเข้าบริการโปรดแล้ว', '#'));
+                    } else {
+                        echo CHtml::ajaxLink(
+                                Yii::t('language', 'เก็บเข้าบริการโปรด'), Yii::app()->createUrl('/serviceProvider/default/insertLog'), array(
+                            'type' => 'POST',
+//                        'beforeSend' => "function( request )
+//                                        {
+//                                          // Set up any pre-sending stuff like initializing progress indicators
+//                                        }",
+                            'success' => "function( data )
                                     {
                                       alert( data );
                                     }",
-                        'data' => array(
-                            'sp_id' => $model->id,
-                        ),
-                        array(//htmlOptions
-                            'href' => Yii::app()->createUrl('serviceProvider/default/insertLog'),
-                        )
-//                        'update' => '#student_panel_handler'
-                    ));
-                }
-                ?>
-            </span>
+                            'data' => array(
+                                'sp_id' => $model->id,
+                            ),
+                            array(//htmlOptions
+                                'href' => Yii::app()->createUrl('serviceProvider/default/insertLog'),
+                            ),
+//                            'update' => 'span#select_service',
+                        ));
+                    }
+                    ?>
+                </span>
+            <?php } ?>
         </h3>
         <div class="clearfix servicebanner">
             <div style="float: left; width: 525px; height: 220px; ">

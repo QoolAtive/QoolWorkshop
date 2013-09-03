@@ -201,7 +201,10 @@ class DefaultController extends Controller {
 
     public function actionInsertLog() {
         if (isset($_POST['sp_id'])) {
-            $model = SpLog::model()->find('service_company_id = :service_company_id', array(':service_company_id' => $_POST['sp_id']));
+            $model = SpLog::model()->find('service_company_id = :service_company_id AND user_id = :user_id', array(
+                ':service_company_id' => $_POST['sp_id'],
+                ':user_id' => Yii::app()->user->id,
+            ));
             if (count($model) > 0) {
                 
             } else {
@@ -209,13 +212,15 @@ class DefaultController extends Controller {
                 $model->user_id = Yii::app()->user->id;
                 $model->service_company_id = $_POST['sp_id'];
                 if ($model->save()) {
-                    echo Yii::t('language', 'เก็บเข้ารายการโปรดเรียบร้อย');
+                    echo Yii::t('language', 'เก็บเข้าบริการโปรดเรียบร้อย');
                 } else {
                     echo "<pre>";
                     print_r($model->getErrors());
                 }
             }
         }
+
+//        $this->renderPartial('_select');
     }
 
     public function actionSpLogDel($sp_log_id = null) {

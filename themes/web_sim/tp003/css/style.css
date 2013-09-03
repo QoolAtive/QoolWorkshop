@@ -393,7 +393,7 @@ END : Webboard
 /*-----------------------------
 BEGIN : Column Right
 -----------------------------*/
-#col_right_submenu, #col_right_cate, #col_right_track, #col_right_signin, #col_right_mycart, #col_right_history{
+#col_right_submenu, #col_right_cate, #col_right_track, #col_right_signin, #col_right_mycart, #col_right_history,.right_item_list{
 	width:244px;
 	min-height:50px;
 	_height:50px;/* Only IE6 */
@@ -403,7 +403,7 @@ BEGIN : Column Right
 	background:#E5E0D7 url('../img/col_right.png') repeat center -10px;
 	border:3px #BDB094 dotted;
 }
-#col_right_cate h2, #col_right_history h2, #col_right_track h2{
+#col_right_cate h2, #col_right_history h2, #col_right_track h2,.right_item_list h2{
     font-size:1.6em;
     margin:0px;
     padding: 0px;
