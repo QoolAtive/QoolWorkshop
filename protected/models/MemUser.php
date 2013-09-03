@@ -16,7 +16,7 @@ class MemUser extends MemUserBase {
 //            array('password_confirm', 'CheckPassConfirm'),
 //            array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
             array('password', 'length', 'min' => 6),
-            array('password', 'match', 'pattern' => '[^0-9A-Za-z]', 'message' => '{attribute} '. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรษาอังกฤษเท่านั้น')),
+            array('password', 'match', 'pattern' => '[^0-9A-Za-z]', 'message' => '{attribute} '. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรภาษาอังกฤษเท่านั้น')),
 //            array('password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
             array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
             array('password_confirm, username, password, type, verifyCode', 'required'),
