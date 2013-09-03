@@ -23,7 +23,7 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
 
         <?php 
             } else{
-        ?> <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
+        ?> <li><img alt="e-dirshoplogo"  src="/img/default.jpg"/></li> 
         <?php }  ?>
 
         <li>
