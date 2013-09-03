@@ -1,3 +1,8 @@
+<style>
+    a [class^="icon-"], a [class*=" icon-"] {
+        display: block;
+    }
+</style>
 <?php
 $this->renderPartial('_side_menu', array('index' => 'format'));
 ?>
@@ -38,10 +43,13 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
             <!--โลโก้ และ พื้นหลัง-->
             <li>
                 <ul class="innerlogo">
-                    <li><i class="icon-magic"></i>
-                        <?php
-                        echo CHtml::link(Yii::t('language', 'โลโก้ และ พื้นหลัง'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')));
-                        ?>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')); ?>">
+                            <i class="icon-magic"></i>
+                            <?php
+                            echo Yii::t('language', 'โลโก้ และ พื้นหลัง');
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -49,14 +57,17 @@ $this->renderPartial('_side_menu', array('index' => 'format'));
             <!--อักษรและข้อความ-->
             <li>
                 <ul class="innerlogo">
-                    <li><i class="icon-font"></i>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')); ?>">
+                        <i class="icon-font"></i>
                         <?php
-                        echo CHtml::link(Yii::t('language', 'อักษรและข้อความ'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')));
+                        echo Yii::t('language', 'อักษรและข้อความ');
                         ?>
+                        </a>
                     </li>
                 </ul>
             </li>
-            
+
         </ul>        <!--<ul class="linklist">-->
     </div>
 </div>

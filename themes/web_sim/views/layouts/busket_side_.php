@@ -57,6 +57,11 @@ if ($busket != NULL) {
     ?>
     <?php
 } else {//end if($busket != NULL){
+    echo '<span class="normal" style="
+        margin: 0 5px;
+        padding: 10px;
+        ">';
     echo 'ไม่พบสินค้าในตะกร้า';
+    echo '</span>';
 }
 ?>
