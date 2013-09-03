@@ -33,7 +33,11 @@
             }
             ?>
             <li><a href="/serviceProvider/default/spLog" ><?php echo Yii::t("language", 'บริการโปรด'); ?></a></li>
-            <li><a href="http://www.google.com/intl/<?php echo Yii::t("language", 'th'); ?>/analytics/" target="_blank" ><?php echo Yii::t("language", 'สถิติของเว็บไซต์'); ?></a></li>
+            <li>
+                <a href="http://www.google.com/intl/<?php echo Yii::t("language", 'th'); ?>/analytics/" target="_blank" >
+                    <?php echo Yii::t("language", 'สถิติของเว็บไซต์'); ?>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
