@@ -16,48 +16,56 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
     </h4>
     <ul>
 
-        <?php 
-            if(!empty($logo)){ 
-        ?>
-                      <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+        <?php
+        if (!empty($logo)) {
+            ?>
+            <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
 
-        <?php 
-            } else{
-        ?> <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
-        <?  }  ?>
-
-        <li>
-            <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . " : "; ?></label>
             <?php
-            $size_type_com = sizeof($model_type_com);
-            $i = 1;
-            foreach ($model_type_com as $m_tc) {
-                $model_type = CompanyTypeBusiness::model()->findByPk($m_tc->company_type);
-                $type_name = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
+        } else {
+            ?> <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
+            <?  }  ?>
+
+            <li>
+                <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . " : "; ?></label>
+                <?php
+                $size_type_com = sizeof($model_type_com);
+                $i = 1;
+                foreach ($model_type_com as $m_tc) {
+                    $model_type = CompanyTypeBusiness::model()->findByPk($m_tc->company_type);
+                    $type_name = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
 //                    $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
 //                                            array('/serviceProvider/default/partnerGroup/id/' . $m_tc->company_type)
 //                    ));
-                $type = $type_name;
-                if ($size_type_com == $i) {
-                    echo $type;
-                } else {
-                    echo $type . ", ";
-                    $i++;
+                    $type = $type_name;
+                    if ($size_type_com == $i) {
+                        echo $type;
+                    } else {
+                        echo $type . ", ";
+                        $i++;
+                    }
                 }
-            }
-            ?>
-        </li>
-        <li>
-            <i class="icon-map-marker"></i> <label><?php echo Yii::t('language', 'ที่ตั้ง') . " : "; ?></label>
-            <?php echo $address; ?>
-        </li>
-        <li>
-            <i class="icon-phone"></i> <label><?php echo Yii::t('language', 'โทร.') . " : "; ?></label>
-            <?php echo $data->contact_tel; ?>
-        </li>
-        <li>
-            <i class="icon-globe"></i> <label><?php echo Yii::t('language', 'เว็บไซต์') . " : "; ?></label>
-            <?php echo $data->website; ?>
+                ?>
+            </li>
+            <li>
+                <i class="icon-map-marker"></i> <label><?php echo Yii::t('language', 'ที่ตั้ง') . " : "; ?></label>
+                <?php echo $address; ?>
+            </li>
+            <li>
+                <i class="icon-phone"></i> <label><?php echo Yii::t('language', 'โทร.') . " : "; ?></label>
+                <?php echo $data->contact_tel; ?>
+            </li>
+            <li>
+                <i class="icon-globe"></i> <label><?php echo Yii::t('language', 'เว็บไซต์') . " : "; ?></label>
+                <?php
+                $link = str_replace('https://', '', $data->website);
+                $link = str_replace('http://', '', $link);
+                $link = str_replace(' ', '', $link);
+                if (!empty($link) && $link != '-')
+                    $link = 'http://' . $link;
+
+                echo CHtml::link($link, $link, array('target' => '_bank'));
+                ?>
         </li>
 
     </ul>

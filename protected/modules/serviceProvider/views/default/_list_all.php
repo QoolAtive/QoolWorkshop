@@ -6,7 +6,7 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
 
 
 <div class="servicelist">
-    
+
     <h4>
         <?php
         echo CHtml::link($name, CHtml::normalizeUrl(
@@ -45,7 +45,15 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
         </li>
         <li>
             <i class="icon-globe"></i> <label><?php echo Yii::t('language', 'เว็บไซต์') . " : "; ?></label>
-            <?php echo $data->website; ?>
+            <?php
+            $link = str_replace('https://', '', $data->website);
+            $link = str_replace('http://', '', $link);
+            $link = str_replace(' ', '', $link);
+            if (!empty($link) && $link != '-')
+                $link = 'http://' . $link;
+
+            echo CHtml::link($link, $link, array('target' => '_bank'));
+            ?>
         </li>
     </ul>
 </div>
