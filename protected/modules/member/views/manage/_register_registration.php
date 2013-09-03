@@ -35,6 +35,8 @@
                 <?php
                 $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'insert_registration-form',
+                    'enableAjaxValidation' => true,
+                    'enableClientValidation' => true,
 //                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     'htmlOptions' => array(
                         'autocomplete' => 'off',

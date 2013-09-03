@@ -92,7 +92,8 @@ class MemPerson extends MemPersonBase {
     public function checkEmail() {
         $model2 = MemRegistration::model()->findByAttributes(array('email' => $this->email));
         if (!empty($model2)) {
-            $this->addError('email', $this->model()->getAttributeLabel('email') . Yii::t('language', 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ'));
+            $this->addError('email', $this->email . ' มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
         }
     }
+
 }
