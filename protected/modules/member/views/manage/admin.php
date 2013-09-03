@@ -22,12 +22,12 @@
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="/img/iconpage/Member.png"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t("language", '/img/iconpage/Member.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="#" rel="view1">Confirm Registration Member</a></li>
-            <li><a href="#" rel="view2">Registration Member</a></li>
-            <li><a href="#" rel="view3">Person Member</a></li>
+            <li><a href="#" rel="view1"><?php echo Yii::t("language", 'ยืนยันการสมัครสมาชิก'); ?></a></li>
+            <li><a href="#" rel="view2"><?php echo Yii::t("language", 'สมาชิกที่ลงทะเบียน'); ?></a></li>
+            <li><a href="#" rel="view3"><?php echo Yii::t("language", 'สมาชิกบุคคลธรรมดา'); ?></a></li>
         </ul>
     </div>
 </div>
@@ -55,7 +55,8 @@
             ?>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                    'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/member/manage/profile'
                     )) . "'")
                 );
@@ -85,7 +86,8 @@
             ?>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                    'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/member/manage/profile'
                     )) . "'")
                 );
@@ -116,7 +118,7 @@
             ?>
             <div style="text-align: center;">
                 <?php
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/member/manage/profile'
                     )) . "'")
                 );

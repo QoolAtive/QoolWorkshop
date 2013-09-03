@@ -68,7 +68,7 @@ class WebShopFormat extends WebShopFormatBase {
         return array(
             'web_shop_format_id' => 'web_shop_format_id',
             'web_shop_id' => 'web_shop_id',
-            'logo' => 'Logo',
+            'logo' => 'โลโก้',
             'theme' => 'ธีม',
             'background' => 'พื้นหลัง',
             'char_color' => 'สีอักษรทั่วไป',
