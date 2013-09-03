@@ -109,7 +109,7 @@ class MemRegistration extends MemRegistrationBase {
 //        if ($this->hasErrors() == NULL) {
         $model2 = MemPerson::model()->findByAttributes(array('email' => $this->email));
         if (!empty($model2)) {
-            $this->addError('email', $this->model()->getAttributeLabel('email') . 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
+            $this->addError('email', $this->email . ' มีอยู่ในระบบแล้วกรุณาตรวจสอบ');
         }
 //        }
     }

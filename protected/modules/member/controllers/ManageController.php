@@ -126,9 +126,26 @@ Class ManageController extends Controller {
         if (!Yii::app()->user->getState('rules')) {
             $this->redirect(array('/site/index'));
         }
+
+
+
         $model = new MemPerson();
         $model_user = new MemUser();
         $model_confirm = new MemConfirm();
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'insert-form') {
+
+//            echo 'bbb';
+//            $model->attributes = $_GET['MemPerson'];
+//            $model_user->attributes = $_GET['MemUser'];
+//            
+//            $model_user->username = Tool::Encrypted($model_user->username);
+//            $model_user->password = Tool::Encrypted($model_user->password);
+//            $model_user->password_confirm = Tool::Encrypted($model_user->password_confirm);
+//            
+            echo CActiveForm::validate(array($model, $model_user));
+            Yii::app()->end();
+        }
 
         if (isset($_POST['MemPerson']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemPerson'];
@@ -147,18 +164,22 @@ Class ManageController extends Controller {
             $model_user->attributes = $_POST['MemUser'];
             $model_user->type = '1';
 
-            $model_user->username = Tool::Encrypted($model_user->username);
-            $model_user->password = Tool::Encrypted($model_user->password);
-            $model_user->password_confirm = Tool::Encrypted($model_user->password_confirm);
-
             $model_user->validate();
             $model->validate();
 
 
             if ($model->getErrors() == NULL && $model_user->getErrors() == NULL) {
-                if ($model_user->save()) {
-                    $model->user_id = $model_user->id;
-                    $model_confirm->user_id = $model_user->id;
+
+                $model_user_add = new MemUserBase;
+
+                $model_user_add->username = Tool::Encrypted($model_user->username);
+                $model_user_add->password = Tool::Encrypted($model_user->password);
+//                $model_user_add->password_confirm = Tool::Encrypted($model_user->password_confirm);
+                $model_user_add->type = '1';
+
+                if ($model_user_add->save()) {
+                    $model->user_id = $model_user_add->id;
+                    $model_confirm->user_id = $model_user_add->id;
                     $model_confirm->password = $RndPass;
 
                     if ($model->save()) {
@@ -177,25 +198,27 @@ Class ManageController extends Controller {
                                 </script>
                                 ";
                         } else {
-                            $model_user->username = Tool::Decrypted($model_user->username);
-                            $model_user->password = Tool::Decrypted($model_user->password);
-                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                            $model_user->username = Tool::Decrypted($model_user->username);
+//                            $model_user->password = Tool::Decrypted($model_user->password);
+//                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
 //                            echo 
                         }
                     } else {
-                        $model_user->username = Tool::Decrypted($model_user->username);
-                        $model_user->password = Tool::Decrypted($model_user->password);
-                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                        $model_user->username = Tool::Decrypted($model_user->username);
+//                        $model_user->password = Tool::Decrypted($model_user->password);
+//                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                        echo "<pre>";
+//                        print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
                     }
                 } else {
-                    $model_user->username = Tool::Decrypted($model_user->username);
-                    $model_user->password = Tool::Decrypted($model_user->password);
-                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                    $model_user->username = Tool::Decrypted($model_user->username);
+//                    $model_user->password = Tool::Decrypted($model_user->password);
+//                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
                 }
             } else {
-                $model_user->username = Tool::Decrypted($model_user->username);
-                $model_user->password = Tool::Decrypted($model_user->password);
-                $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                $model_user->username = Tool::Decrypted($model_user->username);
+//                $model_user->password = Tool::Decrypted($model_user->password);
+//                $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
             }
         }
 
@@ -214,6 +237,11 @@ Class ManageController extends Controller {
         $model_user = new MemUser();
         $model_confirm = new MemConfirm();
 
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'insert_registration-form') {
+            echo CActiveForm::validate(array($model, $model_user));
+            Yii::app()->end();
+        }
+
         if (isset($_POST['MemRegistration']) && isset($_POST['MemUser'])) {
             $model->attributes = $_POST['MemRegistration'];
             $model_user->attributes = $_POST['MemUser'];
@@ -230,18 +258,24 @@ Class ManageController extends Controller {
             $model_user->type = '2';
             $rndPass = Tool::GenPass(4);
 
-            $model_user->username = Tool::Encrypted($model_user->username);
-            $model_user->password = Tool::Encrypted($model_user->password);
-            $model_user->password_confirm = Tool::Encrypted($model_user->password_confirm);
+//            $model_user->username = Tool::Encrypted($model_user->username);
+//            $model_user->password = Tool::Encrypted($model_user->password);
+//            $model_user->password_confirm = Tool::Encrypted($model_user->password_confirm);
 
             $model->validate();
             $model_user->validate();
 
             if ($model->getErrors() == NULL && $model_user->getErrors() == NULL) {
-                if ($model_user->save()) {
-                    $model->user_id = $model_user->id;
+
+                $model_user_add = new MemUserBase;
+                $model_user_add->username = Tool::Encrypted($model_user->username);
+                $model_user_add->password = Tool::Encrypted($model_user->password);
+                $model_user_add->type = '2';
+
+                if ($model_user_add->save()) {
+                    $model->user_id = $model_user_add->id;
                     $model_confirm->password = $rndPass;
-                    $model_confirm->user_id = $model_user->id;
+                    $model_confirm->user_id = $model_user_add->id;
                     if ($model->save()) {
                         if ($model_confirm->save()) {
 //                            $sendEmail = array(
@@ -258,24 +292,38 @@ Class ManageController extends Controller {
                                 </script>
                                 ";
                         } else {
-                            $model_user->username = Tool::Decrypted($model_user->username);
-                            $model_user->password = Tool::Decrypted($model_user->password);
-                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                            echo "error confirm";
+//                            
+//                            $model_user->username = Tool::Decrypted($model_user_add->username);
+//                            $model_user->password = null;
+//                            $model_user->password_confirm = null;
+//
+//                            echo "<pre>";
+//                            print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
                         }
                     } else {
-                        $model_user->username = Tool::Decrypted($model_user->username);
-                        $model_user->password = Tool::Decrypted($model_user->password);
-                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                        echo 'error profile';
+//                        
+//                        $model_user->username = Tool::Decrypted($model_user_add->username);
+//                        $model_user->password = null;
+//                        $model_user->password_confirm = null;
+//
+//                        echo "<pre>";
+//                        print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
                     }
                 } else {
-                    $model_user->username = Tool::Decrypted($model_user->username);
-                    $model_user->password = Tool::Decrypted($model_user->password);
-                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                     echo 'error user';
+//                    $model_user->username = Tool::Decrypted($model_user_add->username);
+//                    $model_user->password = null;
+//                    $model_user->password_confirm = null;
+
+//                    echo "<pre>";
+//                    print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
                 }
             } else {
-                $model_user->username = Tool::Decrypted($model_user->username);
-                $model_user->password = Tool::Decrypted($model_user->password);
-                $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                $model_user->username = Tool::Decrypted($model_user_add->username);
+//                $model_user->password = Tool::Decrypted($model_user_add->password);
+//                $model_user->password_confirm = Tool::Decrypted($model_user_add->password_confirm);
             }
         }
 
@@ -484,7 +532,7 @@ Class ManageController extends Controller {
                 $message = '
                     <strong>เรียน คุณ ' . $model_profile->ftname . ' ' . $model_profile->ltname . ' </strong>
                     <p>การสมัครสมาชิกของคุณเรียนร้อยแล้ว</p>
-                    '. CHtml::link(Yii::t('language', 'คลิกเพื่อเข้าสู่เว็บไซต์'), $url);
+                    ' . CHtml::link(Yii::t('language', 'คลิกเพื่อเข้าสู่เว็บไซต์'), $url);
 
                 $sendEmail = array(
                     'subject' => 'ยืนยันการสมัครสมาชิก',
