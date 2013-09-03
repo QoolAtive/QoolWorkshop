@@ -51,7 +51,7 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
         if (count($paymentSpecial) > 0) {
             ?>
             <label style="font-size: 16px; font-weight: bold;color: #D69500;"><?php echo Yii::t('language', 'สิทธิพิเศษ'); ?></label>
-            <p>
+            <p class="ckfix">
                 <?php
                 $special = null;
                 $specialother = null;

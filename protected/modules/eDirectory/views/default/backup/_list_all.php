@@ -15,15 +15,15 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
         ?>
     </h4>
     <ul>
-        
+
         <?php 
             if(empty($logo)){ 
         ?>
-            <li><img alt="logo"  src="/file/knowledge/default.jpg"/></li> 
+            <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
         <?php 
             } else{
         ?>
-           <li><img alt="logo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+           <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
         <?  }  ?>
 
         <li>
