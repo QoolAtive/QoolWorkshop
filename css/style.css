@@ -1653,12 +1653,24 @@ div.grid-view table tr td:first-child {
 }
 /* @end */
 #container .servicelist {
-    background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
-    border-radius: 9px 9px 9px 9px;
+/*    background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%) repeat scroll 0 0 transparent;
+*/    border-radius: 9px 9px 9px 9px;
     float: left;
     margin: 3px 3px 5px;
 /*    min-height: 140px;
 */    width: 100%;
+}
+#container .servicelist > ul li:first-child{
+    float: left;
+    min-height: 105px;
+    padding-right: 15px;
+    text-align: center;
+    vertical-align: middle;
+    width: 195px;
+}
+#container .servicelist > ul li:first-child img{
+  max-height: 80px;
+    max-width: 175px;
 }
 #container .servicelist h4 a{
     color: #FEAC00;

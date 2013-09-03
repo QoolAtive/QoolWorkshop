@@ -1,10 +1,12 @@
 <?php
 $name = LanguageHelper::changeDB($data->name, $data->name_en);
 $address = LanguageHelper::changeDB($data->address, $data->address_en);
+$logo = $data->logo;
 $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'");
 ?>
 
 <div class="servicelist clearfix">
+
     <h4>
         <?php
         echo CHtml::link($name, CHtml::normalizeUrl(
@@ -13,6 +15,17 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
         ?>
     </h4>
     <ul>
+
+        <?php 
+            if(empty($logo)){ 
+        ?>
+            <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
+        <?php 
+            } else{
+        ?>
+           <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+        <?  }  ?>
+
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . " : "; ?></label>
             <?php
