@@ -74,7 +74,6 @@ $this->renderPartial('side_bar', array(
             <span>
                 <i class="icon-home"></i>
                 <?php
-                echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/default/index'));
                 if ($id != '') {
                     $model_type = CompanyTypeBusiness::model()->findByPk($id);
                     $name_type = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
