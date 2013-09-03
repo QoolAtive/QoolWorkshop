@@ -19,12 +19,12 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
         <?php 
             if(!empty($logo)){ 
         ?>
-                      <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+            <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
 
         <?php 
             } else{
         ?> <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
-        <?  }  ?>
+        <?php }  ?>
 
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . " : "; ?></label>
