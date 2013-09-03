@@ -110,22 +110,30 @@ class ShopController extends Controller {
 
     public function actionSelectItem($id, $item_id) {
         $this->busket = Yii::app()->session['busket'];
-        if (isset($_POST['number'])) {
-            $number = $_POST['number'];
-            $this->busket[$item_id] = $number;
-        } else {
-            unset($this->busket[$item_id]);
-        }
-        Yii::app()->session['busket'] = $this->busket;
+        $item = WebShopItem::model()->findByPk($item_id);
+        if ($item != NULL) {
+            if (isset($_POST['number'])) {
+                $number = $_POST['number'];
+                $this->busket[$item_id] = $number;
+            } else {
+                unset($this->busket[$item_id]);
+            }
+            Yii::app()->session['busket'] = $this->busket;
 
 //        print_r(Yii::app()->session['busket']);
 //        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
-        echo CJSON::encode(
-                array(
-                    'div1' => $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id), true, true),
-                    'div2' => $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket, 'shop_id' => $id), true, true),
-                )
-        );
+            echo CJSON::encode(
+                    array(
+                        'div1' => $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id), true, true),
+                        'div2' => $this->renderPartial('//layouts/busket_side_', array('busket' => $this->busket, 'shop_id' => $id), true, true),
+                    )
+            );
+        } else {
+            if($this->busket[$item_id] != NULL){
+                unset($this->busket[$item_id]);
+            }
+            throw new CHttpException(404, Yii::t('language', 'ไม่พบสินค้าที่ท่านต้องการ'));
+        }
     }
 
     public function actionRemoveAllItem() {

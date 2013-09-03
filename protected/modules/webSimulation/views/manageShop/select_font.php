@@ -49,7 +49,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <!--ขนาดอักษรทั่วไป-->
         <div class="_50">
             <?php
-            echo $form->labelEx($model, 'char_size');
+            echo $form->labelEx($model, 'char_size') . ' (pixel)';
             echo $form->textField($model, 'char_size', array(
                 'class' => 'numberinput',
                 'style' => 'width:200px;'
@@ -74,7 +74,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <!--ขนาดอักษรหัวข้อ-->
         <div class="_50">
             <?php
-            echo $form->labelEx($model, 'topic_size');
+            echo $form->labelEx($model, 'topic_size') . ' (pixel)';
             echo $form->textField($model, 'topic_size', array(
                 'class' => 'numberinput',
                 'style' => 'width:200px;'
@@ -99,7 +99,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <!--ขนาดอักษรลิ้งก์เมนู-->
         <div class="_50">
             <?php
-            echo $form->labelEx($model, 'link_size');
+            echo $form->labelEx($model, 'link_size') . ' (pixel)';
             echo $form->textField($model, 'link_size', array(
                 'class' => 'numberinput',
                 'style' => 'width:200px;'
