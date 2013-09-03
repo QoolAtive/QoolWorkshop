@@ -23,6 +23,7 @@
 </div>
 <div class="content">
     <div class="tabcontents" >
+        <img class="pagebanner" alt="pagebanner" src="/img/banner/Websimulation.png">
         <div class="websimborder" style="min-height: 400px;">
 
             <h3 class="textcenter" style="padding-top: 20px;">Web Simulation</h3>
