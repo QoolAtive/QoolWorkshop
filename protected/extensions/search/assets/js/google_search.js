@@ -65,7 +65,7 @@ $(document).ready(function() {
         // it takes its defaults from the config object above:
 
 
-                    // ดูตัวแปรทั้งหมด
+        // ดูตัวแปรทั้งหมด
 //                    $.each(settings,function(index,r){
 //                        console.log(index + " = " + r);
 //                    });
@@ -99,7 +99,10 @@ $(document).ready(function() {
                 // after which append them to the #resultsDiv:
 
                 var pageContainer = $('<div>', {className: 'pageContainer', class: 'page pageborder white clearfix'});
-                pageContainer.append('จำนวนทั้งหมด ' + results.length + ' รายการ');
+                var cursor = r.responseData.cursor;
+                console.log('4: estimatedResultCount=' + cursor.estimatedResultCount);
+                var txt_total = '<p class="total-search"><b>พบจำนวนทั้งหมด:</b> ' + cursor.estimatedResultCount + ' <b>รายการ</b></p>';
+                pageContainer.append(txt_total);
                 for (var i = 0; i < results.length; i++) {
                     // Creating a new result object and firing its toString method:
                     pageContainer.append(new result(results[i]) + '');
@@ -121,7 +124,7 @@ $(document).ready(function() {
                         .hide().appendTo(resultsDiv)
                         .fadeIn('slow');
 
-                var cursor = r.responseData.cursor;
+
 
                 // Checking if there are more pages with results, 
                 // and deciding whether to show the More button:
@@ -158,7 +161,7 @@ $(document).ready(function() {
             case 'GwebSearch':
                 arr = [
                     '<div class="webResult web">',
-                    '<h2><a href="', r.unescapedUrl, '" target="_blank">', r.titleNoFormatting, '</a></h2>',
+                    '<h2><a href="', r.unescapedUrl, '" target="_blank">', r.title, '</a></h2>',
                     '<p>', r.content, '</p>',
                     '<a href="', r.unescapedUrl, '" target="_blank">', r.url, '</a>',
                     '</div>'

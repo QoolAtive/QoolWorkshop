@@ -25,12 +25,12 @@
             ?>
         </li>
 
-        <li class="clearfix " style="width: 100%;">
+<!--        <li class="clearfix " style="width: 100%;">
             <div class="lang txt-right"> 
                 <?php
-                $this->widget('application.components.widgets.LanguageSelector');
+//                $this->widget('application.components.widgets.LanguageSelector');
                 ?>
             </div>
-        </li>
+        </li>-->
     </ul> 
 </div>
