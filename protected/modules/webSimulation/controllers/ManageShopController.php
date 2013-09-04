@@ -111,6 +111,8 @@ class ManageShopController extends Controller {
         unset(Yii::app()->session['shop_id']);
         $user_id = Yii::app()->user->id;
         $model = new WebShop();
+        $model->mem_user_id = $user_id;
+
         if (isset($_GET['WebShop'])) {
             $model->attributes = $_GET['WebShop'];
         }
