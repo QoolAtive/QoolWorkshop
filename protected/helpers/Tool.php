@@ -206,28 +206,28 @@ Class Tool {
         );
     }
 
+    public function txtTruncate($string, $limit, $break = " ") {
+        if (strlen($string) <= $limit)
+            return $string;
+        if (false !== ($breakpoint = strpos($string, $break, $limit))) {
+            if ($breakpoint < strlen($string) - 1) {
+                $string = substr($string, 0, $breakpoint);
+            }
+        }
+        return $string;
+    }
+
     public static function stripText($data, $len) {
 
         $data = strip_tags(trim($data));
+        $data = ereg_replace('&nbsp;', ' ', $data);
         if (strlen($data) > $len) {
-            $return = txtTruncate($data, $len);
+            $return = Tool::txtTruncate($data, $len);
             $return .= " ...";
         } else {
             $return = $data;
         }
         return $return;
-
-        function txtTruncate($string, $limit, $break = " ") {
-            if (strlen($string) <= $limit)
-                return $string;
-            if (false !== ($breakpoint = strpos($string, $break, $limit))) {
-                if ($breakpoint < strlen($string) - 1) {
-                    $string = substr($string, 0, $breakpoint);
-                }
-            }
-            return $string;
-        }
-
     }
 
     public static function AutoMotionWarning() {
@@ -242,7 +242,7 @@ Class Tool {
         }
 
         $dataCondition = '-' . $model_motion->amount . ' ' . $type;
-        $motion = CompanyMotion::model()->findAll("update_at < date_add(now(),interval {$dataCondition}) and user_id != 3");
+        $motion = CompanyMotion::model()->findAll("ct.status_appro = 1 and update_at < date_add(now(),interval {$dataCondition}) and user_id != 3");
 
         foreach ($motion as $data) {
 

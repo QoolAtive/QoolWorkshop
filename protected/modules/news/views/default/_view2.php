@@ -99,10 +99,11 @@ foreach ($trainlist as $train) {
                         start: '<?php echo $train['start_at']; ?>',
                         end: '<?php echo $train['end_at']; ?>',
                         url: '<?php echo CHtml::normalizeUrl(array('/news/default/index/view/3#' . $train['id'])); ?>',
+                        backgroundColor: '<?php echo $train['event_color']; ?>',
                     },
 <?php } ?>
             ], //END events: [
-
+            
         }); //END $('#calendar').fullCalendar({
     });
 </script>
