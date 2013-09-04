@@ -56,7 +56,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'province');
             echo $form->dropdownList($model, 'province', Province::model()->getListProvince(), array(
                 'class' => "span2",
-                'empty' => ' - '.Yii::t('language', 'เลือก').' - ',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                 'ajax' => array(
                     'type' => 'POST',
                     'url' => CController::createUrl('/site/provinceToPrefecture'),
@@ -72,7 +72,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'prefecture');
             echo $form->dropdownList($model, 'prefecture', array(), array(
                 'class' => "span2",
-                'empty' => ' - '.Yii::t('language', 'เลือก').' - ',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                 'ajax' => array(
                     'type' => 'POST',
                     'url' => CController::createUrl('/site/PrefectureToDistrict'),
@@ -90,7 +90,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'district');
             echo $form->dropdownList($model, 'district', array(), array(
                 'class' => "span2",
-                'empty' => ' - '.Yii::t('language', 'เลือก').' - ',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
             ));
             echo $form->error($model, 'district');
             ?>
