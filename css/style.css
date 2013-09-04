@@ -1,4 +1,23 @@
 /* @group Component */
+
+.sitemap > p a:before{
+  content: "+ ";
+}
+.sitemap > p a {
+    color: #800080;
+}
+.sitemap > p a {
+    color: #800080;
+}
+.sitemap > h2.textcenter{
+  padding-top: 32px;
+}
+.sitemap ul:last-child {
+    padding-bottom: 30px;
+}
+.sitemap ul{
+  list-style: disc inside none;
+}
 .total-search{
       padding-left: 22px;
     padding-top: 15px;
@@ -736,7 +755,7 @@ input[type="search"]::-webkit-search-cancel-button {
 ._20 label,._25 label,._33 label,._40 label,._50 label ,._75 label ,._80 label ,._100 label{
   white-space: nowrap;
   width: 100%;
-  font-weight: bold;
+  /*font-weight: bold;*/
   line-height: 30px;
   /*    display: block;  */
 }
