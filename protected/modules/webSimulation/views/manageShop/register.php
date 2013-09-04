@@ -91,7 +91,7 @@ if ($model->web_shop_id == NULL) {
         </div>
         <div class="_100 clearfix"></div>
 
-        <div class="bootstro clearfix" style="display: inline-block;" data-bootstro-step="3" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="รายละเอียดร้านค้าของคุณ สามารถใส่คำอธิบายเพื่อบอกว่าร้านค้าของคุณเป็นอย่างไร " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
+        <div class="bootstro clearfix" style="display: inline-block;" data-bootstro-step="3" data-bootstro-placement="left" data-bootstro-width="400px" data-bootstro-content="รายละเอียดร้านค้าของคุณ สามารถใส่คำอธิบายเพื่อบอกว่าร้านค้าของคุณเป็นอย่างไร " data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <!--        <div class="_100">
             <?php
             echo $form->labelEx($model, 'url');
@@ -135,7 +135,7 @@ if ($model->web_shop_id == NULL) {
             </div>
         </div>
 
-        <div class="bootstro clearfix"  data-bootstro-step="4" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="ข้อมูลติดต่อของร้านค้า เพื่อเพิ่มความน่าเชื่อถือร้านค้าของคุณกับผู้ซื้อ และยังให้ผู้ซื้อติดต่อได้อย่างสะดวกรวดเร็ว เพิ่มโอกาสทางการค้ามากขึ้น" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
+        <div class="bootstro clearfix"  data-bootstro-step="4" data-bootstro-placement="left" data-bootstro-width="400px" data-bootstro-content="ข้อมูลติดต่อของร้านค้า เพื่อเพิ่มความน่าเชื่อถือร้านค้าของคุณกับผู้ซื้อ และยังให้ผู้ซื้อติดต่อได้อย่างสะดวกรวดเร็ว เพิ่มโอกาสทางการค้ามากขึ้น" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <div class="_100">
                 <h4 class="reg">- <?php echo Yii::t('language', 'รายละเอียดร้านค้าเพิ่มเติม'); ?> -</h4>
             </div>
