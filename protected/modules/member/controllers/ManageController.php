@@ -65,7 +65,7 @@ Class ManageController extends Controller {
                     Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
                     echo "
                         <script>
-                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมณ์ของคุณ') . "');
+                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมล์ของคุณ') . "');
                         window.location='/member/manage/forgotPassword';
                         </script>
                         ";
@@ -80,7 +80,7 @@ Class ManageController extends Controller {
                     Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
                     echo "
                         <script>
-                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมณ์ของคุณ') . "');
+                        alert('" . Yii::t('language', 'กรุณาตรวจสอบ อีเมล์ของคุณ') . "');
                         window.location='/member/manage/forgotPassword';
                         </script>
                         ";
@@ -186,14 +186,14 @@ Class ManageController extends Controller {
                         if ($model_confirm->save()) {
                             Yii::app()->user->setState('rules', ''); //คืนค่า State //action rules
                             $sendEmail = array(
-                                'subject' => 'ยืนยันการสมัครสมาชิก',
+                                'subject' => Yii::t('language', 'ยืนยันการสมัครสมาชิก'),
                                 'message' => Tool::messageEmail(array('name' => $model->ftname . ' ' . $model->ltname, 'password' => $model_confirm->password), 'confirm_email'),
                                 'to' => $model->email,
                             );
                             Tool::mailsend($sendEmail);
                             echo "
                                 <script>
-                                alert('กรุณาตรวจสอบอีเมล์ เพื่อรับรหัสยืนยันตัวตนเข้าสู่ระบบ');
+                                alert('" . Yii::t('language', 'กรุณาตรวจสอบอีเมล์ เพื่อรับรหัสยืนยันตัวตนเข้าสู่ระบบ') . "');
                                 window.location='/site/index';
                                 </script>
                                 ";
@@ -316,7 +316,6 @@ Class ManageController extends Controller {
 //                    $model_user->username = Tool::Decrypted($model_user_add->username);
 //                    $model_user->password = null;
 //                    $model_user->password_confirm = null;
-
 //                    echo "<pre>";
 //                    print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
                 }
@@ -529,13 +528,15 @@ Class ManageController extends Controller {
             $model = MemConfirm::model()->find('user_id = ' . $id);
             $model_profile = MemRegistration::model()->find('user_id=:user_id', array(':user_id' => $id));
             if (!empty($model)) {
+                $name = LanguageHelper::changeDB($model_profile->ftname, $model_profile->fename);
+                $lname = LanguageHelper::changeDB($model_profile->ltname, $model_profile->lename);
                 $message = '
-                    <strong>เรียน คุณ ' . $model_profile->ftname . ' ' . $model_profile->ltname . ' </strong>
-                    <p>การสมัครสมาชิกของคุณเรียนร้อยแล้ว</p>
+                    <strong>' . Yii::t('language', 'เรียน คุณ') . $name . ' ' . $lname . ' </strong>
+                    <p>' . Yii::t('language', 'การสมัครสมาชิกของคุณเรียบร้อยแล้ว') . '</p>
                     ' . CHtml::link(Yii::t('language', 'คลิกเพื่อเข้าสู่เว็บไซต์'), $url);
 
                 $sendEmail = array(
-                    'subject' => 'ยืนยันการสมัครสมาชิก',
+                    'subject' => Yii::t('language', 'ยืนยันการสมัครสมาชิก'),
                     'message' => $message,
                     'to' => $model_profile->email,
                 );
@@ -547,7 +548,7 @@ Class ManageController extends Controller {
                     echo "
                         <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">
                         <script>
-                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อยแล้ว') . "');
+                        alert('" . Yii::t('language', 'ยืนยันการเป็นสมาชิกเรียบร้อย') . "');
                         window.top.location.href ='/member/manage/admin';
                         </script>
                         ";
