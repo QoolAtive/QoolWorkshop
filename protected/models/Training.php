@@ -37,12 +37,13 @@ class Training extends TrainingBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'required'),
+            array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at, event_color', 'required'),
             array('subject_th, subject_en', 'length', 'max' => 200),
+            array('event_color', 'length', 'max' => 7),
             array('start_at', 'checkDate'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, subject_th, detail_th, subject_en, detail_en, start_at, end_at', 'safe', 'on' => 'search'),
+            array('id, subject_th, detail_th, subject_en, detail_en, link, start_at, end_at, event_color', 'safe', 'on' => 'search'),
         );
     }
 
@@ -53,6 +54,7 @@ class Training extends TrainingBase {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'calendars' => array(self::HAS_MANY, 'Calendar', 'training_id'),
         );
     }
 
@@ -62,13 +64,14 @@ class Training extends TrainingBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'subject_th' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาไทย').') ',
-            'detail_th' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาไทย').') ',
-            'subject_en' => Yii::t('language', 'หัวข้อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
-            'detail_en' => Yii::t('language', 'รายละเอียด').' ('.Yii::t('language', 'ภาษาอังกฤษ').') ',
+            'subject_th' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ') ',
+            'detail_th' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ') ',
+            'subject_en' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') ',
+            'detail_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') ',
             'link' => Yii::t('language', 'ที่อยู่ลิงค์'),
-            'start_at' => Yii::t('language', 'วันที่เริ่มต้น'),// วันที่เริ่ม',
-            'end_at' => Yii::t('language', 'วันที่สิ้นสุด'),//'วันที่สิ้นสุด',
+            'start_at' => Yii::t('language', 'วันที่เริ่มต้น'), // วันที่เริ่ม',
+            'end_at' => Yii::t('language', 'วันที่สิ้นสุด'), //'วันที่สิ้นสุด',
+            'event_color' => Yii::t('language', 'สีบนปฏิทิน'),
         );
     }
 
@@ -89,6 +92,7 @@ class Training extends TrainingBase {
         $criteria->compare('detail_en', $this->detail_en, true);
         $criteria->compare('start_at', $this->start_at, true);
         $criteria->compare('end_at', $this->end_at, true);
+        $criteria->compare('event_color', $this->event_color, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -26,7 +26,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             </span>
         </h3>
 
-        
+
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
@@ -39,7 +39,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             echo $form->textField($model, 'link');
             ?>
         </div>
-        <div class="_50">
+        <div class="_33">
             <?php
             //เลือกวันเริ่มต้น
             echo $form->labelEx($model, 'start_at');
@@ -59,7 +59,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             ));
             ?>
         </div>
-        <div class="_50">
+        <div class="_33">
             <?php
             //เลือกวันสิ้นสุด
             echo $form->labelEx($model, 'end_at');
@@ -76,6 +76,16 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 'htmlOptions' => array(
                     'style' => 'height:20px;'
                 ),
+            ));
+            ?>
+        </div>
+        <div class="_33">
+            <?php
+            echo $form->labelEx($model, 'event_color');
+            echo $form->textField($model, 'event_color', array(
+                'class' => 'colorpicker',
+                'value' => ($model->event_color == NULL) ? '#ffff00' : $model->event_color,
+                'style' => 'width:200px;'
             ));
             ?>
         </div>

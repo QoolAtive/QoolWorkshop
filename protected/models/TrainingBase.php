@@ -12,6 +12,10 @@
  * @property string $link
  * @property string $start_at
  * @property string $end_at
+ * @property string $event_color
+ *
+ * The followings are the available model relations:
+ * @property Calendar[] $calendars
  */
 class TrainingBase extends CActiveRecord
 {
@@ -41,12 +45,13 @@ class TrainingBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'required'),
+			array('subject_th, detail_th, subject_en, detail_en, link, start_at, end_at, event_color', 'required'),
 			array('subject_th, subject_en', 'length', 'max'=>200),
 			array('link', 'length', 'max'=>100),
+			array('event_color', 'length', 'max'=>7),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, subject_th, detail_th, subject_en, detail_en, link, start_at, end_at', 'safe', 'on'=>'search'),
+			array('id, subject_th, detail_th, subject_en, detail_en, link, start_at, end_at, event_color', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +63,7 @@ class TrainingBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'calendars' => array(self::HAS_MANY, 'Calendar', 'training_id'),
 		);
 	}
 
@@ -75,6 +81,7 @@ class TrainingBase extends CActiveRecord
 			'link' => 'Link',
 			'start_at' => 'Start At',
 			'end_at' => 'End At',
+			'event_color' => 'Event Color',
 		);
 	}
 
@@ -97,6 +104,7 @@ class TrainingBase extends CActiveRecord
 		$criteria->compare('link',$this->link,true);
 		$criteria->compare('start_at',$this->start_at,true);
 		$criteria->compare('end_at',$this->end_at,true);
+		$criteria->compare('event_color',$this->event_color,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
