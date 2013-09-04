@@ -223,7 +223,17 @@
             <tr>
                 <td><?php echo Yii::t('language', 'เว็บไซต์'); ?></td>
                 <td class="colon"> : </td>
-                <td><?php echo $model->website; ?></td>
+                <td>
+                    <?php
+                    $link = str_replace('https://', '', $model->website);
+                    $link = str_replace('http://', '', $link);
+                    $link = str_replace(' ', '', $link);
+                    if (!empty($link) && $link != '-')
+                        $link = 'http://' . $link;
+
+                    echo CHtml::link($link, $link, array('target' => '_bank'));
+                    ?>
+                </td>
             </tr>
             <?php
             $brochure_count = CompanyBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
@@ -252,7 +262,7 @@
 
         </table>
         <div class="ckfix">
-        <?php
+            <?php
             $infor = LanguageHelper::changeDB($model->infor, $model->infor_en);
             echo $infor;
             ?>
