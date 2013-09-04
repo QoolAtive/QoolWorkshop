@@ -406,7 +406,7 @@ return array(
     'ที่อยู่เดิม' => 'Old address',
     'ที่อยู่ใหม่' => 'New address',
     'ยืนยันการแก้ไขที่อยู่' => 'Confirm your edit address',
-    '' => '',
+    'เปลี่ยนรหัสผ่าน' => 'Change your password',
     '' => '',
     '' => '',
     '' => '',
