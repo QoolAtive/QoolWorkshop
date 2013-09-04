@@ -1,6 +1,6 @@
 <div class="content" style="padding: 0% 11.5%;">
     <div class="row-fluid">
-        <h3> <img src="/img/iconform.png"> แก้ไขข้อมูลบุคคลธรรมดา </h3>
+        <h3> <img src="/img/iconform.png"> <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'ข้อมูลบุคคลธรรมดา'); ?> </h3>
         <hr>
         <?php
         $form = $this->beginWidget('CActiveForm', array(
@@ -9,7 +9,7 @@
         ));
         ?>
         <div class="_100">
-            <h4 class="reg">- ข้อมูลส่วนตัว -</h4>
+            <h4 class="reg">- <?php echo Yii::t('language', 'ข้อมูลส่วนตัว'); ?> -</h4>
         </div>
         <!-- คำน้หน้าชื่อ -->
         <div class="_20">
@@ -156,7 +156,7 @@
         </div>
 
         <div class="_100">
-            <h4 class="reg">- ข้อมูลธุรกิจ -</h4>
+            <h4 class="reg">- <?php echo Yii::t('language', 'ข้อมูลธุรกิจ'); ?> -</h4>
         </div>
         <!-- ประเภทผู้สมัครสมาชิก -->
         <div class="_50 clearfix">
@@ -167,7 +167,13 @@
             </p>
             <span class="span1">
                 <?php
-                echo $form->radioButtonList($model, 'mem_type', array('1' => 'ผู้สนใจ', '2' => 'ผู้ประกอบธุรกิจ'), array('class' => 'fate', 'id' => 'member1'));
+                echo $form->radioButtonList($model, 'mem_type', array(
+                    '1' => Yii::t('language', 'ผู้สนใจ'),
+                    '2' => Yii::t('language', 'ผู้ประกอบธุรกิจ')
+                        ), array(
+                    'class' => 'fate',
+                    'id' => 'member1'
+                ));
                 echo $form->error($model, 'mem_type');
                 ?>
             </span>
@@ -187,7 +193,7 @@
             <?php
             echo $form->labelEx($model, 'business_type');
             echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
-                'empty' => 'เลือก'
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - '
             ));
             echo $form->error($model, 'business_type');
             ?>
