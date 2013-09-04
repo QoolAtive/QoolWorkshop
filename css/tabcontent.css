@@ -28,9 +28,7 @@ ul.tabs li
     opacity: 0.8;
     zoom: 1;
 *display: inline;
-
-    
-    
+ }
     
     
 /*    display: inline;
@@ -38,12 +36,15 @@ ul.tabs li
     margin-right:3px; 
     */
     /*distance between tabs*/
-}
-        
+
+
+          
 ul.tabs li a{
    
     line-height         : normal;
     vertical-align      : middle; 
+
+
 	
 
     display: table-cell;
