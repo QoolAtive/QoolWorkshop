@@ -34,6 +34,9 @@
   padding: 20px;
   width: 800px;
 }
+.webResult.web a{
+ word-wrap: break-word;
+}
 
 .webResult h2 a{
   text-decoration: underline;
@@ -1893,10 +1896,7 @@ width: 30%;
   .learninglist li:hover img{
     opacity: 0.7;
   }
-  ul.yiiPager a:link, ul.yiiPager a:visited{
-    padding: 3px 6px 1px;
-    border-radius: 11px 11px 11px 11px;
-  }
+
 
   div.items span.empty {  display: block;     text-align: center; }     
   #gallery {          text-align: center;     } 
@@ -2310,6 +2310,8 @@ ul.yiiPager {
 ul.yiiPager li {
   display: inline;
 }
+
+
 ul.yiiPager a:link, ul.yiiPager a:visited {
   border: 1px solid #9AAFE5;
   color: #0E509E;
@@ -2317,6 +2319,10 @@ ul.yiiPager a:link, ul.yiiPager a:visited {
   padding: 1px 6px;
   text-decoration: none;
   padding-top: 3px;
+       padding: 3px 7px;
+           border-radius: 11px 11px 11px 11px;
+
+
 }
 ul.yiiPager .page a {
   font-weight: normal;
