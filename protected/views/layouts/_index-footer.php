@@ -31,7 +31,7 @@
             $this->widget('application.extensions.addThis.addThis', array(
                 'id' => 'addThis',
                 'username' => 'username',
-                'defaultButtonCaption' => 'Share',
+                'defaultButtonCaption' => Yii::t('language', 'แบ่งปัน'),
                 'showDefaultButton' => true,
                 'showDefaultButtonCaption' => true,
                 'separator' => '|',
@@ -45,8 +45,13 @@
             );
             ?>
             <div class="footrtext">
-                <a href="/index.php/about/default/siteMap">แผนผังเว็บไซต์</a> | 
-                <a class="createaccountbtn fancybox" href="/member/default/rules">นโยบายและเงื่อนไขการใช้งาน</a>
+                <a href="/index.php/about/default/siteMap">
+                    <?php echo Yii::t('language', 'แผนผังเว็บไซต์'); ?>
+                </a>
+                 |  
+                <a class="createaccountbtn fancybox" href="/member/default/rules">
+                    <?php echo Yii::t('language', 'นโยบายและเงื่อนไขการใช้งาน'); ?>
+                </a>
             </div>
         </div>
     </div>
