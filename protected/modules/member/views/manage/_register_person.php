@@ -15,8 +15,8 @@
         <ul class="tabs clearfix">
             <?php
             $list = array(
-                array('text' => 'บุคคลธรรมดา', 'link' => '/member/manage/registerPerson', 'select' => 'selected'),
-                array('text' => 'นิติบุคคล', 'link' => '/member/manage/registerRegistration', 'select' => ''),
+                array('text' => Yii::t('language', 'บุคคลธรรมดา'), 'link' => '/member/manage/registerPerson', 'select' => 'selected'),
+                array('text' => Yii::t('language', 'นิติบุคคล'), 'link' => '/member/manage/registerRegistration', 'select' => ''),
             );
             echo Tool::GenList($list);
             ?>
@@ -27,7 +27,7 @@
     <div class="tabcontents">
         <div id="view1" class="tabcontent" >
             <div class="_100">    
-                <h3> <img src="/img/iconform.png"> แบบลงทะเบียนสำหรับบุคคลธรรมดา </h3> 
+                <h3> <img src="/img/iconform.png"><?php echo Yii::t('language', 'แบบลงทะเบียนสำหรับบุคคลธรรมดา'); ?></h3> 
             </div>
             <?php
             $form = $this->beginWidget('CActiveForm', array(
@@ -43,7 +43,7 @@
             ));
             ?>
             <div class="_100">
-                <h4 class="reg">- ข้อมูลสมาชิก -</h4>
+                <h4 class="reg">- <?php echo Yii::t('language', 'ข้อมูลสมาชิก'); ?> -</h4>
             </div>
 
             <!-- username -->
@@ -52,12 +52,14 @@
                 echo $form->labelEx($model_user, 'username');
                 echo $form->textField($model_user, 'username', array(
                     'class' => 'numberinput fieldrequire',
-                    'placeholder' => 'เลขบัตรประจำตัวประชาชน',
+                    'placeholder' => Yii::t('language', 'เลขบัตรประจำตัวประชาชน'),
                         // 'placeholder' => MemUser::model()->getAttributeLabel('username'),
                 ));
                 echo $form->error($model_user, 'username');
                 ?>
-<!--                 <label><?php echo Yii::t('language', '*' . MemUser::model()->getAttributeLabel('username') . ' ต้องระบุเป็นเลขบัตรประจำตัวประชาชนเท่านั้น'); ?></label>
+                <!--<label>
+                <?php echo '*' . MemUser::model()->getAttributeLabel('username') . Yii::t('language', ' ต้องระบุเป็นเลขบัตรประจำตัวประชาชนเท่านั้น'); ?>
+                </label>
                 -->            </div>
             <!-- new line -->
 
@@ -85,7 +87,7 @@
             <!-- new line -->
 
             <div class="_100">
-                <h4 class="reg">- ข้อมูลส่วนตัว -</h4>
+                <h4 class="reg">- <?php echo Yii::t('language', 'ข้อมูลส่วนตัว'); ?> -</h4>
             </div>
             <!-- คำน้หน้าชื่อ -->
             <div class="_20">
@@ -172,7 +174,7 @@
                 <?php
                 echo $form->dropdownList($model, 'sex', MemSex::model()->getSex(), array(
                     'class' => "span2 fieldrequire",
-                    'empty' => 'เลือก'
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - '
                 ));
                 echo $form->error($model, 'sex');
                 ?>
@@ -228,7 +230,7 @@
                 <?php
                 echo $form->dropdownList($model, 'province', Province::model()->getListProvince(), array(
                     'class' => "fieldrequire haft right",
-                    'empty' => 'เลือก',
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                     'ajax' => array(
                         'type' => 'POST',
                         'url' => CController::createUrl('/site/provinceToPrefecture'),
@@ -248,11 +250,12 @@
                 <?php
                 $list_prefecture = array();
                 if ($model->prefecture != null) {
-                    $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', 'name_th');
+                    $field_prefecture = LanguageHelper::changeDB('name_th', 'name_en');
+                    $list_prefecture = CHtml::listData(Prefecture::model()->findAll('province_id = :province_id', array(':province_id' => $model->province)), 'id', $field_prefecture);
                 }
                 echo $form->dropdownList($model, 'prefecture', $list_prefecture, array(
                     'class' => "fieldrequire haft right",
-                    'empty' => 'เลือก',
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                     'ajax' => array(
                         'type' => 'POST',
                         'url' => CController::createUrl('/site/PrefectureToDistrict'),
@@ -274,11 +277,12 @@
                 <?php
                 $list_district = array();
                 if ($model->district != null) {
-                    $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', 'name_th');
+                    $field_district = LanguageHelper::changeDB('name_th', 'name_en');
+                    $list_district = CHtml::listData(District::model()->findAll('prefecture_id = :prefecture_id', array(':prefecture_id' => $model->prefecture)), 'id', $field_district);
                 }
                 echo $form->dropdownList($model, 'district', $list_district, array(
                     'class' => "fieldrequire haft right",
-                    'empty' => 'เลือก',
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                 ));
                 echo $form->error($model, 'district');
                 ?>
@@ -330,7 +334,7 @@
 
                 <?php
                 echo $form->dropDownList($model, 'high_education', HighEducation::model()->getListData(), array(
-                    'empty' => 'เลือก',
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                     'class' => ' right fieldrequire'
                 ));
                 echo $form->error($model, 'high_education');
@@ -338,7 +342,7 @@
             </div>
 
             <div class="_100">
-                <h4 class="reg">- ข้อมูลธุรกิจ -</h4>
+                <h4 class="reg">- <?php echo Yii::t('language', 'ข้อมูลธุรกิจ'); ?> -</h4>
             </div>
             <!-- ประเภทผู้สมัครสมาชิก -->
             <div class="_50 clearfix">
@@ -350,7 +354,13 @@
 
 
                 <?php
-                echo $form->radioButtonList($model, 'mem_type', array('1' => Yii::t('language', 'ผู้สนใจ'), '2' => Yii::t('language', 'ผู้ประกอบธุรกิจ')), array('class' => 'fate', 'id' => 'member1'));
+                echo $form->radioButtonList($model, 'mem_type', array(
+                    '1' => Yii::t('language', 'ผู้สนใจ'),
+                    '2' => Yii::t('language', 'ผู้ประกอบธุรกิจ'
+                    )), array(
+                    'class' => 'fate',
+                    'id' => 'member1'
+                ));
                 echo $form->error($model, 'mem_type');
                 ?>
             </div>
@@ -406,7 +416,7 @@
             <div class="_75">
                 <?php
                 echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
-                    'empty' => 'เลือก',
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                         // 'class' => 'haft'
                 ));
                 echo $form->error($model, 'business_type');
@@ -432,7 +442,7 @@
 
             <div class="_100 textcenter padud20">
                 <?php
-                echo CHtml::submitButton('สมัครสมาชิก');
+                echo CHtml::submitButton(Yii::t('language', 'สมัครสมาชิก'));
                 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/site/index'
                     )) . "'")
