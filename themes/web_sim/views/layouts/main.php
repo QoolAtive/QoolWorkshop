@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css" />
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
         <?php
         //set bg
@@ -90,10 +91,11 @@
                 </h1>
                 <!-- quicksearch -->
                 <div id="first_search">
-                    <form name="quicksearch" id="quicksearch" action="/webSimulation/shop/search" method="get">
-                        <input name="keyword" id="txtSearch" type="text" />
-                        <input id="btnTopsearch" onclick="javascript:document.quicksearch.submit();" type="button" />
-                    </form>
+                    <?php $this->widget('application.extensions.search_websim.GoogleSearch'); ?>
+                    <!--                                                    <form name="quicksearch" id="quicksearch" action="/webSimulation/shop/search" method="get">
+                                                                            <input name="keyword" id="txtSearch" type="text" />
+                                                                            <input id="btnTopsearch" onclick="javascript:document.quicksearch.submit();" type="button" />
+                                                                        </form>-->
                 </div>
             </div>
 
