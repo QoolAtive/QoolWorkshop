@@ -8,7 +8,7 @@
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'ผู้ให้บริการ'), array(
-                    '/serviceProvider/manage/typeBusiness'), array('rel' => 'view2'));
+                    '/serviceProvider/manage/typeBusiness'), array('rel' => 'view1'));
                 echo "</li>";
             }
 //            $menu = SpTypeBusiness::model()->findAll();
