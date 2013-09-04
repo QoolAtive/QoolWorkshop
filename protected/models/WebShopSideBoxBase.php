@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'web_shop_side_box':
  * @property integer $web_shop_id
+ * @property integer $calendar
  * @property integer $forecast
  * @property integer $exchange
  * @property integer $lottery
@@ -44,10 +45,10 @@ class WebShopSideBoxBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('web_shop_id', 'required'),
-			array('web_shop_id, forecast, exchange, lottery, oil, gold, stock', 'numerical', 'integerOnly'=>true),
+			array('web_shop_id, calendar, forecast, exchange, lottery, oil, gold, stock', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, forecast, exchange, lottery, oil, gold, stock', 'safe', 'on'=>'search'),
+			array('web_shop_id, calendar, forecast, exchange, lottery, oil, gold, stock', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +71,7 @@ class WebShopSideBoxBase extends CActiveRecord
 	{
 		return array(
 			'web_shop_id' => 'Web Shop',
+			'calendar' => 'Calendar',
 			'forecast' => 'Forecast',
 			'exchange' => 'Exchange',
 			'lottery' => 'Lottery',
@@ -91,6 +93,7 @@ class WebShopSideBoxBase extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('web_shop_id',$this->web_shop_id);
+		$criteria->compare('calendar',$this->calendar);
 		$criteria->compare('forecast',$this->forecast);
 		$criteria->compare('exchange',$this->exchange);
 		$criteria->compare('lottery',$this->lottery);

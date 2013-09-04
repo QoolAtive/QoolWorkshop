@@ -8,9 +8,14 @@
         <meta name="robots" content="index, follow" />
         <title>ร้าน <?php echo $this->shop['name_th']; ?></title>
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/css/global.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="/css/mini_calendar.css" />-->
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <!--<script src="/js/fullcalendar.js"></script>-->
+        <!--<script src="/js/self/web_sim/mini_calendar.js"></script>-->
 
         <?php
         //set bg
@@ -185,7 +190,15 @@
                     -->            
                     <?php
                     $side_box = WebShopSideBox::model()->findByAttributes(array('web_shop_id' => $shop_id));
+                    if ($side_box['calendar']) {
+                        ?>
+                        <div class="right_item_list">
+                            <h2 class="topic">ปฏิทิน</h2>
+                            <div id='calendar'></div>
+                        </div>
+                    <?php } ?>
 
+                    <?php
                     if ($side_box['forecast']) {
                         ?>
                         <div class="right_item_list" style="display:block;">
@@ -289,3 +302,8 @@
         </div><!-- wrapper -->
     </body>
 </html>
+ <script>
+$(function() {
+$( "#calendar" ).datepicker();
+});
+</script>
