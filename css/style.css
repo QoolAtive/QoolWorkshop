@@ -1302,6 +1302,9 @@ opacity: 0.7;
   position: absolute;
   color: transparent;
 }
+.bgindex .lang{
+  right: 26px;
+}
 .loginbtnbox.clearfix {
   float: right;
   width: 250px;

@@ -68,7 +68,7 @@ $description = Description::model()->find('status = :status', array(':status' =>
                     </div>
 
                 </div>
-                <div style=" height:80%;" class="smart clearfix">
+                <div class="smart clearfix">
                     <?php echo $content; ?>
                 </div>
 
