@@ -25,7 +25,6 @@ class SiteController extends Controller {
 //            )
         );
     }
-    
 
     /**
      * This is the default 'index' action that is invoked
@@ -157,10 +156,10 @@ class SiteController extends Controller {
         $data = Prefecture::model()->findAll('province_id=:p_id', array(
             ':p_id' => (int) $_POST['province'])
         );
+        $field = LanguageHelper::changeDB('name_th', 'name_en');
+        $data = CHtml::listData($data, 'id', $field);
 
-        $data = CHtml::listData($data, 'id', Yii::t('language', 'name_th'));
-
-        echo "<option value=''>เลือก</option>";
+        echo "<option value=''> - " . Yii::t('language', 'เลือก') . " - </option>";
         foreach ($data as $id => $name)
             echo CHtml::tag('option', array('value' => $id), CHtml::encode($name), true);
     }
@@ -169,10 +168,10 @@ class SiteController extends Controller {
         $data = District::model()->findAll('prefecture_id=:p_id', array(
             ':p_id' => (int) $_POST['prefecture'])
         );
+        $field = LanguageHelper::changeDB('name_th', 'name_en');
+        $data = CHtml::listData($data, 'id', $field);
 
-        $data = CHtml::listData($data, 'id', Yii::t('language', 'name_th'));
-
-        echo "<option value=''>เลือก</option>";
+        echo "<option value=''> - " . Yii::t('language', 'เลือก') . " - </option>";
         foreach ($data as $id => $name)
             echo CHtml::tag('option', array('value' => $id), CHtml::encode($name), true);
     }
