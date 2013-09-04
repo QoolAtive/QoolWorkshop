@@ -208,7 +208,7 @@
                     </td>
                 </tr>
                 <?php
-                $brochure = SpBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                $brochure = SpBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));
                 if ($brochure > 0) {
                     ?>
                     <tr>
