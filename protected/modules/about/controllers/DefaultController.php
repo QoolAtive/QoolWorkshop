@@ -35,7 +35,7 @@ class DefaultController extends Controller {
             $data['name'] = $_POST['name'];
             $data['to'] = 'dbdmart2013@gmail.com';
             $data['subject'] = Yii::t('language', 'มีข้อความตืดต่อจาก') . Yii::t('language', 'คุณ ') . $_POST['name'];
-            $data['message'] = $_POST['description'] . "<br/>" . $_POST['website'];
+            $data['message'] = $_POST['description'] . "<br/>e-mail: " . $_POST['email'] . "<br/>website: " . $_POST['website'];
             if ($model->save()) {
                 if (Tool::mailsendContact($data)) {
                     echo "<script>
@@ -67,7 +67,7 @@ class DefaultController extends Controller {
     public function actionSiteMap() {
 
         $modelSiteMapMain = SiteMap::model()->findAll();
-        
+
         $this->render('site_map', array(
             'modelSiteMapMain' => $modelSiteMapMain,
         ));

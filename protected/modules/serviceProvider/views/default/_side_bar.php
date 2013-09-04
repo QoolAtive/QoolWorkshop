@@ -4,7 +4,6 @@
             <li class="boxhead" style="background-size: 225px; background: url('<?php echo Yii::t('language', '/img/iconpage/serviceprovider.png'); ?>');" ></li>
         </ul>
         <ul class="tabs clearfix">
-            <li><a href="/serviceProvider/default/index" rel="view1"><?php echo Yii::t('language', 'ผู้ให้บริการทั้งหมด'); ?></a></li>
             <?php
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
