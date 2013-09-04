@@ -11,12 +11,14 @@ class MemUser extends MemUserBase {
     public function rules() {
         return array(
             array('username', 'CheckUser'),
-            array('password', 'CheckPass'),
-            array('password_confirm', 'CheckPass'),
+//            array('password', 'CheckPass'),
+//            array('password_confirm', 'CheckPass'),
 //            array('password_confirm', 'CheckPassConfirm'),
 //            array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
+            array('password', 'length', 'min' => 6),
+            array('password', 'match', 'pattern' => '[^0-9A-Za-z]', 'message' => '{attribute} '. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรภาษาอังกฤษเท่านั้น')),
 //            array('password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
-//            array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
+            array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
             array('password_confirm, username, password, type, verifyCode', 'required'),
             array('password_confirm, username, password', 'length', 'max' => 100),
             array('type', 'length', 'max' => 1),
@@ -139,46 +141,22 @@ class MemUser extends MemUserBase {
                 $this->addError('username', Yii::t('language', 'รหัสผู้ใช้มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
             }
         }
+    }
 
-
+//    public function CheckPass() {
+//        if (strlen($this->password) < 6) { // เช็คว่ารหัสผ่านมีไม่น้อยกว่า 6 ตัวอักษร
+//            $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ต้องมีมากกว่าหรือเท่ากับ 6')));
+//        }
+//
+//        if (ereg('[^0-9A-Za-z]', $this->password)) { // เช็ครูปแบบรหัสผ่านว่าเป็น ภาษาอังกฤษ หรือ ตัวเลขหรือไม่?
+//            $this->addError('password', Yii::t('language', 'รูปแแบบ' . MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ไม่ถูกต้อง กรุณาตรวจสอบ')));
+//        }
 //        else {
-//            $model = MemUser::model()->findByAttributes(array('username' => $this->username));
-//            if (!empty($model))
-//                $this->addError('username', Yii::t('language', 'รหัสผู้ใช้มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
+//            if ($this->password != $this->password_confirm) {
+//                $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ไม่ตรงกัน กรุณาตรวจสอบ')));
+//            }
 //        }
-//        if (strlen(Tool::Decrypted($this->password)) < 6) { // เช็คว่ารหัสผ่านมีไม่น้อยกว่า 6 ตัวอักษร
-//            $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . 'ต้องมีมากกว่าหรือเท่ากับ 6'));
-//        }
-//        if (ereg('[^0-9A-Za-z]', Tool::Decrypted($this->password))) { // เช็ครูปแบบรหัสผ่านว่าเป็น ภาษาอังกฤษ หรือ ตัวเลขหรือไม่?
-//            $this->addError('password', Yii::t('language', 'รูปแแบบ' . MemUser::model()->getAttributeLabel('password') . 'ไม่ถูกต้อง กรุณาตรวจสอบ'));
-//        }
-//        }
-    }
-
-    public function CheckPass() {
-        if (strlen($this->password) < 6) { // เช็คว่ารหัสผ่านมีไม่น้อยกว่า 6 ตัวอักษร
-            $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ต้องมีมากกว่าหรือเท่ากับ 6')));
-        }
-//        if (strlen($this->password_confirm) < 6) {
-//            $this->addError('password_confirm', Yii::t('language', MemUser::model()->getAttributeLabel('password_confirm') . Yii::t('language', 'ต้องมีมากกว่าหรือเท่ากับ 6')));
-//        }
-
-        if (ereg('[^0-9A-Za-z]', $this->password)) { // เช็ครูปแบบรหัสผ่านว่าเป็น ภาษาอังกฤษ หรือ ตัวเลขหรือไม่?
-            $this->addError('password', Yii::t('language', 'รูปแแบบ' . MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ไม่ถูกต้อง กรุณาตรวจสอบ')));
-        } else {
-            if ($this->password != $this->password_confirm) {
-                $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ไม่ตรงกัน กรุณาตรวจสอบ')));
-            }
-        }
-//        if ($this->password != $this->password_confirm) {
-//            $this->addError('password', Yii::t('language', MemUser::model()->getAttributeLabel('password') . Yii::t('language', 'ไม่ตรงกัน กรุณาตรวจสอบ')));
-//        } else {
-//            
-//        }
-//        } else {
-//            
-//        }
-    }
+//    }
 
 //    public function CheckPassConfirm() {
 //        if ($this->password_confirm != $this->password) {

@@ -16,15 +16,15 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
     </h4>
     <ul>
 
-        <?php 
-            if(!empty($logo)){ 
-        ?>
-                      <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+        <?php
+        if (!empty($logo)) {
+            ?>
+            <li><img alt="e-dirshoplogo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
 
-        <?php 
-            } else{
-        ?> <li><img alt="e-dirshoplogo"  src="/file/knowledge/default.jpg"/></li> 
-        <?  }  ?>
+            <?php
+        } else {
+            ?> <li><img alt="e-dirshoplogo"  src="/img/default.jpg"/></li> 
+        <?php } ?>
 
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทร้านค้า') . " : "; ?></label>
@@ -57,7 +57,15 @@ $model_type_com = CompanyType::model()->findAll("company_id ='" . $data->id . "'
         </li>
         <li>
             <i class="icon-globe"></i> <label><?php echo Yii::t('language', 'เว็บไซต์') . " : "; ?></label>
-            <?php echo $data->website; ?>
+            <?php
+            $link = str_replace('https://', '', $data->website);
+            $link = str_replace('http://', '', $link);
+            $link = str_replace(' ', '', $link);
+            if (!empty($link) && $link != '-')
+                $link = 'http://' . $link;
+
+            echo CHtml::link($link, $link, array('target' => '_bank'));
+            ?>
         </li>
 
     </ul>

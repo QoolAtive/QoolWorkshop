@@ -486,9 +486,8 @@ h2 img{
 
 html, body{
     height:100%;
-    background: #f9f9f9;
-    font-family: 'Open Sans', sans-serif; 
-    font-size:12px; 
+/*    background: #f9f9f9;
+*/    /*font-family: 'Open Sans', sans-serif; */
     color:#666;
     width: 100%;
 
@@ -1944,13 +1943,13 @@ ul#navi_containTab li {
     padding-top: 26px;
     text-align: left;
     vertical-align: middle;
-    width: 76%;
+    width: 73%;
 }
 
 #footer .footright{
     float: right;
     padding-top: 40px;
-    width: 24%;
+    width: 27%;
 }
 .footright a {
     color: #FFFFFF;

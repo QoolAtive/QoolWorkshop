@@ -45,10 +45,9 @@ ul.tabs li a{
     line-height         : normal;
     vertical-align      : middle; 
 	
-    font: normal 12px Verdana;
 
     display: table-cell;
-    font: 12px Verdana;
+    font: 13px Verdana;
     height: 100px;
     text-align: center;
     vertical-align: middle;
