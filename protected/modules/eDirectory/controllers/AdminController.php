@@ -334,7 +334,7 @@ class AdminController extends Controller {
             ';
         $criteria->distinct = 'name, name_en';
 //        $criteria->order = 'cm.company_motion_id desc';
-        $criteria->condition = "ct.status_appro = 1 and update_at < date_add(now(), $data_motion) and user_id != 3";
+        $criteria->condition = "ct.status_appro = 1 and cm.update_at < date_add(now(), interval $data_motion) and t.user_id != 3";
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);
