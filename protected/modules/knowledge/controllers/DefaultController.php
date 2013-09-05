@@ -4,7 +4,7 @@ class DefaultController extends Controller {
 
     public function actionIndex($knowledge_type_id = null) {
         if (Yii::app()->user->getState('rule_knowledge') == null) {
-            $this->redirect('/knowledge/default/ruleKnowledge');
+            $this->redirect('/site/index');
         }
 //        Yii::app()->user->setState('rule_knowledge', null);
 
