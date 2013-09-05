@@ -67,25 +67,25 @@
                         break;
                 }
                 ?>
-                <li class='<?php echo $select1; ?>'>
+                <li class='<?php echo $select1; ?> admin'>
                     <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/1')); ?>" rel='manage1'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?><br/>
                         <?php echo Yii::t('language', 'บริการ'); ?>
                     </a>
                 </li>
-                <li class='<?php echo $select2; ?>'>
+                <li class='<?php echo $select2; ?> admin'>
                     <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/2')); ?>" rel='manage2'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?><br/>
                         <?php echo Yii::t('language', 'การเรียนรู้และบทความ'); ?>
                     </a>
                 </li>
-                <li class='<?php echo $select3; ?>'>
+                <li class='<?php echo $select3; ?> admin'>
                     <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/3')); ?>" rel='manage3'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?><br/>
                         <?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?>
                     </a>
                 </li>
-                <li class='<?php echo $select4; ?>'>
+                <li class='<?php echo $select4; ?> admin'>
                     <a href="<?php echo CHtml::normalizeUrl(array('/faq/default/manageFaq/view/4')); ?>" rel='manage4'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?><br/>
                         <?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?>

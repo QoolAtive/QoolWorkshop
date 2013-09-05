@@ -185,10 +185,17 @@ p.p1 ul , p1 ol{
   list-style: disc;
 
 }
-.tabs.clearfix > li.admin{
+/*.tabs.clearfix > li.admin{
   background: none repeat scroll 0 0 #9F00AA;
   opacity: 1;
 }
+.tabs.clearfix > li.selected.admin{
+  background: none repeat scroll 0 0 #9F00AA;
+  
+}
+.tabs.clearfix > li.selected.admin > a.selected{
+  background: transparent;
+}*/
 .edirsearchbox{
   padding: 16px 8px;
   background-image: url('/img/searchbg.png');
@@ -386,7 +393,7 @@ p.p1 ul , p1 ol{
   .lessonList a{
     color: #800080;
     display: inline-block;
-    font-weight: bold;
+    /*font-weight: bold;*/
     min-height: 39px;
     padding-top: 11px;
     width: 100%;
@@ -1788,7 +1795,7 @@ border : 1px solid #F544FF;
 }
 
 #container ul.linklist li ul.innerlogo li:last-child {
-  font-weight: bold;
+  /*font-weight: bold;*/
   text-align: center;
   letter-spacing: .9px;
 }
@@ -1797,7 +1804,7 @@ border : 1px solid #F544FF;
   display: table-cell;
   width: 231px;
   line-height: 120px;
-  height: 120px !important;
+  height: 100px !important;
   vertical-align: middle;
   text-align: center;
 }
