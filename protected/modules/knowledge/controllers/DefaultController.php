@@ -3,6 +3,11 @@
 class DefaultController extends Controller {
 
     public function actionIndex($knowledge_type_id = null) {
+
+        $count = KnowledgeCount::model()->count('user_id = :user_id', array(':user_id' => Yii::app()->user->id));
+        if ($count > 0) {
+            Yii::app()->user->setState('rule_knowledge', '1');
+        }
         if (Yii::app()->user->getState('rule_knowledge') == null) {
             $this->redirect('/site/index');
         }
@@ -142,10 +147,10 @@ class DefaultController extends Controller {
             Yii::app()->user->setState('rule_knowledge', $rule_knowledge);
 
             if (Yii::app()->user->id) {
-                    $model = new KnowledgeCount();
-                    $model->user_id = Yii::app()->user->id;
-                    $model->count = 1;
-                    $model->save();
+                $model = new KnowledgeCount();
+                $model->user_id = Yii::app()->user->id;
+                $model->count = 1;
+                $model->save();
             } else {
                 $model = KnowledgeCount::model()->find('user_id = 0');
                 if (count($model) > 0) {
