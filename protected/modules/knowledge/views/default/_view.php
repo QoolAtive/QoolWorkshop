@@ -96,6 +96,9 @@
                     echo $subject;
                     ?>
                 </h3>
+                <a title="Syndicate this content" href="/knowledge/default/feed/id/<?php echo $view->id; ?>" target="_bank">
+                    <img alt="RSS" src="http://www.ramirezcobos.com/wp-includes/images/rss.png" >
+                </a
                 <p><?php echo $detail; ?></p>
                 <p style="padding: 5px; float: right;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
 
