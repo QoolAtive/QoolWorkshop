@@ -20,6 +20,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //                'value' => 'CHtml::link($data->subject,array("manage/ViewTopic/ques_id/$data->id"))',
         ),
         array(
+            'name' => 'type_id',
+            'value' => 'KnowledgeType::model()->getList($data->type_id)',
+            'filter' => KnowledgeType::model()->getList(),
+//                'value' => 'CHtml::link($data->subject,array("manage/ViewTopic/ques_id/$data->id"))',
+        ),
+        array(
             'name' => 'guide_status',
             'value' => 'Knowledge::model()->getDataTypeList($data->guide_status)',
             'filter' => Knowledge::model()->getDataTypeList(' ', true),

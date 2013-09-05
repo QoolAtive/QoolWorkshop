@@ -17,6 +17,15 @@ $(document).ready(function() {
     // });
 });
 $(document).ready(function() {
+
+          $('a[href="/knowledge/default/ruleKnowledge"]').fancybox({
+          type : 'iframe',
+          closeBtn : 0
+          // afterClose : function() {
+          //         location.reload();
+          //         return;
+          //     }       
+        });
         $('.linkgroupbtn').fancybox({
           width  :'100%',
           closeBtn : 0

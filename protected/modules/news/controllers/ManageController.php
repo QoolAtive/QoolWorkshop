@@ -60,7 +60,7 @@ class ManageController extends Controller {
             if ($model->save()) {
 //for upload news file
                 $arr_news_files = CUploadedFile::getInstancesByName('file_path');
-                if($arr_news_files != NULL) {
+                if ($arr_news_files != NULL) {
                     $news_path = '/upload/file/news/';
 
                     foreach ($arr_news_files as $news_i => $news_file) {
@@ -140,6 +140,7 @@ class ManageController extends Controller {
     }
 
     public function actionEditTraining($id = NULL) {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/select_text_color.js');
         if ($id == NULL) {
             $model = new Training();
         } else {
@@ -197,7 +198,7 @@ class ManageController extends Controller {
 
             // Add By Ann 23-08-56 For AddAttachment in E-mail
             $data['news_id'] = $news_id;
-            
+
             $data['from'] = 'dbdmart2013@gmail.com';
             $data['name'] = Yii::t('language', 'ข่าวสารจาก DBD Mart');
             $data['subject'] = $news['subject_th'];
@@ -212,7 +213,7 @@ class ManageController extends Controller {
 
             if ($counter > 0) {
                 echo "<script>
-                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน').' ' . $counter .' '. Yii::t('language', 'ฉบับ') . "');
+                        alert('" . Yii::t('language', 'ส่งอีเมล์เป็นจำนวน') . ' ' . $counter . ' ' . Yii::t('language', 'ฉบับ') . "');
                         window.close();
                     </script>";
             } else {

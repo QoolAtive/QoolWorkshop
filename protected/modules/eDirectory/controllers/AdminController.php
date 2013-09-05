@@ -308,7 +308,16 @@ class AdminController extends Controller {
         }
 
         $date_motion = CompanyMotionSetting::model()->find('`use`=:use', array(':use' => 1));
-        $data_motion = $date_motion->amount . ' ' . $date_motion->type;
+        
+        if ($date_motion->type == 'วัน') {
+            $type = "DAY";
+        } else if ($model_motion->type == 'เดือน') {
+            $type = "MONTH";
+        } else if ($model_motion->type == 'ปี') {
+            $type = "YEAR";
+        }
+        
+        $data_motion = '-'.$date_motion->amount . ' ' . $type;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
@@ -325,7 +334,7 @@ class AdminController extends Controller {
             ';
         $criteria->distinct = 'name, name_en';
 //        $criteria->order = 'cm.company_motion_id desc';
-        $criteria->condition = "((ct.status_block = 1) or (ct.status_appro = 1 and cm.update_at < '" . $update_at . "')) and t.user_id != 3";
+        $criteria->condition = "ct.status_appro = 1 and cm.update_at < date_add(now(), interval $data_motion) and t.user_id != 3";
 
         $criteria->compare('name', $model->name, true);
         $criteria->compare('name_en', $model->name_en, true);

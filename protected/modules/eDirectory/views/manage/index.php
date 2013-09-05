@@ -37,7 +37,7 @@ $this->renderPartial('side_bar', array(
             if ($model->status_appro == 0) {
                 ?>
                 <div class="clearfix _100" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
-                    <?php echo Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ ร้านค้าของคุณจะยังไม่ได้รับการเพิ่มข้อมูลเข้าสู่ระบบร้านค้า'); ?>
+                    <?php echo Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ waiting for approval'); ?>
                 </div> 
                 <?php
             }
@@ -157,7 +157,17 @@ $this->renderPartial('side_bar', array(
                     <tr>
                         <td><?php echo Yii::t('language', 'เว็บไซต์'); ?></td>
                         <td> : </td>
-                        <td style="padding-left: 2px;"><?php echo $model->website; ?></td>
+                        <td style="padding-left: 2px;">
+                            <?php
+                            $link = str_replace('https://', '', $model->website);
+                            $link = str_replace('http://', '', $link);
+                            $link = str_replace(' ', '', $link);
+                            if (!empty($link) && $link != '-')
+                                $link = 'http://' . $link;
+
+                            echo CHtml::link($link, $link, array('target' => '_bank'));
+                            ?>
+                        </td>
                     </tr>
                     <?php
                     $brochure_count = CompanyBrochure::model()->count('com_id=:com_id', array(':com_id' => $model->id));

@@ -34,6 +34,7 @@
             ?> 
 
         </ul>
+        
     </div>
 </div>
 <div class="content">
@@ -64,6 +65,23 @@
         <?php
         $this->renderPartial('_grid_all_knowledge', array(
             'model' => $model,
+        ));
+        ?>
+        <div class="txt-cen">
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทบทความ'), array(
+                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/knowledge/manage/knowledgeTypeInsert'
+                )) . "'")
+            );
+            ?>
+            <hr>
+        </div>
+
+        <?php
+        $this->renderPartial('_grid_knowledge_type', array(
+            'modelKnowledgeType' => $modelKnowledgeType,
         ));
         ?>
     </div>

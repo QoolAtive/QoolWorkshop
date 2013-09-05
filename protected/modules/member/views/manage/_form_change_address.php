@@ -13,14 +13,14 @@ $this->renderPartial('_sidebar', array());
 <div class="content" >
     <div class="tabcontents">
         <h3 class="barH3">
-        <span>
-            <i class="icon-user"></i>
-            
-            <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
-                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
-            </a>
-            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>
-        </span>
+            <span>
+                <i class="icon-user"></i>
+
+                <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
+                </a>
+                <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'แก้ไขที่อยู่'); ?>
+            </span>
         </h3>
 
         <?php
@@ -34,7 +34,9 @@ $this->renderPartial('_sidebar', array());
         </div>
         <div class="_100">
             <div style="text-align: center;">
-                <?php echo $address; ?>
+                <?php
+                echo $address;
+                ?>
             </div>
         </div>
         <div class="_100">
@@ -54,7 +56,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'province');
             echo $form->dropdownList($model, 'province', Province::model()->getListProvince(), array(
                 'class' => "span2",
-                'empty' => 'เลือก',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                 'ajax' => array(
                     'type' => 'POST',
                     'url' => CController::createUrl('/site/provinceToPrefecture'),
@@ -70,7 +72,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'prefecture');
             echo $form->dropdownList($model, 'prefecture', array(), array(
                 'class' => "span2",
-                'empty' => 'เลือก',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
                 'ajax' => array(
                     'type' => 'POST',
                     'url' => CController::createUrl('/site/PrefectureToDistrict'),
@@ -88,7 +90,7 @@ $this->renderPartial('_sidebar', array());
             echo $form->labelEx($model, 'district');
             echo $form->dropdownList($model, 'district', array(), array(
                 'class' => "span2",
-                'empty' => 'เลือก',
+                'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
             ));
             echo $form->error($model, 'district');
             ?>

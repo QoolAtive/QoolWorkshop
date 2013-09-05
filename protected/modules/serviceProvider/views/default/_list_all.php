@@ -1,6 +1,7 @@
 <?php
 $name = LanguageHelper::changeDB($data->name, $data->name_en);
 $address = LanguageHelper::changeDB($data->address, $data->address_en);
+$logo = $data->logo;
 $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
 ?>
 
@@ -15,6 +16,15 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
         ?>
     </h4>
     <ul>
+         <?php
+        if (!empty($logo)) {
+            ?>
+            <li><img alt="service-logo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
+
+            <?php
+        } else {
+            ?> <li><img alt="service-logo"  src="/img/default.jpg"/></li> 
+        <?php } ?>
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . " : "; ?></label>
             <?php

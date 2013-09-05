@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +26,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 
     <div class="_100" style="margin-top: 15px;"> 
-    <h3>ลืมรหัสผ่าน</h3>
+    <h3><?php echo Yii::t('language', 'ลืมรหัสผ่าน'); ?></h3>
     </div>
 
     <div class="_100" style="margin-top: 10px;">
