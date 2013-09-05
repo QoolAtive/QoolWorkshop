@@ -32,16 +32,17 @@ class DefaultController extends Controller {
                     $model->mem_user_id = $user_id;
                     $model->save();
                 }
-                //นับผู้กดปุ่มยอมรับทั้งหมด (สมาชิก+ไม่สมาชิก)
-                $model = WebShopCountUser::model()->find();
-                if ($model == NULL) {
-                    $model = new WebShopCountUser();
-                    $model->count_number = 1;
-                    $model->save();
-                } else {
-                    $model['count_number'] += 1;
-                    WebShopCountUser::model()->updateAll(array('count_number' => $model['count_number']));
-                }
+            }
+            
+            //นับผู้กดปุ่มยอมรับทั้งหมด (สมาชิก+ไม่สมาชิก)
+            $model = WebShopCountUser::model()->find();
+            if ($model == NULL) {
+                $model = new WebShopCountUser();
+                $model->count_number = 1;
+                $model->save();
+            } else {
+                $model['count_number'] += 1;
+                WebShopCountUser::model()->updateAll(array('count_number' => $model['count_number']));
             }
             echo "
             <script>
