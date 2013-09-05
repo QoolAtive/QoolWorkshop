@@ -14,6 +14,10 @@
  * @property string $date_write
  * @property string $image
  * @property integer $position
+ * @property integer $count
+ *
+ * The followings are the available model relations:
+ * @property KnowledgeThem[] $knowledgeThems
  */
 class KnowledgeBase extends CActiveRecord
 {
@@ -44,13 +48,14 @@ class KnowledgeBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('type_id, subject, detail, guide_status, date_write, position', 'required'),
-			array('type_id, position', 'numerical', 'integerOnly'=>true),
+			array('type_id, position, count', 'numerical', 'integerOnly'=>true),
 			array('subject, subject_en', 'length', 'max'=>255),
 			array('guide_status', 'length', 'max'=>1),
 			array('image', 'length', 'max'=>100),
+			array('detail_en', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, type_id, subject, subject_en, detail, detail_en, guide_status, date_write, image, position', 'safe', 'on'=>'search'),
+			array('id, type_id, subject, subject_en, detail, detail_en, guide_status, date_write, image, position, count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +67,7 @@ class KnowledgeBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'knowledgeThems' => array(self::HAS_MANY, 'KnowledgeThem', 'main_id'),
 		);
 	}
 
@@ -81,6 +87,7 @@ class KnowledgeBase extends CActiveRecord
 			'date_write' => 'Date Write',
 			'image' => 'Image',
 			'position' => 'Position',
+			'count' => 'Count',
 		);
 	}
 
@@ -105,6 +112,7 @@ class KnowledgeBase extends CActiveRecord
 		$criteria->compare('date_write',$this->date_write,true);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('position',$this->position);
+		$criteria->compare('count',$this->count);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

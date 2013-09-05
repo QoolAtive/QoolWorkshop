@@ -34,11 +34,17 @@
             ?> 
 
         </ul>
-        
     </div>
 </div>
 <div class="content">
     <div class="tabcontents">
+        <?php
+        if ($model->knowledge_type_id == NULL) {
+            $word = 'เพิ่ม';
+        } else {
+            $word = 'แก้ไข';
+        }
+        ?>
         <h3 class="barH3">
             <span>
                 <i class='icon-lightbulb'></i>                
@@ -46,43 +52,63 @@
                     <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/manage/knowledge")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'บทความ')); ?>
             </span>
         </h3>
+        <?php
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'knowledge_type_insert-form',
+            'htmlOptions' => array('enctype' => 'multipart/form-data'),
+        ));
+        ?>
+        <div class="_100">
+            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทภาษาไทย') . " -"; ?></h4>
+        </div>
+        <div class="_100">
+            <div class="ckleft">
+                <?php
+                echo $form->labelEx($model, 'name_th');
+                ?>
 
+            </div>
+            <div class="ckright">
+                <?php
+                echo $form->textField($model, 'name_th');
+                echo $form->error($model, 'name_th')
+                ?>
+            </div>
+        </div>
+        <div class="_100">
+            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทภาษาอังฤกษ') . " -"; ?></h4>
+        </div>
+
+
+        <div class="_100">
+            <div class="ckleft">
+                <?php echo $form->labelEx($model, 'name_en'); ?>
+            </div>
+
+            <div class="ckright">
+                <?php
+                echo $form->textField($model, 'name_en');
+                echo $form->error($model, 'name_en')
+                ?>
+            </div>
+        </div>
         <div class="txt-cen">
             <hr>
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
-                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/knowledge/manage/insert'
-                )) . "'")
+            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "history.go(-1)")
             );
             ?>
             <hr>
         </div>
+        <?php $this->endWidget(); ?>
 
-        <?php
-        $this->renderPartial('_grid_all_knowledge', array(
-            'model' => $model,
-        ));
-        ?>
-        <div class="txt-cen">
-            <hr>
-            <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทบทความ'), array(
-                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                    '/knowledge/manage/knowledgeTypeInsert'
-                )) . "'")
-            );
-            ?>
-            <hr>
-        </div>
-
-        <?php
-        $this->renderPartial('_grid_knowledge_type', array(
-            'modelKnowledgeType' => $modelKnowledgeType,
-        ));
-        ?>
     </div>
 </div>

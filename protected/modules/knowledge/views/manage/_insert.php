@@ -83,6 +83,21 @@
         <div class="_100">
             <div class="ckleft">
                 <?php
+                echo $form->label($model, 'type_id');
+                ?>
+            </div>
+            <div class="ckright">
+                <?php
+                echo $form->dropDownList($model, 'type_id', KnowledgeType::model()->getList(), array(
+                    'style' => 'width: 150px;',
+                ));
+                echo $form->error($model, 'type_id')
+                ?>
+            </div>
+        </div>
+        <div class="_100">
+            <div class="ckleft">
+                <?php
                 echo $form->label($model, 'subject');
                 ?>
 
@@ -217,7 +232,7 @@
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "history.go(-1)")
+            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "window.location='/knowledge/manage/knowledge'")
             );
             ?>
             <hr>
