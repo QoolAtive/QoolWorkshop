@@ -97,9 +97,9 @@
                     ?>
                 </h3>
                 <p><?php echo $detail; ?></p>
-                <p style="padding: 5px;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
+                <p style="padding: 5px; float: right;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
 
-                <div style="text-align: center; margin-top:10px;">
+                <div style="text-align: center; margin-top:30px;">
                     <hr>
                     <?php
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
