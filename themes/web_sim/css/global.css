@@ -19,7 +19,7 @@
   margin-top: 30px;
 }
 .item_detail .list_pic img{
-  	max-width: 670px;
+  	max-width: 100%;
     min-width: 220px;
 }
 .item_detail > div.clearfix > .item_pic > img{

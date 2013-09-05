@@ -1,4 +1,20 @@
-// fancybox 
+$(document).ready(function(){
+
+    $('.items').each(function(){  
+        var highestBox = 0;
+
+        $(this).find('.listpartner').each(function(){
+            if($(this).height() > highestBox){  
+                highestBox = $(this).height();  
+            }
+        })
+
+        $(this).find('.listpartner').height(highestBox);
+    });    
+
+
+});
+ 
 $(document).ready(function() {
   $("#reply").click(function() {
       $('#replyuser').toggle();
@@ -19,6 +35,16 @@ $(document).ready(function() {
 $(document).ready(function() {
 
           $('a[href="/knowledge/default/ruleKnowledge"]').fancybox({
+          type : 'ajax',
+          closeBtn : 0
+          // afterClose : function() {
+          //         location.reload();
+          //         return;
+          //     }       
+        });
+
+
+          $('a[href="/webSimulation/default/agreement"]').fancybox({
           type : 'iframe',
           closeBtn : 0
           // afterClose : function() {
@@ -26,6 +52,7 @@ $(document).ready(function() {
           //         return;
           //     }       
         });
+
         $('.linkgroupbtn').fancybox({
           width  :'100%',
           closeBtn : 0
