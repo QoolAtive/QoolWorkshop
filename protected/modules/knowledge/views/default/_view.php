@@ -63,6 +63,10 @@
                     </a>
                 <?php } ?>
                 <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/index/knowledge_type_id/" . $view->type_id)); ?>">
+                    <?php echo KnowledgeType::model()->getList($view->type_id); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
                 <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
             </span>
         </h3>

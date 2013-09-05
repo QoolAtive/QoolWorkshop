@@ -22,8 +22,16 @@ class ManageController extends Controller {
     public function actionKnowledge() {
         $model = new Knowledge();
         $model->unsetAttributes();
+
+        $modelKnowledgeType = new KnowledgeType();
+        $modelKnowledgeType->unsetAttributes();
+
         if (isset($_GET['Knowledge'])) {
             $model->attributes = $_GET['Knowledge'];
+        }
+
+        if (isset($_GET['KnowledgeType'])) {
+            $modelKnowledgeType->attributes = $_GET['KnowledgeType'];
         }
 
         // ปุ่มย้อนกลับ
@@ -34,6 +42,7 @@ class ManageController extends Controller {
 
         $this->render('knowledge', array(
             'model' => $model,
+            'modelKnowledgeType' => $modelKnowledgeType,
         ));
     }
 
@@ -62,15 +71,11 @@ class ManageController extends Controller {
             $model2 = new KnowledgeThem();
             $file = new Upload();
 
-            $model->_old = '';
-            $model->type_id = '1';
             $model->guide_status = '0';
             $model->date_write = date("Y-m-d H:i:s");
             $model->position = '1';
         } else {
-
             $model = Knowledge::model()->find("id = " . $id);
-            $model->_old = $model->subject;
             $model->date_write = date("Y-m-d H:i:s");
 
             $file = new Upload();
@@ -176,6 +181,46 @@ class ManageController extends Controller {
             'model' => $model,
             'knowledge' => $knowledge,
         ));
+    }
+
+    public function actionKnowledgeTypeInsert($knowledge_type_id = null) {
+        if ($knowledge_type_id == null) {
+            $model = new KnowledgeType();
+        } else {
+            $model = KnowledgeType::model()->find('knowledge_type_id = :id', array(':id' => $knowledge_type_id));
+        }
+
+        if (isset($_POST['KnowledgeType'])) {
+            $model->attributes = $_POST['KnowledgeType'];
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo "
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.location='/knowledge/manage/knowledgeTypeInsert';
+                        </script>
+                        ";
+                }
+            } else {
+                
+            }
+        }
+
+        $this->render('knowledge_type_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionKnowledgeTypeDel($knowledge_type_id = null) {
+        $count = Knowledge::model()->count('type_id = :id', array(':id' => $knowledge_type_id));
+        if ($count < 1) {
+            $model = KnowledgeType::model()->find('knowledge_type_id = :id', array(':id' => $knowledge_type_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+        }
     }
 
 }

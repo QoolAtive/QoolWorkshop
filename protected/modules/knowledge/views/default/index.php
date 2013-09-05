@@ -27,6 +27,39 @@
             }
             ?> 
         </ul>
+        <ul class="rectangle-list">
+            <p class="demoline"></p>
+            <?php
+            $list_sub = '';
+            $active = false;
+            $menu = KnowledgeType::model()->findAll();
+            foreach ($menu as $m) {
+                $select = '';
+                if ($knowledge_type_id == $m['knowledge_type_id']) {
+                    $active = true;
+                    $select = 'menuactive listactive';
+                }
+                $name = LanguageHelper::changeDB($m['name_th'], $m['name_en']);
+                $list_sub .= "<li>";
+                $list_sub .= CHtml::link($name, array(
+                            '/knowledge/default/index/', 'knowledge_type_id' => $m['knowledge_type_id']), array(
+                            'rel' => 'view' . $n++,
+                            'class' => $select
+                ));
+                $list_sub .= "</li>";
+            }
+
+
+            echo "<li>";
+            echo CHtml::link(Yii::t('language', 'บทความทั้งหมด'), array(
+                '/knowledge/default/index'), array(
+                'rel' => 'view1',
+                'class' => $active == false ? 'menuactive listactive' : ''
+            ));
+            echo "</li>";
+            echo $list_sub;
+            ?>
+        </ul>
     </div>
 </div>
 <div class="content">
@@ -38,7 +71,7 @@
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
-                        'dataProvider' => $model->getData('1'),
+                        'dataProvider' => $model->getData('1', $knowledge_type_id),
                         'itemView' => '_list', // refers to the partial view named '_post'
                         'summaryText' => '',
                         'sortableAttributes' => array(
@@ -48,6 +81,20 @@
                     ?>
                 </div>
             <?php } ?>
+            <hr>
+            <h3 class="headfont"><i class="icon-file-alt"></i><?php echo Yii::t('language', 'บทความยอดนิยม'); ?></h3>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $model->getKnowledgeHot($knowledge_type_id),
+                    'itemView' => '_list', // refers to the partial view named '_post'
+                    'summaryText' => '',
+                    'sortableAttributes' => array(
+//                    'id', 
+                    ),
+                ));
+                ?>
+            </div>
             <hr>
             <h3 class="headfont"><i class="icon-file-alt"></i><?php echo Yii::t('language', 'บทความล่าสุด'); ?></h3>
             <div class="viewall">
@@ -59,7 +106,7 @@
             <div class="clearfix">
                 <?php
                 $this->widget('zii.widgets.CListView', array(
-                    'dataProvider' => $model->getData(),
+                    'dataProvider' => $model->getData('', $knowledge_type_id),
                     'itemView' => '_list', // refers to the partial view named '_post'
                     'summaryText' => '',
                     'sortableAttributes' => array(
