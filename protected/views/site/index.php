@@ -11,7 +11,6 @@
                 <li class="knowledge"><a href="/knowledge/default/ruleKnowledge"></a></li>
             <?php } ?>
             <li class="websim"><a class="agreement fancybox.iframe" href="/webSimulation/default/agreement"></a></li>
-
             <li class="edir"><a href="/eDirectory/default/index"></a></li>
             <li class="servicepro"><a href="/serviceProvider/default/index"></a></li>
         </div>
