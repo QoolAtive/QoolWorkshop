@@ -142,16 +142,10 @@ class DefaultController extends Controller {
             Yii::app()->user->setState('rule_knowledge', $rule_knowledge);
 
             if (Yii::app()->user->id) {
-                $model = KnowledgeCount::model()->find('user_id = :user_id', array(':user_id' => Yii::app()->user->id));
-                if (count($model) > 0) {
-                    $model->count = $model->count + 1;
-                    $model->save();
-                } else {
                     $model = new KnowledgeCount();
                     $model->user_id = Yii::app()->user->id;
                     $model->count = 1;
                     $model->save();
-                }
             } else {
                 $model = KnowledgeCount::model()->find('user_id = 0');
                 if (count($model) > 0) {
@@ -180,7 +174,7 @@ class DefaultController extends Controller {
                 </script>
                 ";
         } else {
-            $this->render('rule_knowledge', array(
+            $this->renderPartial('rule_knowledge', array(
             ));
         }
     }
