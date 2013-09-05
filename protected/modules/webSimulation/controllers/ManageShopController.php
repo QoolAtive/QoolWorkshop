@@ -111,6 +111,8 @@ class ManageShopController extends Controller {
         unset(Yii::app()->session['shop_id']);
         $user_id = Yii::app()->user->id;
         $model = new WebShop();
+        $model->mem_user_id = $user_id;
+
         if (isset($_GET['WebShop'])) {
             $model->attributes = $_GET['WebShop'];
         }
@@ -801,15 +803,13 @@ class ManageShopController extends Controller {
             WebShopSideBox::model()->updateAll(array($box_name => '0'), 'web_shop_id = ' . $shop_id);
             echo "<script language='javascript'>
     alert('" . Yii::t('language', 'ซ่อนกล่อง') . Yii::t('language', 'เรียบร้อย') . "');
-            window.top.location.href = '" . CHtml::normalizeUrl(array(' / webSimulation / manageShop / manageBox
-    ')) . "';</script>";
+            window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';</script>";
         } else {
 //เปลี่ยนเป็นโชว์
             WebShopSideBox::model()->updateAll(array($box_name => '1'), 'web_shop_id = ' . $shop_id);
             echo "<script language='javascript'>
             alert('" . Yii::t('language', 'แสดงกล่อง') . Yii::t('language', 'เรียบร้อย') . "');
-            window.top.location.href = '" . CHtml::normalizeUrl(array(' / webSimulation / manageShop / manageBox
-    ')) . "';
+            window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';
 </script>";
         }
     }

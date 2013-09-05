@@ -71,19 +71,36 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
 
+    <div class="_100" style=" margin-left: 16px; margin-top: -14px;">
+        <div class="_20">
+            <div class="_100" >
+                <?php
+                echo CHtml::label(Yii::t('language', 'เลือกประเภท') . ' : ', false);
+                ?>
+            </div>
+        </div>
+        <div class="_80">
+            <div class="_100">
+                <?php
+                echo CHtml::dropDownList('type_id', '', KnowledgeType::model()->getList(), array('empty' => 'เลือก','style' => 'width: 150px;'));
+                ?>
+            </div>
+        </div>
+    </div>
+
 
 
     <div style='text-align: center; padding-bottom: 15px;' class="_100">
-<?php
-echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
-            '/knowledge/default/QueryKnowledge')), array(
-    'update' => 'div#show_detail',
+        <?php
+        echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
+                    '/knowledge/default/QueryKnowledge')), array(
+            'update' => 'div#show_detail',
 // 'beforeSend' => 'function(){ $("#show_detail_loading").addClass("loading");}',
 // 'complete' => 'function(){ $("#show_detail_loading").removeClass("loading");}',), array(
 // 'id' => 'search_show_detail_button',
 // 'name' => 'search_show_detail_button'
-));
-?>
+        ));
+        ?>
     </div>
 
 </div>

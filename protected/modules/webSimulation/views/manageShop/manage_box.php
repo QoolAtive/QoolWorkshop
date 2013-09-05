@@ -98,6 +98,23 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <ul class="ws-boxadmin right">
             <li>
                 <?php
+                echo Yii::t('language', 'ปฏิทิน');
+                ?>
+                <p class="tool">
+                    <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'calendar', 'is_show' => $is_show['calendar'])); ?>" class="hideshowbox">
+                        <?php
+                        if ($is_show['calendar']) {
+                            echo 'ซ่อน';
+                        } else {
+                            echo 'แสดง';
+                        }
+                        ?>
+                    </a>
+                </p>
+            </li>
+            
+            <li>
+                <?php
                 echo Yii::t('language', 'พยากรณ์อากาศ');
                 ?>
                 <p class="tool">

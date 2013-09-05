@@ -63,6 +63,10 @@
                     </a>
                 <?php } ?>
                 <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/index/knowledge_type_id/" . $view->type_id)); ?>">
+                    <?php echo KnowledgeType::model()->getList($view->type_id); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
                 <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
             </span>
         </h3>
@@ -93,8 +97,9 @@
                     ?>
                 </h3>
                 <p><?php echo $detail; ?></p>
+                <p style="padding: 5px; float: right;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
 
-                <div style="text-align: center; margin-top:10px;">
+                <div style="text-align: center; margin-top:30px;">
                     <hr>
                     <?php
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(

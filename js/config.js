@@ -75,6 +75,9 @@ $(document).ready(function() {
         $('.createaccountbtn').fancybox({
           type : 'iframe'
         });
+        $('.agreement').fancybox({
+            type: 'iframe'
+        });
 });
 
 // Get current url // hilight active page

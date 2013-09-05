@@ -13,14 +13,15 @@ class Knowledge extends KnowledgeBase {
         // will receive user inputs.
         return array(
             array('type_id, subject, detail, guide_status, date_write, position', 'required'),
-            array('type_id, position', 'numerical', 'integerOnly' => true),
+            array('type_id, position, count', 'numerical', 'integerOnly' => true),
             array('subject, subject_en', 'length', 'max' => 255),
             array('guide_status', 'length', 'max' => 1),
             array('image', 'length', 'max' => 100),
-            array('subject', 'checkDup'),
+            array('subject', 'unique'),
+//            array('subject', 'checkDup'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('subject_en, detail_en, id, type_id, subject, detail, guide_status, date_write, position, _old', 'safe', 'on' => 'search'),
+            array('subject_en, detail_en, id, type_id, subject, detail, guide_status, date_write, position, _old, count', 'safe', 'on' => 'search'),
         );
     }
 
@@ -38,7 +39,7 @@ class Knowledge extends KnowledgeBase {
             'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
             'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
             'id' => 'ID',
-            'type_id' => 'Type',
+            'type_id' => Yii::t('language', 'ประเภท'),
             'subject' => Yii::t('language', 'หัวข้อ'),
             'detail' => Yii::t('language', 'รายละเอียด'),
             'guide_status' => Yii::t('language', 'บทความแนะนำ'),
@@ -64,6 +65,23 @@ class Knowledge extends KnowledgeBase {
         ));
     }
 
+    public function getKnowledgeHot($knowledge_type_id = null) {
+        $criteria = new CDbCriteria;
+
+        if ($knowledge_type_id != null) {
+            $criteria->condition = "type_id = {$knowledge_type_id}";
+        }
+
+        $criteria->order = 'count desc, id desc';
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 3,
+            ),
+        ));
+    }
+
     public function getDataQuery($con) {
         $criteria = new CDbCriteria;
         if ($con != '') {
@@ -71,6 +89,9 @@ class Knowledge extends KnowledgeBase {
 
             if ($con['subject'] != NULL) {
                 $condition .= " and subject like '%" . $con['subject'] . "%' ";
+            }
+            if ($con['type_id'] != null) {
+                $condition .= " and type_id = {$con['type_id']}";
             }
             $criteria->condition = $condition;
         }
@@ -87,15 +108,19 @@ class Knowledge extends KnowledgeBase {
         ));
     }
 
-    public function getData($guide = '', $con = '') {
+    public function getData($guide = '', $knowledge_type_id = '') {
         $criteria = new CDbCriteria;
         if ($guide != '') {
             $criteria->condition = "guide_status = '1'";
             $pages = '3';
             $criteria->order = 'date_write desc';
         } else {
-            $criteria->order = 'id desc';
+            $criteria->order = 'date_write desc';
             $pages = '12';
+        }
+
+        if ($knowledge_type_id != null) {
+            $criteria->addCondition("type_id = {$knowledge_type_id}");
         }
 
         $criteria->compare('id', $this->id);
@@ -158,16 +183,15 @@ class Knowledge extends KnowledgeBase {
         }
     }
 
-    public function checkDup() {
-        if ($this->getErrors() == NULL) {
-            if ($this->subject != $this->_old) {
-                $model = Knowledge::model()->find("subject = '" . $this->subject . "'");
-                if (!empty($model)) {
-                    $label = Knowledge::model()->getAttributeLabel('subject');
-                    $this->addError('subject', $label . Yii::t('language', 'มีอยู่ในระบบ กรุณาตรวจสอบ'));
-                }
-            }
-        }
-    }
-
+//    public function checkDup() {
+//        if ($this->getErrors() == NULL) {
+//            if ($this->subject != $this->_old) {
+//                $model = Knowledge::model()->find("subject = '" . $this->subject . "'");
+//                if (!empty($model)) {
+//                    $label = Knowledge::model()->getAttributeLabel('subject');
+//                    $this->addError('subject', $label . Yii::t('language', 'มีอยู่ในระบบ กรุณาตรวจสอบ'));
+//                }
+//            }
+//        }
+//    }
 }

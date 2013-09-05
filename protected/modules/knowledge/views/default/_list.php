@@ -15,10 +15,11 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
         <div class="arrow"></div> 
 
         <div class="textpad">
-            <h3><a href="/knowledge/default/view/id/<?php echo $data->id; ?>"><?php echo Tool::limitString($subject); ?></a></h3>
+            <h3><a href="/knowledge/default/view/id/<?php echo $data->id; ?>"><?php echo Tool::stripText($subject, 100); ?></a></h3>
             <span>
                 <?php
-                echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $detail)), 150);
+//                echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $detail)), 150);
+                echo Tool::stripText($detail, 250);
                 ?>
             </span>
         </div>
