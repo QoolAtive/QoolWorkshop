@@ -1,27 +1,17 @@
 <?php
 
 /**
- * This is the model class for table "web_shop_side_box".
+ * This is the model class for table "web_shop_count_user".
  *
- * The followings are the available columns in table 'web_shop_side_box':
- * @property integer $web_shop_id
- * @property integer $calendar
- * @property integer $forecast
- * @property integer $exchange
- * @property integer $lottery
- * @property integer $oil
- * @property integer $gold
- * @property integer $stock
- *
- * The followings are the available model relations:
- * @property WebShop $webShop
+ * The followings are the available columns in table 'web_shop_count_user':
+ * @property integer $count_number
  */
-class WebShopSideBoxBase extends CActiveRecord
+class WebShopCountUser extends WebShopCountUserBase
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return WebShopSideBoxBase the static model class
+	 * @return WebShopCountUserBase the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -33,7 +23,7 @@ class WebShopSideBoxBase extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'web_shop_side_box';
+		return 'web_shop_count_user';
 	}
 
 	/**
@@ -44,11 +34,10 @@ class WebShopSideBoxBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_id', 'required'),
-			array('web_shop_id, calendar, forecast, exchange, lottery, oil, gold, stock', 'numerical', 'integerOnly'=>true),
+			array('count_number', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, calendar, forecast, exchange, lottery, oil, gold, stock', 'safe', 'on'=>'search'),
+			array('count_number', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +49,6 @@ class WebShopSideBoxBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'webShop' => array(self::BELONGS_TO, 'WebShop', 'web_shop_id'),
 		);
 	}
 
@@ -70,14 +58,7 @@ class WebShopSideBoxBase extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'web_shop_id' => 'Web Shop',
-			'calendar' => 'Calendar',
-			'forecast' => 'Forecast',
-			'exchange' => 'Exchange',
-			'lottery' => 'Lottery',
-			'oil' => 'Oil',
-			'gold' => 'Gold',
-			'stock' => 'Stock',
+			'count_number' => 'Count Number',
 		);
 	}
 
@@ -92,14 +73,7 @@ class WebShopSideBoxBase extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('web_shop_id',$this->web_shop_id);
-		$criteria->compare('calendar',$this->calendar);
-		$criteria->compare('forecast',$this->forecast);
-		$criteria->compare('exchange',$this->exchange);
-		$criteria->compare('lottery',$this->lottery);
-		$criteria->compare('oil',$this->oil);
-		$criteria->compare('gold',$this->gold);
-		$criteria->compare('stock',$this->stock);
+		$criteria->compare('count_number',$this->count_number);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -129,7 +129,7 @@ class ShopController extends Controller {
                     )
             );
         } else {
-            if($this->busket[$item_id] != NULL){
+            if ($this->busket[$item_id] != NULL) {
                 unset($this->busket[$item_id]);
             }
             throw new CHttpException(404, Yii::t('language', 'ไม่พบสินค้าที่ท่านต้องการ'));
