@@ -353,21 +353,30 @@ p.p1 ul , p1 ol{
 .listpartner{
   border: 1px solid #C9C9C9;
   border-radius: 3px 3px 3px 3px;
-  display: inline-block;
+  float: left;
   margin: 5px;
   text-align: center;
-  width: 227px;  }
+  width: 227px; 
+  background: #eee;
+}
 
   .listpartner li:first-child {
+    background: #fff;
     line-height: 100px;
     vertical-align: middle;
   }
   .listpartner > li:last-child{
     background: none repeat scroll 0 0 #EEEEEE;
-    padding: 10px;
+    display: table;
+    height: 60px;
   }
   .listpartner > li:last-child a {
-    color: purple;
+       color: #800080;
+    display: table-cell;
+    padding: 0 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 227px;
   }
   .listpartner li:first-child img{
     max-width: 123px ; 
