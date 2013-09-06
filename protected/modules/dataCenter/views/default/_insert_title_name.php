@@ -30,19 +30,21 @@ if ($model->id != NULL) {
             'id' => 'insert_title_name-form',
         ));
         ?>
-        <div class='_100'>
-            <?php
-            echo $form->label($model, 'name');
-            echo $form->textField($model, 'name');
-            echo $form->error($model, 'name')
-            ?>
-        </div>
-        <div class='_100'>
-            <?php
-            echo $form->label($model, 'name_en');
-            echo $form->textField($model, 'name_en');
-            echo $form->error($model, 'name_en')
-            ?>
+        <div class='clearfix'>
+            <div class='_50'>
+                <?php
+                echo $form->label($model, 'name');
+                echo $form->textField($model, 'name');
+                echo $form->error($model, 'name')
+                ?>
+            </div>
+            <div class='_50'>
+                <?php
+                echo $form->label($model, 'name_en');
+                echo $form->textField($model, 'name_en');
+                echo $form->error($model, 'name_en')
+                ?>
+            </div>
         </div>
         <div class="textcenter">
             <hr>
