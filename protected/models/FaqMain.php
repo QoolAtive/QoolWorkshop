@@ -32,11 +32,11 @@ class FaqMain extends FaqMainBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name_th, name_en', 'required'),
-            array('name_th, name_en', 'length', 'max' => 255),
+            array('name_th, name_en, order_n', 'required'),
+            array('order_n', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, name_th, name_en', 'safe', 'on' => 'search'),
+            array('id, name_th, name_en, order_n', 'safe', 'on' => 'search'),
         );
     }
 
@@ -48,6 +48,7 @@ class FaqMain extends FaqMainBase {
         // class name for the relations automatically generated below.
         return array(
             'faqQuestions' => array(self::HAS_MANY, 'FaqQuestion', 'fm_id'),
+            'faqSubs' => array(self::HAS_MANY, 'FaqSub', 'faq_main_id'),
         );
     }
 
@@ -59,6 +60,7 @@ class FaqMain extends FaqMainBase {
             'id' => 'ID',
             'name_th' => 'ชื่อหมวดหมู่หลักภาษาไทย',
             'name_en' => 'ชื่อหมวดหมู่หลักภาษาอังกฤษ',
+            'order_n' => 'Order N',
         );
     }
 
@@ -75,9 +77,14 @@ class FaqMain extends FaqMainBase {
         $criteria->compare('id', $this->id);
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);
+        $criteria->compare('order_n', $this->order_n);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array('defaultOrder' => 'order_n'),
+            'pagination' => array(
+                'pageSize' => 15,
+            ),
         ));
     }
 

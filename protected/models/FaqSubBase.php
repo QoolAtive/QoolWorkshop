@@ -8,6 +8,7 @@
  * @property integer $faq_main_id
  * @property string $name_th
  * @property string $name_en
+ * @property integer $order_n
  *
  * The followings are the available model relations:
  * @property FaqMain $faqMain
@@ -40,12 +41,12 @@ class FaqSubBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('faq_main_id, name_th, name_en', 'required'),
-			array('faq_main_id', 'numerical', 'integerOnly'=>true),
+			array('faq_main_id, name_th, name_en, order_n', 'required'),
+			array('faq_main_id, order_n', 'numerical', 'integerOnly'=>true),
 			array('name_th, name_en', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('faq_sub_id, faq_main_id, name_th, name_en', 'safe', 'on'=>'search'),
+			array('faq_sub_id, faq_main_id, name_th, name_en, order_n', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class FaqSubBase extends CActiveRecord
 			'faq_main_id' => 'Faq Main',
 			'name_th' => 'Name Th',
 			'name_en' => 'Name En',
+			'order_n' => 'Order N',
 		);
 	}
 
@@ -89,6 +91,7 @@ class FaqSubBase extends CActiveRecord
 		$criteria->compare('faq_main_id',$this->faq_main_id);
 		$criteria->compare('name_th',$this->name_th,true);
 		$criteria->compare('name_en',$this->name_en,true);
+		$criteria->compare('order_n',$this->order_n);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
