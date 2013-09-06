@@ -147,10 +147,10 @@ $(document).ready(function () {
 
 
 
-$(document).ready(function() {
-            $('#learning').orbit();
-            $('#featured').orbit({ bullets: false});
-});
+// $(document).ready(function() {
+//             $('#learning').orbit();
+//             $('#featured').orbit({ bullets: false});
+// });
 
 
 

@@ -53,7 +53,8 @@
                     </table>
                 </li>
             <?php } ?>
-            <li style="color: #fff;  background: url(/img/edir-leftbg.png) no-repeat; height: 138px; width: 225px;">
+            <li class="servicedata">
+                <div class="clearfix">
                 <p class="left" style="padding:10px 10px;"><i class="icon-eye-open"></i>
                     <?php
 //                    echo Yii::t('language', 'Memeber Since') . ' ' ;
@@ -62,6 +63,7 @@
                     echo ' : ' . $count['count'];
                     ?>
                 </p>
+
                 <p class="right" style="padding:10px 10px;">
                     <?php
                     $date_create = explode('-', $create->create_at);
@@ -69,6 +71,7 @@
                     echo Yii::t('language', 'สร้าง') . ' : ' . $date_create[2] . '/' . $date_create[1] . '/' . $y;
                     ?>
                 </p>
+                </div>
                 <div style="padding: 2px 10px;">
                     <table width="100">
                         <tr>
@@ -127,7 +130,7 @@
         </span>
     </h3>
     <div class="clearfix servicebanner">
-        <div style="float: left; width: 525px; height: 220px; ">
+        <div class="shopbannerleft">
 <div class="rslides_container">
   <ul class="rslides" id="companyslider">
                 <?php
