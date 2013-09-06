@@ -128,24 +128,28 @@
     </h3>
     <div class="clearfix servicebanner">
         <div style="float: left; width: 525px; height: 220px; ">
-            <div id="featured"> 
+<div class="rslides_container">
+  <ul class="rslides" id="companyslider">
                 <?php
                 $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                 if ($banner == null) {
                     ?>
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
-                    <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                    <li><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></li>
+                    <li><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/></li>
+                    <li><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/></li>
                     <?php
                 } else {
                     foreach ($banner as $data) {
                         ?>
-                        <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
+                        <li><img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" /></li>
                         <?php
                     }
                 }
                 ?>
-            </div>
+         </ul>
+
+</div>
+
         </div>
 
         <div class="Center-Container is-Inline-logo">

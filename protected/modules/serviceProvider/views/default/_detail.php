@@ -1,6 +1,3 @@
-<style type="text/css">
-    #replyuser{display:none;}
-</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -97,24 +94,46 @@
         </h3>
         <div class="clearfix servicebanner">
             <div style="float: left; width: 525px; height: 220px; ">
-                <div id="featured"> 
-                    <?php
+
+
+
+
+<div class="rslides_container">
+  
+  
+
+
+
+<ul class="rslides" id="companyslider">
+<?php
+                    $link = str_replace('https://', '', $model->website);
+                    $link = str_replace('http://', '', $link);
+                    $link = str_replace(' ', '', $link);
+                    if (!empty($link) && $link != '-')
+                        $link = 'http://' . $link;
+                    else
+                        $link = '#';
+
                     $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                     if ($banner == null) {
                         ?>
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
-                        <?php
+<li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a></li>
+<li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a></li>
+<li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a></li>
+<?php
                     } else {
                         foreach ($banner as $data) {
                             ?>
-                            <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
-                            <?php
+<li><img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" /></li>
+<?php
                         }
                     }
                     ?>
-                </div>
+  </ul>
+
+</div>
+
+
             </div>
 
             <div class="Center-Container is-Inline-logo">
