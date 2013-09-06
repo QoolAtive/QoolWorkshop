@@ -1,9 +1,9 @@
 <?php
 
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id' => 'keyword-grid',
+    'id' => 'company_business_type_sub-grid',
     'dataProvider' => $dataProvider,
-    'filter' => $model,
+    'filter' => $modelSubType,
     'summaryText' => '',
     'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
@@ -14,8 +14,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
         array(
-            'name' => 'name',
-            'value' => '$data->name',
+            'name' => 'company_type_business_id',
+            'value' => 'CompanyTypeBusiness::model()->getList($data->company_type_business_id)',
+            'filter' => CompanyTypeBusiness::model()->getList(),
+        ),
+        array(
+            'name' => 'name_th',
+            'value' => '$data->name_th',
+        ),
+        array(
+            'name' => 'name_en',
+            'value' => '$data->name_en',
         ),
         array(
             'class' => 'CButtonColumn',
@@ -25,11 +34,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons' => array(
                 'update' => array(
                     'label' => Yii::t('language', 'แก้ไข'),
-                    'url' => 'Yii::app()->createUrl("/dataCenter/default/keywordInsert/",array("keyword_id"=>$data->keyword_id))',
+                    'url' => 'Yii::app()->createUrl("/dataCenter/default/companySubTypeBusinessInsert/", array("company_sub_type_business_id"=>$data->company_sub_type_business_id))',
                 ),
                 'delete' => array(
                     'label' => Yii::t('language', 'ลบ'),
-                    'url' => 'Yii::app()->createUrl("/dataCenter/default/keywordDel",array("keyword_id"=>$data->keyword_id))',
+                    'url' => 'Yii::app()->createUrl("/dataCenter/default/companySubTypeBusinessDel", array("company_sub_type_business_id"=>$data->company_sub_type_business_id))',
                 ),
             ),
             'afterDelete' => 'function(link,success,data){

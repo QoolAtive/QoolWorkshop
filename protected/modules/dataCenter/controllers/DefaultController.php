@@ -87,12 +87,21 @@ class DefaultController extends Controller {
         $model = new CompanyTypeBusiness();
         $model->unsetAttributes();
 
+        $modelSubType = new CompanySubTypeBusiness();
+        $modelSubType->unsetAttributes();
+
+        if (isset($_GET['CompanySubTypeBusiness'])) {
+            $modelSubType->attributes = $_GET['CompanySubTypeBusiness'];
+        }
+
         if (isset($_GET['CompanyTypeBusiness'])) {
             $model->attributes = $_GET['CompanyTypeBusiness'];
         }
 
         $this->render('company_type_business', array(
             'model' => $model,
+            'modelSubType' => $modelSubType,
+            'dataProvider' => $modelSubType->getData(),
         ));
     }
 
@@ -143,6 +152,54 @@ class DefaultController extends Controller {
         ));
     }
 
+    public function actionCompanySubTypeBusinessInsert($company_sub_type_id = null) {
+        if ($company_sub_type_id == null) {
+            $model = new CompanySubTypeBusiness();
+            $model->unsetAttributes();
+        } else {
+            $model = CompanySubTypeBusiness::model()->find('company_sub_type_id = :id', array(':id' => $company_sub_type_id));
+        }
+
+        if (isset($_POST['CompanySubTypeBusiness'])) {
+            $model->attributes = $_POST['CompanySubTypeBusiness'];
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกเรียบข้อมูลเรียบร้อย') . "');
+                        window.location='/dataCenter/default/companySubTypeBusinessInsert';
+                        </script>
+                        ";
+                }
+            }
+        }
+
+        $this->render('company_sub_type_business_insert', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionCompanySubTypeBusinessDel($company_sub_type_business_id = null) {
+        $count1 = CompanyType::model()->count('company_sub_type_id = :id', array(
+            ':id' => $company_sub_type_business_id,
+        ));
+
+        if ($count1 < 1) {
+            $model = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :id', array(
+                ':id' => $company_sub_type_business_id,
+            ));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            } else {
+                echo "<pre>";
+                print_r($model->getErrors());
+            }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+        }
+    }
+
     public function actionDelCompanyTypeBusiness($id) {
         $con1 = MemPerson::model()->count('high_education = ' . $id);
         $con2 = MemRegistration::model()->count('high_education = ' . $id);
@@ -152,7 +209,7 @@ class DefaultController extends Controller {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         } else {
-            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -212,7 +269,7 @@ class DefaultController extends Controller {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         } else {
-            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -279,7 +336,7 @@ class DefaultController extends Controller {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         } else {
-            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -640,6 +697,20 @@ class DefaultController extends Controller {
         if ($model->delete()) {
             echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
         }
+    }
+
+    public function actionCompanySubTypeBusiness() {
+        $model = new CompanySubTypeBusiness();
+        $model->unsetAttributes();
+
+        if (isset($_GET['CompanySubTypeBusiness'])) {
+            $model->attributes = $_GET['CompanySubTypeBusiness'];
+        }
+
+        $this->render('company_sub_type_business', array(
+            'model' => $model,
+            'dataProvider' => $model->getData(),
+        ));
     }
 
 }

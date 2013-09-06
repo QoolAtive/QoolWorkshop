@@ -18,8 +18,8 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
     public function attributeLabels() {
         return array(
             'id' => Yii::t('language', 'ลำดับ'),
-            'name' => Yii::t('language', 'ประเภท').' ('.Yii::t('language', 'ภาษาไทย').')',
-            'name_en' => Yii::t('language', 'ประเภท').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
+            'name' => Yii::t('language', 'ประเภท') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ประเภท') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
@@ -33,6 +33,7 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
             'criteria' => $criteria,
         ));
     }
+
     public function getData() {
         $criteria = new CDbCriteria;
         $criteria->order = 'id desc';
@@ -48,6 +49,19 @@ class CompanyTypeBusiness extends CompanyTypeBusinessBase {
         $field = LanguageHelper::changeDB('name', 'name_en');
         $list = CHtml::listData(CompanyTypeBusiness::model()->findAll(), 'id', $field);
         return $list;
+    }
+
+    public function getList($select = null) {
+        $data = array();
+        foreach ($this->model()->findAll() as $d) {
+            $data[$d['id']] = $d['name'];
+        }
+
+        if ($select == null) {
+            return $data;
+        } else {
+            return $data[$select];
+        }
     }
 
 }
