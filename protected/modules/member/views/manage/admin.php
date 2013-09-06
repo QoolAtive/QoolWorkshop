@@ -44,7 +44,8 @@
             <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/admin")); ?>">
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สมาชิก'); ?>
             </a>
-            <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมดที่ยังไม่ได้รับการยืนยัน'); ?>
+            <i class="icon-chevron-right"></i>
+                <?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมดที่ยังไม่ได้รับการยืนยัน'); ?>
         </span>
     </h3>
             <?php
