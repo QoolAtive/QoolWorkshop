@@ -31,12 +31,15 @@ $description = Description::model()->find('status = :status', array(':status' =>
         <!--[if IE]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]--> 
-        <script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>
-        <script src="/js/modernizr.js" type="text/javascript"></script>
-        <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
-        <script src="/js/tabcontent.js" type="text/javascript"></script>
-        <script src="/js/config.js" type="text/javascript"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+                    <script src="/js/modernizr.js" type="text/javascript"></script>
+                    <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
+                    <script src="/js/tabcontent.js" type="text/javascript"></script>
+                    <script src="/js/jquery.orbit-1.2.3.js" type="text/javascript"></script>
+                    <script src="/js/fullcalendar.js"></script>
+                    <script src="/js/evol.colorpicker.js" type="text/javascript" charset="utf-8"></script>
+                    <script src="/js/bootstro.js"></script>
+                    <script src="/js/config.js" type="text/javascript"></script>
         <style type="text/css">
             #container {
 
