@@ -19,7 +19,7 @@ class Keyword extends KeywordBase {
     public function attributeLabels() {
         return array(
             'keyword_id' => 'Keyword',
-            'name' => Yii::t('language', 'คีย์'),
+            'name' => Yii::t('language', 'คำสำคัญ'),
         );
     }
 
