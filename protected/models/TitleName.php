@@ -20,8 +20,8 @@ class TitleName extends TitleNameBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'คำนำหน้า'),
-            'name_en' => Yii::t('language', 'คำนำหน้าภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'คำนำหน้าชื่อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'คำนำหน้าชื่อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
