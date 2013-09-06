@@ -2,6 +2,11 @@
 $this->renderPartial('_sidebar', array(
     'selectDes' => 'selected',
 ));
+if ($model->description_id != NULL) {
+    $btnText = 'แก้ไข';
+} else {
+    $btnText = 'เพิ่ม';
+}
 ?>
 
 <style>
@@ -12,13 +17,18 @@ $this->renderPartial('_sidebar', array(
 
 <div class="content">
     <div class="tabcontents">
-
-
         <h3 class="barH3">
             <span>
-                <i class="icon-cog"></i> <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">ตั้งค่าเว็บไซต์</a> 
-                <i class="icon-chevron-right"></i><a href="<?php echo CHtml::normalizeUrl(array("/dataCenter/default/titleWeb")); ?>"><?php echo Yii::t('language', 'Description'); ?></a> 
-                <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'เพิ่ม') . ' ' . Yii::t('language', 'Description'); ?>
+                <i class="icon-cog"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                    <?php echo Yii::t('language', 'ตั้งค่าเว็บไซต์'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/dataCenter/default/titleWeb")); ?>">
+                    <?php echo Yii::t('language', 'รายละเอียด'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i> 
+                <?php echo Yii::t('language', $btnText) . ' ' . Yii::t('language', 'รายละเอียด'); ?>
             </span>
         </h3>
         <?php
@@ -26,11 +36,6 @@ $this->renderPartial('_sidebar', array(
             'id' => 'description_insert-form',
             'focus' => array($model, 'detail'),
         ));
-        if ($model->description_id != NULL) {
-            $btnText = 'แก้ไข';
-        } else {
-            $btnText = 'เพิ่ม';
-        }
         ?>
         <div class="_100">
             <div class="_100">
@@ -55,13 +60,16 @@ $this->renderPartial('_sidebar', array(
                 ?>
             </div>
             <div class="_100" style="text-align: center;">
+                <hr>
                 <?php
-                echo CHtml::submitButton($btnText);
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                    'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/dataCenter/default/description'
                     )) . "'")
                 );
                 ?>
+                <hr>
             </div>
         </div>
         <?php
