@@ -184,4 +184,28 @@ class DefaultController extends Controller {
         }
     }
 
+    public function actionFeed($id) {
+        Yii::import('ext.feed.*');
+
+
+
+        $feed = new EFeed(EFeed::RSS1);
+//        $feed->title = 'Testing the RSS 1 EFeed class';
+//        $feed->link = 'http://www.ramirezcobos.com';
+//        $feed->description = 'This is test of creating a RSS 1.0 feed by Universal Feed Writer';
+//        $feed->RSS1ChannelAbout = 'http://www.ramirezcobos.com/about';
+// create our item 
+        $model = Knowledge::model()->find('id = :id', array(':id' => $id));
+        $item = $feed->createNewItem();
+        $item->title = $model->subject;
+        $item->link = 'http://' . $_SERVER['SERVER_NAME'] . '/knowledge/default/view/id/' . $id;
+        $item->date = $model->date_write;
+        $item->description = $model->detail;
+        $item->addTag('dc:subject', 'Subject Testing');
+
+        $feed->addItem($item);
+
+        $feed->generateFeed();
+    }
+
 }

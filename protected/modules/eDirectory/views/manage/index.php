@@ -37,7 +37,7 @@ $this->renderPartial('side_bar', array(
             if ($model->status_appro == 0) {
                 ?>
                 <div class="clearfix _100" style="border: 1px solid red; padding: 10px 5px; color: red; font-weight: bold; background-color: pink; text-align: center;">
-                    <?php echo Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ waiting for approval'); ?>
+                    <?php echo Yii::t('language', '*ร้านค้าของคุณยังไม่ได้รับการยืนยันจากผู้ดูแลระบบ (waiting for approve)'); ?>
                 </div> 
                 <?php
             }
