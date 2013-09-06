@@ -2,6 +2,11 @@
 $this->renderPartial('_sidebar', array(
     'selectSex' => 'selected',
 ));
+if ($model->id != NULL) {
+    $btnText = 'แก้ไข';
+} else {
+    $btnText = 'เพิ่ม';
+}
 ?>
 
 <div class="content">
@@ -10,48 +15,51 @@ $this->renderPartial('_sidebar', array(
 
         <h3 class="barH3">
             <span>
-                <i class="icon-cog"></i> <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">ตั้งค่าเว็บไซต์</a> 
-                <i class="icon-chevron-right"></i><a href="<?php echo CHtml::normalizeUrl(array("/dataCenter/default/sex")); ?>">เพศ</a> 
-                <i class="icon-chevron-right"></i><?php echo Yii::t('language', 'เพิ่มเพศ '); ?>
+                <i class="icon-cog"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                    <?php echo Yii::t('language', 'ตั้งค่าเว็บไซต์'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i> 
+                <a href="<?php echo CHtml::normalizeUrl(array("/dataCenter/default/sex")); ?>">                     
+                    <?php echo Yii::t('language', 'เพศ'); ?>
+                </a> 
+                <i class="icon-chevron-right"></i> 
+                <?php echo Yii::t('language', $btnText) . Yii::t('language', 'เพศ'); ?>
             </span>
         </h3>
 
-        <ul class="form _100">
+        <?php
+        $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'insert_sex-form',
+            'focus' => array($model, 'name'),
+        ));
+        ?>
+        <div class='_100'>
             <?php
-            $form = $this->beginWidget('CActiveForm', array(
-                'id' => 'insert_sex-form',
-                'focus' => array($model, 'name'),
-            ));
-            if ($model->id != NULL) {
-                $btnText = 'แก้ไข';
-            } else {
-                $btnText = 'เพิ่ม';
-            }
+            echo $form->labelEx($model, 'name');
+            echo $form->textField($model, 'name');
+            echo $form->error($model, 'name')
             ?>
-            <li>
-                <?php
-                echo $form->labelEx($model, 'name');
-                echo $form->textField($model, 'name');
-                echo $form->error($model, 'name')
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $form->labelEx($model, 'name_en');
-                echo $form->textField($model, 'name_en');
-                echo $form->error($model, 'name_en')
-                ?>
-            </li>
-            <li class="textcenter">
-                <?php
-                echo CHtml::submitButton($btnText);
-                echo CHtml::button('ย้อนกลับ', array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                        '/dataCenter/default/sex'
-                    )) . "'")
-                );
-                ?>
-            </li>
-        </ul>
+        </div>
+        <div class='_100'>
+            <?php
+            echo $form->labelEx($model, 'name_en');
+            echo $form->textField($model, 'name_en');
+            echo $form->error($model, 'name_en')
+            ?>
+        </div>
+        <div class="textcenter">
+            <hr>
+            <?php
+            echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/dataCenter/default/sex'
+                )) . "'")
+            );
+            ?>
+            <hr>
+        </div>
         <?php
         $this->endWidget();
         ?>

@@ -214,7 +214,7 @@ $this->renderPartial('_side_bar', array(
                     echo $form->labelEx($model, 'logo');
                     $this->widget('CMultiFileUpload', array(
                         'name' => 'logo',
-                        'accept' => 'png|jpg|gif|bmp|tif|jpeg',
+                        'accept' => 'png|jpg|gif|bmp|tif|jpeg|swf',
                         'max' => 1,
                         'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
 //            'htmlOptions' => array('size' => 25),
@@ -252,7 +252,7 @@ $this->renderPartial('_side_bar', array(
                     echo $form->labelEx($model, 'banner');
                     $this->widget('CMultiFileUpload', array(
                         'name' => 'banner',
-                        'accept' => 'png|jpg|gif|bmp|tif|jpeg',
+                        'accept' => 'png|jpg|gif|bmp|tif|jpeg|swf',
                         'max' => 3,
                         'denied' => Yii::t('language', 'ประเภทไฟล์ไม่ถูกต้อง ลองใหม่อีกครั้ง'),
                         'duplicate' => Yii::t('language', 'ไฟล์ได้ถูกเลือกไปแล้ว ลองใหม่อีกครั้ง'),

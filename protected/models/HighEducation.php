@@ -10,7 +10,7 @@ class HighEducation extends HighEducationBase {
         return array(
             array('name, abbreviation', 'required'),
             array('name, name_en, abbreviation, abbreviation_en', 'length', 'max' => 100),
-            array('name, name_en', 'unique', 'message' => Yii::t('language', '{attribute}' . Yii::t('language', 'มีอยู่ในระบบแล้วกรุณาตรวจสอบ'))),
+            array('name, name_en', 'unique', 'message' => Yii::t('language', '{attribute}' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'))),
             array('id, name, name_en, abbreviation, abbreviation_en', 'safe', 'on' => 'search'),
         );
     }
@@ -18,10 +18,10 @@ class HighEducation extends HighEducationBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => yii::t('language', 'ขื่อ'),
-            'abbreviation' => yii::t('language', 'ขื่อ'),
-            'name_en' => yii::t('language', 'ขื่อภาษาอังกฤษ'),
-            'abbreviation_en' => yii::t('language', 'ขื่อภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'ชื่อ').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'abbreviation' => Yii::t('language', 'ตัวย่อ').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'name_en' => Yii::t('language', 'ชื่อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
+            'abbreviation_en' => Yii::t('language', 'ตัวย่อ').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
         );
     }
 
