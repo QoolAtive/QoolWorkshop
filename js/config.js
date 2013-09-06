@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+      // Slideshow 1
+      $("#companyslider").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "centered-btns"
+      });
+
+    });
+
+$(document).ready(function(){
+
     $('.items').each(function(){  
         var highestBox = 0;
 
