@@ -155,7 +155,7 @@
                                 </a>
                             </li>
                             <?php
-                        } else {
+                        } else { 
                             ?>
                             <li>
                                 <a href="<?php echo $link; ?> " target="_bank">

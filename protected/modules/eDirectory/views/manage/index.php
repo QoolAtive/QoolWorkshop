@@ -12,7 +12,7 @@ $this->renderPartial('side_bar', array(
 ));
 ?>
 <div class="content">
-    <div class="tabcontents">
+    <div class="tabcontents"> 
         <?php
         if ($model == null) {
             ?>

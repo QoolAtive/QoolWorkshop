@@ -71,7 +71,7 @@
             </span>
             <a style='float: right;' title="Syndicate this content" href="/knowledge/default/feed/id/<?php echo $view->id; ?>" target="_bank">
                 <img alt="RSS" src="http://www.ramirezcobos.com/wp-includes/images/rss.png" >
-            </a>
+            </a> 
         </h3>
         <div class="knowledgeview ckfix">
             <!-- <div class="btnedit"> -->
