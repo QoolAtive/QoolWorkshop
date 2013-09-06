@@ -377,7 +377,7 @@ return array(
     'ระดับการศึกษา' => 'Levels of education',
     'ประเภทร้านค้า' => 'Types of shops',
     'เพศ' => 'Gender',
-    'คำนำหน้า' => 'Prefix',
+    'คำนำหน้าชื่อ' => 'Prefix',
     'ชื่อเว็บ' => 'Title Web',
     'คำสำคัญ' => 'Keywords',
     'แผนที่เว็บไซต์' => 'Site Map',
