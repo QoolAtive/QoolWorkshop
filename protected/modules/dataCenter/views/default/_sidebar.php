@@ -21,7 +21,7 @@
             </li>
             <li class="<?php echo $selectTname; ?>">
                 <a href="/dataCenter/default/titleName" >
-                    <?php echo Yii::t('language', 'คำนำหน้า'); ?>
+                    <?php echo Yii::t('language', 'คำนำหน้าชื่อ'); ?>
                 </a>
             </li>
             <li class="<?php echo $selectTweb; ?>">
