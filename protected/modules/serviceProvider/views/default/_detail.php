@@ -99,12 +99,20 @@
             <div style="float: left; width: 525px; height: 220px; ">
                 <div id="featured"> 
                     <?php
+                    $link = str_replace('https://', '', $model->website);
+                    $link = str_replace('http://', '', $link);
+                    $link = str_replace(' ', '', $link);
+                    if (!empty($link) && $link != '-')
+                        $link = 'http://' . $link;
+                    else
+                        $link = '#';
+
                     $banner = SpBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
                     if ($banner == null) {
                         ?>
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" />
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
-                        <img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/>
+                        <a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a>
+                        <a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a>
+                        <a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a>
                         <?php
                     } else {
                         foreach ($banner as $data) {
@@ -122,11 +130,11 @@
                     <?php
                     if ($model->logo != null) {
                         ?>
-                        <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" />
+                        <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" /></a>
                         <?php
                     } else {
                         ?>
-                        <img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/>
+                        <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/></a>
                         <?php
                     }
                     ?>
@@ -134,9 +142,6 @@
 
             </div>
         </div>
-
-
-
         <div class="servicebox"  >
 
             <h2>
@@ -146,7 +151,7 @@
                 if (Yii::app()->user->isAdmin()) {
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
-                        'class' => "grey right", // btnedit grey
+                        'class' => "grey", // btnedit grey
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/insertCompany/id/' . $model->id
                         )) . "'")
@@ -154,14 +159,13 @@
                 }
                 ?>
             </h2>
-
             <table>
                 <tr>
                     <td><?php echo Yii::t('language', 'ชื่อบริษัท'); ?></td>
                     <td class="colon"> : </td>
                     <td>
                         <?php
-                        //$name = LanguageHelper::changeDB($model->name, $model->name_en); //ย้ายไปอยู่ด้านบน เพื่อเรียกใช้ในหัวข้อด้วย
+//$name = LanguageHelper::changeDB($model->name, $model->name_en); //ย้ายไปอยู่ด้านบน เพื่อเรียกใช้ในหัวข้อด้วย
                         echo $name;
                         ?>
                     </td>
@@ -197,12 +201,6 @@
                     <td class="colon"> : </td>
                     <td>
                         <?php
-                        $link = str_replace('https://', '', $model->website);
-                        $link = str_replace('http://', '', $link);
-                        $link = str_replace(' ', '', $link);
-                        if (!empty($link) && $link != '-')
-                            $link = 'http://' . $link;
-
                         echo CHtml::link($link, $link, array('target' => '_bank'));
                         ?>
                     </td>
