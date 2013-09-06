@@ -17,9 +17,10 @@ $this->renderPartial('_sidebar', array(
                 <?php echo Yii::t('language', 'ประเภทร้านค้า'); ?>
             </span>
         </h3>
+        <h3><?php echo Yii::t('language', 'ประเภทร้านค้าหลัก'); ?></h3>
         <div style="text-align: center;">
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทร้านค้า'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทร้านค้าหลัก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/dataCenter/default/insertCompanyTypeBusiness'
                 )) . "'")
             );
@@ -29,6 +30,22 @@ $this->renderPartial('_sidebar', array(
         <?php
         $this->renderPartial('_grid_company_type_business', array(
             'model' => $model,
+        ));
+        ?>
+        <h3><?php echo Yii::t('language', 'ประเภทร้านค้าย่อย'); ?></h3>
+        <div style="text-align: center;">
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทร้านค้าย่อย'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/dataCenter/default/companySubTypeBusinessInsert'
+                )) . "'")
+            );
+            ?>
+            <hr>
+        </div>
+        <?php
+        $this->renderPartial('_grid_company_type_business_sub', array(
+            'modelSubType' => $modelSubType,
+            'dataProvider' => $dataProvider,
         ));
         ?>
         <div style="text-align: center;">
