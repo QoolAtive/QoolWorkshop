@@ -1,3 +1,49 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<?php
+$data_auto = null;
+foreach (SpAuto::model()->getArray() as $d) {
+    if ($data_auto == null) {
+        $data_auto .= '"' . $d . '"';
+    } else {
+        $data_auto .= ', ' . '"' . $d . '"';
+    }
+}
+?>
+
+<script>
+    $(function() {
+        var availableTags = [<?php echo $data_auto; ?>
+//            "ActionScript",
+//            "AppleScript",
+//            "Asp",
+//            "BASIC",
+//            "C",
+//            "C++",
+//            "Clojure",
+//            "COBOL",
+//            "ColdFusion",
+//            "Erlang",
+//            "Fortran",
+//            "Groovy",
+//            "Haskell",
+//            "Java",
+//            "JavaScript",
+//            "Lisp",
+//            "Perl",
+//            "PHP",
+//            "Python",
+//            "Ruby",
+//            "Scala",
+//            "Scheme"
+        ];
+        $("#tags").autocomplete({
+            source: availableTags
+        });
+    });
+</script>
 <?php
 $this->renderPartial('_side_bar', array(
     'id' => $id,
@@ -27,7 +73,21 @@ $this->renderPartial('_side_bar', array(
                     </div>
                     <div class="_50">
                         <?php
-                        echo CHtml::textField('name', $name, array('placeholder' => Yii::t('language', 'ค้นหาตามชื่อบริษัท')));
+//                        $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+//                            'id' => 'name_auto',
+//                            'name' => 'name',
+//                            'source' => SpAuto::model()->getArray(),
+//                            // additional javascript options for the autocomplete plugin
+//                            'options' => array(
+//                                'minLength' => '2',
+//                                'for' => '#name_auto'
+//                            ),
+//                            'htmlOptions' => array(
+//                                'style' => 'height:20px;',
+//                                'placeholder' => Yii::t('language', 'ค้นหาตามชื่อบริษัท'),
+//                            ),
+//                        ));
+                        echo CHtml::textField('name', $name, array('id' => 'tags', 'placeholder' => Yii::t('language', 'ค้นหาตามชื่อบริษัท')));
                         ?>
                     </div>
                     <div class="_50">
@@ -62,7 +122,6 @@ $this->renderPartial('_side_bar', array(
                     <div id="hot_shop">
                         <h3><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'ยอดนิยม'); ?></h3>
                         <?php
-                        
                         $this->widget('zii.widgets.CListView', array(
                             'dataProvider' => $dataHotshop,
                             'itemView' => '_list_all',
