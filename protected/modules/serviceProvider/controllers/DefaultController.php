@@ -89,19 +89,21 @@ class DefaultController extends Controller {
         }
         if (isset($_POST['name'])) {
             $name = $_POST['name'];
-            $autoAdd = SpAuto::model()->find('name = :name', array(':name' => $name));
-            if (count($autoAdd) > 0) {
-                $autoAdd->name = $name;
-                if (!$autoAdd->save()) {
-                    echo "<pre>";
-                    print_r($autoAdd->getErrors());
-                }
-            } else {
-                $autoAdd = new SpAuto();
-                $autoAdd->name = $name;
-                if (!$autoAdd->save()) {
-                    echo "<pre>";
-                    print_r($autoAdd->getErrors());
+            if ($name != null) {
+                $autoAdd = SpAuto::model()->find('name = :name', array(':name' => $name));
+                if (count($autoAdd) > 0) {
+                    $autoAdd->name = $name;
+                    if (!$autoAdd->save()) {
+                        echo "<pre>";
+                        print_r($autoAdd->getErrors());
+                    }
+                } else {
+                    $autoAdd = new SpAuto();
+                    $autoAdd->name = $name;
+                    if (!$autoAdd->save()) {
+                        echo "<pre>";
+                        print_r($autoAdd->getErrors());
+                    }
                 }
             }
 

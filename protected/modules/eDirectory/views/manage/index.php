@@ -67,37 +67,75 @@ $this->renderPartial('side_bar', array(
                 </span>
             </h3>
 
-            <div class="clearfix" style="border: 1px solid #e0e0e0; height: 220px; display: inline-block; width: 100%;">
+            <div class="clearfix servicebanner">
+                <div style="float: left; width: 525px; height: 220px; ">
+                    <div class="rslides_container">
+                        <ul class="rslides" id="companyslider">
+                            <?php
+                            $link = str_replace('https://', '', $model->website);
+                            $link = str_replace('http://', '', $link);
+                            $link = str_replace(' ', '', $link);
+                            if (!empty($link) && $link != '-')
+                                $link = 'http://' . $link;
+                            else
+                                $link = '#';
 
-                <div id="featured" > 
-                    <?php
-                    $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
-                    if ($banner == null) {
-                        ?>
-                        <img src="/file/banner/default.jpg" style="height: 220px;" />
-                        <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                        <img src="/file/banner/default.jpg" style="height: 220px;"/>
-                        <?php
-                    } else {
-                        foreach ($banner as $data) {
+                            $banner = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $model->id));
+                            if ($banner == null) {
+                                ?>
+                                <li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;" /></a></li>
+                                <li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/></a></li>
+                                <li><a href="<?php echo $link; ?> " target="_bank"><img src="/file/banner/default.jpg" style="height: 220px; max-width: 525px;"/></a></li>
+                                <?php
+                            } else {
+                                foreach ($banner as $data) {
+                                    if (!strpos($data['path'], '.swf')) {
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo $link; ?> " target="_bank">
+                                                <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;max-width: 525px;" />
+                                            </a>
+                                        </li>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo $link; ?> " target="_bank">
+                                                <object width="525" height="220"> 
+                                                    <param name="flash" value="<?php echo $data['path']; ?>"> 
+                                                    <embed src="/file/banner/<?php echo $data['path']; ?>" width="525" height="220"> 
+                                                    </embed> 
+                                                </object>
+                                            </a>
+                                        </li>
+                                        <?php
+                                    }
+                                }
+                            }
                             ?>
-                            <img src="/file/banner/<?php echo $data['path']; ?>" style="height: 220px;" />
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="Center-Container is-Inline-logo">
+                    <div class="Center-Block">
+                        <?php
+                        if ($model->logo != null) {
+                            ?>
+                            <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" /></a>
+                            <?php
+                        } else {
+                            ?>
+                            <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/></a>
                             <?php
                         }
-                    }
-                    ?>
+                        ?>
+                    </div>
+
                 </div>
-                <?php
-                if ($model->logo != null) {
-                    ?>
-                    <img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" />
-                    <?php
-                } else {
-                    ?>
-                    <img src="/file/logo/default.jpg" style="float: right;" width="220" />
-                    <?php
-                }
-                ?>
+
             </div>
 
             <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px; margin: 5px 0;">
