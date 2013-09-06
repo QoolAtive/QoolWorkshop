@@ -22,8 +22,8 @@ class MemSex extends MemSexBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'เพศภาษาไทย'),
-            'name_en' => Yii::t('language', 'เพศภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'เพศ').' ('.Yii::t('language', 'ภาษาไทย').')',
+            'name_en' => Yii::t('language', 'เพศ').' ('.Yii::t('language', 'ภาษาอังกฤษ').')',
         );
     }
 
