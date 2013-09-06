@@ -1,4 +1,8 @@
 /* @group Component */
+
+.shopbannerleft{
+  width: 70%;
+}
 .rslides {
   position: relative;
   list-style: none;
@@ -215,6 +219,11 @@
 }
 
 #search-form > input#s {
+  text-indent: 35px;
+ background-image: url("/img/search.png");
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  background-size: 15px auto;
   border-radius: 4px 4px 4px 4px;
   height: 13px;
   margin-bottom: 12px;
@@ -661,7 +670,7 @@ p.p1 ul , p1 ol{
   .servicedata table{
     color: #fff; display: block;
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   .servicedata table tr td:last-child{
     padding-left: 2px;
@@ -698,10 +707,9 @@ p.p1 ul , p1 ol{
 
 html, body{
   height:100%;
-  font-family: 100% Tahoma,Helvetica;
-  color:#666;
+/*  font-family: 100% Tahoma,Helvetica;
+*/  color:#666;
   width: 100%;
-
 }
 
 input, textarea, select {
@@ -2790,9 +2798,3 @@ ul.btnMangae li{
 }
 
 
-@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)  {
-
-  #header{  
-    display: none;
-  }
-}
