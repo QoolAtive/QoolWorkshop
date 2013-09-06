@@ -19,8 +19,8 @@ class Description extends DescriptionBase {
     public function attributeLabels() {
         return array(
             'description_id' => 'Description',
-            'detail' => Yii::t('language', 'รายละเอียดภาษาไทย'),
-            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
+            'detail' => Yii::t('language', 'รายละเอียด').'('.Yii::t('language', 'ภาษาไทย').')',
+            'detail_en' => Yii::t('language', 'รายละเอียด').'('.Yii::t('language', 'ภาษาอังกฤษ').')',
             'status' => Yii::t('language', 'สถานะ'),
         );
     }
