@@ -1,170 +1,395 @@
 #toggle, .toggle { display: none; }
 
-@media only screen 
-and (min-width : 320px) 
-and (max-width : 480px) {
 
 
-#wrapper .pageborder, #wrapper.pageborder{
-    border: 0px;
+    /* Large desktop */
+    @media (min-width: 1200px) { }
+     
+    /* Portrait tablet to landscape and desktop */
+    @media (min-width: 768px) and (max-width: 979px) {  }
+     
+    /* Landscape phone to portrait tablet */
+    @media (max-width: 767px) { 
+       #wrapper{
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                }                      
+#footer{
+    display: none;
 }
-h3.barH3{
-    text-align: center;
-}
-.menuitem ul.tabs{
-    width: 100%;
-}
-ul.tabs li{
-    width: 25%;
-}
-ul.tabs li a{
-    height: 50px;
-}
-#container .sidebar div.menuitem ul li.boxhead{
-    background-attachment: scroll   !important;
-    background-clip: border-box ;
-    background-color: #32013D !important;
-    background-origin: padding-box;
-    background-position: right -147px !important;
-    background-repeat: no-repeat    !important;
-    background-size: auto auto !important;
-    height: 53px;
-    width: 100%;
-
-    }
-        div.page{         
+                                              #wrapper.pagecen{
+            width: 100%;
+        }
+        div.page{
             width: 100%;
         }     
-        #header .sidebar{       
-            width: 100%;
-            display: block;     
-        }     
-        #header .content{         
-            width: 100%;     
-        }     
-     /*   #header .menutop > div.clearfix{         
-            display: none;     
-        }     */
-        div.tabcontents{
-            margin: 0px;
-        }
-        #header .content .menutop{
-            width: 100%;
-            margin-left: 0px;
-        }
+                                                        #wrapper .pageborder, #wrapper.pageborder{
+                                                            border: 0px;
+                                                        }
+                                                        h3.barH3{
+                                                            text-align: center;
+                                                        }
+                                                        .menuitem ul.tabs{
+                                                            width: 100%;
+                                                        }
+                                                        ul.tabs li{
+                                                            width: 25%;
+                                                        }
+                                                        ul.tabs li a{
+                                                            height: 50px;
+                                                        }
 
-        #header .menu > li{
-            background: none repeat scroll 0 0 rgba(117, 5, 154, 0.9);
-            position: relative;
-            z-index: 9999;
+                                                        #container .servicelist > ul li:first-child{
+                                                            width: 100%;
+                                                        }
+                                                        #container .sidebar div.menuitem ul li.boxhead{
+                                                            background-attachment: scroll   !important;
+                                                            background-clip: border-box ;
+                                                            background-color: #32013D !important;
+                                                            background-origin: padding-box;
+                                                            background-position: right -147px !important;
+                                                            background-repeat: no-repeat    !important;
+                                                            background-size: auto auto !important;
+                                                            height: 53px;
+                                                            width: 100%;
 
-            width: 100%;         
-            margin: 0px 0px 0px 0px;     
-        }
-        #container div.page{
-            padding: 0px;
-        }
-        #container .content{
-            width:100%;
-        }
-        #container .sidebar{
-            width: 100%;
-        }
-        #container .sidebar div.menuitem{
-            width: 100%;
-        }
-        ul.tabs{
-            margin: 0px;
-        }
-#container .sidebar div.menuitem ul li.boxhead img{
-    width: 100%;
+                                                            }
+                                                                div.page{         
+                                                                    width: 100%;
+                                                                }     
+                                                                #header .sidebar{       
+                                                                    width: 100%;
+                                                                    display: block;     
+                                                                }     
+                                                                #header .content{         
+                                                                    width: 100%;     
+                                                                }     
+                                                             /*   #header .menutop > div.clearfix{         
+                                                                    display: none;     
+                                                                }     */
+                                                                div.tabcontents{
+                                                                    margin: 0px;
+                                                                }
+                                                                #header .content .menutop{
+                                                                    width: 100%;
+                                                                    margin-left: 0px;
+                                                                }
+
+                                                                #header .menu > li{
+                                                                    background: none repeat scroll 0 0 rgba(117, 5, 154, 0.9);
+                                                                    position: relative;
+                                                                    z-index: 9999;
+
+                                                                    width: 100%;         
+                                                                    margin: 0px 0px 0px 0px;     
+                                                                }
+                                                                #container div.page{
+                                                                    padding: 0px;
+                                                                }
+                                                                #container .content{
+                                                                    width:100%;
+                                                                }
+                                                                #container .sidebar{
+                                                                    width: 100%;
+                                                                }
+                                                                #container .sidebar div.menuitem{
+                                                                    width: 100%;
+                                                                }
+                                                                ul.tabs{
+                                                                    margin: 0px;
+                                                                }
+                                                        #container .sidebar div.menuitem ul li.boxhead img{
+                                                            width: 100%;
+                                                        }
+                                                        .loginbtnbox.clearfix{
+                                                            width: 100%;
+                                                        }
+                                                        .lang {
+                                                            color: rgba(0, 0, 0, 0);
+                                                            left: 10px;
+                                                            position: absolute;
+                                                            top: 10px;
+                                                            width: 200px;
+                                                        }
+
+                                                        .linksearch form#search-form div{ width: 100%;}
+                                                                .menuitem ul:first-child{
+                                                                    width: 100%;
+                                                                    float: left;
+                                                                }
+                                                                
+                                                                .menuitem > div.textcenter{
+                                                                clear: both;
+                                                                }
+
+                                                                #container .servicelist{
+                                                                    width: 100%;
+                                                                    padding: 0px;
+                                                                    border: 0px;
+                                                                    margin: 0px;
+                                                                    margin-bottom: 10px;
+                                                                }
+                                                                d
+                                                                #footer{
+                                                                    padding: 0px;
+                                                                    /*background-size: 480px 320px ;*/
+
+                                                                }
+                                                                #footer, #push {
+                                                                    height: 200px;
+                                                                }
+                                                                #footer > div {
+                                                                    /*       padding: 0 20px;      */   
+                                                                 }
+
+                                                                #footer .foottext{ 
+                                                                    width: 100%;
+                                                                    text-align: center;
+                                                                }
+
+                                                                #footer .footright {
+                                                                    display: block;
+                                                                    width: 100%;
+                                                                    padding-top: 23px;
+                                                                }
+                                                               
+                                                                .menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
+                                                                .menu > li { display: block; width: 100%; margin: 0; }
+                                                                .menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+                                                                .toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+                                                                #toggle:checked ~ .menu { display: block; opacity: 1;}
+                                                                .toggle:after {
+                                                                    content: attr(data-open);
+                                                                    display: block;
+                                                                    width: 100%;
+                                                                    padding: 10px 50px;
+                                                                    background: goldenrod;
+                                                                    -webkit-border-radius: 2px;
+                                                                    /*border-radius: 2px;*/
+                                                                    text-align: center;
+                                                                    font-size: 12px;
+                                                                    color: #FFFFFF;
+                                                                    -webkit-transition: all 0.5s linear;
+                                                                    -moz-transition: all 0.5s linear;
+                                                                    -o-transition: all 0.5s linear;
+                                                                    transition: all 0.5s linear;
+                                                                    -webkit-box-sizing: border-box;
+                                                                    -moz-box-sizing: border-box;
+                                                                    box-sizing: border-box; 
+                                                                }
+
+                                                                .toggle:hover:after{
+                                                                    background: goldenrod;
+                                                                }
+
+                                                                #toggle:checked + .toggle:after{
+                                                                    content: attr(data-close);
+                                                                } 
+
+
 }
-.loginbtnbox.clearfix{
-    width: 100%;
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Landscape phones and down */
+    @media (max-width: 480px) { 
+                #wrapper{
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                }                      
+#footer{
+    display: none;
 }
-.lang {
-    color: rgba(0, 0, 0, 0);
-    left: 10px;
-    position: absolute;
-    top: 10px;
-    width: 200px;
+                                              #wrapper.pagecen{
+            width: 100%;
+        }
+        div.page{
+            width: 100%;
+        }              .ul.yiiPager{
+                                                        line-height: 273% !important;
+                                                    }
+                                                    .servicelist.clearfix li{
+                                                         word-wrap: break-word;
+                                                    }
+                        
+                                            #wrapper .pageborder, #wrapper.pageborder{
+                                                border: 0px;
+                                            }
+                                            h3.barH3{
+                                                text-align: center;
+                                            }
+                                            .menuitem ul.tabs{
+                                                width: 100%;
+                                            }
+                                            ul.tabs li{
+                                                width: 25%;
+                                            }
+                                            ul.tabs li a{
+                                                height: 50px;
+                                            }
+                                            #container .servicelist > ul li:first-child{
+                                                width: 100%;
+                                            }
+                                            #container .sidebar div.menuitem ul li.boxhead{
+                                                background-attachment: scroll   !important;
+                                                background-clip: border-box ;
+                                                background-color: #32013D !important;
+                                                background-origin: padding-box;
+                                                background-position: right -147px !important;
+                                                background-repeat: no-repeat    !important;
+                                                background-size: auto auto !important;
+                                                height: 53px;
+                                                width: 100%;
+
+                                                }
+                                                    div.page{         
+                                                        width: 100%;
+                                                    }     
+                                                    #header .sidebar{       
+                                                        width: 100%;
+                                                        display: block;     
+                                                    }     
+                                                    #header .content{         
+                                                        width: 100%;     
+                                                    }     
+                                                 /*   #header .menutop > div.clearfix{         
+                                                        display: none;     
+                                                    }     */
+                                                    div.tabcontents{
+                                                        margin: 0px;
+                                                    }
+                                                    #header .content .menutop{
+                                                        width: 100%;
+                                                        margin-left: 0px;
+                                                    }
+
+                                                    #header .menu > li{
+                                                        background: none repeat scroll 0 0 rgba(117, 5, 154, 0.9);
+                                                        position: relative;
+                                                        z-index: 9999;
+
+                                                        width: 100%;         
+                                                        margin: 0px 0px 0px 0px;     
+                                                    }
+                                                    #container div.page{
+                                                        padding: 0px;
+                                                    }
+                                                    #container .content{
+                                                        width:100%;
+                                                    }
+                                                    #container .sidebar{
+                                                        width: 100%;
+                                                    }
+                                                    #container .sidebar div.menuitem{
+                                                        width: 100%;
+                                                    }
+                                                    ul.tabs{
+                                                        margin: 0px;
+                                                    }
+                                            #container .sidebar div.menuitem ul li.boxhead img{
+                                                width: 100%;
+                                            }
+                                            .loginbtnbox.clearfix{
+                                                width: 100%;
+                                            }
+                                            .lang {
+                                                color: rgba(0, 0, 0, 0);
+                                                left: 10px;
+                                                position: absolute;
+                                                top: 10px;
+                                                width: 200px;
+                                            }
+
+                                            .linksearch form#search-form div{ width: 100%;}
+                                                    .menuitem ul:first-child{
+                                                        width: 100%;
+                                                        float: left;
+                                                    }
+                                                    
+                                                    .menuitem > div.textcenter{
+                                                    clear: both;
+                                                    }
+
+                                                    #container .servicelist{
+                                                        width: 100%;
+                                                        padding: 0px;
+                                                        border: 0px;
+                                                        margin: 0px;
+                                                        margin-bottom: 10px;
+                                                    }
+
+                                                    #footer{
+                                                        padding: 0px;
+                                                        background-size: 480px 320px ;
+
+                                                    }
+                                                    #footer, #push {
+                                                        height: 200px;
+                                                    }
+                                                    #footer > div {
+                                                        /*       padding: 0 20px;      */   
+                                                     }
+
+                                                    #footer .foottext{ 
+                                                        width: 100%;
+                                                        text-align: center;
+                                                    }
+
+                                                    #footer .footright {
+                                                        display: block;
+                                                        width: 100%;
+                                                        padding-top: 23px;
+                                                    }
+                                                   
+                                                    .menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
+                                                    .menu > li { display: block; width: 100%; margin: 0; }
+                                                    .menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+                                                    .toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+                                                    #toggle:checked ~ .menu { display: block; opacity: 1;}
+                                                    .toggle:after {
+                                                        content: attr(data-open);
+                                                        display: block;
+                                                        width: 100%;
+                                                        padding: 10px 50px;
+                                                        background: goldenrod;
+                                                        -webkit-border-radius: 2px;
+                                                        /*border-radius: 2px;*/
+                                                        text-align: center;
+                                                        font-size: 12px;
+                                                        color: #FFFFFF;
+                                                        -webkit-transition: all 0.5s linear;
+                                                        -moz-transition: all 0.5s linear;
+                                                        -o-transition: all 0.5s linear;
+                                                        transition: all 0.5s linear;
+                                                        -webkit-box-sizing: border-box;
+                                                        -moz-box-sizing: border-box;
+                                                        box-sizing: border-box; 
+                                                    }
+
+                                                    .toggle:hover:after{
+                                                        background: goldenrod;
+                                                    }
+
+                                                    #toggle:checked + .toggle:after{
+                                                        content: attr(data-close);
+                                                    } 
 }
 
-.linksearch form#search-form div{ width: 100%;}
-        .menuitem ul:first-child{
-            width: 100%;
-            float: left;
-        }
-        
-        .menuitem > div.textcenter{
-        clear: both;
-        }
 
-        #container .servicelist{
-            width: 100%;
-            padding: 0px;
-            border: 0px;
-            margin: 0px;
-            margin-bottom: 10px;
-        }
-
-        #footer{
-            padding: 0px;
-            background-size: 480px 320px ;
-
-        }
-        #footer, #push {
-            height: 200px;
-        }
-        #footer > div {
-            /*       padding: 0 20px;      */   
-         }
-
-        #footer .foottext{ 
-            width: 100%;
-            text-align: center;
-        }
-
-        #footer .footright {
-            display: block;
-            width: 100%;
-            padding-top: 23px;
-        }
-       
-        .menu { display: none; opacity: 0; width: 100%; position: absolute; right: 0; }
-        .menu > li { display: block; width: 100%; margin: 0; }
-        .menu > li > a { display: block; width: 100%; text-decoration: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
-
-        .toggle { display: block; position: relative; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
-        #toggle:checked ~ .menu { display: block; opacity: 1;}
-        .toggle:after {
-            content: attr(data-open);
-            display: block;
-            width: 100%;
-            padding: 10px 50px;
-            background: goldenrod;
-            -webkit-border-radius: 2px;
-            /*border-radius: 2px;*/
-            text-align: center;
-            font-size: 12px;
-            color: #FFFFFF;
-            -webkit-transition: all 0.5s linear;
-            -moz-transition: all 0.5s linear;
-            -o-transition: all 0.5s linear;
-            transition: all 0.5s linear;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box; 
-        }
-
-        .toggle:hover:after{
-            background: goldenrod;
-        }
-
-        #toggle:checked + .toggle:after{
-            content: attr(data-close);
-        }
-
-
-
-}

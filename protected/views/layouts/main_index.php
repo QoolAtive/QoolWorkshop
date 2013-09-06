@@ -23,6 +23,7 @@ $description = Description::model()->find('status = :status', array(':status' =>
         <!--CSS-->
         <link rel="stylesheet" href="/css/global.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/style.css" type="text/css"></link>
+        <link rel="stylesheet" href="/css/responsive.css" type="text/css">
         <link rel="stylesheet" href="/css/animate.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css" media="screen" /></link>
 
