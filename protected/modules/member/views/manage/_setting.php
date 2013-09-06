@@ -16,7 +16,7 @@
     </li>
     <li>
         <?php
-        echo CHtml::link(Yii::t("language", 'คำนำหน้า'), array('/dataCenter/default/titleName'));
+        echo CHtml::link(Yii::t("language", 'คำนำหน้าชื่อ'), array('/dataCenter/default/titleName'));
         ?>
     </li>
     <li>
