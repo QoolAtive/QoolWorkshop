@@ -22,8 +22,8 @@ class TitleWeb extends TitleWebBase {
     public function attributeLabels() {
         return array(
             'title_web_id' => 'Title Web',
-            'detail' => Yii::t('language', 'รายละเอียดภาษาไทย'),
-            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
+            'detail' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'detail_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'status' => Yii::t('language', 'สถานะ'),
         );
     }
@@ -42,8 +42,8 @@ class TitleWeb extends TitleWebBase {
 
     public function getStatus($data = null) {
         $status = array(
-            '0' => Yii::t('language', 'ไม่ใช่งาน'),
-            '1' => Yii::t('language', 'ใช้งาน'),
+            '0' => Yii::t('language', 'ไม่เลือกใช้งาน'),
+            '1' => Yii::t('language', 'เลือกใช้งาน'),
         );
         if ($data == null) {
             return $status;
