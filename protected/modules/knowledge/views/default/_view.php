@@ -69,6 +69,9 @@
                 <i class="icon-chevron-right"></i>
                 <?php echo trim(Yii::t('language', 'เนื้อหา')); ?>
             </span>
+            <a style='float: right;' title="Syndicate this content" href="/knowledge/default/feed/id/<?php echo $view->id; ?>" target="_bank">
+                <img alt="RSS" src="http://www.ramirezcobos.com/wp-includes/images/rss.png" >
+            </a>
         </h3>
         <div class="knowledgeview ckfix">
             <!-- <div class="btnedit"> -->
@@ -96,9 +99,6 @@
                     echo $subject;
                     ?>
                 </h3>
-                <a title="Syndicate this content" href="/knowledge/default/feed/id/<?php echo $view->id; ?>" target="_bank">
-                    <img alt="RSS" src="http://www.ramirezcobos.com/wp-includes/images/rss.png" >
-                </a
                 <p><?php echo $detail; ?></p>
                 <p style="padding: 5px; float: right;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
 
