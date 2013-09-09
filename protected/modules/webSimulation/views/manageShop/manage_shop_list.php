@@ -1,5 +1,5 @@
-<div class="content">
-    <div class="tabcontents">
+<!--<div class="content">
+    <div class="tabcontents">-->
         <h3 class="barH3">
             <span>
                 <i class="icon-shopping-cart"></i>
@@ -78,5 +78,5 @@
             )
         ));
         ?>
-    </div>
-</div>
+<!--    </div>
+</div>-->
