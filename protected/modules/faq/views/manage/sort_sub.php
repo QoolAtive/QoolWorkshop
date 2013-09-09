@@ -37,7 +37,7 @@ $main = FaqMain::model()->findByPk($main_id);
             ?>
             <ul id="sortable">
                 <?php
-                $faq_sub_list = FaqSub::model()->findAll(array('order' => 'order_n'));
+                $faq_sub_list = FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $main_id, 'order' => 'order_n'));
                 foreach ($faq_sub_list as $sub) {
                     ?>
                     <li id="<?php echo $sub['faq_sub_id']; ?>" class="ui-state-default" value="<?php echo $sub['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $sub['name_th']; ?></li>

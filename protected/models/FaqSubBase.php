@@ -11,6 +11,7 @@
  * @property integer $order_n
  *
  * The followings are the available model relations:
+ * @property FaqQuestion[] $faqQuestions
  * @property FaqMain $faqMain
  */
 class FaqSubBase extends CActiveRecord
@@ -58,6 +59,7 @@ class FaqSubBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'faqQuestions' => array(self::HAS_MANY, 'FaqQuestion', 'fs_id'),
 			'faqMain' => array(self::BELONGS_TO, 'FaqMain', 'faq_main_id'),
 		);
 	}

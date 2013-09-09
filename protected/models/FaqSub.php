@@ -53,6 +53,7 @@ class FaqSub extends FaqSubBase {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'faqQuestions' => array(self::HAS_MANY, 'FaqQuestion', 'fs_id'),
             'faqMain' => array(self::BELONGS_TO, 'FaqMain', 'faq_main_id'),
         );
     }

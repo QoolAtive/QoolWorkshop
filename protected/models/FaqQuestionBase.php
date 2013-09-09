@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'faq_question':
  * @property integer $id
  * @property integer $fm_id
+ * @property integer $fs_id
  * @property string $subject_th
  * @property string $subject_en
  * @property string $detail_th
@@ -15,7 +16,7 @@
  * @property integer $counter
  *
  * The followings are the available model relations:
- * @property FaqAnswer[] $faqAnswers
+ * @property FaqSub $fs
  * @property FaqMain $fm
  */
 class FaqQuestionBase extends CActiveRecord
@@ -46,13 +47,13 @@ class FaqQuestionBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'required'),
-			array('fm_id, counter', 'numerical', 'integerOnly'=>true),
+			array('fm_id, fs_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'required'),
+			array('fm_id, fs_id, counter', 'numerical', 'integerOnly'=>true),
 			array('subject_th, subject_en', 'length', 'max'=>255),
 			array('author', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fm_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'safe', 'on'=>'search'),
+			array('id, fm_id, fs_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +65,7 @@ class FaqQuestionBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'faqAnswers' => array(self::HAS_MANY, 'FaqAnswer', 'fq_id'),
+			'fs' => array(self::BELONGS_TO, 'FaqSub', 'fs_id'),
 			'fm' => array(self::BELONGS_TO, 'FaqMain', 'fm_id'),
 		);
 	}
@@ -77,6 +78,7 @@ class FaqQuestionBase extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'fm_id' => 'Fm',
+			'fs_id' => 'Fs',
 			'subject_th' => 'Subject Th',
 			'subject_en' => 'Subject En',
 			'detail_th' => 'Detail Th',
@@ -100,6 +102,7 @@ class FaqQuestionBase extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('fm_id',$this->fm_id);
+		$criteria->compare('fs_id',$this->fs_id);
 		$criteria->compare('subject_th',$this->subject_th,true);
 		$criteria->compare('subject_en',$this->subject_en,true);
 		$criteria->compare('detail_th',$this->detail_th,true);

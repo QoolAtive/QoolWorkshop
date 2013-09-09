@@ -18,17 +18,19 @@ if ($select == 'main') {
         <ul>
             <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/faq.png'); ?>"/></li>
         </ul>
-        
+
         <!--จัดการหมวดหมู่หลัก/ย่อย-->
-        <ul class="tabs clearfix">
-            <li <?php echo $select_main; ?>>
-                <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>" rel="view_main"><?php echo Yii::t('language', 'จัดการหมวดหมู่'); ?></a>
-            </li>
-<!--            <li <?php echo $select_sub; ?>>
-                <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageSub')); ?>" rel="view_sub"><?php echo Yii::t('language', 'จัดการหมวดหมู่ย่อย'); ?></a>
-            </li>-->
-        </ul>
-        
+        <?php if (Yii::app()->user->isAdmin()) { ?>
+            <ul class="tabs clearfix">
+                <li <?php echo $select_main; ?>>
+                    <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>" rel="view_main"><?php echo Yii::t('language', 'จัดการหมวดหมู่'); ?></a>
+                </li>
+    <!--            <li <?php echo $select_sub; ?>>
+                    <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageSub')); ?>" rel="view_sub"><?php echo Yii::t('language', 'จัดการหมวดหมู่ย่อย'); ?></a>
+                </li>-->
+            </ul>
+        <?php } ?>
+
         <ul class="rectangle-list">
             <p class="demoline"></p>
             <?php
@@ -74,7 +76,7 @@ if ($select == 'main') {
                     ?>
                     <li>
                         <?php
-                        echo CHtml::link(Yii::t('language', 'จัดการ').$faq_main['name_th'], CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $faq_main['id'])), array(
+                        echo CHtml::link(Yii::t('language', 'จัดการ') . $faq_main['name_th'], CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $faq_main['id'])), array(
                             'rel' => 'view_edit' . $faq_main['id'],
                             'class' => '',
                         ));

@@ -23,6 +23,7 @@ class ManageController extends Controller {
         if ($id == NULL) {
             $model = new FaqQuestion();
             $model->fm_id = $fm_id;
+            $model->counter = 0;
         } else {
             $model = FaqQuestion::model()->findByPk($id);
         }

@@ -35,6 +35,10 @@ $main = FaqMain::model()->findByPk($fm_id);
         ?>
         <div class="_100">
             <?php
+            $faq_sub_list = CHtml::listData(FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $fm_id)), "faq_sub_id", "name_th");
+            echo $form->labelEx($model, 'fs_id');
+            echo $form->dropDownList($model, 'fs_id', $faq_sub_list, array('class' => 'fieldrequire', 'empty' => Yii::t('language', ' กรุณาเลือกหมวดหมู่ย่อย ')));
+
             //ภาษาไทย
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
