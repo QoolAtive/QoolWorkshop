@@ -7,10 +7,10 @@ $this->renderPartial('_side_bar', array(
 <div class="content">
     <div class="tabcontents">
         <?php
-        if (empty($model->id)) {
+        if (empty($model->sp_type_business_sub_id)) {
             $word = 'เพิ่ม';
         } else {
-             $word = 'แก้ไข';
+            $word = 'แก้ไข';
         }
         ?>
         <h3 class="barH3">
@@ -28,7 +28,7 @@ $this->renderPartial('_side_bar', array(
                     <?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?>
                 </a> 
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', $word).Yii::t('language', 'ประเภทผู้ให้บริการหลัก'); ?>
+                <?php echo Yii::t('language', $word) . Yii::t('language', 'ประเภทผู้ให้บริการย่อย'); ?>
             </span>
         </h3>
 
@@ -36,27 +36,36 @@ $this->renderPartial('_side_bar', array(
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
-                'id' => 'insert_type_business-form',
+                'id' => 'insert_type_business_sub-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาไทย').') -'; ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>
+
             <div class="_100">
                 <?php
-                echo $form->labelEx($model, 'name');
-                echo $form->textfield($model, 'name');
-                echo $form->error($model, 'name');
+                echo $form->labelEx($model, 'sp_type_business');
+                echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array('empty' => 'เลือก', 'style' => 'width: 150px'));
+                echo $form->error($model, 'sp_type_business');
+                ?>
+            </div>
+
+            <div class="_100">
+                <?php
+                echo $form->labelEx($model, 'name_th');
+                echo $form->textfield($model, 'name_th');
+                echo $form->error($model, 'name_th');
                 ?>
             </div>
             <div class="_100">
                 <?php
-                echo $form->label($model, 'about');
+                echo $form->label($model, 'about_th');
                 $this->widget('ext.ckeditor.CKEditorWidget', array(
                     "model" => $model, # Data-Model
-                    "attribute" => 'about', # Attribute in the Data-Model  // textarea name=""
-                    "defaultValue" => $model->about, # Optional
+                    "attribute" => 'about_th', # Attribute in the Data-Model  // textarea name=""
+                    "defaultValue" => $model->about_th, # Optional
                     "config" => array(
                         "resize_dir" => "vertical",
                         "height" => "240px",
@@ -74,11 +83,11 @@ $this->renderPartial('_side_bar', array(
 # Path to ckeditor.php
                     "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
                 ));
-                echo $form->error($model, 'about');
+                echo $form->error($model, 'about_th');
                 ?>
             </div>
             <div class="_100">
-                 <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') -'; ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php

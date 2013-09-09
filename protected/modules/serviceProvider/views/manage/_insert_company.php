@@ -1,3 +1,17 @@
+<!--<script type="text/javascript">
+    $(document).ready(function() {
+        if ($("[id^=SpTypeCom_type_id_]").is(":checked")) {
+//            alert($("[id^=SpTypeCom_type_id_]").val());
+        }
+        $("[id^=SpTypeCom_type_id_]").click(function() {
+            if ($("#SpTypeCom_type_id_]").is(":checked")) {
+                $("[id^=SpTypeCom_type_id_]").show();
+            }else{
+//                $(".type_sub").hide();
+            }
+        });
+    });
+</script>-->
 <?php
 $this->renderPartial('_side_bar', array(
     'select1' => '',
@@ -46,15 +60,35 @@ $this->renderPartial('_side_bar', array(
                 <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' -'; ?></h4>
             </div>
 
-            <div class="_100">
-                <?php echo $form->labelEx($model_type, 'type_id'); ?>
-            </div>
-            <div class="_100">
+            <div class="_50">
                 <?php
+                echo $form->labelEx($model_type, 'type_id') . "<br />";
                 echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
                 echo $form->error($model_type, 'type_id');
                 ?>
             </div>
+<!--            <div class="_50">
+                <div class="type_sub">
+                    <?php
+//                    echo "<pre>";
+//                    print_r(SpTypeBusiness::model()->getDataList());
+//                    $n = 0;
+//                    foreach (SpTypeBusiness::model()->getDataList() as $typesubkey => $typeSubDataArray) {
+//                        $list_model = SpTypeBusinessSub::model()->findAll('sp_type_business = :id', array(
+//                            ':id' => $typesubkey)
+//                        );
+//                        if (count($list_model) > 0) {
+//                            echo "<div id='SpTypeCom_type_id_" . $n++ . "' style='display: none;'>";
+//                            echo "<h6>$typeSubDataArray</h3>";
+//                            echo $form->labelEx($model_type, 'sp_type_business_sub_id') . "<br />";
+//                            echo $form->checkBoxList($model_type, 'sp_type_business_sub_id', Chtml::listData($list_model, 'sp_type_business_sub_id', 'name_th'));
+//                            echo $form->error($model_type, 'sp_type_business_sub_id');
+//                            echo "</div>";
+//                        }
+//                    }
+                    ?>
+                </div>
+            </div>-->
             <div class="_100">
                 <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>

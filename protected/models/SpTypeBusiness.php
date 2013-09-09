@@ -64,4 +64,19 @@ class SpTypeBusiness extends SpTypeBusinessBase {
         return CHtml::listData($this->model()->findAll(), 'id', $field);
     }
 
+    public function getDataArray($select = null) {
+        $field = LanguageHelper::changeDB('name', 'name_en');
+
+        $data = array();
+        foreach ($this->model()->findAll() as $d) {
+            $data[$d['id']] = $d[$field];
+        }
+
+        if ($select == null) {
+            return $data;
+        } else {
+            return $data[$select];
+        }
+    }
+
 }

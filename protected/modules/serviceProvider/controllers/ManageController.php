@@ -17,6 +17,13 @@ Class ManageController extends Controller {
             ),
         );
     }
+    
+    public function actionSpType(){
+        $id = $_POST['id'];
+        if($id != null){
+            echo "Not Null!!";
+        }
+    }
 
     public function actionIndex() {
 
@@ -46,6 +53,13 @@ Class ManageController extends Controller {
         $model = new SpTypeBusiness();
         $model->unsetAttributes();
 
+        $modelTypeSub = new SpTypeBusinessSub();
+        $modelTypeSub->unsetAttributes();
+
+        if (isset($_GET['SpTypeBusinessSub'])) {
+            $modelTypeSub->attributes = $_GET['SpTypeBusinessSub'];
+        }
+
         Yii::app()->user->setState('default_link_back_to_menu', ''); //จาก controller Default. actionDetail
 
         if (isset($_GET['SpTypeBusiness'])) {
@@ -54,6 +68,7 @@ Class ManageController extends Controller {
 
         $this->render('type_business', array(
             'model' => $model,
+            'modelTypeSub' => $modelTypeSub,
         ));
     }
 
@@ -120,14 +135,62 @@ Class ManageController extends Controller {
     public function actionDelTypeBusiness($id = null) {
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'DelTypeBusiness', 3);
         $count = SpCompany::model()->count('type_business=:type_id', array(':type_id' => $id));
+        $count2 = SpTypeBusinessSub::model()->count('sp_type_business=:sp_type_business', array(':sp_type_business' => $id));
 
-        if ($count < 1) {
+        if (($count + $count2) < 1) {
             $model = SpTypeBusiness::model()->findByPk($id);
             if ($model->delete()) {
                 echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
             }
         } else {
             echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ มีข้อมูลอ้างอิงอยู่');
+        }
+    }
+
+    public function actionTypeBusinessSubInsert($sp_type_business_sub_id = null) {
+        if ($sp_type_business_sub_id == null) {
+            $model = new SpTypeBusinessSub();
+            $model->unsetAttributes();
+            
+            $link = '/serviceProvider/manage/typeBusinessSubInsert';
+        } else {
+            $model = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :id', array(':id' => $sp_type_business_sub_id));
+            $link = '/serviceProvider/manage/typeBusiness';
+        }
+
+        if (isset($_POST['SpTypeBusinessSub'])) {
+            $model->attributes = $_POST['SpTypeBusinessSub'];
+
+            if ($model->validate()) {
+                if ($model->save()) {
+                    echo "
+                        <meta charset='UTF-8'></meta>
+                        <script>
+                        alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                        window.location='$link';
+                        </script>
+                        ";
+                } else {
+                    echo "<pre>";
+                    print_r($model->getErrors());
+                }
+            }
+        }
+
+        $this->render('_insert_type_business_sub', array(
+            'model' => $model,
+        ));
+    }
+
+    public function actionTypeBusinessSubDel($sp_type_business_sub_id = null) {
+        $count = SpTypeCom::model()->count('sp_type_business_sub_id = :id', array(':id' => $sp_type_business_sub_id));
+        if ($count < 1) {
+            $model = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :id', array(':id' => $sp_type_business_sub_id));
+            if ($model->delete()) {
+                echo Yii::t('language', 'ลบข้อมูลเรียบร้อย');
+            } else {
+                echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
+            }
         }
     }
 
