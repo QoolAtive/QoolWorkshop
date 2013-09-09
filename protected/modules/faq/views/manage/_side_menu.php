@@ -20,14 +20,14 @@ if ($select == 'main') {
         </ul>
 
         <!--จัดการหมวดหมู่หลัก/ย่อย-->
-        <ul class="tabs clearfix">
+<!--        <ul class="tabs clearfix">
             <li <?php echo $select_main; ?>>
                 <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>" rel="view_main"><?php echo Yii::t('language', 'จัดการหมวดหมู่'); ?></a>
             </li>
-<!--            <li <?php echo $select_sub; ?>>
+            <li <?php echo $select_sub; ?>>
                 <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageSub')); ?>" rel="view_sub"><?php echo Yii::t('language', 'จัดการหมวดหมู่ย่อย'); ?></a>
-            </li>-->
-        </ul>
+            </li>
+        </ul>-->
 
         <ul class="rectangle-list">
             <p class="demoline"></p>
@@ -53,6 +53,19 @@ if ($select == 'main') {
 
         <!--จัดการคำถาม-->
         <?php if (Yii::app()->user->isAdmin()) { ?>
+            <div class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
+                 border-top: 2px solid gold;
+                 font-size: 16px;
+                 margin-top: 6px;
+                 padding: 14px 0;">
+                <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>">
+                    <p style="font-weight: bold;">
+                        <?php
+                        echo Yii::t('language', 'จัดการหมวดหมู่');
+                        ?>
+                    </p>
+                </a>
+            </div>
             <div class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
                  border-top: 2px solid gold;
                  font-size: 16px;
