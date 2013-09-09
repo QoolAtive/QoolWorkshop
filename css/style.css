@@ -423,6 +423,7 @@ p.p1 ul , p1 ol{
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   white-space: normal;
+  max-height: 220px;
 }
 .popover.top {
   margin-top: -10px;
@@ -659,22 +660,43 @@ p.p1 ul , p1 ol{
     background: url(/img/edir-leftbg.png) no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     min-height: 138px;
-    margin-left: -2px;
-    width: 227px;
+    margin-left: -1px;
+    width: 226px;
+    background-color: #700F9C;
   }
 
   .servicedata p {
     padding-left: 11px;
     padding-top: 11px;
   }
-  .servicedata table{
-    color: #fff; display: block;
-    margin-left: 10px;
+.servicedata table {
+    color: #FFFFFF;
     margin-top: 5px;
-  }
+    table-layout: fixed;
+    width: 100%;
+}
+
+.servicedata tr td:first-child {
+    width: 40px;
+}
+.servicedata tr td:nth-child(2) {
+    width: 20px;
+}
+
+
+.servicedata tr td:nth-child(2) {
+    width: 20px;
+}
+
+
   .servicedata table tr td:last-child{
     padding-left: 2px;
+    word-wrap: break-word;
   }
+
+.menuitem > a {
+    margin-left: -1px;
+}.servicedata table
 
   .Center-Container.is-Inline { 
 /*  text-align: center;
