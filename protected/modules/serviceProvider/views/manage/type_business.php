@@ -21,9 +21,10 @@ $this->renderPartial('_side_bar', array(
             </span>
         </h3>
         <hr>
+        <h3><?php echo Yii::t('language', 'ประเภทผูให้บริการหลัก'); ?></h3>
         <div class="textcenter">
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทผู้ให้บริการ'), array(
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทผู้ให้บริการหลัก'), array(
                 'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/insertTypeBusiness'
                 )) . "'")
@@ -34,6 +35,23 @@ $this->renderPartial('_side_bar', array(
         <?php
         $this->renderPartial('_grid_type_business', array(
             'model' => $model,
+        ));
+        ?>
+
+        <h3><?php echo Yii::t('language', 'ประเภทผู้ให้บริการย่อย'); ?></h3>
+        <div class="textcenter">
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทผู้ให้บริการย่อย'), array(
+                'onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    '/serviceProvider/manage/typeBusinessSubInsert'
+                )) . "'")
+            );
+            ?>
+        </div>
+        <hr>
+        <?php
+        $this->renderPartial('_grid_type_business_sub', array(
+            'modelTypeSub' => $modelTypeSub,
         ));
         ?>
 
