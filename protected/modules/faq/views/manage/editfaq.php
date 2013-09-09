@@ -101,7 +101,7 @@ $main = FaqMain::model()->findByPk($fm_id);
             echo CHtml::hiddenField('fm_id', $model->fm_id);
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/manageFaq/view/" . $model->fm_id . '"'))));
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageFaq/main_id/" . $model->fm_id . '"'))));
             ?>
             <hr>
         </div>
