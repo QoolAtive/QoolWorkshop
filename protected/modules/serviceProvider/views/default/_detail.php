@@ -11,6 +11,7 @@
                     echo Yii::t('language', 'จำนวนการเข้าชม') . ' : ' . $model_count->count_company_view;
                     ?>
                 </p>
+                <div style="padding: 2px 10px;">
                 <table>
                     <tr>
                         <td><?php echo Yii::t('language', 'ชื่อ'); ?></td>
@@ -37,6 +38,7 @@
                         <td><?php echo $model->contact_tel; ?></td>
                     </tr>
                 </table>
+                </div>
             </li>
         </ul>
 
@@ -350,5 +352,5 @@
             }
             ?>
             <hr>
-        </div>
-    </div>
+      
+    </div>  </div>  </div>
