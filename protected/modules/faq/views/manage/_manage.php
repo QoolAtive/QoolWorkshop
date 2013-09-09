@@ -1,32 +1,36 @@
-<!-- 3.FAQ E-Dir -->
+<?php
+$main = FaqMain::model()->findByPk($main_id);
+?>
 <h3 class="barH3">
-    <i class="icon-question-sign"></i>            
-    <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index/view/3")); ?>">
-        <?php echo Yii::t('language', 'คำถาม') . Yii::t('language', 'ค้นหาร้านค้า'); ?>
-    </a>
-    <i class="icon-chevron-right"></i>
-    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม') . Yii::t('language', 'ค้นหาร้านค้า'); ?>
+    <span>
+        <i class="icon-question-sign"></i>            
+        <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index", 'main_id' => $main_id)); ?>">
+            <?php echo $main['name_th']; ?>
+        </a>
+        <i class="icon-chevron-right"></i>
+        <?php echo Yii::t('language', 'จัดการ') . $main['name_th']; ?>
+    </span>
 </h3>
-<div id="view3" class="tabcontent">
+
+<div id="view<?php echo $main_id; ?>">
     <?php
     $dataProvider = $model->search();
-    $dataProvider->criteria->addCondition('fm_id = 3');
+    $dataProvider->criteria->addCondition('fm_id = ' . $main_id);
     ?>
     <div class="txt-cen">
         <hr>
         <?php
-        echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'คำถาม') . Yii::t('language', 'ค้นหาร้านค้า'), array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/default/editFaq/fm_id/3")) . '"'));
+        echo CHtml::button(Yii::t('language', 'เพิ่ม') . $main['name_th'], array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/editFaq", 'fm_id' => $main_id)) . '"'));
         ?>
         <hr>
     </div>
     <?php
     $this->widget('zii.widgets.grid.CGridView', array(
-        'id' => 'faq3-grid',
+        'id' => 'faq-grid',
         'dataProvider' => $dataProvider,
         'filter' => $model,
         'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-        'pagerCssClass' => 'alignCenter',
         'ajaxUpdate' => true,
         'columns' => array(
             array(
@@ -55,7 +59,7 @@
                 'buttons' => array(
                     'update' => array(
                         'label' => Yii::t('language', 'แก้ไข'),
-                        'url' => 'CHtml::normalizeUrl(array("/faq/default/editFaq","fm_id"=> $data->fm_id ,"id"=> $data->id))',
+                        'url' => 'CHtml::normalizeUrl(array("/faq/manage/editFaq","fm_id" => $data->fm_id ,"id"=> $data->id))',
                     ),
                 ),
             ),
@@ -67,7 +71,7 @@
                 'buttons' => array(
                     'delete' => array(
                         'label' => Yii::t('language', 'ลบ'),
-                        'url' => 'CHtml::normalizeUrl(array("/faq/default/deleteFaq","id"=> $data->id))',
+                        'url' => 'CHtml::normalizeUrl(array("/faq/manage/deleteFaq","id"=> $data->id))',
                     ), //end 'delete' => array(
                 ), //end 'buttons' => array(
             ),
@@ -84,4 +88,3 @@
     ));
     ?>
 </div>
-<!-- END 3.FAQ E-Dir -->

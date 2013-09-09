@@ -58,6 +58,12 @@ function getPathTheme(index) {
         case 10:
             file = "tp010";
             break;
+        case 11:
+            file = "tp011";
+            break;
+        case 12:
+            file = "tp012";
+            break;
         default:
             file = "";
     }

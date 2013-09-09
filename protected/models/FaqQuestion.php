@@ -36,14 +36,14 @@ class FaqQuestion extends FaqQuestionBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fm_id, subject_th, date_write, detail_th, subject_en, detail_en', 'required'), # author,
+            array('fm_id, fs_id, subject_th, subject_en, detail_th, detail_en, date_write, counter', 'required'),
             array('fm_id', 'numerical', 'integerOnly' => true),
             array('subject_th', 'length', 'max' => 255),
             array('author', 'length', 'max' => 100),
             array('author, counter', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, fm_id, subject_th, detail_th, subject_en, detail_en, author, date_write', 'safe', 'on' => 'search'),
+            array('id, fm_id, fs_id, subject_th, subject_en, detail_th, detail_en, author, date_write, counter', 'safe', 'on' => 'search'),
         );
     }
 
@@ -54,6 +54,8 @@ class FaqQuestion extends FaqQuestionBase {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'fs' => array(self::BELONGS_TO, 'FaqSub', 'fs_id'),
+            'fm' => array(self::BELONGS_TO, 'FaqMain', 'fm_id'),
         );
     }
 
@@ -64,13 +66,14 @@ class FaqQuestion extends FaqQuestionBase {
         return array(
             'id' => 'ID',
             'fm_id' => 'Fm',
+            'fs_id' => Yii::t('language', 'หมวดหมู่ย่อย'),
             'subject_th' => Yii::t('language', 'คำถามภาษาไทย'),
             'detail_th' => Yii::t('language', 'คำตอบภาษาไทย'),
             'subject_en' => Yii::t('language', 'คำถามภาษาอังกฤษ'),
             'detail_en' => Yii::t('language', 'คำตอบภาษาอังกฤษ'),
             'author' => Yii::t('language', 'ผู้เขียน'),
             'date_write' => Yii::t('language', 'วันที่เขียน'),
-			'counter' => 'Counter',
+            'counter' => 'Counter',
         );
     }
 
@@ -86,6 +89,7 @@ class FaqQuestion extends FaqQuestionBase {
 
         $criteria->compare('id', $this->id);
         $criteria->compare('fm_id', $this->fm_id);
+        $criteria->compare('fs_id', $this->fs_id);
         $criteria->compare('subject_th', $this->subject_th, true);
         $criteria->compare('detail_th', $this->detail_th, true);
         $criteria->compare('subject_en', $this->subject_en, true);
@@ -94,11 +98,11 @@ class FaqQuestion extends FaqQuestionBase {
         $criteria->compare('date_write', $this->date_write, true);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                    'pagination' => array(
-                        'pageSize' => 15,
-                    ),
-                ));
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => 15,
+            ),
+        ));
     }
 
 }

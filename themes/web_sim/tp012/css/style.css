@@ -417,7 +417,7 @@ END : Webboard
 /*-----------------------------
 BEGIN : Column Right
 -----------------------------*/
-#col_right_submenu, #col_right_cate, #col_right_signin, #col_right_history, #col_right_track{
+#col_right_submenu, #col_right_cate, #col_right_signin, #col_right_history, #col_right_track,.right_item_list{
 	width:260px;
 	background-color:#0074C1;
 	min-height:40px;
@@ -434,7 +434,7 @@ BEGIN : Column Right
 	border:1px #005791 solid\9;
 	*border:1px #005791 solid\9;
 }
-#col_right_cate h2, #col_right_history h2, #col_right_track h2{
+#col_right_cate h2, #col_right_history h2, #col_right_track h2,.right_item_list h2{
     color:#333333;
     font-size:1.6em;
     margin:0px 0px 0px 0px;
