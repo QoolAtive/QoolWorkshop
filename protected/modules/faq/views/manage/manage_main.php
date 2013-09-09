@@ -43,17 +43,17 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
                     'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id)))',
                     'type' => 'raw',
                 ),
-                array(
-                    'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "แก้ไขหมวดหมู่ย่อย"),
-                    'template' => '{update}',
-                    'buttons' => array(
-                        'update' => array(
-                            'label' => Yii::t('language', 'แก้ไขหมวดหมู่ย่อย'),
-                            'url' => 'CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id))',
-                        ),
-                    ),
-                ),
+//                array(
+//                    'class' => 'CButtonColumn',
+//                    'header' => Yii::t('language', "แก้ไขหมวดหมู่ย่อย"),
+//                    'template' => '{update}',
+//                    'buttons' => array(
+//                        'update' => array(
+//                            'label' => Yii::t('language', 'แก้ไขหมวดหมู่ย่อย'),
+//                            'url' => 'CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id))',
+//                        ),
+//                    ),
+//                ),
                 array(
                     'class' => 'CButtonColumn',
                     'header' => Yii::t('language', "แก้ไข"),

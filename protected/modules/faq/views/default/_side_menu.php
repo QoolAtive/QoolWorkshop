@@ -66,12 +66,12 @@ if ($select == 'main') {
                 <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>">
                     <p style="font-weight: bold;">
                         <?php
-                        echo Yii::t('language', 'จัดการหมวดหมู่');
+                        echo Yii::t('language', 'จัดการคำถาม');
                         ?>
                     </p>
                 </a>
             </div>
-            <div class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
+<!--            <div class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
                  border-top: 2px solid gold;
                  font-size: 16px;
                  margin-top: 6px;
@@ -81,7 +81,7 @@ if ($select == 'main') {
                     echo Yii::t('language', 'จัดการคำถาม');
                     ?>
                 </p>
-            </div>
+            </div>-->
             <ul class="rectangle-list">
                 <p class="demoline"></p>
                 <?php
@@ -89,7 +89,7 @@ if ($select == 'main') {
                     ?>
                     <li>
                         <?php
-                        echo CHtml::link(Yii::t('language', 'จัดการ') . $faq_main['name_th'], CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $faq_main['id'])), array(
+                        echo CHtml::link(Yii::t('language', 'จัดการ') . $faq_main['name_th'], CHtml::normalizeUrl(array('/faq/manage/manageSub', 'main_id' => $faq_main['id'])), array(
                             'rel' => 'view_edit' . $faq_main['id'],
                             'class' => '',
                         ));

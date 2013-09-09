@@ -15,14 +15,18 @@ $main = FaqMain::model()->findByPk($fm_id);
         ?>
         <h3 class="barH3">
             <span>
-                <i class="icon-question-sign"></i>            
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index/main_id/" . $fm_id)); ?>">
-                    <?php echo Yii::t('language', 'คำถาม') . $main['name_th']; ?>
+                <i class="icon-question-sign"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageFaq/main_id/" . $fm_id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม') . $main['name_th']; ?>
-                </a>               
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageFaq", 'main_id' => $main_id)); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . $main['name_th']; ?>  
+                </a>  
                 <i class="icon-chevron-right"></i>
                 <?php echo Yii::t('language', $word) . trim(Yii::t('language', ' คำถาม ')); ?>
             </span>

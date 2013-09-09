@@ -113,12 +113,17 @@ class ManageController extends Controller {
 
     //sub faq
     public function actionManageSub($main_id) {
-        $model = new FaqSub();
-        $model->faq_main_id = $main_id;
-        if (isset($_GET['FaqSub'])) {
-            $model->attributes = $_GET['FaqSub'];
+        $have_main_id = FaqMain::model()->findByPk($main_id);
+        if (isset($have_main_id)) {
+            $model = new FaqSub();
+            $model->faq_main_id = $main_id;
+            if (isset($_GET['FaqSub'])) {
+                $model->attributes = $_GET['FaqSub'];
+            }
+            $this->render('manage_sub', array('model' => $model, 'main_id' => $main_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/faq/manage/manageMain')));
         }
-        $this->render('manage_sub', array('model' => $model, 'main_id' => $main_id));
     }
 
     public function actionEditSub($main_id, $faq_sub_id = NULL) {
