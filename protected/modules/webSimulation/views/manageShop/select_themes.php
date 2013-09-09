@@ -209,6 +209,36 @@ if ($model->web_shop_id == NULL) {
                     ?>
                 </div>
             </li>
+            <li>
+                <?php
+                echo CHtml::image('/img/layout/tp011.jpg', '', array(
+                    'id' => 'tp11',
+                    'width' => '128',
+                    'height' => '110',
+                    'onclick' => 'List.select(11, this);',
+                ));
+                ?>
+                <div id="gallery">
+                    <?php
+                    echo CHtml::link('preview', "/img/layout/tp011.jpg");
+                    ?>
+                </div>
+            </li>
+            <li>
+                <?php
+                echo CHtml::image('/img/layout/tp012.jpg', '', array(
+                    'id' => 'tp12',
+                    'width' => '128',
+                    'height' => '110',
+                    'onclick' => 'List.select(12, this);',
+                ));
+                ?>
+                <div id="gallery">
+                    <?php
+                    echo CHtml::link('preview', "/img/layout/tp012.jpg");
+                    ?>
+                </div>
+            </li>
 
         </ul>
 
