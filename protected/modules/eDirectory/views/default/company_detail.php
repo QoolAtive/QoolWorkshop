@@ -119,6 +119,7 @@
     <?php
     $company_name = LanguageHelper::changeDB($model->name, $model->name_en);
     ?>
+       <div class="tabcontents">
     <h3 class="barH3">
         <span>
             <i class="icon-compass"></i> 
@@ -129,6 +130,8 @@
             <?php echo $company_name; ?>
         </span>
     </h3>
+
+
     <div class="clearfix servicebanner">
 
         <div class="shopbannerleft">
@@ -198,7 +201,7 @@
             </div>
 
         </div>
-    </div>
+    </div></div>
 
     <div class="edirbox clearfix">
         <h2>
@@ -410,5 +413,7 @@
         }
         ?>
         <hr>
-    </div>  </div>  
+    
+</div>  </div>  
+  
 </div>
