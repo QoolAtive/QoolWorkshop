@@ -3,20 +3,22 @@
 class DefaultController extends Controller {
 
     public function filters() {
-        return array('accessControl');
-    }
-
-    public function accessRules() {
         return array(
-            array(
-                'allow',
-                'users' => array('admin')
-            ),
-            array(
-                'deny',
-            ),
+            'rights'
         );
     }
+
+//    public function accessRules() {
+//        return array(
+//            array(
+//                'allow',
+//                'users' => array('admin')
+//            ),
+//            array(
+//                'deny',
+//            ),
+//        );
+//    }
 
     public function actionIndex() {
 //        Tool::AutoMotionWarning();

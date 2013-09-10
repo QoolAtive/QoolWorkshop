@@ -3,21 +3,22 @@
 class ManageController extends Controller {
 
     public function filters() {
-        return array('accessControl');
-    }
-
-    public function accessRules() {
         return array(
-            array(
-                'allow',
-                'users' => array('admin')
-            ),
-            array(
-                'deny',
-            ),
+            'rights'
         );
     }
 
+//    public function accessRules() {
+//        return array(
+//            array(
+//                'allow',
+//                'users' => array('admin')
+//            ),
+//            array(
+//                'deny',
+//            ),
+//        );
+//    }
 //fm_id = main_id
     public function actionEditFaq($fm_id, $fs_id, $id = NULL) {
         if ($id == NULL) {
@@ -36,7 +37,7 @@ class ManageController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id'=> $fm_id,  'sub_id'=> $fs_id)) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $fm_id, 'sub_id' => $fs_id)) . "';
                   </script>";
             }
         }

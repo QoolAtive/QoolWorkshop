@@ -13,30 +13,30 @@ Class ManageController extends Controller {
     }
 
     public function filters() {
-        return array('accessControl');
+        return array('rights');
     }
 
-    public function accessRules() {
-        return array(
-            array(
-                'allow',
-                'users' => array('@')
-            ),
-            array(
-                'allow',
-                'actions' => array('admin'),
-                'users' => array('admin')
-            ),
-            array(
-                'allow',
-                'actions' => array('registerPerson', 'registerRegistration', 'registerRules', 'forgotPassword', 'captcha'),
-                'users' => array('*')
-            ),
-            array(
-                'deny',
-            ),
-        );
-    }
+//    public function accessRules() {
+//        return array(
+//            array(
+//                'allow',
+//                'users' => array('@')
+//            ),
+//            array(
+//                'allow',
+//                'actions' => array('admin'),
+//                'users' => array('admin')
+//            ),
+//            array(
+//                'allow',
+//                'actions' => array('registerPerson', 'registerRegistration', 'registerRules', 'forgotPassword', 'captcha'),
+//                'users' => array('*')
+//            ),
+//            array(
+//                'deny',
+//            ),
+//        );
+//    }
 
     public function actionIndex() {
         
@@ -375,7 +375,52 @@ Class ManageController extends Controller {
 
     public function actionProfile() {
         if (Yii::app()->user->isAdmin()) {
-            $profile = array();
+            if (Yii::app()->user->id == 3) {
+                $profile = array(
+                    'name' => 'Administrator',
+                    'member_type' => 'Admin',
+                );
+            } else {
+                if (Yii::app()->user->isMemberType() == 1) {
+                    $model = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);
+                    $modelBusiness = CompanyTypeBusiness::model()->findByPk($model->business_type);
+                    $type = MemPersonType::model()->findByPk($model->mem_type)->name;
+                    $businessType = $modelBusiness == null ? '' : $modelBusiness->name;
+                    $panit = $model->panit; //มีเฉะพาะ สมาชิกธรรมดาที่เป็นประเภท ธุรกิจ
+                    $facebook = $model->facebook;
+                    $twitter = $model->twitter;
+                    $commerce_registration = '';
+                    $corporation_registration = '';
+                } else if (Yii::app()->user->isMemberType() == 2) {
+                    $model = MemRegistration::model()->find('user_id = ' . Yii::app()->user->id);
+                    $type = '';
+                    $businessType = CompanyTypeBusiness::model()->findByPk($model->type_business)->name;
+                    $panit = '';
+                    $facebook = '';
+                    $twitter = '';
+                    $commerce_registration = $model->commerce_registration;
+                    $corporation_registration = $model->corporation_registration;
+                }
+                $profile = array(
+                    'name' => $model->ftname . ' ' . $model->ltname,
+                    'member_type' => $type,
+                    'address' => $model->address . ' ต.' . District::model()->findByPk($model->district)->name_th . ' อ.' . Prefecture::model()->findByPk($model->prefecture)->name_th . ' จ.' . Province::model()->findByPk($model->province)->name_th . ' ' . $model->postcode,
+                    'businessType' => $businessType,
+                    'productName' => $model->product_name,
+                    'panit' => $panit,
+                    'sex' => MemSex::model()->findByPk($model->sex)->name,
+                    'birth' => $model->birth,
+                    'email' => $model->email,
+                    'facebook' => $facebook,
+                    'twitter' => $twitter,
+                    'commerce_registration' => $commerce_registration,
+                    'corporation_registration' => $corporation_registration,
+                    'tel' => $model->tel,
+                    'fax' => $model->fax,
+                    'mobile' => $model->mobile,
+                    'high_education' => HighEducation::model()->findByPk($model->high_education)->name,
+                );
+            }
         } else {
             if (Yii::app()->user->isMemberType() == 1) {
                 $model = MemPerson::model()->find('user_id = ' . Yii::app()->user->id);

@@ -2,6 +2,12 @@
 
 class DefaultController extends Controller {
 
+    public function filters() {
+        return array(
+            'rights'
+        );
+    }
+
     public function actionIndex($view = NULL) {
         $model = new About();
         if (isset($_POST['About'])) {

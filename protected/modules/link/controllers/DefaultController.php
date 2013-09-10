@@ -2,6 +2,12 @@
 
 class DefaultController extends Controller {
 
+    public function filters() {
+        return array(
+            'rights'
+        );
+    }
+
 //    protected function beforeAction($action) {
 //        if (Yii::app()->request->isAjaxRequest) {
 //            Yii::app()->clientScript->scriptMap['jquery.js'] = false;

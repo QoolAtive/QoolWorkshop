@@ -35,6 +35,16 @@ class RWebUser extends CWebUser {
 //        return intval($user->type) == 3;
     }
 
+    function isAdminType() {
+        if (Yii::app()->user->id) {
+            $user = AuthAssignment::model()->find('userid = :userid', array('userid' => Yii::app()->user->id));
+            if ($user->itemname == 'Admin') {
+                return true;
+            }
+        }
+//        return intval($user->type) == 3;
+    }
+
     // Load user model.
     protected function loadUser($id = null) {
         if ($this->_model === null) {
