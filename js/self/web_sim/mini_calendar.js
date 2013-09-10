@@ -1,23 +1,12 @@
-// FullCalendar v1.5
-// Script modified from the "theme.html" demo file
+$(function() {
+    var d = new Date();
+    var toDay = d.getDate() + '/'
+            + (d.getMonth() + 1) + '/'
+            + (d.getFullYear() + 543);
 
-$(document).ready(function() {
-
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-    $('#calendar').fullCalendar({
-        theme: true,
-        header: {
-            left: 'prev',
-            center: 'title',
-            right: 'today next'
-            //right: 'month,agendaWeek,agendaDay'
-        },
-        editable: true,
-        
-    });
-
+    // Datepicker
+    $("#calendar").datepicker({dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay, dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+        dayNamesMin: ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'],
+        monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+        monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.']});
 });
