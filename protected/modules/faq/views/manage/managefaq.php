@@ -6,7 +6,7 @@ $this->renderPartial('_side_menu', array('main_id' => $main_id));
     <div class="tabcontents" >
         <img src="<?php echo Yii::t('language', '/img/banner/faq.png'); ?>" class="pagebanner" alt="pagebanner"/>
         <?php
-        $this->renderPartial('_manage', array('model' => $model, 'main_id' => $main_id));
+        $this->renderPartial('_manage', array('model' => $model, 'main_id' => $main_id, 'sub_id' => $sub_id));
         ?>
     </div>
 </div>

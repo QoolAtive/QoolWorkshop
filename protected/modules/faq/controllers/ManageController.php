@@ -19,10 +19,11 @@ class ManageController extends Controller {
     }
 
 //fm_id = main_id
-    public function actionEditFaq($id = NULL, $fm_id = NULL) {
+    public function actionEditFaq($fm_id, $fs_id, $id = NULL) {
         if ($id == NULL) {
             $model = new FaqQuestion();
             $model->fm_id = $fm_id;
+            $model->fs_id = $fs_id;
             $model->counter = 0;
         } else {
             $model = FaqQuestion::model()->findByPk($id);
@@ -35,13 +36,14 @@ class ManageController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq/main_id/' . $fm_id)) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id'=> $fm_id,  'sub_id'=> $fs_id)) . "';
                   </script>";
             }
         }
         $this->render('editfaq', array(
             'model' => $model,
-            'fm_id' => $fm_id
+            'fm_id' => $fm_id,
+            'fs_id' => $fs_id
         ));
     }
 
@@ -52,14 +54,15 @@ class ManageController extends Controller {
         }
     }
 
-    public function actionManageFaq($main_id) {
+    public function actionManageFaq($main_id, $sub_id) {
         $model = new FaqQuestion();
         if (isset($_GET['FaqQuestion'])) {
             $model->attributes = $_GET['FaqQuestion'];
         }
         $this->render('managefaq', array(
             'model' => $model,
-            'main_id' => $main_id
+            'main_id' => $main_id,
+            'sub_id' => $sub_id
         ));
     }
 
@@ -113,12 +116,17 @@ class ManageController extends Controller {
 
     //sub faq
     public function actionManageSub($main_id) {
-        $model = new FaqSub();
-        $model->faq_main_id = $main_id;
-        if (isset($_GET['FaqSub'])) {
-            $model->attributes = $_GET['FaqSub'];
+        $have_main_id = FaqMain::model()->findByPk($main_id);
+        if (isset($have_main_id)) {
+            $model = new FaqSub();
+            $model->faq_main_id = $main_id;
+            if (isset($_GET['FaqSub'])) {
+                $model->attributes = $_GET['FaqSub'];
+            }
+            $this->render('manage_sub', array('model' => $model, 'main_id' => $main_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/faq/manage/manageMain')));
         }
-        $this->render('manage_sub', array('model' => $model, 'main_id' => $main_id));
     }
 
     public function actionEditSub($main_id, $faq_sub_id = NULL) {

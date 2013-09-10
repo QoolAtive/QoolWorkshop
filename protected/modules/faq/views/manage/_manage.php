@@ -1,27 +1,32 @@
 <?php
 $main = FaqMain::model()->findByPk($main_id);
+$sub = FaqSub::model()->findByPk($sub_id);
 ?>
 <h3 class="barH3">
     <span>
-        <i class="icon-question-sign"></i>            
-        <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index", 'main_id' => $main_id)); ?>">
-            <?php echo $main['name_th']; ?>
+        <i class="icon-question-sign"></i>
+        <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
+            <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
         </a>
         <i class="icon-chevron-right"></i>
-        <?php echo Yii::t('language', 'จัดการ') . $main['name_th']; ?>
+        <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)); ?>">
+            <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+        </a>
+        <i class="icon-chevron-right"></i>
+        <?php echo Yii::t('language', 'จัดการ') . $sub['name_th']; ?>
     </span>
 </h3>
 
 <div id="view<?php echo $main_id; ?>">
     <?php
     $dataProvider = $model->search();
-    $dataProvider->criteria->addCondition('fm_id = ' . $main_id);
+    $dataProvider->criteria->addCondition('fs_id = ' . $sub_id);
     ?>
     <div class="txt-cen">
         <hr>
         <?php
-        echo CHtml::button(Yii::t('language', 'เพิ่ม') . $main['name_th'], array(
-            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/editFaq", 'fm_id' => $main_id)) . '"'));
+        echo CHtml::button(Yii::t('language', 'เพิ่มคำถาม'), array(
+            'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/editFaq", 'fm_id' => $main_id, 'fs_id' => $sub_id)) . '"'));
         ?>
         <hr>
     </div>
@@ -59,7 +64,7 @@ $main = FaqMain::model()->findByPk($main_id);
                 'buttons' => array(
                     'update' => array(
                         'label' => Yii::t('language', 'แก้ไข'),
-                        'url' => 'CHtml::normalizeUrl(array("/faq/manage/editFaq","fm_id" => $data->fm_id ,"id"=> $data->id))',
+                        'url' => 'CHtml::normalizeUrl(array("/faq/manage/editFaq", "fm_id" => $data->fm_id, "fs_id" => $data->fs_id ,"id"=> $data->id))',
                     ),
                 ),
             ),

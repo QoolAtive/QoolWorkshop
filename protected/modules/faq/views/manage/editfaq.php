@@ -15,14 +15,18 @@ $main = FaqMain::model()->findByPk($fm_id);
         ?>
         <h3 class="barH3">
             <span>
-                <i class="icon-question-sign"></i>            
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/default/index/main_id/" . $fm_id)); ?>">
-                    <?php echo Yii::t('language', 'คำถาม') . $main['name_th']; ?>
+                <i class="icon-question-sign"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageFaq/main_id/" . $fm_id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม') . $main['name_th']; ?>
-                </a>               
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $fm_id)); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageFaq", 'main_id' => $fm_id)); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . $main['name_th']; ?>  
+                </a>  
                 <i class="icon-chevron-right"></i>
                 <?php echo Yii::t('language', $word) . trim(Yii::t('language', ' คำถาม ')); ?>
             </span>
@@ -35,9 +39,9 @@ $main = FaqMain::model()->findByPk($fm_id);
         ?>
         <div class="_100">
             <?php
-            $faq_sub_list = CHtml::listData(FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $fm_id)), "faq_sub_id", "name_th");
-            echo $form->labelEx($model, 'fs_id');
-            echo $form->dropDownList($model, 'fs_id', $faq_sub_list, array('class' => 'fieldrequire', 'empty' => Yii::t('language', ' กรุณาเลือกหมวดหมู่ย่อย ')));
+//            $faq_sub_list = CHtml::listData(FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $fm_id)), "faq_sub_id", "name_th");
+//            echo $form->labelEx($model, 'fs_id');
+//            echo $form->dropDownList($model, 'fs_id', $faq_sub_list, array('class' => 'fieldrequire', 'empty' => Yii::t('language', ' กรุณาเลือกหมวดหมู่ย่อย ')));
 
             //ภาษาไทย
             echo $form->labelEx($model, 'subject_th');
@@ -101,7 +105,8 @@ $main = FaqMain::model()->findByPk($fm_id);
             echo CHtml::hiddenField('fm_id', $model->fm_id);
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageFaq/main_id/" . $model->fm_id . '"'))));
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageFaq", 'main_id' => $fm_id, 'sub_id' => $fs_id)) . '"'
+                ));
             ?>
             <hr>
         </div>
