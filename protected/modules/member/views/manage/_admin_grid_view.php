@@ -25,8 +25,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'username',
-            'type' => 'raw',
-            'value' => 'Tool::Decrypted($data->username)',
+            'value' => '$data->username',
             'filter' => '',
         ),
         array(

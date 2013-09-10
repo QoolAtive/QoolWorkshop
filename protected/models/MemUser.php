@@ -14,7 +14,7 @@ class MemUser extends MemUserBase {
 //            array('password', 'CheckPass'),
 //            array('password_confirm', 'CheckPass'),
 //            array('password_confirm', 'CheckPassConfirm'),
-//            array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
+            array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
             array('password', 'length', 'min' => 6),
             array('password', 'match', 'pattern' => '[^0-9A-Za-z]', 'message' => '{attribute}'. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรภาษาอังกฤษเท่านั้น')),
 //            array('password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
@@ -137,10 +137,10 @@ class MemUser extends MemUserBase {
         if (Tool::CheckPID($this->username) == false) { // เช็ค username ว่าเป็นรูปแบบของเลขบัตรประชาชนหรือไม่ และ มีอยู่ในระบบหรือเปล่า
             $this->addError('username', Yii::t('language', $label_uusername.'รูปแบบไม่ถูกต้อง กรุณาตรวจสอบ'));
         } else {
-            $model = MemUser::model()->findByAttributes(array('username' => Tool::encrypted($this->username)));
-            if (!empty($model)) {
-                $this->addError('username', Yii::t('language', $label_uusername.'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
-            }
+//            $model = MemUser::model()->findByAttributes(array('username' => Tool::encrypted($this->username)));
+//            if (!empty($model)) {
+//                $this->addError('username', Yii::t('language', $label_uusername.'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'));
+//            }
         }
     }
 

@@ -18,7 +18,8 @@ class UserIdentity extends CUserIdentity {
      * @return boolean whether authentication succeeds.
      */
     public function authenticate() {
-        $username = Tool::Encrypted($this->username);
+//        $username = Tool::Encrypted($this->username);
+        $username = $this->username;
         $password = Tool::Encrypted($this->password);
         $users = MemUser::model()->findByAttributes(array('username' => $username));
         if (!isset($users->username)) {
