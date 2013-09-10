@@ -45,7 +45,7 @@ $main = FaqMain::model()->findByPk($main_id);
                 array(
                     'header' => Yii::t('language', 'ชื่อหมวดหมู่ย่อย'),
                     'name' => LanguageHelper::changeDB('name_th', 'name_en'),
-                    'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageFaq", "main_id" => ' . $main_id . ')))',
+                    'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageFaq", "main_id" => ' . $main_id . ', "sub_id" => $data->faq_sub_id)))',
                     'type' => 'raw',
                 ),
                 array(
