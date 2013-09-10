@@ -813,5 +813,14 @@ class ManageShopController extends Controller {
 </script>";
         }
     }
+    
+    public function actionAdmin(){
+        $model = new WebShop();
+
+        if (isset($_GET['WebShop'])) {
+            $model->attributes = $_GET['WebShop'];
+        }
+        $this->render('admin', array('model' => $model));
+    }
 
 }

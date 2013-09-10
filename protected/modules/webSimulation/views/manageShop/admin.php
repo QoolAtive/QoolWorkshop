@@ -1,19 +1,16 @@
-<!--<div class="content">
-    <div class="tabcontents">-->
+<!--<div class="content">-->
+    <!--<div class="tabcontents">-->
         <h3 class="barH3">
             <span>
                 <i class="icon-shopping-cart"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
-                    <?php echo Yii::t('language', 'รายการร้านค้าของคุณ'); ?>
-                </a>
+                <?php echo Yii::t('language', 'รายการร้านค้าทั้งหมด'); ?>
             </span>
         </h3>
         <div class="txt-cen">
             <hr>
             <?php
-//        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
-            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/register")) . '"'));
+            $count = WebShopCountUser::model()->findAll();
+            echo Yii::t('language', 'มีผู้ยอมรับข้อตกลงทั้งหมด') . ' ' . $count[0]['count_number'] . ' ' . Yii::t('language', 'ครั้ง');
             ?>
             <hr>
         </div>
@@ -32,10 +29,15 @@
                     'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
                 ),
                 array(
+                    'header' => Yii::t('language', 'ชื่อเจ้าของร้านค้า'),
+                    'name' => 'mem_user_id',
+                    'value' => 'MemPerson::model()->findByAttributes(array("user_id" => $data->mem_user_id))->ftname . " " . MemPerson::model()->findByAttributes(array("user_id" => $data->mem_user_id))->ltname',
+                ),
+                array(
                     'header' => Yii::t('language', 'ชื่อร้านค้า'),
                     'name' => LanguageHelper::changeDB('name_th', 'name_en'),
-                    'value' => 'CHtml::link(LanguageHelper::changeDB($data->name_th, $data->name_en), CHtml::normalizeUrl(array("/webSimulation/manageShop/redirectManageShop", "shop_id" => $data->web_shop_id))) ',
-                    'type' => 'raw',
+//                    'value' => 'CHtml::link(LanguageHelper::changeDB($data->name_th, $data->name_en), CHtml::normalizeUrl(array("/webSimulation/manageShop/redirectManageShop", "shop_id" => $data->web_shop_id))) ',
+//                    'type' => 'raw',
                 ),
                 array(
                     'header' => Yii::t('language', 'ที่อยู่ลิงก์'),
@@ -78,5 +80,5 @@
             )
         ));
         ?>
-<!--    </div>
-</div>-->
+    <!--</div>-->
+<!--</div>-->

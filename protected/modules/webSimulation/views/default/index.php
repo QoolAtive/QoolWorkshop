@@ -17,9 +17,21 @@
                         echo '</a>';
                         ?>
                     </li>
+                    <?php
+                    if (Yii::app()->user->isAdmin()) {
+                        ?>
+                        <li>
+                            <?php
+                            echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/admin")) . '">';
+                            echo Yii::t('language', 'รายการร้านค้าทั้งหมด');
+                            echo '</a>';
+                            ?>
+                        </li>
+                    <?php } ?>
                 </ul>
             <?php }
-        } ?>
+        }
+        ?>
     </div>
 </div>
 <div class="content">
