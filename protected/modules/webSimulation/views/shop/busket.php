@@ -71,7 +71,7 @@
 
             echo CHtml::button('  เอาสินค้าทั้งหมดออก  ', array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
-                    "/webSimulation/shop/removeAllItem"
+                    "/webSimulation/shop/removeAllItem", 'id' => $id
                 )) . '"'
             ));
             ?>
