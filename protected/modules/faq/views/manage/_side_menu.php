@@ -77,7 +77,7 @@ if ($select == 'main') {
                     ?>
                 </p>
             </div>-->
-            <ul class="rectangle-list">
+<!--            <ul class="rectangle-list">
                 <p class="demoline"></p>
                 <?php
                 foreach ($faq_main_list as $faq_main) {
@@ -97,7 +97,7 @@ if ($select == 'main') {
                     <?php
                 }
                 ?>
-            </ul>
+            </ul>-->
         <?php } ?>
     </div>
 </div>
