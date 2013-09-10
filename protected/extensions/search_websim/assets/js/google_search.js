@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    console.log('url: ' + document.URL);
     var config = {
-        siteURL: 'http://dev.dbd.qoolative.com/webSimulation/shop/index/id/24/', // Change this to your site
+        siteURL: document.URL, // Change this to your site
         searchSite: true,
         type: 'web',
         append: true,
