@@ -31,6 +31,7 @@ $description = Description::model()->find('status = :status', array(':status' =>
         <!--[if IE]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]--> 
+        <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
                     <script src="/js/modernizr.js" type="text/javascript"></script>
                     <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
