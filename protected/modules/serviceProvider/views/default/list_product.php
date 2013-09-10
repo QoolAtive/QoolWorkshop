@@ -5,7 +5,7 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
 <style type="text/css">
 
 </style>
-<ul class="productlist">
+<ul class="productlist ckfix">
 
     <li>
 <img src="/file/product/<?php echo $data->image; ?>" alt="new product" width="100%">
