@@ -136,7 +136,7 @@ class ShopController extends Controller {
         }
     }
 
-    public function actionRemoveAllItem() {
+    public function actionRemoveAllItem($id) {
         unset(Yii::app()->session['busket' . $id]);
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         echo "<script language='javascript'>
