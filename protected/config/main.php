@@ -20,6 +20,9 @@ return array(
         'application.helpers.*',
         'application.extensions.PHPExcel.*',
         'application.extensions.search.*',
+        'application.modules.rights.*',
+        'application.modules.rights.components.*',
+        'application.modules.rights.RightsModule',
 //        'ext.esearch.*',
     ),
     'modules' => array(
@@ -44,19 +47,27 @@ return array(
         'serviceProvider',
         'webSimulation',
         'eDirectory',
+        'rights' => array(
+            'install' => false, // Enables the installer. 
+        ),
     ),
     // application components
-    'components' => array(        
+    'components' => array(
         'googleAnalytics' => array(
             'class' => 'ext.TPGoogleAnalytics.components.TPGoogleAnalytics',
             'account' => 'UA-43356253-1',
             'autoRender' => true,
         ),
         'user' => array(
-            'class' => 'WebUser',
+            'class' => 'RWebUser',
             // enable cookie-based authentication
             'allowAutoLogin' => true,
             'loginUrl' => array('/site/index'),
+        ),
+        'authManager' => array(
+            'class' => 'RDbAuthManager', // Provides support authorization item sorting. ...... 
+            'connectionID' => 'db',
+            'defaultRoles' => array('Guest'),
         ),
         'Smtpmail' => array(
             'class' => 'application.extensions.smtpmail.PHPMailer',

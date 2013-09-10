@@ -59,7 +59,8 @@ Class ManageController extends Controller {
                     $model_user = MemUser::model()->find('id = ' . $model_person->user_id);
                     $sendEmail = array(// ข้อความที่จะต้องส่ง Email
                         'subject' => Yii::t('language', 'ลืมรหัสผ่าน'),
-                        'message' => Tool::messageEmail(array('name' => $model_person->ftname . ' ' . $model_person->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+//                        'message' => Tool::messageEmail(array('name' => $model_person->ftname . ' ' . $model_person->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+                        'message' => Tool::messageEmail(array('name' => $model_person->ftname . ' ' . $model_person->ltname, 'username' => $model_user->username, 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
                         'to' => $model->email,
                     );
                     Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
@@ -74,7 +75,8 @@ Class ManageController extends Controller {
 
                     $sendEmail = array(// ข้อความที่จะต้องส่ง Email
                         'subject' => Yii::t('language', 'ลืมรหัสผ่าน'),
-                        'message' => Tool::messageEmail(array('name' => $model_registration->ftname . ' ' . $model_registration->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+//                        'message' => Tool::messageEmail(array('name' => $model_registration->ftname . ' ' . $model_registration->ltname, 'username' => Tool::Decrypted($model_user->username), 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
+                        'message' => Tool::messageEmail(array('name' => $model_registration->ftname . ' ' . $model_registration->ltname, 'username' => $model_user->username, 'password' => Tool::Decrypted($model_user->password)), 'forgotPassword'),
                         'to' => $model->email,
                     );
                     Tool::mailsend($sendEmail); //เรียก function การส่งเมล์
@@ -172,7 +174,7 @@ Class ManageController extends Controller {
 
                 $model_user_add = new MemUserBase;
 
-                $model_user_add->username = Tool::Encrypted($model_user->username);
+//                $model_user_add->username = Tool::Encrypted($model_user->username);
                 $model_user_add->password = Tool::Encrypted($model_user->password);
 //                $model_user_add->password_confirm = Tool::Encrypted($model_user->password_confirm);
                 $model_user_add->type = '1';
@@ -268,7 +270,7 @@ Class ManageController extends Controller {
             if ($model->getErrors() == NULL && $model_user->getErrors() == NULL) {
 
                 $model_user_add = new MemUserBase;
-                $model_user_add->username = Tool::Encrypted($model_user->username);
+//                $model_user_add->username = Tool::Encrypted($model_user->username);
                 $model_user_add->password = Tool::Encrypted($model_user->password);
                 $model_user_add->type = '2';
 

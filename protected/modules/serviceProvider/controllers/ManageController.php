@@ -3,24 +3,24 @@
 Class ManageController extends Controller {
 
     public function filters() {
-        return array('accessControl');
+        return array('rights');
     }
 
-    public function accessRules() {
-        return array(
-            array(
-                'allow',
-                'users' => array('admin')
-            ),
-            array(
-                'deny',
-            ),
-        );
-    }
-    
-    public function actionSpType(){
+//    public function accessRules() {
+//        return array(
+//            array(
+//                'allow',
+//                'users' => array('admin')
+//            ),
+//            array(
+//                'deny',
+//            ),
+//        );
+//    }
+
+    public function actionSpType() {
         $id = $_POST['id'];
-        if($id != null){
+        if ($id != null) {
             echo "Not Null!!";
         }
     }
@@ -151,7 +151,7 @@ Class ManageController extends Controller {
         if ($sp_type_business_sub_id == null) {
             $model = new SpTypeBusinessSub();
             $model->unsetAttributes();
-            
+
             $link = '/serviceProvider/manage/typeBusinessSubInsert';
         } else {
             $model = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :id', array(':id' => $sp_type_business_sub_id));

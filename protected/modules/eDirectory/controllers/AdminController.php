@@ -3,20 +3,20 @@
 class AdminController extends Controller {
 
     public function filters() {
-        return array('accessControl');
+        return array('rights',);
     }
 
-    public function accessRules() {
-        return array(
-            array(
-                'allow',
-                'users' => array('admin'),
-            ),
-            array(
-                'deny',
-            ),
-        );
-    }
+//    public function accessRules() {
+//        return array(
+//            array(
+//                'allow',
+//                'users' => array('admin'),
+//            ),
+//            array(
+//                'deny',
+//            ),
+//        );
+//    }
 
     public function actionIndex() {
 
@@ -308,7 +308,7 @@ class AdminController extends Controller {
         }
 
         $date_motion = CompanyMotionSetting::model()->find('`use`=:use', array(':use' => 1));
-        
+
         if ($date_motion->type == 'วัน') {
             $type = "DAY";
         } else if ($model_motion->type == 'เดือน') {
@@ -316,8 +316,8 @@ class AdminController extends Controller {
         } else if ($model_motion->type == 'ปี') {
             $type = "YEAR";
         }
-        
-        $data_motion = '-'.$date_motion->amount . ' ' . $type;
+
+        $data_motion = '-' . $date_motion->amount . ' ' . $type;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
@@ -702,74 +702,74 @@ class AdminController extends Controller {
 
     public function actionDelCompany($id = null) {
 //        if (Yii::app()->request->isPostRequest) {
-            $modelCheck = Company::model()->find('id=:id', array('id' => $id));
-            if ($modelCheck->user_id != Yii::app()->user->id) {
-                $this->redirect('/site/index');
+        $modelCheck = Company::model()->find('id=:id', array('id' => $id));
+        if ($modelCheck->user_id != Yii::app()->user->id) {
+            $this->redirect('/site/index');
+        }
+        if ($id != null) {
+            $model = Company::model()->find('id=:id', array('id' => $id));
+
+            $dir = './file/logo/'; // ลบไฟล์ logo
+            if ($model->logo != null && $model->logo != 'default.jpg') {
+                if (fopen($dir . $model->logo, 'w'))
+                    unlink($dir . $model->logo);
             }
-            if ($id != null) {
-                $model = Company::model()->find('id=:id', array('id' => $id));
 
-                $dir = './file/logo/'; // ลบไฟล์ logo
-                if ($model->logo != null && $model->logo != 'default.jpg') {
-                    if (fopen($dir . $model->logo, 'w'))
-                        unlink($dir . $model->logo);
+            $dir = './file/brochure/';
+            $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($brochure_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
                 }
+            }
+            CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-                $dir = './file/brochure/';
-                $brochure_old = CompanyBrochure::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-                foreach ($brochure_old as $data) {
-                    if (fopen($dir . $data['path'], 'w')) {
-                        unlink($dir . $data['path']);
-                    }
+            $dir = './file/banner/';
+            $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
+            foreach ($banner_old as $data) {
+                if (fopen($dir . $data['path'], 'w')) {
+                    unlink($dir . $data['path']);
                 }
-                CompanyBrochure::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+            }
+            CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-                $dir = './file/banner/';
-                $banner_old = CompanyBanner::model()->findAll('com_id=:com_id', array(':com_id' => $id)); //ลบไฟล์เก่า ถ้าหากมีการแก้ไขไฟล์ใหม่เข้ามา
-                foreach ($banner_old as $data) {
-                    if (fopen($dir . $data['path'], 'w')) {
-                        unlink($dir . $data['path']);
-                    }
-                }
-                CompanyBanner::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+            $modelProduct = CompanyProduct::model()->findAll('main_id = :main_id', array(':main_id' => $id));
+            foreach ($modelProduct as $productArray) {
+                PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+                PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
+            }
 
-                $modelProduct = CompanyProduct::model()->findAll('main_id = :main_id', array(':main_id' => $id));
-                foreach ($modelProduct as $productArray) {
-                    PaymentCondition::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
-                    PaymentSpecial::model()->deleteAll('product_id = :product_id', array(':product_id' => $productArray->id));
-                }
+            DelivSer::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
 
-                DelivSer::model()->deleteAll('com_id=:com_id', array(':com_id' => $id));
+            CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
+            CompanyThem::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
+            CompanyCountView::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
+            CompanyMotion::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
 
-                CompanyProduct::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
-                CompanyType::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
-                CompanyThem::model()->deleteAll('main_id = :main_id', array(':main_id' => $id));
-                CompanyCountView::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
-                CompanyMotion::model()->deleteAll('company_id = :company_id', array(':company_id' => $id));
-
-                if ($model->delete()) {
+            if ($model->delete()) {
 //                if (Yii::app()->request->isPostRequest) {
 //                if(!isset($_GET['ajax'])){
 //                     $this->redirect('/eDirectory/admin/index');
 //                } else {
-                    echo Yii::t('language', "ลบข้อมูลเรียบร้อย");
+                echo Yii::t('language', "ลบข้อมูลเรียบร้อย");
 //                    echo "<meta charset='UTF-8'></meta>
 //                            <script>
 //                                alert('" . Yii::t('language', 'ลบข้อมูลเรียบร้อย') . "');
 //                                window.location='/eDirectory/admin/index'';
 //                            </script>";
 //                }
-                }
-            } else {
+            }
+        } else {
 //            if (Yii::app()->request->isPostRequest) {
-                echo Yii::t('language', "ข้อมูลไม่มีอยู่ในระบบ");
+            echo Yii::t('language', "ข้อมูลไม่มีอยู่ในระบบ");
 //                echo "<meta charset='UTF-8'></meta>
 //                            <script>
 //                                alert('" . Yii::t('language', 'ข้อมูลไม่มีอยู่ในระบบ') . "');
 //                                window.location='/eDirectory/admin/index'';
 //                            </script>";
 //            } 
-            }
+        }
 //        } else {
 //            $this->redirect('/eDirectory/admin/index');
 //        }
