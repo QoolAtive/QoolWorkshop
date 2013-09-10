@@ -171,19 +171,30 @@
   }
 
 
+.sitemap > p {
+    background: none repeat scroll 0 0 #F9F9F9;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 14px;
+    text-indent: 50px;
+     padding: 4px 0;
+}
 
+    .sitemap ul li{
+        text-indent: 85px;
+    }
 
 .sitemap > p a:before{
   content: "+ ";
 }
 .sitemap > p a {
-    color: #800080;
+    color: #F8A51B;
 }
 .sitemap > p a {
     color: #800080;
 }
 .sitemap > h2.textcenter{
-  padding-top: 32px;
+  padding-top: 10px;
 }
 .sitemap ul:last-child {
     padding-bottom: 30px;

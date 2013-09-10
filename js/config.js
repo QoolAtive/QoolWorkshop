@@ -1,51 +1,3 @@
-$(document).ready(function(){
-
-      // Slideshow 1
-      $("#companyslider").responsiveSlides({
-        auto: true,
-        pager: true,
-        nav: true,
-        speed: 500,
-        maxwidth: 800,
-        namespace: "centered-btns"
-      })
-
-    });
-
-$(document).ready(function(){
-
-    $('.items').each(function(){  
-        var highestBox = 0;
-
-        $(this).find('.listpartner').each(function(){
-            if($(this).height() > highestBox){  
-                highestBox = $(this).height();  
-            }
-        })
-
-        $(this).find('.listpartner').height(highestBox);
-    });    
-
-
-});
- 
-$(document).ready(function() {
-  $("#reply").click(function() {
-      $('#replyuser').toggle();
-     ($(this).text() === "เก็บเข้ารายการโปรดแล้ว") ? $(this).text("เก็บเข้ารายการโปรด") : $(this).text("เก็บเข้ารายการโปรดแล้ว");
-  });
-});
-
-
-$(document).ready(function() {
-    $(".edirsearchbtn input").click(function () {
-      $("#hot_shop").hide("slow");
-    });
-
-    //   $(".linksearch #search-form _100 input").click(function () {
-    //   $("#hot_shop").hide("slow");
-    // });
-});
 $(document).ready(function() {
 
           $('a[href="/knowledge/default/ruleKnowledge"]').fancybox({
@@ -93,6 +45,55 @@ $(document).ready(function() {
             type: 'iframe'
         });
 });
+
+$(document).ready(function(){
+      // Slideshow 1
+      $("#companyslider").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "centered-btns"
+      });
+
+    });
+
+$(document).ready(function(){
+
+    $('.items').each(function(){  
+        var highestBox = 0;
+
+        $(this).find('.listpartner').each(function(){
+            if($(this).height() > highestBox){  
+                highestBox = $(this).height();  
+            }
+        })
+
+        $(this).find('.listpartner').height(highestBox);
+    });    
+
+
+});
+ 
+$(document).ready(function() {
+  $("#reply").click(function() {
+      $('#replyuser').toggle();
+     ($(this).text() === "เก็บเข้ารายการโปรดแล้ว") ? $(this).text("เก็บเข้ารายการโปรด") : $(this).text("เก็บเข้ารายการโปรดแล้ว");
+  });
+});
+
+
+$(document).ready(function() {
+    $(".edirsearchbtn input").click(function () {
+      $("#hot_shop").hide("slow");
+    });
+
+    //   $(".linksearch #search-form _100 input").click(function () {
+    //   $("#hot_shop").hide("slow");
+    // });
+});
+
 
 // Get current url // hilight active page
 $(document).ready(function($){

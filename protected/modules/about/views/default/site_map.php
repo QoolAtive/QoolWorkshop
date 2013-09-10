@@ -1,14 +1,3 @@
-<style type="text/css">
-    .sitemap > p {
-        margin-left: 50px;
-        font-size: 14px;
-        font-weight: bold;
-        margin-top: 14px;
-    }
-    .sitemap ul li{
-        text-indent: 85px;
-    }
-</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -60,6 +49,8 @@
 <div class="content">
     <div class="tabcontents">
         <div class="sitemap">
+
+            <img class="pagebanner" alt="pagebanner" src="/img/banner/about.png">
             <h2 class="textcenter"><strong>แผนผังเว็บไซต์ DBD Mart</strong></h2>
             <?php
             foreach ($modelSiteMapMain as $main) {

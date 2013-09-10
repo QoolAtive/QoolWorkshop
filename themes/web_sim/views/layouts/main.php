@@ -16,7 +16,12 @@
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <!--<script src="/js/fullcalendar.js"></script>-->
         <!--<script src="/js/self/web_sim/mini_calendar.js"></script>-->
+        <style type="text/css">
+        #calendar{
+            margin-left: 18px;
 
+        }
+        </style>
         <?php
         //set bg
         if ($this->format['background'] != '' && $this->format['background'] != NULL) {
