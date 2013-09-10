@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <!--<script src="/js/fullcalendar.js"></script>-->
+<!--        <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.8.10.offset.datepicker.min.js"></script>-->
         <script src="/js/self/web_sim/mini_calendar.js"></script>
 
         <?php
