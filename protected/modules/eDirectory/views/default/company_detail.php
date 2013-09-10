@@ -311,7 +311,7 @@
     $dp_product_best_sell = new CActiveDataProvider('CompanyProduct', array(
         'criteria' => array(
             'condition' => 'guide = 1 and main_id = ' . $model->id,
-            'order' => 'id desc',
+            'order' => 'date_write desc, id desc',
         ),
         'pagination' => array(
             'pageSize' => 5,
@@ -338,7 +338,7 @@
     $dp_product_promo = new CActiveDataProvider('CompanyProduct', array(
         'criteria' => array(
             'condition' => 'guide = 2 and main_id = ' . $model->id,
-            'order' => 'id desc',
+            'order' => 'date_write desc, id desc',
         ),
         'pagination' => array(
             'pageSize' => 5,
@@ -364,7 +364,7 @@
     $dp_product_new = new CActiveDataProvider('CompanyProduct', array(
         'criteria' => array(
             'condition' => 'main_id = ' . $model->id,
-            'order' => 'id desc',
+            'order' => 'date_write desc, id desc',
         ),
         'pagination' => array(
             'pageSize' => 5,
