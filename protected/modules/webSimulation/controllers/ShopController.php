@@ -16,7 +16,7 @@ class ShopController extends Controller {
         $this->shop = $model;
         $format = WebShopFormat::model()->findByAttributes(array('web_shop_id' => $id));
         $this->format = $format;
-        $this->busket = Yii::app()->session['busket'];
+        $this->busket = Yii::app()->session['busket' . $id];
         return $model;
     }
 
@@ -73,7 +73,7 @@ class ShopController extends Controller {
                 'id' => $id,
                 'p_id' => $p_id,
                 'item_detail' => $model_item,
-                'busket' => Yii::app()->session['busket'],
+                'busket' => Yii::app()->session['busket' . $id],
             ));
         } else {
             throw new CHttpException(404, Yii::t('language', 'ไม่พบสินค้าที่ท่านต้องการ'));
@@ -109,7 +109,7 @@ class ShopController extends Controller {
     }
 
     public function actionSelectItem($id, $item_id) {
-        $this->busket = Yii::app()->session['busket'];
+        $this->busket = Yii::app()->session['busket' . $id];
         $item = WebShopItem::model()->findByPk($item_id);
         if ($item != NULL) {
             if (isset($_POST['number'])) {
@@ -118,9 +118,9 @@ class ShopController extends Controller {
             } else {
                 unset($this->busket[$item_id]);
             }
-            Yii::app()->session['busket'] = $this->busket;
+            Yii::app()->session['busket' . $id] = $this->busket;
 
-//        print_r(Yii::app()->session['busket']);
+//        print_r(Yii::app()->session['busket' . $id]);
 //        $this->renderPartial('busket_btn_', array('busket' => $this->busket, 'item_id' => $item_id));
             echo CJSON::encode(
                     array(
@@ -137,7 +137,7 @@ class ShopController extends Controller {
     }
 
     public function actionRemoveAllItem() {
-        unset(Yii::app()->session['busket']);
+        unset(Yii::app()->session['busket' . $id]);
         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
         echo "<script language='javascript'>
             alert('" . Yii::t('language', 'ตะกร้าสินค้าว่างแล้ว') . "');
@@ -147,7 +147,7 @@ class ShopController extends Controller {
 
     public function actionBusket($id) {
         $model = $this->settingShop($id);
-        $this->busket = Yii::app()->session['busket'];
+//        $this->busket = Yii::app()->session['busket'];
         $this->render('busket', array(
             'id' => $id,
             'busket' => $this->busket,
@@ -156,7 +156,7 @@ class ShopController extends Controller {
 
     public function actionOrder($id, $price_all) {
         $model = $this->settingShop($id);
-        $this->busket = Yii::app()->session['busket'];
+//        $this->busket = Yii::app()->session['busket'];
 
         $order = new WebShopOrder();
         $order->web_shop_id = $id;
@@ -184,7 +184,7 @@ class ShopController extends Controller {
                     $order_detail->price = $price;
                     $order_detail->save();
                 }
-                unset(Yii::app()->session['busket']);
+                unset(Yii::app()->session['busket' . $id]);
                 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'สั่งซื้อสินค้าเรียบร้อย') . "');
