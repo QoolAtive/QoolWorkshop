@@ -460,7 +460,7 @@ return array(
     'รหัสหมวดหมู่หลัก' => 'Main categories ID',
     'รหัสหมวดหมู่ย่อย' => 'Sub categories ID',
     'รหัส' => 'ID',
-    '' => '',
+    'สิทธิ์' => 'Permission',
     '' => '',
     '' => '',
     '' => '',
