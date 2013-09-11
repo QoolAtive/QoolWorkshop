@@ -41,7 +41,7 @@
             <?php if (Yii::app()->user->isAdminType()) { ?>
                 <li>
                     <a href="/rights" >
-                        <?php echo Yii::t("language", 'จัดการสิทธิ์'); ?>
+                        <?php echo Yii::t("language", 'จัดการ').Yii::t("language", 'สิทธิ์'); ?>
                     </a>
                 </li>
             <?php } ?>
