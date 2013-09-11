@@ -46,18 +46,7 @@ $(document).ready(function() {
         });
 });
 
-$(document).ready(function(){
-      // Slideshow 1
-      $("#companyslider").responsiveSlides({
-        auto: true,
-        pager: true,
-        nav: true,
-        speed: 500,
-        maxwidth: 800,
-        namespace: "centered-btns"
-      });
 
-    });
 
 $(document).ready(function(){
 
@@ -136,16 +125,26 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function () { 
-    $("ul#navi_containTab > li").click(function(event){  
-            var menuIndex=$(this).index();  
-            $("ul#detail_containTab > li:visible").hide();             
-            $("ul#detail_containTab > li").eq(menuIndex).show();  
-    });  
-});  
+$(document).ready(function () {
+    $("ul#navi_containTab > li").click(function(event){
+            var menuIndex=$(this).index();
+            $("ul#detail_containTab > li:visible").hide();
+            $("ul#detail_containTab > li").eq(menuIndex).show();
+    });
+});
 
 
-
+$(document).ready(function(){
+      // Slideshow 1
+      $("#companyslider").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+        maxwidth: 800,
+        namespace: "centered-btns"
+      });
+});
 
 
 // $(document).ready(function() {

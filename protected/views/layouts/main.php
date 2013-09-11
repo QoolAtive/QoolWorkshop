@@ -33,21 +33,26 @@ foreach ($keyword as $keyData) {
         <link rel="stylesheet" href="/css/animate.css"  type="text/css"></link>
         <link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/fullcalendar.css"  type="text/css"></link>
-        <link rel="stylesheet" href="/css/orbit.css"  type="text/css"></link>
-        <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
+<!--         <link rel="stylesheet" href="/css/orbit.css"  type="text/css"></link>
+ -->        <link rel="stylesheet" href="/css/fonticon/font-awesome.css" type="text/css"></link>
         <link rel="stylesheet" href="/css/evol.colorpicker.css" type="text/css">
             <link rel="stylesheet" href="/css/bootstro.css" type="text/css">
+
                 <link rel="stylesheet" href="/css/responsive.css" type="text/css">
                     <!--JS-->
                     <!--<script src="/js/jquery-1.9.0.min.js" type="text/javascript"></script>-->
                     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
                     <script src="/js/modernizr.js" type="text/javascript"></script>
                     <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
-                    <script src="/js/tabcontent.js" type="text/javascript"></script>
+                   <!--JS <script src="/js/tabcontent.js" type="text/javascript"></script>--> 
                     <script src="/js/jquery.orbit-1.2.3.js" type="text/javascript"></script>
                     <script src="/js/fullcalendar.js"></script>
                     <script src="/js/evol.colorpicker.js" type="text/javascript" charset="utf-8"></script>
                     <script src="/js/bootstro.js"></script>
+
+
+
+
                     <script src="/js/config.js" type="text/javascript"></script>
                     <!--[if IE]>
                     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

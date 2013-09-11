@@ -1,7 +1,5 @@
 <!--NEWS-->
 
-
-
 <?php
 $model_rss = NewsRss::model()->find();
 $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
