@@ -14,19 +14,19 @@ class SiteMap extends SiteMapBase {
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('site_map_id, name, name_en, link, main_id, sub_id, sort', 'safe', 'on' => 'search'),
-            array('name, sort', 'unique', 'message' => '{attribute} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
+            array('name, sort', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
         );
     }
 
     public function attributeLabels() {
         return array(
-            'site_map_id' => Yii::t('language', 'id'),
-            'name' => Yii::t('language', 'ชื่อหัวข้อภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อหัวข้อภาษาอังกฤษ'),
-            'link' => Yii::t('language', 'ลิ้งก์'),
-            'main_id' => Yii::t('language', 'รหัสหลัก'),
-            'sub_id' => Yii::t('language', 'รหัสรอง'),
-            'sort' => Yii::t('language', 'ลำดับการแสดง'),
+            'site_map_id' => Yii::t('language', 'รหัส'),
+            'name' => Yii::t('language', 'ชื่อหัวข้อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อหัวข้อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'link' => Yii::t('language', 'ที่อยู่ลิงก์'),
+            'main_id' => Yii::t('language', 'หมวดหมู่หลัก'),
+            'sub_id' => Yii::t('language', 'หมวดหมู่ย่อย'),
+            'sort' => Yii::t('language', 'ลำดับการแสดงผล'),
         );
     }
 
@@ -46,7 +46,7 @@ class SiteMap extends SiteMapBase {
     }
 
     public function getData() {
-        
+
         $criteria = new CDbCriteria;
 
         $criteria->compare('site_map_id', $this->site_map_id);
@@ -63,15 +63,21 @@ class SiteMap extends SiteMapBase {
     }
 
     public function getDataArray($data = null) {
-        $dataArray = array();
-        foreach ($this->model()->findAll() as $d) {
-            $dataArray[$d->site_map_id] = $d->name;
-        }
-
-        if ($data == null)
+        if ($data == null) {
+            $dataArray = array();
+            foreach ($this->model()->findAll() as $d) {
+                $dataArray[$d->site_map_id] = LanguageHelper::changeDB($d->name, $d->name_en);
+            }
             return $dataArray;
-        else
-            return $dataArray[$data];
+        } else {
+            $model = $this->model()->findByPk($data);
+            if (!empty($model)) {
+                $res = LanguageHelper::changeDB($model->name, $model->name_en);
+                return $res;
+            } else {
+                return ' - ';
+            }
+        }
     }
 
 }

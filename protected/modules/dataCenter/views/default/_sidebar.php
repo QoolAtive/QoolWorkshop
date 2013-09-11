@@ -39,7 +39,7 @@
                     <?php echo Yii::t('language', 'คำสำคัญ'); ?>
                 </a>
             </li>
-            <li>
+            <li class="<?php echo $selectSiteMap; ?>">
                 <a href="/dataCenter/default/siteMap" >
                     <?php echo Yii::t('language', 'แผนที่เว็บไซต์'); ?>
                 </a>

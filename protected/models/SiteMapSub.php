@@ -19,13 +19,13 @@ class SiteMapSub extends SiteMapSubBase {
 
     public function attributeLabels() {
         return array(
-            'site_map_sub_id' => 'Site Map Sub',
-            'name' => Yii::t('language', 'ชื่อหัวข้อภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อหัวข้อภาษาอังกฤษ'),
-            'link' => Yii::t('language', 'ลิ้งก์'),
-            'main_id' => Yii::t('language', 'หัวข้อหลัก'),
-            'sub_id' => Yii::t('language', 'รหัสรอง'),
-            'sort' => Yii::t('language', 'ลำดับการแสดง'),
+            'site_map_sub_id' => Yii::t('language', 'รหัส'),
+            'name' => Yii::t('language', 'ชื่อหัวข้อย่อย') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อหัวข้อย่อย') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'link' => Yii::t('language', 'ที่อยู่ลิงก์'),
+            'main_id' => Yii::t('language', 'หมวดหมู่หลัก'),
+            'sub_id' => Yii::t('language', 'หมวดหมู่ย่อย'),
+            'sort' => Yii::t('language', 'ลำดับการแสดงผล'),
         );
     }
 
