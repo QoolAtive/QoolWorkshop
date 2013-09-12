@@ -56,7 +56,7 @@
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'บทความ')); ?>
+                <?php echo Yii::t('language', $word) . trim(Yii::t('language', 'ภาษาอังกฤษ')); ?>
             </span>
         </h3>
         <?php
@@ -66,7 +66,7 @@
         ));
         ?>
         <div class="_100">
-            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทภาษาไทย') . " -"; ?></h4>
+            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาไทย') . ") -"; ?></h4>
         </div>
         <div class="_100">
             <div class="ckleft">
@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="_100">
-            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทภาษาอังฤกษ') . " -"; ?></h4>
+            <h4 class="reg"><?php echo "- " . Yii::t('language', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ") -"; ?></h4>
         </div>
 
 
@@ -103,7 +103,9 @@
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "/knowledge/manage/knowledge")
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onClick' => "window.location='/knowledge/manage/knowledge'"
+                    )
             );
             ?>
             <hr>

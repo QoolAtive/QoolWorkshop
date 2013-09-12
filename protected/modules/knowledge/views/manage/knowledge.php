@@ -34,42 +34,29 @@
             ?> 
 
         </ul>
-        
+
     </div>
 </div>
 <div class="content">
     <div class="tabcontents">
         <h3 class="barH3">
             <span>
-                <i class='icon-lightbulb'></i>                
+                <i class='icon-lightbulb'></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/knowledge")); ?>">
                     <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
                 </a>
-                <i class="icon-chevron-right"></i>
+                <i class="icon-chevron-right"></i> 
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'บทความ'); ?>
             </span>
         </h3>
-
         <div class="txt-cen">
-            <hr>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'บทความ'), array(
                 'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/knowledge/manage/insert'
                 )) . "'")
             );
-            ?>
-            <hr>
-        </div>
 
-        <?php
-        $this->renderPartial('_grid_all_knowledge', array(
-            'model' => $model,
-        ));
-        ?>
-        <div class="txt-cen">
-            <hr>
-            <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทบทความ'), array(
                 'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/knowledge/manage/knowledgeTypeInsert'
@@ -78,11 +65,31 @@
             ?>
             <hr>
         </div>
-
         <?php
-        $this->renderPartial('_grid_knowledge_type', array(
-            'modelKnowledgeType' => $modelKnowledgeType,
+        $tabs = array();
+
+        $tabs[Yii::t('language', 'บทความ')] = array(
+            'id' => 'tab01',
+            'content' => $this->renderPartial('_grid_all_knowledge', array(
+                'model' => $model,
+                    ), true, false),
+        );
+
+        $tabs[Yii::t('language', 'ประเภทบทความ')] = array(
+            'id' => 'tab02',
+            'content' => $this->renderPartial('_grid_knowledge_type', array(
+                'modelKnowledgeType' => $modelKnowledgeType,
+                    ), true, false),
+        );
+
+        $this->widget('zii.widgets.jui.CJuiTabs', array(
+            'tabs' => $tabs,
+            'options' => array(
+                'collapsible' => false,
+            ),
+            'id' => 'tab_all',
         ));
         ?>
+
     </div>
 </div>
