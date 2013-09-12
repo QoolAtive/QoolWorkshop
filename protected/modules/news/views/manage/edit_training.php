@@ -47,14 +47,16 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 'id' => 'start_at',
                 'model' => $model,
                 'attribute' => 'start_at',
+                'language' => Yii::t('language', 'th'),
 //        'value' => Yii::app()->dateFormatter->format("d MM y",strtotime($model->start_at)),
                 // additional javascript options for the date picker plugin
                 'options' => array(
-                    'showAnim' => 'fold',
+                    'showAnim' => 'fade',
                     'dateFormat' => 'yy-mm-dd',
                 ),
                 'htmlOptions' => array(
-                    'style' => 'height:20px;'
+                    'style' => 'height:20px;',
+                    'readonly' => 'readonly',
                 ),
             ));
             ?>
@@ -67,14 +69,16 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 'id' => 'end_at',
                 'model' => $model,
                 'attribute' => 'end_at',
+                'language' => Yii::t('language', 'th'),
 //        'value' => Yii::app()->dateFormatter->format("d-M-y",strtotime($model->end_at)),
                 // additional javascript options for the date picker plugin
                 'options' => array(
-                    'showAnim' => 'fold',
+                    'showAnim' => 'fade',
                     'dateFormat' => 'yy-mm-dd',
                 ),
                 'htmlOptions' => array(
-                    'style' => 'height:20px;'
+                    'style' => 'height:20px;',
+                    'readonly' => 'readonly',
                 ),
             ));
             ?>
