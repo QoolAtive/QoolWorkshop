@@ -467,7 +467,7 @@ class AdminController extends Controller {
             $type_list = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $id));
             $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
             foreach ($type_list as $data) {
-                array_push($type_list_data, $data['company_type']);
+                array_push($type_list_data, $data['company_sub_type_id']);
             }
         }
 
@@ -599,9 +599,13 @@ class AdminController extends Controller {
                     CompanyType::model()->deleteAll('company_id=:company_id', array(':company_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
 
                     foreach ($type_id as $key => $value) { // เพิ่มประเภทของ Company
+                        $type_main = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :company_sub_type_business_id', array(
+                            ':company_sub_type_business_id' => $value
+                        ));
                         $type = new CompanyType();
                         $type->company_id = $model->id;
-                        $type->company_type = $value;
+                        $type->company_type = $type_main->company_type_business_id;
+                        $type->company_sub_type_id = $value;
 
                         $type->save();
                     }

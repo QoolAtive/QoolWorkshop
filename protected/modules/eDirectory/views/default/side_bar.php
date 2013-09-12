@@ -1,10 +1,16 @@
+<style>
+    .rectangle-list ul.sub
+    {
+        padding-left:20px; /*This determines the hierarchical offset*/ 
+    }
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>           
             <li class="boxhead" style="background: url('<?php echo Yii::t('language', '/img/iconpage/edir.png'); ?>'); background-size: 227px; margin-left: -1px; " ></li>
         </ul>
         <ul class="tabs clearfix">
-            <?php            
+            <?php
 //            echo "<li>";
 //            echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/default/index'), array('rel' => 'view1', 'class' => 'selected'));
 //            echo "</li>";
@@ -55,6 +61,29 @@
                             'rel' => 'view' . $n++,
                             'class' => $select
                 ));
+                $c = new CDbCriteria();
+                $c->order = '`no` asc';
+                $c->condition = 'company_type_business_id = :company_type_business_id';
+                $c->params = array(':company_type_business_id' => $m->id);
+                $menu_sub = CompanySubTypeBusiness::model()->findAll($c);
+                if (count($menu_sub) > 0) {
+                    $list_sub .= '<ul class="sub">';
+                    foreach ($menu_sub as $ms) {
+                        if ($_GET['id'] == $ms['company_type_business_id'] && $_GET['company_sub_type_business_id'] == $ms['company_sub_type_business_id']) {
+                            $active = true;
+                            $select2 = 'menuactive listactive';
+                        }
+                        $name_sub = LanguageHelper::changeDB($ms['name_th'], $ms['name_en']);
+                        $list_sub .= "<li>";
+                        $list_sub .= CHtml::link($name_sub, array(
+                                    '/eDirectory/default/index', 'id' => $m['id'], 'company_sub_type_business_id' => $ms['company_sub_type_business_id']), array(
+                                    'rel' => 'view' . $n++,
+//                                    'class' => $select2
+                        ));
+                        $list_sub .= "</li>";
+                    }
+                    $list_sub .= '</ul>';
+                }
                 $list_sub .= "</li>";
             }
 
@@ -69,5 +98,6 @@
             echo $list_sub;
             ?>
         </ul>
+
     </div>
 </div>

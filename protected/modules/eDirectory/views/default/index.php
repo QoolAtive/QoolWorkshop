@@ -144,13 +144,24 @@ $this->renderPartial('side_bar', array(
             <?php
             $c = new CDbCriteria;
             $c->join = '
-                inner join company_count_view ccv on t.id = ccv.company_id
-                inner join company_type type on t.id = type.company_id
+                left join company_count_view ccv on t.id = ccv.company_id
+                left join company_type cpt on t.id = cpt.company_id
+                left join company_them ct on t.id = ct.main_id
                 ';
+            
             if ($id != null) {
-                $c->condition = 'type.company_type = ' . $id;
+                if ($company_sub_type_business_id != null) {
+                    $c->condition = 'cpt.company_type = ' . $id . ' and cpt.company_sub_type_id = ' . $company_sub_type_business_id . ' and ct.status_appro = 1 and ct.status_block = 0';
+                    
+                } else {
+                    $c->condition = 'cpt.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
+                }
+            } else {
+                $c->condition = 'ct.status_appro = 1 and ct.status_block = 0';
             }
+            
             $c->order = 'ccv.count_company_view desc, t.id desc';
+            $c->distinct = 't.id';
 
             $dataHotshop = new CActiveDataProvider('Company', array(
                 'criteria' => $c,
