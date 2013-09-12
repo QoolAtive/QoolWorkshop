@@ -190,6 +190,7 @@ return array(
     'ขนาดไม่เกิน' => 'Maximum',
     'ไฟล์วิดีโอและไฟล์เสียงขนาดไม่เกิน' => 'Video files and audio files maximum',
     'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น' => 'The file name is in English only.',
+    'ประเภทบทความ' => 'Knowledge Type',
     '' => '',
 // FAQ
     ' คำถาม ' => ' Question ',
