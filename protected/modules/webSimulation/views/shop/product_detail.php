@@ -30,10 +30,27 @@
             </div>
             <div class="detail_info normal">
                 <p><label>ชื่อสินค้า:</label> <?php echo $item_detail['name_th']; ?></p>
-                <p><label>ราคาปกติ:</label> ฿<?php echo $item_detail['price_normal']; ?></p>
-                <p><label>ราคาพิเศษ:</label> ฿<?php echo $item_detail['price_special']; ?></p>
-                <p><label>หมวดหมู่สินค้า:</label> <?php echo $item_detail['category']; ?></p>
-                <p><label>สภาพสินค้า:</label> <?php echo $item_detail['item_state']; ?></p>
+                <p><label>ราคา:</label>
+                    <?php
+                    if ($item_detail['price_special'] != NULL || $item_detail['price_special'] != '') {
+                        echo '<span style="text-decoration:line-through;">'.$item_detail['price_normal'].'</span>';
+                        echo ' พิเศษ ';
+                        echo $item_detail['price_special'];
+                    } else {
+                        echo $item_detail['price_normal'];
+                    }
+                    ?>
+                    บาท
+                </p>
+                <p><label>ประเภทสินค้า:</label> <?php echo ShopCategory::getCategory($item_detail['category']); ?></p>
+                <p><label>สภาพสินค้า:</label> <?php
+                    if ($item_detail['item_state'] == '0') {
+                        echo 'สินค้าใหม่';
+                    } else {
+                        echo 'สินค้ามือสอง';
+                    }
+                    ?>
+                </p>
                 <p><label>น้ำหนักสินค้า (กรัม):</label> <?php echo $item_detail['weight']; ?></p>
                 <p><label>รายละเอียดสินค้า:</label> <?php echo $item_detail['description_th']; ?></p>
             </div>
