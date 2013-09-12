@@ -119,7 +119,7 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function actionPartnerGroup($id = null) {
+    public function actionPartnerGroup($id = null, $sp_type_business_sub_id = null) {
 
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProvider', 'PartnerGroup', 3);
 
@@ -128,9 +128,14 @@ class DefaultController extends Controller {
         Yii::app()->user->setState('default_link_back_to_menu', str_replace('/index.php', '', $link->getUrl()));
 
         $model = SpTypeBusiness::model()->find('id=:id', array(':id' => $id));
+        
+        $model_sub = null;
+        if ($sp_type_business_sub_id != null)
+            $model_sub = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :id', array(':id' => $sp_type_business_sub_id));
 
         $this->render('partner_group', array(
             'model' => $model,
+            'model_sub' => $model_sub,
         ));
     }
 

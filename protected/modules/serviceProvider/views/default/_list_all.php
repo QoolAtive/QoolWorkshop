@@ -3,6 +3,8 @@ $name = LanguageHelper::changeDB($data->name, $data->name_en);
 $address = LanguageHelper::changeDB($data->address, $data->address_en);
 $logo = $data->logo;
 $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
+$model_type_com_sub_count = SpTypeCom::model()->count("com_id ='" . $data->id . "' and sp_type_business_sub_id is not null and sp_type_business_sub_id != 0");
+$model_type_com_num = SpTypeCom::model()->findAll(array('condition' => "com_id ='" . $data->id . "'", 'group' => 'type_id'));
 ?>
 
 
@@ -16,7 +18,7 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
         ?>
     </h4>
     <ul>
-         <?php
+        <?php
         if (!empty($logo)) {
             ?>
             <li><img alt="service-logo"  src="/file/logo/<?php echo $data->logo; ?>"/></li>
@@ -28,23 +30,57 @@ $model_type_com = SpTypeCom::model()->findAll("com_id ='" . $data->id . "'");
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . " : "; ?></label>
             <?php
-            $size_type_com = sizeof($model_type_com);
+            $size_type_com = sizeof($model_type_com_num);
             $i = 1;
+            $name_old = null;
             foreach ($model_type_com as $m_tc) {
                 $model_type = SpTypeBusiness::model()->findByPk($m_tc->type_id);
                 $type_name = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
-                $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
-                                        array('/serviceProvider/default/partnerGroup/id/' . $m_tc->type_id)
-                ));
-                if ($size_type_com == $i) {
-                    echo $type_name_link;
-                } else {
-                    echo $type_name_link . ", ";
-                    $i++;
+                if ($name_old != $type_name) {
+                    $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
+                                            array('/serviceProvider/default/partnerGroup/id/' . $m_tc->type_id)
+                    ));
+                    if ($size_type_com == $i) {
+                        echo $type_name_link;
+                    } else {
+                        echo $type_name_link . ", ";
+                        $i++;
+                    }
                 }
+                $name_old = $type_name;
             }
             ?>
         </li>
+        <?php
+        if ($model_type_com_sub_count > 0) {
+            ?>
+            <li>
+                <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการย่อย') . " : "; ?></label>
+                <?php
+                $size_type_com = sizeof($model_type_com);
+                $i = 1;
+                $name_old = null;
+                foreach ($model_type_com as $m_tc) {
+                    $model_type = SpTypeBusinessSub::model()->findByPk($m_tc->sp_type_business_sub_id);
+                    $type_name = LanguageHelper::changeDB($model_type->name_th, $model_type->name_en);
+                    if ($name_old != $type_name) {
+                        $type_name_link = CHtml::link($type_name, CHtml::normalizeUrl(
+                                                array('/serviceProvider/default/partnerGroup/id/' . $m_tc->type_id . '/sp_type_business_sub_id/' . $m_tc->sp_type_business_sub_id)
+                        ));
+                        if ($size_type_com == $i) {
+                            echo $type_name_link;
+                        } else {
+                            echo $type_name_link . ", ";
+                            $i++;
+                        }
+                    }
+                    $name_old = $type_name;
+                }
+                ?>
+            </li>
+            <?php
+        }
+        ?>
         <li>
             <i class="icon-map-marker"></i> <label><?php echo Yii::t('language', 'ที่ตั้ง') . " : "; ?></label>
             <?php echo $address; ?>

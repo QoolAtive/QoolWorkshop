@@ -11,11 +11,11 @@ class SpTypeCom extends SpTypeComBase {
         // will receive user inputs.
         return array(
             array('com_id, type_id', 'required'),
-            array('com_id', 'numerical', 'integerOnly' => true),
+            array('com_id, sp_type_business_sub_id', 'numerical', 'integerOnly' => true),
             array('type_id', 'length', 'max' => 3),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, com_id, type_id', 'safe', 'on' => 'search'),
+            array('id, com_id, type_id, sp_type_business_sub_id', 'safe', 'on' => 'search'),
         );
     }
 

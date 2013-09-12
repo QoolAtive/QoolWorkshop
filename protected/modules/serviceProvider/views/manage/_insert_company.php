@@ -1,17 +1,41 @@
-<!--<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function() {
-        if ($("[id^=SpTypeCom_type_id_]").is(":checked")) {
-//            alert($("[id^=SpTypeCom_type_id_]").val());
-        }
-        $("[id^=SpTypeCom_type_id_]").click(function() {
-            if ($("#SpTypeCom_type_id_]").is(":checked")) {
-                $("[id^=SpTypeCom_type_id_]").show();
-            }else{
-//                $(".type_sub").hide();
+//        if ($("[id^=SpTypeCom_type_id_]").is(":checked")) {
+////            alert($("[id^=SpTypeCom_type_id_]").val());
+//        }
+
+//        $("div[id^='SpTypeCom_type_id_']").hide();
+//        if ($("input[id^='SpTypeCom_type_id_']").is(':checked')) {
+//
+//            var type_id = this.id;
+//            var type_value = $("#" + this.id).val();
+//            
+//            $("div[id^='SpTypeCom_type_id_" + type_value + "'] input").removeAttr('checked');
+//
+//            if ($("#" + type_id).is(":checked")) {
+//                $("div[id^='SpTypeCom_type_id_" + type_value + "']").show();
+//            } else {
+//                $("div[id^='SpTypeCom_type_id_" + type_value + "']").hide();
+//            }
+//
+//        }
+
+        $("input[id^='SpTypeCom_type_id_']").click(function() {
+
+            var type_id = this.id;
+            var type_value = $("#" + this.id).val();
+            $("div[id^='SpTypeCom_type_id_" + type_value + "'] input").removeAttr('checked');
+
+            if ($("#" + type_id).is(":checked")) {
+                $("div[id^='SpTypeCom_type_id_" + type_value + "']").show();
+            } else {
+                $("div[id^='SpTypeCom_type_id_" + type_value + "']").hide();
             }
         });
+
+
     });
-</script>-->
+</script>
 <?php
 $this->renderPartial('_side_bar', array(
     'select1' => '',
@@ -55,6 +79,9 @@ $this->renderPartial('_side_bar', array(
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
             $model_type->type_id = $type_list_data;
+            $model_type->sp_type_business_sub_id = $type_sub_list_data;
+//            echo "<pre>";
+//            prinr_t($type_sub_list_data);
             ?>
             <div class="_100">
                 <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' -'; ?></h4>
@@ -62,33 +89,48 @@ $this->renderPartial('_side_bar', array(
 
             <div class="_50">
                 <?php
+//                echo $form->labelEx($model_type, 'type_id') . "<br />";
+//                echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
+//                echo $form->error($model_type, 'type_id');
+
                 echo $form->labelEx($model_type, 'type_id') . "<br />";
-                echo $form->checkBoxList($model_type, 'type_id', SpTypeBusiness::model()->getDataList());
+                echo $form->dropDownList($model_type, 'type_id', SpTypeBusinessSub::model()->getMultiSelect()
+                        , array('multiple' => true, 'style' => 'height: 350px;'));
                 echo $form->error($model_type, 'type_id');
                 ?>
             </div>
-<!--            <div class="_50">
+            <div class="_50">
                 <div class="type_sub">
+                    <div class="cars-select">
+                        <?php
+//                        echo "<pre>";
+//                        print_r(SpTypeBusinessSub::model()->getMultiSelect());
+//                        echo CHtml::dropDownList('Cars', 'car_id', SpTypeBusinessSub::model()->getMultiSelect()
+//                                , array('multiple' => true));
+                        ?>
+                    </div>
                     <?php
 //                    echo "<pre>";
 //                    print_r(SpTypeBusiness::model()->getDataList());
 //                    $n = 0;
 //                    foreach (SpTypeBusiness::model()->getDataList() as $typesubkey => $typeSubDataArray) {
-//                        $list_model = SpTypeBusinessSub::model()->findAll('sp_type_business = :id', array(
-//                            ':id' => $typesubkey)
-//                        );
+//                    $list_model = SpTypeBusinessSub::model()->findAll(
+//                            'sp_type_business = :id', array(
+//                        ':id' => $typesubkey)
+//                    );
 //                        if (count($list_model) > 0) {
-//                            echo "<div id='SpTypeCom_type_id_" . $n++ . "' style='display: none;'>";
+//                            echo "<div id='SpTypeCom_type_id_" . $typesubkey . "_" . $n++ . "' style=''>";
 //                            echo "<h6>$typeSubDataArray</h3>";
 //                            echo $form->labelEx($model_type, 'sp_type_business_sub_id') . "<br />";
-//                            echo $form->checkBoxList($model_type, 'sp_type_business_sub_id', Chtml::listData($list_model, 'sp_type_business_sub_id', 'name_th'));
-//                            echo $form->error($model_type, 'sp_type_business_sub_id');
+//                    echo $form->checkBoxList($model_type, 'sp_type_business_sub_id', Chtml::listData($list_model, 'sp_type_business_sub_id', 'name_th'));
 //                            echo "</div>";
+//                        } else {
+////                            echo 'NONO';
 //                        }
 //                    }
                     ?>
                 </div>
-            </div>-->
+            </div>
             <div class="_100">
                 <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>
