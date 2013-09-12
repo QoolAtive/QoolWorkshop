@@ -36,12 +36,12 @@ class Knowledge extends KnowledgeBase {
 
     public function attributeLabels() {
         return array(
-            'subject_en' => Yii::t('language', 'หัวข้อภาษาอังกฤษ'),
-            'detail_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
+            'subject_en' => Yii::t('language', 'หัวข้อ'). ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'detail_en' => Yii::t('language', 'รายละเอียด'). ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'id' => 'ID',
-            'type_id' => Yii::t('language', 'ประเภท'),
-            'subject' => Yii::t('language', 'หัวข้อ'),
-            'detail' => Yii::t('language', 'รายละเอียด'),
+            'type_id' => Yii::t('language', 'ประเภทบทความ'),
+            'subject' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'detail' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
             'guide_status' => Yii::t('language', 'บทความแนะนำ'),
             'date_write' => Yii::t('language', 'วันที่เขียนบทความ'),
             'position' => 'Position',
