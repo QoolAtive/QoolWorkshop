@@ -20,8 +20,8 @@ class KnowledgeType extends KnowledgeTypeBase {
     public function attributeLabels() {
         return array(
             'knowledge_type_id' => 'Knowledge Type',
-            'name_th' => Yii::t('language', 'ประเภทภาษาไทย'),
-            'name_en' => Yii::t('langauge', 'ประเภทภาษาอังกฤษ'),
+            'name_th' => Yii::t('language', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('langaage', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
@@ -49,15 +49,21 @@ class KnowledgeType extends KnowledgeTypeBase {
     }
 
     public function getList($select = null) {
-        $data = array();
-        foreach ($this->model()->findAll() as $d) {
-            $data[$d->knowledge_type_id] = $d->name_th;
-        }
 
         if ($select == null) {
+            $data = array();
+            foreach ($this->model()->findAll() as $d) {
+                $data[$d->knowledge_type_id] = LanguageHelper::changeDB($d->name_th, $d->name_en);
+            }
             return $data;
         } else {
-            return $data[$select];
+            $model = $this->model()->findByPk($select);
+            if (!empty($model)) {
+                $res = LanguageHelper::changeDB($model->name_th, $model->name_en);
+                return $res;
+            } else {
+                return ' - ';
+            }
         }
     }
 
