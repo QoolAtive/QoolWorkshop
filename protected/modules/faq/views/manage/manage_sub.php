@@ -83,5 +83,15 @@ $main = FaqMain::model()->findByPk($main_id);
             )
         ));
         ?>
+        
+        <div class='txt-cen'>
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageMain")) . '"'
+                ));
+            ?>
+            <hr>
+        </div>
     </div>
 </div>

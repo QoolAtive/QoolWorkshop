@@ -8,6 +8,16 @@ $this->renderPartial('_side_menu', array('main_id' => $main_id));
         <?php
         $this->renderPartial('_manage', array('model' => $model, 'main_id' => $main_id, 'sub_id' => $sub_id));
         ?>
+
+        <div class='txt-cen'>
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)) . '"'
+            ));
+            ?>
+            <hr>
+        </div>
     </div>
 </div>
 
