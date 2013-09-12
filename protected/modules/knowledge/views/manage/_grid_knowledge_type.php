@@ -4,8 +4,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'knowledge_type-grid',
     'dataProvider' => $modelKnowledgeType->getData(),
     'filter' => $modelKnowledgeType,
-    'ajaxUpdate' => true,
     'summaryText' => '',
+    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
         array(// display 'create_time' using an expression
             'header' => Yii::t('language', 'ลำดับ'),
@@ -25,15 +25,15 @@ $this->widget('zii.widgets.grid.CGridView', array(
         array(
             'class' => 'CButtonColumn',
             'header' => Yii::t('language', 'เครื่องมือ'),
-            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
-            'template' => '{update}{delete}',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'template' => '{update}&nbsp;{delete}',
             'buttons' => array(
                 'update' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'แก้ไข'),
                     'url' => 'Yii::app()->createUrl("/knowledge/manage/knowledgeTypeInsert/",array("knowledge_type_id"=>$data->knowledge_type_id))',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => Yii::t('language', 'ลบ'),
                     'url' => 'Yii::app()->createUrl("/knowledge/manage/knowledgeTypeDel/",array("knowledge_type_id"=>$data->knowledge_type_id))',
                 ),
             ),
@@ -44,6 +44,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
         'header' => Yii::t('language', 'หน้าที่: '),
