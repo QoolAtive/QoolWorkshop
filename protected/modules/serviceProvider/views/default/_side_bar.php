@@ -45,7 +45,13 @@
             $list_sub = '';
             $active = false;
             $menu = SpTypeBusiness::model()->findAll();
+
             foreach ($menu as $m) {
+                $c = new CDbCriteria();
+                $c->order = 'sp_type_business_sub_id desc';
+                $c->condition = 'sp_type_business = :sp_type_business';
+                $c->params = array(':sp_type_business' => $m->id);
+                $menu_sub = SpTypeBusinessSub::model()->findAll($c);
                 $select = '';
                 if ($id == $m['id']) {
                     $active = true;
@@ -58,15 +64,33 @@
                             'rel' => 'view' . $n++,
                             'class' => $select
                 ));
+                if (count($menu_sub) > 0) {
+                    $list_sub .= '<ul class="rectangle-list">';
+                    foreach ($menu_sub as $ms) {
+                        if ($_GET['sp_type_business_sub_id'] == $ms['sp_type_business_sub_id'] && $_GET['id'] == $ms['sp_type_business']) {
+                            $active = true;
+                            $select2 = 'menuactive listactive';
+                        }
+                        $name_sub = LanguageHelper::changeDB($ms['name_th'], $ms['name_en']);
+                        $list_sub .= "<li>";
+                        $list_sub .= CHtml::link($name_sub, array(
+                                    '/serviceProvider/default/partnerGroup/', 'id' => $m['id'], 'sp_type_business_sub_id' => $ms['sp_type_business_sub_id']), array(
+                                    'rel' => 'view' . $n++,
+//                                    'class' => $select2
+                        ));
+                        $list_sub .= "</li>";
+                    }
+                    $list_sub .= '</ul>';
+                }
                 $list_sub .= "</li>";
             }
 
-            
+
             echo "<li>";
             echo CHtml::link(Yii::t('language', 'ผู้ให้บริการทั้งหมด'), array(
                 '/serviceProvider/default/index'), array(
                 'rel' => 'view1',
-                'class' => $active==false? 'menuactive listactive':''
+                'class' => $active == false ? 'menuactive listactive' : ''
             ));
             echo "</li>";
             echo $list_sub;

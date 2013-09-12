@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $com_id
  * @property string $type_id
+ * @property integer $sp_type_business_sub_id
  */
 class SpTypeComBase extends CActiveRecord
 {
@@ -37,11 +38,11 @@ class SpTypeComBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('com_id, type_id', 'required'),
-			array('com_id', 'numerical', 'integerOnly'=>true),
+			array('com_id, sp_type_business_sub_id', 'numerical', 'integerOnly'=>true),
 			array('type_id', 'length', 'max'=>3),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, com_id, type_id', 'safe', 'on'=>'search'),
+			array('id, com_id, type_id, sp_type_business_sub_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +66,7 @@ class SpTypeComBase extends CActiveRecord
 			'id' => 'ID',
 			'com_id' => 'Com',
 			'type_id' => 'Type',
+			'sp_type_business_sub_id' => 'Sp Type Business Sub',
 		);
 	}
 
@@ -82,6 +84,7 @@ class SpTypeComBase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('com_id',$this->com_id);
 		$criteria->compare('type_id',$this->type_id,true);
+		$criteria->compare('sp_type_business_sub_id',$this->sp_type_business_sub_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
