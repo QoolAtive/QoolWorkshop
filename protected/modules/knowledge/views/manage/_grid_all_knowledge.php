@@ -4,8 +4,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'knowledge-grid',
     'dataProvider' => $model->getDataManage(),
     'filter' => $model,
-    'ajaxUpdate' => true,
     'summaryText' => '',
+    'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
     'columns' => array(
         array(// display 'create_time' using an expression
             'header' => Yii::t('language', 'ลำดับ'),
@@ -14,10 +14,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
         array(
-            'name' => LanguageHelper::changeDB('subject', 'subject_en'),
+            'name' => 'subject',
             'type' => 'raw',
-            'value' => 'CHtml::link(LanguageHelper::changeDB($data->subject,$data->subject_en), array("/knowledge/default/view/id/$data->id"))',
+            'value' => 'CHtml::link($data->subject, array("/knowledge/default/view/id/$data->id"))',
 //                'value' => 'CHtml::link($data->subject,array("manage/ViewTopic/ques_id/$data->id"))',
+        ), array(
+            'name' => 'subject_en',
+            'type' => 'raw',
+            'value' => 'CHtml::link($data->subject_en, array("/knowledge/default/view/id/$data->id"))',
         ),
         array(
             'name' => 'type_id',
@@ -38,20 +42,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'class' => 'CButtonColumn',
-            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบบทความหรือไม่?'),
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
             'header' => Yii::t('language', 'เครื่องมือ'),
             'template' => '{view}{update}{delete}',
             'buttons' => array(
                 'view' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'ดู'),
                     'url' => 'Yii::app()->createUrl("/knowledge/default/view/",array("id"=>$data->id))',
                 ),
                 'update' => array(
-                    'label' => 'edit', //Text label of the button.
+                    'label' => Yii::t('language', 'แก้ไข'),
                     'url' => 'Yii::app()->createUrl("/knowledge/manage/insert/",array("id"=>$data->id))',
                 ),
                 'delete' => array(
-                    'label' => 'del', //Text label of the button.
+                    'label' => Yii::t('language', 'ลบ'),
                     'url' => 'Yii::app()->createUrl("/knowledge/manage/del/",array("id"=>$data->id))',
                 ),
             ),
@@ -62,6 +66,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     }'
         ),
     ),
+    'template' => "{items}\n{pager}",
     'pager' => array(
         'class' => 'CLinkPager',
         'header' => Yii::t('language', 'หน้าที่: '),
