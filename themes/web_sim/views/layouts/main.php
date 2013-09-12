@@ -307,8 +307,3 @@
         </div><!-- wrapper -->
     </body>
 </html>
- <script>
-$(function() {
-$( "#calendar" ).datepicker();
-});
-</script>
