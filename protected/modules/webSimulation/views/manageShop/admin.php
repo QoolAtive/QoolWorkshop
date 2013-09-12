@@ -30,7 +30,8 @@
                 ),
                 array(
                     'header' => Yii::t('language', 'ชื่อเจ้าของร้านค้า'),
-                    'name' => 'mem_user_id',
+                    'name' => 'full_name',
+//                    'filter' => CHtml::activeTextField($model,'full_name'),
                     'value' => 'MemPerson::model()->findByAttributes(array("user_id" => $data->mem_user_id))->ftname . " " . MemPerson::model()->findByAttributes(array("user_id" => $data->mem_user_id))->ltname',
                 ),
                 array(

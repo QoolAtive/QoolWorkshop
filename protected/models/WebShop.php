@@ -30,6 +30,8 @@
  */
 class WebShop extends WebShopBase {
 
+    public $full_name;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -58,10 +60,10 @@ class WebShop extends WebShopBase {
             array('email', 'email'),
             array('mobile, tel, email', 'length', 'max' => 100),
             array('name_th, name_en, url, address_th, address_en', 'length', 'max' => 255),
-            array('how_to_buy_th, how_to_buy_en', 'safe'),
+            array('how_to_buy_th, how_to_buy_en, full_name', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
+            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, full_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -76,6 +78,7 @@ class WebShop extends WebShopBase {
             'prefecture' => array(self::BELONGS_TO, 'Prefecture', 'prefecture_id'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'memUser' => array(self::BELONGS_TO, 'MemUser', 'mem_user_id'),
+            'memPerson' => array(self::BELONGS_TO, 'MemPerson', 'mem_user_id'),
             'webShopBoxes' => array(self::HAS_MANY, 'WebShopBox', 'web_shop_id'),
             'webShopBoxItems' => array(self::HAS_MANY, 'WebShopBoxItem', 'web_shop_id'),
             'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
@@ -121,6 +124,15 @@ class WebShop extends WebShopBase {
         // should not be searched.
 
         $criteria = new CDbCriteria;
+
+        $this->mem_user_id = MemPerson::model()->find(Yii::t('language', 'ftname') . ' like "%' . $this->full_name . '%" or ' . Yii::t('language', 'ltname') . ' like "%' . $this->full_name . '%"')->user_id;
+        if ($this->full_name == NULL) {
+            $this->mem_user_id = NULL;
+        } else {
+            if($this->mem_user_id == NULL){
+                $this->mem_user_id = '0';
+            }
+        }
 
         $criteria->compare('web_shop_id', $this->web_shop_id);
         $criteria->compare('mem_user_id', $this->mem_user_id);
