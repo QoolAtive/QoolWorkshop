@@ -6,7 +6,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 <div class="_100 search-box">
 
-    <div class="_100">
+    <div class="_100" style=" margin-left: 16px; margin-top: -16px;">
         <div class="_50">
             <div class="_50">
                 <?php
@@ -50,12 +50,11 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
 
-    <div class="_100" style=" margin-left: 16px;
-         margin-top: -14px;">
+    <div class="_100" style=" margin-left: 16px; margin-top: -24px;">
         <div class="_20">
             <div class="_100" >
                 <?php
-                echo CHtml::label(Yii::t('language', 'เลือกหัวข้อ') . ' : ', false);
+                echo CHtml::label(Yii::t('language', 'หัวข้อ') . ' : ', false);
                 ?>
             </div>
         </div>
@@ -71,18 +70,21 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
 
-    <div class="_100" style=" margin-left: 16px; margin-top: -14px;">
+    <div class="_100" style=" margin-left: 16px; margin-top: -24px;">
         <div class="_20">
             <div class="_100" >
                 <?php
-                echo CHtml::label(Yii::t('language', 'เลือกประเภท') . ' : ', false);
+                echo CHtml::label(Yii::t('language', 'ประเภทบทความ') . ' : ', false);
                 ?>
             </div>
         </div>
         <div class="_80">
             <div class="_100">
                 <?php
-                echo CHtml::dropDownList('type_id', '', KnowledgeType::model()->getList(), array('empty' => 'เลือก','style' => 'width: 150px;'));
+                echo CHtml::dropDownList('type_id', '', KnowledgeType::model()->getList(), array(
+                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
+                    'style' => 'width: 150px;'
+                ));
                 ?>
             </div>
         </div>
@@ -90,7 +92,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 
 
-    <div style='text-align: center; padding-bottom: 15px;' class="_100">
+    <div style='text-align: center; padding-bottom: 5px; margin-top: -12px;' class="_100">
         <?php
         echo CHtml::ajaxSubmitButton(Yii::t('language', 'ค้นหา'), CHtml::normalizeUrl(array(
                     '/knowledge/default/QueryKnowledge')), array(
