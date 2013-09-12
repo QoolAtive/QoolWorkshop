@@ -124,7 +124,7 @@
                         <hr>
                         <?php
                         echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-                        echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                        echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
                             'onclick' => "window.location='" . CHtml::normalizeUrl(array(
                                 '/link/default/managelink'
                             )) . "'",
