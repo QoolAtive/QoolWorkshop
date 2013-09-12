@@ -21,7 +21,7 @@ class KnowledgeType extends KnowledgeTypeBase {
         return array(
             'knowledge_type_id' => 'Knowledge Type',
             'name_th' => Yii::t('language', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
-            'name_en' => Yii::t('langaage', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'name_en' => Yii::t('language', 'ประเภทบทความ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
