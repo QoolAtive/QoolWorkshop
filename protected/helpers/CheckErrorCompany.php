@@ -7,7 +7,17 @@ Class CheckErrorCompany {
         if ($countBusiness > 0)
             $message = null;
         else
-            $message = 'ประเภทธุรกิจ ' . $idBusiness . ' ' . 'ไม่มีอยู่ในระบบ';
+            $message = 'ประเภทร้านค้า ' . $idBusiness . ' ' . 'ไม่มีอยู่ในระบบ';
+
+        return $message;
+    }
+    
+    public static function haveBusinessSub($idBusiness) {
+        $countBusiness = CompanySubTypeBusiness::model()->count('company_sub_type_business_id=:id', array(':id' => $idBusiness));
+        if ($countBusiness > 0)
+            $message = null;
+        else
+            $message = 'ประเภทร้านค้าย่อย ' . $idBusiness . ' ' . 'ไม่มีอยู่ในระบบ';
 
         return $message;
     }
@@ -103,7 +113,7 @@ Class CheckErrorCompany {
                     <thead>
                         <tr>
                             <th style="border:#000 1px solid;padding:5px;font-weight:bold;text-align:center; width: 10%;"> บรรทัดที่ </th>
-                            <th style="border:#000 1px solid;padding:5px;font-weight:bold;text-align:center; width: 90%;"> รายละเอียดข้อผิดพลาด </th>
+                            <th style="border:#000 1px solid;padding:5px;font-weight:bold;text-align:center; width: 90%;"> รายละเอียด </th>
                         </tr>
                </thead>';
     }
