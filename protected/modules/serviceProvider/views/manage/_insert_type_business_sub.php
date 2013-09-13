@@ -31,8 +31,6 @@ $this->renderPartial('_side_bar', array(
                 <?php echo Yii::t('language', $word) . Yii::t('language', 'ประเภทผู้ให้บริการย่อย'); ?>
             </span>
         </h3>
-
-
         <div class="_100">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
@@ -41,15 +39,17 @@ $this->renderPartial('_side_bar', array(
             ));
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
-            </div>
-
-            <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'sp_type_business');
-                echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array('empty' => 'เลือก', 'style' => 'width: 150px'));
+                echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array(
+                    'empty' => '- ' . Yii::t('language', 'เลือก') . ') -',
+                    'style' => 'width: 150px'
+                ));
                 echo $form->error($model, 'sp_type_business');
                 ?>
+            </div>
+            <div class="_100">
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>
 
             <div class="_100">
@@ -124,22 +124,26 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100 textcenter">
+                <hr>
                 <?php
                 echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
                 if (Yii::app()->user->getState('default_link_back_to_menu')) {
                     $link_back = Yii::app()->user->getState('default_link_back_to_menu');
 
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                        'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             $link_back
                         )) . "'")
                     );
                 } else {
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                        'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/typeBusiness'
                         )) . "'")
                     );
                 }
                 ?>
+                <hr>
             </div>
             <?php $this->endWidget(); ?>
         </div>

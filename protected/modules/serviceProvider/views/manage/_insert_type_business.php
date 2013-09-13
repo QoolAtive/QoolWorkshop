@@ -10,7 +10,7 @@ $this->renderPartial('_side_bar', array(
         if (empty($model->id)) {
             $word = 'เพิ่ม';
         } else {
-             $word = 'แก้ไข';
+            $word = 'แก้ไข';
         }
         ?>
         <h3 class="barH3">
@@ -28,7 +28,7 @@ $this->renderPartial('_side_bar', array(
                     <?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?>
                 </a> 
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', $word).Yii::t('language', 'ประเภทผู้ให้บริการหลัก'); ?>
+                <?php echo Yii::t('language', $word) . Yii::t('language', 'ประเภทผู้ให้บริการหลัก'); ?>
             </span>
         </h3>
 
@@ -41,7 +41,7 @@ $this->renderPartial('_side_bar', array(
             ));
             ?>
             <div class="_100">
-                <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาไทย').') -'; ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -78,7 +78,7 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100">
-                 <h4 class="reg"><?php echo '- '.Yii::t('language', 'ประเภทผู้ให้บริการ').' ('.Yii::t('language', 'ภาษาอังกฤษ').') -'; ?></h4>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'ประเภทผู้ให้บริการ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
             </div>
             <div class="_100">
                 <?php
@@ -115,22 +115,26 @@ $this->renderPartial('_side_bar', array(
                 ?>
             </div>
             <div class="_100 textcenter">
+                <hr>
                 <?php
                 echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
                 if (Yii::app()->user->getState('default_link_back_to_menu')) {
                     $link_back = Yii::app()->user->getState('default_link_back_to_menu');
 
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                        'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             $link_back
                         )) . "'")
                     );
                 } else {
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                        'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/typeBusiness'
                         )) . "'")
                     );
                 }
                 ?>
+                <hr>
             </div>
             <?php $this->endWidget(); ?>
         </div>
