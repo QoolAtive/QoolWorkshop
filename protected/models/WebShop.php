@@ -30,6 +30,8 @@
  */
 class WebShop extends WebShopBase {
 
+    public $full_name;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -58,10 +60,10 @@ class WebShop extends WebShopBase {
             array('email', 'email'),
             array('mobile, tel, email', 'length', 'max' => 100),
             array('name_th, name_en, url, address_th, address_en', 'length', 'max' => 255),
-            array('how_to_buy_th, how_to_buy_en', 'safe'),
+            array('how_to_buy_th, how_to_buy_en, full_name', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on' => 'search'),
+            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, full_name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -122,6 +124,12 @@ class WebShop extends WebShopBase {
 
         $criteria = new CDbCriteria;
 
+        $criteria->join = 'left join mem_person on mem_person.user_id = t.mem_user_id';
+        $criteria->compare('mem_person.ftname', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.ltname', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.fename', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.lename', $this->full_name, true, 'OR');
+        
         $criteria->compare('web_shop_id', $this->web_shop_id);
         $criteria->compare('mem_user_id', $this->mem_user_id);
         $criteria->compare('name_th', $this->name_th, true);

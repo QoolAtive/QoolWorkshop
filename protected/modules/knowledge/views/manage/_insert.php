@@ -232,7 +232,8 @@
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array('onClick' => "window.location='/knowledge/manage/knowledge'")
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onClick' => "window.location='/knowledge/manage/knowledge'")
             );
             ?>
             <hr>

@@ -15,30 +15,7 @@ foreach (SpAuto::model()->getArray() as $d) {
 
 <script>
     $(function() {
-        var availableTags = [<?php echo $data_auto; ?>
-//            "ActionScript",
-//            "AppleScript",
-//            "Asp",
-//            "BASIC",
-//            "C",
-//            "C++",
-//            "Clojure",
-//            "COBOL",
-//            "ColdFusion",
-//            "Erlang",
-//            "Fortran",
-//            "Groovy",
-//            "Haskell",
-//            "Java",
-//            "JavaScript",
-//            "Lisp",
-//            "Perl",
-//            "PHP",
-//            "Python",
-//            "Ruby",
-//            "Scala",
-//            "Scheme"
-        ];
+        var availableTags = [<?php echo $data_auto; ?>];
         $("#tags").autocomplete({
             source: availableTags
         });

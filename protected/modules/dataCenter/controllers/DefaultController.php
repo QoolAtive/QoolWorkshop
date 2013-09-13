@@ -154,12 +154,12 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function actionCompanySubTypeBusinessInsert($company_sub_type_id = null) {
-        if ($company_sub_type_id == null) {
+    public function actionCompanySubTypeBusinessInsert($company_sub_type_business_id = null) {
+        if ($company_sub_type_business_id == null) {
             $model = new CompanySubTypeBusiness();
             $model->unsetAttributes();
         } else {
-            $model = CompanySubTypeBusiness::model()->find('company_sub_type_id = :id', array(':id' => $company_sub_type_id));
+            $model = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :id', array(':id' => $company_sub_type_business_id));
         }
 
         if (isset($_POST['CompanySubTypeBusiness'])) {

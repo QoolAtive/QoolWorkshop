@@ -20,11 +20,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'name_th',
-            'value' => '$data->name_th',
+            'value' => '"(".Yii::t("language","รหัส")." ".$data->company_sub_type_business_id.") ".$data->name_th',
         ),
         array(
             'name' => 'name_en',
-            'value' => '$data->name_en',
+            'value' => '"(".Yii::t("language","รหัส")." ".$data->company_sub_type_business_id.") ".$data->name_en',
         ),
         array(
             'class' => 'CButtonColumn',

@@ -115,8 +115,13 @@ $this->renderPartial('side_bar', array(
             </div>
             <div class="_100">
                 <?php
+//                echo $form->labelEx($model_type, 'company_type') . "<br />";
+//                echo $form->checkBoxList($model_type, 'company_type', CompanyTypeBusiness::model()->getListData());
+//                echo $form->error($model_type, 'company_type');
                 echo $form->labelEx($model_type, 'company_type') . "<br />";
-                echo $form->checkBoxList($model_type, 'company_type', CompanyTypeBusiness::model()->getListData());
+                echo $form->dropDownList($model_type, 'company_type', CompanySubTypeBusiness::model()->getMultiList(), array(
+                    'multiple' => true, 'style' => 'height: 350px;'
+                ));
                 echo $form->error($model_type, 'company_type');
                 ?>
             </div>

@@ -467,7 +467,7 @@ class AdminController extends Controller {
             $type_list = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $id));
             $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
             foreach ($type_list as $data) {
-                array_push($type_list_data, $data['company_type']);
+                array_push($type_list_data, $data['company_sub_type_id']);
             }
         }
 
@@ -599,9 +599,13 @@ class AdminController extends Controller {
                     CompanyType::model()->deleteAll('company_id=:company_id', array(':company_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
 
                     foreach ($type_id as $key => $value) { // เพิ่มประเภทของ Company
+                        $type_main = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :company_sub_type_business_id', array(
+                            ':company_sub_type_business_id' => $value
+                        ));
                         $type = new CompanyType();
                         $type->company_id = $model->id;
-                        $type->company_type = $value;
+                        $type->company_type = $type_main->company_type_business_id;
+                        $type->company_sub_type_id = $value;
 
                         $type->save();
                     }
@@ -1146,15 +1150,16 @@ class AdminController extends Controller {
                     if ($n >= 2) {
                         $modelCompany = new Company();
                         $typeBusiness = explode(',', $data[1]);
+                        $typeBusiness_sub = explode(',', $data[2]);
 
                         $modelCompany->user_id = Yii::app()->user->id;
 
                         $messageError = Company::model()->getAttributeLabel('name');
-                        $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
                         if ($stError == null) {
-                            $stError = CheckErrorCompany::haveErrorDup('name', $data[2], $messageError);
+                            $stError = CheckErrorCompany::haveErrorDup('name', $data[3], $messageError);
                             if ($stError == null) {
-                                $modelCompany->name = $data[2];
+                                $modelCompany->name = $data[3];
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                             }
@@ -1163,11 +1168,11 @@ class AdminController extends Controller {
                         }
 
                         $messageError = Company::model()->getAttributeLabel('name_en');
-                        $stError = CheckErrorCompany::haveErrorNull($data[2], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[7], $messageError);
                         if ($stError == null) {
-                            $stError = CheckErrorCompany::haveErrorDup('name_en', $data[6], $messageError);
+                            $stError = CheckErrorCompany::haveErrorDup('name_en', $data[7], $messageError);
                             if ($stError == null) {
-                                $modelCompany->name_en = $data[6];
+                                $modelCompany->name_en = $data[7];
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                             }
@@ -1177,57 +1182,57 @@ class AdminController extends Controller {
 
 
                         $messageError = Company::model()->getAttributeLabel('infor');
-                        $stError = CheckErrorCompany::haveErrorNull($data[3], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
                         if ($stError == null) {
-                            $modelCompany->infor = $data[3];
+                            $modelCompany->infor = $data[4];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('infor_en');
-                        $stError = CheckErrorCompany::haveErrorNull($data[7], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[8], $messageError);
                         if ($stError == null) {
-                            $modelCompany->infor_en = $data[7];
+                            $modelCompany->infor_en = $data[8];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('address');
-                        $stError = CheckErrorCompany::haveErrorNull($data[4], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
                         if ($stError == null) {
-                            $modelCompany->address = $data[4];
+                            $modelCompany->address = $data[5];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('address_en');
-                        $stError = CheckErrorCompany::haveErrorNull($data[8], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[9], $messageError);
                         if ($stError == null) {
-                            $modelCompany->address_en = $data[8];
+                            $modelCompany->address_en = $data[9];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('contact_name');
-                        $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[6], $messageError);
                         if ($stError == null) {
-                            $modelCompany->contact_name = $data[5];
+                            $modelCompany->contact_name = $data[6];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('contact_name_en');
-                        $stError = CheckErrorCompany::haveErrorNull($data[9], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[10], $messageError);
                         if ($stError == null) {
-                            $modelCompany->contact_name_en = $data[9];
+                            $modelCompany->contact_name_en = $data[10];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
                         $messageError = Company::model()->getAttributeLabel('contact_tel');
-                        $stError = CheckErrorCompany::haveErrorNull($data[10], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[11], $messageError);
                         if ($stError == null) {
-                            $modelCompany->contact_tel = $data[10];
+                            $modelCompany->contact_tel = $data[11];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
@@ -1235,17 +1240,17 @@ class AdminController extends Controller {
 //                    $messageError = Company::model()->getAttributeLabel('contact_fax') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                        $modelCompany->contact_fax = $data[11];
+                        $modelCompany->contact_fax = $data[12];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
 
                         $messageError = Company::model()->getAttributeLabel('contact_email');
-                        $stError = CheckErrorCompany::haveErrorNull($data[12], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[13], $messageError);
                         if ($stError == null) {
-                            $stError = CheckErrorCompany::verify_email($data[12], $messageError);
+                            $stError = CheckErrorCompany::verify_email($data[13], $messageError);
                             if ($stError == null) {
-                                $modelCompany->contact_email = $data[12];
+                                $modelCompany->contact_email = $data[13];
                             } else {
                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                             }
@@ -1255,23 +1260,23 @@ class AdminController extends Controller {
 //                    echo $data[16]. " : Email<br />";
 
                         $messageError = Company::model()->getAttributeLabel('website');
-                        $stError = CheckErrorCompany::haveErrorNull($data[13], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[14], $messageError);
                         if ($stError == null) {
-                            $modelCompany->website = $data[13];
+                            $modelCompany->website = $data[14];
                         } else {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 //                    $messageError = Company::model()->getAttributeLabel('facebook') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                        $modelCompany->facebook = $data[14];
+                        $modelCompany->facebook = $data[15];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
 //                    $messageError = Company::model()->getAttributeLabel('twitter') . ' ' . Yii::t('language', 'ไม่ควรเป็นค่าว่าง');
 //                    $stError = CheckErrorCompany::haveErrorNull($data[5], $messageError);
 //                    if ($stError == null) {
-                        $modelCompany->twitter = $data[15];
+                        $modelCompany->twitter = $data[16];
 //                    } else {
 //                        $error .= CheckErrorCompany::errorTableDetail($n, $stError);
 //                    }
@@ -1295,38 +1300,59 @@ class AdminController extends Controller {
                             $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                         }
 
+                        $errorTypeBusinessSub = null;
+                        $stError = CheckErrorCompany::haveErrorNull($data[2], Yii::t('language', 'ประเภทธุรกิจย่อย'));
+                        if ($stError == null) {
+                            foreach ($typeBusiness_sub as $dataType_sub) {
+                                $stError = CheckErrorCompany::haveBusinessSub($dataType_sub);
+                                if ($stError != null) {
+                                    if ($errorTypeBusiness == null) {
+                                        $errorTypeBusiness .= $stError;
+                                    } else {
+                                        $errorTypeBusiness .= ', ' . $stError;
+                                    }
+                                }
+                            }
+                        } else {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $stError);
+                        }
+
                         if ($errorTypeBusiness != null) {
+                            $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
+                        }
+
+                        if ($errorTypeBusinessSub != null) {
                             $error .= CheckErrorCompany::errorTableDetail($n, $errorTypeBusiness);
                         }
 
                         $model_delively = new DelivSer; // บริการจัดส่ง
 
                         $messageError = DelivSer::model()->getAttributeLabel('delivery_id');
-                        $stError = CheckErrorCompany::haveErrorNull($data[16], $messageError);
+                        $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError);
                         if ($stError == null) {
-                            $stError = CheckErrorCompany::verify_delively($data[16], $messageError);
+                            $stError = CheckErrorCompany::verify_delively($data[17], $messageError);
                             if ($stError == null) {
-                                $model_delively->delivery_id = $data[16];
+                                $model_delively->delivery_id = $data[17];
                                 if ($model_delively->delivery_id == 1) { // ถ้ามี บริการจัดส่ง (1)
                                     $messageError = DelivSer::model()->getAttributeLabel('option');
-                                    $stError = CheckErrorCompany::haveErrorNull($data[17], $messageError); // เช็คว่าเท่ากับค่าว่างหรือไม่
+                                    $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError); // เช็คว่าเท่ากับค่าว่างหรือไม่
                                     if ($stError == null) {
-                                        $stError = CheckErrorCompany::verify_type_delively($data[17], $messageError);
+                                        $stError = CheckErrorCompany::verify_type_delively($data[18], $messageError);
                                         if ($stError == null) {
-                                            $model_delively->option = $data[17];
+                                            $model_delively->option = $data[18];
                                             if ($model_delively->option == 0) { // ส่งในประเทศ
                                                 $messageError = DelivSer::model()->getAttributeLabel('option2');
-                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
                                                 if ($stError == null) {
-                                                    $stError = CheckErrorCompany::verify_option2($data[18], $messageError); // ประเภทการจัดส่งในประเทศ
+                                                    $stError = CheckErrorCompany::verify_option2($data[19], $messageError); // ประเภทการจัดส่งในประเทศ
                                                     if ($stError == null) {
-                                                        $model_delively->option2 = $data[18];
+                                                        $model_delively->option2 = $data[19];
                                                         if ($model_delively->option2 == 1) {
                                                             $messageError = DelivSer::model()->getAttributeLabel('other');
-                                                            $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
+                                                            $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
                                                             if ($stError == null) {
-                                                                $model_delively->other = $data[19];
-                                                                $model_delively->other_en = $data[21];
+                                                                $model_delively->other = $data[20];
+                                                                $model_delively->other_en = $data[22];
                                                             } else {
                                                                 $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                             }
@@ -1342,29 +1368,29 @@ class AdminController extends Controller {
                                                 }
                                             } else if ($model_delively->option == 1) { // ส่งนอกประเทศ
                                                 $messageError = DelivSer::model()->getAttributeLabel('other2');
-                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                $stError = CheckErrorCompany::haveErrorNull($data[21], $messageError);
                                                 if ($stError == null) {
-                                                    $model_delively->other2 = $data[20];
-                                                    $model_delively->other2_en = $data[22];
+                                                    $model_delively->other2 = $data[21];
+                                                    $model_delively->other2_en = $data[23];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
                                             } else if ($model_delively->option == 2) { // มีการส่ง ทั้งในและนอกประเทศ
                                                 $messageError = DelivSer::model()->getAttributeLabel('option2');
-                                                $stError = CheckErrorCompany::haveErrorNull($data[18], $messageError);
+                                                $stError = CheckErrorCompany::haveErrorNull($data[19], $messageError);
                                                 if ($stError == null) {
-                                                    $model_delively->option2 = $data[18];
-                                                    $model_delively->other = $data[19];
-                                                    $model_delively->other_en = $data[21];
+                                                    $model_delively->option2 = $data[19];
+                                                    $model_delively->other = $data[20];
+                                                    $model_delively->other_en = $data[22];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
 
                                                 $messageError = DelivSer::model()->getAttributeLabel('other2');
-                                                $stError = CheckErrorCompany::haveErrorNull($data[20], $messageError);
+                                                $stError = CheckErrorCompany::haveErrorNull($data[21], $messageError);
                                                 if ($stError == null) {
-                                                    $model_delively->other2 = $data[20];
-                                                    $model_delively->other2_en = $data[22];
+                                                    $model_delively->other2 = $data[21];
+                                                    $model_delively->other2_en = $data[23];
                                                 } else {
                                                     $error .= CheckErrorCompany::errorTableDetail($n, $stError);
                                                 }
@@ -1424,11 +1450,16 @@ class AdminController extends Controller {
                                     $company_them->save();
                                 }
 
-                                foreach ($typeBusiness as $dataType) {
-                                    $modelTypeBusiness = new CompanyType();
-                                    $modelTypeBusiness->company_id = $modelCompany->id;
-                                    $modelTypeBusiness->company_type = $dataType;
-                                    $modelTypeBusiness->save();
+                                foreach ($typeBusiness_sub as $key => $value) { // เพิ่มประเภทของ Company
+                                    $type_main = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :company_sub_type_business_id', array(
+                                        ':company_sub_type_business_id' => $value
+                                    ));
+                                    $type = new CompanyType();
+                                    $type->company_id = $modelCompany->id;
+                                    $type->company_type = $type_main->company_type_business_id;
+                                    $type->company_sub_type_id = $value;
+
+                                    $type->save();
                                 }
                             } else {
 //                                echo "<pre>";

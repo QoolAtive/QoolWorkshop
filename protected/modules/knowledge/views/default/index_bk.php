@@ -75,63 +75,58 @@
 </div>
 <div class="content">
     <div class="tabcontents">
-        <div id="view1" class="tabcontent">            
+        <div id="view1" class="tabcontent">
             <img src="/img/banner/knowledge.png" class="pagebanner" alt="pagebanner"/>
-            <h3 class="barH3">
-                <span>
-                    <i class='icon-lightbulb'></i> 
-                    <a href="<?php echo CHtml::normalizeUrl(array("/knowledge/default/knowledge")); ?>">
-                        <?php echo Yii::t('language', 'บทความ'); ?>
-                    </a>
+            <?php if (Knowledge::model()->count('guide_status = 1') != 0) { ?>
+                <h3 class="headfont"><i class="icon-bookmark-empty"></i><?php echo Yii::t('language', 'บทความแนะนำ'); ?></h3>
+                <div class="clearfix">
                     <?php
-                    if ($knowledge_type_id != '') {
-                        ?>
-                        <i class="icon-chevron-right"></i>
-                        <?php echo KnowledgeType::model()->getList($knowledge_type_id); ?>
-                    <?php } else {
-                        ?>
-                        <i class="icon-chevron-right"></i> 
-                        <?php echo Yii::t('language', 'บทความทั้งหมด'); ?>
-                    <?php }
+                    $this->widget('zii.widgets.CListView', array(
+                        'dataProvider' => $model->getData('1', $knowledge_type_id),
+                        'itemView' => '_list', // refers to the partial view named '_post'
+                        'summaryText' => '',
+                        'sortableAttributes' => array(
+//                    'id', 
+                        ),
+                    ));
                     ?>
-
-                </span>
-            </h3>
-            <?php
-            $tabs = array();
-
-            $tabs['<i class="icon-bookmark-empty"></i> ' . Yii::t('language', 'บทความแนะนำ')] = array(
-                'id' => 'tab01',
-                'content' => $this->renderPartial('index_tab_1', array(
-                    'knowledge_type_id' => $knowledge_type_id,
-                    'model' => $model,
-                        ), true, false),
-            );
-
-            $tabs['<i class="icon-star"></i> ' . Yii::t('language', 'บทความยอดนิยม')] = array(
-                'id' => 'tab02',
-                'content' => $this->renderPartial('index_tab_2', array(
-                    'knowledge_type_id' => $knowledge_type_id,
-                    'model' => $model,
-                        ), true, false),
-            );
-
-            $tabs['<i class="icon-time"></i> ' . Yii::t('language', 'บทความล่าสุด')] = array(
-                'id' => 'tab03',
-                'content' => $this->renderPartial('index_tab_3', array(
-                    'knowledge_type_id' => $knowledge_type_id,
-                    'model' => $model,
-                        ), true, false),
-            );
-
-            $this->widget('zii.widgets.jui.CJuiTabs', array(
-                'tabs' => $tabs,
-                'options' => array(
-                    'collapsible' => false,
-                ),
-                'id' => 'tab_all',
-            ));
-            ?>
+                </div>
+            <?php } ?>
+            <hr>
+            <h3 class="headfont"><i class="icon-file-alt"></i><?php echo Yii::t('language', 'บทความยอดนิยม'); ?></h3>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $model->getKnowledgeHot($knowledge_type_id),
+                    'itemView' => '_list', // refers to the partial view named '_post'
+                    'summaryText' => '',
+                    'sortableAttributes' => array(
+//                    'id', 
+                    ),
+                ));
+                ?>
+            </div>
+            <hr>
+            <h3 class="headfont"><i class="icon-file-alt"></i><?php echo Yii::t('language', 'บทความล่าสุด'); ?></h3>
+            <div class="viewall">
+                <i class="icon-search"></i>
+                <?php
+                echo CHtml::link(Yii::t('language', 'บทความทั้งหมด'), array('/knowledge/default/knowledge'));
+                ?>
+            </div>
+            <div class="clearfix">
+                <?php
+                $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $model->getData('', $knowledge_type_id),
+                    'itemView' => '_list', // refers to the partial view named '_post'
+                    'summaryText' => '',
+                    'sortableAttributes' => array(
+//                    'id', 
+                    ),
+                ));
+                ?>
+            </div>
         </div>
+
     </div>
 </div>

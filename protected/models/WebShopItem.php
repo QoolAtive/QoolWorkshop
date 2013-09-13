@@ -100,7 +100,7 @@ class WebShopItem extends WebShopItemBase {
             'pic_7' => 'Pic 7',
             'pic_8' => 'Pic 8',
             'weight' => 'น้ำหนัก (กรัม)',
-            'category' => 'หมวดหมู่สินค้า',
+            'category' => 'ประเภทสินค้า',
             'item_state' => 'สภาพสินค้า',
         );
     }

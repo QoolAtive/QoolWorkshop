@@ -168,20 +168,52 @@ $this->renderPartial('side_bar', array(
                     </tr>
 
                     <tr>
-                        <td><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?></td>
-                        <td> : </td>
-                        <td style="padding-left: 2px;">
+                        <td><?php echo Yii::t('language', 'ประเภทร้านค้า'); ?></td>
+                        <td class="colon"> : </td>
+                        <td>
                             <?php
                             $type = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
+                            $type_name_old = null;
                             foreach ($type as $data) {
                                 $type_name = CompanyTypeBusiness::model()->find('id=:id', array(':id' => $data['company_type']));
                                 $type_name = LanguageHelper::changeDB($type_name->name, $type_name->name_en);
-                                $data_type .= $type_name . ', ';
+
+                                if ($type_name_old != $type_name)
+                                    $data_type .= $type_name . ', ';
+
+                                $type_name_old = $type_name;
                             }
                             echo rtrim($data_type, ', ');
                             ?>
                         </td>
                     </tr>
+                    <?php
+                    $model_type_com_count = CompanyType::model()->count("company_id = {$model->id} and (company_sub_type_id is not null and company_sub_type_id != 0)");
+                    if ($model_type_com_count > 0) {
+                        ?>
+                        <tr>
+                            <td><?php echo Yii::t('language', 'ประเภทร้านค้าย่อย'); ?></td>
+                            <td class="colon"> : </td>
+                            <td>
+                                <?php
+                                $type_sub = CompanyType::model()->findAll('company_id=:company_id', array(':company_id' => $model->id));
+                                $type_name_old_sub = null;
+                                foreach ($type_sub as $data) {
+                                    $type_name_sub = CompanySubTypeBusiness::model()->find('company_sub_type_business_id=:id', array(':id' => $data['company_sub_type_id']));
+                                    $type_name_sub = LanguageHelper::changeDB($type_name_sub->name_th, $type_name_sub->name_en);
+
+                                    if ($type_name_old_sub != $type_name_sub)
+                                        $data_type_sub .= $type_name_sub . ', ';
+
+                                    $type_name_old_sub = $type_name_sub;
+                                }
+                                echo rtrim($data_type_sub, ', ');
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
                     <tr>
                         <td><?php echo Yii::t('language', 'ที่ตั้ง'); ?></td>
                         <td> : </td>

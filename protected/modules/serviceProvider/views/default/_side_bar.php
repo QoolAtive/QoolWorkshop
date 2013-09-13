@@ -1,3 +1,9 @@
+<style>
+    .rectangle-list ul.sub
+    {
+        padding-left:20px; /*This determines the hierarchical offset*/ 
+    }
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>                               

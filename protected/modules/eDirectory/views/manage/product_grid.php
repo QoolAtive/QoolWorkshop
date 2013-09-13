@@ -17,20 +17,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'name',
             'value' => '$data->name',
         ),
-        array(
-            'name' => 'detail',
-            'value' => '$data->detail',
-//                'filter' => '',
-        ),
+//        array(
+//            'name' => 'detail',
+//            'value' => '$data->detail',
+////                'filter' => '',
+//        ),
         array(
             'name' => 'name_en',
             'value' => '$data->name_en',
         ),
-        array(
-            'name' => 'detail_en',
-            'value' => '$data->detail_en',
-//                'filter' => '',
-        ),
+//        array(
+//            'name' => 'detail_en',
+//            'value' => '$data->detail_en',
+////                'filter' => '',
+//        ),
         array(
             'name' => 'guide',
             'value' => 'SpProduct::model()->getDataTypeList($data->guide)',

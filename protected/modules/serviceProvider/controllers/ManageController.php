@@ -191,6 +191,8 @@ Class ManageController extends Controller {
             } else {
                 echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
             }
+        } else {
+            echo Yii::t('language', 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีข้อมูลอ้างอิงอยู่');
         }
     }
 
@@ -232,22 +234,22 @@ Class ManageController extends Controller {
             $type_list = SpTypeCom::model()->findAll('com_id=:com_id', array(':com_id' => $id));
             $type_list_data = array(); //เก็บข้อมูลที่เลือก ประเภท Company
             foreach ($type_list as $data) {
-                array_push($type_list_data, $data['type_id']);
+                array_push($type_list_data, $data['sp_type_business_sub_id']);
             }
         }
 
         if (isset($_POST['SpCompany']) && isset($_POST['SpTypeCom'])) {
             $model->attributes = $_POST['SpCompany'];
             $model_type->attributes = $_POST['SpTypeCom'];
-            $type_id = $model_type->type_id;
 
-            $model_type->com_id = 0;
-//            echo "<pre>";
-//            print_r($type_id);
-//            echo "</pre>";
-//            
-            if ($type_id != null)
+            if ($model_type->type_id != null) {
+                $type_id = $model_type->type_id;
                 $model_type->type_id = 0;
+                $model_type->com_id = 0;
+            }
+
+//            echo "<pre>";
+//            print_r($type_id);die;
 
             $model->validate();
             $model_type->validate();
@@ -274,11 +276,15 @@ Class ManageController extends Controller {
                     SpTypeCom::model()->deleteAll('com_id=:com_id', array(':com_id' => $id)); // ลบประเภทที่เลือกก่อนหน้า
 
                     foreach ($type_id as $key => $value) { // เพิ่มประเภทของ Company
+                        $type_main = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :sp_type_business_sub_id', array(':sp_type_business_sub_id' => $value));
                         $type = new SpTypeCom;
                         $type->com_id = $model->id;
-                        $type->type_id = $value;
-
-                        $type->save();
+                        $type->type_id = $type_main->sp_type_business;
+                        $type->sp_type_business_sub_id = $value;
+                        if (!$type->save()) {
+                            echo "<pre>";
+                            print_r($type->getErrors());
+                        }
                     }
 
                     // ไฟล์ brochure
@@ -354,10 +360,14 @@ Class ManageController extends Controller {
                         }
                     }
                 } else {
-//                    echo "<pre>";
-//                    print_r(array($model->getErrors()));
-//                    echo "</pre>";
+                    echo "<pre>";
+                    print_r(array($model->getErrors(), $model_type->getErrors()));
+                    echo "</pre>";
                 }
+            } else {
+                echo "<pre>";
+                print_r(array($model->getErrors(), $model_type->getErrors()));
+                echo "</pre>";
             }
         }
 
@@ -365,6 +375,7 @@ Class ManageController extends Controller {
             'model' => $model,
             'model_type' => $model_type,
             'type_list_data' => $type_list_data,
+            'type_sub_list_data' => $type_sub_list_data,
         ));
     }
 

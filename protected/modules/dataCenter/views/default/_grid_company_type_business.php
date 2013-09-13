@@ -15,11 +15,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         array(
             'name' => 'name',
-            'value' => '$data->name',
+            'value' => '"(".Yii::t("language","รหัส")." ".$data->id.") ".$data->name',
         ),
         array(
             'name' => 'name_en',
-            'value' => '$data->name_en',
+            'value' => '"(".Yii::t("language","รหัส")." ".$data->id.") ".$data->name_en',
         ),
         array(
             'class' => 'CButtonColumn',
