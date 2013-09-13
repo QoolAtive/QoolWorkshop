@@ -768,6 +768,24 @@ class ManageShopController extends Controller {
         }
     }
 
+    public function actionSortCategory() {
+        $shop_id = Yii::app()->session['shop_id'];
+//        Yii::app()->clientScript->registerCssFile('http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/jquery-1.9.1.js');
+//        Yii::app()->clientScript->registerScriptFile('http://code.jquery.com/ui/1.10.3/jquery-ui.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/web_sim/sort_box.js');
+        if ($_POST['sort_arr'] != '') {
+            $i = 1;
+            $arr = array();
+            $arr = preg_split('/,/', $_POST['sort_arr']);
+            foreach ($arr as $category_id) {
+                WebShopCategory::model()->updateByPk($category_id, array('order_n' => $i));
+                $i += 1;
+            }
+        }
+        $this->render('sort_category', array('shop_id' => $shop_id));
+    }
+    
     public function actionEditHowToBuy() {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {

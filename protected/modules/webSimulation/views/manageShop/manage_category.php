@@ -32,7 +32,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </div>
         <hr>
 
-        <ul class="droptrue left">
+        <ul class="ws-boxadmin left">
             <?php
             $category_list = WebShopCategory::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
