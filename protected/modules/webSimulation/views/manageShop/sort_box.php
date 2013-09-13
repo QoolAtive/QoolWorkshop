@@ -42,7 +42,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             ?>
             <ul id="sortable">
                 <?php
-                $boxs = WebShopBox::model()->findAll(array('order' => 'order_n'));
+                $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
                 foreach ($boxs as $box) {
                     ?>
                     <li id="<?php echo $box['web_shop_box_id']; ?>" class="ui-state-default" value="<?php echo $box['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $box['name_th']; ?></li>
