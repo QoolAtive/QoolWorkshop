@@ -47,7 +47,7 @@ $this->renderPartial('_side_bar', array(
             <div class="_100">
                 <?php
                 echo $form->labelEx($model, 'sp_type_business');
-                echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array('empty' => 'เลือก', 'style' => 'width: 150px'));
+                echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array('empty' => '- เลือก -', 'style' => 'width: 150px'));
                 echo $form->error($model, 'sp_type_business');
                 ?>
             </div>

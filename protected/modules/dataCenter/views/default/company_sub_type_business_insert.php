@@ -56,6 +56,13 @@ if ($model->company_sub_type_business_id != NULL) {
             echo $form->error($model, 'name_en')
             ?>
         </div>
+        <div class="_100">
+            <?php
+            echo $form->labelEx($model, 'no');
+            echo $form->textField($model, 'no');
+            echo $form->error($model, 'no')
+            ?>
+        </div>
         <div class="textcenter">
             <hr>
             <?php

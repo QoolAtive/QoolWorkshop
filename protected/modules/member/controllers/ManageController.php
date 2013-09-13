@@ -374,6 +374,9 @@ Class ManageController extends Controller {
     }
 
     public function actionProfile() {
+        if (Yii::app()->user->id == null) {
+            $this->redirect('/site/index');
+        }
         if (Yii::app()->user->isAdmin()) {
             if (Yii::app()->user->id == 3) {
                 $profile = array(

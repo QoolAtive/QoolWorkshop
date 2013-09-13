@@ -181,6 +181,10 @@ class DefaultController extends Controller {
             'model' => $model,
         ));
     }
+    
+    public function actionUpDateNo(){
+        echo $_POST['no']. '====';
+    }
 
     public function actionCompanySubTypeBusinessDel($company_sub_type_business_id = null) {
         $count1 = CompanyType::model()->count('company_sub_type_id = :id', array(

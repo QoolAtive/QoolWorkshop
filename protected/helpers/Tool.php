@@ -9,6 +9,15 @@ Class Tool {
         }
     }
 
+    public static function countList($id) {
+        $model_count = CompanySubTypeBusiness::model()->count('company_type_business_id = :id', array(':id' => $id));
+        $data = array();
+        for ($n = 1; $n <= $model_count; $n++) {
+            $data[$n] = $n;
+        }
+        return $data;
+    }
+
     public static function getDropdownListYear($year = null) {
         if ($year == null)
             $year = LanguageHelper::changeDB(2548, 2005);
