@@ -68,8 +68,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
                                onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
-                            &nbsp;|&nbsp;
-                            <a href="#">แก้ไขการแสดงผล</a>
+<!--                            &nbsp;|&nbsp;
+                            <a href="#">แก้ไขการแสดงผล</a>-->
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
                                 <?php
