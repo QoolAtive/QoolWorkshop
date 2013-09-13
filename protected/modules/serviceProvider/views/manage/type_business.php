@@ -20,8 +20,7 @@ $this->renderPartial('_side_bar', array(
                 <?php echo Yii::t('language', 'ประเภทผู้ให้บริการ'); ?> 
             </span>
         </h3>
-        <hr>
-        <h3><?php echo Yii::t('language', 'ประเภทผูให้บริการหลัก'); ?></h3>
+
         <div class="textcenter">
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทผู้ให้บริการหลัก'), array(
@@ -29,31 +28,39 @@ $this->renderPartial('_side_bar', array(
                     '/serviceProvider/manage/insertTypeBusiness'
                 )) . "'")
             );
-            ?>
-        </div>
-        <hr>
-        <?php
-        $this->renderPartial('_grid_type_business', array(
-            'model' => $model,
-        ));
-        ?>
 
-        <h3><?php echo Yii::t('language', 'ประเภทผู้ให้บริการย่อย'); ?></h3>
-        <div class="textcenter">
-            <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทผู้ให้บริการย่อย'), array(
                 'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                     '/serviceProvider/manage/typeBusinessSubInsert'
                 )) . "'")
             );
             ?>
+            <hr>
         </div>
-        <hr>
         <?php
-        $this->renderPartial('_grid_type_business_sub', array(
-            'modelTypeSub' => $modelTypeSub,
+        $tabs = array();
+
+        $tabs[Yii::t('language', 'ประเภทผู้ให้บริการหลัก')] = array(
+            'id' => 'tab01',
+            'content' => $this->renderPartial('_grid_type_business', array(
+                'model' => $model,
+                    ), true, false),
+        );
+
+        $tabs[Yii::t('language', 'ประเภทผู้ให้บริการย่อย')] = array(
+            'id' => 'tab02',
+            'content' => $this->renderPartial('_grid_type_business_sub', array(
+                'modelTypeSub' => $modelTypeSub,
+                    ), true, false),
+        );
+
+        $this->widget('zii.widgets.jui.CJuiTabs', array(
+            'tabs' => $tabs,
+            'options' => array(
+                'collapsible' => false,
+            ),
+            'id' => 'tab_all',
         ));
         ?>
-
     </div>
 </div>
