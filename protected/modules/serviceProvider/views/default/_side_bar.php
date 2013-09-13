@@ -1,3 +1,9 @@
+<style>
+    .rectangle-list ul.sub
+    {
+        padding-left:20px; /*This determines the hierarchical offset*/ 
+    }
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>                               
@@ -65,7 +71,7 @@
                             'class' => $select
                 ));
                 if (count($menu_sub) > 0) {
-                    $list_sub .= '<ul class="rectangle-list">';
+                    $list_sub .= '<ul class="sub">';
                     foreach ($menu_sub as $ms) {
                         if ($_GET['sp_type_business_sub_id'] == $ms['sp_type_business_sub_id'] && $_GET['id'] == $ms['sp_type_business']) {
                             $active = true;

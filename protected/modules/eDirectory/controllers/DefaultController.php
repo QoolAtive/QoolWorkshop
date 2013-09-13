@@ -28,17 +28,21 @@ class DefaultController extends Controller {
         Yii::app()->end();
     }
 
-    public function actionIndex($id = null) {
+    public function actionIndex($id = null, $company_sub_type_business_id = null) {
 
         $criteria = new CDbCriteria();
         $criteria->join = '
-            inner join company_type ctype on t.id = ctype.company_id
-            inner join company_them ct on t.id = ct.main_id
+            left join company_type ctype on t.id = ctype.company_id
+            left join company_them ct on t.id = ct.main_id
             ';
         $criteria->distinct = 't.name, t.name_en';
         $criteria->order = 't.id desc';
         if ($id != null) {
-            $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
+            if ($company_sub_type_business_id != null) {
+                $criteria->condition = 'ctype.company_type = ' . $id . ' and company_sub_type_id = ' . $company_sub_type_business_id . ' and ct.status_appro = 1 and ct.status_block = 0';
+            } else {
+                $criteria->condition = 'ctype.company_type = ' . $id . ' and ct.status_appro = 1 and ct.status_block = 0';
+            }
         } else {
             $criteria->condition = 'ct.status_appro = 1 and ct.status_block = 0';
         }
@@ -53,6 +57,7 @@ class DefaultController extends Controller {
 
         $this->render('index', array(
             'id' => $id,
+            'company_sub_type_business_id' => $company_sub_type_business_id,
             'dataProvider' => $dataProvider,
         ));
     }
