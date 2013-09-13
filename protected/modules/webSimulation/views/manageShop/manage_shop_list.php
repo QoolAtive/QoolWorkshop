@@ -42,6 +42,7 @@
                     'name' => 'url',
                     'value' => 'CHtml::link("$data->url", $data->url, array(target=>_blank))',
                     'type' => 'raw',
+                    'filter' => FALSE,
                 ),
 //                array(
 //                    'class' => 'CButtonColumn',

@@ -21,12 +21,12 @@ class SpTypeBusinessSub extends SpTypeBusinessSubBase {
 
     public function attributeLabels() {
         return array(
-            'sp_type_business_sub_id' => Yii::t('language', 'ประภทบริการหลัก'),
-            'sp_type_business' => Yii::t('language', 'ประภทบริการหลัก'),
-            'name_th' => Yii::t('language', 'ประเภทบริการย่อย') . Yii::t('language', 'ภาษาไทย'),
-            'name_en' => Yii::t('language', 'ประเภทบริการย่อย') . Yii::t('language', 'ภาษาอังกฤษ'),
-            'about_th' => Yii::t('language', 'รายละเอียด') . Yii::t('language', 'ภาษาไทย'),
-            'about_en' => Yii::t('language', 'รายละเอียด') . Yii::t('language', 'ภาษาอังกฤษ'),
+            'sp_type_business_sub_id' => Yii::t('language', 'ประเภทผู้ให้บริการหลัก'),
+            'sp_type_business' => Yii::t('language', 'ประเภทผู้ให้บริการหลัก'),
+            'name_th' => Yii::t('language', 'ประเภทผู้ให้บริการย่อย') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ประเภทผู้ให้บริการย่อย') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'about_th' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'about_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 

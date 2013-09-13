@@ -32,7 +32,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </div>
         <hr>
 
-        <ul class="droptrue left">
+        <ul class="ws-boxadmin left">
             <?php
             $category_list = WebShopCategory::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
             $i = 1;
@@ -52,8 +52,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteCategory', 'category_id' => $category['web_shop_category_id'])); ?>"
                                onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบหมวดหมู่สินค้านี้หรือไม่?'); ?>');" >ลบ</a>
-                            &nbsp;|&nbsp;
-                            <a href="#">แก้ไขการแสดงผล</a>
+<!--                            &nbsp;|&nbsp;
+                            <a href="#">แก้ไขการแสดงผล</a>-->
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showCategory', 'category_id' => $category['web_shop_category_id'], 'is_show' => $category['show_box'])); ?>" class="hideshowbox">
                                 <?php

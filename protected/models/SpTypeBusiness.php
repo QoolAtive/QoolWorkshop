@@ -24,10 +24,10 @@ class SpTypeBusiness extends SpTypeBusinessBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name' => Yii::t('language', 'ชื่อภาษาไทย'),
-            'about' => Yii::t('language', 'รายละเอียดภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อภาษาอังกฤษ'),
-            'about_en' => Yii::t('language', 'รายละเอียดภาษาอังกฤษ'),
+            'name' => Yii::t('language', 'ชื่อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'about' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'about_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
         );
     }
 
@@ -62,7 +62,6 @@ class SpTypeBusiness extends SpTypeBusinessBase {
     public function getDataList() {
         $field = LanguageHelper::changeDB('name', 'name_en');
         return CHtml::listData($this->model()->findAll(), 'id', $field);
-        
     }
 
     public function getDataArray($select = null) {

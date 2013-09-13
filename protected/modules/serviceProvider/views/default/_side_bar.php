@@ -46,7 +46,7 @@
             </p>
         </div>
         <ul class="rectangle-list">
-            <p class="demoline"></p>
+            <!-- <p class="demoline"></p> -->
             <?php
             $list_sub = '';
             $active = false;
