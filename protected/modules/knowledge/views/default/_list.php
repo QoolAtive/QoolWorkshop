@@ -9,18 +9,25 @@ $detail = LanguageHelper::changeDB($data->detail, $data->detail_en);
               -moz-background-size: cover;
               -o-background-size: cover;
               background-size: cover;">
-            <a href="/knowledge/default/view/id/<?php echo $data->id; ?>"></a>
+            <a href="<?php echo Yii::app()->createUrl('/knowledge/default/view/', array('id' => $data->id, 'title' => $subject)); ?>"></a>
         </div> 
 
         <div class="arrow"></div> 
 
         <div class="textpad">
-            <h3><a href="/knowledge/default/view/id/<?php echo $data->id; ?>"><?php echo Tool::stripText($subject, 100); ?></a></h3>
-            <span>
-                <?php
-//                echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $detail)), 150);
-                echo Tool::stripText($detail, 250);
+            <h3><?php
+                echo Chtml::link(Tool::stripText($subject, 100), Yii::app()->createUrl('/knowledge/default/view/', array(
+                            'id' => $data->id, 'title' => $subject)
+                        ), array(
+                            'target' => '_bank'
+                ));
                 ?>
+            </h3>
+            <span>
+<?php
+//                echo Tool::limitString(preg_replace('/(<[^>]+) style=".*?"/i', '$1', ereg_replace('&nbsp;', ' ', $detail)), 150);
+echo Tool::stripText($detail, 250);
+?>
             </span>
         </div>
     </li>
