@@ -236,6 +236,9 @@ return array(
     'มีข้อความตืดต่อจาก' => 'A message to us from ',
     'ภาษาไทย' => 'Thai',
     'ภาษาอังกฤษ' => 'English',
+    'ผู้เข้าชม' => 'Visitors',
+    'ครั้ง' => ' ',
+    'ไม่พบคำถาม' => 'Not found the question.',
     '' => '',
 // News
     '/img/iconpage/newsandactivity.png' => '/img/iconpage/newsandactivity_en.png',

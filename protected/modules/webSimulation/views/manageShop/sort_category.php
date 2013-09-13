@@ -1,5 +1,5 @@
 <?php
-$this->renderPartial('_side_menu', array('index' => 'shop'));
+$this->renderPartial('_side_menu', array('index' => 'item'));
 ?>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -21,31 +21,31 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopItem")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าในร้าน'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageCategory")); ?>">
+                    <?php echo Yii::t('language', 'หมวดหมู่สินค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'จัดลำดับกล่อง'); ?>
+                <?php echo Yii::t('language', 'จัดลำดับหมวดหมู่สินค้า'); ?>
             </span>
         </h3>
 
         <div class="_100 textcenter">
             <?php
             $form = $this->beginWidget('CActiveForm', array(
-                'id' => 'sort_box-form',
+                'id' => 'sort-form',
             ));
 //        echo $form->errorSummary($model);
             ?>
             <ul id="sortable">
                 <?php
-                $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
-                foreach ($boxs as $box) {
+                $category_list = WebShopCategory::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
+                foreach ($category_list as $category) {
                     ?>
-                    <li id="<?php echo $box['web_shop_box_id']; ?>" class="ui-state-default" value="<?php echo $box['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $box['name_th']; ?></li>
+                    <li id="<?php echo $category['web_shop_category_id']; ?>" class="ui-state-default" value="<?php echo $category['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $category['name_th']; ?></li>
                     <?php
                 }
                 ?>
@@ -60,7 +60,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     'class' => "purple",
                 ));
                 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageCategory")) . '"'));
                 ?>
             </div>
 

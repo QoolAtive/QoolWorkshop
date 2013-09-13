@@ -22,7 +22,12 @@ if ($faq_sub_list != NULL) {
 
             if ($faq_list != NULL) {
                 ?>
-                <h3><?php echo $faq_sub['name_th']; ?></h3>
+                <h3>
+                    <?php
+                    $faq_sub_name = LanguageHelper::changeDB($faq_sub['name_th'], $faq_sub['name_en']);
+                    echo $faq_sub_name; 
+                    ?>
+                </h3>
                 <?php
                 $i = 1;
                 foreach ($faq_list as $faq) {
@@ -47,7 +52,7 @@ if ($faq_sub_list != NULL) {
                                 <div class="right">
                                     <?php
                                     echo Yii::t('language', 'ผู้เข้าชม');
-                                    echo ' ' . $faq['counter'] . ' ';
+                                    echo ' : ' . $faq['counter'] . ' ';
                                     echo Yii::t('language', 'ครั้ง');
                                     ?>
                                 </div>
