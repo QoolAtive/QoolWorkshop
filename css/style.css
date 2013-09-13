@@ -2724,7 +2724,7 @@ ul.yiiPager .first, ul.yiiPager .last {
   height: 11px;
   left: -26px;
   line-height: 2em;
-  margin-top: -1.2em;
+  margin-top: -1em;
   position: absolute;
   text-align: center;
   top: 21px;
@@ -2767,7 +2767,18 @@ ul.yiiPager .first, ul.yiiPager .last {
   width: 13px;
 }
 
-
+    .rectangle-list ul.sub
+    {   
+        /*padding-left:20px;*/ /*This determines the hierarchical offset*/ 
+    }
+.rectangle-list ul.sub a:before{
+    border: none;
+    height: 0px;
+}
+    .rectangle-list ul.sub li a {
+     /*   border-left: 2px solid #D763FE;*/
+     background-color: #f8f8f8;
+    }
 
 .rectangle-list a:after{
 /*    position: absolute; 
@@ -2801,8 +2812,7 @@ border-left-color: #D76BFF;     */
 }
 
 .rectangle-list {
-  position: relative;
-  z-index: 0;
+  background: url("/img/line.png") repeat-y scroll 12px center transparent;
 }
 
 .demoline{
