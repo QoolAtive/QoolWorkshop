@@ -78,7 +78,6 @@ class WebShop extends WebShopBase {
             'prefecture' => array(self::BELONGS_TO, 'Prefecture', 'prefecture_id'),
             'district' => array(self::BELONGS_TO, 'District', 'district_id'),
             'memUser' => array(self::BELONGS_TO, 'MemUser', 'mem_user_id'),
-            'memPerson' => array(self::BELONGS_TO, 'MemPerson', 'mem_user_id'),
             'webShopBoxes' => array(self::HAS_MANY, 'WebShopBox', 'web_shop_id'),
             'webShopBoxItems' => array(self::HAS_MANY, 'WebShopBoxItem', 'web_shop_id'),
             'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
@@ -125,15 +124,12 @@ class WebShop extends WebShopBase {
 
         $criteria = new CDbCriteria;
 
-        $this->mem_user_id = MemPerson::model()->find(Yii::t('language', 'ftname') . ' like "%' . $this->full_name . '%" or ' . Yii::t('language', 'ltname') . ' like "%' . $this->full_name . '%"')->user_id;
-        if ($this->full_name == NULL) {
-            $this->mem_user_id = NULL;
-        } else {
-            if($this->mem_user_id == NULL){
-                $this->mem_user_id = '0';
-            }
-        }
-
+        $criteria->join = 'left join mem_person on mem_person.user_id = t.mem_user_id';
+        $criteria->compare('mem_person.ftname', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.ltname', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.fename', $this->full_name, true, 'OR');
+        $criteria->compare('mem_person.lename', $this->full_name, true, 'OR');
+        
         $criteria->compare('web_shop_id', $this->web_shop_id);
         $criteria->compare('mem_user_id', $this->mem_user_id);
         $criteria->compare('name_th', $this->name_th, true);

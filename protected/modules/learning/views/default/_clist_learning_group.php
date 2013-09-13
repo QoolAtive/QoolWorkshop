@@ -4,7 +4,10 @@
     $pic = LanguageHelper::changeDB($data->pic, $data->pic_en);
 
     echo CHtml::link(
-            CHtml::image('/file/learning/' . $pic, $name), array('/learning/default/index', 'id' => $data->id)
-    );
+            CHtml::image('/file/learning/' . $pic, $name), Yii::app()->createUrl('/learning/default/index', array(
+                'id' => $data->id,
+                'title' => $name,
+                    )
+    ));
     ?>
 </li>
