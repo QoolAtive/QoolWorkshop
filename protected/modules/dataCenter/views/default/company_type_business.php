@@ -46,7 +46,7 @@ $this->renderPartial('_sidebar', array(
             $this->renderPartial('_grid_company_type_business_sub', array(
                 'modelSubType' => $modelSubType,
                 'dataProvider' => $dataProvider,
-                    ), true, false),
+                    ), true, false),  
         );
 
         $this->widget('zii.widgets.jui.CJuiTabs', array(
