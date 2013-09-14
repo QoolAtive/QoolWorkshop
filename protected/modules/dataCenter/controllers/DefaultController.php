@@ -182,16 +182,6 @@ class DefaultController extends Controller {
         ));
     }
     
-    public function actionUpDateNo(){
-        if(isset($_POST['type_id'])){
-            $model = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :id', array(':id' => $_POST['type_id']));
-            $model->no = $_POST['value'];
-            if(!$model->save()){
-                echo '<pre>';
-                print_r($model->getErrors()); 
-            }
-        }
-    } 
 
     public function actionCompanySubTypeBusinessDel($company_sub_type_business_id = null) {
         $count1 = CompanyType::model()->count('company_sub_type_id = :id', array(

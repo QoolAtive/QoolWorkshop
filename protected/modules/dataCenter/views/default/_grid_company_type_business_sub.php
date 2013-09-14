@@ -46,19 +46,7 @@
 //                    ))
 //                ',
 //        ),
-            array(
-                'header' => Yii::t('language', 'ร้านค้า'),
-                'type' => 'raw',
-                'htmlOptions' => array('style' => 'text-align:center; h'),
-                'value' => '
-                    OrderStore(
-                    "no[id][".$data->company_type_business_id."][]",
-                    $data->no,
-                    Tool::countList($data->company_type_business_id),
-                    $data->company_sub_type_business_id
-                    );
-                ',
-            ), 
+            
             array(
                 'class' => 'CButtonColumn',
                 'header' => Yii::t('language', 'เครื่องมือ'),
