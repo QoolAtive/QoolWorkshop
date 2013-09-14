@@ -58,7 +58,7 @@
                     $data->company_sub_type_business_id
                     );
                 ',
-            ),
+            ), 
             array(
                 'class' => 'CButtonColumn',
                 'header' => Yii::t('language', 'เครื่องมือ'),
