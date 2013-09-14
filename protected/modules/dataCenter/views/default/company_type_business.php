@@ -33,21 +33,7 @@ $this->renderPartial('_sidebar', array(
         <?php
         $tabs = array();
 
-        $tabs[Yii::t('language', 'ประเภทร้านค้าหลัก')] = array(
-            'id' => 'tab01',
-            'content' => $this->renderPartial('_grid_company_type_business', array(
-                'model' => $model
-                    ), true, false),
-        );
-
-        $tabs[Yii::t('language', 'ประเภทร้านค้าย่อย')] = array(
-            'id' => 'tab02',
-            'content' =>
-            $this->renderPartial('_grid_company_type_business_sub', array(
-                'modelSubType' => $modelSubType,
-                'dataProvider' => $dataProvider,
-                    ), true, false),  
-        );
+        
 
         $this->widget('zii.widgets.jui.CJuiTabs', array(
             'tabs' => $tabs,
