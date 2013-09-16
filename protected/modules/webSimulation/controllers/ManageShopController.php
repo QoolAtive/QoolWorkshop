@@ -425,7 +425,7 @@ class ManageShopController extends Controller {
 //                }
             }
         }
-        $this->render('edit_item', array('model' => $model));
+        $this->render('edit_item', array('model' => $model, 'shop_id' => $shop_id));
     }
 
 //    หน้า จัดการรายการสินค้า
@@ -735,7 +735,7 @@ class ManageShopController extends Controller {
             window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageCategory')) . "';</script>";
                 }
             }
-            $this->render('add_category', array('model' => $model));
+            $this->render('add_category', array('model' => $model, 'shop_id' => $shop_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }

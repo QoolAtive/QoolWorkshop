@@ -187,7 +187,7 @@ class ShopController extends Controller {
                 unset(Yii::app()->session['busket' . $id]);
                 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                 echo "<script language='javascript'>
-                    alert('" . Yii::t('language', 'สั่งซื้อสินค้าเรียบร้อย') . "');
+                    alert('" . Yii::t('language', 'สั่งซื้อสินค้าเรียบร้อย') . ' ' . Yii::t('language', 'กรุณารอการติดต่อกลับจากเจ้าของร้านค้าในภายหลัง') . "');
                             window.top.location.href = '/webSimulation/shop/index/id/" . $id . "';
                 </script>";
             }//end if ($order->save()) {
