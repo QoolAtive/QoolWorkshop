@@ -37,12 +37,13 @@
 <div class="content">
     <div class="tabcontents" >
         <img class="pagebanner" alt="pagebanner" src="/img/banner/Websimulation.png">
+
         <div class="websimborder" style="min-height: 400px;">
 
             <h3 class="textcenter" style="padding-top: 20px;">Web Simulation</h3>
             <p class="textcenter">ระบบแนะนำการทดลองการเปิดร้านค้าออนไลน์</p>
 
-            <div class="textcenter" style="  border: 1px solid;
+            <div class="textcenter" style="  border:1px dashed #aaa;
                  margin: 20px 40px;
                  padding: 20px 0;">
                 <p class="strong">คำแนะนำการใช้งานระบบ</p>
@@ -79,8 +80,9 @@
                     <?php
                 }
                 ?>
+                <img  alt="pagebanner" width="100%" src="/img/websimbanner2.png">
 
-                <img src="/img/smart.png" style="padding: 60px 0px;">
+                <!-- <img src="/img/smart.png" style="padding: 60px 0px;"> -->
 
             </div>
         </div>
