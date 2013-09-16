@@ -25,7 +25,7 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
 
             <?php
         } else {
-            ?> <li><img alt="e-dirshoplogo"  src="/img/default.jpg"/></li> 
+            ?> <li><img alt="e-dirshoplogo"  src="/file/logo/default.jpg"/></li> 
         <?php } ?>
 
         <li>

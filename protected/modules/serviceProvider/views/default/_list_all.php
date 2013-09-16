@@ -27,7 +27,7 @@ $model_type_com_num = SpTypeCom::model()->findAll(array('condition' => "com_id =
 
             <?php
         } else {
-            ?> <li><img alt="service-logo"  src="/img/default.jpg"/></li> 
+            ?> <li><img alt="service-logo"  src="/file/logo/default.jpg"/></li> 
         <?php } ?>
         <li>
             <i class="icon-tags"></i> <label><?php echo Yii::t('language', 'ประเภทผู้ให้บริการ') . " : "; ?></label>
