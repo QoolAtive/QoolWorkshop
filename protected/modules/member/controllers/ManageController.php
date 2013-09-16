@@ -486,8 +486,9 @@ Class ManageController extends Controller {
         ));
     }
 
-    public function actionRevokeMember($id) {
-        $model = ChangePass::model()->findByPk($id);
+    public function actionRevokeMember() {
+        
+        $model = ChangePass::model()->findByPk($_POST['user_id']);
 
         if ($model->status == 0) {
             $model->status = 1;

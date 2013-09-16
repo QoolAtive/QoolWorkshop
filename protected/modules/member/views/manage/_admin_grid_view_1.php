@@ -49,14 +49,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header' => Yii::t('language', 'ยกเลิก/เพิ่ม(ผู้ใช้)'),
             'type' => 'raw',
             'htmlOptions' => array('style' => 'text-align:center; h'),
-            'value' => '
-                    ChangeUser(
-                    "status",
-                    $data->status,
-                    array("0"=> Yii::t("language", "อยู่ในระบบ"), "1" => Yii::t("language","ยกเลิก")),
-                    $data->id
-                    );
-                ',
+            'value' => 'ChangeUser1("status", $data->status, array("0"=> Yii::t("language", "อยู่ในระบบ"), "1" => Yii::t("language","ยกเลิก")), $data->id)',
 //            'value' => '',
         ),
 //        array(
@@ -93,7 +86,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     )
 ));
 
-function ChangeUser($id, $value, $list, $user_id) {
+function ChangeUser1($id, $value, $list, $user_id) {
     return CHtml::dropDownList(
                     $id, $value, $list, array("onchange" => CHtml::ajax(
                         array(
@@ -105,4 +98,5 @@ function ChangeUser($id, $value, $list, $user_id) {
                     )
     );
 }
+
 ?>
