@@ -50,11 +50,11 @@
             <?php
             $list_sub = '';
             $active = false;
-            $menu = SpTypeBusiness::model()->findAll();
+            $menu = SpTypeBusiness::model()->findAll(array('order' => 'no asc, id asc'));
 
             foreach ($menu as $m) {
                 $c = new CDbCriteria();
-                $c->order = 'sp_type_business_sub_id desc';
+                $c->order = 'no asc, sp_type_business_sub_id desc';
                 $c->condition = 'sp_type_business = :sp_type_business';
                 $c->params = array(':sp_type_business' => $m->id);
                 $menu_sub = SpTypeBusinessSub::model()->findAll($c);

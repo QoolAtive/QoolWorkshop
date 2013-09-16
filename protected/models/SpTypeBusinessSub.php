@@ -45,7 +45,7 @@ class SpTypeBusinessSub extends SpTypeBusinessSubBase {
 
     public function getData() {
         $criteria = new CDbCriteria;
-        $criteria->order = 'sp_type_business asc';
+        $criteria->order = 'sp_type_business asc, no asc';
         $criteria->compare('sp_type_business', $this->sp_type_business);
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);

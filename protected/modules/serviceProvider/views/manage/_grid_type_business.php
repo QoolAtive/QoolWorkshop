@@ -34,6 +34,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
 //                'filter' => '',
 //            ),
         array(
+            'header' => Yii::t('language', 'ลำดับการแสดง'),
+            'type' => 'raw',
+            'htmlOptions' => array('style' => 'text-align:center; width: 65px;'),
+            'value' => '
+                    OrderStoreMain(
+                    "no",
+                    $data->no,
+                    countListMain(),
+                    $data->id
+                    );
+                ',
+        ),
+        array(
             'class' => 'CButtonColumn',
             'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
             'header' => Yii::t('language', 'เครื่องมือ'),
@@ -65,4 +78,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
+
+function OrderStoreMain($id, $value, $list, $type_id) {
+
+
+    return CHtml::dropDownList(
+                    $id, $value, $list, array("onchange" => CHtml::ajax(
+                        array(
+                            "type" => "POST",
+                            "url" => "/serviceProvider/manage/updateNoMain",
+                            "data" => array("type_id" => $type_id, "value" => "js:this.value")
+                        )
+                )
+                    )
+    );
+}
+
+function countListMain() {
+    $model_count = SpTypeBusiness::model()->count();
+    $data = array();
+    for ($n = 1; $n <= $model_count; $n++) {
+        $data[$n] = $n;
+    }
+    return $data;
+}
 ?>

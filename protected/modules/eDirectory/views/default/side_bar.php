@@ -41,7 +41,7 @@ padding: 14px 0;">
 <?php
             $list_sub = '';
             $active = false;
-            $type_list = CompanyTypeBusiness::model()->findAll();
+            $type_list = CompanyTypeBusiness::model()->findAll(array('order' => 'no asc, id asc'));
             foreach ($type_list as $m) {
                 $select = '';
                 if ($id == $m['id']) {

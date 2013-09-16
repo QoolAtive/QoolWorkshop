@@ -191,6 +191,16 @@ class DefaultController extends Controller {
                 print_r($model->getErrors()); 
             }
         }
+    }
+    public function actionUpdateNoMain(){
+        if(isset($_POST['type_id'])){
+            $model = CompanyTypeBusiness::model()->find('id = :id', array(':id' => $_POST['type_id']));
+            $model->no = $_POST['value'];
+            if(!$model->save()){
+                echo '<pre>';
+                print_r($model->getErrors()); 
+            }
+        }
     } 
     
     public function actionCompanySubTypeBusinessDel($company_sub_type_business_id = null) {
