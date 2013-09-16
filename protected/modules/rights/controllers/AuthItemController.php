@@ -74,11 +74,7 @@ class AuthItemController extends RController {
      * Displays the permission overview.
      */
     public function actionPermissions() {
-        $dataProvider = new RPermissionDataProvider('permissions', array(
-            'pagination' => array(
-                'pageSize' => 10,
-            ),
-        ));
+        $dataProvider = new RPermissionDataProvider('permissions');
         // Get the roles from the data provider
         $roles = $dataProvider->getRoles();
         $roleColumnWidth = $roles !== array() ? 75 / count($roles) : 0;
@@ -179,6 +175,7 @@ class AuthItemController extends RController {
                 'url' => $this->createUrl('authItem/sortable'),
             ),
         ));
+        $dataProvider->setPagination(10);
 
         // Render the view
         $this->render('roles', array(
