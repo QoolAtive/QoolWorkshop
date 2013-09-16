@@ -1,6 +1,6 @@
 <?php
 $this->renderPartial('_side_menu', array('select' => 'main'));
-$main = FaqMain::model()->findByPk($main_id);
+//$main = FaqMain::model()->findByPk($main_id);
 ?>
 
 <div class="content">
@@ -15,13 +15,9 @@ $main = FaqMain::model()->findByPk($main_id);
         ?>
         <h3 class="barH3">
             <span>
-                <i class="icon-question-sign"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
-                </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory/#sub")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
                 <?php echo $word . Yii::t('language', 'หมวดหมู่ย่อย'); ?>
@@ -34,6 +30,12 @@ $main = FaqMain::model()->findByPk($main_id);
         ));
         echo $form->errorSummary($model);
         ?>
+        <div class="_100">
+            <?php
+            echo $form->labelEx($model, 'faq_main_id');
+            echo $form->dropDownList($model, 'faq_main_id', CHtml::listData(FaqMain::model()->findAll(), 'id', 'name_th'), array('class' => 'fieldrequire', 'id' => 'faq_main'));
+            ?>
+        </div>
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_th');
@@ -52,7 +54,7 @@ $main = FaqMain::model()->findByPk($main_id);
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)) . '"'
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageCategory/#sub")) . '"'
             ));
             ?>
             <hr>
