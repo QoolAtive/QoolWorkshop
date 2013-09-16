@@ -4,7 +4,12 @@ class DefaultController extends Controller {
 
     public function actionIndex($main_id = NULL) {
         if ($main_id == NULL) {
-            $main_id = 1;
+            $criteria = new CDbCriteria;
+            $criteria->select = 'id';
+            $criteria->order = 'order_n';
+            $criteria->limit = '1';
+            $main_id_model = FaqMain::model()->find($criteria);
+            $main_id = $main_id_model->id;
         }
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/faq/count_view_faq.js');
         $criteria = new CDbCriteria();

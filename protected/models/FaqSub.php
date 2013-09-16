@@ -64,7 +64,7 @@ class FaqSub extends FaqSubBase {
     public function attributeLabels() {
         return array(
             'faq_sub_id' => 'Faq Sub',
-            'faq_main_id' => 'Faq Main',
+            'faq_main_id' => 'หมวดหมู่หลัก',
             'name_th' => 'ชื่อหมวดหมู่ย่อยภาษาไทย',
             'name_en' => 'ชื่อหมวดหมู่ย่อยภาษาอังกฤษ',
             'order_n' => 'Order N',
@@ -86,6 +86,7 @@ class FaqSub extends FaqSubBase {
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);
         $criteria->compare('order_n', $this->order_n);
+        $criteria->order = 'faq_main_id';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

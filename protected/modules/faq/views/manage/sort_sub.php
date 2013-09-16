@@ -16,15 +16,15 @@ $main = FaqMain::model()->findByPk($main_id);
         <h3 class="barH3">
             <span>
                 <i class="icon-question-sign"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory/#sub")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามย่อย'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/indexSortSub")); ?>">
+                    <?php echo Yii::t('language', 'เรียงลำดับ') . Yii::t('language', 'หมวดหมู่คำถามย่อย'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'เรียงลำดับ') . Yii::t('language', 'หมวดหมู่คำถามย่อย'); ?>
+                <?php echo $main['name_th'];?>
             </span>
         </h3>
 
@@ -55,7 +55,7 @@ $main = FaqMain::model()->findByPk($main_id);
                     'class' => "purple",
                 ));
                 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageSub",'main_id' => $main_id)) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/indexSortSub")) . '"'));
                 ?>
             </div>
 

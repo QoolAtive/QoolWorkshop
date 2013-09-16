@@ -20,11 +20,11 @@ class ManageController extends Controller {
 //        );
 //    }
 //fm_id = main_id
-    public function actionEditFaq($fm_id, $fs_id, $id = NULL) {
+    public function actionEditFaq($fm_id, $id = NULL) {
         if ($id == NULL) {
             $model = new FaqQuestion();
             $model->fm_id = $fm_id;
-            $model->fs_id = $fs_id;
+//            $model->fs_id = $fs_id;
             $model->counter = 0;
         } else {
             $model = FaqQuestion::model()->findByPk($id);
@@ -37,14 +37,14 @@ class ManageController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                         alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $fm_id, 'sub_id' => $fs_id)) . "';
+                        window.top.location.href = '" . CHtml::normalizeUrl(array('/faq/manage/manageFaq', 'main_id' => $fm_id)) . "';
                   </script>";
             }
         }
         $this->render('editfaq', array(
             'model' => $model,
             'fm_id' => $fm_id,
-            'fs_id' => $fs_id
+//            'fs_id' => $fs_id
         ));
     }
 
@@ -54,8 +54,8 @@ class ManageController extends Controller {
 //            $this->redirect("/faq/default/manageFaq");
         }
     }
-
-    public function actionManageFaq($main_id, $sub_id) {
+    
+    public function actionManageFaq($main_id) {
         $model = new FaqQuestion();
         if (isset($_GET['FaqQuestion'])) {
             $model->attributes = $_GET['FaqQuestion'];
@@ -63,8 +63,22 @@ class ManageController extends Controller {
         $this->render('managefaq', array(
             'model' => $model,
             'main_id' => $main_id,
-            'sub_id' => $sub_id
         ));
+    }
+
+    //manage category
+    public function actionManageCategory(){
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/faq/tag_url.js');
+        $model_main = new FaqMain();
+        if (isset($_GET['FaqMain'])) {
+            $model_main->attributes = $_GET['FaqMain'];
+        }
+        
+        $model_sub = new FaqSub();
+        if (isset($_GET['FaqSub'])) {
+            $model_sub->attributes = $_GET['FaqSub'];
+        }
+        $this->render('manage_category', array('model_main' => $model_main, 'model_sub' => $model_sub));
     }
 
     //main faq
@@ -101,7 +115,7 @@ class ManageController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                            window.top.location.href = '/faq/manage/manageMain';
+                            window.top.location.href = '/faq/manage/manageCategory';
                 </script>";
             }
         }
@@ -116,21 +130,21 @@ class ManageController extends Controller {
     }
 
     //sub faq
-    public function actionManageSub($main_id) {
-        $have_main_id = FaqMain::model()->findByPk($main_id);
-        if (isset($have_main_id)) {
+    public function actionManageSub() {
+//        $have_main_id = FaqMain::model()->findByPk($main_id);
+//        if (isset($have_main_id)) {
             $model = new FaqSub();
-            $model->faq_main_id = $main_id;
+//            $model->faq_main_id = $main_id;
             if (isset($_GET['FaqSub'])) {
                 $model->attributes = $_GET['FaqSub'];
             }
-            $this->render('manage_sub', array('model' => $model, 'main_id' => $main_id));
-        } else {
-            $this->redirect(CHtml::normalizeUrl(array('/faq/manage/manageMain')));
-        }
+            $this->render('manage_sub', array('model' => $model));
+//        } else {
+//            $this->redirect(CHtml::normalizeUrl(array('/faq/manage/manageMain')));
+//        }
     }
 
-    public function actionEditSub($main_id, $faq_sub_id = NULL) {
+    public function actionEditSub($faq_sub_id = NULL) {
         if ($faq_sub_id == NULL) {
             $model = new FaqSub();
         } else {
@@ -138,7 +152,7 @@ class ManageController extends Controller {
         }
         if (isset($_POST['FaqSub'])) {
             $model->attributes = $_POST['FaqSub'];
-            $model->faq_main_id = $main_id;
+//            $model->faq_main_id = $main_id;
 
             if ($model->order_n == NULL) {
                 $criteria = new CDbCriteria;
@@ -156,11 +170,11 @@ class ManageController extends Controller {
             if ($model->save()) {
                 echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                            window.top.location.href = '/faq/manage/manageSub/main_id/" . $main_id . "';
+                            window.top.location.href = '/faq/manage/manageCategory/#sub';
                 </script>";
             }
         }
-        $this->render('edit_sub', array('model' => $model, 'main_id' => $main_id));
+        $this->render('edit_sub', array('model' => $model));
     }
 
     public function actionDeleteSub($faq_sub_id) {
@@ -183,7 +197,7 @@ class ManageController extends Controller {
             }
             echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                    window.top.location.href = '/faq/manage/manageMain';
+                    window.top.location.href = '/faq/manage/manageCategory';
                 </script>";
         }
         $this->render('sort_main');
@@ -201,10 +215,15 @@ class ManageController extends Controller {
             }
             echo "<script language='javascript'>
                     alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                    window.top.location.href = '/faq/manage/manageSub/main_id/" . $main_id . "';
+                    window.top.location.href = '/faq/manage/indexSortSub';
                 </script>";
         }
         $this->render('sort_sub', array('main_id' => $main_id));
+    }
+    
+    public function actionIndexSortSub(){
+        $model = FaqMain::model()->findAll();
+        $this->render('index_sort_sub', array('model' => $model));
     }
 
 }
