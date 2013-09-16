@@ -138,9 +138,9 @@ $this->renderPartial('_sidebar', array());
 
                     </div>
                     <ul class="btnMangae _100">
-                        <li><a href="/member/manage/admin#view1"><?php echo Yii::t('language', 'ยืนยันสมาชิกนิติบุคคล'); ?></a></li>
-                        <li><a href="/member/manage/admin#view2"><?php echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมด'); ?></a></li>
-                        <li><a href="/member/manage/admin#view3"><?php echo Yii::t('language', 'สมาชิกบุคคลธรรมดาทั้งหมด'); ?></a></li>
+                        <li><a href="/member/manage/admin"><?php echo Yii::t('language', 'จัดการสมาชิก'); ?></a></li>
+<!--                        <li><a href="/member/manage/admin#view2"><?php // echo Yii::t('language', 'สมาชิกนิติบุคคลทั้งหมด'); ?></a></li>
+                        <li><a href="/member/manage/admin#view3"><?php // echo Yii::t('language', 'สมาชิกบุคคลธรรมดาทั้งหมด'); ?></a></li>-->
 
                     </ul>
                     <div class="_100">

@@ -50,7 +50,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'type' => 'raw',
             'htmlOptions' => array('style' => 'text-align:center; h'),
             'value' => '
-                    ChangeUser(
+                    ChangeUser2(
                     "status",
                     $data->status,
                     array("0"=> Yii::t("language", "อยู่ในระบบ"), "1" => Yii::t("language","ยกเลิก")),
@@ -93,7 +93,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
     )
 ));
 
-function ChangeUser($id, $value, $list, $user_id) {
+function ChangeUser2($id, $value, $list, $user_id) {
     return CHtml::dropDownList(
                     $id, $value, $list, array("onchange" => CHtml::ajax(
                         array(
@@ -105,4 +105,5 @@ function ChangeUser($id, $value, $list, $user_id) {
                     )
     );
 }
+
 ?>
