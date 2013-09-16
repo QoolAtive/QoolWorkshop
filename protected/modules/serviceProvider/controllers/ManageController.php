@@ -25,6 +25,27 @@ Class ManageController extends Controller {
         }
     }
 
+    public function actionUpDateNo() {
+        if (isset($_POST['type_id'])) {
+            $model = SpTypeBusinessSub::model()->find('sp_type_business_sub_id = :id', array(':id' => $_POST['type_id']));
+            $model->no = $_POST['value'];
+            if (!$model->save()) {
+                echo '<pre>';
+                print_r($model->getErrors());
+            }
+        }
+    }
+    public function actionUpdateNoMain() {
+        if (isset($_POST['type_id'])) {
+            $model = SpTypeBusiness::model()->find('id = :id', array(':id' => $_POST['type_id']));
+            $model->no = $_POST['value'];
+            if (!$model->save()) {
+                echo '<pre>';
+                print_r($model->getErrors());
+            }
+        }
+    }
+
     public function actionIndex() {
 
         Yii::app()->googleAnalytics->_setCustomVar(1, 'serviceProviderAdmin', 'Index', 3);
