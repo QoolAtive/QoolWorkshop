@@ -15,7 +15,7 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
         <h3 class="barH3">
             <span>
                 <i class="icon-question-sign"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageMain")); ?>">
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory")); ?>">
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -50,7 +50,7 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
                     'class' => "purple",
                 ));
                 echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageMain")) . '"'));
+                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageCategory")) . '"'));
                 ?>
             </div>
 

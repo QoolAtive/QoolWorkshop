@@ -23,7 +23,7 @@ if ($select == 'main') {
             if (Yii::app()->user->isAdmin()) {
                 echo "<li>";
                 echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'คำถาม'), array(
-                    '/faq/manage/manageMain'), array('rel' => 'view2'));
+                    '/faq/manage/manageCategory'), array('rel' => 'view2'));
                 echo "</li>";
             }
             ?>
