@@ -33,6 +33,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
+            echo '&nbsp;|&nbsp;';
             echo CHtml::button(Yii::t('language', 'จัดการรายการสินค้า'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
             ?>
