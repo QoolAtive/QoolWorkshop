@@ -222,7 +222,7 @@ class ManageController extends Controller {
     }
     
     public function actionIndexSortSub(){
-        $model = FaqMain::model()->findAll();
+        $model = FaqMain::model()->findAll(array('order' => 'order_n'));
         $this->render('index_sort_sub', array('model' => $model));
     }
 
