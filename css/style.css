@@ -1,6 +1,6 @@
 /* @group Component */
-.grid-view.permission-table{
-  overflow-x: auto;
+.permission-table{
+  overflow-x:scroll;
 }
 .ui-tabs{
 
