@@ -1,6 +1,9 @@
 <?php
 $main = FaqMain::model()->findByPk($main_id);
 $sub = FaqSub::model()->findByPk($sub_id);
+
+$header_main_name = LanguageHelper::changeDB($main['name_th'], $main['name_en']);
+$header_sub_name = LanguageHelper::changeDB($sub['name_th'], $sub['name_en']);
 ?>
 <h3 class="barH3">
     <span>
@@ -10,10 +13,12 @@ $sub = FaqSub::model()->findByPk($sub_id);
         </a>
         <i class="icon-chevron-right"></i>
         <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageSub", 'main_id' => $main_id)); ?>">
-            <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่ย่อย') . ' ' . $main['name_th']; ?>
+            <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามย่อย') . ' ' . $header_main_name; ?>
         </a>
         <i class="icon-chevron-right"></i>
-        <?php echo Yii::t('language', 'จัดการ') . $sub['name_th']; ?>
+        <?php
+        echo Yii::t('language', 'จัดการ') . $header_sub_name;
+        ?>
     </span>
 </h3>
 
@@ -23,9 +28,8 @@ $sub = FaqSub::model()->findByPk($sub_id);
     $dataProvider->criteria->addCondition('fs_id = ' . $sub_id);
     ?>
     <div class="txt-cen">
-        <hr>
         <?php
-        echo CHtml::button(Yii::t('language', 'เพิ่มคำถาม'), array(
+        echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'คำถาม'), array(
             'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/editFaq", 'fm_id' => $main_id, 'fs_id' => $sub_id)) . '"'));
         ?>
         <hr>
@@ -43,17 +47,17 @@ $sub = FaqSub::model()->findByPk($sub_id);
                 'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
             ),
             array(
-                'header' => Yii::t('language', ' คำถาม '),
+                'header' => Yii::t('language', 'คำถาม'),
                 'name' => LanguageHelper::changeDB('subject_th', 'subject_en'),
                 'value' => 'strip(LanguageHelper::changeDB($data->subject_th,$data->subject_en), 20);'
             ),
             array(
-                'header' => Yii::t('language', ' คำตอบ '),
+                'header' => Yii::t('language', 'คำตอบ'),
                 'name' => LanguageHelper::changeDB('detail_th', 'detail_en'),
                 'value' => 'strip(LanguageHelper::changeDB($data->detail_th,$data->detail_en), 30);'
             ),
             array(
-                'header' => Yii::t('language', ' ผู้เข้าชม(ครั้ง) '),
+                'header' => Yii::t('language', 'ผู้เข้าชม').Yii::t('language', '(ครั้ง)'),
                 'name' => 'counter',
                 'filter' => false
             ),
@@ -81,7 +85,7 @@ $sub = FaqSub::model()->findByPk($sub_id);
                 ), //end 'buttons' => array(
             ),
         ), //end 'columns' => array(
-        'template' => "{pager}\n{items}\n{pager}",
+        'template' => "{items}\n{pager}",
         'pager' => array(
             'class' => 'CLinkPager',
             'header' => Yii::t('language', 'หน้าที่: '),
