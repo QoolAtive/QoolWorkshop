@@ -85,8 +85,11 @@ class FaqSub extends FaqSubBase {
         $criteria->compare('faq_main_id', $this->faq_main_id);
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);
-        $criteria->compare('order_n', $this->order_n);
-        $criteria->order = 'faq_main_id';
+//        $criteria->compare('order_n', $this->order_n);
+//        $criteria->order = 'faq_main_id';
+        
+        $criteria->join = 'left join faq_main on faq_main.id = t.faq_main_id';
+        $criteria->order = 'faq_main.order_n , t.order_n';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
