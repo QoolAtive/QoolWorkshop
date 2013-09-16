@@ -37,13 +37,13 @@ if ($select == 'main') {
                  font-size: 16px;
                  margin-top: 6px;
                  padding: 14px 0;">
-                <a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>">
+                <!--<a href="<?php echo CHtml::normalizeUrl(array('/faq/manage/manageMain')); ?>">-->
                     <p style="font-weight: bold;">
                         <?php
                         echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม');
                         ?>
                     </p>
-                </a>
+                <!--</a>-->
             </div>
             <!--            <div class="textcenter" style="   background: none repeat scroll 0 0 #F1F1F1;
                              border-top: 2px solid gold;
@@ -56,7 +56,7 @@ if ($select == 'main') {
             ?>
                             </p>
                         </div>-->
-            <!--            <ul class="rectangle-list">
+                        <ul class="rectangle-list">
                             <p class="demoline"></p>
             <?php
             foreach ($faq_main_list as $faq_main) {
@@ -78,10 +78,10 @@ if ($select == 'main') {
                 <?php
             }
             ?>
-                        </ul>-->
+                        </ul>
         <?php } ?>
 
-        <ul class="rectangle-list">
+<!--        <ul class="rectangle-list">
             <p class="demoline"></p>
             <?php
             foreach ($faq_main_list as $faq_main) {
@@ -94,15 +94,15 @@ if ($select == 'main') {
 //                        'class' => $select
                     ));
                     ?>
-                    <!--                    <ul>
+                                        <ul>
                                             <li><a href="">หมวดหมู่ย่อย 1</a></li>
                                             <li><a href="">หมวดหมู่ย่อย 2</a></li>
-                                        </ul>-->
+                                        </ul>
                 </li>
                 <?php
             }
             ?>
-        </ul>
+        </ul>-->
 
     </div>
 </div>
