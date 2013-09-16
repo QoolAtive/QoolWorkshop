@@ -3,10 +3,8 @@ $this->renderPartial('_sidebar', array(
     'selectTBusiness' => 'selected',
 ));
 ?>
-
 <div class="content">
     <div class="tabcontents">
-
         <h3 class="barH3">
             <span>
                 <i class="icon-cog"></i>
@@ -17,6 +15,7 @@ $this->renderPartial('_sidebar', array(
                 <?php echo Yii::t('language', 'ประเภทร้านค้า'); ?>
             </span>
         </h3>
+        testtest
         <div style="text-align: center;">
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทร้านค้าหลัก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
@@ -39,7 +38,6 @@ $this->renderPartial('_sidebar', array(
                 'model' => $model
                     ), true, false),
         );
-
         $tabs[Yii::t('language', 'ประเภทร้านค้าย่อย')] = array(
             'id' => 'tab02',
             'content' =>
@@ -48,8 +46,6 @@ $this->renderPartial('_sidebar', array(
                 'dataProvider' => $dataProvider,
                     ), true, false),
         );
-
-
         $this->widget('zii.widgets.jui.CJuiTabs', array(
             'tabs' => $tabs,
             'options' => array(
