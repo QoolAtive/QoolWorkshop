@@ -33,6 +33,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดการรายการสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
             ?>
             <!--        fancybox    
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
@@ -57,8 +59,12 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <p class="headsort"><?php echo $box['name_th']; ?></p>
                         <p class="tool">
                             <?php
+                            echo CHtml::link('เพิ่มสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
+                            ?>
+                            &nbsp;|&nbsp;
+                            <?php
                             if ($box['type'] == '1') {
-                                echo CHtml::link('แก้ไขสินค้า', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link('แก้ไขสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '2') {
                                 echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '3') {
@@ -68,8 +74,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
                                onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
-<!--                            &nbsp;|&nbsp;
-                            <a href="#">แก้ไขการแสดงผล</a>-->
+                            <!--                            &nbsp;|&nbsp;
+                                                        <a href="#">แก้ไขการแสดงผล</a>-->
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
                                 <?php
@@ -112,7 +118,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     </a>
                 </p>
             </li>
-            
+
             <li>
                 <?php
                 echo Yii::t('language', 'พยากรณ์อากาศ');
