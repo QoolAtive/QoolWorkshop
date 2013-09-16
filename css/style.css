@@ -1,5 +1,7 @@
 /* @group Component */
-
+.permission-table{
+  overflow-x:scroll;
+}
 .ui-tabs{
 
   padding: 0px;
@@ -1959,7 +1961,7 @@ div.grid-view table tr td:first-child {
 
 
 .grid-view table.items th {
-  background: url("/img/bggridview.png") repeat-x scroll left top white !important;
+  background: url("/img/bggridview.png") repeat-x scroll left top #541193 !important;
   color: #FFFFFF;
   font-weight: bold;
   text-align: center;

@@ -22,9 +22,9 @@ if ($select == 'main') {
             <li><a href="/faq/default/index" rel="view1"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
             <?php
             if (Yii::app()->user->isAdmin()) {
-                echo "<li class='selected'>";
-                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'คำถาม'), array(
-                    '/faq/manage/manageMain'), array('rel' => 'view2'));
+                echo "<li " . $select_main . ">";
+                echo CHtml::link(Yii::t('language', 'จัดการ') . '<br />' . Yii::t('language', 'หมวดหมู่') . Yii::t('language', 'คำถาม'), array(
+                    '/faq/manage/manageCategory'), array('rel' => 'view2'));
                 echo "</li>";
             }
             ?>
@@ -56,53 +56,53 @@ if ($select == 'main') {
             ?>
                             </p>
                         </div>-->
-                        <ul class="rectangle-list">
-                            <p class="demoline"></p>
-            <?php
-            foreach ($faq_main_list as $faq_main) {
-                ?>
-                                        <li>
+            <ul class="rectangle-list">
+                <p class="demoline"></p>
                 <?php
-                $select = '';
-                if ($faq_main['id'] == $main_id) {
-                    $select = 'menuactive listactive';
+                foreach ($faq_main_list as $faq_main) {
+                    ?>
+                    <li>
+                        <?php
+                        $select = '';
+                        if ($faq_main['id'] == $main_id) {
+                            $select = 'menuactive listactive';
+                        }
+                        $name = LanguageHelper::changeDB($faq_main['name_th'], $faq_main['name_en']);
+                        echo CHtml::link(Yii::t('language', 'จัดการ') . $name, CHtml::normalizeUrl(
+                                        array('/faq/manage/manageFaq', 'main_id' => $faq_main['id'])), array(
+                            'rel' => 'view_edit' . $faq_main['id'],
+                            'class' => $select,
+                        ));
+                        ?>
+                    </li>
+                    <?php
                 }
-                $name = LanguageHelper::changeDB($faq_main['name_th'], $faq_main['name_en']);
-                echo CHtml::link(Yii::t('language', 'จัดการ') . $name, CHtml::normalizeUrl(
-                                array('/faq/manage/manageSub', 'main_id' => $faq_main['id'])), array(
-                    'rel' => 'view_edit' . $faq_main['id'],
-                    'class' => $select,
-                ));
                 ?>
-                                        </li>
-                <?php
-            }
-            ?>
-                        </ul>
+            </ul>
         <?php } ?>
 
-<!--        <ul class="rectangle-list">
-            <p class="demoline"></p>
-            <?php
-            foreach ($faq_main_list as $faq_main) {
-                ?>
-                <li>
-                    <?php
-                    $name = LanguageHelper::changeDB($faq_main['name_th'], $faq_main['name_en']);
-                    echo CHtml::link($name, CHtml::normalizeUrl(array('/faq/default/index', 'main_id' => $faq_main['id'])), array(
-                        'rel' => 'view' . $faq_main['id'],
-//                        'class' => $select
-                    ));
-                    ?>
-                                        <ul>
-                                            <li><a href="">หมวดหมู่ย่อย 1</a></li>
-                                            <li><a href="">หมวดหมู่ย่อย 2</a></li>
-                                        </ul>
-                </li>
-                <?php
-            }
+        <!--        <ul class="rectangle-list">
+                    <p class="demoline"></p>
+        <?php
+        foreach ($faq_main_list as $faq_main) {
             ?>
-        </ul>-->
+                            <li>
+            <?php
+            $name = LanguageHelper::changeDB($faq_main['name_th'], $faq_main['name_en']);
+            echo CHtml::link($name, CHtml::normalizeUrl(array('/faq/default/index', 'main_id' => $faq_main['id'])), array(
+                'rel' => 'view' . $faq_main['id'],
+//                        'class' => $select
+            ));
+            ?>
+                                                    <ul>
+                                                        <li><a href="">หมวดหมู่ย่อย 1</a></li>
+                                                        <li><a href="">หมวดหมู่ย่อย 2</a></li>
+                                                    </ul>
+                            </li>
+            <?php
+        }
+        ?>
+                </ul>-->
 
     </div>
 </div>

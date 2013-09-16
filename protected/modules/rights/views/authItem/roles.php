@@ -2,7 +2,16 @@
 	'Rights'=>Rights::getBaseUrl(),
 	Rights::t('core', 'Roles'),
 ); ?>
-
+<h3 class="barH3">
+            <span>
+                <i class="icon-cog"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/member/manage/profile")); ?>">
+                    <?php echo Yii::t('language', 'ตั้งค่าเว็บไซต์'); ?>
+                </a>
+                <i class="icon-chevron-right"></i> 
+                <?php echo Yii::t('language', 'Roles'); ?>
+            </span>
+</h3>
 <div id="roles">
 
 	<h2><?php echo Rights::t('core', 'Roles'); ?></h2>
