@@ -2825,9 +2825,8 @@ ul.yiiPager .first, ul.yiiPager .last {
   width: 13px;
 }
 
-    .rectangle-list ul.sub
-    {   
-        /*padding-left:20px;*/ /*This determines the hierarchical offset*/ 
+    .rectangle-list li ul.sub{   
+        padding-left:20px; 
     }
 .rectangle-list ul.sub a:before{
     border: none;

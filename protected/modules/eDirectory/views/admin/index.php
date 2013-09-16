@@ -1,24 +1,3 @@
-<style type="text/css">
-    .ui-state-default{
-        background: #eee;
-    }
-    .ui-tabs-active ,.ui-state-active {
-        background: #fff;
-    }
-
-    .ui-tabs .ui-tabs-nav {
-        margin-left: -3px;
-    }
-    .ui-widget-header {
-        background: transparent;
-        border: 0px ;
-        border-radius: 0px;
-        border-bottom: 1px solid #aaa;
-    }
-    .ui-widget-content{
-        border: 0px;
-    }
-</style>
 <?php
 $this->renderPartial('side_bar', array(
     'active' => 1,
