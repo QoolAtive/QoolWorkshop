@@ -42,7 +42,7 @@ $this->renderPartial('_side_bar', array(
                 <?php
                 echo $form->labelEx($model, 'sp_type_business');
                 echo $form->dropDownList($model, 'sp_type_business', SpTypeBusiness::model()->getDataArray(), array(
-                    'empty' => '- ' . Yii::t('language', 'เลือก') . ') -',
+                    'empty' => '- ' . Yii::t('language', 'เลือก') . ' -',
                     'style' => 'width: 150px'
                 ));
                 echo $form->error($model, 'sp_type_business');
