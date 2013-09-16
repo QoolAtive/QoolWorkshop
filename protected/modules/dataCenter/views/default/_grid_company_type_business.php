@@ -22,6 +22,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '"(".Yii::t("language","รหัส")." ".$data->id.") ".$data->name_en',
         ),
         array(
+            'header' => Yii::t('language', 'ลำดับการแสดง'),
+            'type' => 'raw',
+            'htmlOptions' => array('style' => 'text-align:center; width: 65px;'),
+            'value' => '
+                    OrderStoreMain(
+                    "no",
+                    $data->no,
+                    countListMain(),
+                    $data->id
+                    );
+                ',
+        ),
+        array(
             'class' => 'CButtonColumn',
             'header' => Yii::t('language', 'เครื่องมือ'),
             'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
@@ -53,4 +66,28 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
+
+function OrderStoreMain($id, $value, $list, $type_id) {
+
+
+    return CHtml::dropDownList(
+                    $id, $value, $list, array("onchange" => CHtml::ajax(
+                        array(
+                            "type" => "POST",
+                            "url" => "/dataCenter/default/updateNoMain",
+                            "data" => array("type_id" => $type_id, "value" => "js:this.value")
+                        )
+                )
+                    )
+    );
+}
+
+function countListMain() {
+    $model_count = CompanyTypeBusiness::model()->count();
+    $data = array();
+    for ($n = 1; $n <= $model_count; $n++) {
+        $data[$n] = $n;
+    }
+    return $data;
+}
 ?>

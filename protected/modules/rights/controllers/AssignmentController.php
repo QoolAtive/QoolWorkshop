@@ -69,7 +69,7 @@ class AssignmentController extends RController {
         $dataProvider = new RAssignmentDataProvider(array(
             'criteria' => $c,
             'pagination' => array(
-                'pageSize' => 50,
+                'pageSize' => 10,
             ),
         ));
 

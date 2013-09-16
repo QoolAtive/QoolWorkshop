@@ -15,7 +15,6 @@ $this->renderPartial('_sidebar', array(
                 <?php echo Yii::t('language', 'ประเภทร้านค้า'); ?>
             </span>
         </h3>
-        testtest
         <div style="text-align: center;">
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ประเภทร้านค้าหลัก'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(

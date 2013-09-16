@@ -110,5 +110,14 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             )
         ));
         ?>
+        
+        <div class="txt-cen clearfix">
+                <hr>
+                <?php
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                    'onclick' => 'history.back();'));
+                ?>
+                <hr>
+            </div>
     </div>
 </div>

@@ -704,12 +704,15 @@ class AdminController extends Controller {
         ));
     }
 
-    public function actionDelCompany($id = null) {
+    public function actionDelCompany($id = null, $status = null) {
 //        if (Yii::app()->request->isPostRequest) {
-        $modelCheck = Company::model()->find('id=:id', array('id' => $id));
-        if ($modelCheck->user_id != Yii::app()->user->id) {
-            $this->redirect('/site/index');
+        if ($status != 'del') {
+            $modelCheck = Company::model()->find('id=:id', array('id' => $id));
+            if ($modelCheck->user_id != Yii::app()->user->id) {
+                $this->redirect('/site/index');
+            }
         }
+
         if ($id != null) {
             $model = Company::model()->find('id=:id', array('id' => $id));
 
