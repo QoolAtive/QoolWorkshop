@@ -505,13 +505,41 @@ class ManageShopController extends Controller {
                 if ($model->save()) {
                     echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                     echo "<script language='javascript'>
-    alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
-            window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox
-    ')) . "';</script>";
+                        alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                                window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';</script>";
                 }
             }
 //            $this->renderPartial('add_box_', array('model' => $model));
-            $this->render('add_box_', array('model' => $model));
+            $this->render('add_box_', array('model' => $model, 'shop_id' => $shop_id));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
+
+    public function actionAddBoxItem($box_id) {
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+            $item = new WebShopItem();
+            
+            if (isset($_POST['WebShopItem'])) {
+                //save สินค้าเข้าร้านค้า
+                $item->attributes = $_POST['WebShopItem'];
+                $item->web_shop_id = $shop_id;
+                if($item->save()){
+                    //save สินค้าลงกล่อง
+                    $item_box = new WebShopBoxItem();
+                    $item_box->web_shop_box_id = $box_id;
+                    $item_box->web_shop_id = $shop_id;
+                    $item_box->web_shop_item_id = $item->getPrimaryKey();
+                    if($item_box->save()){
+                        echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
+                        echo "<script language='javascript'>
+                alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
+                window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';</script>";
+                    }
+                }
+            }
+            $this->render('add_box_item', array('item' => $item, 'shop_id' => $shop_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
@@ -548,8 +576,7 @@ class ManageShopController extends Controller {
                     echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                     echo "<script language='javascript'>
             alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
-            window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox
-    ')) . "';</script>";
+            window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';</script>";
                 }
             }
 //            $this->renderPartial('add_html_', array('model' => $model));
@@ -785,7 +812,7 @@ class ManageShopController extends Controller {
         }
         $this->render('sort_category', array('shop_id' => $shop_id));
     }
-    
+
     public function actionEditHowToBuy() {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
@@ -827,8 +854,8 @@ class ManageShopController extends Controller {
 </script>";
         }
     }
-    
-    public function actionAdmin(){
+
+    public function actionAdmin() {
         $model = new WebShop();
 
         if (isset($_GET['WebShop'])) {
