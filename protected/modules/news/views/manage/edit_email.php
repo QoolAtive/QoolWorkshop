@@ -7,11 +7,11 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
             <span>
                 <i class="icon-bell-alt"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/news/default/index/view/1")); ?>">
-                    <?php echo Yii::t('language', 'ข่าว') . $type; ?>
+                    <?php echo Yii::t('language', 'ข่าว'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/news/default/index/view/1")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์') . Yii::t('language', 'ที่สมัครรับข่าวสาร'); ?>
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์') . ' ' . Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
                 <?php
@@ -20,7 +20,7 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
                 } else {
                     echo Yii::t('language', 'แก้ไข');
                 }
-                echo Yii::t('language', 'อีเมล์') . Yii::t('language', 'ที่สมัครรับข่าวสาร');
+                echo Yii::t('language', 'อีเมล์') . ' ' . Yii::t('language', 'สมัครรับข้อมูลข่าวสาร');
                 ?>
             </span>
         </h3>
@@ -33,7 +33,7 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
 //        echo $form->errorSummary($model);
             ?>
             <?php
-            echo 'E-mail :' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
+            echo Yii::t('language', "อีเมล์") . ' : ' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
             echo $form->error($model, 'email');
             ?>
         </div>
@@ -42,7 +42,7 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageEmail")) . '"'));
             ?>
             <hr>                
