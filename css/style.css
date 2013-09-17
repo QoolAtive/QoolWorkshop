@@ -1990,14 +1990,14 @@ margin: 3px 3px 5px;
 }
 #container .servicelist > ul li:first-child{
   float: left;
-  min-height: 105px;
+  min-height: 135px;
   padding-right: 15px;
   text-align: center;
   vertical-align: middle;
   width: 195px;
 }
 #container .servicelist > ul li:first-child img{
-  max-height: 80px;
+  max-height: 100px;
   max-width: 175px;
 }
 #container .servicelist h4 a{
