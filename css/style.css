@@ -1,4 +1,17 @@
 /* @group Component */
+
+.imageright img{
+    max-width: 220px;
+}
+
+.imageright{
+
+    display: table-cell;
+    width: 200px;
+    height: 215px;
+    text-align: center;
+    vertical-align: middle;
+}
 .permission-table{
   overflow-x:scroll;
 }
