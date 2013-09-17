@@ -58,8 +58,8 @@ class FaqMain extends FaqMainBase {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'name_th' => 'ชื่อหมวดหมู่หลักภาษาไทย',
-            'name_en' => 'ชื่อหมวดหมู่หลักภาษาอังกฤษ',
+            'name_th' =>  Yii::t('language', 'ชื่อหมวดหมู่หลัก'). ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' =>  Yii::t('language', 'ชื่อหมวดหมู่หลัก'). ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'order_n' => 'Order N',
         );
     }
