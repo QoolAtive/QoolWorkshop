@@ -5,7 +5,7 @@
     ));
 //        echo $form->errorSummary($model);
     ?>
-    <h3>E-mail : </h3>
+    <h3><?php echo Yii::t('language', 'อีเมล์').' : '; ?></h3>
     <?php
     echo $form->textField($model, 'email', array(
         'class' => 'fieldrequire',
