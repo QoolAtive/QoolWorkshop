@@ -580,7 +580,7 @@ class ManageShopController extends Controller {
                 }
             }
 //            $this->renderPartial('add_html_', array('model' => $model));
-            $this->render('add_html_', array('model' => $model));
+            $this->render('add_html_', array('model' => $model, 'shop_id' => $shop_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
@@ -621,7 +621,7 @@ class ManageShopController extends Controller {
                 }
             }
 //            $this->renderPartial('add_video_', array('model' => $model));
-            $this->render('add_video_', array('model' => $model));
+            $this->render('add_video_', array('model' => $model, 'shop_id' => $shop_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }
