@@ -4,7 +4,7 @@
     }
 </style>
 <?php
-$this->renderPartial('_side_menu', array('index' => 'format'));
+$this->renderPartial('_side_menu', array('index' => 'shop'));
 ?>
 <div class="content">
     <div class="tabcontents">
