@@ -134,7 +134,7 @@
 
         <div class="clearfix servicebanner">
 
-            <div class="shopbannerleft">
+            <div class="shopbannerleft" style="width:525px;float:left;">
                 <div class="rslides_container">
                     <ul class="rslides" id="companyslider">
 
@@ -183,25 +183,29 @@
                     </ul>
 
                 </div>
+ </div>
 
+<div class="imageright">
 
-                <div class="Center-Container is-Inline-logo">
-                    <div class="Center-Block">
-                        <?php
+                  <?php
                         if ($model->logo != null) {
                             ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/<?php echo $model->logo; ?>" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image" /></a>
+                            <a href="<?php echo $link; ?> " target="_bank"><img  src="http://dbdmart.com/file/logo/<?php echo $model->logo;?>" /></a>
                             <?php
                         } else {
                             ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img src="/file/logo/default.jpg" style="float: right;" width="220" class="Center-Block Absolute-Center is-Image"/></a>
+                            <a href="<?php echo $link; ?> " target="_bank"><img   src="http://dbdmart.com/file/logo/default.jpg"/></a>
                             <?php
                         }
                         ?>
-                    </div>
 
-                </div>
-            </div></div>
+
+
+
+ 
+       
+              </div>
+            </div>
 
         <div class="edirbox clearfix">
             <h2>
