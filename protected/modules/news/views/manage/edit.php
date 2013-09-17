@@ -38,7 +38,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 $field = LanguageHelper::changeDB('name_th', 'name_en');
                 echo $form->labelEx($model, 'group_id');
                 echo $form->DropDownList($model, 'group_id', CHtml::listData(NewsGroup::model()->findAll(), "id", $field)
-                        , array('empty' => '-- ' . Yii::t('language', 'กรุณาเลือกกลุ่มข่าว') . ' --', 'class' => 'fieldrequire'));
+                        , array('empty' => '- ' . Yii::t('language', 'กรุณาเลือกกลุ่มข่าว') . ' -', 'class' => 'fieldrequire'));
                 ?>
             </div>
             <!--เลือกรูปภาพ-->
@@ -86,7 +86,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             <div style="padding: 15px 0px;">
                 <?php
 //            echo $form->labelEx($model, 'file');
-                echo "<label>" . Yii::t('language', 'แนบไฟล์') . "</label>";
+                echo "<label>" . Yii::t('language', 'ไฟล์แนบ') . "</label>";
                 $this->widget('CMultiFileUpload', array(
 //                'model' => $model,
 //                'attribute' => 'file_path',
@@ -134,7 +134,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             <!--END เลือกแนบไฟล์-->
             <?php
 //    ภาษาไทย
-            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาไทย -') . "</h4>";
+            echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาไทย') . " - </h4>";
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
 
@@ -161,7 +161,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             ));
 
 //    ภาษาอังกฤษ
-            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาอังกฤษ -') . "</h4>";
+            echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาอังกฤษ') . " - </h4>";
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
 
@@ -192,7 +192,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 <hr>
                 <?php
                 echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                     'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/index")) . '"'));
                 ?>
                 <hr>

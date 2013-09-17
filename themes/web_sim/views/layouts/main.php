@@ -12,16 +12,19 @@
         <!--<link rel="stylesheet" type="text/css" media="screen" href="/css/mini_calendar.css" />-->
         <!-- <link rel="stylesheet" type="text/css" media="screen" href="$ตัวแปร path url ของ themes"> -->
         <link rel="stylesheet" type="text/css" media="screen" href="/themes/web_sim/<?php echo $this->format['theme']; ?>/css/style.css" />
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
+        <script src="/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <!--<script src="/js/fullcalendar.js"></script>-->
+        <script src="/js/jquery.ui.datepicker.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/jquery.ui.datepicker.ext.be.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/jquery.ui.datepicker-th.js" type="text/javascript" charset="utf-8"></script>
         <script src="/js/self/web_sim/mini_calendar.js"></script>
-        <style type="text/css">
+<!--        <style type="text/css">
         #calendar{
             margin-left: 18px;
 
         }
-        </style>
+        </style>-->
         <?php
         //set bg
         if ($this->format['background'] != '' && $this->format['background'] != NULL) {

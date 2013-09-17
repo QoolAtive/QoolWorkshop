@@ -68,7 +68,7 @@ class Training extends TrainingBase {
             'detail_th' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ') ',
             'subject_en' => Yii::t('language', 'หัวข้อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') ',
             'detail_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') ',
-            'link' => Yii::t('language', 'ที่อยู่ลิงค์'),
+            'link' => Yii::t('language', 'ที่อยู่ลิงก์'),
             'start_at' => Yii::t('language', 'วันที่เริ่มต้น'), // วันที่เริ่ม',
             'end_at' => Yii::t('language', 'วันที่สิ้นสุด'), //'วันที่สิ้นสุด',
             'event_color' => Yii::t('language', 'สีบนปฏิทิน'),
