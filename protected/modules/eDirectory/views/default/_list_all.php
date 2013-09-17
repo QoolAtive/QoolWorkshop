@@ -108,6 +108,10 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
             echo CHtml::link($link, $link, array('target' => '_bank'));
             ?>
         </li>
+        <li>
+            <i class="icon-phone"></i> <label><?php echo Yii::t('language', 'อีเมล์') . " : "; ?></label>
+            <?php echo $data->contact_email; ?>
+        </li>
 
     </ul>
 </div>

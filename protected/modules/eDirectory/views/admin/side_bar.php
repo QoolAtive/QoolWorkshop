@@ -6,7 +6,7 @@
         <ul class="tabs clearfix">
             <?php
             echo "<li>";
-            echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/default/index'), array('rel' => 'view1'));
+            echo CHtml::link(Yii::t('language', 'หน้าร้านค้า'), array('/eDirectory/default/index'), array('rel' => 'view1'));
             echo "</li>";
             if (Yii::app()->user->isAdmin()) {
                 echo '<li>' . CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'), array('/eDirectory/admin/index'), array('rel' => 'view2', 'class' => 'selected')) . '</li>';
