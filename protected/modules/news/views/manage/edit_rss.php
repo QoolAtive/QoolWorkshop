@@ -50,7 +50,7 @@ $this->renderPartial('_side_menu', array('manage' => '3'));
             <?php
             echo CHtml::hiddenField('id', $model->id);
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/default/index")) . '"'));
             ?>
             <hr>

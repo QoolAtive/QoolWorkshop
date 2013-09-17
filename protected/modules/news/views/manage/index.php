@@ -6,16 +6,15 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
     <div class="tabcontents">
         <h3 class="barH3">
             <span>
-                <i class="icon-bell-alt"></i>
+                <i class="icon-bell-alt"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/news/default/index/view/1")); ?>">
                     <?php echo Yii::t('language', 'ข่าว') . $type; ?>
                 </a>
-                <i class="icon-chevron-right"></i>
+                <i class="icon-chevron-right"></i> 
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ข่าว'); ?>
             </span>
         </h3>
         <div class="txt-cen">
-            <hr>
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ข่าว'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/edit")) . '"'));
@@ -30,9 +29,8 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             'id' => 'news-grid',
             'dataProvider' => $dataProvider,
             'filter' => $model,
+            'summaryText' => '',
             'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-            'pagerCssClass' => 'alignCenter',
-            'ajaxUpdate' => true,
             'columns' => array(
                 array(
                     'header' => Yii::t('language', 'ลำดับ'),
@@ -50,11 +48,11 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 ),
                 array(
                     'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "ส่งเมล์ข่าว"),
+                    'header' => Yii::t('language', "ส่งอีเมล์ข่าว"),
                     'template' => '{email}',
                     'buttons' => array(
                         'email' => array(
-                            'label' => Yii::t('language', 'ส่งเมล์ข่าว'),
+                            'label' => Yii::t('language', 'ส่งอีเมล์ข่าว'),
                             'imageUrl' => Yii::app()->request->baseUrl . '/images/mail_icon.png',
                             'url' => 'CHtml::normalizeUrl(array("/news/manage/sendNewsMail", "news_id"=> $data->id))',
                             'options' => array("target" => "_blank"),
@@ -63,26 +61,19 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 ),
                 array(
                     'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "แก้ไข"),
-                    'template' => '{update}',
+                    'header' => Yii::t('language', "เครื่องมือ"),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'template' => '{update} &nbsp; {delete}',
                     'buttons' => array(
                         'update' => array(
                             'label' => Yii::t('language', 'แก้ไข'),
                             'url' => 'CHtml::normalizeUrl(array("/news/manage/edit", "id"=> $data->id))',
                         ),
-                    ),
-                ),
-                array(
-                    'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "ลบ"),
-                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
-                    'template' => '{delete}',
-                    'buttons' => array(
                         'delete' => array(
                             'label' => Yii::t('language', 'ลบ'),
                             'url' => 'CHtml::normalizeUrl(array("/news/manage/delete","id"=> $data->id))',
                         ), //end 'delete' => array(
-                    ), //end 'buttons' => array(
+                    ),
                 ),
             ), //end 'columns' => array(
             'template' => "{items}\n{pager}",

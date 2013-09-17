@@ -56,7 +56,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageGroup")) . '"'));
             ?>
             <hr>                

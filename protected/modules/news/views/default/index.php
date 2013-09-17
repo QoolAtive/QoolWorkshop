@@ -40,7 +40,7 @@ switch ($view) {
             </li>
             <li>
                 <a class="regist fancybox.ajax" href="<?php echo CHtml::normalizeUrl(array('/news/default/registNewsEmail')); ?>" rel='view-2'>
-                    <?php echo Yii::t('language', 'สมัครรับข่าวสาร'); ?>
+                    <?php echo Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'); ?>
                 </a>
             </li>
             <?php if (Yii::app()->user->isAdmin()) { ?>
@@ -69,7 +69,7 @@ switch ($view) {
                     <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageEmail')); ?>" rel='manage-4'>
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์'); ?>
                         <br />
-                        <?php echo Yii::t('language', 'ที่สมัครรับข่าวสาร'); ?>
+                        <?php echo Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'); ?>
                     </a>
                 </li>
             <?php } ?>
