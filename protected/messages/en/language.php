@@ -186,6 +186,7 @@ return array(
     'ลบข้อมูลเรียบร้อย' => 'Deleted successfully.',
     '' => '',
     'ไฟล์แนบ' => 'Attachment',
+    'แนบไฟล์' => 'Attachment',
     'ไฟล์แนบเก่า' => 'Old Attachment',
     'ได้แก่' => 'such',
     'ขนาดไม่เกิน' => 'Maximum',
