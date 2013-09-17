@@ -190,20 +190,14 @@
                   <?php
                         if ($model->logo != null) {
                             ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img  src="http://dbdmart.com/file/logo/<?php echo $model->logo;?>" /></a>
+                            <a href="<?php echo $link; ?> " target="_bank"><img  src="/file/logo/<?php echo $model->logo;?>" /></a>
                             <?php
                         } else {
                             ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img   src="http://dbdmart.com/file/logo/default.jpg"/></a>
+                            <a href="<?php echo $link; ?> " target="_bank"><img   src="/file/logo/default.jpg"/></a>
                             <?php
                         }
                         ?>
-
-
-
-
- 
-       
               </div>
             </div>
 
