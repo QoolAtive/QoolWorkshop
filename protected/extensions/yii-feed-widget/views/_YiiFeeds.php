@@ -80,7 +80,7 @@ $(".newsslide").responsiveSlides({
                 </h2>
 
                 <p class="rss_detail"><?php echo $item->get_description(); ?></p>
-                <p class="rss_post"><small><?php echo Yii::t('language', 'เมื่อวันที่') . ' ' . $item->get_date('j/m/Y | H:i '); ?></small></p>
+                <p class="rss_post"><small><?php echo Yii::t('language', 'เมื่อวันที่') . ': ' . $item->get_date('j/m/Y | H:i '); ?></small></p>
             </a>
         </div>
           </li>
