@@ -7,15 +7,19 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
         <img src="<?php echo Yii::t('language', '/img/banner/faq.png'); ?>" class="pagebanner" alt="pagebanner"/>
         <?php
         if ($model->id != NULL) {
-            $word = Yii::t('language', 'แก้ไข');
+            $word = 'แก้ไข';
         } else {
-            $word = Yii::t('language', 'เพิ่ม');
+            $word = 'เพิ่ม';
         }
         ?>
         <h3 class="barH3">
             <span>
                 <i class="icon-question-sign"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory/#main")); ?>">
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -45,9 +49,9 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageCategory"))  . '"'
-                    ));
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageCategory/#main")) . '"'
+            ));
             ?>
             <hr>
         </div>
