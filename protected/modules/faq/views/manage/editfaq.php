@@ -8,18 +8,25 @@ $main = FaqMain::model()->findByPk($fm_id);
         <img src="<?php echo Yii::t('language', '/img/banner/faq.png'); ?>" class="pagebanner" alt="pagebanner"/>
         <?php
         if ($model->id != NULL) {
-            $word = Yii::t('language', 'แก้ไข');
+            $word = 'แก้ไข';
         } else {
-            $word = Yii::t('language', 'เพิ่ม');
+            $word = 'เพิ่ม';
         }
         ?>
         <h3 class="barH3">
             <span>
-                <i class="icon-question-sign"></i>
+                <i class="icon-question-sign"></i>  
+                <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageCategory")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'คำถาม'); ?>
+                </a>
+                <i class="icon-chevron-right"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/faq/manage/manageFaq", 'main_id' => $fm_id)); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . $main['name_th']; ?>  
+                    <?php 
+                    $main_name = LanguageHelper::changeDB($main['name_th'], $main['name_en']);
+                    echo Yii::t('language', 'จัดการ') . $main_name; 
+                    ?>  
                 </a>  
-                <i class="icon-chevron-right"></i>
+                <i class="icon-chevron-right"></i> 
                 <?php echo Yii::t('language', $word) . trim(Yii::t('language', ' คำถาม ')); ?>
             </span>
         </h3>
@@ -31,9 +38,13 @@ $main = FaqMain::model()->findByPk($fm_id);
         ?>
         <div class="_100">
             <?php
-            $faq_sub_list = CHtml::listData(FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $fm_id)), "faq_sub_id", "name_th");
+            $feild_sub = LanguageHelper::changeDB("name_th", "name_en");
+            $faq_sub_list = CHtml::listData(FaqSub::model()->findAll(array('condition' => 'faq_main_id = ' . $fm_id)), "faq_sub_id", $feild_sub);
             echo $form->labelEx($model, 'fs_id');
-            echo $form->dropDownList($model, 'fs_id', $faq_sub_list, array('class' => 'fieldrequire', 'empty' => Yii::t('language', ' กรุณาเลือกหมวดหมู่ย่อย ')));
+            echo $form->dropDownList($model, 'fs_id', $faq_sub_list, array(
+                'class' => 'fieldrequire',
+                'empty' => ' - ' . Yii::t('language', 'กรุณาเลือก') . Yii::t('language', 'หมวดหมู่คำถามย่อย') . ' - '
+            ));
 
             //ภาษาไทย
             echo $form->labelEx($model, 'subject_th');
@@ -91,14 +102,14 @@ $main = FaqMain::model()->findByPk($fm_id);
             ));
             ?>
         </div>
-        <div class='txt-cen'>
+        <div class='_100 txt-cen'>
             <hr>
             <?php
             echo CHtml::hiddenField('fm_id', $model->fm_id);
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/faq/manage/manageFaq", 'main_id' => $fm_id)) . '"'
-                ));
+            ));
             ?>
             <hr>
         </div>
