@@ -488,12 +488,7 @@ $this->renderPartial('side_bar', array(
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/admin/index'
-                        )) . "'")
-                    );
-
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับหน้ารายละเอียด'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/default/companyDetail/id/' . $id
+                            '/eDirectory/manage/index'
                         )) . "'")
                     );
                     ?>
