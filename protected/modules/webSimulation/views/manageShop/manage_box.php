@@ -29,7 +29,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addBox")) . '"'));
             echo CHtml::button(Yii::t('language', 'ใส่โค๊ด html'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addHtml")) . '"'));
-            echo CHtml::button(Yii::t('language', 'วีดีโอ/เพลง'), array(
+            echo CHtml::button(Yii::t('language', 'วิดิโอ/เพลง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
@@ -60,16 +60,14 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <p class="headsort"><?php echo $box['name_th']; ?></p>
                         <p class="tool">
                             <?php
-                            echo CHtml::link('เพิ่มสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
-                            ?>
-                            &nbsp;|&nbsp;
-                            <?php
                             if ($box['type'] == '1') {
+                                echo CHtml::link('เพิ่มสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
+                                echo '&nbsp;|&nbsp;';
                                 echo CHtml::link('แก้ไขสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '2') {
-                                echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link('แก้ไขโค้ด html', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '3') {
-                                echo CHtml::link('แก้ไข', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link('แก้ไขลิ้งก์วิดิโอ/เพลง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
                             }
                             ?>
                             &nbsp;|&nbsp;
