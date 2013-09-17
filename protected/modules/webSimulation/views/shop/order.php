@@ -1,12 +1,12 @@
 <style>
     ._100 {
-    display: inline;
-    float: left;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding: 5px 0;
-    width: 96%;
-}
+        display: inline;
+        float: left;
+        margin-left: 2%;
+        margin-right: 2%;
+        padding: 5px 0;
+        width: 96%;
+    }
 </style>
 <div class="main_box clearfix">
     <?php
@@ -44,6 +44,12 @@
     </div>
 
     <div style="text-align: center; margin-top: 10px;">
+        <div>
+            <?php
+            echo Yii::t('language', 'เมื่อสั่งซื้อแล้ว กรุณารอการติดต่อกลับจากเจ้าของร้านค้าในภายหลัง');
+            ?>
+        </div>
+        <hr/>
         <?php
         echo CHtml::submitButton(Yii::t('language', '    สั่งซื้อ    '));
         echo CHtml::button(Yii::t('language', '    ยกเลิก    '), array(

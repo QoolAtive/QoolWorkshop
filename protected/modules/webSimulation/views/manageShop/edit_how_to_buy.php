@@ -10,6 +10,10 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <?php echo Yii::t('language', 'ร้าน ') . $model->name_th; ?>
                 </a>
                 <i class="icon-chevron-right"></i>
+                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
+                </a>
+                <i class="icon-chevron-right"></i>
                 <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน'); ?>
             </span>
         </h3>

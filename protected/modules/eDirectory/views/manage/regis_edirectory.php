@@ -414,14 +414,14 @@ $this->renderPartial('side_bar', array(
                             foreach ($banner as $data) {
                                 echo CHtml::image("/file/banner/" . $data['path'], "image", array('width' => '350'));
                                 echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
-                                    '/eDirectory/admin/delBanner'
+                                    '/eDirectory/manage/delBanner'
                                         ), array(
                                     'type' => 'post',
                                     'data' => array('banner_id' => $data['company_banner_id'], 'company_id' => $model->id),
                                     'update' => 'div#banner',
                                         ), array(
 //                                'onClick' => 'return confirm("คุณต้องการลบรูปภาพหรือไม่?")',
-                                    'hrel' => '/eDirectory/admin/delBanner', 'id' => $data['company_banner_id']
+                                    'hrel' => '/eDirectory/manage/delBanner', 'id' => $data['company_banner_id']
                                         )
                                 );
                             }
@@ -465,14 +465,14 @@ $this->renderPartial('side_bar', array(
                                 echo "</li>";
                                 echo "<li>";
                                 echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
-                                    '/eDirectory/admin/delBrochure'
+                                    '/eDirectory/manage/delBrochure'
                                         ), array(
                                     'type' => 'post',
                                     'data' => array('brochure_id' => $data['company_brochure_id'], 'company_id' => $model->id),
                                     'update' => 'div#brochure',
                                         ), array(
 //                                'onClick' => 'return confirm("คุณต้องการลบโบว์ชัวร์หรือไม่?")',
-                                    'hrel' => '/eDirectory/admin/delBrochure', 'id' => $data['company_brochure_id']
+                                    'hrel' => '/eDirectory/manage/delBrochure', 'id' => $data['company_brochure_id']
                                         )
                                 );
                                 echo "</li>";
@@ -488,12 +488,7 @@ $this->renderPartial('side_bar', array(
 //        echo CHtml::button('ยกเลิก', array('onClick' => "history.go(-1)")
 //        );
                     echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/admin/index'
-                        )) . "'")
-                    );
-
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับหน้ารายละเอียด'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/default/companyDetail/id/' . $id
+                            '/eDirectory/manage/index'
                         )) . "'")
                     );
                     ?>

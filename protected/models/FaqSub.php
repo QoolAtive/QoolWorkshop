@@ -64,9 +64,9 @@ class FaqSub extends FaqSubBase {
     public function attributeLabels() {
         return array(
             'faq_sub_id' => 'Faq Sub',
-            'faq_main_id' => 'หมวดหมู่หลัก',
-            'name_th' => 'ชื่อหมวดหมู่ย่อยภาษาไทย',
-            'name_en' => 'ชื่อหมวดหมู่ย่อยภาษาอังกฤษ',
+            'faq_main_id' => Yii::t('language', 'ชื่อหมวดหมู่หลัก'),
+            'name_th' => Yii::t('language', 'ชื่อหมวดหมู่ย่อย') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อหมวดหมู่ย่อย') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'order_n' => 'Order N',
         );
     }
@@ -85,8 +85,11 @@ class FaqSub extends FaqSubBase {
         $criteria->compare('faq_main_id', $this->faq_main_id);
         $criteria->compare('name_th', $this->name_th, true);
         $criteria->compare('name_en', $this->name_en, true);
-        $criteria->compare('order_n', $this->order_n);
-        $criteria->order = 'faq_main_id';
+//        $criteria->compare('order_n', $this->order_n);
+//        $criteria->order = 'faq_main_id';
+        
+        $criteria->join = 'left join faq_main on faq_main.id = t.faq_main_id';
+        $criteria->order = 'faq_main.order_n , t.order_n';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
