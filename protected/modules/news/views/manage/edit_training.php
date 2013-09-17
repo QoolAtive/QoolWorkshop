@@ -96,7 +96,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
         <div class="_100">
             <?php
 //    ภาษาไทย
-            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาไทย -') . "</h4>";
+            echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาไทย') . " - </h4>";
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th');
             ?>
@@ -129,7 +129,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
         <div class="_100">
             <?php
 //    ภาษาอังกฤษ
-            echo "<h4 class='reg'>" . Yii::t('language', '- ภาษาอังกฤษ -') . "</h4>";
+            echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาอังกฤษ') . " - </h4>";
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en');
             ?>
@@ -163,7 +163,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
-            echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/news/manage/manageTraining")) . '"'));
             ?>
             <hr>
