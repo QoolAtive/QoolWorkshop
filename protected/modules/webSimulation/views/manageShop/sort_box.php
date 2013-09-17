@@ -43,26 +43,36 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <ul id="sortable">
                 <?php
                 $boxs = WebShopBox::model()->findAll(array('condition' => 'web_shop_id = ' . $shop_id, 'order' => 'order_n'));
-                foreach ($boxs as $box) {
+                if ($boxs == NULL) {
+                    echo '<div class="_100">';
+                    echo Yii::t('language', 'ไม่พบกล่องแสดงสินค้า');
+                    echo '<hr/>';
+                    echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array('onClick' => "history.back()"));
+                    echo '</div>';
+                } else {
+                    foreach ($boxs as $box) {
+                        ?>
+                        <li id="<?php echo $box['web_shop_box_id']; ?>" class="ui-state-default" value="<?php echo $box['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $box['name_th']; ?></li>
+                        <?php
+                    }
                     ?>
-                    <li id="<?php echo $box['web_shop_box_id']; ?>" class="ui-state-default" value="<?php echo $box['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $box['name_th']; ?></li>
-                    <?php
-                }
-                ?>
-            </ul>
+                </ul>
 
-            <div class="_100 textcenter" style="margin-top: 25px;">
+                <div class="_100 textcenter" style="margin-top: 25px;">
+                    <?php
+                    echo CHtml::hiddenField('sort_arr', '', array(
+                        'id' => 'sort_arr',
+                    ));
+                    echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array(
+                        'class' => "purple",
+                    ));
+                    echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
+                        'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
+                    ?>
+                </div>
                 <?php
-                echo CHtml::hiddenField('sort_arr', '', array(
-                    'id' => 'sort_arr',
-                ));
-                echo CHtml::submitButton(Yii::t('language', 'บันทึก'), array(
-                    'class' => "purple",
-                ));
-                echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
-                ?>
-            </div>
+            }
+            ?>
 
             <?php $this->endWidget(); ?>
         </div>
