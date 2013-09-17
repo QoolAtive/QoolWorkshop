@@ -28,9 +28,8 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             'id' => 'news-grid',
             'dataProvider' => $dataProvider,
             'filter' => $model,
+            'summaryText' => '',
             'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-            'pagerCssClass' => 'alignCenter',
-            'ajaxUpdate' => true,
             'columns' => array(
                 array(
                     'header' => Yii::t('language', 'ลำดับ'),
@@ -48,26 +47,19 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 ),                
                 array(
                     'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "แก้ไข"),
-                    'template' => '{update}',
+                    'header' => Yii::t('language', "เครื่องมือ"),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'template' => '{update} &nbsp; {delete}',
                     'buttons' => array(
                         'update' => array(
                             'label' => Yii::t('language', 'แก้ไข'),
                             'url' => 'CHtml::normalizeUrl(array("/news/manage/editTraining", "id"=> $data->id))',
                         ),
-                    ),
-                ),
-                array(
-                    'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "ลบ"),
-                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
-                    'template' => '{delete}',
-                    'buttons' => array(
                         'delete' => array(
                             'label' => Yii::t('language', 'ลบ'),
                             'url' => 'CHtml::normalizeUrl(array("/news/manage/deleteTraining","id"=> $data->id))',
-                        ), //end 'delete' => array(
-                    ), //end 'buttons' => array(
+                        ),
+                    ),
                 ),
             ), //end 'columns' => array(
             'template' => "{items}\n{pager}",
