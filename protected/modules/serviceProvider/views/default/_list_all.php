@@ -103,5 +103,9 @@ $model_type_com_num = SpTypeCom::model()->findAll(array('condition' => "com_id =
             echo CHtml::link($link, $link, array('target' => '_bank'));
             ?>
         </li>
+        <li>
+            <i class="icon-envelope"></i> <label><?php echo Yii::t('language', 'อีเมล์') . " : "; ?></label> 
+            <?php echo $data->contact_email; ?>
+        </li>
     </ul>
 </div>
