@@ -1,9 +1,9 @@
-<h3 class="barH3">
+<!--<h3 class="barH3">
     <span>
         <i class="icon-question-sign"></i>
         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่คำถามหลัก'); ?>
     </span>
-</h3>
+</h3>-->
 
 <div class="txt-cen">
     <hr>
@@ -22,25 +22,32 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'faq_main-grid',
     'dataProvider' => $dataProvider,
     'filter' => $model_main,
+    'summaryText' => '',
     'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-    'pagerCssClass' => 'alignCenter',
-    'ajaxUpdate' => true,
     'columns' => array(
         array(
             'header' => Yii::t('language', 'ลำดับ'),
             'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
         ),
-        array(
-            'header' => Yii::t('language', 'ชื่อหมวดหมู่หลัก'),
-            'name' => LanguageHelper::changeDB('name_th', 'name_en'),
-//                    'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id)))',
-//                    'type' => 'raw',
-        ),
+        'name_th', 
+        'name_en',
+//        array(
+//            'header' => Yii::t('language', 'ชื่อหมวดหมู่หลัก'),
+//            'name' => LanguageHelper::changeDB('name_th', 'name_en'),
+////                    'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id)))',
+////                    'type' => 'raw',
+//        ),
+//        array(
+//            'header' => Yii::t('language', 'ชื่อหมวดหมู่หลัก'),
+//            'name' => LanguageHelper::changeDB('name_th', 'name_en'),
+////                    'value' => 'CHtml::link($data->name_th, CHtml::normalizeUrl(array("/faq/manage/manageSub", "main_id" => $data->id)))',
+////                    'type' => 'raw',
+//        ),
         array(
             'class' => 'CButtonColumn',
             'header' => Yii::t('language', "เครื่องมือ"),
-            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบหมวดหมู่นี้หรือไม่?'),
-            'template' => '{update} {delete}',
+            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+            'template' => '{update} &nbsp; {delete}',
             'buttons' => array(
                 'update' => array(
                     'label' => Yii::t('language', 'แก้ไข'),
@@ -52,18 +59,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 ), //end 'delete' => array(
             ),
         ),
-//                array(
-//                    'class' => 'CButtonColumn',
-//                    'header' => Yii::t('language', "ลบ"),
-//                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบหมวดหมู่นี้หรือไม่?'),
-//                    'template' => '{delete}',
-//                    'buttons' => array(
-//                        'delete' => array(
-//                            'label' => Yii::t('language', 'ลบ'),
-//                            'url' => 'CHtml::normalizeUrl(array("/faq/manage/deleteMain", "faq_main_id"=> $data->id))',
-//                        ), //end 'delete' => array(
-//                    ), //end 'buttons' => array(
-//                ),
     ), //end 'columns' => array(
     'template' => "{items}\n{pager}",
     'pager' => array(

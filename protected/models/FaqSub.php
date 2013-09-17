@@ -64,9 +64,9 @@ class FaqSub extends FaqSubBase {
     public function attributeLabels() {
         return array(
             'faq_sub_id' => 'Faq Sub',
-            'faq_main_id' => 'หมวดหมู่หลัก',
-            'name_th' => 'ชื่อหมวดหมู่ย่อยภาษาไทย',
-            'name_en' => 'ชื่อหมวดหมู่ย่อยภาษาอังกฤษ',
+            'faq_main_id' => Yii::t('language', 'ชื่อหมวดหมู่หลัก'),
+            'name_th' => Yii::t('language', 'ชื่อหมวดหมู่ย่อย') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อหมวดหมู่ย่อย') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'order_n' => 'Order N',
         );
     }
