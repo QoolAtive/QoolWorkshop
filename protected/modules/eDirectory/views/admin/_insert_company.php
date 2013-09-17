@@ -118,7 +118,7 @@ $this->renderPartial('side_bar', array(
             <div class="_100">
                 <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'เลือกประเภท') . ' - '; ?></h4>
             </div>
-            <div class="_100">
+            <div class="_50">
                 <?php
 //                echo $form->labelEx($model_type, 'company_type') . "<br />";
 //                echo $form->checkBoxList($model_type, 'company_type', CompanyTypeBusiness::model()->getListData());
