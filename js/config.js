@@ -48,6 +48,7 @@ $(document).ready(function() {
 
 
 
+
 $(document).ready(function(){
 
     $('.items').each(function(){  
@@ -61,8 +62,21 @@ $(document).ready(function(){
 
         $(this).find('.listpartner').height(highestBox);
     });    
+});
 
 
+$(document).ready(function(){
+ $('.items').each(function(){  
+        var highestBox = 0;
+
+        $(this).find('.lessonList').each(function(){
+            if($(this).height() > highestBox){  
+                highestBox = $(this).height();  
+            }
+        })
+
+        $(this).find('.lessonList').height(highestBox);
+    });    
 });
  
 $(document).ready(function() {

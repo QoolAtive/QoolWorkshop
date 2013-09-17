@@ -11,7 +11,7 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
         <?php
         echo CHtml::link($name, Yii::app()->createUrl('/eDirectory/default/companyDetail', array(
                     'id' => $data->id,
-                    'title'=>$name
+                    'title' => $name
                         )
         ));
         ?>
@@ -109,7 +109,7 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
             ?>
         </li>
         <li>
-            <i class="icon-phone"></i> <label><?php echo Yii::t('language', 'อีเมล์') . " : "; ?></label>
+            <i class="icon-envelope"></i> <label><?php echo Yii::t('language', 'อีเมล์') . " : "; ?></label>
             <?php echo $data->contact_email; ?>
         </li>
 
