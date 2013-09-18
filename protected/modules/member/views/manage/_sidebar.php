@@ -30,7 +30,9 @@
                 }
             }
             ?>
-            <li><a href="/serviceProvider/default/spLog" ><?php echo Yii::t("language", 'บริการโปรด'); ?></a></li>
+            <?php if (!Yii::app()->user->isAdminType()) { ?>
+                <li><a href="/serviceProvider/default/spLog" ><?php echo Yii::t("language", 'บริการโปรด'); ?></a></li>
+            <?php } ?>
             <?php if (Yii::app()->user->id == 3) { ?>
                 <li>
                     <a href="http://www.google.com/intl/<?php echo Yii::t("language", 'th'); ?>/analytics/" target="_blank" >
@@ -41,7 +43,7 @@
             <?php if (Yii::app()->user->isAdminType()) { ?>
                 <li>
                     <a href="/rights" >
-                        <?php echo Yii::t("language", 'จัดการ').Yii::t("language", 'สิทธิ์'); ?>
+                        <?php echo Yii::t("language", 'จัดการ') . Yii::t("language", 'สิทธิ์'); ?>
                     </a>
                 </li>
             <?php } ?>
