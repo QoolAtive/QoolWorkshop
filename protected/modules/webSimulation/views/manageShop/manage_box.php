@@ -25,16 +25,16 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <div class="_100">
             <!--class="addboxbtn fancybox.ajax btn"-->
             <?php
-            echo CHtml::button(Yii::t('language', 'เพิ่มกล่องแสดงสินค้า'), array(
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'กล่องแสดงสินค้า'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addBox")) . '"'));
-            echo CHtml::button(Yii::t('language', 'ใส่โค๊ด html'), array(
+            echo CHtml::button(Yii::t('language', 'โค้ด HTML'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addHtml")) . '"'));
-            echo CHtml::button(Yii::t('language', 'วิดิโอ/เพลง'), array(
+            echo CHtml::button(Yii::t('language', 'วีดีโอ/เพลง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
             echo '&nbsp;|&nbsp;';
-            echo CHtml::button(Yii::t('language', 'จัดการรายการสินค้า'), array(
+            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'รายการสินค้า'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
             ?>
             <!--        fancybox    
@@ -61,27 +61,35 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <p class="tool">
                             <?php
                             if ($box['type'] == '1') {
-                                echo CHtml::link('เพิ่มสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้าในกล่อง'), CHtml::normalizeUrl(array(
+                                            '/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
                                 echo '&nbsp;|&nbsp;';
-                                echo CHtml::link('แก้ไขสินค้าในกล่อง', CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'สินค้าในกล่อง'), CHtml::normalizeUrl(array(
+                                            '/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '2') {
-                                echo CHtml::link('แก้ไขโค้ด html', CHtml::normalizeUrl(array('/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'โค้ด HTML'), CHtml::normalizeUrl(array(
+                                            '/webSimulation/manageShop/addHtml', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '3') {
-                                echo CHtml::link('แก้ไขลิ้งก์วิดิโอ/เพลง', CHtml::normalizeUrl(array('/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'วีดีโอ/เพลง'), CHtml::normalizeUrl(array(
+                                            '/webSimulation/manageShop/addVideo', 'box_id' => $box['web_shop_box_id'])));
                             }
                             ?>
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/deleteBox', 'box_id' => $box['web_shop_box_id'])); ?>"
-                               onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >ลบ</a>
+                               onclick="return confirm('<?php echo Yii::t('language', 'คุณต้องการลบกล่องแสดงสินค้านี้หรือไม่?'); ?>');" >
+                                   <?php
+                                   echo Yii::t('language', 'ลบ');
+                                   ?>
+                            </a>
                             <!--                            &nbsp;|&nbsp;
                                                         <a href="#">แก้ไขการแสดงผล</a>-->
                             &nbsp;|&nbsp;
                             <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showBox', 'box_id' => $box['web_shop_box_id'], 'is_show' => $box['show_box'])); ?>" class="hideshowbox">
                                 <?php
                                 if ($box['show_box']) {
-                                    echo 'ซ่อน';
+                                    echo Yii::t('language', 'ซ่อน');
                                 } else {
-                                    echo 'แสดง';
+                                    echo Yii::t('language', 'แสดง');
                                 }
                                 ?>
                             </a>
@@ -109,9 +117,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'calendar', 'is_show' => $is_show['calendar'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['calendar']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -126,9 +134,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'forecast', 'is_show' => $is_show['forecast'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['forecast']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -143,9 +151,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'exchange', 'is_show' => $is_show['exchange'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['exchange']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -160,9 +168,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'lottery', 'is_show' => $is_show['lottery'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['lottery']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -177,9 +185,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'oil', 'is_show' => $is_show['oil'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['oil']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -194,9 +202,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'gold', 'is_show' => $is_show['gold'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['gold']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
@@ -211,9 +219,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/showSideBox', 'shop_id' => $shop_id, 'box_name' => 'stock', 'is_show' => $is_show['stock'])); ?>" class="hideshowbox">
                         <?php
                         if ($is_show['stock']) {
-                            echo 'ซ่อน';
+                            echo Yii::t('language', 'ซ่อน');
                         } else {
-                            echo 'แสดง';
+                            echo Yii::t('language', 'แสดง');
                         }
                         ?>
                     </a>
