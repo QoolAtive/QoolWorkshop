@@ -509,10 +509,10 @@ $this->renderPartial('side_bar', array(
                         )) . "'")
                     );
 
-                    echo CHtml::button(Yii::t('language', 'ย้อนกลับหน้ารายละเอียด'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
-                            '/eDirectory/default/companyDetail/id/' . $id
-                        )) . "'")
-                    );
+//                    echo CHtml::button(Yii::t('language', 'ย้อนกลับหน้ารายละเอียด'), array('onClick' => "window.location='" . CHtml::normalizeUrl(array(
+//                            '/eDirectory/default/companyDetail/id/' . $id
+//                        )) . "'")
+//                    );
                     ?>
                 </div>
                 <?php $this->endWidget(); ?>

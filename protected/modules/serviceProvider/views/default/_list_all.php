@@ -13,9 +13,9 @@ $model_type_com_num = SpTypeCom::model()->findAll(array('condition' => "com_id =
     <h4>
         <?php
         echo CHtml::link($name, Yii::app()->createUrl('/serviceProvider/default/detail/', array(
-            'id'=>$data->id,
-            'title' => $name,
-                )
+                    'id' => $data->id,
+                    'title' => $name,
+                        )
         ));
         ?>
     </h4>
