@@ -1,9 +1,10 @@
 /* @group Component */
 .websimborder{
     background: url('/img/websimbanner2.png') no-repeat scroll 0 0 transparent;
-    height: 470px;
-    padding-top: 100px;
-    width: 100%;  margin-left: -6px; 
+    height: 420px;
+    margin-left: -6px;
+    padding-top: 151px;
+    width: 100%;
 }
 .websimbox{
     background: url('/img/websimboxbg.png'); height:540px; width:760px;background-repeat:no-repeat; margin:0 auto;

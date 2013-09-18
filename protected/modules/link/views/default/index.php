@@ -27,6 +27,8 @@
 }
 
 .listpartner li:first-child{
+    line-height: 120px;
+    vertical-align: middle;
     border-radius: 17px 17px  0px 0px;
 }
 .listpartner > li:last-child{
@@ -37,7 +39,7 @@
        
 }
 .listpartner li:first-child img {
-   min-height: 120px;
+   
     padding: 10px 0;
   
 }

@@ -1,3 +1,8 @@
+<style type="text/css">
+ul.tabs li{
+    opacity: 1 !important;
+}
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
