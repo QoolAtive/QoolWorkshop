@@ -1,3 +1,47 @@
+<style type="text/css">
+
+  
+.btngold{
+        background: none repeat scroll 0 0 #E2B018 !important;
+    border: 1px solid #FFF !important;
+    color: #333 !important;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 3px 37px;
+    transition: background 1s ease-out 0s;
+}
+
+  
+.listpartner {
+    background: none repeat scroll 0 0 rgba(210, 17, 224, 0.8);
+    border: 1px solid #aaa;
+    border-radius: 3px 3px 3px 3px;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    width: 227px;
+    box-shadow: 1px 2px 1px 1px #ddd;
+     margin: 8px;
+     border-radius: 20px 20px 20px 20px;
+
+}
+
+.listpartner li:first-child{
+    border-radius: 17px 17px  0px 0px;
+}
+.listpartner > li:last-child{
+        background: transparent;
+        color: #fff;
+        width: 100%;
+        height: 60px;
+       
+}
+.listpartner li:first-child img {
+   min-height: 120px;
+    padding: 10px 0;
+  
+}
+</style>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -15,9 +59,9 @@
 
 <div style="clear: both;"></div>
 
-<div class="linksearch">
+<div class="linksearch" style="background: url('/img/searchbg.png') no-repeat scroll 0 0 transparent; ">
     <div class="_100" style=" margin-top: 10px;">        
-        <h3><i class="icon-search"></i><?php echo Yii::t('language', 'ค้นหา'); ?></h3>
+        <h3 style="color:#fff;"><i class="icon-search"></i><?php echo Yii::t('language', 'ค้นหา'); ?></h3>
     </div>
     <div class="_50">
         <?php
@@ -38,9 +82,10 @@
         );
         ?>
     </div>
+
     <div class="_100 textcenter">
         <?php
-        echo CHtml::submitButton(Yii::t('language', 'ค้นหา'));
+        echo CHtml::submitButton(Yii::t('language', 'ค้นหา') ,array('class' => 'btngold'));
         $this->endWidget();
         ?>
 
@@ -54,7 +99,9 @@
     </div>
 
 </div>
-<ul class="linklist">
+
+
+<div class="items">
     <?php
     if (empty($list)) {
         echo Yii::t('language', "ไม่พบลิงก์ที่เกี่ยวข้อง");
@@ -62,16 +109,17 @@
         foreach ($list as $l) {
             $name = LanguageHelper::changeDB($l['name_th'], $l['name_en']);
             ?>
-            <li>
-                <ul class="innerlogo">
-                    <li><a href="<?php echo $l['link']; ?>" target="_blank"><img src="<?php echo $l['img_path']; ?>"></a> </li>
-
-                    <li><a href="<?php echo $l['link']; ?>" target="_blank"><?php echo $name; ?></a></li>
-                </ul>
-            </li>
+ 
+<ul class="listpartner">
+<li>        <a href="<?php echo $l['link']; ?>" target="_blank"><img src="http://dbdmart.com/<?php echo $l['img_path']; ?>"></a></li>
+        <li>
+        <a target="_blank" href="http://www.ipthailand.go.th/" style="color:#fff;"><?php echo $name; ?></a></li>
+        
+   
+</ul>
             <?php
         }
     }
     ?>
-</ul>
-
+ 
+</div>
