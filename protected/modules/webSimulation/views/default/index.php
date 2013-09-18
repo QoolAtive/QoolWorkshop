@@ -34,24 +34,21 @@
         ?>
     </div>
 </div>
-<div class="content">
+<div class="content" >
+
+</div>
+
+
     <div class="tabcontents" >
         <img class="pagebanner" alt="pagebanner" src="/img/banner/Websimulation.png">
-
-        <div class="websimborder" style="min-height: 400px;">
-
-            <h3 class="textcenter" style="padding-top: 20px;">Web Simulation</h3>
+        <div class="websimborder">
+        <div class="websimbox">
+            <h3 class="textcenter">Web Simulation</h3>
             <p class="textcenter">ระบบแนะนำการทดลองการเปิดร้านค้าออนไลน์</p>
-
-            <div class="textcenter" style="  border:1px dashed #aaa;
-                 margin: 20px 40px;
-                 padding: 20px 0;">
-                <p class="strong">คำแนะนำการใช้งานระบบ</p>
-                <p style="text-indent: 20px;"> - ระบบนี้เป็นระบบจำลองเปิดร้านค้าออนไลน์ เพื่อให้ผู้สนใจ มีความรู้ความเข้าใจในการเปิดร้านค้าออนไลน์</p>
-                <!-- <p style="text-indent: 20px;"> - </p> -->
-
-
-            </div>
+                <div class="textcenter websimdes">
+                    <p class="strong">คำแนะนำการใช้งานระบบ</p>
+                    <p> - ระบบนี้เป็นระบบจำลองเปิดร้านค้าออนไลน์ เพื่อให้ผู้สนใจ มีความรู้ความเข้าใจในการเปิดร้านค้าออนไลน์</p>
+                </div>
 
             <div class="textcenter" >
                 <?php
@@ -67,11 +64,9 @@
                 } else {
                     ?>
 
-                    <div class="_100" style="background: url('/img/websimbanner2.png') repeat scroll -10px -30px transparent;
-    height: 289px;
-    width: 740px;">
-                        <input class="fclogin" type="button" value="กรุณาสมัครสมาชิกหรือเข้าสู่ระบบก่อนใช้งาน" name="login" href="/site/login">
-                        <!--                     <input type="button" value="กรุณาเข้าระบบก่อนใช้งาน"name="login">
+                    <div class="_100">
+                    <input class="fclogin" type="button" value="กรุณาสมัครสมาชิกหรือเข้าสู่ระบบก่อนใช้งาน" name="login" href="/site/login">
+                        <!--  <input type="button" value="กรุณาเข้าระบบก่อนใช้งาน"name="login">
                         -->                
 
                     </div>
@@ -86,8 +81,7 @@
                 ?>
 
                 <!-- <img src="/img/smart.png" style="padding: 60px 0px;"> -->
-
+</div>
             </div>
         </div>
     </div>
-</div>
