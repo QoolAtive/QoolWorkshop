@@ -1,88 +1,99 @@
 <?php
-switch ($manage) {
+switch ($select) {
     case 2:
         $select1 = '';
         $select2 = 'selected';
         $select3 = '';
         $select4 = '';
+        $select5 = '';
         break;
     case 3:
         $select1 = '';
         $select2 = '';
         $select3 = 'selected';
         $select4 = '';
+        $select5 = '';
         break;
     case 4:
         $select1 = '';
         $select2 = '';
         $select3 = '';
         $select4 = 'selected';
+        $select5 = '';
+        break;
+    case 5:
+        $select1 = '';
+        $select2 = '';
+        $select3 = '';
+        $select4 = '';
+        $select5 = 'selected';
         break;
     default:
         $select1 = 'selected';
         $select2 = '';
         $select3 = '';
         $select4 = '';
+        $select5 = '';
         break;
 }
 ?>
 <div class="sidebar">
     <div class="menuitem">
         <ul>
-            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/newsandactivity.png'); ?>"/></li>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/about.png'); ?>"/></li>
         </ul>
         <ul class="tabs clearfix">
-            <li>
-                <a href="<?php echo CHtml::normalizeUrl(array('/news/default/index/view/1')); ?>" rel='view-1'>
-                    <?php echo Yii::t('language', 'ข่าว'); ?>
-                </a>
+            <li class="<?php echo $select1; ?>">
+                <?php
+                echo CHtml::link(Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                                array('/about/default/index/view/1')
+                        ), array('rel' => 'view1')
+                );
+                ?>
             </li>
-            <li>
-                <a href="<?php echo CHtml::normalizeUrl(array('/news/default/index/view/2')); ?>" rel='view-2'>
-                    <?php echo Yii::t('language', 'ปฏิทิน'); ?>
-                </a>
+            <li class="<?php echo $select2; ?>">
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'ติดต่อเรา'), CHtml::normalizeUrl(
+                                array('/about/default/index/view/2')
+                        ), array('rel' => 'view2')
+                );
+                ?>
             </li>
-            <li>
-                <a href="<?php echo CHtml::normalizeUrl(array('/news/default/index/view/3')); ?>" rel='view-2'>
-                    <?php echo Yii::t('language', 'การอบรม'); ?>
-                </a>
+            <li class="<?php echo $select3; ?>">
+                <?php
+                echo CHtml::link(
+                        Yii::t('language', 'แผนที่เว็บไซต์'), CHtml::normalizeUrl(
+                                array('/about/default/siteMap')
+                        ), array('rel' => 'view3')
+                );
+                ?>
             </li>
-            
-            <li>
-                <a class="regist fancybox.ajax" href="<?php echo CHtml::normalizeUrl(array('/news/default/registNewsEmail')); ?>" rel='view-2'>
-                    <?php echo Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'); ?>
-                </a>
-            </li>
-            <?php if (Yii::app()->user->isAdmin()) { ?>
-                <li class='<?php echo $select1; ?>'>
-                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/index')); ?>" rel='manage-1'>
-                        <?php echo Yii::t('language', 'จัดการ'); ?>
-                        <br />
-                        <?php echo Yii::t('language', 'ข่าว'); ?>
-                    </a>
+            <?php
+            if (Yii::app()->user->isAdmin()) {
+                ?>
+                <li class="<?php echo $select4; ?>">
+                    <?php
+                    echo CHtml::link(
+                            Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'เกี่ยวกับเรา'), CHtml::normalizeUrl(
+                                    array('/about/default/editAbout')
+                            ), array('rel' => 'view4')
+                    );
+                    ?>
                 </li>
-                <li class='<?php echo $select2; ?>'>
-                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageTraining')); ?>" rel='manage-2'>
-                        <?php echo Yii::t('language', 'จัดการ'); ?>
-                        <br />
-                        <?php echo Yii::t('language', 'การอบรม'); ?>
-                    </a>
+
+                <li class="<?php echo $select5; ?>">
+                    <?php
+                    echo CHtml::link(
+                            Yii::t('language', 'จัดการ') . "<br/>" . Yii::t('language', 'แผนที่เว็บไซต์'), CHtml::normalizeUrl(
+                                    array('/dataCenter/default/siteMap')
+                            ), array('rel' => 'view5')
+                    );
+                    ?>
                 </li>
-                <li class='<?php echo $select3; ?>'>
-                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/editRss/id/1')); ?>" rel='manage-3'>
-                        <?php echo Yii::t('language', 'จัดการ'); ?>
-                        <br />
-                        <?php echo Yii::t('language', 'RSS Feed'); ?>
-                    </a>
-                </li>
-                <li class='<?php echo $select4; ?>'>
-                    <a href="<?php echo CHtml::normalizeUrl(array('/news/manage/manageEmail')); ?>" rel='manage-4'>
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'อีเมล์'); ?>
-                        <br />
-                        <?php echo Yii::t('language', 'สมัครรับข้อมูลข่าวสาร'); ?>
-                    </a>
-                </li>
-            <?php } ?>
+                <?php
+            } //end  if (Yii::app()->user->isAdmin()) {
+            ?>
         </ul>
     </div>
 </div>
