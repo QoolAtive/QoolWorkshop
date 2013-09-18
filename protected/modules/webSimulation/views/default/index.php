@@ -67,10 +67,14 @@
                 } else {
                     ?>
 
-                    <div class="_100">
-                        <input class="fclogin" type="button" value="กรุณาเข้าระบบก่อนใช้งาน" name="login" href="/site/login">
+                    <div class="_100" style="background: url('/img/websimbanner2.png') repeat scroll -10px -30px transparent;
+    height: 289px;
+    width: 740px;">
+                        <input class="fclogin" type="button" value="กรุณาสมัครสมาชิกหรือเข้าสู่ระบบก่อนใช้งาน" name="login" href="/site/login">
                         <!--                     <input type="button" value="กรุณาเข้าระบบก่อนใช้งาน"name="login">
-                        -->                </div>
+                        -->                
+
+                    </div>
 
 
                     <!-- echo CHtml::link(Yii::t('language', 'Start Simulation'), '#', array(
@@ -80,7 +84,6 @@
                     <?php
                 }
                 ?>
-                <img  alt="pagebanner" width="100%" src="/img/websimbanner2.png">
 
                 <!-- <img src="/img/smart.png" style="padding: 60px 0px;"> -->
 

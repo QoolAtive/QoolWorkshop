@@ -101,7 +101,20 @@
                 </div>
 
                 <div class="row buttons _100">
+
                     <?php echo CHtml::submitButton(Yii::t('language', 'เข้าสู่ระบบ'), array('id' => 'submit')); ?>
+
+    <a style="  background: linear-gradient(#EEB2FF, #DA49FF) repeat scroll center bottom / 1px 50px transparent;
+    border: 1px solid #D076FF;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background 1s ease-out 0s;
+       border: 1px none;
+    border-radius: 4px 4px 4px 4px;
+    display: inline-block;
+    margin: 0 2px;
+    padding: 3px 13px;
+    font-size:11.1px;" href="javascript:parent.jQuery.fancybox.open({href : '/member/manage/registerRules',  type: 'iframe'});">สร้างผู้ใช้งาน</a>
                 </div>
 
                 <?php $this->endWidget(); ?>
