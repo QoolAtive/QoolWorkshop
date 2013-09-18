@@ -1,5 +1,5 @@
 <?php
-$this->renderPartail('_menu', array('select' => 3));
+$this->renderPartial('_menu', array('select' => 3));
 ?>
 <div class="content">
     <div class="tabcontents">
