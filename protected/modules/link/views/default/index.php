@@ -13,7 +13,8 @@
 
   
 .listpartner {
-    background: none repeat scroll 0 0 rgba(210, 17, 224, 0.8);
+    background-color: #7E1FAD;
+    /*background: none repeat scroll 0 0 rgba(210, 17, 224, 0.8);*/
     border: 1px solid #aaa;
     border-radius: 3px 3px 3px 3px;
     float: left;
