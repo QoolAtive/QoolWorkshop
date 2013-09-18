@@ -30,7 +30,6 @@
         <div id="view2" class="tabcontent">
             <div class="row-fluid">
                 <div class="_100">
-                    <h3> <img src="/img/iconform.png"> แบบลงทะเบียนนิติบุคคล</h3>
                     <h3> <img src="/img/iconform.png"><?php echo Yii::t('language', 'แบบลงทะเบียนนิติบุคคล'); ?></h3> 
                 </div>
                 <?php
