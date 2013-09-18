@@ -45,20 +45,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
                 ),
             ),
         ),
-        array(
-            'header' => Yii::t('language', 'ยกเลิก/เพิ่ม(ผู้ใช้)'),
-            'type' => 'raw',
-            'htmlOptions' => array('style' => 'text-align:center; h'),
-            'value' => '
-                    ChangeUser(
-                    "status",
-                    $data->status,
-                    array("0"=> Yii::t("language", "อยู่ในระบบ"), "1" => Yii::t("language","ยกเลิก")),
-                    $data->id
-                    );
-                ',
+//        array(
+//            'header' => Yii::t('language', 'ยกเลิก/เพิ่ม(ผู้ใช้)'),
+//            'type' => 'raw',
+//            'htmlOptions' => array('style' => 'text-align:center; h'),
+//            'value' => '
+//                    ChangeUser(
+//                    "status",
+//                    $data->status,
+//                    array("0"=> Yii::t("language", "อยู่ในระบบ"), "1" => Yii::t("language","ยกเลิก")),
+//                    $data->id
+//                    );
+//                ',
 //            'value' => '',
-        ),
+//        ),
 //        array(
 //            'class' => 'CButtonColumn',
 //            'header' => Yii::t('language', "ยกเลิก") . '/' . Yii::t('language', "เพิ่ม") . ' <p>(' . Yii::t('language', "ผู้ใช้") . ')</p>',

@@ -32,7 +32,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         ));
         ?>
         <div class="_50">
-            <table style="width: 60%">
+            <table style="width: 80%">
                 <tr><td style="width: 50%">ชื่อลูกค้า:</td><td style="width: 50%"><?php echo $order['customer_name']; ?></td></tr>
                 <tr><td>อีเมล์ลูกค้า:</td><td><?php echo $order['customer_email']; ?></td></tr>
                 <tr><td>เบอร์โทรลูกค้า:</td><td><?php echo $order['customer_tel']; ?></td></tr>
