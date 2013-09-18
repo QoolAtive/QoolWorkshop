@@ -11,7 +11,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         <h3 class="barH3">
             <span>
                 <i class="icon-shopping-cart"></i>
-                <?php echo Yii::t('language', 'ร้าน ') . $model->name_th; ?>
+                <?php echo Yii::t('language', 'ร้าน :n', array(':n' => $model->name_th)); ?>
                 <i class="icon-chevron-right"></i>
                 <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
             </span>
@@ -39,7 +39,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/order')); ?>">
                             <i class="icon-list"></i>
                             <?php
-                            echo Yii::t('language', 'รายการ') . Yii::t('language', 'สั่งซื้อ');
+                            echo Yii::t('language', 'รายการสั่งซื้อ');
                             ?>
                         </a>
                     </li>
@@ -53,7 +53,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/register')); ?>">
                             <i class="icon-edit"></i>
                             <?php
-                            echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียด');
+                            echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รายละเอียด');
                             ?>
                         </a>
                     </li>
@@ -81,7 +81,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy')); ?>">
                             <i class="icon-usd"></i>
                             <?php
-                            echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน');
+                            echo Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน');
                             ?>
                         </a>
                     </li>
