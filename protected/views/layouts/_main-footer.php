@@ -20,7 +20,7 @@
             </br>
 
             <?php
-            echo Yii::t('language', 'โทร. 0-2547-5959');
+            echo Yii::t('language', 'โทร. 0-2547-5959-60');
             echo ' ' . Yii::t('language', 'โทรสาร. 0-2547-5973');
             echo ' ' . Yii::t('language', 'สายด่วน 1570');
             ?>

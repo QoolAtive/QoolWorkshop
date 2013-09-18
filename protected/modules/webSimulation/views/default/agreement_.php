@@ -51,7 +51,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <div style="text-align: center; padding:10px 0;">
     <?php
-    echo CHtml::submitButton(Yii::t('language', 'ยอมรับ'), array(
+    echo CHtml::submitButton(Yii::t('language', 'ตกลง'), array(
         'class' => 'btn purple twhite',
         'name' => 'agree',
         'target' => '_parent'
