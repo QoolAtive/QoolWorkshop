@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     'Rights' => Rights::getBaseUrl(),
-    Rights::t('core', 'Assignments'),
+    Rights::t('core', 'มอบหมาย'),
 );
 ?>
 <h3 class="barH3">
@@ -11,12 +11,12 @@ $this->breadcrumbs = array(
                     <?php echo Yii::t('language', 'ตั้งค่าเว็บไซต์'); ?>
                 </a>
                 <i class="icon-chevron-right"></i> 
-                <?php echo Yii::t('language', 'Assignments'); ?>
+                <?php echo Yii::t('language', 'มอบหมาย'); ?>
             </span>
 </h3>
 <div id="assignments">
 
-    <h2><?php echo Rights::t('core', 'Assignments'); ?></h2>
+    <h2><?php echo Rights::t('core', 'มอบหมาย'); ?></h2>
 
     <p>
     <?php echo Rights::t('core', 'Here you can view which permissions has been assigned to each user.'); ?>
@@ -27,19 +27,19 @@ $this->breadcrumbs = array(
         'dataProvider' => $dataProvider,
         'filter' => $model_user,
         'template' => "{items}\n{pager}",
-        'emptyText' => Rights::t('core', 'No users found.'),
+        'emptyText' => Rights::t('core', 'ไม่พบข้อมูล'),
         'htmlOptions' => array('class' => 'grid-view assignment-table'),
         'columns' => array(
             array(
                 'name' => 'username',
-                'header' => Rights::t('core', 'Name'),
+                'header' => Rights::t('core', 'ชื่อ'),
                 'type' => 'raw',
                 'htmlOptions' => array('class' => 'name-column'),
                 'value' => '$data->getAssignmentNameLink()',
             ),
             array(
                 'name' => 'assignments',
-                'header' => Rights::t('core', 'Roles'),
+                'header' => Rights::t('core', 'หน้าที่'),
                 'type' => 'raw',
                 'htmlOptions' => array('class' => 'role-column'),
                 'value' => '$data->getAssignmentsText(CAuthItem::TYPE_ROLE)',
@@ -47,7 +47,7 @@ $this->breadcrumbs = array(
             ),
             array(
                 'name' => 'assignments',
-                'header' => Rights::t('core', 'Tasks'),
+                'header' => Rights::t('core', 'งาน'),
                 'type' => 'raw',
                 'htmlOptions' => array('class' => 'task-column'),
                 'value' => '$data->getAssignmentsText(CAuthItem::TYPE_TASK)',
@@ -55,7 +55,7 @@ $this->breadcrumbs = array(
             ),
             array(
                 'name' => 'assignments',
-                'header' => Rights::t('core', 'Operations'),
+                'header' => Rights::t('core', 'การดำเนินการ'),
                 'type' => 'raw',
                 'htmlOptions' => array('class' => 'operation-column'),
                 'value' => '$data->getAssignmentsText(CAuthItem::TYPE_OPERATION)',

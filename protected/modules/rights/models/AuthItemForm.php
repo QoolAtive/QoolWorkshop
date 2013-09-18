@@ -35,10 +35,10 @@ class AuthItemForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'name'			=> Rights::t('core', 'Name'),
-			'description'	=> Rights::t('core', 'Description'),
-			'bizRule'		=> Rights::t('core', 'Business rule'),
-			'data'			=> Rights::t('core', 'Data'),
+			'name'			=> Rights::t('core', 'ชื่อ'),
+			'description'	=> Rights::t('core', 'รายละเอียด'),
+			'bizRule'		=> Rights::t('core', 'กฎทางธุรกิจ'),
+			'data'			=> Rights::t('core', 'ข้อมูล'),
 		);
 	}
 

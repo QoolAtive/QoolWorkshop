@@ -78,9 +78,9 @@ class Rights
 	public static function getAuthItemOptions()
 	{
 		return array(
-			CAuthItem::TYPE_OPERATION=>Rights::t('core', 'Operation'),
-			CAuthItem::TYPE_TASK=>Rights::t('core', 'Task'),
-			CAuthItem::TYPE_ROLE=>Rights::t('core', 'Role'),
+			CAuthItem::TYPE_OPERATION=>Rights::t('core', 'การดำเนินการ'),
+			CAuthItem::TYPE_TASK=>Rights::t('core', 'งาน'),
+			CAuthItem::TYPE_ROLE=>Rights::t('core', 'หน้าที่'),
 		);
 	}
 
@@ -301,6 +301,7 @@ class Rights
 	*/
 	public static function t($category, $message, $params=array(), $source=null, $language=null)
 	{
-		return Yii::t('RightsModule.'.$category, $message, $params, $source, $language);
+//		return Yii::t('RightsModule.'.$category, $message, $params, $source, $language);
+                return Yii::t('language', $message, $params, $source, $language);
 	}
 }

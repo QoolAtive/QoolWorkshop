@@ -1,12 +1,12 @@
 <?php $this->breadcrumbs = array(
 	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Assignments')=>array('assignment/view'),
+	Rights::t('core', 'มอบหมาย')=>array('assignment/view'),
 	$model->getName(),
 ); ?>
 
 <div id="userAssignments">
 
-	<h2><?php echo Rights::t('core', 'Assignments for :username', array(
+	<h2><?php echo Rights::t('core', 'มอบหมายรหัสผู้ใช้ :username', array(
 		':username'=>$model->getName()
 	)); ?></h2>
 	
@@ -16,22 +16,23 @@
 			'dataProvider'=>$dataProvider,
 			'template'=>'{items}',
 			'hideHeader'=>true,
-			'emptyText'=>Rights::t('core', 'This user has not been assigned any items.'),
+			'emptyText'=>Rights::t('core', 'ผู้ใช้รายนี้ยังไม่ได้รับมอบหมายรายการใด'),
 			'htmlOptions'=>array('class'=>'grid-view user-assignment-table mini'),
 			'columns'=>array(
     			array(
     				'name'=>'name',
-    				'header'=>Rights::t('core', 'Name'),
+    				'header'=>Rights::t('core', 'ชื่อ'),
     				'type'=>'raw',
     				'htmlOptions'=>array('class'=>'name-column'),
     				'value'=>'$data->getNameText()',
     			),
     			array(
     				'name'=>'type',
-    				'header'=>Rights::t('core', 'Type'),
+    				'header'=>Rights::t('core', 'ประเภท'),
     				'type'=>'raw',
     				'htmlOptions'=>array('class'=>'type-column'),
     				'value'=>'$data->getTypeText()',
+                            $data->getTypeText()
     			),
     			array(
     				'header'=>'&nbsp;',
@@ -46,7 +47,7 @@
 
 	<div class="add-assignment span-11 last">
 
-		<h3><?php echo Rights::t('core', 'Assign item'); ?></h3>
+		<h3><?php echo Rights::t('core', 'มอบหมายรายการ'); ?></h3>
 
 		<?php if( $formModel!==null ): ?>
 

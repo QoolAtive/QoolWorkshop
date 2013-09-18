@@ -178,7 +178,7 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getRevokeAssignmentLink()
 	{
-		return CHtml::linkButton(Rights::t('core', 'Revoke'), array(
+		return CHtml::linkButton(Rights::t('core', 'คืนค่า'), array(
 			'submit'=>array('assignment/revoke', 'id'=>$this->userId, 'name'=>urlencode($this->owner->name)),
 			'class'=>'revoke-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
@@ -194,7 +194,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		$csrf = Rights::getDataCsrf();
 		
-		return CHtml::link(Rights::t('core', 'Revoke'), '#', array(
+		return CHtml::link(Rights::t('core', 'คืนค่า'), '#', array(
 			'onclick'=>"
 				jQuery.ajax({
 					type:'POST',
