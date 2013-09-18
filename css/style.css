@@ -1,4 +1,30 @@
 /* @group Component */
+.websimborder{
+    background: url('/img/websimbanner2.png') no-repeat scroll 0 0 transparent;
+    height: 470px;
+    padding-top: 100px;
+    width: 100%;  margin-left: -6px; 
+}
+.websimbox{
+    background: url('/img/websimboxbg.png'); height:540px; width:760px;background-repeat:no-repeat; margin:0 auto;
+}
+
+.websimbox h3{
+text-shadow: 2px 1px #000000; color:#fff; padding-top: 28px;
+}
+.websimbox > p{
+    text-shadow: 2px 1px #000000; color:#fff;
+}
+
+.websimbox > .100 input{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 30px;
+}
+
+.websimbox .websimdes{
+    margin: 50px 40px 20px; padding: 20px 0;
+}
 
 .imageright img{
     max-width: 220px;
