@@ -51,29 +51,6 @@ $this->breadcrumbs = array(
 
     </div>
 
-    <div class="add-assignment span-11 last">
-
-        <h3><?php echo Rights::t('core', 'มอบหมายรายการ'); ?></h3>
-
-        <?php if ($formModel !== null) { ?>
-
-            <div class="form">
-
-                <?php
-                $this->renderPartial('_form', array(
-                    'model' => $formModel,
-                    'itemnameSelectOptions' => $assignSelectOptions,
-                ));
-                ?>
-
-            </div>
-
-        <?php } else { ?>
-
-            <p class="info"><?php echo Rights::t('core', 'No assignments available to be assigned to this user.'); ?>
-
-            <?php } ?>
-
-    </div>
+    
 
 </div>
