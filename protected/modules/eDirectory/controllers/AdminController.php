@@ -311,13 +311,12 @@ class AdminController extends Controller {
 
         if ($date_motion->type == 'วัน') {
             $type = "DAY";
-        } else if ($model_motion->type == 'เดือน') {
+        } else if ($date_motion->type == 'เดือน') {
             $type = "MONTH";
-        } else if ($model_motion->type == 'ปี') {
+        } else if ($date_motion->type == 'ปี') {
             $type = "YEAR";
         }
 
-        $data_motion = '-' . $date_motion->amount . ' ' . $type. '  >> ' .$date_motion->type;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
