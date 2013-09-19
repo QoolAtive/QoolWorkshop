@@ -520,18 +520,69 @@ class ManageShopController extends Controller {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
             $item = new WebShopItem();
-            
+
             if (isset($_POST['WebShopItem'])) {
                 //save สินค้าเข้าร้านค้า
                 $item->attributes = $_POST['WebShopItem'];
                 $item->web_shop_id = $shop_id;
-                if($item->save()){
+
+                //for upload pic
+                if ($_POST['is_delete_pic_1']) {
+                    $item->pic_1 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_1');
+                }
+
+                if ($_POST['is_delete_pic_2']) {
+                    $item->pic_2 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_2');
+                }
+
+                if ($_POST['is_delete_pic_3']) {
+                    $item->pic_3 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_3');
+                }
+
+                if ($_POST['is_delete_pic_4']) {
+                    $item->pic_4 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_4');
+                }
+
+                if ($_POST['is_delete_pic_5']) {
+                    $item->pic_5 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_5');
+                }
+
+                if ($_POST['is_delete_pic_6']) {
+                    $item->pic_6 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_6');
+                }
+
+                if ($_POST['is_delete_pic_7']) {
+                    $item->pic_7 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_7');
+                }
+
+                if ($_POST['is_delete_pic_8']) {
+                    $item->pic_8 = NULL;
+                } else {
+                    $item = UploadPic::upload($item, 'pic_8');
+                }
+                //END for upload pic
+
+                if ($item->save()) {
                     //save สินค้าลงกล่อง
                     $item_box = new WebShopBoxItem();
                     $item_box->web_shop_box_id = $box_id;
                     $item_box->web_shop_id = $shop_id;
                     $item_box->web_shop_item_id = $item->getPrimaryKey();
-                    if($item_box->save()){
+                    if ($item_box->save()) {
                         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                         echo "<script language='javascript'>
                 alert('" . Yii::t('language', 'บันทึก') . Yii::t('language', 'ข้อมูล') . Yii::t('language', 'เรียบร้อย') . "');
