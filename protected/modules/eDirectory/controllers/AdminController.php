@@ -322,7 +322,6 @@ class AdminController extends Controller {
         $caltime = strtotime("-$data_motion", $strtime);
         $update_at = date('Y-m-d', $caltime);
 
-        echo " > " . $data_motion; exit;
 //        if ($update_at < date('Y-m-d')) {
 //            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
 //        }
