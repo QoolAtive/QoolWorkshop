@@ -16,7 +16,7 @@ class MemUser extends MemUserBase {
 //            array('password_confirm', 'CheckPassConfirm'),
             array('username', 'unique', 'message' => '{attribute}มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'), // รหัสผู้ใช้ห้ามซ้ำ
             array('password', 'length', 'min' => 6),
-            array('password', 'match', 'pattern' => '[^0-9A-Za-z]', 'message' => '{attribute}'. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรภาษาอังกฤษเท่านั้น')),
+            array('password', 'match', 'pattern' => '\'[0-9A-Za-z]\'', 'message' => '{attribute}'. Yii::t('language', 'จะต้องเป็นตัวเลขหรือตัวอักษรภาษาอังกฤษเท่านั้น')),
 //            array('password', 'compare', 'compareAttribute' => 'password_confirm', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
             array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('language', 'รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบ')),
             array('password_confirm, username, password, type, verifyCode', 'required'),
@@ -133,7 +133,7 @@ class MemUser extends MemUserBase {
 
     public function CheckUser() {
 //        if (!$this->getErrors()) {
-        $label_uusername = $this->attributeLabels('username');
+        $label_uusername = $this->getAttributeLabel('username');
         if (Tool::CheckPID($this->username) == false) { // เช็ค username ว่าเป็นรูปแบบของเลขบัตรประชาชนหรือไม่ และ มีอยู่ในระบบหรือเปล่า
             $this->addError('username', Yii::t('language', $label_uusername.'รูปแบบไม่ถูกต้อง กรุณาตรวจสอบ'));
         } else {
