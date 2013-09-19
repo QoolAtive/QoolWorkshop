@@ -73,7 +73,7 @@ class WebShopOrderDetail extends WebShopOrderDetailBase
 			'web_shop_order_id' => 'Web Shop Order',
 			'web_shop_id' => 'Web Shop',
 			'web_shop_item_id' => 'Web Shop Item',
-			'amount' => 'Amount',
+			'amount' => Yii::t('language', 'จำนวน (ชิ้น)'),
 		);
 	}
 

@@ -94,19 +94,19 @@ class WebShop extends WebShopBase {
         return array(
             'web_shop_id' => Yii::t('language', 'id'),
             'mem_user_id' => Yii::t('language', 'ชื่อสมาชิกเจ้าของร้าน'),
-            'name_th' => Yii::t('language', 'ชื่อร้าน') . Yii::t('language', 'ภาษาไทย'),
-            'name_en' => Yii::t('language', 'ชื่อร้าน') . Yii::t('language', 'ภาษาอังกฤษ'),
+            'name_th' => Yii::t('language', 'ชื่อร้าน') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อร้าน') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'web_shop_catagory_id' => Yii::t('language', 'หมวดหมู่ร้านค้า'),
-            'url' => Yii::t('language', 'ที่อยู่ลิ้งก์'),
-            'description_th' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . Yii::t('language', 'ภาษาไทย'),
-            'description_en' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . Yii::t('language', 'ภาษาอังกฤษ'),
-            'how_to_buy_th' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . Yii::t('language', 'ภาษาไทย'),
-            'how_to_buy_en' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . Yii::t('language', 'ภาษาอังกฤษ'),
-            'address_th' => Yii::t('language', 'ที่อยู่') . Yii::t('language', 'ภาษาไทย'),
-            'address_en' => Yii::t('language', 'ที่อยู่') . Yii::t('language', 'ภาษาอังกฤษ'),
+            'url' => Yii::t('language', 'ที่อยู่ลิงก์'),
+            'description_th' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'description_en' => Yii::t('language', 'รายละเอียดร้านค้าโดยย่อ') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'how_to_buy_th' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'how_to_buy_en' => Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'address_th' => Yii::t('language', 'ที่อยู่') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'address_en' => Yii::t('language', 'ที่อยู่') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
             'province_id' => Yii::t('language', 'จังหวัด'),
-            'prefecture_id' => Yii::t('language', 'อำเภอ / เขต'),
-            'district_id' => Yii::t('language', 'ตำบล / แขวง'),
+            'prefecture_id' => Yii::t('language', 'อำเภอ/ เขต'),
+            'district_id' => Yii::t('language', 'ตำบล/ แขวง'),
             'postcode' => Yii::t('language', 'รหัสไปรษณีย์'),
             'mobile' => Yii::t('language', 'โทรศัพท์มือถือ'),
             'tel' => Yii::t('language', 'โทรศัพท์'),
@@ -129,7 +129,7 @@ class WebShop extends WebShopBase {
         $criteria->compare('mem_person.ltname', $this->full_name, true, 'OR');
         $criteria->compare('mem_person.fename', $this->full_name, true, 'OR');
         $criteria->compare('mem_person.lename', $this->full_name, true, 'OR');
-        
+
         $criteria->compare('web_shop_id', $this->web_shop_id);
         $criteria->compare('mem_user_id', $this->mem_user_id);
         $criteria->compare('name_th', $this->name_th, true);

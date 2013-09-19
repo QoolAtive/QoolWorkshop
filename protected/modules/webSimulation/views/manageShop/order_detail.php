@@ -10,7 +10,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($order->web_shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -22,7 +22,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รายการสั่งซื้อ'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'รายละเอียด') . Yii::t('language', 'รายการสั่งซื้อ'); ?>
+                <?php echo Yii::t('language', 'รายละเอียด') . " " . Yii::t('language', 'รายการสั่งซื้อ'); ?>
             </span>
         </h3>
 
@@ -32,20 +32,36 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         ));
         ?>
         <div class="_50">
-            <table style="width: 80%">
-                <tr><td style="width: 50%">ชื่อลูกค้า:</td><td style="width: 50%"><?php echo $order['customer_name']; ?></td></tr>
-                <tr><td>อีเมล์ลูกค้า:</td><td><?php echo $order['customer_email']; ?></td></tr>
-                <tr><td>เบอร์โทรลูกค้า:</td><td><?php echo $order['customer_tel']; ?></td></tr>
+            <b><?php echo Yii::t('language', 'รายละเอียดลูกค้า') . ' : '; ?></b>
+            <table style="width: 60%">
+                <tr>
+                    <td style="width: 50%"><?php echo Yii::t('language', 'ชื่อ') . ' : '; ?></td>
+                    <td style="width: 50%"><?php echo $order['customer_name']; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><?php echo Yii::t('language', 'อีเมล์') . ' : '; ?></td>
+                    <td><?php echo $order['customer_email']; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo Yii::t('language', 'โทร.') . ' : '; ?></td>
+                    <td><?php echo $order['customer_tel']; ?></td>
+                </tr>
             </table>
         </div>
 
         <div class="_50 right">
             <div class="_25">
-                สถานะการส่ง
+                <?php Yii::t('language', 'สถานะการส่ง') . ' : '; ?>
             </div>
             <div class="_50">
                 <?php
-                echo CHtml::dropDownList('status', $order['status'], array('0' => 'ยังไม่ชำระเงิน', '1' => 'การชำระเงินสมบูรณ์แล้ว', '2' => 'กำลังดำเนินการ', '3' => 'จัดส่งเรียบร้อยแล้ว'));
+                echo CHtml::dropDownList('status', $order['status'], array(
+                    '0' => Yii::t('language', 'ยังไม่ชำระเงิน'),
+                    '1' => Yii::t('language', 'การชำระเงินสมบูรณ์แล้ว'),
+                    '2' => Yii::t('language', 'กำลังดำเนินการ'),
+                    '3' => Yii::t('language', 'จัดส่งเรียบร้อยแล้ว'),
+                ));
                 ?>
             </div>
             <div class="_25">
@@ -62,9 +78,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             'id' => 'order_detail-grid',
             'dataProvider' => $dataProvider,
 //            'filter' => $item,
+            'summaryText' => '',
             'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-            'pagerCssClass' => 'alignCenter',
-            'ajaxUpdate' => true,
             'columns' => array(
                 array(
                     'header' => Yii::t('language', 'ลำดับ'),
@@ -75,17 +90,23 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     'value' => 'WebShopItem::model()->findByPk($data->web_shop_item_id)->name_th',
                 ),
                 array(
-                    'header' => Yii::t('language', 'จำนวน(ชิ้น)'),
+//                    'header' => Yii::t('language', 'จำนวน(ชิ้น)'),
+                    'header' => Yii::t('language', 'จำนวน') . '<br />' . Yii::t('language', '(ชิ้น)'),
                     'name' => 'amount',
+                    'value' => 'number_format($data->amount, 0)',
+                    'htmlOptions' => array('style' => 'text-align: center;'),
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคาชิ้นละ(บาท)'),
-                    'name' => 'price',
+                    'header' => Yii::t('language', 'ราคา') . '<br />' . Yii::t('language', '(บาท/ชิ้น)'),
+                    'name' => 'price)',
+                    'value' => 'number_format($data->price, 2)',
+                    'htmlOptions' => array('style' => 'text-align: right;'),
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคารวม(บาท)'),
-                    'value' => '$data->price*$data->amount',
+                    'header' => Yii::t('language', 'ราคารวม') . '<br />' . Yii::t('language', '(บาท)'),
+                    'value' => 'number_format($data->price*$data->amount, 2)',
                     'type' => 'raw',
+                    'htmlOptions' => array('style' => 'text-align: right;'),
                 ),
             ), //end 'columns' => array(
             'template' => "{items}\n{pager}",
@@ -101,7 +122,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
         ?>
 
         <div class="txt-cen" style="font-weight: bold;">
-            ราคารวม <?php echo $order['price_all']; ?> บาท
+            <?php echo Yii::t('language', 'ราคารวม') . ' : ' . number_format($order['price_all'], 2) . ' ' . Yii::t('language', 'บาท'); ?> 
         </div>
 
         <?php $this->endWidget(); ?>
