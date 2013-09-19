@@ -41,7 +41,7 @@ class DefaultController extends Controller {
         }
 
         $cHot->order = 'sccv.count_company_view desc, t.id desc';
-        $cHot->distinct = $feild_name;
+        $cHot->distinct = 't.id';
 
         $dataHotshop = new CActiveDataProvider('SpCompany', array(
             'criteria' => $cHot,
@@ -53,7 +53,7 @@ class DefaultController extends Controller {
         $feild_name = LanguageHelper::changeDB('name', 'name_en');
         $c = new CDbCriteria;
         $c->order = $feild_name . ' ASC';
-        $c->distinct = $feild_name;
+        $c->distinct = 't.id';
 
 //        if (isset($_POST['type_id']) && $_POST['type_id'] != '0') {
 //            $type_id = $_POST['type_id'];
