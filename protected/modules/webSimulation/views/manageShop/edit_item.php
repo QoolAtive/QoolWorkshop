@@ -15,7 +15,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -96,7 +96,10 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         <div class="_25">
             <?php
             echo $form->labelEx($model, 'item_state');
-            echo $form->dropDownList($model, 'item_state', array('0' => 'สินค้าใหม่', '1' => 'สินค้ามือสอง'), array(
+            echo $form->dropDownList($model, 'item_state', array(
+                '0' => Yii::t('language', 'สินค้าใหม่'), 
+                '1' => Yii::t('language', 'สินค้ามือสอง')
+                ), array(
                 'class' => 'fieldrequire',
             ));
             echo $form->error($model, 'item_state');
@@ -146,7 +149,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </div>
 
         <div class="_100">
-            <h4>รูปภาพ</h4>
+            <h4><?php echo Yii::t('language', 'รูปภาพ'); ?></h4>
             <div class="_100">
                 <div class="_25">
                     <div class="item_pic" id="pic_1">
@@ -241,7 +244,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             </div>
         </div>
 
-        <div class="_100 textcenter" style="margin-top: 25px;">
+        <div class="_100 textcenter" style="margin-top: 5px;">
+            <hr>
             <?php
             echo $form->hiddenField($model, 'pic_1');
             echo $form->hiddenField($model, 'pic_2');
@@ -262,6 +266,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem/")) . '"'));
 //            }
             ?>
+            <hr>
         </div>
         <?php $this->endWidget(); ?>
     </div>
