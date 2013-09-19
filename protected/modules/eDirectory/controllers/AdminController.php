@@ -317,14 +317,13 @@ class AdminController extends Controller {
             $type = "YEAR";
         }
 
+        $data_motion = '-' . $date_motion->amount . ' ' . $type;
+//        echo "> > " . $data_motion; exit;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
         $update_at = date('Y-m-d', $caltime);
-
-//        if ($update_at < date('Y-m-d')) {
-//            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
-//        }
+        
         $criteria = new CDbCriteria;
         $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status, ct.status_block as status_block, ct.date_warning as date_warning';
         $criteria->join = '
