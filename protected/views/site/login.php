@@ -96,7 +96,7 @@
                 </div>
 
 
-                <div class="row _50">
+                <div class="row _50" style="white-space: nowrap;">
                     <?php echo CHtml::link(Yii::t('language', 'ลืมรหัสผ่าน'), array('/member/manage/forgotPassword'), array('target' => '')); ?>
                 </div>
 
