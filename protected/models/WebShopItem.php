@@ -100,7 +100,7 @@ class WebShopItem extends WebShopItemBase {
             'pic_7' => Yii::t('language', 'รูปภาพ') . ' 7',
             'pic_8' => Yii::t('language', 'รูปภาพ') . ' 8',
             'weight' => Yii::t('language', 'น้ำหนัก (กรัม)'),
-            'category' => Yii::t('language', 'ประเภทสินค้า'),
+            'category' => Yii::t('language', 'หมวดหมู่สินค้า'),
             'item_state' => Yii::t('language', 'สภาพสินค้า'),
         );
     }
