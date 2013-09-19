@@ -774,7 +774,7 @@ p.p1 ul , p1 ol{
 }
 
 .servicedata tr td:first-child {
-    width: 40px;
+    width: 50px;
 }
 .servicedata tr td:nth-child(2) {
     width: 20px;
