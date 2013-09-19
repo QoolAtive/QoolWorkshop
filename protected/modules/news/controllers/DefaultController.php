@@ -4,13 +4,13 @@ class DefaultController extends Controller {
 
     public function actionIndex($view = NULL) {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/news/regist_news_email.js');
-        $criteria = new CDbCriteria();
-        $count = News::model()->count($criteria);
-        $pages_news = new CPagination($count);
-        // results per page
-        $pages_news->pageSize = 15;
-        $pages_news->applyLimit($criteria);
-        $newslist = News::model()->findAll($criteria);
+//        $criteria = new CDbCriteria();
+//        $count = News::model()->count($criteria);
+//        $pages_news = new CPagination($count);
+//        // results per page
+//        $pages_news->pageSize = 15;
+//        $pages_news->applyLimit($criteria);
+//        $newslist = News::model()->findAll($criteria);
 
         $criteria = new CDbCriteria();
         $count = Training::model()->count($criteria);
@@ -21,7 +21,7 @@ class DefaultController extends Controller {
         $trainlist = Training::model()->findAll();
 
         $this->render('index', array(
-            'newslist' => $newslist,
+//            'newslist' => $newslist,
             'trainlist' => $trainlist,
             'pages_news' => $pages_news,
             'pages_train' => $pages_train,
