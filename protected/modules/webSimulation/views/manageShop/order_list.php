@@ -10,7 +10,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -27,57 +27,56 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             'id' => 'order-list-grid',
             'dataProvider' => $dataProvider,
             'filter' => $model,
+            'summaryText' => '',
             'emptyText' => Yii::t('language', 'ไม่พบข้อมูล'),
-            'pagerCssClass' => 'alignCenter',
-            'ajaxUpdate' => true,
             'columns' => array(
                 array(
                     'header' => Yii::t('language', 'ลำดับ'),
                     'value' => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)."."',
                 ),
                 array(
-                    'header' => Yii::t('language', 'วันที่สั่ง'),
+//                    'header' => Yii::t('language', 'วันที่สั่ง'),
                     'name' => 'order_at',
-                    'value' => 'Tool::ChangeDateTimeToShow($data->order_at)',
+                    'value' => 'Tool::ChangeDateTimeToShow($data->order_at, 2)',
                     'filter' => FALSE,
                 ),
                 array(
-                    'header' => Yii::t('language', 'ชื่อลูกค้า'),
+//                    'header' => Yii::t('language', 'ชื่อลูกค้า'),
                     'name' => 'customer_name',
                 ),
                 array(
-                    'header' => Yii::t('language', 'สถานะการส่ง'),
+//                    'header' => Yii::t('language', 'สถานะการส่ง'),
                     'name' => 'status',
                     'value' => 'getStatus($data->status)',
-                    'filter' => array('0' => 'ยังไม่ชำระเงิน', '1' => 'การชำระเงินสมบูรณ์แล้ว', '2' => 'กำลังดำเนินการ', '3' => 'จัดส่งเรียบร้อยแล้ว'),
+                    'filter' => array(
+                        '0' => Yii::t('language', 'ยังไม่ชำระเงิน'),
+                        '1' => Yii::t('language', 'การชำระเงินสมบูรณ์แล้ว'),
+                        '2' => Yii::t('language', 'กำลังดำเนินการ'),
+                        '3' => Yii::t('language', 'จัดส่งเรียบร้อยแล้ว'),
+                    ),
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคารวม (บาท)'),
+//                    'header' => Yii::t('language', 'ราคารวม (บาท)'),
                     'name' => 'price_all',
+                    'value' => 'number_format($data->price_all, 2)',
+                    'htmlOptions' => array('style' => 'text-align: right;'),
                     'filter' => FALSE,
                 ),
                 array(
                     'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "รายละเอียด"),
-                    'template' => '{view}',
+                    'header' => Yii::t('language', "เครื่องมือ"),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'template' => '{view}&nbsp;|&nbsp;{delete}',
                     'buttons' => array(
                         'view' => array(
                             'label' => Yii::t('language', 'ดูรายละเอียด'),
                             'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/orderDetail", "order_id"=> $data->web_shop_order_id))',
                         ),
-                    ),
-                ),
-                array(
-                    'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "ลบ"),
-                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
-                    'template' => '{delete}',
-                    'buttons' => array(
                         'delete' => array(
                             'label' => Yii::t('language', 'ลบ'),
                             'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/deleteOrder", "order_id"=> $data->web_shop_order_id))',
-                        ), //end 'delete' => array(
-                    ), //end 'buttons' => array(
+                        ),
+                    ),
                 ),
             ), //end 'columns' => array(
             'template' => "{items}\n{pager}",
@@ -95,15 +94,16 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 </div>
 
 <?php
+
 function getStatus($index) {
     switch ($index) {
-        case 1: $role = 'การชำระเงินสมบูรณ์แล้ว';
+        case 1: $role = Yii::t('language', 'การชำระเงินสมบูรณ์แล้ว');
             break;
-        case 2: $role = 'กำลังดำเนินการ';
+        case 2: $role = Yii::t('language', 'กำลังดำเนินการ');
             break;
-        case 3: $role = 'จัดส่งเรียบร้อยแล้ว';
+        case 3: $role = Yii::t('language', 'จัดส่งเรียบร้อยแล้ว');
             break;
-        default: $role = 'ยังไม่ชำระเงิน';
+        default: $role = Yii::t('language', 'ยังไม่ชำระเงิน');
             break;
     }
     return $role;
