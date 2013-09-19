@@ -317,7 +317,7 @@ class AdminController extends Controller {
             $type = "YEAR";
         }
 
-        $data_motion = '-' . $date_motion->amount . ' ' . $type;
+        $data_motion = '-' . $date_motion->amount . ' ' . $type. '  >> ' .$date_motion->type;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
