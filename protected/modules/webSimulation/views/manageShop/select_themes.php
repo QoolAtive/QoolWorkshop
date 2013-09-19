@@ -32,7 +32,7 @@ if ($model->web_shop_id == NULL) {
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                         <?php
                         $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                        echo Yii::t('language', 'ร้าน ') . $shop_name;
+                        echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                         ?>
                     </a>
                     <i class="icon-chevron-right"></i>
@@ -41,10 +41,10 @@ if ($model->web_shop_id == NULL) {
                     </a>
                     <i class="icon-chevron-right"></i>
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+                        <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบ') . Yii::t('language', 'ร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'เลือกธีมร้านค้า'); ?>
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ธีม'); ?>
                 </span>
             </h3>
         <?php } ?>
@@ -55,7 +55,7 @@ if ($model->web_shop_id == NULL) {
 //        echo $form->errorSummary($model);
         ?>
         <!-- THEME -->
-        <h3 class="headfont _100 bootstro" data-bootstro-step="0" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="Theme ส่วนนี้จะเป็นการเลือกธีมให้ร้านค้าของคุณ เลือกให้เหมาะกับสินค้าของคุณ จะช่วยเพิ่มความสวยงามความน่าเชื่อถือและยอดขายของร้านคุณ  " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> Themes </h3>
+        <h3 class="headfont _100 bootstro" data-bootstro-step="0" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="Theme ส่วนนี้จะเป็นการเลือกธีมให้ร้านค้าของคุณ เลือกให้เหมาะกับสินค้าของคุณ จะช่วยเพิ่มความสวยงามความน่าเชื่อถือและยอดขายของร้านคุณ  " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> <?php echo Yii::t('language', 'ธีม'); ?></h3>
         <ul class="clearfix bootstro" id="template" data-bootstro-step="3" data-bootstro-placement="right" data-bootstro-width="400px" data-bootstro-content="มีธีมกว่า 10 แบบให้เลือกใช้งาน" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
             <li>
                 <div class="bootstro"   data-bootstro-step="1" data-bootstro-placement="top" data-bootstro-width="400px" data-bootstro-content="คุณสามารถเลือกธีมร้านค้าของคุณโดยการคลิ๊กทีธีมนั้น " data-bootstro-title="แนะนำการใช้งาน" data-original-title=""> 
@@ -70,7 +70,7 @@ if ($model->web_shop_id == NULL) {
                 </div>
                 <div id="gallery" class="bootstro"   data-bootstro-step="2" data-bootstro-placement="bottom" data-bootstro-width="400px" data-bootstro-content="คุณสามารถคลิ๊กเพื่อดูตัวอย่างก่อนได้" data-bootstro-title="แนะนำการใช้งาน" data-original-title="">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp001.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp001.jpg");
                     ?>
                 </div>
             </li>
@@ -85,7 +85,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp002.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp002.jpg");
                     ?>
                 </div>
             </li>
@@ -100,7 +100,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp003.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp003.jpg");
                     ?>
                 </div>
             </li>
@@ -115,7 +115,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp004.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp004.jpg");
                     ?>
                 </div>
             </li>
@@ -130,7 +130,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp005.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp005.jpg");
                     ?>
                 </div>
             </li>
@@ -145,7 +145,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp006.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp006.jpg");
                     ?>
                 </div>
             </li>
@@ -160,7 +160,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp007.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp007.jpg");
                     ?>
                 </div>
             </li>
@@ -175,7 +175,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp008.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp008.jpg");
                     ?>
                 </div>
             </li>
@@ -190,7 +190,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp009.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp009.jpg");
                     ?>
                 </div>
             </li>
@@ -205,7 +205,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp010.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp010.jpg");
                     ?>
                 </div>
             </li>
@@ -220,7 +220,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp011.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp011.jpg");
                     ?>
                 </div>
             </li>
@@ -235,7 +235,7 @@ if ($model->web_shop_id == NULL) {
                 ?>
                 <div id="gallery">
                     <?php
-                    echo CHtml::link('preview', "/img/layout/tp012.jpg");
+                    echo CHtml::link(Yii::t('language', 'แสดงตัวอย่าง'), "/img/layout/tp012.jpg");
                     ?>
                 </div>
             </li>
