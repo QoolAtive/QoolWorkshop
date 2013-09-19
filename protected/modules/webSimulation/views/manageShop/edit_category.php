@@ -22,7 +22,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -35,8 +35,10 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 </a>
                 <i class="icon-chevron-right"></i>
                 <?php
-                $category_name = WebShopCategory::model()->findByPk($category_id)->name_th;
-                echo $category_name;
+                $model_category = WebShopCategory::model()->findByPk($category_id);
+                $category_name_th = $model_category->name_th;
+                $category_name_en = $model_category->name_en;
+                echo $category_name_th . ' (' . $category_name_en . ')';
                 ?>
             </span>
         </h3>
@@ -49,7 +51,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         ?>
         <div class="_50">
             <div class="txt-cen">
-                สินค้าทั้งหมด
+                <?php echo Yii::t('language', 'สินค้าทั้งหมด'); ?>
             </div>
             <ul id="all_item" class="connectedSortable">
                 <?php
@@ -97,8 +99,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </div>
 
         <div class="_50">
-            <div class="txt-cen">
-                สินค้าที่เลือก
+            <div class="txt-cen">                
+                <?php echo Yii::t('language', 'สินค้าที่เลือก'); ?>
             </div>
             <ul id="select_item" class="connectedSortable">
                 <?php
@@ -139,7 +141,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             </ul>
         </div>
 
-        <div class="_100 textcenter" style="margin-top: 25px;">
+        <div class="_100 textcenter" style="margin-top: 5px;">
+            <hr>
             <?php
             echo CHtml::hiddenField('select', '', array(
                 'id' => 'select',
@@ -150,6 +153,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageCategory")) . '"'));
             ?>
+            <hr>
         </div>
 
         <?php $this->endWidget(); ?>
