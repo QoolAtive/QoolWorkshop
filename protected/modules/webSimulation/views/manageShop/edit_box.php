@@ -13,7 +13,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -25,7 +25,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'แก้ไขสินค้า'); ?>
+                <?php echo Yii::t('language', 'แก้ไข'). Yii::t('language', 'สินค้า'); ?>
             </span>
         </h3>
 
@@ -127,7 +127,8 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             </ul>
         </div>
 
-        <div class="_100 textcenter" style="margin-top: 25px;">
+        <div class="_100 textcenter" style="margin-top: 5px;">
+            <hr>
             <?php
             echo CHtml::hiddenField('select', '', array(
                 'id' => 'select',
@@ -138,6 +139,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
             ?>
+            <hr>
         </div>
 
         <?php $this->endWidget(); ?>
