@@ -103,13 +103,9 @@
                     </a>
                 </h1>
                 <!-- quicksearch -->
-                <div id="first_search">
-                    <?php $this->widget('application.extensions.search_websim.GoogleSearch'); ?>
-                    <!--                                                    <form name="quicksearch" id="quicksearch" action="/webSimulation/shop/search" method="get">
-                                                                            <input name="keyword" id="txtSearch" type="text" />
-                                                                            <input id="btnTopsearch" onclick="javascript:document.quicksearch.submit();" type="button" />
-                                                                        </form>-->
-                </div>
+<!--                <div id="first_search">
+                    <?php //$this->widget('application.extensions.search_websim.GoogleSearch'); ?>
+                </div>-->
             </div>
 
             <!--Navigator-->
