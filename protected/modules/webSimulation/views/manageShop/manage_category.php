@@ -47,7 +47,10 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                         <p class="headsort"><?php echo $category['name_th'].' ('.$category['name_en'].')'; ?></p>
                         <p class="tool">
                             <?php
-                            echo CHtml::link(Yii::t('language', 'แก้ไข').Yii::t('language', 'สินค้า'), CHtml::normalizeUrl(array(
+                            echo CHtml::link(Yii::t('language', 'แก้ไข'). Yii::t('language', 'ชื่อ') . Yii::t('language', 'หมวดหมู่สินค้า'), CHtml::normalizeUrl(array(
+                                '/webSimulation/manageShop/addCategory', 'category_id' => $category['web_shop_category_id'])));
+                            echo '&nbsp;|&nbsp;';
+                            echo CHtml::link(Yii::t('language', 'จัดการ').Yii::t('language', 'สินค้า'), CHtml::normalizeUrl(array(
                                 '/webSimulation/manageShop/editCategory', 'category_id' => $category['web_shop_category_id'])));
                             ?>
                             &nbsp;|&nbsp;

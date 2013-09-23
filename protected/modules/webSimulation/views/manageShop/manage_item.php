@@ -26,6 +26,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <?php
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้า'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editItem")) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
             ?>
             <hr>
         </div>

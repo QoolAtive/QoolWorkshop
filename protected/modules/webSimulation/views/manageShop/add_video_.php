@@ -40,7 +40,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 echo $form->textField($model, 'name_th', array(
                     'class' => 'fieldrequire',
 //    'style' => 'width: 98%; margin-bottom: 10px;',
-                    'placeholder' => $form->labelEx($model, 'name_th')
+//                    'placeholder' => Yii::t('language', 'ชื่อกล่องภาษาไทย'),
                 ));
                 echo $form->error($model, 'name_th');
                 ?>
@@ -51,7 +51,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 echo $form->textField($model, 'name_en', array(
                     'class' => 'fieldrequire',
 //    'style' => 'width: 98%; margin-bottom: 10px;',
-                    'placeholder' => $form->labelEx($model, 'name_en')
+//                    'placeholder' => Yii::t('language', 'ชื่อกล่องภาษาอังกฤษ'),
                 ));
                 echo $form->error($model, 'name_en');
                 ?>

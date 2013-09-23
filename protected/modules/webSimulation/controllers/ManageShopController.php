@@ -586,11 +586,11 @@ class ManageShopController extends Controller {
                         echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> ';
                         echo "<script language='javascript'>
                 alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-                window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/manageBox')) . "';</script>";
+                window.top.location.href = '" . CHtml::normalizeUrl(array('/webSimulation/manageShop/editBox', 'box_id' => $box_id)) . "';</script>";
                     }
                 }
             }
-            $this->render('add_box_item', array('item' => $item, 'shop_id' => $shop_id));
+            $this->render('add_box_item', array('item' => $item, 'shop_id' => $shop_id, 'box_id' => $box_id));
         } else {
             $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
         }

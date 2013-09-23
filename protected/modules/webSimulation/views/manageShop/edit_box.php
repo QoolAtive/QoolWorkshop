@@ -25,13 +25,24 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'แก้ไข'). Yii::t('language', 'สินค้า'); ?>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าในกล่อง'); ?>
             </span>
         </h3>
 
+        <div class="txt-cen clearfix">
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้าใหม่ลงในกล่อง'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array(
+                        '/webSimulation/manageShop/addBoxItem', 'box_id' => $box_id)) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'รายการสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
+            ?>
+            <hr />
+        </div>
+
         <?php
         $form = $this->beginWidget('CActiveForm', array(
-            'id' => 'sort_box-form',
+            'id' => 'select_box-form',
         ));
 //        echo $form->errorSummary($model);
         ?>
@@ -47,7 +58,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     NOT EXISTS (SELECT NULL
                     FROM web_shop_box_item box
                     WHERE t.web_shop_item_id = box.web_shop_item_id
-                    and web_shop_box_id = ' . $box_id . ')'
+                    and box.web_shop_box_id = ' . $box_id . ')'
                 ));
                 foreach ($items as $item) {
                     ?>

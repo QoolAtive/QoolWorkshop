@@ -34,9 +34,9 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/addVideo")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดลำดับกล่อง'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/sortBox")) . '"'));
-            echo '&nbsp;|&nbsp;';
-            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'รายการสินค้า'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
+//            echo '&nbsp;|&nbsp;';
+//            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'รายการสินค้า'), array(
+//                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageItem")) . '"'));
             ?>
             <!--        fancybox    
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/addBox')); ?>"> เพิ่มกล่องแสดงสินค้า </a>
@@ -62,10 +62,10 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <p class="tool">
                             <?php
                             if ($box['type'] == '1') {
-                                echo CHtml::link(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้าในกล่อง'), CHtml::normalizeUrl(array(
-                                            '/webSimulation/manageShop/addBoxItem', 'box_id' => $box['web_shop_box_id'])));
+                                echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'ชื่อ') . Yii::t('language', 'กล่องแสดงสินค้า'), CHtml::normalizeUrl(array(
+                                            '/webSimulation/manageShop/addBox', 'box_id' => $box['web_shop_box_id'])));
                                 echo '&nbsp;|&nbsp;';
-                                echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'สินค้าในกล่อง'), CHtml::normalizeUrl(array(
+                                echo CHtml::link(Yii::t('language', 'จัดการ') . Yii::t('language', 'สินค้าในกล่อง'), CHtml::normalizeUrl(array(
                                             '/webSimulation/manageShop/editBox', 'box_id' => $box['web_shop_box_id'])));
                             } else if ($box['type'] == '2') {
                                 echo CHtml::link(Yii::t('language', 'แก้ไข') . Yii::t('language', 'โค้ด HTML'), CHtml::normalizeUrl(array(

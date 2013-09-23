@@ -22,7 +22,13 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'หมวดหมู่สินค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'เพิ่ม') . Yii::t('language', 'หมวดหมู่สินค้า'); ?>
+                <?php 
+                if ($model->web_shop_category_id == NULL) {
+                    echo Yii::t('language', 'เพิ่ม');
+                } else {
+                    echo Yii::t('language', 'แก้ไข');
+                }
+                echo Yii::t('language', 'หมวดหมู่สินค้า'); ?>
             </span>
         </h3>
 
@@ -57,11 +63,13 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
         </div>
 
         <div class="_100 textcenter" style="margin-top: 25px;">
+            <hr>
             <?php
             echo CHtml::submitButton(Yii::t('language', 'บันทึก'));
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageCategory")) . '"'));
             ?>
+            <hr>
         </div>
     </div>
 </div>
