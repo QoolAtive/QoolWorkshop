@@ -1,9 +1,18 @@
 <script type="text/javascript" >
     $(document).ready(function() {
+        $(".person").hide();
         $("#MemPerson_province").change(function() {
 //            if ($("#MemPerson_province option:selected").val() == "") {
             $("#MemPerson_district option:eq(0)").attr("selected", "selected");
 //            }
+        });
+        $("[id^=MemPerson_mem_type_]").change(function(){
+            if($("#MemPerson_mem_type_0").is(':checked')){
+                $(".person").hide();
+            }
+            if($("#MemPerson_mem_type_1").is(':checked')){
+                $(".person").show();
+            }
         });
     });
 </script>
@@ -378,49 +387,50 @@
 
             <div class="_100"> <!-- clear ไม่ให้ขึ้นไปบรรทัดบน --> </div> 
 
+            <div class="person">
+                <div class="_25">
+                    <?php echo $form->labelEx($model, 'product_name'); ?> 
 
-            <div class="_25">
-                <?php echo $form->labelEx($model, 'product_name'); ?> 
+                </div>
+                <div class="_75">
+                    <?php
+                    echo $form->textField($model, 'product_name', array(
+                        'id' => 'trurakitname',
+                        // 'class' => 'haft',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('product_name')
+                    ));
+                    echo $form->error($model, 'product_name');
+                    ?>
+                </div>
+                <div class="_25">
+                    <?php echo $form->labelEx($model, 'product_name_en'); ?>
 
-            </div>
-            <div class="_75">
-                <?php
-                echo $form->textField($model, 'product_name', array(
-                    'id' => 'trurakitname',
-                    // 'class' => 'haft',
-                    'placeholder' => MemPerson::model()->getAttributeLabel('product_name')
-                ));
-                echo $form->error($model, 'product_name');
-                ?>
-            </div>
-            <div class="_25">
-                <?php echo $form->labelEx($model, 'product_name_en'); ?>
+                </div>
+                <div class="_75">
+                    <?php
+                    echo $form->textField($model, 'product_name_en', array(
+                        'id' => 'trurakitname',
+                        // 'class' => 'haft',
+                        'placeholder' => MemPerson::model()->getAttributeLabel('product_name_en')
+                    ));
+                    echo $form->error($model, 'product_name_en');
+                    ?>
+                </div>
 
-            </div>
-            <div class="_75">
-                <?php
-                echo $form->textField($model, 'product_name_en', array(
-                    'id' => 'trurakitname',
-                    // 'class' => 'haft',
-                    'placeholder' => MemPerson::model()->getAttributeLabel('product_name_en')
-                ));
-                echo $form->error($model, 'product_name_en');
-                ?>
-            </div>
-
-            <div class="_25">
-                <!-- <span class="haft"> -->
-                <?php echo $form->labelEx($model, 'business_type'); ?>
-                <!-- </span> -->
-            </div>
-            <div class="_75">
-                <?php
-                echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
-                    'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
-                        // 'class' => 'haft'
-                ));
-                echo $form->error($model, 'business_type');
-                ?>
+                <div class="_25">
+                    <!-- <span class="haft"> -->
+                    <?php echo $form->labelEx($model, 'business_type'); ?>
+                    <!-- </span> -->
+                </div>
+                <div class="_75">
+                    <?php
+                    echo $form->dropDownList($model, 'business_type', CompanyTypeBusiness::model()->getListData(), array(
+                        'empty' => ' - ' . Yii::t('language', 'เลือก') . ' - ',
+                            // 'class' => 'haft'
+                    ));
+                    echo $form->error($model, 'business_type');
+                    ?>
+                </div>
             </div>
             <div class="_100"></div> 
             <?php if (CCaptcha::checkRequirements()) { ?>
