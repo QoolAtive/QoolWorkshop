@@ -71,11 +71,11 @@ class DefaultController extends Controller {
             }
             //END for upload pic
 
-            if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
-                $model->link = 'http://' . $model->link;
+            if ($model->validate()) {
+                if (!preg_match("~^(?:f|ht)tps?://~i", $model->link)) {
+                    $model->link = 'http://' . $model->link;
+                }
             }
-
-            $model->validate();
             if ($model->getErrors() == null) {
                 if ($model->save()) {
                     echo "<script language='javascript'>

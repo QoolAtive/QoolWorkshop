@@ -34,7 +34,7 @@
                         'enctype' => 'multipart/form-data',
                     ),
                 ));
-                echo $form->errorSummary($model);
+//                echo $form->errorSummary($model);
                 ?>
 
 
@@ -56,7 +56,7 @@
                         'duplicate' => Yii::t('language', 'เลือกไว้แล้ว'),
                             )
                     );
-//                    echo Yii::t('language', $form->error($model, 'img_path'));
+                    echo Yii::t('language', $form->error($model, 'img_path'));
                     ?>
                     <div>
                         <?php if ($model->img_path != NULL) {
@@ -76,7 +76,7 @@
                             <?php echo '<b>' . Yii::t('language', 'ไฟล์แนบ') . '</b> ' . Yii::t('language', 'ได้แก่'); ?> .jpg, .jpeg, .png, .gif
                             <?php echo '(' . Yii::t('language', 'ขนาดไม่เกิน') . ' 10 MB) ' . Yii::t('language', 'ชื่อไฟล์เป็นภาษาอังกฤษเท่านั้น'); ?>
                         </div>
-                        <?php //echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
+                        <?php // echo Yii::t('language', $form->error($model_files, 'file_name'));   ?>
                     </div>
                 </div>
 
@@ -85,14 +85,14 @@
                     <?php
                     echo $form->labelEx($model, 'name_th');
                     echo $form->textField($model, 'name_th', array('class' => 'fieldrequire', 'size' => '90'));
-//                    echo Yii::t('language', $form->error($model, 'name_th'));
+                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'name_en');
                     echo $form->textField($model, 'name_en', array('class' => 'fieldrequire', 'size' => '90'));
-//                    echo Yii::t('language', $form->error($model, 'name_th'));
+                    echo Yii::t('language', $form->error($model, 'name_th'));
                     ?>
                 </div>
                 <div class="rowContact _50 clearfix">
@@ -103,14 +103,14 @@
                         'class' => 'fieldrequire',
                         'empty' => Yii::t('language', 'กรุณาเลือกกลุ่ม')
                     ));
-//                    echo Yii::t('language', $form->error($model, 'group_id'));
+                    echo Yii::t('language', $form->error($model, 'group_id'));
                     ?>
                 </div>
                 <div class="rowContact _50 clearfix">
                     <?php
                     echo $form->labelEx($model, 'link');
                     echo $form->textField($model, 'link', array('class' => 'fieldrequire', 'size' => '255'));
-//                    echo Yii::t('language', $form->error($model, 'link'));
+                    echo Yii::t('language', $form->error($model, 'link'));
                     ?>
                 </div>
 
