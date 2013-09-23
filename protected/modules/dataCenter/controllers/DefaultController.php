@@ -181,28 +181,29 @@ class DefaultController extends Controller {
             'model' => $model,
         ));
     }
-    
-    public function actionUpDateNo(){
-        if(isset($_POST['type_id'])){
+
+    public function actionUpDateNo() {
+        if (isset($_POST['type_id'])) {
             $model = CompanySubTypeBusiness::model()->find('company_sub_type_business_id = :id', array(':id' => $_POST['type_id']));
             $model->no = $_POST['value'];
-            if(!$model->save()){
+            if (!$model->save()) {
                 echo '<pre>';
-                print_r($model->getErrors()); 
+                print_r($model->getErrors());
             }
         }
     }
-    public function actionUpdateNoMain(){
-        if(isset($_POST['type_id'])){
+
+    public function actionUpdateNoMain() {
+        if (isset($_POST['type_id'])) {
             $model = CompanyTypeBusiness::model()->find('id = :id', array(':id' => $_POST['type_id']));
             $model->no = $_POST['value'];
-            if(!$model->save()){
+            if (!$model->save()) {
                 echo '<pre>';
-                print_r($model->getErrors()); 
+                print_r($model->getErrors());
             }
         }
-    } 
-    
+    }
+
     public function actionCompanySubTypeBusinessDel($company_sub_type_business_id = null) {
         $count1 = CompanyType::model()->count('company_sub_type_id = :id', array(
             ':id' => $company_sub_type_business_id,
@@ -628,37 +629,47 @@ class DefaultController extends Controller {
             'dataProviderSub' => $modelSiteMapSub->getData(),
         ));
     }
-    
+
     public function actionUpdateSiteMapMain() {
-            $model = SiteMap::model()->findByPk($_POST['id']);
-            $model->sort = $_POST['value'];
-            if($model->save()){
-                echo "SAVE";
-            }else{
-                echo "<pre>";
-                print_r($model->getErrors());
-            }
+        $model = SiteMap::model()->findByPk($_POST['id']);
+        $model->sort = $_POST['value'];
+        if ($model->save()) {
+            echo "SAVE";
+        } else {
+            echo "<pre>";
+            print_r($model->getErrors());
+        }
     }
+
     public function actionUpdateSiteMapSub() {
-            $model = SiteMapSub::model()->findByPk($_POST['id']);
-            $model->sort = $_POST['value'];
-            if($model->save()){
-                echo "SAVE";
-            }else{
-                echo "<pre>";
-                print_r($model->getErrors());
-            }
+        $model = SiteMapSub::model()->findByPk($_POST['id']);
+        $model->sort = $_POST['value'];
+        if ($model->save()) {
+            echo "SAVE";
+        } else {
+            echo "<pre>";
+            print_r($model->getErrors());
+        }
     }
 
     public function actionSiteMapInsert($site_map_id = null) {
         if ($site_map_id == null) {
             $model = new SiteMap();
+            $count = SiteMap::model()->count();
+            $count = $count + 1;
+            $insert_new = true;
         } else {
             $model = SiteMap::model()->find('site_map_id = :site_map_id', array(':site_map_id' => $site_map_id));
+            $count = SiteMap::model()->count();
+            $count = $count + 1;
+            $insert_new = false;
         }
 
         if (isset($_POST['SiteMap'])) {
             $model->attributes = $_POST['SiteMap'];
+            if ($insert_new) {
+                $model->sort = $count;
+            }
 
             $model->validate();
             if ($model->getErrors() == null) {
@@ -703,12 +714,19 @@ class DefaultController extends Controller {
     public function actionSiteMapSubInsert($site_map_sub_id = null) {
         if ($site_map_sub_id == null) {
             $model = new SiteMapSub();
+            $insert_new = true;
         } else {
             $model = SiteMapSub::model()->find('site_map_sub_id = :site_map_sub_id', array(':site_map_sub_id' => $site_map_sub_id));
+            $insert_new = false;
         }
 
         if (isset($_POST['SiteMapSub'])) {
             $model->attributes = $_POST['SiteMapSub'];
+
+            if ($insert_new) {
+                $count = SiteMapSub::model()->count('main_id = :main_id', array(':main_id' => $model->main_id));
+                $model->sort = $count + 1;
+            }
 
             $model->validate();
             if ($model->getErrors() == null) {

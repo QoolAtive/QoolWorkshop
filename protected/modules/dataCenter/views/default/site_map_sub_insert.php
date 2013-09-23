@@ -61,13 +61,6 @@ if ($model->site_map_sub_id != NULL) {
                 echo $form->error($model, 'link')
                 ?>
             </div>
-            <div class="_50">
-                <?php
-                echo $form->labelEx($model, 'sort');
-                echo $form->textField($model, 'sort');
-                echo $form->error($model, 'sort')
-                ?>
-            </div>
             <div class="_100" style="text-align: center;">
                 <hr>
                 <?php
