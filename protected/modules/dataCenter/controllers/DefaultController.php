@@ -628,6 +628,27 @@ class DefaultController extends Controller {
             'dataProviderSub' => $modelSiteMapSub->getData(),
         ));
     }
+    
+    public function actionUpdateSiteMapMain() {
+            $model = SiteMap::model()->findByPk($_POST['id']);
+            $model->sort = $_POST['value'];
+            if($model->save()){
+                echo "SAVE";
+            }else{
+                echo "<pre>";
+                print_r($model->getErrors());
+            }
+    }
+    public function actionUpdateSiteMapSub() {
+            $model = SiteMapSub::model()->findByPk($_POST['id']);
+            $model->sort = $_POST['value'];
+            if($model->save()){
+                echo "SAVE";
+            }else{
+                echo "<pre>";
+                print_r($model->getErrors());
+            }
+    }
 
     public function actionSiteMapInsert($site_map_id = null) {
         if ($site_map_id == null) {

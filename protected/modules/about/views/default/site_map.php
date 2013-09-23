@@ -18,7 +18,8 @@ $this->renderPartial('_menu', array('select' => 3));
                 </p>
                 <?php
                 $cSub = new CDbCriteria();
-                $cSub->condition = 'main_id = :main_id and sub_id is null';
+//                $cSub->condition = 'main_id = :main_id and sub_id is null';
+                $cSub->condition = 'main_id = :main_id';
                 $cSub->params = array(':main_id' => $main->site_map_id);
                 $cSub->order = 'sort asc, id_code asc';
                 $modelSiteMapSub = SiteMapSub::model()->findAll($cSub);

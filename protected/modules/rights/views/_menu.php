@@ -28,7 +28,6 @@
 //			'url'=>array('authItem/operations'),
 //			'itemOptions'=>array('class'=>'item-operations'),
 //		),
-
 		array(
 			'label'=>Rights::t('core', 'ย้อนกลับ'),//
 			'url'=>array('/member/manage/profile'),
