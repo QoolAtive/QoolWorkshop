@@ -259,7 +259,7 @@ Class ManageController extends Controller {
             }
         }
 
-        if (isset($_POST['SpCompany']) && isset($_POST['SpTypeCom'])) {
+        if (isset($_POST['SpCompany'])) {
             $model->attributes = $_POST['SpCompany'];
             $model_type->attributes = $_POST['SpTypeCom'];
 
@@ -381,14 +381,14 @@ Class ManageController extends Controller {
                         }
                     }
                 } else {
-                    echo "<pre>";
-                    print_r(array($model->getErrors(), $model_type->getErrors()));
-                    echo "</pre>";
+//                    echo "<pre>";
+//                    print_r(array($model->getErrors(), $model_type->getErrors()));
+//                    echo "</pre>";
                 }
             } else {
-                echo "<pre>";
-                print_r(array($model->getErrors(), $model_type->getErrors()));
-                echo "</pre>";
+//                echo "<pre>";
+//                print_r(array($model->getErrors(), $model_type->getErrors()));
+//                echo "</pre>";
             }
         }
 

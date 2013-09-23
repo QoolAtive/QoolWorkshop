@@ -74,7 +74,7 @@ $this->renderPartial('_side_bar', array(
             echo $form->error($upload, 'file');
             ?>
         </div>
-        <?php if (isset($modelFile)) { ?>
+        <?php if (!empty($modelFile->path)) { ?>
             <div class="_100" id="file_">
                 <?php
                 echo CHtml::link($modelFile->path, array('/learning/default/readingfile/', 'id' => $modelFile->id));

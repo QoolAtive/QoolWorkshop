@@ -323,7 +323,7 @@ class AdminController extends Controller {
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
         $update_at = date('Y-m-d', $caltime);
-        
+
         $criteria = new CDbCriteria;
         $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status, ct.status_block as status_block, ct.date_warning as date_warning';
         $criteria->join = '
@@ -469,7 +469,7 @@ class AdminController extends Controller {
             }
         }
 
-        if (isset($_POST['Company']) && isset($_POST['CompanyType']) && isset($_POST['DelivSer'])) {
+        if (isset($_POST['Company'])) {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
             $model_delivery->attributes = $_POST['DelivSer'];
@@ -692,6 +692,9 @@ class AdminController extends Controller {
 //            echo "<pre>";
 //            print_r(array($model->getErrors(), array($model_type->getErrors())));
 //            echo "</pre>";
+//            $model->validate();
+//            $model_type->validate();
+//            $model_delivery->validate();
         }
 
         $this->render('_insert_company', array('model' => $model,

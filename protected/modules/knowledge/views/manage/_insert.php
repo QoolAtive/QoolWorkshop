@@ -71,7 +71,7 @@
         <div class="_100">
             <div class="ckleft">
                 <?php
-                echo $form->label($model, 'guide_status');
+                echo $form->labelEx($model, 'guide_status');
                 ?>
             </div>
             <div class="ckright">
@@ -83,7 +83,7 @@
         <div class="_100">
             <div class="ckleft">
                 <?php
-                echo $form->label($model, 'type_id');
+                echo $form->labelEx($model, 'type_id');
                 ?>
             </div>
             <div class="ckright">
@@ -98,7 +98,7 @@
         <div class="_100">
             <div class="ckleft">
                 <?php
-                echo $form->label($model, 'subject');
+                echo $form->labelEx($model, 'subject');
                 ?>
 
             </div>
@@ -113,7 +113,7 @@
         <div class="_100">
 
             <div class="ckleft">
-                <?php echo $form->label($model, 'detail'); ?>
+                <?php echo $form->labelEx($model, 'detail'); ?>
             </div> <div class="ckright">
                 <?php
                 $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -148,7 +148,7 @@
 
         <div class="_100">
             <div class="ckleft">
-                <?php echo $form->label($model, 'subject_en'); ?>
+                <?php echo $form->labelEx($model, 'subject_en'); ?>
             </div>
 
             <div class="ckright">
@@ -162,7 +162,7 @@
         <div class="_100">
 
             <div class="ckleft">
-                <?php echo $form->label($model, 'detail_en'); ?>
+                <?php echo $form->labelEx($model, 'detail_en'); ?>
             </div>
             <div class="ckright">
                 <?php
