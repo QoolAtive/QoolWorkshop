@@ -33,7 +33,7 @@ $this->renderPartial('_side_menu', array('manage' => '4'));
 //        echo $form->errorSummary($model);
             ?>
             <?php
-            echo Yii::t('language', "อีเมล์") . ' : ' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
+            echo $form->labelEx($model, 'email') . ' : ' . $form->textField($model, 'email', array('class' => 'fieldrequire'));
             echo $form->error($model, 'email');
             ?>
         </div>

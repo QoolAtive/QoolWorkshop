@@ -31,7 +31,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 'id' => 'update-form',
                 'htmlOptions' => array('enctype' => 'multipart/form-data'),
             ));
-            echo $form->errorSummary($model);
+//            echo $form->errorSummary($model);
             ?>
             <div>
                 <?php
@@ -39,6 +39,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 echo $form->labelEx($model, 'group_id');
                 echo $form->DropDownList($model, 'group_id', CHtml::listData(NewsGroup::model()->findAll(), "id", $field)
                         , array('empty' => '- ' . Yii::t('language', 'กรุณาเลือกกลุ่มข่าว') . ' -', 'class' => 'fieldrequire'));
+                echo $form->error($model, 'group_id');
                 ?>
             </div>
             <!--เลือกรูปภาพ-->
@@ -57,7 +58,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                     'duplicate' => Yii::t('language', 'เลือกไว้แล้ว'),
                         )
                 );
-//                    echo Yii::t('language', $form->error($model, 'pic'));
+//                echo Yii::t('language', $form->error($model, 'pic'));
                 ?>
                 <div>
                     <div class="file_old clearfix">                                       
@@ -137,6 +138,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
             echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาไทย') . " - </h4>";
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'subject_th');
 
             echo $form->labelEx($model, 'detail_th');
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -159,11 +161,13 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_th');
 
 //    ภาษาอังกฤษ
             echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาอังกฤษ') . " - </h4>";
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'subject_en');
 
             echo $form->labelEx($model, 'detail_en');
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -186,6 +190,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_en');
             ?>
 
             <div class='txt-cen'>
