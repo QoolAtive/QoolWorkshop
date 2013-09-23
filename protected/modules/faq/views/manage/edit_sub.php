@@ -32,7 +32,7 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
-        echo $form->errorSummary($model);
+//        echo $form->errorSummary($model);
         ?>
         <div class="_100">
             <?php
@@ -42,18 +42,21 @@ $this->renderPartial('_side_menu', array('select' => 'main'));
                 'class' => 'fieldrequire',
                 'id' => 'faq_main'
             ));
+            echo $form->error($model, 'faq_main_id');
             ?>
         </div>
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_th');
             echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'name_th');
             ?>
         </div>
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'name_en');
             ?>
         </div>
 
