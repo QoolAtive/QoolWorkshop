@@ -33,7 +33,7 @@
                 <p><label>ราคา:</label>
                     <?php
                     if ($item_detail['price_special'] != NULL || $item_detail['price_special'] != '') {
-                        echo '<span style="text-decoration:line-through;">'.$item_detail['price_normal'].'</span>';
+                        echo '<span style="text-decoration:line-through;">' . $item_detail['price_normal'] . '</span>';
                         echo ' พิเศษ ';
                         echo $item_detail['price_special'];
                     } else {
@@ -51,7 +51,12 @@
                     }
                     ?>
                 </p>
-                <p><label>น้ำหนักสินค้า (กรัม):</label> <?php echo $item_detail['weight']; ?></p>
+                <?php
+                if ($item_detail['weight'] != NULL) {
+                    ?>
+                    <p><label>น้ำหนักสินค้า (กรัม):</label> <?php echo $item_detail['weight']; ?></p>
+                    <?php }
+                ?>
                 <p><label>รายละเอียดสินค้า:</label> <?php echo $item_detail['description_th']; ?></p>
             </div>
 
