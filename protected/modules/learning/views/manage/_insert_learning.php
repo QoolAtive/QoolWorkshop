@@ -75,10 +75,13 @@ $this->renderPartial('_side_bar', array(
             ?>
         </div>
         <?php if (!empty($modelFile->path)) { ?>
-            <div class="_100" id="file_">
+            <div class="_50" id="file_">
+
+            </div>
+            <div class="_50" id="file_">
                 <?php
                 echo CHtml::link($modelFile->path, array('/learning/default/readingfile/', 'id' => $modelFile->id));
-                echo "<br/>";
+                echo "  ";
                 echo CHtml::ajaxLink(Yii::t('language', 'ลบ'), array(
                     '/learning/manage/delfile'
                         ), array(
