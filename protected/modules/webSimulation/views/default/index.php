@@ -18,7 +18,7 @@ ul.tabs li{
                     <li>
                         <?php
                         echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")) . '">';
-                        echo Yii::t('language', 'จัดการรายการร้านค้าของคุณ');
+                        echo Yii::t('language', 'จัดการ<br />รายการร้านค้า<br />ของคุณ');
                         echo '</a>';
                         ?>
                     </li>
@@ -28,7 +28,7 @@ ul.tabs li{
                         <li>
                             <?php
                             echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/admin")) . '">';
-                            echo Yii::t('language', 'รายการร้านค้าทั้งหมด');
+                            echo Yii::t('language', 'รายการ<br />ร้านค้าทั้งหมด');
                             echo '</a>';
                             ?>
                         </li>
