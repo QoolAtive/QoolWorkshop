@@ -630,6 +630,13 @@ return array(
     'ลบพื้นหลังเรียบร้อย' => 'Delete Background Successfully.',
     'ชื่อกล่อง' => 'Box Name',
     'ตัวเอย่างเช่น' => 'For example ',
+    'จัดการ<br />รายการร้านค้า<br />ของคุณ' => 'Manage<br />Items <br />your shop',
+    'รายการ<br />ร้านค้าทั้งหมด' => 'List of <br />all the shops',
+    'จัดการรายการร้านค้าของคุณ' => 'Manage Items your shop',
+    'รายการร้านค้าทั้งหมด' => 'List of all the shops',
+    'ชื่อเจ้าของร้านค้า' => 'Name of shop owners',
+    'มีผู้ยอมรับข้อตกลงทั้งหมด' => 'Total Accept the agreement',
+    '' => '',
     '' => '',
     '' => '',
 );
