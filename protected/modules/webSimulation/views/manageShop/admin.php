@@ -1,5 +1,42 @@
-<!--<div class="content">-->
-    <!--<div class="tabcontents">-->
+<div class="sidebar">
+    <div class="menuitem">
+        <ul>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
+        </ul>
+        <?php
+        if (isset(Yii::app()->user->id)) {
+            $mem_id = Yii::app()->user->id;
+            $shop = WebShop::model()->findByAttributes(array('mem_user_id' => $mem_id));
+            if ($shop != NULL) {
+                ?>
+                <ul class="tabs clearfix">
+                    <li>
+                        <?php
+                        echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")) . '">';
+                        echo Yii::t('language', 'จัดการ<br />รายการร้านค้า<br />ของคุณ');
+                        echo '</a>';
+                        ?>
+                    </li>
+                    <?php
+                    if (Yii::app()->user->isAdmin()) {
+                        ?>
+                        <li class="selected">
+                            <?php
+                            echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/admin")) . '">';
+                            echo Yii::t('language', 'รายการ<br />ร้านค้าทั้งหมด');
+                            echo '</a>';
+                            ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+                <?php
+            }
+        }
+        ?>
+    </div>
+</div>
+<div class="content">
+    <div class="tabcontents">
         <h3 class="barH3">
             <span>
                 <i class="icon-shopping-cart"></i>
@@ -10,7 +47,7 @@
             <hr>
             <?php
             $count = WebShopCountUser::model()->findAll();
-            echo Yii::t('language', 'มีผู้ยอมรับข้อตกลงทั้งหมด') . ' ' . $count[0]['count_number'] . ' ' . Yii::t('language', 'ครั้ง');
+            echo Yii::t('language', 'มีผู้ยอมรับข้อตกลงทั้งหมด') . ': ' . $count[0]['count_number'] . ' ' . Yii::t('language', 'ครั้ง');
             ?>
             <hr>
         </div>
@@ -82,5 +119,5 @@
             )
         ));
         ?>
-    <!--</div>-->
-<!--</div>-->
+    </div>
+</div>
