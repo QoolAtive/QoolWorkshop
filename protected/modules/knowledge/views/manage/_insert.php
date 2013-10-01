@@ -193,13 +193,15 @@
         </div>
 
         <div class="_100">
-            <div class="ckleft"> 
-                <?php echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false); ?>
-            </div>
             <div class="ckright">
                 <?php
                 if (!empty($model->image)) {
                     ?>
+                    <div class="ckright">
+                        <?php
+                        echo CHtml::label(Yii::t('language', 'รูปภาพเดิม'), false);
+                        ?>
+                    </div>
                     <?php
                     echo CHtml::image("/file/knowledge/" . $model->image, "image", array('height' => '100'));
                     echo CHtml::label($model->image, false, array('class' => 'hidden'));
