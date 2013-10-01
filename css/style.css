@@ -737,6 +737,9 @@ p.p1 ul , p1 ol{
     margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
   }
+  .productlist li {
+    word-wrap: break-word;
+  }
 
   .productlist:last-child {
 
