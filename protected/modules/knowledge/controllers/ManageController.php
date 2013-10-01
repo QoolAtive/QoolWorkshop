@@ -91,7 +91,7 @@ class ManageController extends Controller {
 
             if ($fileSave != NULL) {
                 $dir = './file/knowledge/';
-                if (isset($model->image)) {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
+                if (isset($model->image) && $model->image != 'default.jpg') {// ถ้ามีไฟล์อัพมาใหม่ ต้องลบไฟลเก่าก่อน แล้วค่อยอัพไฟล์ใหม่กลับเข้าไป
                     if (fopen($dir . $model->image, 'w'))
                         if (unlink($dir . $model->image)) {
                             

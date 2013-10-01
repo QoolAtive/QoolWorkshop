@@ -255,7 +255,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
 //                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopItem")) . '"'));
 //            } else {
             echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
-                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editBox", 'box_id' => $box_id)) . '"'));
 //            }
             ?>
         </div>

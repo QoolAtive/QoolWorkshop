@@ -1,15 +1,50 @@
-<!--<div class="content">
-    <div class="tabcontents">-->
+<div class="sidebar">
+    <div class="menuitem">
+        <ul>
+            <li class="boxhead"><img src="<?php echo Yii::t('language', '/img/iconpage/websim.png'); ?>"/></li>
+        </ul>
+        <?php
+        if (isset(Yii::app()->user->id)) {
+            $mem_id = Yii::app()->user->id;
+            $shop = WebShop::model()->findByAttributes(array('mem_user_id' => $mem_id));
+            if ($shop != NULL) {
+                ?>
+                <ul class="tabs clearfix">
+                    <li class="selected">
+                        <?php
+                        echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")) . '">';
+                        echo Yii::t('language', 'จัดการ<br />รายการร้านค้า<br />ของคุณ');
+                        echo '</a>';
+                        ?>
+                    </li>
+                    <?php
+                    if (Yii::app()->user->isAdmin()) {
+                        ?>
+                        <li>
+                            <?php
+                            echo '<a href="' . CHtml::normalizeUrl(array("/webSimulation/manageShop/admin")) . '">';
+                            echo Yii::t('language', 'รายการ<br />ร้านค้าทั้งหมด');
+                            echo '</a>';
+                            ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+                <?php
+            }
+        }
+        ?>
+    </div>
+</div>
+<div class="content">
+    <div class="tabcontents">
         <h3 class="barH3">
             <span>
                 <i class="icon-shopping-cart"></i>
-                <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopList")); ?>">
-                    <?php echo Yii::t('language', 'รายการร้านค้าของคุณ'); ?>
+                    <?php echo Yii::t('language', 'จัดการรายการร้านค้าของคุณ'); ?>
                 </a>
             </span>
         </h3>
         <div class="txt-cen">
-            <hr>
             <?php
 //        $shops = WebShop::model()->findAll(array('condition' => 'mem_user_id = ' . $user_id));
             echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'ร้านค้า'), array(
@@ -79,5 +114,5 @@
             )
         ));
         ?>
-<!--    </div>
-</div>-->
+    </div>
+</div>

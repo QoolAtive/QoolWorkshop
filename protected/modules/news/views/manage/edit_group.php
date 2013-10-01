@@ -33,7 +33,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
-        echo $form->errorSummary($model);
+//        echo $form->errorSummary($model);
         ?>
 <div class="_50">
         <?php
@@ -41,6 +41,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
 //        echo "<h4>" . Yii::t('language', 'ภาษาไทย') . "</h4>";
         echo $form->labelEx($model, 'name_th');
         echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
+        echo $form->error($model, 'name_th');
 ?>
 </div>
 
@@ -50,6 +51,7 @@ $this->renderPartial('_side_menu', array('manage' => '1'));
 //        echo "<h4>" . Yii::t('language', 'ภาษาอังกฤษ') . "</h4>";
         echo $form->labelEx($model, 'name_en');
         echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+        echo $form->error($model, 'name_en');
         ?>
 </div>
         <div class="txt-cen _100">

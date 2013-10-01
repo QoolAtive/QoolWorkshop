@@ -5,9 +5,9 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <style>
-    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-    #sortable li span { position: absolute; margin-left: -1.3em; }
+    #sortable { list-style-type: none; margin: 0; padding: 0 15px; width: 95%; }
+    #sortable li { margin: 0 3px 3px; padding: 0.4em 0.4em 0.9em 1.5em; font-size: 1.4em; height: 18px; }
+    #sortable li span { position: absolute; margin-left: -0.8em; margin-top: 0.4em; }
 </style>
 <div class="content">
     <div class="tabcontents" >
@@ -17,7 +17,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -52,13 +52,17 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 } else {
                     foreach ($category_list as $category) {
                         ?>
-                        <li id="<?php echo $category['web_shop_category_id']; ?>" class="ui-state-default" value="<?php echo $category['order_n']; ?>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $category['name_th']; ?></li>
+                        <li id="<?php echo $category['web_shop_category_id']; ?>" class="ui-state-default" value="<?php echo $category['order_n']; ?>">
+                            <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                                <?php echo $category['name_th'].' ('.$category['name_en'].')'; ?>
+                        </li>
                         <?php
                     }
                     ?>
                 </ul>
 
-                <div class="_100 textcenter" style="margin-top: 25px;">
+                <div class="_100 textcenter" style="margin-top: 5px;">
+                    <hr>
                     <?php
                     echo CHtml::hiddenField('sort_arr', '', array(
                         'id' => 'sort_arr',
@@ -69,11 +73,12 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     echo CHtml::button(Yii::t('language', 'ยกเลิก'), array(
                         'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageCategory")) . '"'));
                     ?>
+                    <hr>
                 </div>
-                <?php }
+                <?php
+            }
+            $this->endWidget();
             ?>
-
-            <?php $this->endWidget(); ?>
         </div>
     </div>
 </div>

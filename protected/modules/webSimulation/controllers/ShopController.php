@@ -67,7 +67,7 @@ class ShopController extends Controller {
     public function actionProductDetail($id, $p_id) {
         $model = $this->settingShop($id);
         $model_item = WebShopItem::model()->findByPk($p_id);
-
+        
         if ($model_item != NULL) {
             $this->render('product_detail', array(
                 'id' => $id,

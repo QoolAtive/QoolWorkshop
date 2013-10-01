@@ -32,7 +32,7 @@ if ($model->web_shop_id == NULL) {
                     <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                         <?php
                         $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                        echo Yii::t('language', 'ร้าน ') . $shop_name;
+                        echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                         ?>
                     </a>
                     <i class="icon-chevron-right"></i>
@@ -40,7 +40,7 @@ if ($model->web_shop_id == NULL) {
                         <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
                     </a>
                     <i class="icon-chevron-right"></i>
-                    <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียดร้านค้า'); ?>
+                    <?php echo Yii::t('language', 'แก้ไข') . Yii::t('language', 'รายละเอียด'); ?>
                 </span>
             </h3>
         <?php } ?>

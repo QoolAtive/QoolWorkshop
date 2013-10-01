@@ -25,24 +25,27 @@ $this->renderPartial('_side_menu', array('manage' => '3'));
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
-        echo $form->errorSummary($model);
+//        echo $form->errorSummary($model);
         ?>
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_th');
             echo $form->textField($model, 'name_th', array('class' => 'fieldrequire'));
+//            echo $form->error($model, 'name_th');
             ?>
         </div>
         <div class="_50">
             <?php
             echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+//            echo $form->error($model, 'name_en');
             ?>
         </div>
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'link');
             echo $form->textField($model, 'link', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'link');
             ?>
         </div>
         <div class="txt-cen _100">

@@ -33,14 +33,14 @@ if ($model->id != NULL) {
         <div class='clearfix'>
             <div class='_50'>
                 <?php
-                echo $form->label($model, 'name');
+                echo $form->labelEx($model, 'name');
                 echo $form->textField($model, 'name');
                 echo $form->error($model, 'name')
                 ?>
             </div>
             <div class='_50'>
                 <?php
-                echo $form->label($model, 'name_en');
+                echo $form->labelEx($model, 'name_en');
                 echo $form->textField($model, 'name_en');
                 echo $form->error($model, 'name_en')
                 ?>

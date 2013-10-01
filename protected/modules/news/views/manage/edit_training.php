@@ -31,12 +31,13 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
-        echo $form->errorSummary($model);
+//        echo $form->errorSummary($model);
         ?>
         <div class="_100">
             <?php
             echo $form->labelEx($model, 'link');
             echo $form->textField($model, 'link');
+            echo $form->error($model, 'link');
             ?>
         </div>
         <div class="_33">
@@ -59,6 +60,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                     'readonly' => 'readonly',
                 ),
             ));
+            echo $form->error($model, 'start_at');
             ?>
         </div>
         <div class="_33">
@@ -81,6 +83,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                     'readonly' => 'readonly',
                 ),
             ));
+            echo $form->error($model, 'end_at');
             ?>
         </div>
         <div class="_33">
@@ -91,6 +94,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 'value' => ($model->event_color == NULL) ? '#ffff00' : $model->event_color,
                 'style' => 'width:200px;'
             ));
+            echo $form->error($model, 'event_color');
             ?>
         </div>
         <div class="_100">
@@ -99,6 +103,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาไทย') . " - </h4>";
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th');
+            echo $form->error($model, 'subject_th');
             ?>
         </div>
         <div class="_100">
@@ -124,6 +129,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_th');
             ?>
         </div>
         <div class="_100">
@@ -132,6 +138,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
             echo "<h4 class='reg'> - " . Yii::t('language', 'ภาษาอังกฤษ') . " - </h4>";
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en');
+            echo $form->error($model, 'subject_en');
             ?>
         </div>
         <div class="_100">
@@ -157,6 +164,7 @@ $this->renderPartial('_side_menu', array('manage' => '2'));
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_en');
             ?>
         </div>
         <div class="txt-cen _100">

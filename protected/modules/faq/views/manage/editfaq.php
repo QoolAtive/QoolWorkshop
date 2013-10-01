@@ -34,7 +34,7 @@ $main = FaqMain::model()->findByPk($fm_id);
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'update-form',
         ));
-        echo $form->errorSummary($model);
+//        echo $form->errorSummary($model);
         ?>
         <div class="_100">
             <?php
@@ -45,10 +45,12 @@ $main = FaqMain::model()->findByPk($fm_id);
                 'class' => 'fieldrequire',
                 'empty' => ' - ' . Yii::t('language', 'กรุณาเลือก') . Yii::t('language', 'หมวดหมู่คำถามย่อย') . ' - '
             ));
+            echo $form->error($model, 'fs_id');
 
             //ภาษาไทย
             echo $form->labelEx($model, 'subject_th');
             echo $form->textField($model, 'subject_th', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'subject_th');
 
             echo $form->labelEx($model, 'detail_th');
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -71,6 +73,7 @@ $main = FaqMain::model()->findByPk($fm_id);
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_th');
             ?>
         </div>
         <div class="_100">
@@ -78,6 +81,7 @@ $main = FaqMain::model()->findByPk($fm_id);
 //    ภาษาอังกฤษ
             echo $form->labelEx($model, 'subject_en');
             echo $form->textField($model, 'subject_en', array('class' => 'fieldrequire'));
+            echo $form->error($model, 'subject_en');
 
             echo $form->labelEx($model, 'detail_en');
             $this->widget('ext.ckeditor.CKEditorWidget', array(
@@ -100,6 +104,7 @@ $main = FaqMain::model()->findByPk($fm_id);
                 # Path to ckeditor.php
                 "ckBasePath" => Yii::app()->baseUrl . "/js/ckeditor/",
             ));
+            echo $form->error($model, 'detail_en');
             ?>
         </div>
         <div class='_100 txt-cen'>

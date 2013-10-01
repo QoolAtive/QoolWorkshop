@@ -68,15 +68,15 @@ class WebShopFormat extends WebShopFormatBase {
         return array(
             'web_shop_format_id' => 'web_shop_format_id',
             'web_shop_id' => 'web_shop_id',
-            'logo' => 'โลโก้',
-            'theme' => 'ธีม',
-            'background' => 'พื้นหลัง',
-            'char_color' => 'สีอักษรทั่วไป',
-            'char_size' => 'ขนาดอักษรทั่วไป',
-            'topic_color' => 'สีอักษรหัวข้อ',
-            'topic_size' => 'ขนาดอักษรหัวข้อ',
-            'link_color' => 'สีอักษรเมนู',
-            'link_size' => 'ขนาดอักษรเมนู',
+            'logo' => Yii::t('language', 'โลโก้'),
+            'theme' => Yii::t('language', 'ธีม'),
+            'background' => Yii::t('language', 'พื้นหลัง'),
+            'char_color' => Yii::t('language', 'สีอักษรทั่วไป'),
+            'char_size' => Yii::t('language', 'ขนาดอักษรทั่วไป'),
+            'topic_color' => Yii::t('language', 'สีอักษรหัวข้อ'),
+            'topic_size' => Yii::t('language', 'ขนาดอักษรหัวข้อ'),
+            'link_color' => Yii::t('language', 'สีอักษรเมนู'),
+            'link_size' => Yii::t('language', 'ขนาดอักษรเมนู'),
         );
     }
 

@@ -72,12 +72,12 @@ class DefaultController extends Controller {
 
     public function actionSiteMap() {
 
-        $modelSiteMapMain = SiteMap::model()->findAll();
+        $cSub = new CDbCriteria();
+        $modelSiteMapMain = SiteMap::model()->findAll(array('order' => 'sort asc, site_map_id asc'));
 
         $this->render('site_map', array(
             'modelSiteMapMain' => $modelSiteMapMain,
         ));
     }
-    
 
 }

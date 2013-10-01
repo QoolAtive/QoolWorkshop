@@ -40,15 +40,20 @@ Class Tool {
         return $text;
     }
 
-    public static function ChangeDateTimeToShow($datetime) {
+    public static function ChangeDateTimeToShow($datetime, $type = 1) {
         $res = '';
         if ($datetime != '') {
             list($date, $time) = explode(" ", $datetime);
             list($y, $m, $d) = explode("-", $date);
             $y = LanguageHelper::changeDB($y + 543, $y);
             $m = date('n', strtotime('2013-' . $m . '-01'));
-            $m_full = LanguageHelper::changeDB(Thai::$thaimonth_full[$m], Thai::$engmonth_full[$m]);
-            $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
+            if ($type == 2) {
+                $m_short = LanguageHelper::changeDB(Thai::$thaimonth[$m], Thai::$engmonth[$m]);
+                $res = $d . ' ' . $m_short . ' ' . substr($y, 2, 2) . " " . $time;
+            } else {
+                $m_full = LanguageHelper::changeDB(Thai::$thaimonth_full[$m], Thai::$engmonth_full[$m]);
+                $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
+            }
         }
         return $res;
     }

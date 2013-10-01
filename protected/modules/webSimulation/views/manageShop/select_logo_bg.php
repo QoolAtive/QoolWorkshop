@@ -14,7 +14,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -23,10 +23,10 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 </a>
                 <i class="icon-chevron-right"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShopFormat")); ?>">
-                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+                    <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบ'). Yii::t('language', 'ร้านค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'เลือกโลโก้และพื้นหลังร้านค้า'); ?>
+                <?php echo Yii::t('language', 'โลโก้และพื้นหลัง'); ?>
             </span>
         </h3>
 
@@ -72,12 +72,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             </div>
 
         </div>
-
-
         <hr>
-
-
-
         <div class = "clearfix" id = "col_right_manage">
             <div class = "radius clearfix _100" id = "browsefile">
                 <ul>

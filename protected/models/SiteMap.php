@@ -14,7 +14,7 @@ class SiteMap extends SiteMapBase {
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('site_map_id, name, name_en, link, main_id, sub_id, sort', 'safe', 'on' => 'search'),
-            array('name, sort', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
+            array('name', 'unique', 'message' => '{attribute} ' . Yii::t('language', 'มีอยู่ในระบบแล้ว กรุณาตรวจสอบ')),
         );
     }
 

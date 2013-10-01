@@ -10,7 +10,7 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php
                     $shop_name = WebShop::model()->findByPk($model->web_shop_id)->name_th;
-                    echo Yii::t('language', 'ร้าน ') . $shop_name;
+                    echo Yii::t('language', 'ร้าน :n', array(':n' => $shop_name));
                     ?>
                 </a>
                 <i class="icon-chevron-right"></i>
@@ -22,13 +22,15 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             </span>
         </h3>
         <div class="txt-cen clearfix">
-                <!--<hr>-->
-                <?php
-                echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้า'), array(
-                    'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editItem")) . '"'));
-                ?>
-                <hr>
-            </div>
+            <!--<hr>-->
+            <?php
+            echo CHtml::button(Yii::t('language', 'เพิ่ม') . Yii::t('language', 'สินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editItem")) . '"'));
+            echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
+            ?>
+            <hr>
+        </div>
         <?php
         $shop_category = ShopCategory::getList();
         $dataProvider = $model->search();
@@ -49,20 +51,24 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                     'name' => 'name_th',
                 ),
                 array(
-                    'header' => Yii::t('language', 'หมวดหมู่สินค้า'),
+//                    'header' => Yii::t('language', 'หมวดหมู่สินค้า'),
                     'name' => 'category',
                     'value' => 'ShopCategory::getCategory($data->category)',
                     'filter' => $shop_category,
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคาปกติ'),
+                    'header' => Yii::t('language', 'ราคาปกติ<br />(บาท)'),
                     'name' => 'price_normal',
+                    'value' => 'number_format($data->price_normal, 2)',
                     'filter' => FALSE,
+                    'htmlOptions' => array('style' => 'text-align: right;'),
                 ),
                 array(
-                    'header' => Yii::t('language', 'ราคาพิเศษ'),
+                    'header' => Yii::t('language', 'ราคาพิเศษ<br />(บาท)'),
                     'name' => 'price_special',
+                    'value' => 'number_format($data->price_special, 2)',
                     'filter' => FALSE,
+                    'htmlOptions' => array('style' => 'text-align: right;'),
                 ),
 //                array(
 //                    'class' => 'CButtonColumn',
@@ -77,26 +83,19 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
 //                ),
                 array(
                     'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "แก้ไข"),
-                    'template' => '{update}',
+                    'header' => Yii::t('language', "เครื่องมือ"),
+                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
+                    'template' => '{update}&nbsp;|&nbsp;{delete}',
                     'buttons' => array(
                         'update' => array(
                             'label' => Yii::t('language', 'แก้ไข'),
                             'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/editItem", "item_id"=> $data->web_shop_item_id))',
                         ),
-                    ),
-                ),
-                array(
-                    'class' => 'CButtonColumn',
-                    'header' => Yii::t('language', "ลบ"),
-                    'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
-                    'template' => '{delete}',
-                    'buttons' => array(
                         'delete' => array(
                             'label' => Yii::t('language', 'ลบ'),
                             'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/deleteItem", "item_id"=> $data->web_shop_item_id))',
-                        ), //end 'delete' => array(
-                    ), //end 'buttons' => array(
+                        ),
+                    ),
                 ),
             ), //end 'columns' => array(
             'template' => "{items}\n{pager}",
@@ -110,14 +109,14 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             )
         ));
         ?>
-        
+
         <div class="txt-cen clearfix">
-                <hr>
-                <?php
-                echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
-                    'onclick' => 'history.back();'));
-                ?>
-                <hr>
-            </div>
+            <hr>
+            <?php
+            echo CHtml::button(Yii::t('language', 'ย้อนกลับ'), array(
+                'onclick' => 'history.back();'));
+            ?>
+            <hr>
+        </div>
     </div>
 </div>

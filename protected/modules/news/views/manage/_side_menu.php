@@ -1,4 +1,5 @@
 <?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/self/news/regist_news_email.js');
 switch ($manage) {
     case 2:
         $select1 = '';

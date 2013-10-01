@@ -68,15 +68,15 @@ class WebShopOrder extends WebShopOrderBase {
      */
     public function attributeLabels() {
         return array(
-            'web_shop_order_id' => 'Web Shop Order',
-            'web_shop_id' => 'Web Shop',
-            'customer_name' => 'ชื่อ',
-            'customer_email' => 'อีเมล์',
-            'customer_tel' => 'โทรศัพท์',
-            'price_all' => 'Price All',
-            'track_code' => 'Track Code',
-            'order_at' => 'Order At',
-            'status' => 'Status',
+            'web_shop_order_id' => Yii::t('language', 'Web Shop Order'),
+            'web_shop_id' => Yii::t('language', 'Web Shop'),
+            'customer_name' => Yii::t('language', 'ชื่อลูกค้า'),
+            'customer_email' => Yii::t('language', 'อีเมล์'),
+            'customer_tel' => Yii::t('language', 'โทรศัพท์'),
+            'price_all' => Yii::t('language', 'ราคา (บาท)'),
+            'track_code' => Yii::t('language', 'เลขพัสดุ'),
+            'order_at' => Yii::t('language', 'วันที่สั่ง'),
+            'status' => Yii::t('language', 'สถานะการส่ง'),
         );
     }
 

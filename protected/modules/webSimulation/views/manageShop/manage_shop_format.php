@@ -12,14 +12,14 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <span>
                 <i class="icon-shopping-cart"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
-                    <?php echo Yii::t('language', 'ร้าน ') . $model->name_th; ?>
+                    <?php echo Yii::t('language', 'ร้าน :n', array(':n' => $model->name_th)); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
                 <a href="<?php echo CHtml::normalizeUrl(array("/webSimulation/manageShop/manageShop")); ?>">
                     <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'); ?>
                 </a>
                 <i class="icon-chevron-right"></i>
-                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบร้านค้า'); ?>
+                <?php echo Yii::t('language', 'จัดการ') . Yii::t('language', 'รูปแบบ') . Yii::t('language', 'ร้านค้า'); ?>
             </span>
         </h3>
 
@@ -34,7 +34,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                     </li>
                     <li>
                         <?php
-                        echo CHtml::link(Yii::t('language', 'ธีม') . Yii::t('language', 'ร้านค้า'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
+                        echo CHtml::link(Yii::t('language', 'ธีม'), CHtml::normalizeUrl(array('/webSimulation/manageShop/selectThemes')));
                         ?>
                     </li>
                 </ul>
@@ -47,7 +47,7 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/selectLogoBg')); ?>">
                             <i class="icon-magic"></i>
                             <?php
-                            echo Yii::t('language', 'โลโก้ และ พื้นหลัง');
+                            echo Yii::t('language', 'โลโก้และพื้นหลัง');
                             ?>
                         </a>
                     </li>
@@ -59,10 +59,10 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
                 <ul class="innerlogo">
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/selectCharText')); ?>">
-                        <i class="icon-font"></i>
-                        <?php
-                        echo Yii::t('language', 'อักษรและข้อความ');
-                        ?>
+                            <i class="icon-font"></i>
+                            <?php
+                            echo Yii::t('language', 'อักษรและข้อความ');
+                            ?>
                         </a>
                     </li>
                 </ul>

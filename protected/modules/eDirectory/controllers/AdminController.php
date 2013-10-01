@@ -311,21 +311,19 @@ class AdminController extends Controller {
 
         if ($date_motion->type == 'วัน') {
             $type = "DAY";
-        } else if ($model_motion->type == 'เดือน') {
+        } else if ($date_motion->type == 'เดือน') {
             $type = "MONTH";
-        } else if ($model_motion->type == 'ปี') {
+        } else if ($date_motion->type == 'ปี') {
             $type = "YEAR";
         }
 
         $data_motion = '-' . $date_motion->amount . ' ' . $type;
+//        echo "> > " . $data_motion; exit;
         $date = date('Y-m-d');
         $strtime = strtotime($date);
         $caltime = strtotime("-$data_motion", $strtime);
         $update_at = date('Y-m-d', $caltime);
 
-//        if ($update_at < date('Y-m-d')) {
-//            echo "ข้อมูลไม่ได้อัพเดตมานานละนะ";
-//        }
         $criteria = new CDbCriteria;
         $criteria->select = 't.*, cm.update_at as update_at, cm.status as motion_status, ct.status_block as status_block, ct.date_warning as date_warning';
         $criteria->join = '
@@ -471,7 +469,7 @@ class AdminController extends Controller {
             }
         }
 
-        if (isset($_POST['Company']) && isset($_POST['CompanyType']) && isset($_POST['DelivSer'])) {
+        if (isset($_POST['Company'])) {
             $model->attributes = $_POST['Company'];
             $model_type->attributes = $_POST['CompanyType'];
             $model_delivery->attributes = $_POST['DelivSer'];
@@ -694,6 +692,9 @@ class AdminController extends Controller {
 //            echo "<pre>";
 //            print_r(array($model->getErrors(), array($model_type->getErrors())));
 //            echo "</pre>";
+//            $model->validate();
+//            $model_type->validate();
+//            $model_delivery->validate();
         }
 
         $this->render('_insert_company', array('model' => $model,

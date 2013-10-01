@@ -38,70 +38,70 @@ $this->renderPartial('_side_bar', array(
                 <?php echo $word . Yii::t('language', 'กลุ่มการเรียนรู้'); ?>
             </span>
         </h3>
-        
+
 
         <div class="_50">
 
             <div class="_100">
-            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
-        </div>
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาไทย') . ') -'; ?></h4>
+            </div>
 
-         <div class="_100">
-            <?php
-            echo $form->labelEx($model, 'name');
-            echo $form->textField($model, 'name', array('class' => 'fieldrequire'));
-            echo $form->error($model, 'name');
-            ?>
-        </div>
-        <?php if ($model->pic) { ?>
             <div class="_100">
-                <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาไทย') . ')'; ?> : </label>
                 <?php
-                echo CHtml::image('/file/learning/' . $model->pic, $alt, array('height' => '150px'))
+                echo $form->labelEx($model, 'name');
+                echo $form->textField($model, 'name', array('class' => 'fieldrequire'));
+                echo $form->error($model, 'name');
                 ?>
             </div>
-        <?php } ?>
-        <div class="_100">
-            <?php
-            echo $form->labelEx($file, 'image');
-            echo $form->fileField($file, 'image');
-            echo $form->error($file, 'image');
-            ?>
-        </div>
-       
-            </div>
-       
-
-    <div class="_50">
-
-         <div class="_100">
-            <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
-        </div>
-
+            <?php if (!empty($model->pic)) { ?>
                 <div class="_100">
-            <?php
-            echo $form->labelEx($model, 'name_en');
-            echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
-            echo $form->error($model, 'name_en');
-            ?>
-        </div>
-        <?php if ($model->pic_en) { ?>
+                    <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาไทย') . ')'; ?> : </label>
+                    <?php
+                    echo CHtml::image('/file/learning/' . $model->pic, $alt, array('height' => '150px'))
+                    ?>
+                </div>
+            <?php } ?>
             <div class="_100">
-                <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')'; ?> : </label>
                 <?php
-                echo CHtml::image('/file/learning/' . $model->pic_en, $alt, array('height' => '150px'))
+                echo $form->labelEx($file, 'image');
+                echo $form->fileField($file, 'image');
+                echo $form->error($file, 'image');
                 ?>
             </div>
-        <?php } ?>
-        <div class="_100">
-            <?php
-            echo $form->labelEx($file, 'image2');
-            echo $form->fileField($file, 'image2');
-            echo $form->error($file, 'image2');
-            ?>
+
         </div>
 
-    </div>
+
+        <div class="_50">
+
+            <div class="_100">
+                <h4 class="reg"><?php echo '- ' . Yii::t('language', 'กลุ่มการเรียนรู้') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ') -'; ?></h4>
+            </div>
+
+            <div class="_100">
+                <?php
+                echo $form->labelEx($model, 'name_en');
+                echo $form->textField($model, 'name_en', array('class' => 'fieldrequire'));
+                echo $form->error($model, 'name_en');
+                ?>
+            </div>
+            <?php if (!empty($model->pic_en)) { ?>
+                <div class="_100">
+                    <label><?php echo Yii::t('language', 'รูปภาพเดิม') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')'; ?> : </label>
+                    <?php
+                    echo CHtml::image('/file/learning/' . $model->pic_en, $alt, array('height' => '150px'))
+                    ?>
+                </div>
+            <?php } ?>
+            <div class="_100">
+                <?php
+                echo $form->labelEx($file, 'image2');
+                echo $form->fileField($file, 'image2');
+                echo $form->error($file, 'image2');
+                ?>
+            </div>
+
+        </div>
         <div class="_100 txt-cen">
             <hr>
             <?php

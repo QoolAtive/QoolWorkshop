@@ -53,11 +53,11 @@ class WebShopItem extends WebShopItemBase {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('web_shop_id, name_th, name_en, price_normal, description_th, description_en, weight, category, item_state', 'required'),
+            array('web_shop_id, name_th, name_en, price_normal, description_th, description_en, category, item_state', 'required'),
             array('web_shop_id', 'numerical', 'integerOnly' => true),
             array('price_normal, price_special, weight', 'numerical'),
             array('name_th, name_en, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, category, item_state', 'length', 'max' => 100),
-            array('pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8', 'safe'),
+            array('pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('web_shop_item_id, web_shop_id, name_th, name_en, price_normal, price_special, description_th, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight, category, item_state', 'safe', 'on' => 'search'),
@@ -85,23 +85,23 @@ class WebShopItem extends WebShopItemBase {
         return array(
             'web_shop_item_id' => 'Web Shop Item',
             'web_shop_id' => 'Web Shop',
-            'name_th' => 'ชื่อสินค้าภาษาไทย',
-            'name_en' => 'ชื่อสินค้าภาษาอังกฤษ',
-            'price_normal' => 'ราคาปกติ (บาท)',
-            'price_special' => 'ราคาพิเศษ (บาท)',
-            'description_th' => 'รายละเอียดภาษาไทย',
-            'description_en' => 'รายละเอียดภาษาอังกฤษ',
-            'pic_1' => 'Pic 1',
-            'pic_2' => 'Pic 2',
-            'pic_3' => 'Pic 3',
-            'pic_4' => 'Pic 4',
-            'pic_5' => 'Pic 5',
-            'pic_6' => 'Pic 6',
-            'pic_7' => 'Pic 7',
-            'pic_8' => 'Pic 8',
-            'weight' => 'น้ำหนัก (กรัม)',
-            'category' => 'ประเภทสินค้า',
-            'item_state' => 'สภาพสินค้า',
+            'name_th' => Yii::t('language', 'ชื่อสินค้า') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'name_en' => Yii::t('language', 'ชื่อสินค้า') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'price_normal' => Yii::t('language', 'ราคาปกติ (บาท)'),
+            'price_special' => Yii::t('language', 'ราคาพิเศษ (บาท)'),
+            'description_th' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
+            'description_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'pic_1' => Yii::t('language', 'รูปภาพ') . ' 1',
+            'pic_2' => Yii::t('language', 'รูปภาพ') . ' 2',
+            'pic_3' => Yii::t('language', 'รูปภาพ') . ' 3',
+            'pic_4' => Yii::t('language', 'รูปภาพ') . ' 4',
+            'pic_5' => Yii::t('language', 'รูปภาพ') . ' 5',
+            'pic_6' => Yii::t('language', 'รูปภาพ') . ' 6',
+            'pic_7' => Yii::t('language', 'รูปภาพ') . ' 7',
+            'pic_8' => Yii::t('language', 'รูปภาพ') . ' 8',
+            'weight' => Yii::t('language', 'น้ำหนัก (กรัม)'),
+            'category' => Yii::t('language', 'หมวดหมู่สินค้า'),
+            'item_state' => Yii::t('language', 'สภาพสินค้า'),
         );
     }
 
