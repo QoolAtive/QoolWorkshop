@@ -27,7 +27,12 @@
 
 
     <div class="newsani">
-        RSS
+        <?php
+        $model_rss = NewsRss::model()->find();
+        $this->widget(
+                'ext.yii-feed-widget.YiiFeedWidget', array('url' => $model_rss->link, 'limit' => 10)
+        );
+        ?>
     </div>
 </div>
 <!--/left side-->
