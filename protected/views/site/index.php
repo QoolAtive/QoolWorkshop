@@ -1,6 +1,6 @@
 <!--left side-->
 <div class="colleft">
-    <ul class="gridmenu">
+    <ul class="gridmenu menuani">
         <div class="clearfix">
             <?php
             $count = KnowledgeCount::model()->count('user_id = :user_id', array(':user_id' => Yii::app()->user->id));
@@ -20,12 +20,20 @@
             <li class="aboutus"><a href="/about/default/index"></a></li>
             <li class="news"><a href="/news/default/index"></a></li>
         </div>
+
     </ul>
+
+
+
+
+    <div class="newsani">
+        RSS
+    </div>
 </div>
 <!--/left side-->
 
 <!--right side-->
 <div class="colright">
-    <img class="left mascot" alt="smart" src="/img/smart.png"/>
+    <img class="left mascotani" alt="smart" src="/img/smart.png"/>
 </div>
 <!--/ right side-->

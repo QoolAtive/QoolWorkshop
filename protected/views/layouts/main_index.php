@@ -35,7 +35,7 @@ $description = Description::model()->find('status = :status', array(':status' =>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
                     <script src="/js/modernizr.js" type="text/javascript"></script>
                     <script src="/js/jquery.fancybox.js" type="text/javascript"></script>
-                    <script src="/js/tabcontent.js" type="text/javascript"></script>
+                    <!-- <script src="/js/tabcontent.js" type="text/javascript"></script> -->
                     <script src="/js/jquery.orbit-1.2.3.js" type="text/javascript"></script>
                     <script src="/js/fullcalendar.js"></script>
                     <script src="/js/evol.colorpicker.js" type="text/javascript" charset="utf-8"></script>
@@ -73,7 +73,7 @@ $description = Description::model()->find('status = :status', array(':status' =>
                     </div>
 
                 </div>
-                <div class="smart clearfix">
+                <div class="clearfix">
                     <?php echo $content; ?>
                 </div>
 
