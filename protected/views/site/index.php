@@ -27,12 +27,14 @@
 
 
     <div class="newsani">
+
         <style type="text/css">
         .rslides{
             box-shadow:none !important;
             font-size: 13px !important;
         }
         </style>
+
         <?php
         $model_rss = NewsRss::model()->find();
         $this->widget(
