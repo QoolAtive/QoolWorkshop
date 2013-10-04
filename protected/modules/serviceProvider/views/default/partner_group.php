@@ -36,7 +36,7 @@ if ($model_sub != null) {
                 echo CHtml::button(
                         Yii::t('language', 'แก้ไข'), array(
                     'class' => "grey", // btnedit grey
-                    'style' => 'margin-left: 656px; margin-top: 0px; position:absolute;',
+                    'style' => 'margin-left: 656px; margin-top:11px; position:absolute;',
                     'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                         '/serviceProvider/manage/insertTypeBusiness/id/' . $model->id
                     )) . "'")
@@ -65,7 +65,7 @@ if ($model_sub != null) {
                     echo CHtml::button(
                             Yii::t('language', 'แก้ไข'), array(
                         'class' => "grey", // btnedit grey
-                        'style' => 'margin-left: 656px; margin-top: 0px; position:absolute;',
+                        'style' => 'margin-left: 656px; margin-top: 11px; position:absolute;',
                         'onClick' => "window.location='" . CHtml::normalizeUrl(array(
                             '/serviceProvider/manage/typeBusinessSubInsert/sp_type_business_sub_id/' . $model_sub->sp_type_business_sub_id
                         )) . "'")
