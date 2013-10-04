@@ -10,9 +10,13 @@ if ($model_sub != null) {
     $about_sub = LanguageHelper::changeDB($model_sub->about_th, $model_sub->about_en);
 }
 ?>
+
+
+
 <div class="content">
     <div class="tabcontents">        
         <h3 class="barH3">
+           
             <span>
                 <i class="icon-compass"></i> 
                 <a href="<?php echo CHtml::normalizeUrl(array("/serviceProvider/default/index")); ?>">
@@ -22,7 +26,7 @@ if ($model_sub != null) {
                 <?php echo $name; ?>
             </span>
         </h3>
-        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
+        <div class="clearfix" style="padding: 5px 15px;">
             <h3>
                 <img src="/img/iconform.png"> <?php echo $name; ?>
             </h3>
@@ -39,7 +43,11 @@ if ($model_sub != null) {
                 );
             }
             ?>
-            <div class="clearfix">
+             <ul class="expander">
+        </ul>
+            <div class="clearfix showmorecontent" style="   border: 1px solid #E1E1E1;
+    border-radius: 15px 15px 15px 15px;
+    padding: 15px;">
                 <?php echo $about; ?>    
             </div>
             <!--</div>-->
@@ -47,7 +55,7 @@ if ($model_sub != null) {
         <?php
         if ($model_sub != null) {
             ?>
-            <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 5px 15px;">
+            <div class="clearfix" style="padding: 5px 15px;">
                 <h3>
                     <img src="/img/iconform.png"> <?php echo $name_sub; ?>
                 </h3>
@@ -72,7 +80,7 @@ if ($model_sub != null) {
             <?php
         }
         ?>
-        <div class="clearfix" style="border: 1px #c9c9c9 solid;padding: 15px;margin-top: 5px;">
+        <div class="clearfix" style="padding: 15px;margin-top: 5px;">
             <h3><img src="/img/iconform.png"> <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?></h3>
             <?php
             $criteria = new CDbCriteria;
