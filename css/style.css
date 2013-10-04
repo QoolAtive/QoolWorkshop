@@ -1385,8 +1385,9 @@ span.haft {
 }
 
 #wrapper .bg{
-  background: url('../img/bgpage.png') repeat-x ; 
+  background: url('../img/bgpage.png') repeat-y ; 
   background-color: #fff;
+  background-position: center center;
 }
 
 /* @group page */
@@ -1694,6 +1695,26 @@ login btn , create account btn ,search box
   background-size: 12px 12px;                                            	
 }
 
+
+.read-more a{
+  padding-top: 2px !important;
+}
+
+.read-more a,.read-less a{
+   padding-top: 1px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 1px 1px #333333;
+   float: right;
+   height: 23px;
+     margin-bottom: 2px;
+    margin-top: 10px;
+   width: 110px;
+   background: url('../img/button_read_more.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.read-more a:hover,.read-less a:hover{
+   opacity: 0.8;
+}
 
 
 
@@ -2525,7 +2546,7 @@ padding-top: 3%;
 
         background: url('/img/news.png');
     height: 245px;
-z-index:999;
+z-index:991;
    position : absolute;
    padding-top: 45px;
     float:left;
@@ -2544,7 +2565,7 @@ z-index:999;
 .menuani{
 
     float:left; position: relative;
-    z-index: 9999;
+    z-index: 999;
  /* position: fixed;
   top: 27%;*/
   -webkit-animation:fadeInLeftBig 2s;
@@ -2553,7 +2574,6 @@ z-index:999;
   -o-animation:fadeInLeftBig 2s;
   animation:fadeInLeftBig 2s;
 }
-
 
 
 .bounceOutRight2{
