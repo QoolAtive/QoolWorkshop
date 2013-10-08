@@ -81,7 +81,7 @@ if ($model_sub != null) {
         }
         ?>
         <div class="clearfix" style="padding: 15px;margin-top: 5px;">
-            <h3><img src="/img/iconform.png"> <?php echo Yii::t('language', 'พาร์ทเนอร์'); ?></h3>
+            <h3><img src="/img/iconform.png"> <?php echo Yii::t('language', 'ผู้ให้บริการ'); ?></h3>
             <?php
             $criteria = new CDbCriteria;
             $criteria->order = 'id desc';
