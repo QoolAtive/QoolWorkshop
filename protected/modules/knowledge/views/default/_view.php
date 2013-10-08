@@ -98,6 +98,7 @@
                     <?php
                     echo $subject;
                     ?>
+                    <label style="font-size: 70%;"><i>(<?php echo Tool::ChangeDateTimeToShow($view->date_write, 1, ' / ') ?>)</i></label>
                 </h3>
                 <p><?php echo $detail; ?></p>
                 <p style="padding: 5px; float: right;"><?php echo Yii::t('language', 'จำนวนผู้เข้าชม') . ' : ' . $view->count; ?></p>
