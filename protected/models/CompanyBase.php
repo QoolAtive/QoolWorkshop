@@ -27,6 +27,7 @@
  * @property string $website
  * @property string $banner
  * @property string $brochure
+ * @property integer $verify
  *
  * The followings are the available model relations:
  * @property CompanyProduct[] $companyProducts
@@ -62,12 +63,12 @@ class CompanyBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
-			array('user_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, verify', 'numerical', 'integerOnly'=>true),
 			array('logo, main_business, main_business_en, sub_business, sub_business_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, twitter, banner, brochure', 'length', 'max'=>100),
 			array('name, name_en, address, address_en, facebook, website', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure', 'safe', 'on'=>'search'),
+			array('id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure, verify', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -114,6 +115,7 @@ class CompanyBase extends CActiveRecord
 			'website' => 'Website',
 			'banner' => 'Banner',
 			'brochure' => 'Brochure',
+			'verify' => 'Verify',
 		);
 	}
 
@@ -151,6 +153,7 @@ class CompanyBase extends CActiveRecord
 		$criteria->compare('website',$this->website,true);
 		$criteria->compare('banner',$this->banner,true);
 		$criteria->compare('brochure',$this->brochure,true);
+		$criteria->compare('verify',$this->verify);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

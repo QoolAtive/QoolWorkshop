@@ -113,7 +113,7 @@ $this->renderPartial('side_bar', array(
             <div class="_100">
                 <h4 class="reg"><?php echo Yii::t('language', '- เลือกประเภท -'); ?></h4>
             </div>
-            <div class="_100">
+            <div class="_50">
                 <?php
 //                echo $form->labelEx($model_type, 'company_type') . "<br />";
 //                echo $form->checkBoxList($model_type, 'company_type', CompanyTypeBusiness::model()->getListData());
@@ -123,6 +123,12 @@ $this->renderPartial('side_bar', array(
                     'multiple' => true, 'style' => 'height: 350px;'
                 ));
                 echo $form->error($model_type, 'company_type');
+                ?>
+            </div>
+            <div class="_50">
+                <?php 
+//                echo $form->labelEx($model, 'verify') . "<br />";
+//                echo $form->checkBox($model, 'verify');
                 ?>
             </div>
             <div class="_100">
