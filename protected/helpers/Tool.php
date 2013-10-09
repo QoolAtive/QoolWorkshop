@@ -40,7 +40,7 @@ Class Tool {
         return $text;
     }
 
-    public static function ChangeDateTimeToShow($datetime, $type = 1) {
+    public static function ChangeDateTimeToShow($datetime, $type = 1, $spec = null) {
         $res = '';
         if ($datetime != '') {
             list($date, $time) = explode(" ", $datetime);
@@ -52,7 +52,10 @@ Class Tool {
                 $res = $d . ' ' . $m_short . ' ' . substr($y, 2, 2) . " " . $time;
             } else {
                 $m_full = LanguageHelper::changeDB(Thai::$thaimonth_full[$m], Thai::$engmonth_full[$m]);
-                $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
+                if ($spec == null)
+                    $res = $d . ' ' . $m_full . ' ' . ($y) . " " . $time;
+                else
+                    $res = $d . ' ' . $m_full . ' ' . ($y) . $spec . $time;
             }
         }
         return $res;

@@ -914,5 +914,23 @@ class ManageShopController extends Controller {
         }
         $this->render('admin', array('model' => $model));
     }
+    
+    public function actionEditTranCost(){
+        $shop_id = Yii::app()->session['shop_id'];
+        if ($shop_id != NULL) {
+            $model = WebShop::model()->findByPk($shop_id);
+            if (isset($_POST['WebShop'])) {
+                $model->attributes = $_POST['WebShop'];
+                WebShop::model()->updateByPk($shop_id, array('tran_cost' => $model->tran_cost));
+                echo "<script language='javascript'>
+                    alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                            window.top.location.href = '/webSimulation/manageShop/manageItem';
+                </script>";
+            }
+            $this->render('edit_tran_cost', array('model' => $model));
+        } else {
+            $this->redirect(CHtml::normalizeUrl(array('/webSimulation/default/index')));
+        }
+    }
 
 }

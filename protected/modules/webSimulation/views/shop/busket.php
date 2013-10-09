@@ -11,9 +11,10 @@
         <table style="width:100%;">
             <tr>
                 <th>ชื่อสินค้า</th>
-                <th>จำนวน(ชิ้น)</th>
-                <th>ราคาชิ้นละ(บาท)</th>
-                <th>ราคารวม(บาท)</th>
+                <th>จำนวน (ชิ้น)</th>
+                <th>ราคาชิ้นละ (บาท)</th>
+                <th>ภาษีมูลค่าเพิ่ม (บาท)</th>
+                <th>ราคารวม (บาท)</th>
             </tr>
             <?php
             $item_id_list = array_keys($busket);
@@ -44,20 +45,43 @@
                     echo $price; //ราคาชิ้นละ
                     echo '</td>';
                     echo '<td>';
-                    echo $price * $number; //ราคารวม
-                    $price_total += $price * $number;
+                    if($item['vat'] != NULL){
+                        echo $item['vat']; //ภาษีมูลค่าเพิ่ม
+                    } else {
+                        echo '-';
+                    }
+                    echo '</td>';
+                    echo '<td>';
+                    echo ($price + $item['vat']) * $number; //ราคารวม
+                    $price_total += ($price + $item['vat']) * $number;
                     echo '</td>';
                     echo '</tr>'; ///tr
                 }//end if ($number != NULL) {
             }// end foreach
             ?>
-            <td colspan="2"></td>
+            <tr><td colspan="5"><hr></hr></tr></td>
+            <tr><td colspan="3"></td>
+                <td>ค่าขนส่งสินค้า</td>
+                <td>
+                    <?php
+                    $shop = WebShop::model()->findByPk($id);
+                    if($shop['tran_cost'] != NULL){
+                        echo $shop['tran_cost'];
+                        $price_total += $shop['tran_cost'];
+                    } else {
+                        echo '-';
+                    }
+                    ?>
+                </td></tr>
+            <tr>
+            <td colspan="3"></td>
             <td>
                 <span style="font-weight:bold;">ราคารวมทั้งหมด</span>
             </td>
             <td>
                 <span style="font-weight:bold;"><?php echo $price_total; ?></span>
             </td>
+            </tr>
         </table>
         <div style="text-align: center; margin-top: 10px;">
             <?php

@@ -55,12 +55,12 @@ class WebShopItem extends WebShopItemBase {
         return array(
             array('web_shop_id, name_th, name_en, price_normal, description_th, description_en, category, item_state', 'required'),
             array('web_shop_id', 'numerical', 'integerOnly' => true),
-            array('price_normal, price_special, weight', 'numerical'),
+            array('price_normal, price_special, vat, weight', 'numerical'),
             array('name_th, name_en, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, category, item_state', 'length', 'max' => 100),
             array('pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_item_id, web_shop_id, name_th, name_en, price_normal, price_special, description_th, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight, category, item_state', 'safe', 'on' => 'search'),
+            array('web_shop_item_id, web_shop_id, name_th, name_en, price_normal, price_special, vat, description_th, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight, category, item_state', 'safe', 'on' => 'search'),
         );
     }
 
@@ -91,6 +91,7 @@ class WebShopItem extends WebShopItemBase {
             'price_special' => Yii::t('language', 'ราคาพิเศษ (บาท)'),
             'description_th' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาไทย') . ')',
             'description_en' => Yii::t('language', 'รายละเอียด') . ' (' . Yii::t('language', 'ภาษาอังกฤษ') . ')',
+            'vat' => Yii::t('language', 'ภาษีมูลค่าเพิ่ม (บาท)'),
             'pic_1' => Yii::t('language', 'รูปภาพ') . ' 1',
             'pic_2' => Yii::t('language', 'รูปภาพ') . ' 2',
             'pic_3' => Yii::t('language', 'รูปภาพ') . ' 3',

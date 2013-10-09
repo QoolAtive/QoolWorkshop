@@ -28,6 +28,8 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editItem")) . '"'));
             echo CHtml::button(Yii::t('language', 'จัดการ') . Yii::t('language', 'กล่องแสดงสินค้า'), array(
                 'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/manageBox")) . '"'));
+            echo CHtml::button(Yii::t('language', 'แก้ไข') . Yii::t('language', 'ค่าขนส่งสินค้า'), array(
+                'onclick' => 'window.location = "' . CHtml::normalizeUrl(array("/webSimulation/manageShop/editTranCost")) . '"'));
             ?>
             <hr>
         </div>

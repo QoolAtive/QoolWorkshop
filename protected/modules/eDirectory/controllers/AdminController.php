@@ -18,6 +18,14 @@ class AdminController extends Controller {
 //        );
 //    }
 
+    public function actionSetVerify() {
+        $model = Company::model()->find('id = :id', array(':id' => $_POST['company_id']));
+        $model->verify = $_POST['value'];
+        if ($model->save()) 
+            echo 'ดำเนินการเรียบร้อย';
+//            throw new CHttpException(404,'ดำเนินการเรียบร้อย');
+    }
+
     public function actionIndex() {
 
         $model = new Company;
@@ -41,6 +49,7 @@ class AdminController extends Controller {
         $criteria->compare('t.main_business_en', $model->main_business_en, true);
         $criteria->compare('t.sub_business', $model->sub_business, true);
         $criteria->compare('t.sub_business_en', $model->sub_business_en, true);
+        $criteria->compare('t.verify', $model->verify, true);
 
         $criteria2 = new CDbCriteria;
         $criteria2->join = '
@@ -58,6 +67,7 @@ class AdminController extends Controller {
         $criteria2->compare('t.main_business_en', $model->main_business_en, true);
         $criteria2->compare('t.sub_business', $model->sub_business, true);
         $criteria2->compare('t.sub_business_en', $model->sub_business_en, true);
+        $criteria2->compare('t.verify', $model->verify, true);
 
         $dataProviderAdmin = new CActiveDataProvider('Company', array(
             'criteria' => $criteria,

@@ -42,6 +42,16 @@
                     ?>
                     บาท
                 </p>
+                <?php if($item_detail['vat'] != NULL){
+                    ?>
+                <p><label>ภาษีมูลค่าเพิ่ม:</label>
+                    <?php
+                    echo $item_detail['vat'];
+                    ?>
+                </p>
+                <?php
+                }
+                ?>
                 <p><label>ประเภทสินค้า:</label> <?php echo ShopCategory::getCategory($item_detail['category']); ?></p>
                 <p><label>สภาพสินค้า:</label> <?php
                     if ($item_detail['item_state'] == '0') {

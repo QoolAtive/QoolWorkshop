@@ -25,6 +25,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => '$data->name_en',
         ),
         array(
+            'name' => 'verify',
+            'type' => 'raw',
+            'value' => 'setVerifyAdmin($data->verify, listConfirmAdmin(), $data->id)',
+            'filter' => listConfirmAdmin(),
+        ),
+        array(
             'class' => 'CButtonColumn',
 //            'deleteConfirmation' => Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?'),
             'header' => Yii::t('language', 'เครื่องมือ'),
@@ -44,7 +50,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                     'url' => 'Yii::app()->createUrl("/eDirectory/admin/delCompany/",array("id"=>$data->id))',
                     'visible' => '$data->user_id == Yii::app()->user->id',
                     'click' => "function() {
-                                if(!confirm('".Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?')."')) return false;
+                                if(!confirm('" . Yii::t('language', 'คุณต้องการลบข้อมูลนี้หรือไม่?') . "')) return false;
                                 $.fn.yiiGridView.update('1_company_admin-grid', {
                                         type:'POST',
                                         url:$(this).attr('href'),
@@ -86,4 +92,24 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'lastPageLabel' => Yii::t('language', 'หน้าสุดท้าย'),
     )
 ));
+
+function listConfirmAdmin() {
+    return array(
+        '0' => 'ยังไม่ได้รับเครื่องหมาย',
+        '1' => 'ได้รับเครื่องหมาย',
+    );
+}
+
+function setVerifyAdmin($select, $list, $id) {
+    return CHtml::dropDownList(
+                    'verify', $select, $list, array("onchange" => CHtml::ajax(
+                        array(
+                            "type" => "POST",
+                            "url" => "/eDirectory/admin/setVerify",
+                            "data" => array("value" => 'js:this.value', 'company_id' => $id)
+                        )
+                )
+                    )
+    );
+}
 ?>

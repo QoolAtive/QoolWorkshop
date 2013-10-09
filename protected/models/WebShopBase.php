@@ -24,6 +24,7 @@
  * @property string $tel
  * @property string $email
  * @property string $creat_at
+ * @property double $tran_cost
  *
  * The followings are the available model relations:
  * @property Province $province
@@ -35,7 +36,9 @@
  * @property WebShopCategoryItem[] $webShopCategoryItems
  * @property WebShopFormat[] $webShopFormats
  * @property WebShopItem[] $webShopItems
+ * @property WebShopOrder[] $webShopOrders
  * @property WebShopOrderDetail[] $webShopOrderDetails
+ * @property WebShopSideBox[] $webShopSideBoxes
  */
 class WebShopBase extends CActiveRecord
 {
@@ -67,12 +70,13 @@ class WebShopBase extends CActiveRecord
 		return array(
 			array('mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
 			array('mem_user_id, web_shop_catagory_id, province_id, prefecture_id, district_id, postcode', 'numerical', 'integerOnly'=>true),
+			array('tran_cost', 'numerical'),
 			array('name_th, name_en, url, address_th, address_en', 'length', 'max'=>255),
 			array('mobile, tel, email', 'length', 'max'=>100),
 			array('how_to_buy_th, how_to_buy_en', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at', 'safe', 'on'=>'search'),
+			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, tran_cost', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -93,7 +97,9 @@ class WebShopBase extends CActiveRecord
 			'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
 			'webShopFormats' => array(self::HAS_MANY, 'WebShopFormat', 'web_shop_id'),
 			'webShopItems' => array(self::HAS_MANY, 'WebShopItem', 'web_shop_id'),
+			'webShopOrders' => array(self::HAS_MANY, 'WebShopOrder', 'web_shop_id'),
 			'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_id'),
+			'webShopSideBoxes' => array(self::HAS_MANY, 'WebShopSideBox', 'web_shop_id'),
 		);
 	}
 
@@ -123,6 +129,7 @@ class WebShopBase extends CActiveRecord
 			'tel' => 'Tel',
 			'email' => 'Email',
 			'creat_at' => 'Creat At',
+			'tran_cost' => 'Tran Cost',
 		);
 	}
 
@@ -157,6 +164,7 @@ class WebShopBase extends CActiveRecord
 		$criteria->compare('tel',$this->tel,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('creat_at',$this->creat_at,true);
+		$criteria->compare('tran_cost',$this->tran_cost);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -274,7 +274,7 @@
         if ($dp_product_best_sell->itemCount > 0) {
             ?>
             <div class="servicebox clearfix">
-                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'สินค้าขายดี'); ?></h2>
+                <h2><img src="/img/icontopic.png" /><?php echo Yii::t('language', 'บริการยอดนิยม'); ?></h2>
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
@@ -325,7 +325,7 @@
         if ($dp_product_new->itemCount > 0) {
             ?>
             <div class="servicebox">
-                <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'สินค้าใหม่'); ?></h2>
+                <h2><img src="/img/icontopic.png" /> <?php echo Yii::t('language', 'บริการใหม่'); ?></h2>
                 <div class="clearfix">
                     <?php
                     $this->widget('zii.widgets.CListView', array(
