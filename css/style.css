@@ -2321,13 +2321,13 @@ width: 30%;
     padding-top: 26px;
     text-align: left;
     vertical-align: middle;
-    width: 73%;
+    width: 51%;
   }
 
   #footer .footright{
     float: right;
     padding-top: 40px;
-    width: 27%;
+    width: 34%;
   }
   .footright a {
     color: #FFFFFF;
@@ -2340,8 +2340,10 @@ width: 30%;
     width: 100%;
   }
   #footer .footright img{
-    border:2px solid #fff;
-
+    /*border:2px solid #fff;*/
+   margin-left: 14px;
+    margin-top: -4px;
+    width: 52px;
   }
 
   #footer .pagecen > div {
