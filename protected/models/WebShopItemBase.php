@@ -10,6 +10,7 @@
  * @property string $name_en
  * @property double $price_normal
  * @property double $price_special
+ * @property double $vat
  * @property string $description_th
  * @property string $description_en
  * @property string $pic_1
@@ -58,13 +59,13 @@ class WebShopItemBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('web_shop_id, name_th, name_en, price_normal, description_th, description_en, weight, category, item_state', 'required'),
+			array('web_shop_id, name_th, name_en, price_normal, description_th, description_en, category, item_state', 'required'),
 			array('web_shop_id', 'numerical', 'integerOnly'=>true),
-			array('price_normal, price_special, weight', 'numerical'),
+			array('price_normal, price_special, vat, weight', 'numerical'),
 			array('name_th, name_en, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, category, item_state', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_item_id, web_shop_id, name_th, name_en, price_normal, price_special, description_th, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight, category, item_state', 'safe', 'on'=>'search'),
+			array('web_shop_item_id, web_shop_id, name_th, name_en, price_normal, price_special, vat, description_th, description_en, pic_1, pic_2, pic_3, pic_4, pic_5, pic_6, pic_7, pic_8, weight, category, item_state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -95,6 +96,7 @@ class WebShopItemBase extends CActiveRecord
 			'name_en' => 'Name En',
 			'price_normal' => 'Price Normal',
 			'price_special' => 'Price Special',
+			'vat' => 'Vat',
 			'description_th' => 'Description Th',
 			'description_en' => 'Description En',
 			'pic_1' => 'Pic 1',
@@ -128,6 +130,7 @@ class WebShopItemBase extends CActiveRecord
 		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('price_normal',$this->price_normal);
 		$criteria->compare('price_special',$this->price_special);
+		$criteria->compare('vat',$this->vat);
 		$criteria->compare('description_th',$this->description_th,true);
 		$criteria->compare('description_en',$this->description_en,true);
 		$criteria->compare('pic_1',$this->pic_1,true);

@@ -57,7 +57,10 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
                 'class' => 'fieldrequire',
             ));
             echo $form->error($model, 'name_th');
-
+            ?>
+        </div>
+        <div class="_50">
+            <?php
             echo $form->labelEx($model, 'name_en');
             echo $form->textField($model, 'name_en', array(
                 'class' => 'fieldrequire',
@@ -66,19 +69,31 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             ?>
         </div>
 
-        <div class="_50">
+        <div class="_33">
             <?php
             echo $form->labelEx($model, 'price_normal');
             echo $form->textField($model, 'price_normal', array(
                 'class' => 'fieldrequire numberinput',
             ));
             echo $form->error($model, 'price_normal');
-
+            ?>
+        </div>
+        <div class="_33">
+            <?php
             echo $form->labelEx($model, 'price_special');
             echo $form->textField($model, 'price_special', array(
                 'class' => 'fieldrequire numberinput',
             ));
             echo $form->error($model, 'price_special');
+            ?>
+        </div>
+        <div class="_33">
+            <?php
+            echo $form->labelEx($model, 'vat');
+            echo $form->textField($model, 'vat', array(
+                'class' => 'fieldrequire numberinput',
+            ));
+            echo $form->error($model, 'vat');
             ?>
         </div>
 
@@ -97,9 +112,9 @@ $this->renderPartial('_side_menu', array('index' => 'item'));
             <?php
             echo $form->labelEx($model, 'item_state');
             echo $form->dropDownList($model, 'item_state', array(
-                '0' => Yii::t('language', 'สินค้าใหม่'), 
+                '0' => Yii::t('language', 'สินค้าใหม่'),
                 '1' => Yii::t('language', 'สินค้ามือสอง')
-                ), array(
+                    ), array(
                 'class' => 'fieldrequire',
             ));
             echo $form->error($model, 'item_state');

@@ -57,13 +57,14 @@ class WebShop extends WebShopBase {
         return array(
             array('mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, email, creat_at', 'required'),
             array('mem_user_id, web_shop_catagory_id, province_id, prefecture_id, district_id, postcode', 'numerical', 'integerOnly' => true),
+            array('tran_cost', 'numerical'),
             array('email', 'email'),
             array('mobile, tel, email', 'length', 'max' => 100),
             array('name_th, name_en, url, address_th, address_en', 'length', 'max' => 255),
             array('how_to_buy_th, how_to_buy_en, full_name', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, full_name', 'safe', 'on' => 'search'),
+            array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, tran_cost', 'safe', 'on' => 'search'),
         );
     }
 
@@ -83,7 +84,9 @@ class WebShop extends WebShopBase {
             'webShopCategoryItems' => array(self::HAS_MANY, 'WebShopCategoryItem', 'web_shop_id'),
             'webShopFormats' => array(self::HAS_MANY, 'WebShopFormat', 'web_shop_id'),
             'webShopItems' => array(self::HAS_MANY, 'WebShopItem', 'web_shop_id'),
+            'webShopOrders' => array(self::HAS_MANY, 'WebShopOrder', 'web_shop_id'),
             'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_id'),
+            'webShopSideBoxes' => array(self::HAS_MANY, 'WebShopSideBox', 'web_shop_id'),
         );
     }
 
@@ -111,6 +114,7 @@ class WebShop extends WebShopBase {
             'mobile' => Yii::t('language', 'โทรศัพท์มือถือ'),
             'tel' => Yii::t('language', 'โทรศัพท์'),
             'email' => Yii::t('language', 'Email'),
+            'tran_cost' => Yii::t('language', 'ค่าขนส่งสินค้า (บาท)'),
         );
     }
 

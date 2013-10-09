@@ -24,7 +24,7 @@ if ($busket != NULL) {
                 } else {
                     $price = $item['price_normal'];
                 }
-                $price_total += $price * $number;
+                $price_total += ($price + $item['vat']) * $number;
                 echo '<td>';
                 echo $item['name_th']; //ชื่อสินค้า
                 echo '</td>';
