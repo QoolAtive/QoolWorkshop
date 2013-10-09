@@ -38,6 +38,8 @@ $this->renderPartial('_side_bar', array(
                         </a>
                     </span>
                 </h3>
+
+                <img src="/img/banner/Service.png"  width="100%" alt="servicebanner"/>
                 <hr>
                 <div class="linksearch">
                     <?php
