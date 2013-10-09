@@ -22,7 +22,8 @@ class AdminController extends Controller {
         $model = Company::model()->find('id = :id', array(':id' => $_POST['company_id']));
         $model->verify = $_POST['value'];
         if ($model->save()) 
-            throw new CHttpException('','ดำเนินการเรียบร้อย');
+            echo 'ดำเนินการเรียบร้อย';
+//            throw new CHttpException(404,'ดำเนินการเรียบร้อย');
     }
 
     public function actionIndex() {
@@ -48,6 +49,7 @@ class AdminController extends Controller {
         $criteria->compare('t.main_business_en', $model->main_business_en, true);
         $criteria->compare('t.sub_business', $model->sub_business, true);
         $criteria->compare('t.sub_business_en', $model->sub_business_en, true);
+        $criteria->compare('t.verify', $model->verify, true);
 
         $criteria2 = new CDbCriteria;
         $criteria2->join = '
