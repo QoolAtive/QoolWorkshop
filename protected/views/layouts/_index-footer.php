@@ -26,25 +26,26 @@
             ?>
         </div>
         <div class="footright">
-
-            <?php
-            $this->widget('application.extensions.addThis.addThis', array(
-                'id' => 'addThis',
-                'username' => 'username',
-                'defaultButtonCaption' => Yii::t('language', 'แบ่งปัน'),
-                'showDefaultButton' => true,
-                'showDefaultButtonCaption' => true,
-                'separator' => '|',
-                'htmlOptions' => array(),
-                'linkOptions' => array(),
-                'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
-                'showServicesTitle' => false,
-                'config' => array('ui_language' => 'th'),
-                'share' => array(),
-                    )
-            );
-            ?>
-            <div class="footrtext">
+            <div style="width:265px;float: left;">
+                <?php
+                $this->widget('application.extensions.addThis.addThis', array(
+                    'id' => 'addThis',
+                    'username' => 'username',
+                    'defaultButtonCaption' => Yii::t('language', 'แบ่งปัน'),
+                    'showDefaultButton' => true,
+                    'showDefaultButtonCaption' => true,
+                    'separator' => '|',
+                    'htmlOptions' => array(),
+                    'linkOptions' => array(),
+                    'showServices' => array('facebook', 'twitter', 'myspace', 'email', 'print'),
+                    'showServicesTitle' => false,
+                    'config' => array('ui_language' => 'th'),
+                    'share' => array(),
+                        )
+                );
+                ?>
+                <div class="footrtext">
+                
                 <a href="/index.php/about/default/siteMap">
                     <?php echo Yii::t('language', 'แผนผังเว็บไซต์'); ?>
                 </a>
@@ -53,6 +54,12 @@
                     <?php echo Yii::t('language', 'นโยบายและเงื่อนไขการใช้งาน'); ?>
                 </a>
             </div>
+        </div>
+                <div class="right" style="width:60px;float: left;">
+                    <a href="https://www.facebook.com/groups/dbdecommerce/" target="_blank">
+                        <img src="/img/fbl.png" alt="fb"/>
+                    </a>
+                </div>
         </div>
     </div>
 </div>

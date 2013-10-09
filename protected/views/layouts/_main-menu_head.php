@@ -54,7 +54,7 @@
             <?php } ?>
             <li><a class="agreement fancybox.iframe" href="/webSimulation/default/agreement"><?php echo Yii::t('language', 'แนะนำการใช้งาน'); ?></a></li>
             <li><a href="/eDirectory/default/index"><?php echo Yii::t('language', 'ค้นหาร้านค้า'); ?></a></li>
-            <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'บริการ'); ?></a></li>
+            <li><a href="/serviceProvider/default"><?php echo Yii::t('language', 'ผู้ให้บริการ'); ?></a></li>
             <li><a href="/link/default/index"><?php echo Yii::t('language', 'ลิงก์หน่วยงาน'); ?></a></li>
             <li><a href="/faq/default/index"><?php echo Yii::t('language', 'คำถาม'); ?></a></li>
             <li><a href="/about/default/index"><?php echo Yii::t('language', 'เกี่ยวกับเรา'); ?></a></li>
