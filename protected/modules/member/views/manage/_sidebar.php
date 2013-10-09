@@ -22,13 +22,13 @@
                 <li><a href="/member/manage/changePassword" ><?php echo Yii::t("language", 'แก้ไขรหัสผ่าน'); ?></a></li>
                 <?php
             }
-            if (Yii::app()->user->isMemberType() == 2) {
+//            if (Yii::app()->user->isMemberType() == 2) {
                 if (!Yii::app()->user->isAdmin()) {
                     ?>
                     <li><a href="/eDirectory/manage/index" ><?php echo Yii::t("language", 'ใช้งานร้านค้า'); ?></a></li>
                     <?php
                 }
-            }
+//            }
             ?>
             <?php if (!Yii::app()->user->isAdminType()) { ?>
                 <li><a href="/serviceProvider/default/spLog" ><?php echo Yii::t("language", 'บริการโปรด'); ?></a></li>

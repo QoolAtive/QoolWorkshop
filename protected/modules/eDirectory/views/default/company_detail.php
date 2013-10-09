@@ -30,6 +30,9 @@
                             <td>
                                 <?php
                                 $model_profile = MemRegistration::model()->find('user_id = :user_id', array(':user_id' => $model->user_id));
+                                if(empty($model_profile))
+                                    $model_profile = MemPerson::model()->find('user_id = :user_id', array(':user_id' => $model->user_id));
+                                    
                                 $name = LanguageHelper::changeDB($model_profile->ftname, $model_profile->fename);
                                 $ltname = LanguageHelper::changeDB($model_profile->ltname, $model_profile->lename);
                                 echo $name . ' ' . $ltname;
