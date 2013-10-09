@@ -131,6 +131,12 @@ $this->renderPartial('side_bar', array(
                 echo $form->error($model_type, 'company_type');
                 ?>
             </div>
+            <div class="_50">
+                <?php 
+                echo $form->labelEx($model, 'verify') . "<br />";
+                echo $form->checkBox($model, 'verify');
+                ?>
+            </div>
             <div class="_100">
 
                 <div class="_100">

@@ -183,23 +183,23 @@
                     </ul>
 
                 </div>
- </div>
-
-<div class="imageright">
-
-                  <?php
-                        if ($model->logo != null) {
-                            ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img  src="/file/logo/<?php echo $model->logo;?>" /></a>
-                            <?php
-                        } else {
-                            ?>
-                            <a href="<?php echo $link; ?> " target="_bank"><img   src="/file/logo/default.jpg"/></a>
-                            <?php
-                        }
-                        ?>
-              </div>
             </div>
+
+            <div class="imageright">
+
+                <?php
+                if ($model->logo != null) {
+                    ?>
+                    <a href="<?php echo $link; ?> " target="_bank"><img  src="/file/logo/<?php echo $model->logo; ?>" /></a>
+                    <?php
+                } else {
+                    ?>
+                    <a href="<?php echo $link; ?> " target="_bank"><img   src="/file/logo/default.jpg"/></a>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
 
         <div class="edirbox clearfix">
             <h2>
@@ -215,6 +215,11 @@
                             '/eDirectory/admin/insertCompany/id/' . $model->id . '/page/detail'
                         )) . "'")
                     );
+                }
+                if ($model->verify == 1) {
+                    ?>
+                    <img alt="e-dirshoplogo"  src="/file/logo/dbd_verified .png"/>
+                    <?php
                 }
                 ?>
             </h2>
