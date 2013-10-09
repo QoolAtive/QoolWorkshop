@@ -22,6 +22,10 @@ $this->renderPartial('side_bar', array(
         opacity: 0.95;
     }
 
+    .e-searchbox{
+        width: 100%;
+    }
+
     .tabNavi2:hover{
         opacity: 0.95;
     }
@@ -42,9 +46,10 @@ $this->renderPartial('side_bar', array(
         display:block;
         float:left;
         height:32px;    
-        border:0px solid #CCC;
+        
         cursor:pointer;
         text-align:center;
+        color: #666;
     }
 
 
@@ -67,28 +72,37 @@ $this->renderPartial('side_bar', array(
         display:none;
     }
 
+    .tabcontents > form {
+    margin-left: -1px;
+    margin-top: -3px;
+    width: 100%;
+}
+
 </style>
 <div class="content">
     <div class="tabcontents">
-        <h3 class="barH3">
-            <span>
-                <i class="icon-home"></i>
+       <!-- <h3 class="barH3">
+            <span> 
+                <i class="icon-home"></i> -->
                 <?php
-                echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/default/index'));
-                if ($id != '') {
-                    $model_type = CompanyTypeBusiness::model()->findByPk($id);
-                    $name_type = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
+                // echo CHtml::link(Yii::t('language', 'ร้านค้าทั้งหมด'), array('/eDirectory/default/index'));
+                // if ($id != '') {
+                //     $model_type = CompanyTypeBusiness::model()->findByPk($id);
+                //     $name_type = LanguageHelper::changeDB($model_type->name, $model_type->name_en);
                     ?>
-                    <i class="icon-chevron-right"></i>
+                    <!-- <i class="icon-chevron-right"></i> -->
                     <?php
-                    echo $name_type;
-                }// end if($id!=''){
+                    // echo $name_type;
+               // }// end if($id!=''){
                 ?>
-            </span>
+           <!--  </span>
         </h3>
+             -->    <img src="/img/banner/E-directory.png" width="100%"alt="DBD Mart" />
+
         <?php
         $form = $this->beginWidget('CActiveForm', array(
             'id' => 'index-form',
+          
                 )
         );
         $delimiter = ', ';
@@ -122,15 +136,17 @@ $this->renderPartial('side_bar', array(
                     'update' => 'div#show_detail'
                         ), array(
                     'style' => "background: url('/img/searchbtn.png') no-repeat scroll 0 0 transparent;
-                                color: #0000FF;
+                                color: #555;
                                 display: inline-block;
-                                font-size: 1em;
+                                font-size: 18px;
                                 height: 106px;
                                 line-height: 106px;
                                 margin-left: 16%;
                                 text-align: center;
                                 width: 75%;
                                 background-size:100% 100%;
+                                border: 1px solid #ffffff;
+                                 text-shadow: 2px 1px #FFFFFF;
                                 ",
                 ));
                 ?>
