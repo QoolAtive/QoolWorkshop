@@ -81,8 +81,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 
 function listConfirm() {
     return array(
-        '0' => 'ไม่',
-        '1' => 'ใช่',
+        '0' => 'ยังไม่ได้รับเครื่องหมาย',
+        '1' => 'ได้รับเครื่องหมาย',
     );
 }
 
