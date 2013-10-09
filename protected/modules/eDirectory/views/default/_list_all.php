@@ -16,7 +16,7 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
         ));
         if ($data->verify == 1) {
             ?>
-        <img style="float: right;" alt="e-dirshoplogo"  src="/file/logo/dbd_verified .png"/>
+        <img style="float: right;" alt="e-dirshoplogo"  src="/file/logo/dbd_verified.png"/>
             <?php
         }
         ?>

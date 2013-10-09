@@ -155,7 +155,7 @@ $this->renderPartial('side_bar', array(
                     }
                     if ($model->verify == 1) {
                         ?>
-                        <img alt="e-dirshoplogo"  src="/file/logo/dbd_verified .png"/>
+                        <img alt="e-dirshoplogo"  src="/file/logo/dbd_verified.png"/>
                         <?php
                     }
                     ?>
