@@ -32,8 +32,8 @@ class DefaultController extends Controller {
         // เพิ่ม metatag for facebook
         Yii::app()->clientScript->registerMetaTag($view->subject, null, null, array('property'=>'og:title'));
         Yii::app()->clientScript->registerMetaTag($view->detail, null, null, array('property'=>'og:description'));
-        if(file_exists('/file/knowledge/'.$view->image)){
-            Yii::app()->clientScript->registerMetaTag('/file/knowledge/'.$view->image, null, null, array('property'=>'og:image'));
+        if(file_exists('./file/knowledge/'.$view->image)){
+            Yii::app()->clientScript->registerMetaTag($this->createAbsoluteUrl('/file/knowledge/'.$view->image), null, null, array('property'=>'og:image'));
         }
 
         $count = Knowledge::model()->find('id = :id', array(':id' => $view->id));
