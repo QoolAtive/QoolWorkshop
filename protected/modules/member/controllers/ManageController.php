@@ -174,7 +174,7 @@ Class ManageController extends Controller {
 
                 $model_user_add = new MemUserBase;
 
-//                $model_user_add->username = Tool::Encrypted($model_user->username);
+                $model_user_add->username = $model_user->username;
                 $model_user_add->password = Tool::Encrypted($model_user->password);
 //                $model_user_add->password_confirm = Tool::Encrypted($model_user->password_confirm);
                 $model_user_add->type = '1';
@@ -204,6 +204,7 @@ Class ManageController extends Controller {
 //                            $model_user->password = Tool::Decrypted($model_user->password);
 //                            $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
 //                            echo 
+//                            echo '4';
                         }
                     } else {
 //                        $model_user->username = Tool::Decrypted($model_user->username);
@@ -211,16 +212,21 @@ Class ManageController extends Controller {
 //                        $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
 //                        echo "<pre>";
 //                        print_r(array($model_user_add->getErrors(), $model->getErrors(), $model_confirm->getErrors()));
+//                        echo '3';
                     }
                 } else {
 //                    $model_user->username = Tool::Decrypted($model_user->username);
 //                    $model_user->password = Tool::Decrypted($model_user->password);
 //                    $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                    echo '2';
+//                    echo '<pre>';
+//                    print_r(array($model->getErrors(), $model_user->getErrors(), $model_user_add->getErrors()));
                 }
             } else {
 //                $model_user->username = Tool::Decrypted($model_user->username);
 //                $model_user->password = Tool::Decrypted($model_user->password);
 //                $model_user->password_confirm = Tool::Decrypted($model_user->password_confirm);
+//                echo "1";
             }
         }
 
@@ -270,7 +276,7 @@ Class ManageController extends Controller {
             if ($model->getErrors() == NULL && $model_user->getErrors() == NULL) {
 
                 $model_user_add = new MemUserBase;
-//                $model_user_add->username = Tool::Encrypted($model_user->username);
+                $model_user_add->username = $model_user->username;
                 $model_user_add->password = Tool::Encrypted($model_user->password);
                 $model_user_add->type = '2';
 
