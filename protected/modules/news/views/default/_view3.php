@@ -22,6 +22,17 @@
                     echo '';
                 ?>">
                     <div class="accordion-inner">
+                        <!--share-->
+                        <div class="right">
+                            <a href="#" onclick="
+                                    window.open(
+                                            'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('<?php echo $this->createAbsoluteUrl('/news/default/index/view/3#'.$train['id']);?>'),
+                                            'facebook-share-dialog',
+                                            'width=626,height=436');
+                                    return false;">
+                                <img src="/img/fbshare.jpg" alt="Share on Facebook" />
+                            </a>
+                        </div>
                         <!--รายละเอียด-->
                         <div><?php echo $detail; ?></div>
                         <div><?php echo CHtml::link($train['link'], $train['link'], array('target' => '_blank')); ?></div>
