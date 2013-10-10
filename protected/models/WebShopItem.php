@@ -122,6 +122,7 @@ class WebShopItem extends WebShopItemBase {
         $criteria->compare('name_en', $this->name_en, true);
         $criteria->compare('price_normal', $this->price_normal);
         $criteria->compare('price_special', $this->price_special);
+        $criteria->compare('vat', $this->vat);
         $criteria->compare('description_th', $this->description_th, true);
         $criteria->compare('description_en', $this->description_en, true);
         $criteria->compare('pic_1', $this->pic_1, true);

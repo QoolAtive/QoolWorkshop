@@ -12,8 +12,6 @@
  * @property string $url
  * @property string $description_th
  * @property string $description_en
- * @property string $how_to_buy_th
- * @property string $how_to_buy_en
  * @property string $address_th
  * @property string $address_en
  * @property integer $province_id
@@ -38,6 +36,7 @@
  * @property WebShopItem[] $webShopItems
  * @property WebShopOrder[] $webShopOrders
  * @property WebShopOrderDetail[] $webShopOrderDetails
+ * @property WebShopPay[] $webShopPays
  * @property WebShopSideBox[] $webShopSideBoxes
  */
 class WebShopBase extends CActiveRecord
@@ -73,10 +72,9 @@ class WebShopBase extends CActiveRecord
 			array('tran_cost', 'numerical'),
 			array('name_th, name_en, url, address_th, address_en', 'length', 'max'=>255),
 			array('mobile, tel, email', 'length', 'max'=>100),
-			array('how_to_buy_th, how_to_buy_en', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, how_to_buy_th, how_to_buy_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, tran_cost', 'safe', 'on'=>'search'),
+			array('web_shop_id, mem_user_id, name_th, name_en, web_shop_catagory_id, url, description_th, description_en, address_th, address_en, province_id, prefecture_id, district_id, postcode, mobile, tel, email, creat_at, tran_cost', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,6 +97,7 @@ class WebShopBase extends CActiveRecord
 			'webShopItems' => array(self::HAS_MANY, 'WebShopItem', 'web_shop_id'),
 			'webShopOrders' => array(self::HAS_MANY, 'WebShopOrder', 'web_shop_id'),
 			'webShopOrderDetails' => array(self::HAS_MANY, 'WebShopOrderDetail', 'web_shop_id'),
+			'webShopPays' => array(self::HAS_MANY, 'WebShopPay', 'web_shop_id'),
 			'webShopSideBoxes' => array(self::HAS_MANY, 'WebShopSideBox', 'web_shop_id'),
 		);
 	}
@@ -117,8 +116,6 @@ class WebShopBase extends CActiveRecord
 			'url' => 'Url',
 			'description_th' => 'Description Th',
 			'description_en' => 'Description En',
-			'how_to_buy_th' => 'How To Buy Th',
-			'how_to_buy_en' => 'How To Buy En',
 			'address_th' => 'Address Th',
 			'address_en' => 'Address En',
 			'province_id' => 'Province',
@@ -152,8 +149,6 @@ class WebShopBase extends CActiveRecord
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('description_th',$this->description_th,true);
 		$criteria->compare('description_en',$this->description_en,true);
-		$criteria->compare('how_to_buy_th',$this->how_to_buy_th,true);
-		$criteria->compare('how_to_buy_en',$this->how_to_buy_en,true);
 		$criteria->compare('address_th',$this->address_th,true);
 		$criteria->compare('address_en',$this->address_en,true);
 		$criteria->compare('province_id',$this->province_id);

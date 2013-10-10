@@ -864,17 +864,23 @@ class ManageShopController extends Controller {
         $this->render('sort_category', array('shop_id' => $shop_id));
     }
 
-    public function actionEditHowToBuy() {
+    public function actionEditHowToBuy($web_shop_pay_id = NULL) {
         $shop_id = Yii::app()->session['shop_id'];
         if ($shop_id != NULL) {
-            $model = WebShop::model()->findByPk($shop_id);
-            if (isset($_POST['WebShop'])) {
-                $model->attributes = $_POST['WebShop'];
-                WebShop::model()->updateByPk($shop_id, array('how_to_buy_th' => $model->how_to_buy_th, 'how_to_buy_en' => $model->how_to_buy_en));
-                echo "<script language='javascript'>
-            alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
-            window.top.location.href = '/webSimulation/manageShop/manageShop';
-</script>";
+            if($web_shop_pay_id == NULL){
+                $model = new WebShopPay();
+            } else {
+                $model = WebShopPay::model()->findByPk($web_shop_pay_id);
+            }
+            if (isset($_POST['WebShopPay'])) {
+                $model->attributes = $_POST['WebShopPay'];
+                $model->web_shop_id = $shop_id;
+                if($model->save()){
+                    echo "<script language='javascript'>
+                                alert('" . Yii::t('language', 'บันทึกข้อมูลเรียบร้อย') . "');
+                                window.top.location.href = '/webSimulation/manageShop/manageShop';
+                    </script>";
+                }
             }
             $this->render('edit_how_to_buy', array('model' => $model, 'shop_id' => $shop_id));
         } else {

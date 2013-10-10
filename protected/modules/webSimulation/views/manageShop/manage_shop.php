@@ -78,7 +78,10 @@ $this->renderPartial('_side_menu', array('index' => 'shop'));
             <li>
                 <ul class="innerlogo">
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy')); ?>">
+                        <?php
+                        $pay = WebShopPay::model()->findByAttributes(array('web_shop_id' => $model->web_shop_id));
+                        ?>
+                        <a href="<?php echo CHtml::normalizeUrl(array('/webSimulation/manageShop/editHowToBuy', 'web_shop_pay_id' => $pay['web_shop_pay_id'])); ?>">
                             <i class="icon-usd"></i>
                             <?php
                             echo Yii::t('language', 'วิธีสั่งซื้อและชำระเงิน');

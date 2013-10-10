@@ -1,3 +1,9 @@
+<style>
+    .grid-view .button-column {
+        width: 50px;
+    }
+</style>
+
 <div class="sidebar">
     <div class="menuitem">
         <ul>
@@ -69,7 +75,7 @@
                 array(
                     'header' => Yii::t('language', 'ชื่อร้านค้า'),
                     'name' => LanguageHelper::changeDB('name_th', 'name_en'),
-                    'value' => 'CHtml::link(LanguageHelper::changeDB($data->name_th, $data->name_en), CHtml::normalizeUrl(array("/webSimulation/manageShop/redirectManageShop", "shop_id" => $data->web_shop_id))) ',
+                    'value' => 'CHtml::link(LanguageHelper::changeDB($data->name_th, $data->name_en), CHtml::normalizeUrl(array("/webSimulation/manageShop/redirectManageShop", "shop_id" => $data->web_shop_id)))',
                     'type' => 'raw',
                 ),
                 array(
@@ -79,17 +85,17 @@
                     'type' => 'raw',
                     'filter' => FALSE,
                 ),
-//                array(
-//                    'class' => 'CButtonColumn',
-//                    'header' => Yii::t('language', "แก้ไข"),
-//                    'template' => '{update}',
-//                    'buttons' => array(
-//                        'update' => array(
-//                            'label' => Yii::t('language', 'แก้ไข'),
-//                            'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/register", "shop_id" => $data->web_shop_id))',
-//                        ),
-//                    ),
-//                ),
+                array(
+                    'class' => 'CButtonColumn',
+                    'header' => Yii::t('language', 'จัดการ') . Yii::t('language', 'ร้านค้า'),
+                    'template' => '{update}',
+                    'buttons' => array(
+                        'update' => array(
+                            'label' => Yii::t('language', 'แก้ไข'),
+                            'url' => 'CHtml::normalizeUrl(array("/webSimulation/manageShop/redirectManageShop", "shop_id" => $data->web_shop_id))',
+                        ),
+                    ),
+                ),
                 array(
                     'class' => 'CButtonColumn',
                     'header' => Yii::t('language', "ลบ"),
