@@ -33,6 +33,7 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
         ?>
         <div class="accordion" id="hideother">
             <?php
+            $news_group_i = 1;
             foreach ($news_group_list as $news_group) {
                 $criteria = new CDbCriteria();
                 $criteria->compare('group_id', $news_group['id']);
@@ -115,7 +116,7 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                             </div>
                         </div>
                         <?php
-                        if ($i == 1) {
+                        if ($i == 1 && $news_group_i == 1) {
                             //ไม่ให้ link ข่าวจาก facebook ปิด accordion แรก
                             $not_click = $news['id'];
                         }
@@ -127,6 +128,7 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                 ?>
                 <hr>
                 <?php
+                $news_group_i++;
             } //foreach($news_group_list as $news_group){
             ?>
         </div>
