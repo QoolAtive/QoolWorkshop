@@ -1,6 +1,9 @@
 <!--NEWS-->
 
 <?php
+//ให้เปิด acordion แค่อันเดียว
+$is_in = false;
+                            
 $model_rss = NewsRss::model()->find();
 $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
 ?>
@@ -61,10 +64,12 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                                 </a>
                             </div>
                             <div id="item<?php echo $news_group['id'] . $i; ?>" class="accordion-body collapse <?php
-                            if ($i == 1)
+                            if ($i == 1 && !$is_in) {
                                 echo 'in';
-                            else
+                                $is_in = true;
+                            } else {
                                 echo '';
+                            }
                             ?>">
                                 <div class="accordion-inner">
                                     <!--share-->
@@ -111,7 +116,7 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                         </div>
                         <?php
                         if ($i == 1) {
-                            //ไม่ให้ link จาก calendar ปิด accordion
+                            //ไม่ให้ link ข่าวจาก facebook ปิด accordion แรก
                             $not_click = $news['id'];
                         }
                         $i++;
