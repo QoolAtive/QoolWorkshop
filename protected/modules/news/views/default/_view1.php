@@ -1,6 +1,9 @@
 <!--NEWS-->
 
 <?php
+//ให้เปิด acordion แค่อันเดียว
+$is_in = false;
+                            
 $model_rss = NewsRss::model()->find();
 $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
 ?>
@@ -30,6 +33,7 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
         ?>
         <div class="accordion" id="hideother">
             <?php
+            $news_group_i = 1;
             foreach ($news_group_list as $news_group) {
                 $criteria = new CDbCriteria();
                 $criteria->compare('group_id', $news_group['id']);
@@ -56,17 +60,30 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <p class="faqarrow"></p>
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother" href="#item<?php echo $news_group['id'] . $i; ?>">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#hideother" href="#item<?php echo $news_group['id'] . $i; ?>" id="<?php echo $news['id'];?>">
                                     <?php echo $subject; ?>
                                 </a>
                             </div>
                             <div id="item<?php echo $news_group['id'] . $i; ?>" class="accordion-body collapse <?php
-                            if ($i == 1)
+                            if ($i == 1 && !$is_in) {
                                 echo 'in';
-                            else
+                                $is_in = true;
+                            } else {
                                 echo '';
+                            }
                             ?>">
                                 <div class="accordion-inner">
+                                    <!--share-->
+                                    <div class="right">
+                                        <a href="#" onclick="
+                                                window.open(
+                                                        'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('<?php echo $this->createAbsoluteUrl('/news/default/index/view/1#'.$news['id']);?>'),
+                                                        'facebook-share-dialog',
+                                                        'width=626,height=436');
+                                                return false;">
+                                            <img src="/img/fbshare.jpg" alt="Share on Facebook" />
+                                        </a>
+                                    </div>
                                     <!--รายละเอียด-->
                                     <div><?php echo $detail; ?></div>
                                     <!--รูปภาพ-->
@@ -99,14 +116,19 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
                             </div>
                         </div>
                         <?php
+                        if ($i == 1 && $news_group_i == 1) {
+                            //ไม่ให้ link ข่าวจาก facebook ปิด accordion แรก
+                            $not_click = $news['id'];
+                        }
                         $i++;
                     }
                     ?>
                     <?php
                 } //if($newslist != NULL){
                 ?>
-            <hr>
-            <?php
+                <hr>
+                <?php
+                $news_group_i++;
             } //foreach($news_group_list as $news_group){
             ?>
         </div>
@@ -121,4 +143,12 @@ $head_rss = LanguageHelper::changeDB($model_rss->name_th, $model_rss->name_en);
     ));
     ?>
 </div>
+
+<script>
+    $(document).ready(function() {
+        if (location.hash != '#<?php echo $not_click; ?>') {
+            $(location.hash).click();
+        }
+    });
+</script>
 <!-- END NEWS-->
