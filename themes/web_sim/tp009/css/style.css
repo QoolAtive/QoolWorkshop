@@ -32,6 +32,7 @@ BEGIN : Layout
 -----------------------------*/
 body{
  	background:#fff url('../img/bg.jpg') repeat 0 0;
+ 	background-attachment: fixed;
 }
 #wrapper {
 	margin: 0 auto;
@@ -171,7 +172,9 @@ BEGIN : Layout Product Box
 /*-----------------------------
 END : Layout Product Box
 -----------------------------*/
-
+.hasDatepicker {
+    padding: 0 20px;
+}
 /*-----------------------------
 BEGIN : Column in Product Box
 -----------------------------*/
@@ -181,7 +184,7 @@ BEGIN : Column in Product Box
 	float:left;
 	background:url('../img/lookInside.png') no-repeat 0 0;
 	width:81px;
-	height:29px;
+	height:9px;
 	z-index:499;
 }
 .pdf:hover{
@@ -291,12 +294,12 @@ BEGIN : Column in Product Box
 /*	bottom:29px;*/
 }
 .col4 .info_item{
-    position:relative;
-    bottom:52px;
-    float:left;
-    width:124px;
-    height: 70px;
-    line-height:16px;
+   	bottom: 24px;
+    float: left;
+    line-height: 16px;
+    position: relative;
+    text-align: center;
+    width: 124px;
 }
 .col4 .info_item h3{
 	font-weight:normal;
@@ -458,6 +461,7 @@ BEGIN : Column Right
 	float: left;
 	padding-bottom:5px;
 	border-bottom:1px #555 dashed;
+	text-indent: 15px;
 }
 #col_right_submenu a{
     color:#13445F;
