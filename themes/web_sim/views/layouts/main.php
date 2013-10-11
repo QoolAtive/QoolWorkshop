@@ -208,7 +208,7 @@
                         <div class="right_item_list" style="display:block;">
                             <h2 class="topic">พยากรณ์อากาศ</h2>
                             <p align="center">
-                                <iframe src="http://www.tmd.go.th/daily_forecast_forweb.php" width="100%" height="260" scrolling="no" frameborder=0></iframe>
+                                <iframe src="http://www.tmd.go.th/daily_forecast_forweb.php" width="70%" height="260" scrolling="no" frameborder=0></iframe>
                             </p>
                         </div>
                     <?php } ?>
