@@ -32,7 +32,7 @@
                 <i class="icon-globe"></i>www.dbdmart.com
             </li>
             <li>
-                <i class="icon-envelope"></i>e-commerce@dbd.go.th
+                <i class="icon-envelope"></i>dbdmart56@gmail.com
             </li>
         </ul>
         <?php
