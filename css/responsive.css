@@ -11,6 +11,23 @@
     /* Landscape phone to portrait tablet */
     /*767*/
     @media (max-width: 769px) { 
+    
+    .bgindex #container{
+	    position: relative;
+    }
+/*
+    #header .colleft{
+	    text-align: center;
+    }
+    #wrapper .colleft {
+	    width: 100%;
+	    margin-left: 0px;
+    }
+    
+    #wrapper .colright{
+	    width: 100%;
+    }
+*/
         h3.barH3{
             text-align: left;
             width: 100%;
