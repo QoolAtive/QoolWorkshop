@@ -449,6 +449,9 @@ class AdminController extends Controller {
         if ($id == null) {
             $model = new Company();
             $model->unsetAttributes();
+            
+            $license = new CompanyLicense();
+            $license->unsetAttributes();
 
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
@@ -458,6 +461,11 @@ class AdminController extends Controller {
         } else {
             $model = Company::model()->find("id = $id");
 
+            $license = CompanyLicense::model()->find("company_id = $id");
+            if($license == NULL){
+                $license = new CompanyLicense();
+            }
+            
             $model_type = new CompanyType();
             $model_type->unsetAttributes();
 
@@ -485,7 +493,7 @@ class AdminController extends Controller {
             $model_delivery->attributes = $_POST['DelivSer'];
             $model_delivery->other_en = $_POST['DelivSer']['other_en'];
             $model_delivery->other2_en = $_POST['DelivSer']['other2_en'];
-
+            
             if ($_POST['Delivery']['option'] == array()) {
                 $model_delivery->option = 0;
             }
@@ -532,6 +540,10 @@ class AdminController extends Controller {
                 }
 
                 if ($model->save()) {
+//เลขทะเบียนพาณิชย์ & ใบอนุญาต
+                    $license->attributes = $_POST['CompanyLicense'];
+                    $license->company_id = $model->id;
+                    $license->save();
 
 // เพิ่มความเคลื่อนไหว
                     $company_motion = CompanyMotion::model()->find('company_id=:company_id', array(':company_id' => $model->id));
@@ -706,12 +718,13 @@ class AdminController extends Controller {
 //            $model_type->validate();
 //            $model_delivery->validate();
         }
-
+        
         $this->render('_insert_company', array('model' => $model,
             'model_type' => $model_type,
             'type_list_data' => $type_list_data,
             'model_delivery' => $model_delivery,
             'delivery' => $delivery,
+            'license' => $license,
         ));
     }
 

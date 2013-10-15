@@ -11,14 +11,25 @@ class Company extends CompanyBase {
 
     public function rules() {
         return array(
-            array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
+            array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website, registered', 'required'),
             array('user_id, verify', 'numerical', 'integerOnly' => true),
             array('name, name_en', 'unique', 'message' => '{value} มีอยู่ในระบบแล้ว กรุณาตรวจสอบ'),
             array('logo, main_business, main_business_en, sub_business, sub_business_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, twitter, banner, brochure', 'length', 'max' => 100),
             array('name, name_en, address, address_en, facebook, website', 'length', 'max' => 255),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('verify, id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure', 'safe', 'on' => 'search'),
+            array('verify, id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure, registered', 'safe', 'on' => 'search'),
+        );
+    }
+
+    public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'companyLicenses' => array(self::HAS_MANY, 'CompanyLicense', 'company_id'),
+            'companyProducts' => array(self::HAS_MANY, 'CompanyProduct', 'main_id'),
+            'companyThems' => array(self::HAS_MANY, 'CompanyThem', 'main_id'),
+            'memCompanies' => array(self::HAS_MANY, 'MemCompany', 'com_id'),
         );
     }
 
@@ -53,6 +64,7 @@ class Company extends CompanyBase {
             'status_block' => Yii::t('language', 'สถานะ'),
             'date_warning' => Yii::t('language', 'แจ้งเตือน'),
             'verify' => Yii::t('language', 'เครื่องหมาย DBD Verified'),
+            'registered' => Yii::t('language', 'เลขทะเบียนพาณิชย์'),
         );
     }
 
@@ -82,6 +94,7 @@ class Company extends CompanyBase {
         $criteria->compare('website', $this->website, true);
         $criteria->compare('banner', $this->banner, true);
         $criteria->compare('brochure', $this->brochure, true);
+        $criteria->compare('registered', $this->registered);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -28,8 +28,10 @@
  * @property string $banner
  * @property string $brochure
  * @property integer $verify
+ * @property integer $registered
  *
  * The followings are the available model relations:
+ * @property CompanyLicense[] $companyLicenses
  * @property CompanyProduct[] $companyProducts
  * @property CompanyThem[] $companyThems
  * @property MemCompany[] $memCompanies
@@ -62,13 +64,13 @@ class CompanyBase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website', 'required'),
-			array('user_id, verify', 'numerical', 'integerOnly'=>true),
+			array('user_id, name, name_en, infor, infor_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_email, website, registered', 'required'),
+			array('user_id, verify, registered', 'numerical', 'integerOnly'=>true),
 			array('logo, main_business, main_business_en, sub_business, sub_business_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, twitter, banner, brochure', 'length', 'max'=>100),
 			array('name, name_en, address, address_en, facebook, website', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure, verify', 'safe', 'on'=>'search'),
+			array('id, user_id, logo, name, name_en, infor, infor_en, main_business, main_business_en, sub_business, sub_business_en, address, address_en, contact_name, contact_name_en, contact_tel, contact_fax, contact_email, facebook, twitter, website, banner, brochure, verify, registered', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,6 +82,7 @@ class CompanyBase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'companyLicenses' => array(self::HAS_MANY, 'CompanyLicense', 'company_id'),
 			'companyProducts' => array(self::HAS_MANY, 'CompanyProduct', 'main_id'),
 			'companyThems' => array(self::HAS_MANY, 'CompanyThem', 'main_id'),
 			'memCompanies' => array(self::HAS_MANY, 'MemCompany', 'com_id'),
@@ -116,6 +119,7 @@ class CompanyBase extends CActiveRecord
 			'banner' => 'Banner',
 			'brochure' => 'Brochure',
 			'verify' => 'Verify',
+			'registered' => 'Registered',
 		);
 	}
 
@@ -154,6 +158,7 @@ class CompanyBase extends CActiveRecord
 		$criteria->compare('banner',$this->banner,true);
 		$criteria->compare('brochure',$this->brochure,true);
 		$criteria->compare('verify',$this->verify);
+		$criteria->compare('registered',$this->registered);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

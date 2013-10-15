@@ -138,6 +138,45 @@ $this->renderPartial('side_bar', array(
                 ?>
             </div>
             <div class="_100">
+                <div class="_100">
+                    <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'เลขทะเบียนพาณิชย์') . Yii::t('language', 'และ'). Yii::t('language', 'ใบอนุญาต') . ' - '; ?></h4>
+                </div>
+                <div class="_100">
+                    <?php
+                    echo $form->labelEx($model, 'registered');
+                    echo $form->textfield($model, 'registered', array(
+                        'class' => 'numberinput',
+                    ));
+                    echo $form->error($model, 'registered');
+                    ?>
+                </div>
+                <div class="_33">
+                    <?php
+                    echo $form->labelEx($license, 'license_th');
+                    echo $form->textfield($license, 'license_th', array(
+                        'placeholder' => 'เช่น อย., ท่องเที่ยว',
+                    ));
+                    echo $form->error($license, 'license_th');
+                    ?>
+                </div>
+                <div class="_33">
+                    <?php
+                    echo $form->labelEx($license, 'license_en');
+                    echo $form->textfield($license, 'license_en', array(
+                        'placeholder' => 'ex. FDA, Travel permit',
+                    ));
+                    echo $form->error($license, 'license_en');
+                    ?>
+                </div>
+                <div class="_33">
+                    <?php
+                    echo $form->labelEx($license, 'license_number');
+                    echo $form->textfield($license, 'license_number');
+                    echo $form->error($license, 'license_number');
+                    ?>
+                </div>
+            </div>
+            <div class="_100">
 
                 <div class="_100">
                     <h4 class="reg"><?php echo ' - ' . Yii::t('language', 'ข้อมูล') . ' (' . Yii::t('language', 'ภาษาไทย') . ') - '; ?></h4>
