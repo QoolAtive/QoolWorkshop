@@ -11,6 +11,52 @@
     /* Landscape phone to portrait tablet */
     /*767*/
     @media (max-width: 769px) { 
+    body.bgindex
+    {
+	    width: 100%;
+    }
+    body.bgindex #wrapper > #container > .clearfix >.colright{
+	    display: none;
+    }
+    
+    .gridmenu li {
+  width: 50% !important;
+   padding-bottom: 0px;
+    padding-right: 0px;
+    margin-bottom: 15px;
+}
+    .newsani {
+  animation: none;
+  -webkit-animation: none;    
+    background: url("/img/news.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    float: left;
+    margin-left: 0;
+    margin-top: 60px;
+    padding-top: 45px;
+    position: relative;
+    width: 100%;
+    z-index: 991;
+}
+    .bgindex #container{
+	    position: relative;
+    }
+
+    #header .colleft{
+	    text-align: center;
+    }
+    #wrapper .colleft {
+	    width: 100%;
+	    margin-left: 0px;
+    }
+    #wrapper .colright {
+  
+    width: 100%;
+}
+    /*
+    #wrapper .colright{
+	    width: 100%;
+    }
+*/
         h3.barH3{
             text-align: left;
             width: 100%;
@@ -255,6 +301,9 @@ border-right: 0px none;
 
     /* Landscape phones and down */
     @media (max-width: 480px) { 
+ .bgindex #container{
+	    position: relative;
+    }
 
   h3.barH3{
             text-align: left;

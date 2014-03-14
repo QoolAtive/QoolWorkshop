@@ -14,15 +14,9 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
                     'title' => $name
                         )
         ));
-        if ($data->verify == 1) {
-            ?>
-        <img style="float: right;" alt="e-dirshoplogo"  src="/file/logo/dbd_verified.png"/>
-            <?php
-        }
         ?>
     </h4>
     <ul>
-
         <?php
         if (!empty($logo)) {
             ?>
@@ -66,6 +60,13 @@ $model_type_com_count = CompanyType::model()->count("company_id = {$data->id} an
                 $type_name_old = $type_name;
             }
             echo rtrim($data_type, ', ');
+            ?>
+            <?php
+            if ($data->verify == 1) {
+                ?>
+                <img style="float: right;" alt="e-dirshoplogo"  src="/file/logo/dbd_verified.png"/>
+                <?php
+            }
             ?>
         </li>
         <?php

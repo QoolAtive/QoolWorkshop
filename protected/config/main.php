@@ -55,7 +55,7 @@ return array(
     'components' => array(
         'googleAnalytics' => array(
             'class' => 'ext.TPGoogleAnalytics.components.TPGoogleAnalytics',
-            'account' => 'UA-43356253-1',
+            'account' => 'UA-44785147-1',
             'autoRender' => true,
         ),
         'user' => array(

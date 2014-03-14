@@ -286,6 +286,33 @@
                 }
                 ?>
                 <tr>
+                    <td>
+                        <?php echo Yii::t('language', 'เลขทะเบียนพาณิชย์'); ?>
+                    </td>
+                    <td class="colon"> : </td>
+                    <td>
+                        <?php
+                        echo $model->registered;
+                        ?>
+                    </td>
+                </tr>
+                <?php
+                $license = CompanyLicense::model()->find("company_id = $model->id");
+                if($license['license_number'] != NULL && $license['license_th'] != NULL && $license['license_en'] != NULL):
+                    ?>
+                <tr>
+                    <td>
+                        <?php echo Yii::t('language', 'ใบอนุญาต') . ' ' . LanguageHelper::changeDB($license['license_th'], $license['license_en']) . ' ' . Yii::t('language', 'เลขที่'); ?>
+                    </td>
+                    <td class="colon"> : </td>
+                    <td>
+                        <?php
+                        echo $license['license_number'];
+                        ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+                <tr>
                     <td><?php echo Yii::t('language', 'ที่ตั้ง'); ?></td>
                     <td class="colon"> : </td>
                     <td>
