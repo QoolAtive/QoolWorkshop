@@ -31,3 +31,10 @@ fsdfs2
 sdfsdfds
 sdfsdf
 sfsfds
+<<<<<<< HEAD
+=======
+
+fsdfsfsd
+sfdsdf
+sfds
+>>>>>>> Feature-01
